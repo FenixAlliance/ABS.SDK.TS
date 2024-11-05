@@ -1,0 +1,41 @@
+{
+  "license": "MIT",
+  "access": "public",
+  "version": "1.0.15",
+  "name": "@fenixalliance/abs-api-client",
+  "main": "wwwroot/build/bundle.js",
+  "homepage": "https://absuite.net",
+  "author": "Fenix Alliance <contact@fenix-alliance.com>",
+  "description": "Clients and types for the ABS Platform API, provided by Fenix Alliance.",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fenixalliance/abs.docs"
+  },
+  "bugs": {
+    "url": "https://github.com/fenixalliance/abs.docs"
+  },
+  "keywords": [
+    "Alliance Business Platform",
+    "Alliance Business Suite",
+    "Fenix Alliance",
+    "client",
+    "types",
+    "openapi"
+  ],
+  "scripts": {
+    "watch": "vite",
+    "build": "vite build",
+    "build:prod": "vite build",
+    "build:clients": "./Update.ps1; Update-SuiteApiTypeScriptClients -hostName https://qa.absuite.net/swagger"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^6.7.6",
+    "openapi-typescript-codegen": "^0.27.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.5",
+    "vite-tsconfig-paths": "^4.3.2"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+      "module": "NodeNext", // or "NodeNext"
+      "moduleResolution": "NodeNext", // or "NodeNext"
+      "noUncheckedIndexedAccess": true, 
+      "forceConsistentCasingInFileNames": true,
+      "strict": true
+  }
+}

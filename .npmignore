@@ -1,0 +1,12 @@
+obj/
+bin/
+.storybook/
+node_modules/
+storybook-static/
+*.stories.js
+*.stories.ts
+*.stories.tsx
+*.stories.jsx
+*.csproj
+.npmrc
+*.ps1
