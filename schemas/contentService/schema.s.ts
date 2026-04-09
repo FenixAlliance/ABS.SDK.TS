@@ -6,1335 +6,457 @@
 
 export interface paths {
   "/api/v2/ContentService/BlogPostAuthors": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get blog authors
+     * @description Retrieves all blog authors, optionally filtered by tenant.
+     */
+    get: operations["GetBlogAuthorsAsync"];
   };
   "/api/v2/ContentService/BlogPostAuthors/{authorId}": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          authorId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get blog author by ID
+     * @description Retrieves a specific blog author by their identifier.
+     */
+    get: operations["GetBlogAuthorByIdAsync"];
   };
   "/api/v2/ContentService/BlogPostAuthors/{authorId}/BlogPosts": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          authorId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get blog posts by author
+     * @description Retrieves all blog posts written by a specific author.
+     */
+    get: operations["GetBlogPostsByAuthorAsync"];
   };
   "/api/v2/ContentService/BlogPostAuthors/{authorId}/BlogPosts/Count": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          authorId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Count blog posts by author
+     * @description Returns the count of blog posts written by a specific author.
+     */
+    get: operations["CountBlogPostsByAuthorAsync"];
   };
-  "/api/v2/ContentService/BlogPostCategories/{tenantId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostCategoryDtoEnvelope"];
-            "application/xml": components["schemas"]["BlogPostCategoryDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostCategoryCreateDto"];
-          "application/xml": components["schemas"]["BlogPostCategoryCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+  "/api/v2/ContentService/BlogPostCategories/Count": {
+    /**
+     * Count blog post categories
+     * @description Counts all blog post categories for the specified tenant.
+     */
+    get: operations["CountBlogPostCategoriesAsync"];
   };
-  "/api/v2/ContentService/BlogPostCategories/{tenantId}/{blogPostCategoryId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          blogPostCategoryId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostCategoryDtoEnvelope"][];
-            "application/xml": components["schemas"]["BlogPostCategoryDtoEnvelope"][];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          blogPostCategoryId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostCategoryUpdateDto"];
-          "application/xml": components["schemas"]["BlogPostCategoryUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          blogPostCategoryId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-          blogPostId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          blogPostCategoryId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["Operation"][];
-          "application/xml": components["schemas"]["Operation"][];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+  "/api/v2/ContentService/BlogPostCategories": {
+    /**
+     * Get blog post categories
+     * @description Retrieves all blog post categories for the specified tenant.
+     */
+    get: operations["GetBlogPostCategoriesAsync"];
+    /**
+     * Create a blog post category
+     * @description Creates a new blog post category for the specified tenant.
+     */
+    post: operations["CreateBlogPostCategoryAsync"];
+  };
+  "/api/v2/ContentService/BlogPostCategories/{blogPostCategoryId}": {
+    /**
+     * Get blog post category by ID
+     * @description Retrieves a specific blog post category by its ID.
+     */
+    get: operations["GetBlogPostCategoryByIdAsync"];
+    /**
+     * Update a blog post category
+     * @description Updates an existing blog post category for the specified tenant.
+     */
+    put: operations["UpdateBlogPostCategoryAsync"];
+    /**
+     * Delete a blog post category
+     * @description Deletes a blog post category for the specified tenant.
+     */
+    delete: operations["DeleteBlogPostCategoryAsync"];
   };
   "/api/v2/ContentService/BlogPosts": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostCreateDto"];
-          "application/xml": components["schemas"]["BlogPostCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of blog posts
+     * @description Retrieves all blog posts, optionally filtered by tenant using OData query options.
+     */
+    get: operations["GetBlogPostsAsync"];
+    /**
+     * Create a new blog post
+     * @description Creates a new blog post for the specified tenant.
+     */
+    post: operations["CreateBlogPostAsync"];
   };
   "/api/v2/ContentService/BlogPosts/Count": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of blog posts
+     * @description Returns the total count of blog posts, optionally filtered by tenant using OData query options.
+     */
+    get: operations["GetBlogPostsCountAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}": {
-    get: {
-      parameters: {
-        path: {
-          blogPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostDtoEnvelope"];
-            "application/xml": components["schemas"]["BlogPostDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostUpdateDto"];
-          "application/xml": components["schemas"]["BlogPostUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["Operation"][];
-          "application/xml": components["schemas"]["Operation"][];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get a blog post by ID
+     * @description Retrieves a single blog post by its unique identifier.
+     */
+    get: operations["GetBlogPostByIdAsync"];
+    /**
+     * Update a blog post
+     * @description Updates an existing blog post for the specified tenant.
+     */
+    put: operations["UpdateBlogPostAsync"];
+    /**
+     * Delete a blog post
+     * @description Deletes a blog post for the specified tenant.
+     */
+    delete: operations["DeleteBlogPostAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Tags": {
-    get: {
-      parameters: {
-        path: {
-          blogPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostTagDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostTagDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostTagCreateDto"];
-          "application/xml": components["schemas"]["BlogPostTagCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get tags for a blog post
+     * @description Retrieves all tags related to a specific blog post.
+     */
+    get: operations["GetTagsForBlogPostAsync"];
+    /**
+     * Create a tag for a blog post
+     * @description Creates a new tag and relates it to a specific blog post.
+     */
+    post: operations["CreateTagForBlogPostAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Tags/{tagId}": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-          tagId: string;
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-          tagId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Relate an existing tag to a blog post
+     * @description Creates a relationship between an existing tag and a blog post.
+     */
+    post: operations["RelateTagToBlogPostAsync"];
+    /**
+     * Remove a tag from a blog post
+     * @description Removes the relationship between a tag and a blog post.
+     */
+    delete: operations["UnrelateTagFromBlogPostAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Categories": {
-    get: {
-      parameters: {
-        path: {
-          blogPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostCategoryDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostCategoryDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostCategoryCreateDto"];
-          "application/xml": components["schemas"]["BlogPostCategoryCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get categories for a blog post
+     * @description Retrieves all categories related to a specific blog post.
+     */
+    get: operations["GetCategoriesForBlogPostAsync"];
+    /**
+     * Create a category for a blog post
+     * @description Creates a new category and relates it to a specific blog post.
+     */
+    post: operations["CreateCategoryForBlogPostAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Categories/{categoryId}": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-          categoryId: string;
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-          categoryId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Relate an existing category to a blog post
+     * @description Creates a relationship between an existing category and a blog post.
+     */
+    post: operations["RelateCategoryToBlogPostAsync"];
+    /**
+     * Remove a category from a blog post
+     * @description Removes the relationship between a category and a blog post.
+     */
+    delete: operations["UnrelateCategoryFromBlogPostAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Comments": {
-    get: {
-      parameters: {
-        path: {
-          blogPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostCommentDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostCommentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostCommentCreateDto"];
-          "application/xml": components["schemas"]["BlogPostCommentCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get comments for a blog post
+     * @description Retrieves all comments for a specific blog post.
+     */
+    get: operations["GetCommentsForBlogPostAsync"];
+    /**
+     * Create a comment for a blog post
+     * @description Creates a new comment on a specific blog post.
+     */
+    post: operations["CreateCommentForBlogPostAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}/Replies": {
-    get: {
-      parameters: {
-        path: {
-          commentId: string;
-          blogPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BlogPostCommentDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostCommentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get replies for a comment
+     * @description Retrieves all replies for a specific blog post comment.
+     */
+    get: operations["GetRepliesForCommentAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}/Reply": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          blogPostId: string;
-          commentId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostCommentCreateDto"];
-          "application/xml": components["schemas"]["BlogPostCommentCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Reply to a blog post comment
+     * @description Creates a reply to an existing comment on a blog post.
+     */
+    post: operations["ReplyToCommentAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Comments/{commentId}": {
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
+    /**
+     * Delete a blog post comment
+     * @description Deletes a comment from a specific blog post.
+     */
+    delete: operations["DeleteCommentFromBlogPostAsync"];
+  };
+  "/api/v2/ContentService/BlogPostTags": {
+    /**
+     * Get blog post tags
+     * @description Retrieves all blog post tags for the specified tenant.
+     */
+    get: operations["GetBlogPostTagsAsync"];
+    /**
+     * Create a blog post tag
+     * @description Creates a new blog post tag for the specified tenant.
+     */
+    post: operations["CreateBlogPostTagAsync"];
+  };
+  "/api/v2/ContentService/BlogPostTags/{blogPostTagId}": {
+    /**
+     * Get blog post tag by ID
+     * @description Retrieves a specific blog post tag by its ID.
+     */
+    get: operations["GetBlogPostTagByIdAsync"];
+    /**
+     * Update a blog post tag
+     * @description Updates an existing blog post tag for the specified tenant.
+     */
+    put: operations["UpdateBlogPostTagAsync"];
+    /**
+     * Delete a blog post tag
+     * @description Deletes a blog post tag for the specified tenant.
+     */
+    delete: operations["DeleteBlogPostTagAsync"];
+  };
+  "/api/v2/ContentService/BusinessDomains": {
+    /**
+     * Get business domains
+     * @description Retrieves business domains for the specified tenant.
+     */
+    get: operations["GetBusinessDomainsAsync"];
+  };
+  "/api/v2/ContentService/BusinessDomains/Count": {
+    /**
+     * Get business domains count
+     * @description Retrieves the count of business domains for the specified tenant.
+     */
+    get: operations["GetBusinessDomainsCountAsync"];
+  };
+  "/api/v2/ContentService/BusinessDomains/{businessDomainId}": {
+    /**
+     * Get business domain by ID
+     * @description Retrieves a specific business domain.
+     */
+    get: operations["GetBusinessDomainByIdAsync"];
+  };
+  "/version": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
         };
-        path: {
-          blogPostId: string;
-          commentId: string;
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
+          content: never;
         };
-        /** @description Unauthorized */
-        401: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
       };
     };
   };
-  "/api/v2/ContentService/BlogPostTags": {
-    get: {
+  "/login": {
+    post: {
       parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["BlogPostTagDtoListEnvelope"];
-            "application/xml": components["schemas"]["BlogPostTagDtoListEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
-        /** @description Unauthorized */
-        401: {
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
-        /** @description Forbidden */
-        403: {
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
     post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["BlogPostTagCreateDto"];
-          "application/xml": components["schemas"]["BlogPostTagCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/ContentService/BlogPostTags/{blogPostTagId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          blogPostTagId: string;
+          "application/json": components["schemas"]["InfoRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["BlogPostTagDtoEnvelope"];
-            "application/xml": components["schemas"]["BlogPostTagDtoEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
         };
-        /** @description Unauthorized */
-        401: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          blogPostTagId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostTagUpdateDto"];
-          "application/xml": components["schemas"]["BlogPostTagUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          blogPostTagId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          blogPostTagId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["BlogPostTagUpdateDto"];
-          "application/xml": components["schemas"]["BlogPostTagUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
@@ -1358,7 +480,7 @@ export interface paths {
      * Initialize the current portal
      * @description Initialize the current portal for the current user.
      */
-    get: operations["InitializeCurrentWebPortalAsync"];
+    post: operations["InitializeCurrentWebPortalAsync"];
   };
   "/api/v2/ContentService/Portals/Current/Options": {
     /**
@@ -1418,1298 +540,225 @@ export interface paths {
     post: operations["CreateWebPortalAsync"];
   };
   "/api/v2/ContentService/Themes/Update": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update base web content themes
+     * @description Triggers an update of the base web content themes.
+     */
+    get: operations["GetLatestCurrencyRatesModelAsync"];
+  };
+  "/api/v2/ContentService/WebContents/Count": {
+    /**
+     * Count web contents
+     * @description Counts all web contents for the specified tenant.
+     */
+    get: operations["CountWebContentsAsync"];
   };
   "/api/v2/ContentService/WebContents": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebContentDtoListEnvelope"];
-            "application/xml": components["schemas"]["WebContentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebContentCreateDto"];
-          "application/xml": components["schemas"]["WebContentCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get web contents
+     * @description Retrieves all web contents for the specified tenant.
+     */
+    get: operations["GetWebContentsAsync"];
+    /**
+     * Create a web content
+     * @description Creates a new web content for the specified tenant.
+     */
+    post: operations["CreateWebContentAsync"];
   };
   "/api/v2/ContentService/WebContents/{webContentId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webContentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebContentDtoEnvelope"];
-            "application/xml": components["schemas"]["WebContentDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webContentId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebContentUpdateDto"];
-          "application/xml": components["schemas"]["WebContentUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webContentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webContentId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["Operation"][];
-          "application/xml": components["schemas"]["Operation"][];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get web content by ID
+     * @description Retrieves a specific web content by its ID.
+     */
+    get: operations["GetWebContentByIdAsync"];
+    /**
+     * Update a web content
+     * @description Updates an existing web content for the specified tenant.
+     */
+    put: operations["UpdateWebContentAsync"];
+    /**
+     * Delete a web content
+     * @description Deletes a web content for the specified tenant.
+     */
+    delete: operations["DeleteWebContentAsync"];
   };
   "/api/v2/ContentService/WebPageCategories": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebPageCategoryDtoListEnvelope"];
-            "application/xml": components["schemas"]["WebPageCategoryDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebPageCategoryCreateDto"];
-          "application/xml": components["schemas"]["WebPageCategoryCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get web page categories
+     * @description Retrieves all web page categories for the specified tenant.
+     */
+    get: operations["GetWebPageCategoriesAsync"];
+    /**
+     * Create a web page category
+     * @description Creates a new web page category for the specified tenant.
+     */
+    post: operations["CreateWebPageCategoryAsync"];
   };
   "/api/v2/ContentService/WebPageCategories/{webPageCategoryId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageCategoryId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebPageCategoryDtoEnvelope"];
-            "application/xml": components["schemas"]["WebPageCategoryDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageCategoryId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebPageCategoryUpdateDto"];
-          "application/xml": components["schemas"]["WebPageCategoryUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageCategoryId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageCategoryId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["Operation"][];
-          "application/xml": components["schemas"]["Operation"][];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get web page category by ID
+     * @description Retrieves a specific web page category by its ID.
+     */
+    get: operations["GetWebPageCategoryByIdAsync"];
+    /**
+     * Update a web page category
+     * @description Updates an existing web page category for the specified tenant.
+     */
+    put: operations["UpdateWebPageCategoryAsync"];
+    /**
+     * Delete a web page category
+     * @description Deletes a web page category for the specified tenant.
+     */
+    delete: operations["DeleteWebPageCategoryAsync"];
+  };
+  "/api/v2/ContentService/WebPages/Count": {
+    /**
+     * Count web pages
+     * @description Counts all web pages for the specified tenant.
+     */
+    get: operations["CountWebPagesAsync"];
   };
   "/api/v2/ContentService/WebPages": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebPageDtoListEnvelope"];
-            "application/xml": components["schemas"]["WebPageDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebPageCreateDto"];
-          "application/xml": components["schemas"]["WebPageCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get web pages
+     * @description Retrieves all web pages for the specified tenant.
+     */
+    get: operations["GetWebPagesAsync"];
+    /**
+     * Create a web page
+     * @description Creates a new web page for the specified tenant.
+     */
+    post: operations["CreateWebPageAsync"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebPageDtoEnvelope"];
-            "application/xml": components["schemas"]["WebPageDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebPageUpdateDto"];
-          "application/xml": components["schemas"]["WebPageUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["Operation"][];
-          "application/xml": components["schemas"]["Operation"][];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get web page by ID
+     * @description Retrieves a specific web page by its identifier.
+     */
+    get: operations["GetWebPageByIdAsync"];
+    /**
+     * Update a web page
+     * @description Updates an existing web page for the specified tenant.
+     */
+    put: operations["UpdateWebPageAsync"];
+    /**
+     * Delete a web page
+     * @description Deletes a web page for the specified tenant.
+     */
+    delete: operations["DeleteWebPageAsync"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Tags": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebPageTagDtoListEnvelope"];
-            "application/xml": components["schemas"]["WebPageTagDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebPageTagCreateDto"];
-          "application/xml": components["schemas"]["WebPageTagCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get tags by web page
+     * @description Retrieves all tags related to a specific web page.
+     */
+    get: operations["GetTagsByWebPageAsync"];
+    /**
+     * Create a web page tag relation
+     * @description Creates a new tag and relates it to a web page.
+     */
+    post: operations["CreateWebPageTagRelationAsync"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Tags/{tagId}": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-          tagId: string;
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-          tagId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Relate web page to tag
+     * @description Relates an existing tag to a web page.
+     */
+    post: operations["RelateWebPageToTagAsync"];
+    /**
+     * Unrelate web page from tag
+     * @description Removes the relationship between a web page and a tag.
+     */
+    delete: operations["UnrelateWebPageTagAsync"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Categories": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebPageCategoryDtoListEnvelope"];
-            "application/xml": components["schemas"]["WebPageCategoryDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebPageCategoryCreateDto"];
-          "application/xml": components["schemas"]["WebPageCategoryCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get categories by web page
+     * @description Retrieves all categories related to a specific web page.
+     */
+    get: operations["GetCategoriesByWebPageAsync"];
+    /**
+     * Create a web page category relation
+     * @description Creates a new category and relates it to a web page.
+     */
+    post: operations["CreateWebPageCategoryRelationAsync"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Categories/{categoryId}": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-          categoryId: string;
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageId: string;
-          categoryId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Relate web page to category
+     * @description Relates an existing category to a web page.
+     */
+    post: operations["RelateWebPageToCategoryAsync"];
+    /**
+     * Unrelate web page from category
+     * @description Removes the relationship between a web page and a category.
+     */
+    delete: operations["UnrelateWebPageCategoryAsync"];
   };
   "/api/v2/ContentService/WebPageTags": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebPageTagDtoListEnvelope"];
-            "application/xml": components["schemas"]["WebPageTagDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebPageTagCreateDto"];
-          "application/xml": components["schemas"]["WebPageTagCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get web page tags
+     * @description Retrieves all web page tags for the specified tenant.
+     */
+    get: operations["GetWebPageTagsAsync"];
+    /**
+     * Create a web page tag
+     * @description Creates a new web page tag for the specified tenant.
+     */
+    post: operations["CreateWebPageTagAsync"];
   };
   "/api/v2/ContentService/WebPageTags/{webPageTagId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageTagId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WebPageTagDtoEnvelope"];
-            "application/xml": components["schemas"]["WebPageTagDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageTagId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WebPageTagUpdateDto"];
-          "application/xml": components["schemas"]["WebPageTagUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageTagId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          webPageTagId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["Operation"][];
-          "application/xml": components["schemas"]["Operation"][];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get web page tag by ID
+     * @description Retrieves a specific web page tag by its ID.
+     */
+    get: operations["GetWebPageTagByIdAsync"];
+    /**
+     * Update a web page tag
+     * @description Updates an existing web page tag for the specified tenant.
+     */
+    put: operations["UpdateWebPageTagAsync"];
+    /**
+     * Delete a web page tag
+     * @description Deletes a web page tag for the specified tenant.
+     */
+    delete: operations["DeleteWebPageTagAsync"];
+  };
+  "/api/v2/ContentService/WebTemplates": {
+    /**
+     * Get web templates
+     * @description Retrieves all web templates for the specified tenant.
+     */
+    get: operations["GetWebTemplatesAsync"];
+    /**
+     * Create a web template
+     * @description Creates a new web template for the specified tenant.
+     */
+    post: operations["CreateWebTemplateAsync"];
+  };
+  "/api/v2/ContentService/WebTemplates/Count": {
+    /**
+     * Count web templates
+     * @description Counts all web templates for the specified tenant.
+     */
+    get: operations["CountWebTemplatesAsync"];
+  };
+  "/api/v2/ContentService/WebTemplates/{webTemplateId}": {
+    /**
+     * Get web template by ID
+     * @description Retrieves a specific web template by its identifier.
+     */
+    get: operations["GetWebTemplateByIdAsync"];
+    /**
+     * Update a web template
+     * @description Updates an existing web template for the specified tenant.
+     */
+    put: operations["UpdateWebTemplateAsync"];
+    /**
+     * Delete a web template
+     * @description Deletes a web template for the specified tenant.
+     */
+    delete: operations["DeleteWebTemplateAsync"];
   };
 }
 
@@ -2717,6 +766,13 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     AdvancedOptions: {
       homePageID?: string | null;
       cartPageID?: string | null;
@@ -2777,16 +833,10 @@ export interface components {
       connectionString?: string | null;
     };
     Background: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      bgRepeat?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      bgPosition?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+      /** @enum {string} */
+      bgRepeat?: "All" | "Horizontally" | "Vertically" | "NoRepeat";
+      /** @enum {string} */
+      bgPosition?: "TopLeft" | "TopRight" | "TopCenter" | "CenterLeft" | "CenterRight" | "CenterCenter" | "BottomLeft" | "BottomRight" | "BottomCenter";
       backgroundColor?: string | null;
       backgroundImageUrl?: string | null;
       enableFullWidthBackgroundImage?: boolean;
@@ -2799,6 +849,62 @@ export interface components {
       backgroundColorForPage?: string | null;
       mainContentColor?: string | null;
       mainContentImageURL?: string | null;
+    };
+    BlogAuthorDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      birthday?: string;
+      firstName?: string | null;
+      lastName?: string | null;
+      publicName?: string | null;
+      languageId?: string | null;
+      timezoneId?: string | null;
+      countryId?: string | null;
+      cityId?: string | null;
+      stateId?: string | null;
+      about?: string | null;
+      jobTitle?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      gitHubUrl?: string | null;
+      websiteUrl?: string | null;
+      twitterUrl?: string | null;
+      facebookUrl?: string | null;
+      youTubeUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      socialFeedId?: string | null;
+      socialProfileId?: string | null;
+      /** @enum {string} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay";
+      walletId?: string | null;
+      status?: string | null;
+      userName?: string | null;
+      publicIdentifier?: string | null;
+      phoneNumberConfirmed?: boolean;
+      /** @enum {string} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available";
+    };
+    BlogAuthorDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BlogAuthorDto"];
+    };
+    BlogAuthorDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BlogAuthorDto"][] | null;
     };
     BlogOptions: {
       /** Format: int32 */
@@ -2913,12 +1019,15 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       title?: string | null;
-      authorId?: string | null;
+      code?: string | null;
+      published?: boolean;
       description?: string | null;
       htmlContent?: string | null;
       featuredImageUrl?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
       blogPostCategoryID?: string | null;
       webTemplateID?: string | null;
     };
@@ -2926,6 +1035,8 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -2936,6 +1047,7 @@ export interface components {
       description?: string | null;
       highlightImage?: string | null;
       canonicalUrl?: string | null;
+      emitResult?: unknown;
       seoTitle?: string | null;
       seoKeyWords?: string | null;
       seoKeyPhrases?: string | null;
@@ -3097,7 +1209,7 @@ export interface components {
       facebookImage?: string | null;
       facebookTitle?: string | null;
       facebookDescription?: string | null;
-      featuredImageURL?: string | null;
+      featuredImageUrl?: string | null;
       content?: string | null;
       code?: string | null;
       namespace?: string | null;
@@ -3105,6 +1217,8 @@ export interface components {
       generatedCode?: string | null;
       compilationPath?: string | null;
       htmlContent?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -3159,6 +1273,33 @@ export interface components {
       breadcrumbsFontColor?: string | null;
       breadcrumbsFontColorHover?: string | null;
     };
+    BusinessDomainDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      domain?: string | null;
+      txtRecord?: string | null;
+      verified?: boolean;
+      businessID?: string | null;
+    };
+    BusinessDomainDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BusinessDomainDto"];
+    };
+    BusinessDomainDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BusinessDomainDto"][] | null;
+    };
     CartOptions: {
       enableGuestCart?: boolean;
       productPlaceholderImage?: string | null;
@@ -3166,11 +1307,8 @@ export interface components {
     };
     CodeFieldsOptions: Record<string, never>;
     ColorOptions: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      primarySkin?: 0 | 1;
+      /** @enum {string} */
+      primarySkin?: "Dark" | "Light";
       primaryColor?: string | null;
       secondaryColor?: string | null;
       colorScheme?: components["schemas"]["ColorScheme"];
@@ -3336,11 +1474,8 @@ export interface components {
       borderSize?: number;
       borderColor?: string | null;
       widgetDividerColor?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      widgetDivider?: 0 | 1 | 2 | 3 | 4 | 5;
+      /** @enum {string} */
+      widgetDivider?: "None" | "Solid" | "Dotted" | "Double" | "Groove" | "Ridge";
       copyrightPadding?: components["schemas"]["Padding"];
       widgetsAreaPadding?: components["schemas"]["Padding"];
       footerAreaPadding?: components["schemas"]["Padding"];
@@ -3349,6 +1484,9 @@ export interface components {
       headingsTypography?: components["schemas"]["Typography"];
       widgetsTypography?: components["schemas"]["Typography"];
       copyrightTypography?: components["schemas"]["Typography"];
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
     };
     FormsOptions: Record<string, never>;
     ForumOptions: {
@@ -3412,29 +1550,29 @@ export interface components {
       enableStickyHeader?: boolean;
       enableHeaderShadow?: boolean;
       enableFullWidthHeader?: boolean;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      headerLayout?: 0 | 1 | 2 | 3 | 4 | 5;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      headerPosition?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      topHeaderContentType2?: 0 | 1 | 2 | 3 | 4;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      topHeaderContentType1?: 0 | 1 | 2 | 3 | 4;
+      /** @enum {string} */
+      headerLayout?: "_01" | "_02" | "_03" | "_04" | "_05" | "_06";
+      /** @enum {string} */
+      headerPosition?: "Top" | "Right" | "Center";
+      /** @enum {string} */
+      topHeaderContentType2?: "NavigationMenu" | "AccountMenu" | "ContactInfo" | "SocialLinks" | "LeaveEmpty";
+      /** @enum {string} */
+      topHeaderContentType1?: "NavigationMenu" | "AccountMenu" | "ContactInfo" | "SocialLinks" | "LeaveEmpty";
       topHeaderBackgroundColor?: string | null;
       topHeaderContent1?: string | null;
       topHeaderContent2?: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
     };
     IdentityAndPrivacyOptions: {
       allowGuestOrders?: boolean;
@@ -3444,11 +1582,8 @@ export interface components {
       allowRemovePersonalDataFromSubscriptionsOnRequest?: boolean;
       storeCheckoutPrivacyPolicyNotice?: string | null;
       storeRegistrationPrivacyPolicyNotice?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      defaultCustomerLocation?: 0 | 1 | 2 | 3;
+      /** @enum {string} */
+      defaultCustomerLocation?: "None" | "Geolocate" | "StoreAddressBased" | "GeolocateWithCaching";
       inactiveCartsRetentionPolicy?: components["schemas"]["StoreDataRetentionPolicy"];
       pendingOrdersRetentionPolicy?: components["schemas"]["StoreDataRetentionPolicy"];
       failedOrdersRetentionPolicy?: components["schemas"]["StoreDataRetentionPolicy"];
@@ -3461,6 +1596,15 @@ export interface components {
       tenantId?: string | null;
       publicKey?: string | null;
       privateKey?: string | null;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
     };
     Int32Envelope: {
       isSuccess?: boolean;
@@ -3499,11 +1643,8 @@ export interface components {
       lowStockThreshold?: number;
       /** Format: int32 */
       outOfStockThreshold?: number;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      stockDisplayFormat?: 0 | 1 | 2;
+      /** @enum {string} */
+      stockDisplayFormat?: "AlwaysDisplayRemainingQuantity" | "OnlyDisplayRemainingQuantityWhenStockIsLow" | "NeverDisplayRemainingQuantity";
     };
     LayoutOptions: {
       singleSidebarWidth?: string | null;
@@ -3515,20 +1656,20 @@ export interface components {
       pageContentPaddingBottom?: string | null;
       pageContentPaddingTop?: string | null;
       siteWidth?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      layout?: 0 | 1;
+      /** @enum {string} */
+      layout?: "Boxed" | "Wide";
     };
     LightboxOptions: Record<string, never>;
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
     Logo: {
       margin?: components["schemas"]["Margin"];
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      alignment?: 0 | 1 | 2;
+      /** @enum {string} */
+      alignment?: "Center" | "Right" | "Left";
       /** Format: int32 */
       width?: number | null;
       /** Format: int32 */
@@ -3566,16 +1707,10 @@ export interface components {
       left?: string | null;
     };
     MeasurementOptions: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      defaultWeightUnit?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      defaultDimensionUInit?: 0 | 1 | 2 | 3 | 4;
+      /** @enum {string} */
+      defaultWeightUnit?: "Kg" | "g" | "lbs" | "oz";
+      /** @enum {string} */
+      defaultDimensionUInit?: "cms" | "m" | "mm" | "inc" | "yr";
     };
     MenuOptions: {
       sideNavigationFontSize?: string | null;
@@ -3610,26 +1745,14 @@ export interface components {
       /** Format: int32 */
       mainMenuHighlightBackgroundColor?: number;
       mainMenuTypography?: components["schemas"]["Typography"];
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      menuHighlightStyle?: 0 | 1 | 2 | 3 | 4;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      mainMenuSearchLayout?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      menuDropdownAnimation?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      menuDropdownIndicator?: 0 | 1 | 2;
+      /** @enum {string} */
+      menuHighlightStyle?: "TopBar" | "BottomBar" | "Arrow" | "ColorOnly" | "Background";
+      /** @enum {string} */
+      mainMenuSearchLayout?: "Dropdown" | "Overlay";
+      /** @enum {string} */
+      menuDropdownAnimation?: "Fade" | "Slide";
+      /** @enum {string} */
+      menuDropdownIndicator?: "None" | "Parent" | "ParentAndChild";
     };
     MicrosoftAzureIntegrationOptions: {
       enable?: boolean;
@@ -3646,11 +1769,8 @@ export interface components {
       appID?: string | null;
     };
     Operation: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      operationType?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
       path?: string | null;
       op?: string | null;
       from?: string | null;
@@ -3687,15 +1807,11 @@ export interface components {
       paymentMethods?: components["schemas"]["PaymentMethod"][] | null;
     };
     PerformanceOptions: Record<string, never>;
-    PortalId: Record<string, never>;
     PortalOptions: {
       title?: string | null;
       description?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      portalUiEngine?: 0 | 1 | 2;
+      /** @enum {string} */
+      portalUiEngine?: "Angular" | "React" | "Razor";
       seo?: components["schemas"]["SeoOptions"];
       store?: components["schemas"]["StoreOptions"];
       theming?: components["schemas"]["ThemingOptions"];
@@ -3800,6 +1916,21 @@ export interface components {
       enableBundledProducts?: boolean;
       enableRecentlyViewedProducts?: boolean;
     };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
     ResponsiveOptions: {
       enableResponsive?: boolean;
       enableMobileZoom?: boolean;
@@ -3867,27 +1998,18 @@ export interface components {
       enableSubscriptionSwitchingBetweenGroups?: number;
       /** Format: int32 */
       enableSubscriptionSwitchingBetweenVariations?: number;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      prorateFirstRenewal?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+      /** @enum {string} */
+      prorateFirstRenewal?: "AlwaysAndNoCharge" | "NeverAndNoCharge" | "NeverAndFullCharge" | "AlwaysAndFullCharge" | "ForVirtualProductsOnly" | "ForServiceProductsOnly" | "ForSubscriptionProductsOnly";
     };
     SidebarOptions: Record<string, never>;
     SliderOptions: Record<string, never>;
     SlideshowOptions: Record<string, never>;
     SlidingBarOptions: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      position?: 0 | 1 | 2 | 3;
+      /** @enum {string} */
+      position?: "Bottom" | "Right" | "Left" | "Top";
       contentPadding?: components["schemas"]["Padding"];
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      contentAlignment?: 0 | 1 | 2;
+      /** @enum {string} */
+      contentAlignment?: "Center" | "Right" | "Left";
       /** Format: int32 */
       columnsCount?: number;
       enableSticky?: boolean;
@@ -3911,11 +2033,8 @@ export interface components {
     StoreDataRetentionPolicy: {
       /** Format: int32 */
       dataRetentionTimeSpanAmmount?: number;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      retentionTimeSpan?: 0 | 1 | 2 | 3;
+      /** @enum {string} */
+      retentionTimeSpan?: "Days" | "Weeks" | "Months" | "Years";
     };
     StoreOptions: {
       enable?: boolean;
@@ -3926,10 +2045,10 @@ export interface components {
       description?: string | null;
       addressLine1?: string | null;
       addressLine2?: string | null;
-      cityID?: string | null;
-      countryStateID?: string | null;
-      countryID?: string | null;
-      currencyID?: string | null;
+      cityId?: string | null;
+      stateId?: string | null;
+      countryId?: string | null;
+      currencyId?: string | null;
       postalCode?: string | null;
       /** Format: int32 */
       numberOfDecimals?: number;
@@ -3956,11 +2075,8 @@ export interface components {
       excludedSellingLocations?: string[] | null;
       includedShippingLocations?: string[] | null;
       excludedShippingLocations?: string[] | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      currencyPosition?: 0 | 1 | 2 | 3;
+      /** @enum {string} */
+      currencyPosition?: "Left" | "Right" | "LeftWithSpace" | "RightWithSpace";
     };
     StudioOptions: {
       logo?: string | null;
@@ -3995,11 +2111,8 @@ export interface components {
       enableSubscriptionSwitchingBetweenGroups?: number;
       /** Format: int32 */
       enableSubscriptionSwitchingBetweenVariations?: number;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      prorateFirstRenewal?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+      /** @enum {string} */
+      prorateFirstRenewal?: "AlwaysAndNoCharge" | "NeverAndNoCharge" | "NeverAndFullCharge" | "AlwaysAndFullCharge" | "ForVirtualProductsOnly" | "ForServiceProductsOnly" | "ForSubscriptionProductsOnly";
     };
     TaxCalculationOptions: {
       enableTaxes?: boolean;
@@ -4034,21 +2147,27 @@ export interface components {
       headingLineHeight?: string | null;
       subheadingFontColor?: string | null;
       subheadingFontSize?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      pageTitleBar?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      pageTitleBarContent?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      pageTitleBarTextAlignment?: 0 | 1 | 2;
+      /** @enum {string} */
+      pageTitleBar?: "ShowBarAndContent" | "ShowContentOnly" | "Hide";
+      /** @enum {string} */
+      pageTitleBarContent?: "None" | "SearchBar" | "Breadcrumbs";
+      /** @enum {string} */
+      pageTitleBarTextAlignment?: "Center" | "Right" | "Left";
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
     };
     Typography: {
       fontSize?: string | null;
@@ -4071,17 +2190,22 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       title?: string | null;
-      authorId?: string | null;
+      code?: string | null;
+      published?: boolean;
       description?: string | null;
       htmlContent?: string | null;
       featuredImageUrl?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
     };
     WebContentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -4092,6 +2216,7 @@ export interface components {
       description?: string | null;
       highlightImage?: string | null;
       canonicalUrl?: string | null;
+      emitResult?: unknown;
       seoTitle?: string | null;
       seoKeyWords?: string | null;
       seoKeyPhrases?: string | null;
@@ -4178,7 +2303,7 @@ export interface components {
       facebookImage?: string | null;
       facebookTitle?: string | null;
       facebookDescription?: string | null;
-      featuredImageURL?: string | null;
+      featuredImageUrl?: string | null;
       content?: string | null;
       code?: string | null;
       namespace?: string | null;
@@ -4186,6 +2311,8 @@ export interface components {
       generatedCode?: string | null;
       compilationPath?: string | null;
       htmlContent?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -4293,18 +2420,23 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       title?: string | null;
-      authorId?: string | null;
+      code?: string | null;
+      published?: boolean;
       description?: string | null;
       htmlContent?: string | null;
       featuredImageUrl?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
       webTemplateID?: string | null;
     };
     WebPageDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -4315,6 +2447,7 @@ export interface components {
       description?: string | null;
       highlightImage?: string | null;
       canonicalUrl?: string | null;
+      emitResult?: unknown;
       seoTitle?: string | null;
       seoKeyWords?: string | null;
       seoKeyPhrases?: string | null;
@@ -4481,7 +2614,7 @@ export interface components {
       facebookImage?: string | null;
       facebookTitle?: string | null;
       facebookDescription?: string | null;
-      featuredImageURL?: string | null;
+      featuredImageUrl?: string | null;
       content?: string | null;
       code?: string | null;
       namespace?: string | null;
@@ -4489,6 +2622,8 @@ export interface components {
       generatedCode?: string | null;
       compilationPath?: string | null;
       htmlContent?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -4582,6 +2717,75 @@ export interface components {
       businessProfileRecordID?: string | null;
       businessPortalApplicationID?: string | null;
     };
+    WebTemplateCreateDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      slug?: string | null;
+      name?: string | null;
+      title?: string | null;
+      description?: string | null;
+      content?: string | null;
+      htmlContent?: string | null;
+      cssContent?: string | null;
+      jsContent?: string | null;
+      razorContent?: string | null;
+      highlightImage?: string | null;
+      /** Format: int32 */
+      order?: number;
+    };
+    WebTemplateDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      slug?: string | null;
+      name?: string | null;
+      title?: string | null;
+      description?: string | null;
+      content?: string | null;
+      htmlContent?: string | null;
+      cssContent?: string | null;
+      jsContent?: string | null;
+      razorContent?: string | null;
+      highlightImage?: string | null;
+      /** Format: int32 */
+      order?: number;
+    };
+    WebTemplateDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WebTemplateDto"];
+    };
+    WebTemplateDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WebTemplateDto"][] | null;
+    };
+    WebTemplateUpdateDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      slug?: string | null;
+      name?: string | null;
+      title?: string | null;
+      description?: string | null;
+      content?: string | null;
+      htmlContent?: string | null;
+      cssContent?: string | null;
+      jsContent?: string | null;
+      razorContent?: string | null;
+      highlightImage?: string | null;
+      /** Format: int32 */
+      order?: number;
+    };
   };
   responses: never;
   parameters: never;
@@ -4596,6 +2800,1450 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get blog authors
+   * @description Retrieves all blog authors, optionally filtered by tenant.
+   */
+  GetBlogAuthorsAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogAuthorDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogAuthorDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get blog author by ID
+   * @description Retrieves a specific blog author by their identifier.
+   */
+  GetBlogAuthorByIdAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        authorId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogAuthorDtoEnvelope"];
+          "application/xml": components["schemas"]["BlogAuthorDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get blog posts by author
+   * @description Retrieves all blog posts written by a specific author.
+   */
+  GetBlogPostsByAuthorAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        authorId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogPostDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count blog posts by author
+   * @description Returns the count of blog posts written by a specific author.
+   */
+  CountBlogPostsByAuthorAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        authorId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count blog post categories
+   * @description Counts all blog post categories for the specified tenant.
+   */
+  CountBlogPostCategoriesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get blog post categories
+   * @description Retrieves all blog post categories for the specified tenant.
+   */
+  GetBlogPostCategoriesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostCategoryDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogPostCategoryDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a blog post category
+   * @description Creates a new blog post category for the specified tenant.
+   */
+  CreateBlogPostCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCategoryCreateDto"];
+        "application/xml": components["schemas"]["BlogPostCategoryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get blog post category by ID
+   * @description Retrieves a specific blog post category by its ID.
+   */
+  GetBlogPostCategoryByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        blogPostCategoryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostCategoryDtoEnvelope"];
+          "application/xml": components["schemas"]["BlogPostCategoryDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a blog post category
+   * @description Updates an existing blog post category for the specified tenant.
+   */
+  UpdateBlogPostCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        blogPostCategoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCategoryUpdateDto"];
+        "application/xml": components["schemas"]["BlogPostCategoryUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a blog post category
+   * @description Deletes a blog post category for the specified tenant.
+   */
+  DeleteBlogPostCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        blogPostCategoryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of blog posts
+   * @description Retrieves all blog posts, optionally filtered by tenant using OData query options.
+   */
+  GetBlogPostsAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogPostDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new blog post
+   * @description Creates a new blog post for the specified tenant.
+   */
+  CreateBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCreateDto"];
+        "application/xml": components["schemas"]["BlogPostCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of blog posts
+   * @description Returns the total count of blog posts, optionally filtered by tenant using OData query options.
+   */
+  GetBlogPostsCountAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a blog post by ID
+   * @description Retrieves a single blog post by its unique identifier.
+   */
+  GetBlogPostByIdAsync: {
+    parameters: {
+      path: {
+        blogPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostDtoEnvelope"];
+          "application/xml": components["schemas"]["BlogPostDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a blog post
+   * @description Updates an existing blog post for the specified tenant.
+   */
+  UpdateBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostUpdateDto"];
+        "application/xml": components["schemas"]["BlogPostUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a blog post
+   * @description Deletes a blog post for the specified tenant.
+   */
+  DeleteBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get tags for a blog post
+   * @description Retrieves all tags related to a specific blog post.
+   */
+  GetTagsForBlogPostAsync: {
+    parameters: {
+      path: {
+        blogPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostTagDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogPostTagDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a tag for a blog post
+   * @description Creates a new tag and relates it to a specific blog post.
+   */
+  CreateTagForBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostTagCreateDto"];
+        "application/xml": components["schemas"]["BlogPostTagCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Relate an existing tag to a blog post
+   * @description Creates a relationship between an existing tag and a blog post.
+   */
+  RelateTagToBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+        tagId: string;
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a tag from a blog post
+   * @description Removes the relationship between a tag and a blog post.
+   */
+  UnrelateTagFromBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+        tagId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get categories for a blog post
+   * @description Retrieves all categories related to a specific blog post.
+   */
+  GetCategoriesForBlogPostAsync: {
+    parameters: {
+      path: {
+        blogPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostCategoryDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogPostCategoryDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a category for a blog post
+   * @description Creates a new category and relates it to a specific blog post.
+   */
+  CreateCategoryForBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCategoryCreateDto"];
+        "application/xml": components["schemas"]["BlogPostCategoryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Relate an existing category to a blog post
+   * @description Creates a relationship between an existing category and a blog post.
+   */
+  RelateCategoryToBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+        categoryId: string;
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a category from a blog post
+   * @description Removes the relationship between a category and a blog post.
+   */
+  UnrelateCategoryFromBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+        categoryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get comments for a blog post
+   * @description Retrieves all comments for a specific blog post.
+   */
+  GetCommentsForBlogPostAsync: {
+    parameters: {
+      path: {
+        blogPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostCommentDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogPostCommentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a comment for a blog post
+   * @description Creates a new comment on a specific blog post.
+   */
+  CreateCommentForBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCommentCreateDto"];
+        "application/xml": components["schemas"]["BlogPostCommentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get replies for a comment
+   * @description Retrieves all replies for a specific blog post comment.
+   */
+  GetRepliesForCommentAsync: {
+    parameters: {
+      path: {
+        commentId: string;
+        blogPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostCommentDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogPostCommentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Reply to a blog post comment
+   * @description Creates a reply to an existing comment on a blog post.
+   */
+  ReplyToCommentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+        commentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCommentCreateDto"];
+        "application/xml": components["schemas"]["BlogPostCommentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a blog post comment
+   * @description Deletes a comment from a specific blog post.
+   */
+  DeleteCommentFromBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+        commentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get blog post tags
+   * @description Retrieves all blog post tags for the specified tenant.
+   */
+  GetBlogPostTagsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostTagDtoListEnvelope"];
+          "application/xml": components["schemas"]["BlogPostTagDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a blog post tag
+   * @description Creates a new blog post tag for the specified tenant.
+   */
+  CreateBlogPostTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostTagCreateDto"];
+        "application/xml": components["schemas"]["BlogPostTagCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get blog post tag by ID
+   * @description Retrieves a specific blog post tag by its ID.
+   */
+  GetBlogPostTagByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        blogPostTagId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BlogPostTagDtoEnvelope"];
+          "application/xml": components["schemas"]["BlogPostTagDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a blog post tag
+   * @description Updates an existing blog post tag for the specified tenant.
+   */
+  UpdateBlogPostTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        blogPostTagId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostTagUpdateDto"];
+        "application/xml": components["schemas"]["BlogPostTagUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a blog post tag
+   * @description Deletes a blog post tag for the specified tenant.
+   */
+  DeleteBlogPostTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        blogPostTagId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get business domains
+   * @description Retrieves business domains for the specified tenant.
+   */
+  GetBusinessDomainsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BusinessDomainDtoListEnvelope"];
+          "application/xml": components["schemas"]["BusinessDomainDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get business domains count
+   * @description Retrieves the count of business domains for the specified tenant.
+   */
+  GetBusinessDomainsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get business domain by ID
+   * @description Retrieves a specific business domain.
+   */
+  GetBusinessDomainByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        businessDomainId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BusinessDomainDtoEnvelope"];
+          "application/xml": components["schemas"]["BusinessDomainDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get the root portal
    * @description Get the root portal of the this server instance
@@ -4886,12 +4534,6 @@ export interface operations {
         portalId: string;
       };
     };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["PortalId"];
-        "application/xml": components["schemas"]["PortalId"];
-      };
-    };
     responses: {
       /** @description OK */
       200: {
@@ -4930,7 +4572,7 @@ export interface operations {
         "x-api-version"?: string;
       };
       path: {
-        portalId: components["schemas"]["PortalId"];
+        portalId: string;
       };
     };
     requestBody?: {
@@ -5070,6 +4712,1413 @@ export interface operations {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
         };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update base web content themes
+   * @description Triggers an update of the base web content themes.
+   */
+  GetLatestCurrencyRatesModelAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count web contents
+   * @description Counts all web contents for the specified tenant.
+   */
+  CountWebContentsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web contents
+   * @description Retrieves all web contents for the specified tenant.
+   */
+  GetWebContentsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebContentDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebContentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a web content
+   * @description Creates a new web content for the specified tenant.
+   */
+  CreateWebContentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebContentCreateDto"];
+        "application/xml": components["schemas"]["WebContentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web content by ID
+   * @description Retrieves a specific web content by its ID.
+   */
+  GetWebContentByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webContentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebContentDtoEnvelope"];
+          "application/xml": components["schemas"]["WebContentDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a web content
+   * @description Updates an existing web content for the specified tenant.
+   */
+  UpdateWebContentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webContentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebContentUpdateDto"];
+        "application/xml": components["schemas"]["WebContentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a web content
+   * @description Deletes a web content for the specified tenant.
+   */
+  DeleteWebContentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webContentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web page categories
+   * @description Retrieves all web page categories for the specified tenant.
+   */
+  GetWebPageCategoriesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPageCategoryDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebPageCategoryDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a web page category
+   * @description Creates a new web page category for the specified tenant.
+   */
+  CreateWebPageCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageCategoryCreateDto"];
+        "application/xml": components["schemas"]["WebPageCategoryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web page category by ID
+   * @description Retrieves a specific web page category by its ID.
+   */
+  GetWebPageCategoryByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageCategoryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPageCategoryDtoEnvelope"];
+          "application/xml": components["schemas"]["WebPageCategoryDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a web page category
+   * @description Updates an existing web page category for the specified tenant.
+   */
+  UpdateWebPageCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageCategoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageCategoryUpdateDto"];
+        "application/xml": components["schemas"]["WebPageCategoryUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a web page category
+   * @description Deletes a web page category for the specified tenant.
+   */
+  DeleteWebPageCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageCategoryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count web pages
+   * @description Counts all web pages for the specified tenant.
+   */
+  CountWebPagesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web pages
+   * @description Retrieves all web pages for the specified tenant.
+   */
+  GetWebPagesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPageDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebPageDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a web page
+   * @description Creates a new web page for the specified tenant.
+   */
+  CreateWebPageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageCreateDto"];
+        "application/xml": components["schemas"]["WebPageCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web page by ID
+   * @description Retrieves a specific web page by its identifier.
+   */
+  GetWebPageByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPageDtoEnvelope"];
+          "application/xml": components["schemas"]["WebPageDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a web page
+   * @description Updates an existing web page for the specified tenant.
+   */
+  UpdateWebPageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageUpdateDto"];
+        "application/xml": components["schemas"]["WebPageUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a web page
+   * @description Deletes a web page for the specified tenant.
+   */
+  DeleteWebPageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get tags by web page
+   * @description Retrieves all tags related to a specific web page.
+   */
+  GetTagsByWebPageAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPageTagDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebPageTagDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a web page tag relation
+   * @description Creates a new tag and relates it to a web page.
+   */
+  CreateWebPageTagRelationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageTagCreateDto"];
+        "application/xml": components["schemas"]["WebPageTagCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Relate web page to tag
+   * @description Relates an existing tag to a web page.
+   */
+  RelateWebPageToTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+        tagId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Unrelate web page from tag
+   * @description Removes the relationship between a web page and a tag.
+   */
+  UnrelateWebPageTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+        tagId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get categories by web page
+   * @description Retrieves all categories related to a specific web page.
+   */
+  GetCategoriesByWebPageAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPageCategoryDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebPageCategoryDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a web page category relation
+   * @description Creates a new category and relates it to a web page.
+   */
+  CreateWebPageCategoryRelationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageCategoryCreateDto"];
+        "application/xml": components["schemas"]["WebPageCategoryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Relate web page to category
+   * @description Relates an existing category to a web page.
+   */
+  RelateWebPageToCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+        categoryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Unrelate web page from category
+   * @description Removes the relationship between a web page and a category.
+   */
+  UnrelateWebPageCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+        categoryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web page tags
+   * @description Retrieves all web page tags for the specified tenant.
+   */
+  GetWebPageTagsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPageTagDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebPageTagDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a web page tag
+   * @description Creates a new web page tag for the specified tenant.
+   */
+  CreateWebPageTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageTagCreateDto"];
+        "application/xml": components["schemas"]["WebPageTagCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web page tag by ID
+   * @description Retrieves a specific web page tag by its ID.
+   */
+  GetWebPageTagByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageTagId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPageTagDtoEnvelope"];
+          "application/xml": components["schemas"]["WebPageTagDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a web page tag
+   * @description Updates an existing web page tag for the specified tenant.
+   */
+  UpdateWebPageTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageTagId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageTagUpdateDto"];
+        "application/xml": components["schemas"]["WebPageTagUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a web page tag
+   * @description Deletes a web page tag for the specified tenant.
+   */
+  DeleteWebPageTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageTagId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web templates
+   * @description Retrieves all web templates for the specified tenant.
+   */
+  GetWebTemplatesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebTemplateDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebTemplateDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a web template
+   * @description Creates a new web template for the specified tenant.
+   */
+  CreateWebTemplateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebTemplateCreateDto"];
+        "application/xml": components["schemas"]["WebTemplateCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count web templates
+   * @description Counts all web templates for the specified tenant.
+   */
+  CountWebTemplatesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web template by ID
+   * @description Retrieves a specific web template by its identifier.
+   */
+  GetWebTemplateByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webTemplateId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebTemplateDtoEnvelope"];
+          "application/xml": components["schemas"]["WebTemplateDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a web template
+   * @description Updates an existing web template for the specified tenant.
+   */
+  UpdateWebTemplateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webTemplateId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebTemplateUpdateDto"];
+        "application/xml": components["schemas"]["WebTemplateUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a web template
+   * @description Deletes a web template for the specified tenant.
+   */
+  DeleteWebTemplateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webTemplateId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
       /** @description Unauthorized */
       401: {

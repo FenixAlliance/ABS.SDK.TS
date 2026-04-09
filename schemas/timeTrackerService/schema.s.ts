@@ -5,56 +5,41 @@
 
 
 export interface paths {
-  "/api/v2/TimeTrackerService/ProjectTimeLogs": {
+  "/version": {
     get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          projectPeriodId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
-            "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+          content: never;
         };
       };
     };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
         };
       };
-      requestBody?: {
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["ProjectTimeLogCreateDto"];
-          "application/xml": components["schemas"]["ProjectTimeLogCreateDto"];
+          "application/json": components["schemas"]["RegisterRequest"];
         };
       };
       responses: {
@@ -62,371 +47,266 @@ export interface paths {
         200: {
           content: never;
         };
-        /** @description Unauthorized */
-        401: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
       };
     };
+  };
+  "/login": {
+    post: {
+      parameters: {
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/api/v2/TimeTrackerService/ProjectTimeLogs": {
+    /**
+     * Retrieve project period time logs
+     * @description Retrieves a list of time logs for a specific project period with OData query support.
+     */
+    get: operations["GetProjectPeriodTimeLogsAsync"];
+    /**
+     * Create a new project time log
+     * @description Creates a new project time log entry.
+     */
+    post: operations["CreateProjectTimeLogAsync"];
+  };
+  "/api/v2/TimeTrackerService/ProjectTimeLogs/Count": {
+    /**
+     * Get the count of project period time logs
+     * @description Returns the total count of time logs for a specific project period with OData query support.
+     */
+    get: operations["CountProjectPeriodTimeLogsAsync"];
   };
   "/api/v2/TimeTrackerService/ProjectTimeLogs/ByResponsibleContact": {
-    get: {
-      parameters: {
-        query: {
-          contactId: string;
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
-            "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve time logs by responsible contact
+     * @description Retrieves time logs where the specified contact is the responsible party.
+     */
+    get: operations["GetProjectTimeLogsByResponsibleContactAsync"];
   };
   "/api/v2/TimeTrackerService/ProjectTimeLogs/CreatedByContact": {
-    get: {
-      parameters: {
-        query: {
-          contactId: string;
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
-            "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve time logs created by a contact
+     * @description Retrieves time logs that were created by the specified contact.
+     */
+    get: operations["GetProjectTimeLogsCreatedByContactAsync"];
   };
   "/api/v2/TimeTrackerService/ProjectTimeLogs/ForProject/{projectId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          projectId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
-            "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve time logs for a project
+     * @description Retrieves all time logs associated with the specified project.
+     */
+    get: operations["GetProjectTimeLogsAsync"];
   };
   "/api/v2/TimeTrackerService/ProjectTimeLogs/{timeLogId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          timeLogId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ProjectTimeLogDtoEnvelope"];
-            "application/xml": components["schemas"]["ProjectTimeLogDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          timeLogId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["ProjectTimeLogUpdateDto"];
-          "application/xml": components["schemas"]["ProjectTimeLogUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          timeLogId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a project time log by ID
+     * @description Retrieves a single project time log by its unique identifier.
+     */
+    get: operations["GetProjectTimeLogByIdAsync"];
+    /**
+     * Update a project time log
+     * @description Updates an existing project time log entry.
+     */
+    put: operations["UpdateProjectTimeLogAsync"];
+    /**
+     * Delete a project time log
+     * @description Deletes a project time log entry.
+     */
+    delete: operations["DeleteProjectTimeLogAsync"];
   };
   "/api/v2/TimeTrackerService/TimeLogApprovals": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["ProjectHoursApprovalCreateDto"];
-          "application/xml": components["schemas"]["ProjectHoursApprovalCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Request project hours approval
+     * @description Creates a new project hours approval request.
+     */
+    post: operations["RequestProjectHoursApprovalAsync"];
   };
   "/api/v2/TimeTrackerService/TimeLogApprovals/{approvalId}/Status": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          approvalId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["ProjectHoursApprovalStatusUpdateDto"];
-          "application/xml": components["schemas"]["ProjectHoursApprovalStatusUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update approval status
+     * @description Updates the status of an existing project hours approval.
+     */
+    put: operations["UpdateProjectHoursApprovalStatusAsync"];
   };
   "/api/v2/TimeTrackerService/TimeLogApprovals/{approvalId}/Approver": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          approvalId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["ProjectHoursApprovalApproverUpdateDto"];
-          "application/xml": components["schemas"]["ProjectHoursApprovalApproverUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update approval approver
+     * @description Updates the approver of an existing project hours approval.
+     */
+    put: operations["UpdateProjectHoursApprovalApproverAsync"];
   };
 }
 
@@ -434,6 +314,13 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     ErrorEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -441,6 +328,46 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
+    Int32Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      /** Format: int32 */
+      result?: number;
+    };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
     };
     ProjectHoursApprovalApproverUpdateDto: {
       approverContactID?: string | null;
@@ -456,11 +383,8 @@ export interface components {
       comments?: string | null;
     };
     ProjectHoursApprovalStatusUpdateDto: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      approvalStatus?: 0 | 1 | 2;
+      /** @enum {string} */
+      approvalStatus?: "Pending" | "Approved" | "Rejected";
       comments?: string | null;
     };
     ProjectTimeLogCreateDto: {
@@ -468,18 +392,15 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** @example PT2H30M */
+      /** Format: date-span */
       timeSpan?: string;
       /** Format: date-time */
       logDate?: string;
       comments?: string | null;
       projectTaskID: string;
       projectPeriodID: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      projectTimeLogRecordType?: 0 | 1 | 2;
+      /** @enum {string} */
+      projectTimeLogRecordType?: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
       projectID?: string | null;
     };
     ProjectTimeLogDto: {
@@ -492,14 +413,9 @@ export interface components {
       projectPeriodId?: string | null;
       responsibleContactId?: string | null;
       creatorContactId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      recordType?: 0 | 1 | 2;
-      /** Format: date-time */
-      timeStamp?: string;
-      /** @example PT2H30M */
+      /** @enum {string} */
+      recordType?: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
+      /** Format: date-span */
       timeSpan?: string;
       /** Format: date-time */
       logDate?: string;
@@ -527,16 +443,43 @@ export interface components {
     ProjectTimeLogUpdateDto: {
       /** Format: date-time */
       logDate?: string;
-      /** @example PT2H30M */
+      /** Format: date-span */
       timeSpan?: string;
       comments?: string | null;
       projectTaskID?: string | null;
       projectPeriodID?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      projectTimeLogRecordType?: 0 | 1 | 2;
+      /** @enum {string} */
+      projectTimeLogRecordType?: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
     };
   };
   responses: never;
@@ -550,4 +493,511 @@ export type $defs = Record<string, never>;
 
 export type external = Record<string, never>;
 
-export type operations = Record<string, never>;
+export interface operations {
+
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Retrieve project period time logs
+   * @description Retrieves a list of time logs for a specific project period with OData query support.
+   */
+  GetProjectPeriodTimeLogsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        projectPeriodId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new project time log
+   * @description Creates a new project time log entry.
+   */
+  CreateProjectTimeLogAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTimeLogCreateDto"];
+        "application/xml": components["schemas"]["ProjectTimeLogCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of project period time logs
+   * @description Returns the total count of time logs for a specific project period with OData query support.
+   */
+  CountProjectPeriodTimeLogsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        projectPeriodId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve time logs by responsible contact
+   * @description Retrieves time logs where the specified contact is the responsible party.
+   */
+  GetProjectTimeLogsByResponsibleContactAsync: {
+    parameters: {
+      query: {
+        contactId: string;
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve time logs created by a contact
+   * @description Retrieves time logs that were created by the specified contact.
+   */
+  GetProjectTimeLogsCreatedByContactAsync: {
+    parameters: {
+      query: {
+        contactId: string;
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve time logs for a project
+   * @description Retrieves all time logs associated with the specified project.
+   */
+  GetProjectTimeLogsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        projectId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a project time log by ID
+   * @description Retrieves a single project time log by its unique identifier.
+   */
+  GetProjectTimeLogByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        timeLogId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProjectTimeLogDtoEnvelope"];
+          "application/xml": components["schemas"]["ProjectTimeLogDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a project time log
+   * @description Updates an existing project time log entry.
+   */
+  UpdateProjectTimeLogAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        timeLogId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTimeLogUpdateDto"];
+        "application/xml": components["schemas"]["ProjectTimeLogUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a project time log
+   * @description Deletes a project time log entry.
+   */
+  DeleteProjectTimeLogAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        timeLogId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Request project hours approval
+   * @description Creates a new project hours approval request.
+   */
+  RequestProjectHoursApprovalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectHoursApprovalCreateDto"];
+        "application/xml": components["schemas"]["ProjectHoursApprovalCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update approval status
+   * @description Updates the status of an existing project hours approval.
+   */
+  UpdateProjectHoursApprovalStatusAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        approvalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectHoursApprovalStatusUpdateDto"];
+        "application/xml": components["schemas"]["ProjectHoursApprovalStatusUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update approval approver
+   * @description Updates the approver of an existing project hours approval.
+   */
+  UpdateProjectHoursApprovalApproverAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        approvalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectHoursApprovalApproverUpdateDto"];
+        "application/xml": components["schemas"]["ProjectHoursApprovalApproverUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+}

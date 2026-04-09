@@ -5,238 +5,375 @@
 
 
 export interface paths {
-  "/api/v2/PaymentsService/Payments/{paymentId}/Details": {
-    /** @deprecated */
+  "/version": {
     get: {
-      parameters: {
-        path: {
-          paymentId: string;
-        };
-      };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["PaymentDtoListEnvelope"];
-            "application/xml": components["schemas"]["PaymentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+          content: never;
         };
       };
     };
   };
-  "/api/v2/PaymentsService/Payments/{paymentId}": {
+  "/health": {
     get: {
-      parameters: {
-        path: {
-          paymentId: string;
-        };
-      };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["PaymentDtoListEnvelope"];
-            "application/xml": components["schemas"]["PaymentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+          content: never;
         };
       };
     };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          paymentId: string;
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
         };
       };
-      requestBody?: {
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["PaymentUpdateDto"];
-          "application/xml": components["schemas"]["PaymentUpdateDto"];
+          "application/json": components["schemas"]["RegisterRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
+          content: never;
         };
         /** @description Bad Request */
         400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          paymentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
       };
     };
   };
-  "/api/v2/PaymentsService/Payments": {
-    get: {
+  "/login": {
+    post: {
       parameters: {
-        query: {
-          tenantId: string;
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["PaymentDtoListEnvelope"];
-            "application/xml": components["schemas"]["PaymentDtoListEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
           };
         };
         /** @description Bad Request */
         400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
-        /** @description Unauthorized */
-        401: {
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
         };
-        /** @description Forbidden */
-        403: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
     post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      requestBody?: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["PaymentCreateDto"];
-          "application/xml": components["schemas"]["PaymentCreateDto"];
+          "application/json": components["schemas"]["InfoRequest"];
         };
       };
       responses: {
-        /** @description Created */
-        201: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
         };
         /** @description Bad Request */
         400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
+  };
+  "/api/v2/PaymentsService/PaymentMethods": {
+    /**
+     * Retrieves all payment methods
+     * @description Gets all payment methods for the current tenant with OData support.
+     */
+    get: operations["GetPaymentMethodsAsync"];
+    /**
+     * Creates a new payment method
+     * @description Creates a new payment method for the current tenant.
+     */
+    post: operations["CreatePaymentMethodAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentMethods/Count": {
+    /**
+     * Counts payment methods
+     * @description Gets the count of payment methods for the current tenant.
+     */
+    get: operations["GetPaymentMethodsCountAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentMethods/{paymentMethodId}": {
+    /**
+     * Gets a payment method by ID
+     * @description Retrieves the details of a payment method using its unique ID.
+     */
+    get: operations["GetPaymentMethodDetailsAsync"];
+    /**
+     * Updates a payment method
+     * @description Updates the specified payment method.
+     */
+    put: operations["UpdatePaymentMethodAsync"];
+    /**
+     * Deletes a payment method
+     * @description Deletes the specified payment method.
+     */
+    delete: operations["DeletePaymentMethodAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentModes": {
+    /**
+     * Retrieves all payment modes
+     * @description Gets all payment modes for the current tenant with OData support.
+     */
+    get: operations["GetPaymentModesAsync"];
+    /**
+     * Creates a new payment mode
+     * @description Creates a new payment mode for the current tenant.
+     */
+    post: operations["CreatePaymentModeAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentModes/Count": {
+    /**
+     * Counts payment modes
+     * @description Gets the count of payment modes for the current tenant.
+     */
+    get: operations["GetPaymentModesCountAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentModes/{paymentModeId}": {
+    /**
+     * Gets a payment mode by ID
+     * @description Retrieves the details of a payment mode using its unique ID.
+     */
+    get: operations["GetPaymentModeDetailsAsync"];
+    /**
+     * Updates a payment mode
+     * @description Updates the specified payment mode.
+     */
+    put: operations["UpdatePaymentModeAsync"];
+    /**
+     * Deletes a payment mode
+     * @description Deletes the specified payment mode.
+     */
+    delete: operations["DeletePaymentModeAsync"];
+  };
+  "/api/v2/PaymentsService/Payments/{paymentId}/Details": {
+    /**
+     * Gets a payment by ID (deprecated)
+     * @deprecated
+     * @description Retrieves a payment using the deprecated /Details route. Use GET {paymentId} instead.
+     */
+    get: operations["GetPaymentAsync"];
+  };
+  "/api/v2/PaymentsService/Payments/{paymentId}": {
+    /**
+     * Gets a payment by ID
+     * @description Retrieves the details of a payment using its unique identifier.
+     */
+    get: operations["GetPaymentAsyncV2"];
+    /**
+     * Updates a payment
+     * @description Updates the specified payment.
+     */
+    put: operations["UpdatePaymentAsync"];
+    /**
+     * Deletes a payment
+     * @description Deletes the specified payment.
+     */
+    delete: operations["DeletePaymentAsync"];
+  };
+  "/api/v2/PaymentsService/Payments": {
+    /**
+     * Retrieves all payments
+     * @description Gets all payments for the current tenant with OData support.
+     */
+    get: operations["GetPaymentsAsync"];
+    /**
+     * Creates a new payment
+     * @description Creates a new payment for the current tenant.
+     */
+    post: operations["CreatePaymentAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentTerms": {
+    /**
+     * Retrieves all payment terms
+     * @description Gets all payment terms for the current tenant with OData support.
+     */
+    get: operations["GetPaymentTermsAsync"];
+    /**
+     * Creates a new payment term
+     * @description Creates a new payment term for the current tenant.
+     */
+    post: operations["CreatePaymentTermAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentTerms/Count": {
+    /**
+     * Counts payment terms
+     * @description Gets the count of payment terms for the current tenant.
+     */
+    get: operations["GetPaymentTermsCountAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentTerms/{paymentTermId}": {
+    /**
+     * Gets a payment term by ID
+     * @description Retrieves the details of a payment term using its unique ID.
+     */
+    get: operations["GetPaymentTermDetailsAsync"];
+    /**
+     * Updates a payment term
+     * @description Updates the specified payment term.
+     */
+    put: operations["UpdatePaymentTermAsync"];
+    /**
+     * Deletes a payment term
+     * @description Deletes the specified payment term.
+     */
+    delete: operations["DeletePaymentTermAsync"];
   };
 }
 
@@ -244,6 +381,13 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -259,6 +403,46 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
+    Int32Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      /** Format: int32 */
+      result?: number;
+    };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
     };
     PaymentCreateDto: {
       /** Format: uuid */
@@ -287,21 +471,12 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      onBehalfOf?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      paymentType?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      paymentStatus?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+      /** @enum {string} */
+      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
+      /** @enum {string} */
+      paymentType?: "Paid" | "Received" | "Internal";
+      /** @enum {string} */
+      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -337,7 +512,7 @@ export interface components {
       accountingEntryId?: string | null;
       paymentGatewayId?: string | null;
       bankAccountId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
       emisorWalletAccountId?: string | null;
@@ -347,8 +522,6 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** Format: date-time */
-      timeStamp?: string;
       test?: boolean;
       invoiceId?: string | null;
       tenantId?: string | null;
@@ -372,21 +545,12 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      onBehalfOf?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      paymentType?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      paymentStatus?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+      /** @enum {string} */
+      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
+      /** @enum {string} */
+      paymentType?: "Paid" | "Received" | "Internal";
+      /** @enum {string} */
+      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -422,7 +586,7 @@ export interface components {
       accountingEntryId?: string | null;
       paymentGatewayId?: string | null;
       bankAccountId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
     };
@@ -434,6 +598,165 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["PaymentDto"][] | null;
+    };
+    PaymentMethodCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    PaymentMethodDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    PaymentMethodDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentMethodDto"];
+    };
+    PaymentMethodDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentMethodDto"][] | null;
+    };
+    PaymentMethodUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+    };
+    PaymentModeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    PaymentModeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    PaymentModeDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentModeDto"];
+    };
+    PaymentModeDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentModeDto"][] | null;
+    };
+    PaymentModeUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+    };
+    PaymentTermCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+      isTemplate?: boolean;
+      /** Format: double */
+      percentage?: number;
+      /** Format: double */
+      creditDays?: number;
+      /** Format: double */
+      creditWeeks?: number;
+      /** Format: double */
+      creditMonths?: number;
+      /** Format: double */
+      creditYears?: number;
+      paymentModeID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    PaymentTermDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      isTemplate?: boolean;
+      /** Format: double */
+      percentage?: number;
+      /** Format: double */
+      creditDays?: number;
+      /** Format: double */
+      creditWeeks?: number;
+      /** Format: double */
+      creditMonths?: number;
+      /** Format: double */
+      creditYears?: number;
+      paymentModeID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    PaymentTermDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentTermDto"];
+    };
+    PaymentTermDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentTermDto"][] | null;
+    };
+    PaymentTermUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+      isTemplate?: boolean | null;
+      /** Format: double */
+      percentage?: number | null;
+      /** Format: double */
+      creditDays?: number | null;
+      /** Format: double */
+      creditWeeks?: number | null;
+      /** Format: double */
+      creditMonths?: number | null;
+      /** Format: double */
+      creditYears?: number | null;
+      paymentModeID?: string | null;
     };
     PaymentUpdateDto: {
       invoiceId?: string | null;
@@ -458,21 +781,12 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      onBehalfOf?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      paymentType?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      paymentStatus?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+      /** @enum {string} */
+      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
+      /** @enum {string} */
+      paymentType?: "Paid" | "Received" | "Internal";
+      /** @enum {string} */
+      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -508,11 +822,41 @@ export interface components {
       accountingEntryId?: string | null;
       paymentGatewayId?: string | null;
       bankAccountId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
     };
   };
   responses: never;
@@ -526,4 +870,1019 @@ export type $defs = Record<string, never>;
 
 export type external = Record<string, never>;
 
-export type operations = Record<string, never>;
+export interface operations {
+
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Retrieves all payment methods
+   * @description Gets all payment methods for the current tenant with OData support.
+   */
+  GetPaymentMethodsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentMethodDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["PaymentMethodDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a new payment method
+   * @description Creates a new payment method for the current tenant.
+   */
+  CreatePaymentMethodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentMethodCreateDto"];
+        "application/xml": components["schemas"]["PaymentMethodCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts payment methods
+   * @description Gets the count of payment methods for the current tenant.
+   */
+  GetPaymentMethodsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a payment method by ID
+   * @description Retrieves the details of a payment method using its unique ID.
+   */
+  GetPaymentMethodDetailsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentMethodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentMethodDtoEnvelope"];
+          "application/xml": components["schemas"]["PaymentMethodDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a payment method
+   * @description Updates the specified payment method.
+   */
+  UpdatePaymentMethodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentMethodId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentMethodUpdateDto"];
+        "application/xml": components["schemas"]["PaymentMethodUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a payment method
+   * @description Deletes the specified payment method.
+   */
+  DeletePaymentMethodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentMethodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieves all payment modes
+   * @description Gets all payment modes for the current tenant with OData support.
+   */
+  GetPaymentModesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentModeDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["PaymentModeDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a new payment mode
+   * @description Creates a new payment mode for the current tenant.
+   */
+  CreatePaymentModeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentModeCreateDto"];
+        "application/xml": components["schemas"]["PaymentModeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts payment modes
+   * @description Gets the count of payment modes for the current tenant.
+   */
+  GetPaymentModesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a payment mode by ID
+   * @description Retrieves the details of a payment mode using its unique ID.
+   */
+  GetPaymentModeDetailsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentModeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentModeDtoEnvelope"];
+          "application/xml": components["schemas"]["PaymentModeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a payment mode
+   * @description Updates the specified payment mode.
+   */
+  UpdatePaymentModeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentModeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentModeUpdateDto"];
+        "application/xml": components["schemas"]["PaymentModeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a payment mode
+   * @description Deletes the specified payment mode.
+   */
+  DeletePaymentModeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentModeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a payment by ID (deprecated)
+   * @deprecated
+   * @description Retrieves a payment using the deprecated /Details route. Use GET {paymentId} instead.
+   */
+  GetPaymentAsync: {
+    parameters: {
+      path: {
+        paymentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentDtoListEnvelope"];
+          "application/xml": components["schemas"]["PaymentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a payment by ID
+   * @description Retrieves the details of a payment using its unique identifier.
+   */
+  GetPaymentAsyncV2: {
+    parameters: {
+      path: {
+        paymentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentDtoListEnvelope"];
+          "application/xml": components["schemas"]["PaymentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a payment
+   * @description Updates the specified payment.
+   */
+  UpdatePaymentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        paymentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentUpdateDto"];
+        "application/xml": components["schemas"]["PaymentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a payment
+   * @description Deletes the specified payment.
+   */
+  DeletePaymentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        paymentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieves all payments
+   * @description Gets all payments for the current tenant with OData support.
+   */
+  GetPaymentsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentDtoListEnvelope"];
+          "application/xml": components["schemas"]["PaymentDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a new payment
+   * @description Creates a new payment for the current tenant.
+   */
+  CreatePaymentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentCreateDto"];
+        "application/xml": components["schemas"]["PaymentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieves all payment terms
+   * @description Gets all payment terms for the current tenant with OData support.
+   */
+  GetPaymentTermsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentTermDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["PaymentTermDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a new payment term
+   * @description Creates a new payment term for the current tenant.
+   */
+  CreatePaymentTermAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentTermCreateDto"];
+        "application/xml": components["schemas"]["PaymentTermCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts payment terms
+   * @description Gets the count of payment terms for the current tenant.
+   */
+  GetPaymentTermsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a payment term by ID
+   * @description Retrieves the details of a payment term using its unique ID.
+   */
+  GetPaymentTermDetailsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentTermId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentTermDtoEnvelope"];
+          "application/xml": components["schemas"]["PaymentTermDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a payment term
+   * @description Updates the specified payment term.
+   */
+  UpdatePaymentTermAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentTermId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentTermUpdateDto"];
+        "application/xml": components["schemas"]["PaymentTermUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a payment term
+   * @description Deletes the specified payment term.
+   */
+  DeletePaymentTermAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentTermId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+}

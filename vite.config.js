@@ -9,6 +9,7 @@ export default defineConfig({
             mangle: true, // Note: In Vite, keeping class and function names might be different
         },
         rollupOptions: {
+            external: ['@hey-api/client-fetch'],
             input: './app/index.ts',
             output: {
                 // Override the default entry file name:

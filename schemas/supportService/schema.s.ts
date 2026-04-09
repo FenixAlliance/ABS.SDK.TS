@@ -5,1782 +5,510 @@
 
 
 export interface paths {
-  "/api/v2/SupportService/SupportEntitlements": {
+  "/version": {
     get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
+    post: {
       parameters: {
         query?: {
-          tenantId?: string;
-          "api-version"?: string;
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["SupportEntitlementDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportEntitlementDtoListEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
-        /** @description Unauthorized */
-        401: {
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
-        /** @description Forbidden */
-        403: {
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
     post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
       requestBody: {
         content: {
-          "application/json": components["schemas"]["SupportEntitlementCreateDto"];
-          "application/xml": components["schemas"]["SupportEntitlementCreateDto"];
+          "application/json": components["schemas"]["InfoRequest"];
         };
       };
       responses: {
-        /** @description Created */
-        201: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
         };
-        /** @description Unauthorized */
-        401: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
+  };
+  "/api/v2/SupportService/SupportEntitlements": {
+    /**
+     * Retrieve a list of support entitlements
+     * @description Retrieves a list of support entitlements for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportEntitlementsAsync"];
+    /**
+     * Create a new support entitlement
+     * @description Creates a new support entitlement for the specified tenant.
+     */
+    post: operations["CreateSupportEntitlementAsync"];
   };
   "/api/v2/SupportService/SupportEntitlements/Count": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of support entitlements
+     * @description Returns the total count of support entitlements for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportEntitlementsCountAsync"];
   };
   "/api/v2/SupportService/SupportEntitlements/{supportEntitlementId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportEntitlementId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportEntitlementDtoEnvelope"];
-            "application/xml": components["schemas"]["SupportEntitlementDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportEntitlementId: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportEntitlementUpdateDto"];
-          "application/xml": components["schemas"]["SupportEntitlementUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportEntitlementId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a support entitlement by ID
+     * @description Retrieves a single support entitlement by its unique identifier.
+     */
+    get: operations["GetSupportEntitlementAsync"];
+    /**
+     * Update a support entitlement
+     * @description Updates an existing support entitlement by its unique identifier.
+     */
+    put: operations["UpdateSupportEntitlementAsync"];
+    /**
+     * Delete a support entitlement
+     * @description Deletes a support entitlement by its unique identifier.
+     */
+    delete: operations["DeleteSupportEntitlementAsync"];
   };
   "/api/v2/SupportService/SupportRequestAttachments": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportRequestAttachmentDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportRequestAttachmentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportRequestAttachmentCreateDto"];
-          "application/xml": components["schemas"]["SupportRequestAttachmentCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of support request attachments
+     * @description Retrieves a list of support request attachments for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportRequestAttachmentsAsync"];
+    /**
+     * Create a new support request attachment
+     * @description Creates a new support request attachment for the specified tenant.
+     */
+    post: operations["CreateSupportRequestAttachmentAsync"];
   };
   "/api/v2/SupportService/SupportRequestAttachments/Count": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of support request attachments
+     * @description Returns the total count of support request attachments for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportRequestAttachmentsCountAsync"];
   };
   "/api/v2/SupportService/SupportRequestAttachments/{supportRequestAttachmentId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestAttachmentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportRequestAttachmentDtoEnvelope"];
-            "application/xml": components["schemas"]["SupportRequestAttachmentDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestAttachmentId: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportRequestAttachmentUpdateDto"];
-          "application/xml": components["schemas"]["SupportRequestAttachmentUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestAttachmentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a support request attachment by ID
+     * @description Retrieves a single support request attachment by its unique identifier.
+     */
+    get: operations["GetSupportRequestAttachmentAsync"];
+    /**
+     * Update a support request attachment
+     * @description Updates an existing support request attachment by its unique identifier.
+     */
+    put: operations["UpdateSupportRequestAttachmentAsync"];
+    /**
+     * Delete a support request attachment
+     * @description Deletes a support request attachment by its unique identifier.
+     */
+    delete: operations["DeleteSupportRequestAttachmentAsync"];
   };
   "/api/v2/SupportService/SupportRequests": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportRequestDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportRequestDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportRequestCreateDto"];
-          "application/xml": components["schemas"]["SupportRequestCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of support requests
+     * @description Retrieves a list of support requests for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportRequestsAsync"];
+    /**
+     * Create a new support request
+     * @description Creates a new support request for the specified tenant.
+     */
+    post: operations["CreateSupportRequestAsync"];
   };
   "/api/v2/SupportService/SupportRequests/Count": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of support requests
+     * @description Returns the total count of support requests for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportRequestsCountAsync"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportRequestDtoEnvelope"];
-            "application/xml": components["schemas"]["SupportRequestDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestId: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportRequestUpdateDto"];
-          "application/xml": components["schemas"]["SupportRequestUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a support request by ID
+     * @description Retrieves a single support request by its unique identifier.
+     */
+    get: operations["GetSupportRequestAsync"];
+    /**
+     * Update a support request
+     * @description Updates an existing support request by its unique identifier.
+     */
+    put: operations["UpdateSupportRequestAsync"];
+    /**
+     * Delete a support request
+     * @description Deletes a support request by its unique identifier.
+     */
+    delete: operations["DeleteSupportRequestAsync"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Tickets": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve tickets for a support request
+     * @description Retrieves the list of support tickets associated with a specific support request.
+     */
+    get: operations["GetSupportRequestTicketsAsync"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportRequestAttachmentDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportRequestAttachmentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestId: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportRequestAttachmentCreateDto"];
-          "application/xml": components["schemas"]["SupportRequestAttachmentCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve attachments for a support request
+     * @description Retrieves the list of attachments associated with a specific support request.
+     */
+    get: operations["GetSupportRequestAttachmentsByRequest"];
+    /**
+     * Add an attachment to a support request
+     * @description Creates a new attachment and associates it with the specified support request.
+     */
+    post: operations["RelateSupportRequestToAttachmentAsync"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments/Count": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of attachments for a support request
+     * @description Returns the total count of attachments for a specific support request.
+     */
+    get: operations["GetSupportRequestAttachmentsCountByRequest"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Attachments/{attachmentId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportRequestId: string;
-          attachmentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportRequestAttachmentDtoEnvelope"];
-            "application/xml": components["schemas"]["SupportRequestAttachmentDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a specific attachment for a support request
+     * @description Retrieves a single attachment by its ID for a specific support request.
+     */
+    get: operations["GetSupportRequestAttachmentByRequest"];
   };
   "/api/v2/SupportService/SupportTicketPriorities": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketPriorityDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketPriorityDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportTicketPriorityCreateDto"];
-          "application/xml": components["schemas"]["SupportTicketPriorityCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of support ticket priorities
+     * @description Retrieves a list of support ticket priorities for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportTicketPrioritiesAsync"];
+    /**
+     * Create a new support ticket priority
+     * @description Creates a new support ticket priority for the specified tenant.
+     */
+    post: operations["CreateSupportTicketPriorityAsync"];
   };
   "/api/v2/SupportService/SupportTicketPriorities/Count": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of support ticket priorities
+     * @description Returns the total count of support ticket priorities for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportTicketPrioritiesCountAsync"];
   };
   "/api/v2/SupportService/SupportTicketPriorities/{supportTicketPriorityId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketPriorityId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketPriorityDtoEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketPriorityDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketPriorityId: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportTicketPriorityUpdateDto"];
-          "application/xml": components["schemas"]["SupportTicketPriorityUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketPriorityId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a support ticket priority by ID
+     * @description Retrieves a single support ticket priority by its unique identifier.
+     */
+    get: operations["GetSupportTicketPriorityAsync"];
+    /**
+     * Update a support ticket priority
+     * @description Updates an existing support ticket priority by its unique identifier.
+     */
+    put: operations["UpdateSupportTicketPriorityAsync"];
+    /**
+     * Delete a support ticket priority
+     * @description Deletes a support ticket priority by its unique identifier.
+     */
+    delete: operations["DeleteSupportTicketPriorityAsync"];
   };
   "/api/v2/SupportService/SupportTickets": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportTicketCreateDto"];
-          "application/xml": components["schemas"]["SupportTicketCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of support tickets
+     * @description Retrieves a list of support tickets for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportTicketsAsync"];
+    /**
+     * Create a new support ticket
+     * @description Creates a new support ticket for the specified tenant.
+     */
+    post: operations["CreateSupportTicketAsync"];
   };
   "/api/v2/SupportService/SupportTickets/Count": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of support tickets
+     * @description Returns the total count of support tickets for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportTicketsCountAsync"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketDtoEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketId: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportTicketUpdateDto"];
-          "application/xml": components["schemas"]["SupportTicketUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a support ticket by ID
+     * @description Retrieves a single support ticket by its unique identifier.
+     */
+    get: operations["GetSupportTicketAsync"];
+    /**
+     * Update a support ticket
+     * @description Updates an existing support ticket by its unique identifier.
+     */
+    put: operations["UpdateSupportTicketAsync"];
+    /**
+     * Delete a support ticket
+     * @description Deletes a support ticket by its unique identifier.
+     */
+    delete: operations["DeleteSupportTicketAsync"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketConversationDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketConversationDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketId: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportTicketConversationCreateDto"];
-          "application/xml": components["schemas"]["SupportTicketConversationCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve conversations for a support ticket
+     * @description Retrieves the list of conversations associated with a specific support ticket.
+     */
+    get: operations["GetSupportTicketConversationsAsync"];
+    /**
+     * Create a conversation for a support ticket
+     * @description Creates a new conversation and associates it with the specified support ticket.
+     */
+    post: operations["RelateSupportTicketToConversationAsync"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations/{supportTicketConversationId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketId: string;
-          supportTicketConversationId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketConversationDtoEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketConversationDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketId: string;
-          supportTicketConversationId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a specific conversation for a support ticket
+     * @description Retrieves a single conversation by its ID for a specific support ticket.
+     */
+    get: operations["GetSupportTicketConversationAsync"];
+    /**
+     * Delete a conversation from a support ticket
+     * @description Deletes a specific conversation from a support ticket.
+     */
+    delete: operations["DeleteSupportTicketConversationAsync"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations/{supportTicketConversationId}/Messages": {
-    get: {
-      parameters: {
-        query?: {
-          pageNumber?: number;
-          pageSize?: number;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketConversationId: string;
-          supportTicketId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["PrivateMessageDtoListEnvelope"];
-            "application/xml": components["schemas"]["PrivateMessageDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve messages for a support ticket conversation
+     * @description Retrieves the list of messages within a specific conversation of a support ticket.
+     */
+    get: operations["GetSupportTicketConversationMessagesAsync"];
   };
   "/api/v2/SupportService/SupportTicketTypes": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketTypeDtoListEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketTypeDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportTicketTypeCreateDto"];
-          "application/xml": components["schemas"]["SupportTicketTypeCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of support ticket types
+     * @description Retrieves a list of support ticket types for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportTicketTypesAsync"];
+    /**
+     * Create a new support ticket type
+     * @description Creates a new support ticket type for the specified tenant.
+     */
+    post: operations["CreateSupportTicketTypeAsync"];
   };
   "/api/v2/SupportService/SupportTicketTypes/Count": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of support ticket types
+     * @description Returns the total count of support ticket types for the specified tenant with OData query support.
+     */
+    get: operations["GetSupportTicketTypesCountAsync"];
   };
   "/api/v2/SupportService/SupportTicketTypes/{supportTicketTypeId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketTypeId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SupportTicketTypeDtoEnvelope"];
-            "application/xml": components["schemas"]["SupportTicketTypeDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketTypeId: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["SupportTicketTypeUpdateDto"];
-          "application/xml": components["schemas"]["SupportTicketTypeUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          supportTicketTypeId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a support ticket type by ID
+     * @description Retrieves a single support ticket type by its unique identifier.
+     */
+    get: operations["GetSupportTicketTypeAsync"];
+    /**
+     * Update a support ticket type
+     * @description Updates an existing support ticket type by its unique identifier.
+     */
+    put: operations["UpdateSupportTicketTypeAsync"];
+    /**
+     * Delete a support ticket type
+     * @description Deletes a support ticket type by its unique identifier.
+     */
+    delete: operations["DeleteSupportTicketTypeAsync"];
   };
 }
 
@@ -1788,6 +516,13 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1804,6 +539,30 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
     };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
     Int32Envelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1813,6 +572,12 @@ export interface components {
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
+    };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
     };
     PrivateMessageDto: {
       id?: string | null;
@@ -1839,6 +604,21 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["PrivateMessageDto"][] | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
     };
     SupportEntitlementCreateDto: {
       /** Format: uuid */
@@ -2058,8 +838,6 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadId?: string | null;
       filePath?: string | null;
-      /** Format: binary */
-      file?: string | null;
       businessID?: string | null;
       businessProfileRecordID?: string | null;
       metadata?: string | null;
@@ -2122,8 +900,6 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadID?: string | null;
       filePath?: string | null;
-      /** Format: binary */
-      file?: string | null;
       contentType?: string | null;
       /** Format: int64 */
       fileLength?: number;
@@ -2358,6 +1134,21 @@ export interface components {
       supportEntitlementID?: string | null;
       supportPriorityID?: string | null;
     };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
   };
   responses: never;
   parameters: never;
@@ -2370,4 +1161,1943 @@ export type $defs = Record<string, never>;
 
 export type external = Record<string, never>;
 
-export type operations = Record<string, never>;
+export interface operations {
+
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Retrieve a list of support entitlements
+   * @description Retrieves a list of support entitlements for the specified tenant with OData query support.
+   */
+  GetSupportEntitlementsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportEntitlementDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportEntitlementDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new support entitlement
+   * @description Creates a new support entitlement for the specified tenant.
+   */
+  CreateSupportEntitlementAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportEntitlementCreateDto"];
+        "application/xml": components["schemas"]["SupportEntitlementCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of support entitlements
+   * @description Returns the total count of support entitlements for the specified tenant with OData query support.
+   */
+  GetSupportEntitlementsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a support entitlement by ID
+   * @description Retrieves a single support entitlement by its unique identifier.
+   */
+  GetSupportEntitlementAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportEntitlementId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportEntitlementDtoEnvelope"];
+          "application/xml": components["schemas"]["SupportEntitlementDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a support entitlement
+   * @description Updates an existing support entitlement by its unique identifier.
+   */
+  UpdateSupportEntitlementAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportEntitlementId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportEntitlementUpdateDto"];
+        "application/xml": components["schemas"]["SupportEntitlementUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a support entitlement
+   * @description Deletes a support entitlement by its unique identifier.
+   */
+  DeleteSupportEntitlementAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportEntitlementId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of support request attachments
+   * @description Retrieves a list of support request attachments for the specified tenant with OData query support.
+   */
+  GetSupportRequestAttachmentsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportRequestAttachmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportRequestAttachmentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new support request attachment
+   * @description Creates a new support request attachment for the specified tenant.
+   */
+  CreateSupportRequestAttachmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportRequestAttachmentCreateDto"];
+        "application/xml": components["schemas"]["SupportRequestAttachmentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of support request attachments
+   * @description Returns the total count of support request attachments for the specified tenant with OData query support.
+   */
+  GetSupportRequestAttachmentsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a support request attachment by ID
+   * @description Retrieves a single support request attachment by its unique identifier.
+   */
+  GetSupportRequestAttachmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestAttachmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportRequestAttachmentDtoEnvelope"];
+          "application/xml": components["schemas"]["SupportRequestAttachmentDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a support request attachment
+   * @description Updates an existing support request attachment by its unique identifier.
+   */
+  UpdateSupportRequestAttachmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestAttachmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportRequestAttachmentUpdateDto"];
+        "application/xml": components["schemas"]["SupportRequestAttachmentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a support request attachment
+   * @description Deletes a support request attachment by its unique identifier.
+   */
+  DeleteSupportRequestAttachmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestAttachmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of support requests
+   * @description Retrieves a list of support requests for the specified tenant with OData query support.
+   */
+  GetSupportRequestsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportRequestDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportRequestDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new support request
+   * @description Creates a new support request for the specified tenant.
+   */
+  CreateSupportRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportRequestCreateDto"];
+        "application/xml": components["schemas"]["SupportRequestCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of support requests
+   * @description Returns the total count of support requests for the specified tenant with OData query support.
+   */
+  GetSupportRequestsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a support request by ID
+   * @description Retrieves a single support request by its unique identifier.
+   */
+  GetSupportRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportRequestDtoEnvelope"];
+          "application/xml": components["schemas"]["SupportRequestDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a support request
+   * @description Updates an existing support request by its unique identifier.
+   */
+  UpdateSupportRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportRequestUpdateDto"];
+        "application/xml": components["schemas"]["SupportRequestUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a support request
+   * @description Deletes a support request by its unique identifier.
+   */
+  DeleteSupportRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve tickets for a support request
+   * @description Retrieves the list of support tickets associated with a specific support request.
+   */
+  GetSupportRequestTicketsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve attachments for a support request
+   * @description Retrieves the list of attachments associated with a specific support request.
+   */
+  GetSupportRequestAttachmentsByRequest: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportRequestAttachmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportRequestAttachmentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add an attachment to a support request
+   * @description Creates a new attachment and associates it with the specified support request.
+   */
+  RelateSupportRequestToAttachmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportRequestAttachmentCreateDto"];
+        "application/xml": components["schemas"]["SupportRequestAttachmentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of attachments for a support request
+   * @description Returns the total count of attachments for a specific support request.
+   */
+  GetSupportRequestAttachmentsCountByRequest: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a specific attachment for a support request
+   * @description Retrieves a single attachment by its ID for a specific support request.
+   */
+  GetSupportRequestAttachmentByRequest: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+        attachmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportRequestAttachmentDtoEnvelope"];
+          "application/xml": components["schemas"]["SupportRequestAttachmentDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of support ticket priorities
+   * @description Retrieves a list of support ticket priorities for the specified tenant with OData query support.
+   */
+  GetSupportTicketPrioritiesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketPriorityDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketPriorityDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new support ticket priority
+   * @description Creates a new support ticket priority for the specified tenant.
+   */
+  CreateSupportTicketPriorityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportTicketPriorityCreateDto"];
+        "application/xml": components["schemas"]["SupportTicketPriorityCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of support ticket priorities
+   * @description Returns the total count of support ticket priorities for the specified tenant with OData query support.
+   */
+  GetSupportTicketPrioritiesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a support ticket priority by ID
+   * @description Retrieves a single support ticket priority by its unique identifier.
+   */
+  GetSupportTicketPriorityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketPriorityId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketPriorityDtoEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketPriorityDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a support ticket priority
+   * @description Updates an existing support ticket priority by its unique identifier.
+   */
+  UpdateSupportTicketPriorityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketPriorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportTicketPriorityUpdateDto"];
+        "application/xml": components["schemas"]["SupportTicketPriorityUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a support ticket priority
+   * @description Deletes a support ticket priority by its unique identifier.
+   */
+  DeleteSupportTicketPriorityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketPriorityId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of support tickets
+   * @description Retrieves a list of support tickets for the specified tenant with OData query support.
+   */
+  GetSupportTicketsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new support ticket
+   * @description Creates a new support ticket for the specified tenant.
+   */
+  CreateSupportTicketAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportTicketCreateDto"];
+        "application/xml": components["schemas"]["SupportTicketCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of support tickets
+   * @description Returns the total count of support tickets for the specified tenant with OData query support.
+   */
+  GetSupportTicketsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a support ticket by ID
+   * @description Retrieves a single support ticket by its unique identifier.
+   */
+  GetSupportTicketAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketDtoEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a support ticket
+   * @description Updates an existing support ticket by its unique identifier.
+   */
+  UpdateSupportTicketAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportTicketUpdateDto"];
+        "application/xml": components["schemas"]["SupportTicketUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a support ticket
+   * @description Deletes a support ticket by its unique identifier.
+   */
+  DeleteSupportTicketAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve conversations for a support ticket
+   * @description Retrieves the list of conversations associated with a specific support ticket.
+   */
+  GetSupportTicketConversationsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketConversationDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketConversationDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a conversation for a support ticket
+   * @description Creates a new conversation and associates it with the specified support ticket.
+   */
+  RelateSupportTicketToConversationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportTicketConversationCreateDto"];
+        "application/xml": components["schemas"]["SupportTicketConversationCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a specific conversation for a support ticket
+   * @description Retrieves a single conversation by its ID for a specific support ticket.
+   */
+  GetSupportTicketConversationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+        supportTicketConversationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketConversationDtoEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketConversationDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a conversation from a support ticket
+   * @description Deletes a specific conversation from a support ticket.
+   */
+  DeleteSupportTicketConversationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+        supportTicketConversationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve messages for a support ticket conversation
+   * @description Retrieves the list of messages within a specific conversation of a support ticket.
+   */
+  GetSupportTicketConversationMessagesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        pageNumber?: number;
+        pageSize?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+        supportTicketConversationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PrivateMessageDtoListEnvelope"];
+          "application/xml": components["schemas"]["PrivateMessageDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of support ticket types
+   * @description Retrieves a list of support ticket types for the specified tenant with OData query support.
+   */
+  GetSupportTicketTypesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketTypeDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketTypeDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new support ticket type
+   * @description Creates a new support ticket type for the specified tenant.
+   */
+  CreateSupportTicketTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportTicketTypeCreateDto"];
+        "application/xml": components["schemas"]["SupportTicketTypeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of support ticket types
+   * @description Returns the total count of support ticket types for the specified tenant with OData query support.
+   */
+  GetSupportTicketTypesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a support ticket type by ID
+   * @description Retrieves a single support ticket type by its unique identifier.
+   */
+  GetSupportTicketTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupportTicketTypeDtoEnvelope"];
+          "application/xml": components["schemas"]["SupportTicketTypeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a support ticket type
+   * @description Updates an existing support ticket type by its unique identifier.
+   */
+  UpdateSupportTicketTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupportTicketTypeUpdateDto"];
+        "application/xml": components["schemas"]["SupportTicketTypeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a support ticket type
+   * @description Deletes a support ticket type by its unique identifier.
+   */
+  DeleteSupportTicketTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+}

@@ -6,918 +6,394 @@
 
 export interface paths {
   "/api/v2/PricingService/DiscountLists": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["DiscountListDtoListEnvelope"];
-            "application/xml": components["schemas"]["DiscountListDtoListEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DiscountListCreateDto"];
-          "application/xml": components["schemas"]["DiscountListCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieves all discount lists
+     * @description Gets all discount lists for the current tenant with OData support.
+     */
+    get: operations["GetDiscountLists"];
+    /**
+     * Creates a new discount list
+     * @description Creates a new discount list for the current tenant.
+     */
+    post: operations["CreateDiscountList"];
   };
   "/api/v2/PricingService/DiscountLists/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Counts discount lists
+     * @description Gets the count of discount lists for the current tenant.
+     */
+    get: operations["GetDiscountListsCount"];
   };
   "/api/v2/PricingService/DiscountLists/{discountListId}": {
+    /**
+     * Gets a discount list by ID
+     * @description Retrieves the details of a discount list using its unique identifier.
+     */
+    get: operations["GetDiscountList"];
+    /**
+     * Updates a discount list
+     * @description Updates the specified discount list.
+     */
+    put: operations["UpdateDiscountList"];
+    /**
+     * Deletes a discount list
+     * @description Deletes the specified discount list.
+     */
+    delete: operations["DeleteDiscountList"];
+  };
+  "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts": {
+    /**
+     * Retrieves discounts in a discount list
+     * @description Gets all discount entries for a specific discount list with OData support.
+     */
+    get: operations["GetDiscountListEntries"];
+    /**
+     * Creates a discount list entry
+     * @description Creates a new discount entry in the specified discount list.
+     */
+    post: operations["CreateDiscountListEntry"];
+  };
+  "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/Count": {
+    /**
+     * Counts discounts in a discount list
+     * @description Gets the count of discount entries for a specific discount list.
+     */
+    get: operations["GetDiscountListEntriesCount"];
+  };
+  "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/{discountListEntryId}": {
+    /**
+     * Gets a discount list entry by ID
+     * @description Retrieves a specific discount entry from a discount list.
+     */
+    get: operations["GetDiscountListEntry"];
+    /**
+     * Updates a discount list entry
+     * @description Updates the specified discount entry in a discount list.
+     */
+    put: operations["UpdateDiscountListEntry"];
+    /**
+     * Deletes a discount list entry
+     * @description Deletes the specified discount entry from a discount list.
+     */
+    delete: operations["DeleteDiscountListEntry"];
+  };
+  "/version": {
     get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          discountListId: string;
-        };
-      };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["DiscountListDtoEnvelope"];
-            "application/xml": components["schemas"]["DiscountListDtoEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+          content: never;
         };
       };
     };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          discountListId: string;
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
         };
       };
-      requestBody?: {
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["DiscountListUpdateDto"];
-          "application/xml": components["schemas"]["DiscountListUpdateDto"];
+          "application/json": components["schemas"]["RegisterRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
+          content: never;
         };
         /** @description Bad Request */
         400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          discountListId: string;
-        };
-      };
-      responses: {
-        /** @description No Content */
-        204: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
       };
     };
   };
-  "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts": {
-    get: {
+  "/login": {
+    post: {
       parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
         };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          discountListId: string;
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["DiscountDtoListEnvelope"];
-            "application/xml": components["schemas"]["DiscountDtoListEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
           };
         };
         /** @description Bad Request */
         400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
-        /** @description Unauthorized */
-        401: {
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
         };
-        /** @description Forbidden */
-        403: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
     post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          discountListId: string;
-        };
-      };
-      requestBody?: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["DiscountCreateDto"];
-          "application/xml": components["schemas"]["DiscountCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          discountListId: string;
+          "application/json": components["schemas"]["InfoRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
         };
         /** @description Bad Request */
         400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/{discountListEntryId}": {
-    get: operations["GetDiscountListEntry"];
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          discountListId: string;
-          discountListEntryId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DiscountUpdateDto"];
-          "application/xml": components["schemas"]["DiscountUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          discountListId: string;
-          discountListEntryId: string;
-        };
-      };
-      responses: {
-        /** @description No Content */
-        204: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
   };
   "/api/v2/PricingService/PriceLists": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["PriceListDtoListEnvelope"];
-            "application/xml": components["schemas"]["PriceListDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["PriceListCreateDto"];
-          "application/xml": components["schemas"]["PriceListCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieves all price lists
+     * @description Gets all price lists for the current tenant with OData support.
+     */
+    get: operations["GetPriceListsAsync"];
+    /**
+     * Creates a new price list
+     * @description Creates a new price list for the current tenant.
+     */
+    post: operations["CreatePriceListAsync"];
   };
   "/api/v2/PricingService/PriceLists/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Counts price lists
+     * @description Gets the count of price lists for the current tenant.
+     */
+    get: operations["GetPriceListsCountAsync"];
   };
   "/api/v2/PricingService/PriceLists/{priceListId}": {
+    /**
+     * Gets a price list by ID
+     * @description Retrieves the details of a price list using its unique identifier.
+     */
     get: operations["GetPriceListAsync"];
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          priceListId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["PriceListUpdateDto"];
-          "application/xml": components["schemas"]["PriceListUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          priceListId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Updates a price list
+     * @description Updates the specified price list.
+     */
+    put: operations["UpdatePriceListAsync"];
+    /**
+     * Deletes a price list
+     * @description Deletes the specified price list.
+     */
+    delete: operations["DeletePriceListAsync"];
   };
   "/api/v2/PricingService/PriceLists/{priceListId}/Prices": {
+    /**
+     * Retrieves prices in a price list
+     * @description Gets all price entries for a specific price list with OData support.
+     */
     get: operations["GetPriceListPricesAsync"];
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          priceListId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["ItemPriceCreateDto"];
-          "application/xml": components["schemas"]["ItemPriceCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Creates a price list entry
+     * @description Creates a new price entry in the specified price list.
+     */
+    post: operations["CreatePriceListPricesAsync"];
   };
   "/api/v2/PricingService/PriceLists/{priceListId}/Prices/{priceId}": {
+    /**
+     * Gets a price list entry by ID
+     * @description Retrieves a specific price entry from a price list.
+     */
     get: operations["GetPriceListPriceAsync"];
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          priceListId: string;
-          priceId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["ItemPriceUpdateDto"];
-          "application/xml": components["schemas"]["ItemPriceUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          priceListId: string;
-          priceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Updates a price list entry
+     * @description Updates the specified price entry in a price list.
+     */
+    put: operations["UpdatePriceListPriceAsync"];
+    /**
+     * Deletes a price list entry
+     * @description Deletes the specified price entry from a price list.
+     */
+    delete: operations["DeletePriceListPriceAsync"];
   };
   "/api/v2/PricingService/Prices/{itemId}/Price": {
-    get: {
-      parameters: {
-        query?: {
-          priceListId?: string;
-          discountsListId?: string;
-          currencyId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          itemId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["PriceCalculationDtoEnvelope"];
-            "application/xml": components["schemas"]["PriceCalculationDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets the calculated price for an item
+     * @description Calculates the price for an item considering price list, discount list, quantity, and currency.
+     */
+    get: operations["GetPrice"];
   };
   "/api/v2/PricingService/Prices/{itemId}/FinalPrice": {
-    get: {
-      parameters: {
-        query?: {
-          currencyId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          itemId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["MoneyEnvelope"];
-            "application/xml": components["schemas"]["MoneyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets the final price for an item
+     * @description Gets the final price for an item after all discounts and taxes in the specified currency.
+     */
+    get: operations["GetFinalPrice"];
   };
   "/api/v2/PricingService/Prices/{itemId}/TotalTaxes": {
-    get: {
-      parameters: {
-        query?: {
-          currencyId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          itemId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["MoneyEnvelope"];
-            "application/xml": components["schemas"]["MoneyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets total taxes for an item
+     * @description Gets the total tax amount for an item in the specified currency.
+     */
+    get: operations["GetTotalTaxesInUsd"];
   };
   "/api/v2/PricingService/Prices/{itemId}/TotalSavings": {
-    get: {
-      parameters: {
-        query?: {
-          currencyId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          itemId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["MoneyEnvelope"];
-            "application/xml": components["schemas"]["MoneyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets total savings for an item
+     * @description Gets the total savings amount for an item in the specified currency.
+     */
+    get: operations["GetTotalSavingsInUsd"];
   };
 }
 
@@ -925,7 +401,15 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    Currency: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
+    CurrencyId: {
+      value?: string | null;
       code?: string | null;
       country?: string | null;
     };
@@ -944,7 +428,7 @@ export interface components {
       /** Format: double */
       value?: number;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       discountListId?: string | null;
     };
     DiscountDto: {
@@ -958,7 +442,7 @@ export interface components {
       percent?: number;
       itemId?: string | null;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       discountListId?: string | null;
       /** Format: double */
       endQuantity?: number;
@@ -991,7 +475,7 @@ export interface components {
       name?: string | null;
       currencyId?: string | null;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
     };
     DiscountListDto: {
       id?: string | null;
@@ -1000,7 +484,7 @@ export interface components {
       name?: string | null;
       currencyId?: string | null;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
     };
     DiscountListDtoEnvelope: {
       isSuccess?: boolean;
@@ -1024,7 +508,7 @@ export interface components {
       name?: string | null;
       currencyId?: string | null;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
     };
     DiscountUpdateDto: {
       description?: string | null;
@@ -1037,7 +521,7 @@ export interface components {
       /** Format: double */
       value?: number;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       discountListId?: string | null;
     };
     EmptyEnvelope: {
@@ -1056,6 +540,30 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
     };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
     Int32Envelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1065,6 +573,49 @@ export interface components {
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
+    };
+    ItemPriceCalculation: {
+      /** Format: double */
+      quantity?: number;
+      itemId?: string | null;
+      item?: string | null;
+      unitId?: string | null;
+      unitGroupId?: string | null;
+      priceId?: string | null;
+      priceListId?: string | null;
+      discountId?: string | null;
+      discountListId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      roundingPolicyId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: double */
+      effectiveDiscountPercent?: number;
+      /** Format: double */
+      effectiveTaxPercent?: number;
+      currencyId?: string | null;
+      currency?: components["schemas"]["CurrencyId"];
+      totalBaseAmount?: components["schemas"]["Money"];
+      totalProfitAmount?: components["schemas"]["Money"];
+      totalDetailAmount?: components["schemas"]["Money"];
+      totalDiscountsAmount?: components["schemas"]["Money"];
+      totalSurchargesAmount?: components["schemas"]["Money"];
+      totalTaxBaseAmount?: components["schemas"]["Money"];
+      totalTaxAmount?: components["schemas"]["Money"];
+      totalWTaxAmount?: components["schemas"]["Money"];
+      totalShippingCostAmount?: components["schemas"]["Money"];
+      totalShippingTaxAmount?: components["schemas"]["Money"];
+      totalAmount?: components["schemas"]["Money"];
+    };
+    ItemPriceCalculationEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPriceCalculation"];
     };
     ItemPriceCreateDto: {
       /** Format: uuid */
@@ -1134,10 +685,16 @@ export interface components {
       discountListId?: string | null;
       roundingPolicyId?: string | null;
     };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
     Money: {
       /** Format: double */
       amount?: number;
-      currency?: components["schemas"]["Currency"];
+      currency?: components["schemas"]["CurrencyId"];
     };
     MoneyEnvelope: {
       isSuccess?: boolean;
@@ -1147,40 +704,6 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["Money"];
-    };
-    PriceCalculationDto: {
-      id?: string | null;
-      /** Format: date-time */
-      timestamp?: string | null;
-      itemId?: string | null;
-      unitId?: string | null;
-      unitGroupId?: string | null;
-      priceId?: string | null;
-      priceListId?: string | null;
-      discountId?: string | null;
-      discountListId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-      roundingPolicyId?: string | null;
-      /** Format: double */
-      effectiveDiscountPercent?: number;
-      currencyId?: string | null;
-      totalBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalShippingAmount?: components["schemas"]["Money"];
-      totalShippingTaxAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-    };
-    PriceCalculationDtoEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["PriceCalculationDto"];
     };
     PriceListCreateDto: {
       /** Format: uuid */
@@ -1215,7 +738,7 @@ export interface components {
       unitGroupId?: string | null;
       partnerVisible?: boolean;
       unitOfMeasureDependant?: boolean;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
     };
     PriceListDtoEnvelope: {
       isSuccess?: boolean;
@@ -1246,6 +769,36 @@ export interface components {
       unitId?: string | null;
       unitGroupId?: string | null;
     };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
   };
   responses: never;
   parameters: never;
@@ -1260,14 +813,419 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Retrieves all discount lists
+   * @description Gets all discount lists for the current tenant with OData support.
+   */
+  GetDiscountLists: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DiscountListDtoListEnvelope"];
+          "application/xml": components["schemas"]["DiscountListDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a new discount list
+   * @description Creates a new discount list for the current tenant.
+   */
+  CreateDiscountList: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DiscountListCreateDto"];
+        "application/xml": components["schemas"]["DiscountListCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts discount lists
+   * @description Gets the count of discount lists for the current tenant.
+   */
+  GetDiscountListsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a discount list by ID
+   * @description Retrieves the details of a discount list using its unique identifier.
+   */
+  GetDiscountList: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DiscountListDtoEnvelope"];
+          "application/xml": components["schemas"]["DiscountListDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a discount list
+   * @description Updates the specified discount list.
+   */
+  UpdateDiscountList: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DiscountListUpdateDto"];
+        "application/xml": components["schemas"]["DiscountListUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a discount list
+   * @description Deletes the specified discount list.
+   */
+  DeleteDiscountList: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieves discounts in a discount list
+   * @description Gets all discount entries for a specific discount list with OData support.
+   */
+  GetDiscountListEntries: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DiscountDtoListEnvelope"];
+          "application/xml": components["schemas"]["DiscountDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a discount list entry
+   * @description Creates a new discount entry in the specified discount list.
+   */
+  CreateDiscountListEntry: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DiscountCreateDto"];
+        "application/xml": components["schemas"]["DiscountCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts discounts in a discount list
+   * @description Gets the count of discount entries for a specific discount list.
+   */
+  GetDiscountListEntriesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a discount list entry by ID
+   * @description Retrieves a specific discount entry from a discount list.
+   */
   GetDiscountListEntry: {
     parameters: {
       query: {
         tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
       };
       path: {
         discountListId: string;
@@ -1305,14 +1263,212 @@ export interface operations {
       };
     };
   };
+  /**
+   * Updates a discount list entry
+   * @description Updates the specified discount entry in a discount list.
+   */
+  UpdateDiscountListEntry: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+        discountListEntryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DiscountUpdateDto"];
+        "application/xml": components["schemas"]["DiscountUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a discount list entry
+   * @description Deletes the specified discount entry from a discount list.
+   */
+  DeleteDiscountListEntry: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+        discountListEntryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Retrieves all price lists
+   * @description Gets all price lists for the current tenant with OData support.
+   */
+  GetPriceListsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PriceListDtoListEnvelope"];
+          "application/xml": components["schemas"]["PriceListDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a new price list
+   * @description Creates a new price list for the current tenant.
+   */
+  CreatePriceListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PriceListCreateDto"];
+        "application/xml": components["schemas"]["PriceListCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts price lists
+   * @description Gets the count of price lists for the current tenant.
+   */
+  GetPriceListsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a price list by ID
+   * @description Retrieves the details of a price list using its unique identifier.
+   */
   GetPriceListAsync: {
     parameters: {
       query: {
         tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
       };
       path: {
         priceListId: string;
@@ -1335,15 +1491,81 @@ export interface operations {
       };
     };
   };
+  /**
+   * Updates a price list
+   * @description Updates the specified price list.
+   */
+  UpdatePriceListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        priceListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PriceListUpdateDto"];
+        "application/xml": components["schemas"]["PriceListUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a price list
+   * @description Deletes the specified price list.
+   */
+  DeletePriceListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        priceListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieves prices in a price list
+   * @description Gets all price entries for a specific price list with OData support.
+   */
   GetPriceListPricesAsync: {
     parameters: {
       query: {
         tenantId: string;
         itemId?: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
       };
       path: {
         priceListId: string;
@@ -1366,14 +1588,50 @@ export interface operations {
       };
     };
   };
+  /**
+   * Creates a price list entry
+   * @description Creates a new price entry in the specified price list.
+   */
+  CreatePriceListPricesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        priceListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPriceCreateDto"];
+        "application/xml": components["schemas"]["ItemPriceCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a price list entry by ID
+   * @description Retrieves a specific price entry from a price list.
+   */
   GetPriceListPriceAsync: {
     parameters: {
       query: {
         tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
       };
       path: {
         priceListId: string;
@@ -1386,6 +1644,213 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ItemPriceDtoEnvelope"];
           "application/xml": components["schemas"]["ItemPriceDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a price list entry
+   * @description Updates the specified price entry in a price list.
+   */
+  UpdatePriceListPriceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        priceListId: string;
+        priceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPriceUpdateDto"];
+        "application/xml": components["schemas"]["ItemPriceUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a price list entry
+   * @description Deletes the specified price entry from a price list.
+   */
+  DeletePriceListPriceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        priceListId: string;
+        priceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets the calculated price for an item
+   * @description Calculates the price for an item considering price list, discount list, quantity, and currency.
+   */
+  GetPrice: {
+    parameters: {
+      query?: {
+        priceListId?: string;
+        discountsListId?: string;
+        quantity?: number;
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemPriceCalculationEnvelope"];
+          "application/xml": components["schemas"]["ItemPriceCalculationEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets the final price for an item
+   * @description Gets the final price for an item after all discounts and taxes in the specified currency.
+   */
+  GetFinalPrice: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets total taxes for an item
+   * @description Gets the total tax amount for an item in the specified currency.
+   */
+  GetTotalTaxesInUsd: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets total savings for an item
+   * @description Gets the total savings amount for an item in the specified currency.
+   */
+  GetTotalSavingsInUsd: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
         };
       };
       /** @description Not Found */

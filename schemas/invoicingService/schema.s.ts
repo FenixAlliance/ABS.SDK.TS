@@ -5,1221 +5,503 @@
 
 
 export interface paths {
-  "/api/v2/InvoicingService/Invoices": {
+  "/version": {
     get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
+    post: {
       parameters: {
-        query: {
-          tenantId: string;
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["InvoiceDtoListEnvelope"];
-            "application/xml": components["schemas"]["InvoiceDtoListEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
         /** @description Not Found */
         404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
     post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      requestBody?: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["InvoiceCreateDto"];
-          "application/xml": components["schemas"]["InvoiceCreateDto"];
+          "application/json": components["schemas"]["InfoRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
         /** @description Not Found */
         404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+          content: never;
         };
       };
     };
+  };
+  "/api/v2/InvoicingService/Invoices": {
+    /**
+     * Get a list of invoices.
+     * @description Retrieves a list of invoices for the specified tenant.
+     */
+    get: operations["GetInvoices"];
+    /**
+     * Create a new invoice.
+     * @description Creates a new invoice for the specified tenant.
+     */
+    post: operations["CreateInvoice"];
   };
   "/api/v2/InvoicingService/Invoices/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of invoices.
+     * @description Retrieves the total count of invoices for the specified tenant.
+     */
+    get: operations["GetInvoicesCount"];
   };
   "/api/v2/InvoicingService/Invoices/Extended": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ExtendedInvoiceDtoListEnvelope"];
-            "application/xml": components["schemas"]["ExtendedInvoiceDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get a list of extended invoices.
+     * @description Retrieves a list of extended invoice details for the specified tenant.
+     */
+    get: operations["GetExtendedInvoices"];
   };
   "/api/v2/InvoicingService/Invoices/Extended/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of extended invoices.
+     * @description Retrieves the total count of extended invoices for the specified tenant.
+     */
+    get: operations["GetExtendedInvoicesCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Extended": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceDtoEnvelope"];
-            "application/xml": components["schemas"]["InvoiceDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get an extended invoice by ID.
+     * @description Retrieves the extended invoice details for the specified invoice ID.
+     */
+    get: operations["GetExtendedInvoice"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}": {
-    get: operations["GetInvoiceAsync"];
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceUpdateDto"];
-          "application/xml": components["schemas"]["InvoiceUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get an invoice by ID.
+     * @description Retrieves the invoice details for the specified invoice ID.
+     */
+    get: operations["GetInvoice"];
+    /**
+     * Update an invoice.
+     * @description Updates the specified invoice for the tenant.
+     */
+    put: operations["UpdateInvoice"];
+    /**
+     * Delete an invoice.
+     * @description Deletes the specified invoice for the tenant.
+     */
+    delete: operations["DeleteInvoice"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Calculate": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Calculate an invoice.
+     * @description Calculates the totals and taxes for the specified invoice.
+     */
+    put: operations["CalculateInvoice"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          itemId?: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceLineDtoListEnvelope"];
-            "application/xml": components["schemas"]["InvoiceLineDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceLineCreateDto"];
-          "application/xml": components["schemas"]["InvoiceLineCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get invoice lines.
+     * @description Retrieves the invoice lines for the specified invoice.
+     */
+    get: operations["GetInvoiceLines"];
+    /**
+     * Create a new invoice line.
+     * @description Creates a new invoice line for the specified invoice.
+     */
+    post: operations["CreateInvoiceLine"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of invoice lines.
+     * @description Retrieves the total count of invoice lines for the specified invoice.
+     */
+    get: operations["GetInvoiceLinesCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceLineDtoEnvelope"];
-            "application/xml": components["schemas"]["InvoiceLineDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceLineUpdateDto"];
-          "application/xml": components["schemas"]["InvoiceLineUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get an invoice line by ID.
+     * @description Retrieves the invoice line details for the specified invoice line ID.
+     */
+    get: operations["GetInvoiceLine"];
+    /**
+     * Update an invoice line.
+     * @description Updates the specified invoice line.
+     */
+    put: operations["UpdateInvoiceLine"];
+    /**
+     * Delete an invoice line.
+     * @description Deletes the specified invoice line.
+     */
+    delete: operations["DeleteInvoiceLine"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Calculate": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Calculate an invoice line.
+     * @description Calculates the totals and taxes for the specified invoice line.
+     */
+    put: operations["CalculateInvoiceLine"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceLineAppliedTaxDtoListEnvelope"];
-            "application/xml": components["schemas"]["InvoiceLineAppliedTaxDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceLineAppliedTaxCreateDto"];
-          "application/xml": components["schemas"]["InvoiceLineAppliedTaxCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get taxes for an invoice line.
+     * @description Retrieves the taxes applied to the specified invoice line.
+     */
+    get: operations["GetInvoiceLineTaxes"];
+    /**
+     * Create a new tax for an invoice line.
+     * @description Creates a new tax entry for the specified invoice line.
+     */
+    post: operations["CreateInvoiceLineTax"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of taxes for an invoice line.
+     * @description Retrieves the total count of taxes applied to the specified invoice line.
+     */
+    get: operations["GetInvoiceLineTaxesCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/{invoiceLineTaxId}": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-          invoiceLineTaxId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceLineAppliedTaxUpdateDto"];
-          "application/xml": components["schemas"]["InvoiceLineAppliedTaxUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceLineId: string;
-          invoiceLineTaxId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update a tax for an invoice line.
+     * @description Updates the specified tax entry for the invoice line.
+     */
+    put: operations["UpdateInvoiceLineTax"];
+    /**
+     * Delete a tax from an invoice line.
+     * @description Deletes the specified tax entry from the invoice line.
+     */
+    delete: operations["DeleteInvoiceLineTax"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceAdjustmentDtoListEnvelope"];
-            "application/xml": components["schemas"]["InvoiceAdjustmentDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceAdjustmentCreateDto"];
-          "application/xml": components["schemas"]["InvoiceAdjustmentCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get invoice adjustments.
+     * @description Retrieves the adjustments for the specified invoice.
+     */
+    get: operations["GetInvoiceAdjustments"];
+    /**
+     * Create a new invoice adjustment.
+     * @description Creates a new adjustment for the specified invoice.
+     */
+    post: operations["CreateInvoiceAdjustment"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of invoice adjustments.
+     * @description Retrieves the total count of adjustments for the specified invoice.
+     */
+    get: operations["GetInvoiceAdjustmentsCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/{invoiceAdjustmentId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceAdjustmentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceAdjustmentDtoEnvelope"];
-            "application/xml": components["schemas"]["InvoiceAdjustmentDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceAdjustmentId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceAdjustmentUpdateDto"];
-          "application/xml": components["schemas"]["InvoiceAdjustmentUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceAdjustmentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get an invoice adjustment by ID.
+     * @description Retrieves the adjustment details for the specified invoice adjustment ID.
+     */
+    get: operations["GetInvoiceAdjustment"];
+    /**
+     * Update an invoice adjustment.
+     * @description Updates the specified adjustment for the invoice.
+     */
+    put: operations["UpdateInvoiceAdjustment"];
+    /**
+     * Delete an invoice adjustment.
+     * @description Deletes the specified adjustment from the invoice.
+     */
+    delete: operations["DeleteInvoiceAdjustment"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/References": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceReferenceDtoListEnvelope"];
-            "application/xml": components["schemas"]["InvoiceReferenceDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceReferenceCreateDto"];
-          "application/xml": components["schemas"]["InvoiceReferenceCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get invoice references.
+     * @description Retrieves the references for the specified invoice.
+     */
+    get: operations["GetInvoiceReferences"];
+    /**
+     * Create a new invoice reference.
+     * @description Creates a new reference for the specified invoice.
+     */
+    post: operations["CreateInvoiceReference"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/References/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of invoice references.
+     * @description Retrieves the total count of references for the specified invoice.
+     */
+    get: operations["GetInvoiceReferencesCount"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/References/{invoiceReferenceId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceReferenceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceReferenceDtoEnvelope"];
-            "application/xml": components["schemas"]["InvoiceReferenceDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceReferenceId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["InvoiceReferenceUpdateDto"];
-          "application/xml": components["schemas"]["InvoiceReferenceUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          invoiceId: string;
-          invoiceReferenceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get an invoice reference by ID.
+     * @description Retrieves the reference details for the specified invoice reference ID.
+     */
+    get: operations["GetInvoiceReference"];
+    /**
+     * Update an invoice reference.
+     * @description Updates the specified reference for the invoice.
+     */
+    put: operations["UpdateInvoiceReference"];
+    /**
+     * Delete an invoice reference.
+     * @description Deletes the specified reference from the invoice.
+     */
+    delete: operations["DeleteInvoiceReference"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Payments": {
-    get: {
-      parameters: {
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["InvoiceDtoListEnvelope"];
-            "application/xml": components["schemas"]["InvoiceDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get payments for an invoice.
+     * @description Retrieves the list of payments related to the specified invoice.
+     */
+    get: operations["GetInvoicePayments"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Payments/Count": {
-    get: {
-      parameters: {
-        path: {
-          invoiceId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of payments for an invoice.
+     * @description Retrieves the total count of payments for the specified invoice.
+     */
+    get: operations["GetInvoicePaymentsCount"];
   };
   "/api/v2/InvoicingService/Invoices/TotalsAggregate": {
-    post: {
-      parameters: {
-        query?: {
-          currencyId?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": string[];
-          "application/xml": string[];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["MoneyEnvelope"];
-            "application/xml": components["schemas"]["MoneyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Aggregate invoice totals.
+     * @description Aggregates the totals for the specified invoices.
+     */
+    post: operations["AggregateInvoiceTotals"];
   };
   "/api/v2/InvoicingService/Invoices/TaxesAggregate": {
-    post: {
-      parameters: {
-        query?: {
-          currencyId?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": string[];
-          "application/xml": string[];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["MoneyEnvelope"];
-            "application/xml": components["schemas"]["MoneyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Aggregate invoice taxes.
+     * @description Aggregates the taxes for the specified invoices.
+     */
+    post: operations["AggregateInvoiceTaxes"];
   };
   "/api/v2/InvoicingService/Invoices/DiscountsAggregate": {
-    post: {
-      parameters: {
-        query?: {
-          currencyId?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": string[];
-          "application/xml": string[];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["MoneyEnvelope"];
-            "application/xml": components["schemas"]["MoneyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Aggregate invoice discounts.
+     * @description Aggregates the discounts for the specified invoices.
+     */
+    post: operations["AggregateInvoiceDiscounts"];
   };
   "/api/v2/InvoicingService/Invoices/TaxBasesAggregate": {
-    post: {
-      parameters: {
-        query?: {
-          currencyId?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": string[];
-          "application/xml": string[];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["MoneyEnvelope"];
-            "application/xml": components["schemas"]["MoneyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Aggregate invoice tax bases.
+     * @description Aggregates the tax bases for the specified invoices.
+     */
+    post: operations["AggregateInvoiceTaxBases"];
   };
   "/api/v2/InvoicingService/Invoices/GlobalSurchargesAggregate": {
-    post: {
-      parameters: {
-        query?: {
-          currencyId?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json": string[];
-          "application/xml": string[];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["MoneyEnvelope"];
-            "application/xml": components["schemas"]["MoneyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Aggregate invoice global surcharges.
+     * @description Aggregates the global surcharges for the specified invoices.
+     */
+    post: operations["AggregateInvoiceGlobalSurcharges"];
+  };
+  "/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Send": {
+    /**
+     * Send an invoice transactional email to recipients.
+     * @description This action is only available for users with the 'send_email' permission.
+     */
+    post: operations["SendInvoiceEmail"];
+  };
+  "/api/v2/InvoicingService/Invoices/{invoiceId}/Emails/Preview": {
+    /**
+     * Preview the rendered email for an invoice.
+     * @description This action is only available for users with the 'send_email' permission.
+     */
+    post: operations["PreviewInvoiceEmail"];
   };
 }
 
@@ -1227,9 +509,36 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    Currency: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
+    CurrencyId: {
+      value?: string | null;
       code?: string | null;
       country?: string | null;
+    };
+    EmailDispatchRequest: {
+      title: string;
+      message: string;
+      /** Format: uri */
+      buttonLink?: string | null;
+      buttonText?: string | null;
+      alertMessage?: string | null;
+      /** @enum {string} */
+      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      culture: string;
+      uiCulture: string;
+      recipients: string[];
+      contactIds?: string[] | null;
+      tenantIds?: string[] | null;
+      userIds?: string[] | null;
+      /** Format: uri */
+      templateUrl?: string | null;
+      emailTemplateId?: string | null;
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -1238,6 +547,15 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: string | null;
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -1256,7 +574,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -1274,61 +591,73 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       paid?: boolean;
       /** Format: int64 */
       number?: number;
@@ -1343,27 +672,19 @@ export interface components {
       receiverWalletAccountId?: string | null;
       /** Format: date-time */
       paymentDue?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      invoiceType?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      documentType?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      invoiceStatus?: 0 | 1 | 2 | 3 | 4;
+      /** @enum {string} */
+      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
+      /** @enum {string} */
+      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      /** @enum {string} */
+      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
       tenant?: components["schemas"]["TenantDto"];
       user?: components["schemas"]["SimpleUserDto"];
       receiverTenant?: components["schemas"]["TenantDto"];
       individual?: components["schemas"]["SimpleContactDto"];
       organization?: components["schemas"]["SimpleContactDto"];
-      enrollment?: components["schemas"]["SimpleTenantEnrolmentDto"];
+      enrollment?: components["schemas"]["SimpleTenantEnrollmentDto"];
+      invoiceLines?: components["schemas"]["InvoiceLineDto"][] | null;
     };
     ExtendedInvoiceDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1373,6 +694,42 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedInvoiceDto"][] | null;
+    };
+    ForexRates: {
+      success?: boolean;
+      date?: string | null;
+      base?: string | null;
+      /** Format: int64 */
+      timestamp?: number;
+      /** Format: date-time */
+      requestTimestamp?: string;
+      rates?: {
+        [key: string]: number;
+      } | null;
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
     };
     Int32Envelope: {
       isSuccess?: boolean;
@@ -1389,10 +746,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      invoiceId?: string | null;
       currencyId?: string | null;
-      enrollmentId?: string | null;
       description?: string | null;
       /** Format: double */
       surchargePercent?: number;
@@ -1406,11 +760,8 @@ export interface components {
       totalSurcharge?: number;
       /** Format: double */
       totalDiscount?: number;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Discount" | "Surcharge";
     };
     InvoiceAdjustmentDto: {
       id?: string | null;
@@ -1433,11 +784,8 @@ export interface components {
       totalSurcharge?: number;
       /** Format: double */
       totalDiscount?: number;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Discount" | "Surcharge";
     };
     InvoiceAdjustmentDtoEnvelope: {
       isSuccess?: boolean;
@@ -1448,7 +796,7 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["InvoiceAdjustmentDto"];
     };
-    InvoiceAdjustmentDtoListEnvelope: {
+    InvoiceAdjustmentDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
@@ -1472,11 +820,8 @@ export interface components {
       totalSurcharge?: number;
       /** Format: double */
       totalDiscount?: number;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Discount" | "Surcharge";
     };
     InvoiceCreateDto: {
       /** Format: uuid */
@@ -1485,17 +830,12 @@ export interface components {
       timestamp?: string;
       closed?: boolean;
       title?: string | null;
-      userId?: string | null;
-      tenantId?: string | null;
       priceListId?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
       individualId?: string | null;
       paymentTermId?: string | null;
       organizationId?: string | null;
-      currencyId?: string | null;
-      /** Format: double */
-      forexRate?: number;
+      receiverTenantId?: string | null;
       firstName?: string | null;
       lastName?: string | null;
       companyName?: string | null;
@@ -1506,44 +846,77 @@ export interface components {
       countryId?: string | null;
       stateId?: string | null;
       cityId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       paid?: boolean;
       /** Format: int32 */
       number?: number;
       notes?: string | null;
-      customerNotes?: string | null;
       orderId?: string | null;
       enumeration?: string | null;
       paymentModeId?: string | null;
-      receiverTenantId?: string | null;
       enumerationRangeId?: string | null;
       emisorBillingProfileId?: string | null;
       receiverBillingProfileId?: string | null;
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
+      customerNotes?: string | null;
+      /** @enum {string} */
+      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
+      /** @enum {string} */
+      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      /** @enum {string} */
+      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
       /** Format: date-time */
       paymentDue?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      invoiceType?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      documentType?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      invoiceStatus?: 0 | 1 | 2 | 3 | 4;
       /** Format: date-time */
       validFrom?: string | null;
       /** Format: date-time */
       validTo?: string | null;
-      invoiceReferences?: components["schemas"]["InvoiceReferenceDto"][] | null;
-      invoiceItemRecords?: components["schemas"]["InvoiceItemRecordDto"][] | null;
-      invoiceAdjustments?: components["schemas"]["InvoiceAdjustmentDto"][] | null;
+      invoiceLines?: components["schemas"]["InvoiceLineCreateDto"][] | null;
+      invoiceReferences?: components["schemas"]["InvoiceReferenceCreateDto"][] | null;
+      invoiceAdjustments?: components["schemas"]["InvoiceAdjustmentCreateDto"][] | null;
     };
     InvoiceDto: {
       id?: string | null;
@@ -1554,7 +927,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -1572,61 +944,73 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       paid?: boolean;
       /** Format: int64 */
       number?: number;
@@ -1641,21 +1025,12 @@ export interface components {
       receiverWalletAccountId?: string | null;
       /** Format: date-time */
       paymentDue?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      invoiceType?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      documentType?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      invoiceStatus?: 0 | 1 | 2 | 3 | 4;
+      /** @enum {string} */
+      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
+      /** @enum {string} */
+      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      /** @enum {string} */
+      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
     };
     InvoiceDtoEnvelope: {
       isSuccess?: boolean;
@@ -1674,131 +1049,6 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceDto"][] | null;
-    };
-    InvoiceItemRecordDto: {
-      id?: string | null;
-      /** Format: date-time */
-      timestamp?: string | null;
-      closed?: boolean;
-      itemId?: string | null;
-      itemTitle?: string | null;
-      itemShortDescription?: string | null;
-      itemPrimaryImageUrl?: string | null;
-      shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-      currencyId?: string | null;
-      description?: string | null;
-      /** Format: double */
-      quantity?: number;
-      free?: boolean;
-      freeReason?: string | null;
-      freeReasonCode?: string | null;
-      data?: string | null;
-      dataLabel?: string | null;
-      data1?: string | null;
-      data1Label?: string | null;
-      data2?: string | null;
-      data2Label?: string | null;
-      data3?: string | null;
-      data3Label?: string | null;
-      data4?: string | null;
-      data4Label?: string | null;
-      data5?: string | null;
-      data5Label?: string | null;
-      data6?: string | null;
-      data6Label?: string | null;
-      data7?: string | null;
-      data7Label?: string | null;
-      data8?: string | null;
-      data8Label?: string | null;
-      data9?: string | null;
-      data9Label?: string | null;
-      itemPriceId?: string | null;
-      priceListItemId?: string | null;
-      unitId?: string | null;
-      unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      forexRatesSnapshot?: string | null;
-      /** Format: double */
-      forexRate?: number;
-      /** Format: double */
-      totalBaseAmountInUsd?: number;
-      /** Format: double */
-      totalProfitInUsd?: number;
-      /** Format: double */
-      totalDetailAmountInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
-      /** Format: double */
-      totalDiscountsInUsd?: number;
-      /** Format: double */
-      totalTaxesInUsd?: number;
-      /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      /** Format: double */
-      totalWarrantyCostInUsd?: number;
-      /** Format: double */
-      totalReturnCostInUsd?: number;
-      /** Format: double */
-      totalRefundCostInUsd?: number;
-      /** Format: double */
-      totalSurchargesInUsd?: number;
-      /** Format: double */
-      totalAmountInUsd?: number;
-      /** Format: double */
-      totalGlobalDiscountsInUsd?: number;
-      /** Format: double */
-      totalGlobalSurchargesInUsd?: number;
-      /** Format: double */
-      customGlobalSurchargesAmount?: number;
-      /** Format: double */
-      customGlobalDiscountsAmount?: number;
-      /** Format: double */
-      customBaseAmount?: number;
-      /** Format: double */
-      customDetailAmount?: number;
-      /** Format: double */
-      customDiscountsAmount?: number;
-      /** Format: double */
-      customTaxBase?: number;
-      /** Format: double */
-      customSurchargesAmount?: number;
-      /** Format: double */
-      customProfitAmount?: number;
-      /** Format: double */
-      customShippingCostAmount?: number;
-      /** Format: double */
-      customShippingTaxAmount?: number;
-      /** Format: double */
-      customTaxAmount?: number;
-      /** Format: double */
-      customWithholdingTaxAmount?: number;
-      /** Format: double */
-      customTotalAmount?: number;
-      returnPolicyId?: string | null;
-      refundPolicyId?: string | null;
-      warrantyPolicyId?: string | null;
-      shipmentPolicyId?: string | null;
-      shippingLocationId?: string | null;
-      locationId?: string | null;
-      quoteItemRecordId?: string | null;
-      businessProfileRecordId?: string | null;
-      parentBillingItemRecordId?: string | null;
-      invoiceId?: string | null;
     };
     InvoiceLineAppliedTaxCreateDto: {
       /** Format: uuid */
@@ -1828,7 +1078,7 @@ export interface components {
       taxPolicyName?: string | null;
       taxPolicyDescription?: string | null;
     };
-    InvoiceLineAppliedTaxDtoListEnvelope: {
+    InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
@@ -1845,11 +1095,72 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      invoiceId?: string | null;
+      closed?: boolean;
+      title?: string | null;
+      priceListId?: string | null;
+      description?: string | null;
+      individualId?: string | null;
+      paymentTermId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      companyName?: string | null;
+      billingEmail?: string | null;
+      addressLine1?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      /** Format: double */
+      forexRate?: number;
       currencyId?: string | null;
-      itemId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       /** Format: int32 */
       quantity?: number;
+      itemId?: string | null;
+      invoiceId?: string | null;
+      itemPriceId?: string | null;
     };
     InvoiceLineDto: {
       id?: string | null;
@@ -1894,33 +1205,27 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      forexRatesSnapshot?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      forexRates?: components["schemas"]["ForexRates"];
       /** Format: double */
       forexRate?: number;
       /** Format: double */
-      totalBaseAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalDiscountsInUsd?: number;
+      /** Format: double */
+      totalSurchargesInUsd?: number;
       /** Format: double */
       totalTaxBaseInUsd?: number;
       /** Format: double */
-      totalDiscountsInUsd?: number;
-      /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
+      totalWithheldTaxesInUsd?: number;
       /** Format: double */
       totalShippingCostInUsd?: number;
       /** Format: double */
@@ -1932,9 +1237,7 @@ export interface components {
       /** Format: double */
       totalRefundCostInUsd?: number;
       /** Format: double */
-      totalSurchargesInUsd?: number;
-      /** Format: double */
-      totalAmountInUsd?: number;
+      totalInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
@@ -1943,28 +1246,6 @@ export interface components {
       customGlobalSurchargesAmount?: number;
       /** Format: double */
       customGlobalDiscountsAmount?: number;
-      /** Format: double */
-      customBaseAmount?: number;
-      /** Format: double */
-      customDetailAmount?: number;
-      /** Format: double */
-      customDiscountsAmount?: number;
-      /** Format: double */
-      customTaxBase?: number;
-      /** Format: double */
-      customSurchargesAmount?: number;
-      /** Format: double */
-      customProfitAmount?: number;
-      /** Format: double */
-      customShippingCostAmount?: number;
-      /** Format: double */
-      customShippingTaxAmount?: number;
-      /** Format: double */
-      customTaxAmount?: number;
-      /** Format: double */
-      customWithholdingTaxAmount?: number;
-      /** Format: double */
-      customTotalAmount?: number;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1974,6 +1255,55 @@ export interface components {
       quoteItemRecordId?: string | null;
       businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
+      currency?: components["schemas"]["CurrencyId"];
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      totalDetailAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      totalProfitAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      totalDiscountsAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      totalSurchargesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      totalTaxBaseAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      totalTaxesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      totalShippingCostAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      totalShippingTaxAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      totalWithheldTaxAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      totalAmount?: components["schemas"]["Money"];
       invoiceId?: string | null;
     };
     InvoiceLineDtoEnvelope: {
@@ -1984,6 +1314,15 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceLineDto"];
+    };
+    InvoiceLineDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["InvoiceLineDto"][] | null;
     };
     InvoiceLineDtoListEnvelope: {
       isSuccess?: boolean;
@@ -2019,9 +1358,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-      referralInvoiceId?: string | null;
       referencedInvoiceId?: string | null;
     };
     InvoiceReferenceDto: {
@@ -2042,7 +1378,7 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["InvoiceReferenceDto"];
     };
-    InvoiceReferenceDtoListEnvelope: {
+    InvoiceReferenceDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
@@ -2059,9 +1395,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      /** Format: double */
-      forexRate?: number;
-      currencyId?: string | null;
       priceListId?: string | null;
       description?: string | null;
       enrollmentId?: string | null;
@@ -2082,11 +1415,88 @@ export interface components {
       billingLocationId?: string | null;
       shippingLocationId?: string | null;
       shippingMethodId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      paid?: boolean;
+      /** Format: int32 */
+      number?: number;
+      notes?: string | null;
+      orderId?: string | null;
+      enumeration?: string | null;
+      paymentModeId?: string | null;
+      enumerationRangeId?: string | null;
+      emisorBillingProfileId?: string | null;
+      receiverBillingProfileId?: string | null;
+      emisorWalletAccountId?: string | null;
+      receiverWalletAccountId?: string | null;
+      customerNotes?: string | null;
+      /** @enum {string} */
+      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
+      /** @enum {string} */
+      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      /** @enum {string} */
+      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
+      /** Format: date-time */
+      paymentDue?: string | null;
+      /** Format: date-time */
+      validFrom?: string | null;
+      /** Format: date-time */
+      validTo?: string | null;
+      invoiceLines?: components["schemas"]["InvoiceLineCreateDto"][] | null;
+      invoiceReferences?: components["schemas"]["InvoiceReferenceCreateDto"][] | null;
+      invoiceAdjustments?: components["schemas"]["InvoiceAdjustmentCreateDto"][] | null;
+    };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
     };
     Money: {
       /** Format: double */
       amount?: number;
-      currency?: components["schemas"]["Currency"];
+      currency?: components["schemas"]["CurrencyId"];
     };
     MoneyEnvelope: {
       isSuccess?: boolean;
@@ -2097,17 +1507,114 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
+    PaymentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      test?: boolean;
+      invoiceId?: string | null;
+      tenantId?: string | null;
+      emisorWalletId?: string | null;
+      receiverWalletId?: string | null;
+      currencyId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      /** Format: double */
+      totalCost?: number;
+      /** Format: double */
+      totalTaxes?: number;
+      closed?: boolean;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      response?: string | null;
+      authorization?: string | null;
+      referenceCode?: string | null;
+      correlationCode?: string | null;
+      /** Format: date-time */
+      lastUpdated?: string;
+      /** @enum {string} */
+      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
+      /** @enum {string} */
+      paymentType?: "Paid" | "Received" | "Internal";
+      /** @enum {string} */
+      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+      /** Format: double */
+      baseCost?: number;
+      signature?: string | null;
+      signatureMismatch?: boolean;
+      isExternal?: boolean;
+      markedForRevision?: boolean;
+      forexRatesSnapshot?: string | null;
+      officialId?: string | null;
+      /** Format: date-time */
+      officialIdExpeditionDate?: string;
+      fiscalIdentificationTypeId?: string | null;
+      billingAddress?: string | null;
+      phone?: string | null;
+      cellphone?: string | null;
+      department?: string | null;
+      city?: string | null;
+      countryId?: string | null;
+      locationId?: string | null;
+      entitlementId?: string | null;
+      /** Format: double */
+      antiFraudScore?: number;
+      callRecordURL?: string | null;
+      called?: boolean;
+      verified?: boolean;
+      payerPictureTimestamp?: string | null;
+      payerPicture?: string | null;
+      identificationPictureTimestamp?: string | null;
+      identificationPicture?: string | null;
+      identificationBackPicture?: string | null;
+      identificationBackPictureTimestamp?: string | null;
+      ipLookupId?: string | null;
+      orderId?: string | null;
+      accountingEntryId?: string | null;
+      paymentGatewayId?: string | null;
+      bankAccountId?: string | null;
+      enrollmentId?: string | null;
+      bankId?: string | null;
+      paymentTokenId?: string | null;
+    };
+    PaymentDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentDto"][] | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
     SimpleContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
       publicName?: string | null;
       firstName?: string | null;
       lastName?: string | null;
@@ -2118,20 +1625,31 @@ export interface components {
       timezoneId?: string | null;
       languageId?: string | null;
       socialProfileId?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
+      /** Format: uri */
       gitHubUrl?: string | null;
+      /** Format: uri */
       twitchUrl?: string | null;
+      /** Format: uri */
       redditUrl?: string | null;
+      /** Format: uri */
       tikTokUrl?: string | null;
+      /** Format: uri */
       websiteUrl?: string | null;
+      /** Format: uri */
       twitterUrl?: string | null;
+      /** Format: uri */
       facebookUrl?: string | null;
+      /** Format: uri */
       youTubeUrl?: string | null;
+      /** Format: uri */
       linkedInUrl?: string | null;
+      /** Format: uri */
       instagramUrl?: string | null;
       githubUsername?: string | null;
     };
-    SimpleTenantEnrolmentDto: {
+    SimpleTenantEnrollmentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
@@ -2145,6 +1663,7 @@ export interface components {
       fullName?: string | null;
       qualifiedName?: string | null;
       publicName?: string | null;
+      handler?: string | null;
       lastName?: string | null;
       firstName?: string | null;
       coverUrl?: string | null;
@@ -2201,6 +1720,21 @@ export interface components {
       businessLegalName?: string | null;
       twitterUsername?: string | null;
     };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
   };
   responses: never;
   parameters: never;
@@ -2215,7 +1749,167 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  GetInvoiceAsync: {
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get a list of invoices.
+   * @description Retrieves a list of invoices for the specified tenant.
+   */
+  GetInvoices: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceDtoListEnvelope"];
+          "application/xml": components["schemas"]["InvoiceDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new invoice.
+   * @description Creates a new invoice for the specified tenant.
+   */
+  CreateInvoice: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceCreateDto"];
+        "application/xml": components["schemas"]["InvoiceCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of invoices.
+   * @description Retrieves the total count of invoices for the specified tenant.
+   */
+  GetInvoicesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a list of extended invoices.
+   * @description Retrieves a list of extended invoice details for the specified tenant.
+   */
+  GetExtendedInvoices: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedInvoiceDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedInvoiceDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of extended invoices.
+   * @description Retrieves the total count of extended invoices for the specified tenant.
+   */
+  GetExtendedInvoicesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an extended invoice by ID.
+   * @description Retrieves the extended invoice details for the specified invoice ID.
+   */
+  GetExtendedInvoice: {
     parameters: {
       query: {
         tenantId: string;
@@ -2238,6 +1932,975 @@ export interface operations {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
+      };
+    };
+  };
+  /**
+   * Get an invoice by ID.
+   * @description Retrieves the invoice details for the specified invoice ID.
+   */
+  GetInvoice: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an invoice.
+   * @description Updates the specified invoice for the tenant.
+   */
+  UpdateInvoice: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceUpdateDto"];
+        "application/xml": components["schemas"]["InvoiceUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an invoice.
+   * @description Deletes the specified invoice for the tenant.
+   */
+  DeleteInvoice: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Calculate an invoice.
+   * @description Calculates the totals and taxes for the specified invoice.
+   */
+  CalculateInvoice: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get invoice lines.
+   * @description Retrieves the invoice lines for the specified invoice.
+   */
+  GetInvoiceLines: {
+    parameters: {
+      query: {
+        tenantId: string;
+        itemId?: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["InvoiceLineDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new invoice line.
+   * @description Creates a new invoice line for the specified invoice.
+   */
+  CreateInvoiceLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceLineCreateDto"];
+        "application/xml": components["schemas"]["InvoiceLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceLineDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InvoiceLineDtoIReadOnlyListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of invoice lines.
+   * @description Retrieves the total count of invoice lines for the specified invoice.
+   */
+  GetInvoiceLinesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an invoice line by ID.
+   * @description Retrieves the invoice line details for the specified invoice line ID.
+   */
+  GetInvoiceLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceLineDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceLineDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an invoice line.
+   * @description Updates the specified invoice line.
+   */
+  UpdateInvoiceLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceLineUpdateDto"];
+        "application/xml": components["schemas"]["InvoiceLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceLineDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceLineDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an invoice line.
+   * @description Deletes the specified invoice line.
+   */
+  DeleteInvoiceLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Calculate an invoice line.
+   * @description Calculates the totals and taxes for the specified invoice line.
+   */
+  CalculateInvoiceLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get taxes for an invoice line.
+   * @description Retrieves the taxes applied to the specified invoice line.
+   */
+  GetInvoiceLineTaxes: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new tax for an invoice line.
+   * @description Creates a new tax entry for the specified invoice line.
+   */
+  CreateInvoiceLineTax: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceLineAppliedTaxCreateDto"];
+        "application/xml": components["schemas"]["InvoiceLineAppliedTaxCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of taxes for an invoice line.
+   * @description Retrieves the total count of taxes applied to the specified invoice line.
+   */
+  GetInvoiceLineTaxesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a tax for an invoice line.
+   * @description Updates the specified tax entry for the invoice line.
+   */
+  UpdateInvoiceLineTax: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+        invoiceLineTaxId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceLineAppliedTaxUpdateDto"];
+        "application/xml": components["schemas"]["InvoiceLineAppliedTaxUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a tax from an invoice line.
+   * @description Deletes the specified tax entry from the invoice line.
+   */
+  DeleteInvoiceLineTax: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+        invoiceLineTaxId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get invoice adjustments.
+   * @description Retrieves the adjustments for the specified invoice.
+   */
+  GetInvoiceAdjustments: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceAdjustmentDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InvoiceAdjustmentDtoIReadOnlyListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new invoice adjustment.
+   * @description Creates a new adjustment for the specified invoice.
+   */
+  CreateInvoiceAdjustment: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceAdjustmentCreateDto"];
+        "application/xml": components["schemas"]["InvoiceAdjustmentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of invoice adjustments.
+   * @description Retrieves the total count of adjustments for the specified invoice.
+   */
+  GetInvoiceAdjustmentsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an invoice adjustment by ID.
+   * @description Retrieves the adjustment details for the specified invoice adjustment ID.
+   */
+  GetInvoiceAdjustment: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceAdjustmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceAdjustmentDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceAdjustmentDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an invoice adjustment.
+   * @description Updates the specified adjustment for the invoice.
+   */
+  UpdateInvoiceAdjustment: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceAdjustmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceAdjustmentUpdateDto"];
+        "application/xml": components["schemas"]["InvoiceAdjustmentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an invoice adjustment.
+   * @description Deletes the specified adjustment from the invoice.
+   */
+  DeleteInvoiceAdjustment: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceAdjustmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get invoice references.
+   * @description Retrieves the references for the specified invoice.
+   */
+  GetInvoiceReferences: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceReferenceDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InvoiceReferenceDtoIReadOnlyListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new invoice reference.
+   * @description Creates a new reference for the specified invoice.
+   */
+  CreateInvoiceReference: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceReferenceCreateDto"];
+        "application/xml": components["schemas"]["InvoiceReferenceCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of invoice references.
+   * @description Retrieves the total count of references for the specified invoice.
+   */
+  GetInvoiceReferencesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an invoice reference by ID.
+   * @description Retrieves the reference details for the specified invoice reference ID.
+   */
+  GetInvoiceReference: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceReferenceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InvoiceReferenceDtoEnvelope"];
+          "application/xml": components["schemas"]["InvoiceReferenceDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an invoice reference.
+   * @description Updates the specified reference for the invoice.
+   */
+  UpdateInvoiceReference: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceReferenceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceReferenceUpdateDto"];
+        "application/xml": components["schemas"]["InvoiceReferenceUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an invoice reference.
+   * @description Deletes the specified reference from the invoice.
+   */
+  DeleteInvoiceReference: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceReferenceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get payments for an invoice.
+   * @description Retrieves the list of payments related to the specified invoice.
+   */
+  GetInvoicePayments: {
+    parameters: {
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["PaymentDtoIReadOnlyListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of payments for an invoice.
+   * @description Retrieves the total count of payments for the specified invoice.
+   */
+  GetInvoicePaymentsCount: {
+    parameters: {
+      path: {
+        invoiceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate invoice totals.
+   * @description Aggregates the totals for the specified invoices.
+   */
+  AggregateInvoiceTotals: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": string[];
+        "application/xml": string[];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate invoice taxes.
+   * @description Aggregates the taxes for the specified invoices.
+   */
+  AggregateInvoiceTaxes: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": string[];
+        "application/xml": string[];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate invoice discounts.
+   * @description Aggregates the discounts for the specified invoices.
+   */
+  AggregateInvoiceDiscounts: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": string[];
+        "application/xml": string[];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate invoice tax bases.
+   * @description Aggregates the tax bases for the specified invoices.
+   */
+  AggregateInvoiceTaxBases: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": string[];
+        "application/xml": string[];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate invoice global surcharges.
+   * @description Aggregates the global surcharges for the specified invoices.
+   */
+  AggregateInvoiceGlobalSurcharges: {
+    parameters: {
+      query?: {
+        currencyId?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": string[];
+        "application/xml": string[];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Send an invoice transactional email to recipients.
+   * @description This action is only available for users with the 'send_email' permission.
+   */
+  SendInvoiceEmail: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Preview the rendered email for an invoice.
+   * @description This action is only available for users with the 'send_email' permission.
+   */
+  PreviewInvoiceEmail: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
     };
   };

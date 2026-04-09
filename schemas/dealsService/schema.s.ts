@@ -6,1010 +6,444 @@
 
 export interface paths {
   "/api/v2/DealsService/DealUnitFlows": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["DealUnitFlowDtoListEnvelope"];
-            "application/xml": components["schemas"]["DealUnitFlowDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DealUnitFlowCreateDto"];
-          "application/xml": components["schemas"]["DealUnitFlowCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get deal unit flows
+     * @description Retrieves a list of deal unit flows for the specified tenant with OData query support.
+     */
+    get: operations["GetDealUnitFlowsAsync"];
+    /**
+     * Create a deal unit flow
+     * @description Creates a new deal unit flow for the specified tenant.
+     */
+    post: operations["CreateDealUnitFlowAsync"];
   };
   "/api/v2/DealsService/DealUnitFlows/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get deal unit flows count
+     * @description Returns the total count of deal unit flows for the specified tenant with OData filter support.
+     */
+    get: operations["GetDealUnitFlowsCountAsync"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["DealUnitFlowDtoEnvelope"];
-            "application/xml": components["schemas"]["DealUnitFlowDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DealUnitFlowUpdateDto"];
-          "application/xml": components["schemas"]["DealUnitFlowUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get deal unit flow by ID
+     * @description Retrieves a single deal unit flow by its unique identifier.
+     */
+    get: operations["GetDealUnitFlowAsync"];
+    /**
+     * Update a deal unit flow
+     * @description Updates an existing deal unit flow by its unique identifier.
+     */
+    put: operations["UpdateDealUnitFlowAsync"];
+    /**
+     * Delete a deal unit flow
+     * @description Deletes an existing deal unit flow by its unique identifier.
+     */
+    delete: operations["DeleteDealUnitFlowAsync"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["DealUnitFlowStageDtoListEnvelope"];
-            "application/xml": components["schemas"]["DealUnitFlowStageDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DealUnitFlowStageCreateDto"];
-          "application/xml": components["schemas"]["DealUnitFlowStageCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get stages for a deal unit flow
+     * @description Retrieves a list of stages for a specific deal unit flow with OData query support.
+     */
+    get: operations["GetDealUnitFlowStagesAsync"];
+    /**
+     * Create a deal unit flow stage
+     * @description Creates a new stage within a specific deal unit flow.
+     */
+    post: operations["CreateDealUnitFlowStageAsync"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get stages count for a deal unit flow
+     * @description Returns the total count of stages for a specific deal unit flow with OData filter support.
+     */
+    get: operations["GetDealUnitFlowStagesCountAsync"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/{dealUnitFlowStageId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-          dealUnitFlowStageId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["DealUnitFlowStageDtoEnvelope"];
-            "application/xml": components["schemas"]["DealUnitFlowStageDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-          dealUnitFlowStageId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DealUnitFlowStageUpdateDto"];
-          "application/xml": components["schemas"]["DealUnitFlowStageUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          dealUnitFlowId: string;
-          dealUnitFlowStageId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get a deal unit flow stage by ID
+     * @description Retrieves a single stage for a specific deal unit flow by its unique identifier.
+     */
+    get: operations["GetDealUnitFlowStageAsync"];
+    /**
+     * Update a deal unit flow stage
+     * @description Updates an existing stage within a specific deal unit flow.
+     */
+    put: operations["UpdateDealUnitFlowStageAsync"];
+    /**
+     * Delete a deal unit flow stage
+     * @description Deletes an existing stage from a specific deal unit flow.
+     */
+    delete: operations["DeleteDealUnitFlowStageAsync"];
   };
   "/api/v2/DealsService/DealUnits": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["DealUnitDtoListEnvelope"];
-            "application/xml": components["schemas"]["DealUnitDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DealUnitCreateDto"];
-          "application/xml": components["schemas"]["DealUnitCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get deal units
+     * @description Retrieves a list of deal units for the specified tenant with OData query support.
+     */
+    get: operations["GetDealUnitsAsync"];
+    /**
+     * Create a deal unit
+     * @description Creates a new deal unit for the specified tenant.
+     */
+    post: operations["CreateDealUnitAsync"];
   };
   "/api/v2/DealsService/DealUnits/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get deal units count
+     * @description Returns the total count of deal units for the specified tenant with OData filter support.
+     */
+    get: operations["GetDealUnitsCountAsync"];
   };
   "/api/v2/DealsService/DealUnits/Extended": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ExtendedDealUnitDtoListEnvelope"];
-            "application/xml": components["schemas"]["ExtendedDealUnitDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get extended deal units
+     * @description Retrieves a list of deal units with extended details for the specified tenant with OData query support.
+     */
+    get: operations["GetExtendedDealUnitsAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}": {
+    /**
+     * Get deal unit by ID
+     * @description Retrieves a single deal unit by its unique identifier.
+     */
     get: operations["GetDealUnitAsync"];
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DealUnitUpdateDto"];
-          "application/xml": components["schemas"]["DealUnitUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update a deal unit
+     * @description Updates an existing deal unit by its unique identifier.
+     */
+    put: operations["UpdateDealUnitAsync"];
+    /**
+     * Delete a deal unit
+     * @description Deletes an existing deal unit by its unique identifier.
+     */
+    delete: operations["DeleteDealUnitAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Extended": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ExtendedDealUnitDtoEnvelope"];
-            "application/xml": components["schemas"]["ExtendedDealUnitDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get extended deal unit by ID
+     * @description Retrieves a single deal unit with extended details by its unique identifier.
+     */
+    get: operations["GetExtendedDealUnitAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Calculate": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Calculate a deal unit
+     * @description Triggers recalculation of totals and derived values for a specific deal unit.
+     */
+    put: operations["CalculateDealUnitAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          itemId?: string;
-        };
-        path: {
-          dealUnitId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["DealUnitLineDtoListEnvelope"];
-            "application/xml": components["schemas"]["DealUnitLineDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DealUnitLineCreateDto"];
-          "application/xml": components["schemas"]["DealUnitLineCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get deal unit lines
+     * @description Retrieves a list of lines for a specific deal unit with OData query support.
+     */
+    get: operations["GetDealUnitLinesAsync"];
+    /**
+     * Create a deal unit line
+     * @description Creates a new line within a specific deal unit.
+     */
+    post: operations["CreateGetDealUnitLinesAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get deal unit lines count
+     * @description Returns the total count of lines for a specific deal unit with OData filter support.
+     */
+    get: operations["GetDealUnitLinesCountAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-          dealUnitLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["DealUnitLineDtoEnvelope"];
-            "application/xml": components["schemas"]["DealUnitLineDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-          dealUnitLineId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["DealUnitLineUpdateDto"];
-          "application/xml": components["schemas"]["DealUnitLineUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          dealUnitId: string;
-          dealUnitLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get a deal unit line by ID
+     * @description Retrieves a single deal unit line by its unique identifier.
+     */
+    get: operations["GetDealUnitPriceAsync"];
+    /**
+     * Update a deal unit line
+     * @description Updates an existing line within a specific deal unit.
+     */
+    put: operations["UpdateDealUnitPriceAsync"];
+    /**
+     * Delete a deal unit line
+     * @description Deletes an existing line from a specific deal unit.
+     */
+    delete: operations["DeleteDealUnitPriceAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}/Calculate": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
+    /**
+     * Calculate a deal unit line
+     * @description Triggers recalculation of totals and derived values for a specific deal unit line.
+     */
+    put: operations["CalculateDealUnitLineAsync"];
+  };
+  "/version": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
         };
-        path: {
-          dealUnitId: string;
-          dealUnitLineId: string;
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
+          content: never;
         };
-        /** @description Not Found */
-        404: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
       };
     };
   };
-  "/api/v2/DealsService/SalesLiteratures": {
-    get: {
+  "/login": {
+    post: {
       parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["SalesLiteratureDtoListEnvelope"];
-            "application/xml": components["schemas"]["SalesLiteratureDtoListEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
         /** @description Not Found */
         404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
     post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["SalesLiteratureCreateDto"];
-          "application/xml": components["schemas"]["SalesLiteratureCreateDto"];
+          "application/json": components["schemas"]["InfoRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
         /** @description Not Found */
         404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
+          content: never;
         };
       };
     };
   };
-  "/api/v2/DealsService/SalesLiteratures/{salesLiteratureId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          salesLiteratureId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SalesLiteratureDtoEnvelope"];
-            "application/xml": components["schemas"]["SalesLiteratureDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          salesLiteratureId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SalesLiteratureUpdateDto"];
-          "application/xml": components["schemas"]["SalesLiteratureUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          salesLiteratureId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+  "/api/v2/DealsService/SalesLiteratures/Count": {
+    /**
+     * Get sales literatures count
+     * @description Returns the total count of sales literatures for the specified tenant with OData filter support.
+     */
+    get: operations["CountSalesLiteraturesAsync"];
+  };
+  "/api/v2/DealsService/SalesLiteratures": {
+    /**
+     * Get sales literatures
+     * @description Retrieves a list of sales literatures for the specified tenant with OData query support.
+     */
+    get: operations["GetSalesLiteraturesAsync"];
+    /**
+     * Create a sales literature
+     * @description Creates a new sales literature for the specified tenant.
+     */
+    post: operations["CreateSalesLiteratureAsync"];
   };
   "/api/v2/DealsService/SalesLiteratures/Extended": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ExtendedSalesLiteratureDtoListEnvelope"];
-            "application/xml": components["schemas"]["ExtendedSalesLiteratureDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get extended sales literatures
+     * @description Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
+     */
+    get: operations["GetExtendedSalesLiteraturesAsync"];
+  };
+  "/api/v2/DealsService/SalesLiteratures/{salesLiteratureId}": {
+    /**
+     * Get sales literature by ID
+     * @description Retrieves a single sales literature by its unique identifier.
+     */
+    get: operations["GetSalesLiteratureAsync"];
+    /**
+     * Update a sales literature
+     * @description Updates an existing sales literature by its unique identifier.
+     */
+    put: operations["UpdateSalesLiteratureAsync"];
+    /**
+     * Delete a sales literature
+     * @description Deletes an existing sales literature by its unique identifier.
+     */
+    delete: operations["DeleteSalesLiteratureAsync"];
   };
 }
 
@@ -1017,17 +451,25 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
       publicName?: string | null;
       firstName?: string | null;
       lastName?: string | null;
@@ -1038,22 +480,31 @@ export interface components {
       timezoneId?: string | null;
       languageId?: string | null;
       socialProfileId?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
+      /** Format: uri */
       gitHubUrl?: string | null;
+      /** Format: uri */
       twitchUrl?: string | null;
+      /** Format: uri */
       redditUrl?: string | null;
+      /** Format: uri */
       tikTokUrl?: string | null;
+      /** Format: uri */
       websiteUrl?: string | null;
+      /** Format: uri */
       twitterUrl?: string | null;
+      /** Format: uri */
       facebookUrl?: string | null;
+      /** Format: uri */
       youTubeUrl?: string | null;
+      /** Format: uri */
       linkedInUrl?: string | null;
+      /** Format: uri */
       instagramUrl?: string | null;
       githubUsername?: string | null;
       duns?: string | null;
       taxId?: string | null;
-      /** Format: email */
-      email?: string | null;
       about?: string | null;
       street?: string | null;
       cartId?: string | null;
@@ -1084,7 +535,8 @@ export interface components {
       /** Format: date-time */
       birthday?: string | null;
     };
-    Currency: {
+    CurrencyId: {
+      value?: string | null;
       code?: string | null;
       country?: string | null;
     };
@@ -1095,18 +547,12 @@ export interface components {
       timestamp?: string;
       closed?: boolean;
       title?: string | null;
-      userId?: string | null;
-      tenantId?: string | null;
       priceListId?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
       individualId?: string | null;
       paymentTermId?: string | null;
       organizationId?: string | null;
       receiverTenantId?: string | null;
-      currencyId?: string | null;
-      /** Format: double */
-      forexRate?: number;
       firstName?: string | null;
       lastName?: string | null;
       companyName?: string | null;
@@ -1117,6 +563,49 @@ export interface components {
       countryId?: string | null;
       stateId?: string | null;
       cityId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       dealUnitFlowId?: string | null;
       dealUnitFlowStageId?: string | null;
       partnerCreated?: boolean;
@@ -1136,26 +625,15 @@ export interface components {
       closedTimestamp?: string;
       /** Format: date-time */
       expectedCloseDate?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitStatus?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitPurchaseProcess?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitForecastCategory?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitAmountsCalculation?: 0 | 1;
+      /** @enum {string} */
+      dealUnitStatus?: "Open" | "Won" | "Lost" | "Frozen";
+      /** @enum {string} */
+      dealUnitPurchaseProcess?: "None" | "Individual" | "Commitee" | "Unknown";
+      /** @enum {string} */
+      dealUnitForecastCategory?: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
+      /** @enum {string} */
+      dealUnitAmountsCalculation?: "UserProvided" | "SystemCalculated";
+      dealUnitLines?: components["schemas"]["DealUnitLineCreateDto"][] | null;
     };
     DealUnitDto: {
       id?: string | null;
@@ -1166,7 +644,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -1184,61 +661,73 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       ordered?: boolean;
       dealUnitFeedId?: string | null;
       dealUnitFlowId?: string | null;
@@ -1262,26 +751,14 @@ export interface components {
       closedTimestamp?: string;
       /** Format: date-time */
       expectedCloseDate?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitStatus?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitPurchaseProcess?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitForecastCategory?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitAmountsCalculation?: 0 | 1;
+      /** @enum {string} */
+      dealUnitStatus?: "Open" | "Won" | "Lost" | "Frozen";
+      /** @enum {string} */
+      dealUnitPurchaseProcess?: "None" | "Individual" | "Commitee" | "Unknown";
+      /** @enum {string} */
+      dealUnitForecastCategory?: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
+      /** @enum {string} */
+      dealUnitAmountsCalculation?: "UserProvided" | "SystemCalculated";
       /** Format: int32 */
       linesCount?: number;
       /** Format: double */
@@ -1328,7 +805,7 @@ export interface components {
       description?: string | null;
       parentBusinessProcessId?: string | null;
       tenantId?: string | null;
-      tenantEnrolmentId?: string | null;
+      tenantEnrollmentId?: string | null;
     };
     DealUnitFlowDto: {
       id?: string | null;
@@ -1338,7 +815,7 @@ export interface components {
       description?: string | null;
       parentBusinessProcessId?: string | null;
       tenantId?: string | null;
-      tenantEnrolmentId?: string | null;
+      tenantEnrollmentId?: string | null;
     };
     DealUnitFlowDtoEnvelope: {
       isSuccess?: boolean;
@@ -1369,7 +846,7 @@ export interface components {
       dealUnitFlowId?: string | null;
       tenantId?: string | null;
       description?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       parentBusinessProcessStageId?: string | null;
     };
     DealUnitFlowStageDto: {
@@ -1382,7 +859,7 @@ export interface components {
       dealUnitFlowId?: string | null;
       tenantId?: string | null;
       description?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       parentBusinessProcessStageId?: string | null;
     };
     DealUnitFlowStageDtoEnvelope: {
@@ -1408,7 +885,7 @@ export interface components {
       order?: number;
       name?: string | null;
       description?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       dealUnitFlowId?: string | null;
       parentBusinessProcessStageId?: string | null;
     };
@@ -1459,16 +936,10 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       forexRatesSnapshot?: string | null;
       /** Format: double */
       forexRate?: number;
@@ -1485,7 +956,7 @@ export interface components {
       /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
+      totalWithheldTaxesInUsd?: number;
       /** Format: double */
       totalShippingCostInUsd?: number;
       /** Format: double */
@@ -1506,30 +977,46 @@ export interface components {
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
       customGlobalSurchargesAmount?: number;
+      customGlobalSurchargesAmountCurrencyId?: string | null;
       /** Format: double */
       customGlobalDiscountsAmount?: number;
+      customGlobalDiscountsAmountCurrencyId?: string | null;
       /** Format: double */
-      customBaseAmount?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      customDetailAmount?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
-      customDiscountsAmount?: number;
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
-      customTaxBase?: number;
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      customSurchargesAmount?: number;
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
       /** Format: double */
-      customProfitAmount?: number;
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
       /** Format: double */
-      customShippingCostAmount?: number;
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
       /** Format: double */
-      customShippingTaxAmount?: number;
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
       /** Format: double */
-      customTaxAmount?: number;
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
-      customWithholdingTaxAmount?: number;
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
-      customTotalAmount?: number;
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1584,33 +1071,27 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      forexRatesSnapshot?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      forexRates?: components["schemas"]["ForexRates"];
       /** Format: double */
       forexRate?: number;
       /** Format: double */
-      totalBaseAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalDiscountsInUsd?: number;
+      /** Format: double */
+      totalSurchargesInUsd?: number;
       /** Format: double */
       totalTaxBaseInUsd?: number;
       /** Format: double */
-      totalDiscountsInUsd?: number;
-      /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
+      totalWithheldTaxesInUsd?: number;
       /** Format: double */
       totalShippingCostInUsd?: number;
       /** Format: double */
@@ -1622,9 +1103,7 @@ export interface components {
       /** Format: double */
       totalRefundCostInUsd?: number;
       /** Format: double */
-      totalSurchargesInUsd?: number;
-      /** Format: double */
-      totalAmountInUsd?: number;
+      totalInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
@@ -1633,28 +1112,6 @@ export interface components {
       customGlobalSurchargesAmount?: number;
       /** Format: double */
       customGlobalDiscountsAmount?: number;
-      /** Format: double */
-      customBaseAmount?: number;
-      /** Format: double */
-      customDetailAmount?: number;
-      /** Format: double */
-      customDiscountsAmount?: number;
-      /** Format: double */
-      customTaxBase?: number;
-      /** Format: double */
-      customSurchargesAmount?: number;
-      /** Format: double */
-      customProfitAmount?: number;
-      /** Format: double */
-      customShippingCostAmount?: number;
-      /** Format: double */
-      customShippingTaxAmount?: number;
-      /** Format: double */
-      customTaxAmount?: number;
-      /** Format: double */
-      customWithholdingTaxAmount?: number;
-      /** Format: double */
-      customTotalAmount?: number;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1664,6 +1121,55 @@ export interface components {
       quoteItemRecordId?: string | null;
       businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
+      currency?: components["schemas"]["CurrencyId"];
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      totalDetailAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      totalProfitAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      totalDiscountsAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      totalSurchargesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      totalTaxBaseAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      totalTaxesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      totalShippingCostAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      totalShippingTaxAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      totalWithheldTaxAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      totalAmount?: components["schemas"]["Money"];
       dealUnitId?: string | null;
     };
     DealUnitLineDtoEnvelope: {
@@ -1724,16 +1230,10 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       forexRatesSnapshot?: string | null;
       /** Format: double */
       forexRate?: number;
@@ -1750,7 +1250,7 @@ export interface components {
       /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
+      totalWithheldTaxesInUsd?: number;
       /** Format: double */
       totalShippingCostInUsd?: number;
       /** Format: double */
@@ -1771,30 +1271,46 @@ export interface components {
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
       customGlobalSurchargesAmount?: number;
+      customGlobalSurchargesAmountCurrencyId?: string | null;
       /** Format: double */
       customGlobalDiscountsAmount?: number;
+      customGlobalDiscountsAmountCurrencyId?: string | null;
       /** Format: double */
-      customBaseAmount?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      customDetailAmount?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
-      customDiscountsAmount?: number;
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
-      customTaxBase?: number;
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      customSurchargesAmount?: number;
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
       /** Format: double */
-      customProfitAmount?: number;
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
       /** Format: double */
-      customShippingCostAmount?: number;
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
       /** Format: double */
-      customShippingTaxAmount?: number;
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
       /** Format: double */
-      customTaxAmount?: number;
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
-      customWithholdingTaxAmount?: number;
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
-      customTotalAmount?: number;
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1810,9 +1326,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      /** Format: double */
-      forexRate?: number;
-      currencyId?: string | null;
       priceListId?: string | null;
       description?: string | null;
       enrollmentId?: string | null;
@@ -1833,6 +1346,49 @@ export interface components {
       billingLocationId?: string | null;
       shippingLocationId?: string | null;
       shippingMethodId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       ordered?: boolean;
       cartId?: string | null;
       dealUnitFeedId?: string | null;
@@ -1855,26 +1411,14 @@ export interface components {
       closedTimestamp?: string;
       /** Format: date-time */
       expectedCloseDate?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitStatus?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitPurchaseProcess?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitForecastCategory?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitAmountsCalculation?: 0 | 1;
+      /** @enum {string} */
+      dealUnitStatus?: "Open" | "Won" | "Lost" | "Frozen";
+      /** @enum {string} */
+      dealUnitPurchaseProcess?: "None" | "Individual" | "Commitee" | "Unknown";
+      /** @enum {string} */
+      dealUnitForecastCategory?: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
+      /** @enum {string} */
+      dealUnitAmountsCalculation?: "UserProvided" | "SystemCalculated";
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -1901,7 +1445,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -1919,61 +1462,73 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       ordered?: boolean;
       dealUnitFeedId?: string | null;
       dealUnitFlowId?: string | null;
@@ -1997,26 +1552,14 @@ export interface components {
       closedTimestamp?: string;
       /** Format: date-time */
       expectedCloseDate?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitStatus?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitPurchaseProcess?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitForecastCategory?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      dealUnitAmountsCalculation?: 0 | 1;
+      /** @enum {string} */
+      dealUnitStatus?: "Open" | "Won" | "Lost" | "Frozen";
+      /** @enum {string} */
+      dealUnitPurchaseProcess?: "None" | "Individual" | "Commitee" | "Unknown";
+      /** @enum {string} */
+      dealUnitForecastCategory?: "None" | "Pipeline" | "BestCase" | "Commited" | "Ommited" | "Won" | "Lost";
+      /** @enum {string} */
+      dealUnitAmountsCalculation?: "UserProvided" | "SystemCalculated";
       /** Format: int32 */
       linesCount?: number;
       /** Format: double */
@@ -2040,7 +1583,7 @@ export interface components {
       individual?: components["schemas"]["ContactDto"];
       organization?: components["schemas"]["ContactDto"];
       receiverTenant?: components["schemas"]["TenantDto"];
-      enrollment?: components["schemas"]["TenantEnrolmentDto"];
+      enrollment?: components["schemas"]["TenantEnrollmentDto"];
     };
     ExtendedDealUnitDtoEnvelope: {
       isSuccess?: boolean;
@@ -2072,7 +1615,7 @@ export interface components {
       /** Format: date-time */
       expirationDate?: string;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       salesLiteratureTypeId?: string | null;
       salesLiteratureType?: components["schemas"]["SalesLiteratureTypeDto"];
       tenant?: components["schemas"]["TenantDto"];
@@ -2086,6 +1629,42 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ExtendedSalesLiteratureDto"][] | null;
     };
+    ForexRates: {
+      success?: boolean;
+      date?: string | null;
+      base?: string | null;
+      /** Format: int64 */
+      timestamp?: number;
+      /** Format: date-time */
+      requestTimestamp?: string;
+      rates?: {
+        [key: string]: number;
+      } | null;
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
     Int32Envelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -2096,10 +1675,31 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
     Money: {
       /** Format: double */
       amount?: number;
-      currency?: components["schemas"]["Currency"];
+      currency?: components["schemas"]["CurrencyId"];
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
     };
     SalesLiteratureCreateDto: {
       /** Format: uuid */
@@ -2114,7 +1714,7 @@ export interface components {
       /** Format: date-time */
       expirationDate?: string;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       salesLiteratureTypeId?: string | null;
     };
     SalesLiteratureDto: {
@@ -2129,7 +1729,7 @@ export interface components {
       /** Format: date-time */
       expirationDate?: string;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       salesLiteratureTypeId?: string | null;
     };
     SalesLiteratureDtoEnvelope: {
@@ -2156,7 +1756,7 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
     };
     SalesLiteratureUpdateDto: {
       title?: string | null;
@@ -2167,7 +1767,7 @@ export interface components {
       /** Format: date-time */
       expirationDate?: string;
       tenantId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       salesLiteratureTypeId?: string | null;
     };
     TenantDto: {
@@ -2211,7 +1811,7 @@ export interface components {
       businessLegalName?: string | null;
       twitterUsername?: string | null;
     };
-    TenantEnrolmentDto: {
+    TenantEnrollmentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
@@ -2222,6 +1822,21 @@ export interface components {
       isAdmin?: boolean;
       isDisabled?: boolean;
     };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -2229,6 +1844,7 @@ export interface components {
       fullName?: string | null;
       qualifiedName?: string | null;
       publicName?: string | null;
+      handler?: string | null;
       lastName?: string | null;
       firstName?: string | null;
       coverUrl?: string | null;
@@ -2247,11 +1863,8 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      gender?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -2270,21 +1883,15 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      availability?: 0 | 1 | 2 | 3 | 4 | null;
+      /** @enum {string|null} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      siteTheme?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      siteTheme?: "System" | "Light" | "Dark" | null;
     };
   };
   responses: never;
@@ -2300,6 +1907,502 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get deal unit flows
+   * @description Retrieves a list of deal unit flows for the specified tenant with OData query support.
+   */
+  GetDealUnitFlowsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DealUnitFlowDtoListEnvelope"];
+          "application/xml": components["schemas"]["DealUnitFlowDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a deal unit flow
+   * @description Creates a new deal unit flow for the specified tenant.
+   */
+  CreateDealUnitFlowAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitFlowCreateDto"];
+        "application/xml": components["schemas"]["DealUnitFlowCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get deal unit flows count
+   * @description Returns the total count of deal unit flows for the specified tenant with OData filter support.
+   */
+  GetDealUnitFlowsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get deal unit flow by ID
+   * @description Retrieves a single deal unit flow by its unique identifier.
+   */
+  GetDealUnitFlowAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DealUnitFlowDtoEnvelope"];
+          "application/xml": components["schemas"]["DealUnitFlowDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a deal unit flow
+   * @description Updates an existing deal unit flow by its unique identifier.
+   */
+  UpdateDealUnitFlowAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitFlowUpdateDto"];
+        "application/xml": components["schemas"]["DealUnitFlowUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a deal unit flow
+   * @description Deletes an existing deal unit flow by its unique identifier.
+   */
+  DeleteDealUnitFlowAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get stages for a deal unit flow
+   * @description Retrieves a list of stages for a specific deal unit flow with OData query support.
+   */
+  GetDealUnitFlowStagesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DealUnitFlowStageDtoListEnvelope"];
+          "application/xml": components["schemas"]["DealUnitFlowStageDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a deal unit flow stage
+   * @description Creates a new stage within a specific deal unit flow.
+   */
+  CreateDealUnitFlowStageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitFlowStageCreateDto"];
+        "application/xml": components["schemas"]["DealUnitFlowStageCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get stages count for a deal unit flow
+   * @description Returns the total count of stages for a specific deal unit flow with OData filter support.
+   */
+  GetDealUnitFlowStagesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a deal unit flow stage by ID
+   * @description Retrieves a single stage for a specific deal unit flow by its unique identifier.
+   */
+  GetDealUnitFlowStageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+        dealUnitFlowStageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DealUnitFlowStageDtoEnvelope"];
+          "application/xml": components["schemas"]["DealUnitFlowStageDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a deal unit flow stage
+   * @description Updates an existing stage within a specific deal unit flow.
+   */
+  UpdateDealUnitFlowStageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+        dealUnitFlowStageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitFlowStageUpdateDto"];
+        "application/xml": components["schemas"]["DealUnitFlowStageUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a deal unit flow stage
+   * @description Deletes an existing stage from a specific deal unit flow.
+   */
+  DeleteDealUnitFlowStageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+        dealUnitFlowStageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get deal units
+   * @description Retrieves a list of deal units for the specified tenant with OData query support.
+   */
+  GetDealUnitsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DealUnitDtoListEnvelope"];
+          "application/xml": components["schemas"]["DealUnitDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a deal unit
+   * @description Creates a new deal unit for the specified tenant.
+   */
+  CreateDealUnitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitCreateDto"];
+        "application/xml": components["schemas"]["DealUnitCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get deal units count
+   * @description Returns the total count of deal units for the specified tenant with OData filter support.
+   */
+  GetDealUnitsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get extended deal units
+   * @description Retrieves a list of deal units with extended details for the specified tenant with OData query support.
+   */
+  GetExtendedDealUnitsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedDealUnitDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedDealUnitDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get deal unit by ID
+   * @description Retrieves a single deal unit by its unique identifier.
+   */
   GetDealUnitAsync: {
     parameters: {
       query: {
@@ -2315,6 +2418,584 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["DealUnitDtoEnvelope"];
           "application/xml": components["schemas"]["DealUnitDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a deal unit
+   * @description Updates an existing deal unit by its unique identifier.
+   */
+  UpdateDealUnitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitUpdateDto"];
+        "application/xml": components["schemas"]["DealUnitUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a deal unit
+   * @description Deletes an existing deal unit by its unique identifier.
+   */
+  DeleteDealUnitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get extended deal unit by ID
+   * @description Retrieves a single deal unit with extended details by its unique identifier.
+   */
+  GetExtendedDealUnitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedDealUnitDtoEnvelope"];
+          "application/xml": components["schemas"]["ExtendedDealUnitDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Calculate a deal unit
+   * @description Triggers recalculation of totals and derived values for a specific deal unit.
+   */
+  CalculateDealUnitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get deal unit lines
+   * @description Retrieves a list of lines for a specific deal unit with OData query support.
+   */
+  GetDealUnitLinesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        itemId?: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DealUnitLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["DealUnitLineDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a deal unit line
+   * @description Creates a new line within a specific deal unit.
+   */
+  CreateGetDealUnitLinesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitLineCreateDto"];
+        "application/xml": components["schemas"]["DealUnitLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get deal unit lines count
+   * @description Returns the total count of lines for a specific deal unit with OData filter support.
+   */
+  GetDealUnitLinesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a deal unit line by ID
+   * @description Retrieves a single deal unit line by its unique identifier.
+   */
+  GetDealUnitPriceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+        dealUnitLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DealUnitLineDtoEnvelope"];
+          "application/xml": components["schemas"]["DealUnitLineDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a deal unit line
+   * @description Updates an existing line within a specific deal unit.
+   */
+  UpdateDealUnitPriceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+        dealUnitLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitLineUpdateDto"];
+        "application/xml": components["schemas"]["DealUnitLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a deal unit line
+   * @description Deletes an existing line from a specific deal unit.
+   */
+  DeleteDealUnitPriceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+        dealUnitLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Calculate a deal unit line
+   * @description Triggers recalculation of totals and derived values for a specific deal unit line.
+   */
+  CalculateDealUnitLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+        dealUnitLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get sales literatures count
+   * @description Returns the total count of sales literatures for the specified tenant with OData filter support.
+   */
+  CountSalesLiteraturesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get sales literatures
+   * @description Retrieves a list of sales literatures for the specified tenant with OData query support.
+   */
+  GetSalesLiteraturesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SalesLiteratureDtoListEnvelope"];
+          "application/xml": components["schemas"]["SalesLiteratureDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a sales literature
+   * @description Creates a new sales literature for the specified tenant.
+   */
+  CreateSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SalesLiteratureCreateDto"];
+        "application/xml": components["schemas"]["SalesLiteratureCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get extended sales literatures
+   * @description Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
+   */
+  GetExtendedSalesLiteraturesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedSalesLiteratureDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedSalesLiteratureDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get sales literature by ID
+   * @description Retrieves a single sales literature by its unique identifier.
+   */
+  GetSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        salesLiteratureId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SalesLiteratureDtoEnvelope"];
+          "application/xml": components["schemas"]["SalesLiteratureDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a sales literature
+   * @description Updates an existing sales literature by its unique identifier.
+   */
+  UpdateSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        salesLiteratureId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SalesLiteratureUpdateDto"];
+        "application/xml": components["schemas"]["SalesLiteratureUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a sales literature
+   * @description Deletes an existing sales literature by its unique identifier.
+   */
+  DeleteSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        salesLiteratureId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Not Found */

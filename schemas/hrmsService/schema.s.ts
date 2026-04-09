@@ -6,51 +6,372 @@
 
 export interface paths {
   "/api/v2/HrmsService/Employees": {
+    /**
+     * Get employees
+     * @description Retrieves employees for the specified tenant.
+     */
     get: operations["GetEmployeesAsync"];
+    /**
+     * Create an employee
+     * @description Creates a new employee for the specified tenant.
+     */
     post: operations["CreateEmployeeAsync"];
   };
   "/api/v2/HrmsService/Employees/Count": {
+    /**
+     * Count employees
+     * @description Counts employees for the specified tenant.
+     */
     get: operations["GetEmployeesCountAsync"];
   };
   "/api/v2/HrmsService/Employees/{employeeId}": {
+    /**
+     * Get employee by ID
+     * @description Retrieves a specific employee by its identifier.
+     */
     get: operations["GetEmployeeByIdAsync"];
+    /**
+     * Update an employee
+     * @description Updates an existing employee for the specified tenant.
+     */
     put: operations["UpdateEmployeeAsync"];
+    /**
+     * Delete an employee
+     * @description Deletes an employee for the specified tenant.
+     */
     delete: operations["DeleteEmployeeAsync"];
   };
   "/api/v2/HrmsService/Employers": {
+    /**
+     * Get employers
+     * @description Retrieves employers for the specified tenant.
+     */
     get: operations["GetEmployersAsync"];
+    /**
+     * Create an employer
+     * @description Creates a new employer for the specified tenant.
+     */
     post: operations["CreateEmployerAsync"];
   };
   "/api/v2/HrmsService/Employers/Count": {
+    /**
+     * Count employers
+     * @description Counts employers for the specified tenant.
+     */
     get: operations["GetEmployersCountAsync"];
   };
   "/api/v2/HrmsService/Employers/{employerId}": {
+    /**
+     * Get employer by ID
+     * @description Retrieves a specific employer by its identifier.
+     */
     get: operations["GetEmployerByIdAsync"];
+    /**
+     * Update an employer
+     * @description Updates an existing employer for the specified tenant.
+     */
     put: operations["UpdateEmployerAsync"];
+    /**
+     * Delete an employer
+     * @description Deletes an employer for the specified tenant.
+     */
     delete: operations["DeleteEmployerAsync"];
   };
+  "/version": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
+    post: {
+      parameters: {
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
   "/api/v2/HrmsService/Gigs": {
+    /**
+     * Get gigs
+     * @description Retrieves gigs for the specified tenant.
+     */
     get: operations["GetGigsAsync"];
+    /**
+     * Create a gig
+     * @description Creates a new gig for the specified tenant.
+     */
     post: operations["CreateGigAsync"];
   };
   "/api/v2/HrmsService/Gigs/Count": {
+    /**
+     * Count gigs
+     * @description Counts gigs for the specified tenant.
+     */
     get: operations["GetGigsCountAsync"];
   };
   "/api/v2/HrmsService/Gigs/{gigId}": {
+    /**
+     * Get gig by ID
+     * @description Retrieves a specific gig by its identifier.
+     */
     get: operations["GetGigByIdAsync"];
+    /**
+     * Update a gig
+     * @description Updates an existing gig for the specified tenant.
+     */
     put: operations["UpdateGigAsync"];
+    /**
+     * Delete a gig
+     * @description Deletes a gig for the specified tenant.
+     */
     delete: operations["DeleteGigAsync"];
   };
   "/api/v2/HrmsService/JobOffers": {
+    /**
+     * Get job offers
+     * @description Retrieves job offers for the specified tenant.
+     */
     get: operations["GetJobOffersAsync"];
+    /**
+     * Create a job offer
+     * @description Creates a new job offer for the specified tenant.
+     */
     post: operations["CreateJobOfferAsync"];
   };
   "/api/v2/HrmsService/JobOffers/Count": {
+    /**
+     * Count job offers
+     * @description Counts job offers for the specified tenant.
+     */
     get: operations["GetJobOffersCountAsync"];
   };
   "/api/v2/HrmsService/JobOffers/{jobOfferId}": {
+    /**
+     * Get job offer by ID
+     * @description Retrieves a specific job offer by its identifier.
+     */
     get: operations["GetJobOfferByIdAsync"];
+    /**
+     * Update a job offer
+     * @description Updates an existing job offer for the specified tenant.
+     */
     put: operations["UpdateJobOfferAsync"];
+    /**
+     * Delete a job offer
+     * @description Deletes a job offer for the specified tenant.
+     */
     delete: operations["DeleteJobOfferAsync"];
   };
 }
@@ -59,6 +380,13 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     EmployeeProfileCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -135,11 +463,24 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
     };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
     GigCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      startDate?: string;
+      /** Format: date-time */
+      endDate?: string;
+      /** Format: double */
+      budget?: number;
+      location?: string | null;
+      skillsRequired?: string | null;
     };
     GigDto: {
       id?: string | null;
@@ -164,7 +505,41 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["GigDto"][] | null;
     };
-    GigUpdateDto: Record<string, never>;
+    GigUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      /** Format: double */
+      price?: number | null;
+      currency?: string | null;
+      location?: string | null;
+      /** Format: date-time */
+      startDate?: string | null;
+      /** Format: date-time */
+      endDate?: string | null;
+      category?: string | null;
+      tags?: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
     Int32Envelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -205,6 +580,42 @@ export interface components {
       result?: components["schemas"]["JobOfferDto"][] | null;
     };
     JobOfferUpdateDto: Record<string, never>;
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
   };
   responses: never;
   parameters: never;
@@ -219,6 +630,10 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get employees
+   * @description Retrieves employees for the specified tenant.
+   */
   GetEmployeesAsync: {
     parameters: {
       query: {
@@ -253,6 +668,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Create an employee
+   * @description Creates a new employee for the specified tenant.
+   */
   CreateEmployeeAsync: {
     parameters: {
       query: {
@@ -270,8 +689,8 @@ export interface operations {
       };
     };
     responses: {
-      /** @description Created */
-      201: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
@@ -300,6 +719,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Count employees
+   * @description Counts employees for the specified tenant.
+   */
   GetEmployeesCountAsync: {
     parameters: {
       query: {
@@ -334,6 +757,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Get employee by ID
+   * @description Retrieves a specific employee by its identifier.
+   */
   GetEmployeeByIdAsync: {
     parameters: {
       query: {
@@ -369,15 +796,12 @@ export interface operations {
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
     };
   };
+  /**
+   * Update an employee
+   * @description Updates an existing employee for the specified tenant.
+   */
   UpdateEmployeeAsync: {
     parameters: {
       query: {
@@ -426,15 +850,12 @@ export interface operations {
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
     };
   };
+  /**
+   * Delete an employee
+   * @description Deletes an employee for the specified tenant.
+   */
   DeleteEmployeeAsync: {
     parameters: {
       query: {
@@ -449,11 +870,18 @@ export interface operations {
       };
     };
     responses: {
-      /** @description No Content */
-      204: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -470,15 +898,12 @@ export interface operations {
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
     };
   };
+  /**
+   * Get employers
+   * @description Retrieves employers for the specified tenant.
+   */
   GetEmployersAsync: {
     parameters: {
       query: {
@@ -513,6 +938,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Create an employer
+   * @description Creates a new employer for the specified tenant.
+   */
   CreateEmployerAsync: {
     parameters: {
       query: {
@@ -530,6 +959,13 @@ export interface operations {
       };
     };
     responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
       /** @description Bad Request */
       400: {
         content: {
@@ -553,6 +989,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Count employers
+   * @description Counts employers for the specified tenant.
+   */
   GetEmployersCountAsync: {
     parameters: {
       query: {
@@ -587,6 +1027,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Get employer by ID
+   * @description Retrieves a specific employer by its identifier.
+   */
   GetEmployerByIdAsync: {
     parameters: {
       query: {
@@ -624,6 +1068,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Update an employer
+   * @description Updates an existing employer for the specified tenant.
+   */
   UpdateEmployerAsync: {
     parameters: {
       query: {
@@ -644,6 +1092,13 @@ export interface operations {
       };
     };
     responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
       /** @description Bad Request */
       400: {
         content: {
@@ -667,6 +1122,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Delete an employer
+   * @description Deletes an employer for the specified tenant.
+   */
   DeleteEmployerAsync: {
     parameters: {
       query: {
@@ -681,6 +1140,13 @@ export interface operations {
       };
     };
     responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
       /** @description Bad Request */
       400: {
         content: {
@@ -704,6 +1170,25 @@ export interface operations {
       };
     };
   };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get gigs
+   * @description Retrieves gigs for the specified tenant.
+   */
   GetGigsAsync: {
     parameters: {
       query: {
@@ -738,6 +1223,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Create a gig
+   * @description Creates a new gig for the specified tenant.
+   */
   CreateGigAsync: {
     parameters: {
       query: {
@@ -755,9 +1244,19 @@ export interface operations {
       };
     };
     responses: {
-      /** @description Created */
-      201: {
-        content: never;
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
       /** @description Unauthorized */
       401: {
@@ -775,6 +1274,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Count gigs
+   * @description Counts gigs for the specified tenant.
+   */
   GetGigsCountAsync: {
     parameters: {
       query: {
@@ -809,6 +1312,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Get gig by ID
+   * @description Retrieves a specific gig by its identifier.
+   */
   GetGigByIdAsync: {
     parameters: {
       query: {
@@ -846,6 +1353,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Update a gig
+   * @description Updates an existing gig for the specified tenant.
+   */
   UpdateGigAsync: {
     parameters: {
       query: {
@@ -866,9 +1377,19 @@ export interface operations {
       };
     };
     responses: {
-      /** @description No Content */
-      204: {
-        content: never;
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
       /** @description Unauthorized */
       401: {
@@ -886,6 +1407,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Delete a gig
+   * @description Deletes a gig for the specified tenant.
+   */
   DeleteGigAsync: {
     parameters: {
       query: {
@@ -900,9 +1425,19 @@ export interface operations {
       };
     };
     responses: {
-      /** @description No Content */
-      204: {
-        content: never;
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
       /** @description Unauthorized */
       401: {
@@ -920,6 +1455,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Get job offers
+   * @description Retrieves job offers for the specified tenant.
+   */
   GetJobOffersAsync: {
     parameters: {
       query: {
@@ -954,6 +1493,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Create a job offer
+   * @description Creates a new job offer for the specified tenant.
+   */
   CreateJobOfferAsync: {
     parameters: {
       query: {
@@ -971,6 +1514,13 @@ export interface operations {
       };
     };
     responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
       /** @description Bad Request */
       400: {
         content: {
@@ -994,6 +1544,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Count job offers
+   * @description Counts job offers for the specified tenant.
+   */
   GetJobOffersCountAsync: {
     parameters: {
       query: {
@@ -1028,6 +1582,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Get job offer by ID
+   * @description Retrieves a specific job offer by its identifier.
+   */
   GetJobOfferByIdAsync: {
     parameters: {
       query: {
@@ -1065,6 +1623,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Update a job offer
+   * @description Updates an existing job offer for the specified tenant.
+   */
   UpdateJobOfferAsync: {
     parameters: {
       query: {
@@ -1085,6 +1647,13 @@ export interface operations {
       };
     };
     responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
       /** @description Bad Request */
       400: {
         content: {
@@ -1108,6 +1677,10 @@ export interface operations {
       };
     };
   };
+  /**
+   * Delete a job offer
+   * @description Deletes a job offer for the specified tenant.
+   */
   DeleteJobOfferAsync: {
     parameters: {
       query: {
@@ -1122,6 +1695,20 @@ export interface operations {
       };
     };
     responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
       /** @description Unauthorized */
       401: {
         content: {

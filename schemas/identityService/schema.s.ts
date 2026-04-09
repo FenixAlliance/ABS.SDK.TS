@@ -5,390 +5,326 @@
 
 
 export interface paths {
-  "/api/v2/Applications/{appID}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          appID: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+  "/api/v2/Applications/{appId}": {
+    /**
+     * Get application by ID
+     * @description Retrieves an application by its unique identifier.
+     */
+    get: operations["GetApplication"];
   };
-  "/api/v2/Applications/{appID}/RequiredPermissions": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          appID: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+  "/api/v2/Applications/{appId}/RequiredPermissions": {
+    /**
+     * Get required permissions for an application
+     * @description Retrieves the list of permissions required by the specified application.
+     */
+    get: operations["GetRequiredPermissions"];
   };
-  "/api/v2/Applications/{appID}/GrantedPermissions": {
-    get: {
-      parameters: {
-        query?: {
-          tenantID?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          appID: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+  "/api/v2/Applications/{appId}/GrantedPermissions": {
+    /**
+     * Get granted tenant permissions for an application
+     * @description Retrieves the list of permissions granted to the specified application within a tenant context.
+     */
+    get: operations["GetGrantedTenantPermissions"];
   };
-  "/api/v2/Applications/{appID}/GrantedRoles": {
-    get: {
-      parameters: {
-        query?: {
-          tenantID?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          appID: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+  "/api/v2/Applications/{appId}/GrantedRoles": {
+    /**
+     * Get granted tenant roles for an application
+     * @description Retrieves the list of security roles granted to the specified application within a tenant context.
+     */
+    get: operations["GetGrantedTenantRoles"];
   };
-  "/api/v2/Applications/{appID}/GrantedRoles/{SecurityRoleID}/GrantedPermissions": {
-    get: {
-      parameters: {
-        query?: {
-          enrollmentID?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          appID: string;
-          securityRoleID: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+  "/api/v2/Applications/{appId}/GrantedRoles/{securityRoleId}/GrantedPermissions": {
+    /**
+     * Get granted permissions for an application role
+     * @description Retrieves the list of permissions granted through a specific security role for the specified application.
+     */
+    get: operations["GetGrantedEnrollmentPermissions"];
   };
   "/api/v2/Auth/Checker/IsAuthenticated": {
+    /**
+     * Check if user is authenticated
+     * @description Returns whether the current user is authenticated.
+     */
+    get: operations["IsAuthenticated"];
+  };
+  "/version": {
     get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
+    post: {
       parameters: {
         query?: {
-          "api-version"?: string;
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": boolean;
-            "application/xml": boolean;
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
   };
   "/api/v2/OAuth/WhoAmI": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ApiAuthorizationResultEnvelope"];
-            "application/xml": components["schemas"]["ApiAuthorizationResultEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get current user identity
+     * @description Returns the authorization result for the authenticated user, including identity and tenant context.
+     */
+    get: operations["Get"];
   };
   "/api/v2/OAuth/Token": {
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["OAuthTokenRequest"];
-          "application/xml": components["schemas"]["OAuthTokenRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["JsonWebTokenEnvelope"];
-            "application/xml": components["schemas"]["JsonWebTokenEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get OAuth token
+     * @description Generates an OAuth token based on the provided credentials or grant type.
+     */
+    post: operations["Token"];
   };
   "/api/v2/OAuth/Permissions": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          userId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["StringListEnvelope"];
-            "application/xml": components["schemas"]["StringListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get user permissions
+     * @description Retrieves the list of permission identifiers for a specific user within a tenant context.
+     */
+    get: operations["GetPermissions"];
   };
   "/api/v2/OAuth/SignIn": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["AccountHolderCreateDtoEnvelope"];
-            "application/xml": components["schemas"]["AccountHolderCreateDtoEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SigninModel"];
-          "application/xml": components["schemas"]["SigninModel"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["JsonWebTokenEnvelope"];
-            "application/xml": components["schemas"]["JsonWebTokenEnvelope"];
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Check password sign-in
+     * @description Verifies sign-in credentials and returns user details without creating a session.
+     */
+    get: operations["CheckPasswordSignInAsync"];
+    /**
+     * Sign in with password
+     * @description Authenticates a user using email and password credentials.
+     */
+    post: operations["PasswordSignInAsync"];
   };
   "/api/v2/OAuth/{applicationId}/Keys": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          applicationId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["JsonWebKeySetEnvelope"];
-            "application/xml": components["schemas"]["JsonWebKeySetEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get JSON Web Key Set
+     * @description Retrieves the signing keys (JWKS) for a specific application.
+     */
+    get: operations["GetJwKs"];
   };
   "/api/v2/OAuth/{tenantId}/{applicationId}/.Well-Known/OpenId-Configuration": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          tenantId: string;
-          applicationId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["OpenIdConfigurationEnvelope"];
-            "application/xml": components["schemas"]["OpenIdConfigurationEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get OpenID configuration
+     * @description Retrieves the OpenID Connect discovery document for a specific application within a tenant.
+     */
+    get: operations["GetOpenIdConfiguration"];
   };
   "/api/v2/IdentityService/Resource/message": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    /**
+     * Get authenticated resource message
+     * @description Returns a message confirming the authenticated user's identity. Requires the 'abs_api' scope.
+     */
+    get: operations["GetMessage"];
   };
   "/connect/userinfo": {
     get: {
@@ -430,70 +366,36 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    AccountHolderCreateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      qualifiedName?: string | null;
-      /** Format: date-time */
-      birthday?: string;
-      firstName?: string | null;
-      lastName?: string | null;
-      publicName?: string | null;
-      idProvider?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      gender?: 0 | 1 | 2;
-      email?: string | null;
-      about?: string | null;
-      status?: string | null;
-      jobTitle?: string | null;
-      gitHubUrl?: string | null;
-      websiteUrl?: string | null;
-      twitterUrl?: string | null;
-      facebookUrl?: string | null;
-      youTubeUrl?: string | null;
-      linkedInUrl?: string | null;
-      instagramUrl?: string | null;
-      timezoneId?: string | null;
-      languageId?: string | null;
-      currencyId?: string | null;
-      countryId?: string | null;
-      stateId?: string | null;
-      cityId?: string | null;
-      password?: string | null;
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
     };
-    AccountHolderCreateDtoEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["AccountHolderCreateDto"];
-    };
-    ApiAuthorizationResult: {
+    /** Format: uuid */
+    AppId: string;
+    AuthorizationResult: {
       userId?: components["schemas"]["UserId"];
       tenantId?: components["schemas"]["TenantId"];
+      portalId?: components["schemas"]["PortalId"];
+      applicationId?: components["schemas"]["AppId"];
       enrollmentId?: components["schemas"]["EnrollmentId"];
       correlationId?: string | null;
       scopes?: string[] | null;
       error?: string | null;
-      applicationId?: string | null;
     };
-    ApiAuthorizationResultEnvelope: {
+    AuthorizationResultEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
-      result?: components["schemas"]["ApiAuthorizationResult"];
+      result?: components["schemas"]["AuthorizationResult"];
     };
-    EnrollmentId: Record<string, never>;
+    /** Format: uuid */
+    EnrollmentId: string;
     ErrorEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -501,6 +403,30 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
     };
     JsonWebKey: {
       kid?: string | null;
@@ -562,6 +488,12 @@ export interface components {
       exp?: number;
       scopes?: string[] | null;
     };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
     OAuthTokenRequest: {
       client_id?: string | null;
       client_secret?: string | null;
@@ -592,6 +524,23 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["OpenIdConfiguration"];
     };
+    /** Format: uuid */
+    PortalId: string;
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
     SigninModel: {
       email?: string | null;
       password?: string | null;
@@ -605,8 +554,67 @@ export interface components {
       activityId?: string | null;
       result?: string[] | null;
     };
-    TenantId: Record<string, never>;
-    UserId: Record<string, never>;
+    /** Format: uuid */
+    TenantId: string;
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
+    UserCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      birthday?: string;
+      firstName?: string | null;
+      lastName?: string | null;
+      publicName?: string | null;
+      idProvider?: string | null;
+      /** @enum {string} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay";
+      email?: string | null;
+      about?: string | null;
+      status?: string | null;
+      jobTitle?: string | null;
+      gitHubUrl?: string | null;
+      websiteUrl?: string | null;
+      twitterUrl?: string | null;
+      facebookUrl?: string | null;
+      youTubeUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      timezoneId?: string | null;
+      languageId?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      password?: string | null;
+    };
+    UserCreateDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["UserCreateDto"];
+    };
+    /** Format: uuid */
+    UserId: string;
   };
   responses: never;
   parameters: never;
@@ -619,4 +627,436 @@ export type $defs = Record<string, never>;
 
 export type external = Record<string, never>;
 
-export type operations = Record<string, never>;
+export interface operations {
+
+  /**
+   * Get application by ID
+   * @description Retrieves an application by its unique identifier.
+   */
+  GetApplication: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        appId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get required permissions for an application
+   * @description Retrieves the list of permissions required by the specified application.
+   */
+  GetRequiredPermissions: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        appId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get granted tenant permissions for an application
+   * @description Retrieves the list of permissions granted to the specified application within a tenant context.
+   */
+  GetGrantedTenantPermissions: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        appId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get granted tenant roles for an application
+   * @description Retrieves the list of security roles granted to the specified application within a tenant context.
+   */
+  GetGrantedTenantRoles: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        appId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get granted permissions for an application role
+   * @description Retrieves the list of permissions granted through a specific security role for the specified application.
+   */
+  GetGrantedEnrollmentPermissions: {
+    parameters: {
+      query?: {
+        enrollmentId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        appId: string;
+        securityRoleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Check if user is authenticated
+   * @description Returns whether the current user is authenticated.
+   */
+  IsAuthenticated: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": boolean;
+          "application/xml": boolean;
+        };
+      };
+    };
+  };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get current user identity
+   * @description Returns the authorization result for the authenticated user, including identity and tenant context.
+   */
+  Get: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AuthorizationResultEnvelope"];
+          "application/xml": components["schemas"]["AuthorizationResultEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get OAuth token
+   * @description Generates an OAuth token based on the provided credentials or grant type.
+   */
+  Token: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OAuthTokenRequest"];
+        "application/xml": components["schemas"]["OAuthTokenRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JsonWebTokenEnvelope"];
+          "application/xml": components["schemas"]["JsonWebTokenEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get user permissions
+   * @description Retrieves the list of permission identifiers for a specific user within a tenant context.
+   */
+  GetPermissions: {
+    parameters: {
+      query: {
+        tenantId: string;
+        userId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringListEnvelope"];
+          "application/xml": components["schemas"]["StringListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Check password sign-in
+   * @description Verifies sign-in credentials and returns user details without creating a session.
+   */
+  CheckPasswordSignInAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UserCreateDtoEnvelope"];
+          "application/xml": components["schemas"]["UserCreateDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sign in with password
+   * @description Authenticates a user using email and password credentials.
+   */
+  PasswordSignInAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigninModel"];
+        "application/xml": components["schemas"]["SigninModel"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JsonWebTokenEnvelope"];
+          "application/xml": components["schemas"]["JsonWebTokenEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get JSON Web Key Set
+   * @description Retrieves the signing keys (JWKS) for a specific application.
+   */
+  GetJwKs: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        applicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JsonWebKeySetEnvelope"];
+          "application/xml": components["schemas"]["JsonWebKeySetEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get OpenID configuration
+   * @description Retrieves the OpenID Connect discovery document for a specific application within a tenant.
+   */
+  GetOpenIdConfiguration: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+        applicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OpenIdConfigurationEnvelope"];
+          "application/xml": components["schemas"]["OpenIdConfigurationEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get authenticated resource message
+   * @description Returns a message confirming the authenticated user's identity. Requires the 'abs_api' scope.
+   */
+  GetMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+}

@@ -39,6 +39,231 @@ export interface paths {
   "/api/v2/StorageService/Blobs/Single": {
     get: operations["GetBlobAsync"];
   };
+  "/version": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
+    post: {
+      parameters: {
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
   "/api/v2/StorageService/Files": {
     get: operations["GetFilesAsync"];
     post: operations["CreateFileAsync"];
@@ -52,198 +277,46 @@ export interface paths {
     get: operations["DownloadFileAsync"];
   };
   "/api/v2/StorageService/RadzenEditor/Uploads/Single": {
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            /** Format: binary */
-            file?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    /**
+     * Upload a single file
+     * @description Uploads a single file to tenant or user storage.
+     */
+    post: operations["Single"];
   };
   "/api/v2/StorageService/RadzenEditor/Uploads/Image": {
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            /** Format: binary */
-            file?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    /**
+     * Upload an image file
+     * @description Uploads an image file and returns its URL for editor embedding.
+     */
+    post: operations["Image"];
   };
   "/api/v2/StorageService/RadzenEditor/Uploads/Multiple": {
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            files?: string[];
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    /**
+     * Upload multiple files
+     * @description Uploads multiple files to tenant or user storage.
+     */
+    post: operations["Multiple"];
   };
   "/api/v2/StorageService/RadzenEditor/Uploads/{id}": {
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          id: number;
-        };
-      };
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            files?: string[];
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    /**
+     * Upload files by ID
+     * @description Uploads files associated with a specific resource ID.
+     */
+    post: operations["Post"];
   };
   "/api/v2/StorageService/RadzenEditor/Uploads/Specific": {
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            /** Format: binary */
-            file?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    /**
+     * Upload a specific file
+     * @description Uploads a specific file to tenant or user storage.
+     */
+    post: operations["Specific"];
   };
   "/api/v2/StorageService/Uploads": {
-    post: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "multipart/form-data": {
-            notes?: string;
-            title?: string;
-            author?: string;
-            isFolder?: boolean;
-            fileName?: string;
-            abstract?: string;
-            keyWords?: string;
-            validResponse?: boolean;
-            parentFileUploadId?: string;
-            filePath?: string;
-            /** Format: binary */
-            file?: string;
-            /** Format: uuid */
-            iD?: string;
-            /** Format: date-time */
-            timestamp?: string;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Upload a file
+     * @description Uploads a file to tenant or user storage.
+     */
+    post: operations["SaveFileAsync"];
   };
 }
 
@@ -251,12 +324,16 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     Blob: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      kind?: 0 | 1;
+      /** @enum {string} */
+      kind?: "File" | "Folder";
       isFolder?: boolean;
       isFile?: boolean;
       folderPath?: string | null;
@@ -302,24 +379,6 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
     };
-    FileUploadCreateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      notes?: string | null;
-      title?: string | null;
-      author?: string | null;
-      isFolder?: boolean;
-      fileName?: string | null;
-      abstract?: string | null;
-      keyWords?: string | null;
-      validResponse?: boolean;
-      parentFileUploadId?: string | null;
-      filePath?: string | null;
-      /** Format: binary */
-      file?: string | null;
-    };
     FileUploadDto: {
       id?: string | null;
       /** Format: date-time */
@@ -355,7 +414,55 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["FileUploadDto"];
     };
-    FileUploadUpdateDto: {
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
+    PayloadFileUploadCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      notes?: string | null;
+      title?: string | null;
+      author?: string | null;
+      isFolder?: boolean;
+      fileName?: string | null;
+      abstract?: string | null;
+      keyWords?: string | null;
+      validResponse?: boolean;
+      parentFileUploadId?: string | null;
+      filePath?: string | null;
+      /** Format: binary */
+      file?: string | null;
+    };
+    PayloadFileUploadUpdateDto: {
       notes?: string | null;
       metadata?: string | null;
       title?: string | null;
@@ -369,6 +476,36 @@ export interface components {
       filePath?: string | null;
       /** Format: binary */
       file?: string | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
     };
   };
   responses: never;
@@ -795,6 +932,21 @@ export interface operations {
       };
     };
   };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   GetFilesAsync: {
     parameters: {
       query?: {
@@ -841,7 +993,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "multipart/form-data": components["schemas"]["FileUploadCreateDto"];
+        "multipart/form-data": components["schemas"]["PayloadFileUploadCreateDto"];
       };
     };
     responses: {
@@ -941,7 +1093,7 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "multipart/form-data": components["schemas"]["FileUploadUpdateDto"];
+        "multipart/form-data": components["schemas"]["PayloadFileUploadUpdateDto"];
       };
     };
     responses: {
@@ -1080,6 +1232,236 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "image/png": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Upload a single file
+   * @description Uploads a single file to tenant or user storage.
+   */
+  Single: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: binary */
+          file?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Upload an image file
+   * @description Uploads an image file and returns its URL for editor embedding.
+   */
+  Image: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: binary */
+          file?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Upload multiple files
+   * @description Uploads multiple files to tenant or user storage.
+   */
+  Multiple: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          files?: string[];
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Upload files by ID
+   * @description Uploads files associated with a specific resource ID.
+   */
+  Post: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: number;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          files?: string[];
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Upload a specific file
+   * @description Uploads a specific file to tenant or user storage.
+   */
+  Specific: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: binary */
+          file?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Upload a file
+   * @description Uploads a file to tenant or user storage.
+   */
+  SaveFileAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          notes?: string;
+          title?: string;
+          author?: string;
+          isFolder?: boolean;
+          fileName?: string;
+          abstract?: string;
+          keyWords?: string;
+          validResponse?: boolean;
+          parentFileUploadId?: string;
+          filePath?: string;
+          /** Format: byte */
+          "appFile.content"?: string;
+          "appFile.sha256"?: string;
+          /** Format: date-time */
+          "appFile.createdAtUtc"?: string;
+          /** Format: uuid */
+          "appFile.userId.value"?: string;
+          /** Format: uuid */
+          "appFile.tenantId.value"?: string;
+          /** Format: uuid */
+          "appFile.enrollmentId.value"?: string;
+          /** @enum {string} */
+          "appFile.source"?: "Unknown" | "HttpUpload" | "Integration" | "InternalProcess" | "ApiClient" | "WorkflowEngine";
+          /** Format: int64 */
+          "appFile.length"?: number;
+          "appFile.name"?: string;
+          "appFile.fileName"?: string;
+          /** Format: date-time */
+          "appFile.lastModified"?: string;
+          /** Format: int64 */
+          "appFile.size"?: number;
+          "appFile.contentType"?: string;
+          "appFile.contentDisposition"?: string;
+          "appFile.headers"?: {
+            [key: string]: string;
+          };
+          /** Format: uuid */
+          id?: string;
+          /** Format: date-time */
+          timestamp?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };

@@ -5,408 +5,344 @@
 
 
 export interface paths {
-  "/api/v2/OrdersService/Orders/SubmitCart": {
+  "/version": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
     post: {
       parameters: {
-        query: {
-          cartId: string;
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["OrderDtoEnvelope"];
-            "application/xml": components["schemas"]["OrderDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
       };
     };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/api/v2/OrdersService/Orders/SubmitCart": {
+    /**
+     * Submits a cart and creates an order.
+     * @description Submits the specified cart and creates an order for the authenticated user.
+     */
+    post: operations["SubmitCart"];
   };
   "/api/v2/OrdersService/Orders": {
-    get: operations["GetOrdersAsync"];
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["OrderCreateDto"];
-          "application/xml": components["schemas"]["OrderCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets a list of orders for a tenant.
+     * @description Retrieves a list of orders for the specified tenant.
+     */
+    get: operations["GetOrders"];
+    /**
+     * Creates a new order.
+     * @description Creates a new order for the specified tenant.
+     */
+    post: operations["CreateOrder"];
   };
   "/api/v2/OrdersService/Orders/Extended": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ExtendedOrderDtoListEnvelope"];
-            "application/xml": components["schemas"]["ExtendedOrderDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets a list of extended orders for a tenant.
+     * @description Retrieves a list of extended order details for the specified tenant.
+     */
+    get: operations["GetExtendedOrders"];
   };
   "/api/v2/OrdersService/Orders/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets the count of orders for a tenant.
+     * @description Retrieves the total number of orders for the specified tenant.
+     */
+    get: operations["GetOrdersCount"];
   };
   "/api/v2/OrdersService/Orders/{orderId}": {
-    get: operations["GetOrderAsync"];
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["OrderUpdateDto"];
-          "application/xml": components["schemas"]["OrderUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets a specific order by ID.
+     * @description Retrieves the details of a specific order by its ID.
+     */
+    get: operations["GetOrder"];
+    /**
+     * Updates an existing order.
+     * @description Updates the details of an existing order.
+     */
+    put: operations["UpdateOrder"];
+    /**
+     * Deletes an order.
+     * @description Deletes the specified order.
+     */
+    delete: operations["DeleteOrder"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Calculate": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Calculates totals for an order.
+     * @description Performs calculation of totals and taxes for the specified order.
+     */
+    put: operations["CalculateOrder"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          itemId?: string;
-        };
-        path: {
-          orderId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["OrderLineDtoListEnvelope"];
-            "application/xml": components["schemas"]["OrderLineDtoListEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["OrderLineCreateDto"];
-          "application/xml": components["schemas"]["OrderLineCreateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets order lines for an order.
+     * @description Retrieves the lines (items) for the specified order.
+     */
+    get: operations["GetOrderLines"];
+    /**
+     * Creates a new order line.
+     * @description Creates a new line (item) for the specified order.
+     */
+    post: operations["CreateOrderLine"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines/Count": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets the count of order lines for an order.
+     * @description Retrieves the total number of lines for the specified order.
+     */
+    get: operations["GetOrderLinesCount"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-          orderLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["OrderLineDtoEnvelope"];
-            "application/xml": components["schemas"]["OrderLineDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-          orderLineId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["OrderLineUpdateDto"];
-          "application/xml": components["schemas"]["OrderLineUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-          orderLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Gets a specific order line.
+     * @description Retrieves the details of a specific order line by its ID.
+     */
+    get: operations["GetOrderLine"];
+    /**
+     * Updates an order line.
+     * @description Updates the details of a specific order line.
+     */
+    put: operations["UpdateOrderLine"];
+    /**
+     * Deletes an order line.
+     * @description Deletes the specified order line.
+     */
+    delete: operations["DeleteOrderLine"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}/Calculate": {
-    put: {
-      parameters: {
-        query: {
-          tenantId: string;
-        };
-        path: {
-          orderId: string;
-          orderLineId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Calculates totals for an order line.
+     * @description Performs calculation of totals and taxes for the specified order line.
+     */
+    put: operations["CalculateOrderLine"];
+  };
+  "/api/v2/OrdersService/Orders/{orderId}/Emails/Send": {
+    /**
+     * Send a transactional email for an order.
+     * @description Sends a transactional email for the specified order. Only users with the 'send_email' permission are permitted.
+     */
+    post: operations["SendOrderEmail"];
+  };
+  "/api/v2/OrdersService/Orders/{orderId}/Emails/Preview": {
+    /**
+     * Preview the rendered email for an Order.
+     * @description Previews the rendered email template for the specified order. Only users with the 'send_email' permission are permitted.
+     */
+    post: operations["PreviewOrderEmailTemplate"];
   };
 }
 
@@ -414,17 +350,25 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
       publicName?: string | null;
       firstName?: string | null;
       lastName?: string | null;
@@ -435,22 +379,31 @@ export interface components {
       timezoneId?: string | null;
       languageId?: string | null;
       socialProfileId?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
+      /** Format: uri */
       gitHubUrl?: string | null;
+      /** Format: uri */
       twitchUrl?: string | null;
+      /** Format: uri */
       redditUrl?: string | null;
+      /** Format: uri */
       tikTokUrl?: string | null;
+      /** Format: uri */
       websiteUrl?: string | null;
+      /** Format: uri */
       twitterUrl?: string | null;
+      /** Format: uri */
       facebookUrl?: string | null;
+      /** Format: uri */
       youTubeUrl?: string | null;
+      /** Format: uri */
       linkedInUrl?: string | null;
+      /** Format: uri */
       instagramUrl?: string | null;
       githubUsername?: string | null;
       duns?: string | null;
       taxId?: string | null;
-      /** Format: email */
-      email?: string | null;
       about?: string | null;
       street?: string | null;
       cartId?: string | null;
@@ -481,9 +434,29 @@ export interface components {
       /** Format: date-time */
       birthday?: string | null;
     };
-    Currency: {
+    CurrencyId: {
+      value?: string | null;
       code?: string | null;
       country?: string | null;
+    };
+    EmailDispatchRequest: {
+      title: string;
+      message: string;
+      /** Format: uri */
+      buttonLink?: string | null;
+      buttonText?: string | null;
+      alertMessage?: string | null;
+      /** @enum {string} */
+      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      culture: string;
+      uiCulture: string;
+      recipients: string[];
+      contactIds?: string[] | null;
+      tenantIds?: string[] | null;
+      userIds?: string[] | null;
+      /** Format: uri */
+      templateUrl?: string | null;
+      emailTemplateId?: string | null;
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -510,7 +483,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -528,61 +500,71 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       /** Format: int32 */
       orderLinesCount?: number;
       quoteId?: string | null;
@@ -593,21 +575,12 @@ export interface components {
       billingLocationId?: string | null;
       shippingLocationId?: string | null;
       qualifiedIdentifier?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      freightTerms?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      orderStatus?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      freightTerms?: "FOB" | "NoCharge";
+      /** @enum {string} */
+      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -633,7 +606,7 @@ export interface components {
       individual?: components["schemas"]["ContactDto"];
       organization?: components["schemas"]["ContactDto"];
       receiverTenant?: components["schemas"]["TenantDto"];
-      enrollment?: components["schemas"]["TenantEnrolmentDto"];
+      enrollment?: components["schemas"]["TenantEnrollmentDto"];
     };
     ExtendedOrderDtoListEnvelope: {
       isSuccess?: boolean;
@@ -643,6 +616,42 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedOrderDto"][] | null;
+    };
+    ForexRates: {
+      success?: boolean;
+      date?: string | null;
+      base?: string | null;
+      /** Format: int64 */
+      timestamp?: number;
+      /** Format: date-time */
+      requestTimestamp?: string;
+      rates?: {
+        [key: string]: number;
+      } | null;
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
     };
     Int32Envelope: {
       isSuccess?: boolean;
@@ -654,10 +663,16 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
     Money: {
       /** Format: double */
       amount?: number;
-      currency?: components["schemas"]["Currency"];
+      currency?: components["schemas"]["CurrencyId"];
     };
     OrderCreateDto: {
       /** Format: uuid */
@@ -666,17 +681,11 @@ export interface components {
       timestamp?: string;
       closed?: boolean;
       title?: string | null;
-      userId?: string | null;
-      tenantId?: string | null;
       priceListId?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
       individualId?: string | null;
       paymentTermId?: string | null;
       organizationId?: string | null;
-      currencyId?: string | null;
-      /** Format: double */
-      forexRate?: number;
       firstName?: string | null;
       lastName?: string | null;
       companyName?: string | null;
@@ -687,6 +696,49 @@ export interface components {
       countryId?: string | null;
       stateId?: string | null;
       cityId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       cartId?: string | null;
       quoteId?: string | null;
       walletId?: string | null;
@@ -694,32 +746,32 @@ export interface components {
       shippingMethodId?: string | null;
       billingLocationId?: string | null;
       customerNotes?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      orderStatus?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      quoteStatus?: 0 | 1 | 2 | 3 | 4;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      freightTerms?: 0 | 1;
+      /** @enum {string} */
+      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
+      /** @enum {string} */
+      quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
+      /** @enum {string} */
+      freightTerms?: "FOB" | "NoCharge";
       receiverTenantId?: string | null;
       shippingLocationId?: string | null;
       qualifiedIdentifier?: string | null;
       /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
+      totalDiscountsInUsd?: number;
+      /** Format: double */
+      totalSurchargesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxInUsd?: number;
+      /** Format: double */
       totalAmountInUsd?: number;
       /** Format: date-time */
       effectiveTo?: string | null;
       /** Format: date-time */
       effectiveFrom?: string | null;
+      orderLines?: components["schemas"]["OrderLineCreateDto"][] | null;
     };
     OrderDto: {
       id?: string | null;
@@ -730,7 +782,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -748,61 +799,71 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       /** Format: int32 */
       orderLinesCount?: number;
       quoteId?: string | null;
@@ -813,21 +874,12 @@ export interface components {
       billingLocationId?: string | null;
       shippingLocationId?: string | null;
       qualifiedIdentifier?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      freightTerms?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      orderStatus?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      freightTerms?: "FOB" | "NoCharge";
+      /** @enum {string} */
+      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -911,16 +963,10 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       forexRatesSnapshot?: string | null;
       /** Format: double */
       forexRate?: number;
@@ -937,7 +983,7 @@ export interface components {
       /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
+      totalWithheldTaxesInUsd?: number;
       /** Format: double */
       totalShippingCostInUsd?: number;
       /** Format: double */
@@ -958,30 +1004,46 @@ export interface components {
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
       customGlobalSurchargesAmount?: number;
+      customGlobalSurchargesAmountCurrencyId?: string | null;
       /** Format: double */
       customGlobalDiscountsAmount?: number;
+      customGlobalDiscountsAmountCurrencyId?: string | null;
       /** Format: double */
-      customBaseAmount?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      customDetailAmount?: number;
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
-      customDiscountsAmount?: number;
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
       /** Format: double */
-      customTaxBase?: number;
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      customSurchargesAmount?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
-      customProfitAmount?: number;
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
       /** Format: double */
-      customShippingCostAmount?: number;
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
       /** Format: double */
-      customShippingTaxAmount?: number;
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
       /** Format: double */
-      customTaxAmount?: number;
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
-      customWithholdingTaxAmount?: number;
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
-      customTotalAmount?: number;
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1036,33 +1098,27 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      forexRatesSnapshot?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      forexRates?: components["schemas"]["ForexRates"];
       /** Format: double */
       forexRate?: number;
       /** Format: double */
-      totalBaseAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalDiscountsInUsd?: number;
+      /** Format: double */
+      totalSurchargesInUsd?: number;
       /** Format: double */
       totalTaxBaseInUsd?: number;
       /** Format: double */
-      totalDiscountsInUsd?: number;
-      /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
+      totalWithheldTaxesInUsd?: number;
       /** Format: double */
       totalShippingCostInUsd?: number;
       /** Format: double */
@@ -1074,9 +1130,7 @@ export interface components {
       /** Format: double */
       totalRefundCostInUsd?: number;
       /** Format: double */
-      totalSurchargesInUsd?: number;
-      /** Format: double */
-      totalAmountInUsd?: number;
+      totalInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
@@ -1085,28 +1139,6 @@ export interface components {
       customGlobalSurchargesAmount?: number;
       /** Format: double */
       customGlobalDiscountsAmount?: number;
-      /** Format: double */
-      customBaseAmount?: number;
-      /** Format: double */
-      customDetailAmount?: number;
-      /** Format: double */
-      customDiscountsAmount?: number;
-      /** Format: double */
-      customTaxBase?: number;
-      /** Format: double */
-      customSurchargesAmount?: number;
-      /** Format: double */
-      customProfitAmount?: number;
-      /** Format: double */
-      customShippingCostAmount?: number;
-      /** Format: double */
-      customShippingTaxAmount?: number;
-      /** Format: double */
-      customTaxAmount?: number;
-      /** Format: double */
-      customWithholdingTaxAmount?: number;
-      /** Format: double */
-      customTotalAmount?: number;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1116,6 +1148,55 @@ export interface components {
       quoteItemRecordId?: string | null;
       businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
+      currency?: components["schemas"]["CurrencyId"];
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      totalDetailAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      totalProfitAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      totalDiscountsAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      totalSurchargesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      totalTaxBaseAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      totalTaxesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      totalShippingCostAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      totalShippingTaxAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      totalWithheldTaxAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      totalAmount?: components["schemas"]["Money"];
       orderId?: string | null;
     };
     OrderLineDtoEnvelope: {
@@ -1176,16 +1257,10 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       forexRatesSnapshot?: string | null;
       /** Format: double */
       forexRate?: number;
@@ -1202,7 +1277,7 @@ export interface components {
       /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
+      totalWithheldTaxesInUsd?: number;
       /** Format: double */
       totalShippingCostInUsd?: number;
       /** Format: double */
@@ -1223,30 +1298,46 @@ export interface components {
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
       customGlobalSurchargesAmount?: number;
+      customGlobalSurchargesAmountCurrencyId?: string | null;
       /** Format: double */
       customGlobalDiscountsAmount?: number;
+      customGlobalDiscountsAmountCurrencyId?: string | null;
       /** Format: double */
-      customBaseAmount?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      customDetailAmount?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
-      customDiscountsAmount?: number;
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
-      customTaxBase?: number;
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      customSurchargesAmount?: number;
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
       /** Format: double */
-      customProfitAmount?: number;
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
       /** Format: double */
-      customShippingCostAmount?: number;
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
       /** Format: double */
-      customShippingTaxAmount?: number;
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
       /** Format: double */
-      customTaxAmount?: number;
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
-      customWithholdingTaxAmount?: number;
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
-      customTotalAmount?: number;
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1272,6 +1363,46 @@ export interface components {
       billingLocationId?: string | null;
       shippingLocationId?: string | null;
       shippingMethodId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       cartId?: string | null;
       userId?: string | null;
       /** Format: double */
@@ -1295,6 +1426,21 @@ export interface components {
       effectiveFrom?: string | null;
       description?: string | null;
       title?: string | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
     };
     TenantDto: {
       id?: string | null;
@@ -1337,7 +1483,7 @@ export interface components {
       businessLegalName?: string | null;
       twitterUsername?: string | null;
     };
-    TenantEnrolmentDto: {
+    TenantEnrollmentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
@@ -1348,6 +1494,21 @@ export interface components {
       isAdmin?: boolean;
       isDisabled?: boolean;
     };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1355,6 +1516,7 @@ export interface components {
       fullName?: string | null;
       qualifiedName?: string | null;
       publicName?: string | null;
+      handler?: string | null;
       lastName?: string | null;
       firstName?: string | null;
       coverUrl?: string | null;
@@ -1373,11 +1535,8 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      gender?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -1396,21 +1555,15 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      availability?: 0 | 1 | 2 | 3 | 4 | null;
+      /** @enum {string|null} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      siteTheme?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      siteTheme?: "System" | "Light" | "Dark" | null;
     };
   };
   responses: never;
@@ -1426,7 +1579,53 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  GetOrdersAsync: {
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Submits a cart and creates an order.
+   * @description Submits the specified cart and creates an order for the authenticated user.
+   */
+  SubmitCart: {
+    parameters: {
+      query: {
+        cartId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OrderDtoEnvelope"];
+          "application/xml": components["schemas"]["OrderDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a list of orders for a tenant.
+   * @description Retrieves a list of orders for the specified tenant.
+   */
+  GetOrders: {
     parameters: {
       query: {
         tenantId: string;
@@ -1449,7 +1648,98 @@ export interface operations {
       };
     };
   };
-  GetOrderAsync: {
+  /**
+   * Creates a new order.
+   * @description Creates a new order for the specified tenant.
+   */
+  CreateOrder: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderCreateDto"];
+        "application/xml": components["schemas"]["OrderCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a list of extended orders for a tenant.
+   * @description Retrieves a list of extended order details for the specified tenant.
+   */
+  GetExtendedOrders: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedOrderDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedOrderDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets the count of orders for a tenant.
+   * @description Retrieves the total number of orders for the specified tenant.
+   */
+  GetOrdersCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a specific order by ID.
+   * @description Retrieves the details of a specific order by its ID.
+   */
+  GetOrder: {
     parameters: {
       query: {
         tenantId: string;
@@ -1472,6 +1762,398 @@ export interface operations {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
+      };
+    };
+  };
+  /**
+   * Updates an existing order.
+   * @description Updates the details of an existing order.
+   */
+  UpdateOrder: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderUpdateDto"];
+        "application/xml": components["schemas"]["OrderUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes an order.
+   * @description Deletes the specified order.
+   */
+  DeleteOrder: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Calculates totals for an order.
+   * @description Performs calculation of totals and taxes for the specified order.
+   */
+  CalculateOrder: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets order lines for an order.
+   * @description Retrieves the lines (items) for the specified order.
+   */
+  GetOrderLines: {
+    parameters: {
+      query: {
+        tenantId: string;
+        itemId?: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OrderLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["OrderLineDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a new order line.
+   * @description Creates a new line (item) for the specified order.
+   */
+  CreateOrderLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderLineCreateDto"];
+        "application/xml": components["schemas"]["OrderLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets the count of order lines for an order.
+   * @description Retrieves the total number of lines for the specified order.
+   */
+  GetOrderLinesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a specific order line.
+   * @description Retrieves the details of a specific order line by its ID.
+   */
+  GetOrderLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+        orderLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OrderLineDtoEnvelope"];
+          "application/xml": components["schemas"]["OrderLineDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates an order line.
+   * @description Updates the details of a specific order line.
+   */
+  UpdateOrderLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+        orderLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderLineUpdateDto"];
+        "application/xml": components["schemas"]["OrderLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes an order line.
+   * @description Deletes the specified order line.
+   */
+  DeleteOrderLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+        orderLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Calculates totals for an order line.
+   * @description Performs calculation of totals and taxes for the specified order line.
+   */
+  CalculateOrderLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+        orderLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Send a transactional email for an order.
+   * @description Sends a transactional email for the specified order. Only users with the 'send_email' permission are permitted.
+   */
+  SendOrderEmail: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Preview the rendered email for an Order.
+   * @description Previews the rendered email template for the specified order. Only users with the 'send_email' permission are permitted.
+   */
+  PreviewOrderEmailTemplate: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
     };
   };

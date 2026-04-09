@@ -5,1133 +5,467 @@
 
 
 export interface paths {
-  "/api/v2/SocialService/SocialFeeds": {
+  "/version": {
     get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
+    post: {
+      parameters: {
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["SocialFeedDtoListEnvelope"];
-            "application/xml": components["schemas"]["SocialFeedDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
       };
     };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/api/v2/SocialService/SocialFeeds": {
+    /**
+     * Get social feeds
+     * @description Retrieves a list of social feeds for the specified social profile.
+     */
+    get: operations["GetFeedNotifications"];
   };
   "/api/v2/SocialService/SocialFeeds/Count": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Count social feeds
+     * @description Returns the count of social feeds for the specified social profile.
+     */
+    get: operations["GetNotificationsCountAsync"];
   };
   "/api/v2/SocialService/SocialFeeds/{socialFeedId}": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialFeedId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SocialFeedDtoEnvelope"];
-            "application/xml": components["schemas"]["SocialFeedDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get social feed by ID
+     * @description Retrieves a specific social feed by its ID.
+     */
+    get: operations["GetNotificationAsync"];
   };
   "/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialFeedId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SocialFeedPostDtoListEnvelope"];
-            "application/xml": components["schemas"]["SocialFeedPostDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialFeedId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialFeedPostCreateDto"];
-          "application/xml": components["schemas"]["SocialFeedPostCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["SocialFeedPostDtoEnvelope"];
-            "application/xml": components["schemas"]["SocialFeedPostDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get social feed posts
+     * @description Retrieves a list of posts for a specific social feed.
+     */
+    get: operations["GetFeedPostsAsync"];
+    /**
+     * Create a social feed post
+     * @description Creates a new post in a specific social feed.
+     */
+    post: operations["CreateFeedPostAsync"];
   };
   "/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/Count": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialFeedId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Count social feed posts
+     * @description Returns the count of posts for a specific social feed.
+     */
+    get: operations["GetFeedPostsCountAsync"];
   };
   "/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/{feedPostId}": {
+    /**
+     * Get social feed post by ID
+     * @description Retrieves a specific post from a social feed by its ID.
+     */
     get: operations["GetFeedPostAsync"];
-    put: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialFeedId: string;
-          feedPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialFeedPostUpdateDto"];
-          "application/xml": components["schemas"]["SocialFeedPostUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SocialFeedPostDtoEnvelope"];
-            "application/xml": components["schemas"]["SocialFeedPostDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialFeedId: string;
-          feedPostId: string;
-        };
-      };
-      responses: {
-        /** @description No Content */
-        204: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update a social feed post
+     * @description Updates an existing post in a specific social feed.
+     */
+    put: operations["UpdateFeedPostAsync"];
+    /**
+     * Delete a social feed post
+     * @description Deletes a post from a specific social feed.
+     */
+    delete: operations["DeleteFeedPostAsync"];
+  };
+  "/api/v2/SocialService/SocialGroups": {
+    /**
+     * Get social groups
+     * @description Retrieves all social groups for the specified tenant.
+     */
+    get: operations["GetSocialGroupsAsync"];
+    /**
+     * Create a social group
+     * @description Creates a new social group for the specified tenant.
+     */
+    post: operations["CreateSocialGroupAsync"];
+  };
+  "/api/v2/SocialService/SocialGroups/Count": {
+    /**
+     * Count social groups
+     * @description Counts all social groups for the specified tenant.
+     */
+    get: operations["CountSocialGroupsAsync"];
+  };
+  "/api/v2/SocialService/SocialGroups/{socialGroupId}": {
+    /**
+     * Get social group by ID
+     * @description Retrieves a specific social group by its ID.
+     */
+    get: operations["GetSocialGroupByIdAsync"];
+    /**
+     * Update a social group
+     * @description Updates an existing social group for the specified tenant.
+     */
+    put: operations["UpdateSocialGroupAsync"];
+    /**
+     * Delete a social group
+     * @description Deletes a social group for the specified tenant.
+     */
+    delete: operations["DeleteSocialGroupAsync"];
   };
   "/api/v2/SocialService/SocialPosts": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SocialPostDtoListEnvelope"];
-            "application/xml": components["schemas"]["SocialPostDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialPostCreateDto"];
-          "application/xml": components["schemas"]["SocialPostCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["SocialPostDtoEnvelope"];
-            "application/xml": components["schemas"]["SocialPostDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get social posts
+     * @description Retrieves a list of social posts for the specified social profile.
+     */
+    get: operations["GetSocialPostsAsync"];
+    /**
+     * Create a social post
+     * @description Creates a new social post for the specified social profile.
+     */
+    post: operations["CreateSocialPostAsync"];
   };
   "/api/v2/SocialService/SocialPosts/Count": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Count social posts
+     * @description Returns the count of social posts for the specified social profile.
+     */
+    get: operations["GetSocialPostsCountAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}": {
+    /**
+     * Get social post by ID
+     * @description Retrieves a specific social post by its ID.
+     */
     get: operations["GetSocialPostAsync"];
-    put: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialPostUpdateDto"];
-          "application/xml": components["schemas"]["SocialPostUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update a social post
+     * @description Updates an existing social post by its ID.
+     */
+    put: operations["UpdateSocialPostAsync"];
+    /**
+     * Delete a social post
+     * @description Deletes a social post by its ID.
+     */
+    delete: operations["DeleteSocialPostAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SocialPostAttachmentDtoListEnvelope"];
-            "application/xml": components["schemas"]["SocialPostAttachmentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialPostAttachmentCreateDto"];
-          "application/xml": components["schemas"]["SocialPostAttachmentCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["SocialPostAttachmentDtoEnvelope"];
-            "application/xml": components["schemas"]["SocialPostAttachmentDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get social post attachments
+     * @description Retrieves a list of attachments for a specific social post.
+     */
+    get: operations["GetSocialPostAttachmentsAsync"];
+    /**
+     * Create a social post attachment
+     * @description Creates a new attachment for a specific social post.
+     */
+    post: operations["CreateSocialPostAttachmentAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/Count": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Count social post attachments
+     * @description Returns the count of attachments for a specific social post.
+     */
+    get: operations["GetSocialPostAttachmentsCountAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/{attachmentId}": {
+    /**
+     * Get social post attachment by ID
+     * @description Retrieves a specific attachment from a social post by its ID.
+     */
     get: operations["GetSocialPostAttachmentAsync"];
-    put: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-          attachmentId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialPostAttachmentUpdateDto"];
-          "application/xml": components["schemas"]["SocialPostAttachmentUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-          attachmentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update a social post attachment
+     * @description Updates an existing attachment on a specific social post.
+     */
+    put: operations["UpdateSocialPostAttachmentAsync"];
+    /**
+     * Delete a social post attachment
+     * @description Deletes an attachment from a specific social post.
+     */
+    delete: operations["DeleteSocialPostAttachmentAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SocialReactionDtoListEnvelope"];
-            "application/xml": components["schemas"]["SocialReactionDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialReactionCreateDto"];
-          "application/xml": components["schemas"]["SocialReactionCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["SocialReactionDtoEnvelope"];
-            "application/xml": components["schemas"]["SocialReactionDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get social post reactions
+     * @description Retrieves a list of reactions for a specific social post.
+     */
+    get: operations["GetSocialPostReactionsAsync"];
+    /**
+     * Create a social post reaction
+     * @description Creates a new reaction on a specific social post.
+     */
+    post: operations["CreateSocialPostReactionAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions/Count": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Count social post reactions
+     * @description Returns the count of reactions for a specific social post.
+     */
+    get: operations["GetSocialPostReactionsCountAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions/{reactionId}": {
+    /**
+     * Get social post reaction by ID
+     * @description Retrieves a specific reaction from a social post by its ID.
+     */
     get: operations["GetSocialPostReactionAsync"];
-    put: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-          reactionId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialReactionUpdateDto"];
-          "application/xml": components["schemas"]["SocialReactionUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-          reactionId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update a social post reaction
+     * @description Updates an existing reaction on a specific social post.
+     */
+    put: operations["UpdateSocialPostReactionAsync"];
+    /**
+     * Delete a social post reaction
+     * @description Deletes a reaction from a specific social post.
+     */
+    delete: operations["DeleteSocialPostReactionAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["SocialPostCommentDtoListEnvelope"];
-            "application/xml": components["schemas"]["SocialPostCommentDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialPostCommentCreateDto"];
-          "application/xml": components["schemas"]["SocialPostCommentCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get social post comments
+     * @description Retrieves a list of comments for a specific social post.
+     */
+    get: operations["GetSocialPostCommentsAsync"];
+    /**
+     * Create a social post comment
+     * @description Creates a new comment on a specific social post.
+     */
+    post: operations["CreateSocialPostCommentAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/Count": {
-    get: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Count social post comments
+     * @description Returns the count of comments for a specific social post.
+     */
+    get: operations["GetSocialPostCommentsCountAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}": {
+    /**
+     * Get social post comment by ID
+     * @description Retrieves a specific comment from a social post by its ID.
+     */
     get: operations["GetSocialPostCommentAsync"];
-    put: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-          commentId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["SocialPostCommentUpdateDto"];
-          "application/xml": components["schemas"]["SocialPostCommentUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          socialProfileId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          socialPostId: string;
-          commentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update a social post comment
+     * @description Updates an existing comment on a specific social post.
+     */
+    put: operations["UpdateSocialPostCommentAsync"];
+    /**
+     * Delete a social post comment
+     * @description Deletes a comment from a specific social post.
+     */
+    delete: operations["DeleteSocialPostCommentAsync"];
   };
   "/api/v2/SocialService/SocialProfiles": {
     /**
@@ -1170,17 +504,17 @@ export interface paths {
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers/Profiles": {
     /**
-     * Get Followers
-     * @description Get a list of followers for a social profile.
+     * Get Follower Profiles
+     * @description Get a list of follower profiles for a social profile.
      */
-    get: operations["GetFollowersAsync"];
+    get: operations["GetFollowerProfilesAsync"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Followers/Profiles/Count": {
     /**
-     * Count Followers
-     * @description Count followers for a social profile.
+     * Count Follower Profiles
+     * @description Count follower profiles for a social profile.
      */
-    get: operations["CountFollowersAsync"];
+    get: operations["CountFollowerProfilesAsync"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows": {
     /**
@@ -1198,17 +532,17 @@ export interface paths {
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/Profiles": {
     /**
-     * Get Follows
-     * @description Get a list of follows for a social profile.
+     * Get Followed Profiles
+     * @description Get a list of followed profiles for a social profile.
      */
-    get: operations["GetFollowsAsync"];
+    get: operations["GetFollowedProfilesAsync"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/Profiles/Count": {
     /**
-     * Count Follows
-     * @description Count follows for a social profile.
+     * Count Followed Profiles
+     * @description Count followed profiles for a social profile.
      */
-    get: operations["CountFollowsAsync"];
+    get: operations["CountFollowedProfilesAsync"];
   };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Follows/{followedSocialProfileId}": {
     /**
@@ -1297,6 +631,13 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     BooleanEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1356,8 +697,8 @@ export interface components {
     FollowRecordDto: {
       id?: string | null;
       type?: string | null;
-      followerID?: string | null;
-      followedID?: string | null;
+      followerId?: string | null;
+      followedId?: string | null;
       alerts?: boolean;
     };
     FollowRecordDtoListEnvelope: {
@@ -1369,6 +710,30 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["FollowRecordDto"][] | null;
     };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
     Int32Envelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1378,6 +743,12 @@ export interface components {
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
+    };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
     };
     NotificationDto: {
       id?: string | null;
@@ -1442,6 +813,21 @@ export interface components {
     PrivateMessageUpdateDto: {
       title?: string | null;
       message?: string | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
     };
     SocialFeedDto: {
       id?: string | null;
@@ -1516,6 +902,46 @@ export interface components {
       title?: string | null;
       message?: string | null;
     };
+    SocialGroupCreateDto: {
+      name?: string | null;
+      title?: string | null;
+      avatarURL?: string | null;
+      socialProfileID?: string | null;
+    };
+    SocialGroupDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      title?: string | null;
+      avatarURL?: string | null;
+      businessID?: string | null;
+      businessProfileRecordID?: string | null;
+      socialProfileID?: string | null;
+    };
+    SocialGroupDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SocialGroupDto"];
+    };
+    SocialGroupDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SocialGroupDto"][] | null;
+    };
+    SocialGroupUpdateDto: {
+      name?: string | null;
+      title?: string | null;
+      avatarURL?: string | null;
+    };
     SocialPostAttachmentCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1531,8 +957,6 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadId?: string | null;
       filePath?: string | null;
-      /** Format: binary */
-      file?: string | null;
       socialPostId?: string | null;
     };
     SocialPostAttachmentDto: {
@@ -1592,8 +1016,6 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadID?: string | null;
       filePath?: string | null;
-      /** Format: binary */
-      file?: string | null;
     };
     SocialPostCommentCreateDto: {
       /** Format: uuid */
@@ -1709,11 +1131,8 @@ export interface components {
       unreadNotificationsCount?: number | null;
       /** Format: int32 */
       unreadMessagesCount?: number | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      type?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      type?: "User" | "Tenant" | "Contact" | null;
       socialFeedId?: string | null;
       twitterUrl?: string | null;
       facebookURL?: string | null;
@@ -1748,11 +1167,8 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      reaction?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+      /** @enum {string} */
+      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
       reactionValue?: string | null;
       socialProfileId?: string | null;
     };
@@ -1760,11 +1176,8 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      reaction?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+      /** @enum {string} */
+      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
       reactionValue?: string | null;
       socialProfileId?: string | null;
       socialProfileName?: string | null;
@@ -1792,12 +1205,24 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      reaction?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+      /** @enum {string} */
+      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
       reactionValue?: string | null;
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
     };
   };
   responses: never;
@@ -1813,6 +1238,271 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Get social feeds
+   * @description Retrieves a list of social feeds for the specified social profile.
+   */
+  GetFeedNotifications: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialFeedDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialFeedDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count social feeds
+   * @description Returns the count of social feeds for the specified social profile.
+   */
+  GetNotificationsCountAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social feed by ID
+   * @description Retrieves a specific social feed by its ID.
+   */
+  GetNotificationAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialFeedId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialFeedDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialFeedDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social feed posts
+   * @description Retrieves a list of posts for a specific social feed.
+   */
+  GetFeedPostsAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialFeedId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialFeedPostDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialFeedPostDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a social feed post
+   * @description Creates a new post in a specific social feed.
+   */
+  CreateFeedPostAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialFeedId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialFeedPostCreateDto"];
+        "application/xml": components["schemas"]["SocialFeedPostCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["SocialFeedPostDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialFeedPostDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count social feed posts
+   * @description Returns the count of posts for a specific social feed.
+   */
+  GetFeedPostsCountAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialFeedId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social feed post by ID
+   * @description Retrieves a specific post from a social feed by its ID.
+   */
   GetFeedPostAsync: {
     parameters: {
       query: {
@@ -1851,6 +1541,469 @@ export interface operations {
       };
     };
   };
+  /**
+   * Update a social feed post
+   * @description Updates an existing post in a specific social feed.
+   */
+  UpdateFeedPostAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialFeedId: string;
+        feedPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialFeedPostUpdateDto"];
+        "application/xml": components["schemas"]["SocialFeedPostUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialFeedPostDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialFeedPostDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a social feed post
+   * @description Deletes a post from a specific social feed.
+   */
+  DeleteFeedPostAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialFeedId: string;
+        feedPostId: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social groups
+   * @description Retrieves all social groups for the specified tenant.
+   */
+  GetSocialGroupsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialGroupDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialGroupDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a social group
+   * @description Creates a new social group for the specified tenant.
+   */
+  CreateSocialGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialGroupCreateDto"];
+        "application/xml": components["schemas"]["SocialGroupCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count social groups
+   * @description Counts all social groups for the specified tenant.
+   */
+  CountSocialGroupsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social group by ID
+   * @description Retrieves a specific social group by its ID.
+   */
+  GetSocialGroupByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialGroupId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialGroupDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialGroupDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a social group
+   * @description Updates an existing social group for the specified tenant.
+   */
+  UpdateSocialGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialGroupId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialGroupUpdateDto"];
+        "application/xml": components["schemas"]["SocialGroupUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a social group
+   * @description Deletes a social group for the specified tenant.
+   */
+  DeleteSocialGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialGroupId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social posts
+   * @description Retrieves a list of social posts for the specified social profile.
+   */
+  GetSocialPostsAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialPostDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialPostDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a social post
+   * @description Creates a new social post for the specified social profile.
+   */
+  CreateSocialPostAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostCreateDto"];
+        "application/xml": components["schemas"]["SocialPostCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["SocialPostDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialPostDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count social posts
+   * @description Returns the count of social posts for the specified social profile.
+   */
+  GetSocialPostsCountAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social post by ID
+   * @description Retrieves a specific social post by its ID.
+   */
   GetSocialPostAsync: {
     parameters: {
       query: {
@@ -1888,6 +2041,225 @@ export interface operations {
       };
     };
   };
+  /**
+   * Update a social post
+   * @description Updates an existing social post by its ID.
+   */
+  UpdateSocialPostAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostUpdateDto"];
+        "application/xml": components["schemas"]["SocialPostUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a social post
+   * @description Deletes a social post by its ID.
+   */
+  DeleteSocialPostAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social post attachments
+   * @description Retrieves a list of attachments for a specific social post.
+   */
+  GetSocialPostAttachmentsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialPostAttachmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialPostAttachmentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a social post attachment
+   * @description Creates a new attachment for a specific social post.
+   */
+  CreateSocialPostAttachmentAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostAttachmentCreateDto"];
+        "application/xml": components["schemas"]["SocialPostAttachmentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["SocialPostAttachmentDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialPostAttachmentDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count social post attachments
+   * @description Returns the count of attachments for a specific social post.
+   */
+  GetSocialPostAttachmentsCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social post attachment by ID
+   * @description Retrieves a specific attachment from a social post by its ID.
+   */
   GetSocialPostAttachmentAsync: {
     parameters: {
       query?: {
@@ -1925,6 +2297,229 @@ export interface operations {
       };
     };
   };
+  /**
+   * Update a social post attachment
+   * @description Updates an existing attachment on a specific social post.
+   */
+  UpdateSocialPostAttachmentAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        attachmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostAttachmentUpdateDto"];
+        "application/xml": components["schemas"]["SocialPostAttachmentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a social post attachment
+   * @description Deletes an attachment from a specific social post.
+   */
+  DeleteSocialPostAttachmentAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        attachmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social post reactions
+   * @description Retrieves a list of reactions for a specific social post.
+   */
+  GetSocialPostReactionsAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialReactionDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialReactionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a social post reaction
+   * @description Creates a new reaction on a specific social post.
+   */
+  CreateSocialPostReactionAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialReactionCreateDto"];
+        "application/xml": components["schemas"]["SocialReactionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["SocialReactionDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialReactionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count social post reactions
+   * @description Returns the count of reactions for a specific social post.
+   */
+  GetSocialPostReactionsCountAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social post reaction by ID
+   * @description Retrieves a specific reaction from a social post by its ID.
+   */
   GetSocialPostReactionAsync: {
     parameters: {
       query?: {
@@ -1962,6 +2557,229 @@ export interface operations {
       };
     };
   };
+  /**
+   * Update a social post reaction
+   * @description Updates an existing reaction on a specific social post.
+   */
+  UpdateSocialPostReactionAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        reactionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialReactionUpdateDto"];
+        "application/xml": components["schemas"]["SocialReactionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a social post reaction
+   * @description Deletes a reaction from a specific social post.
+   */
+  DeleteSocialPostReactionAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        reactionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social post comments
+   * @description Retrieves a list of comments for a specific social post.
+   */
+  GetSocialPostCommentsAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialPostCommentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialPostCommentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a social post comment
+   * @description Creates a new comment on a specific social post.
+   */
+  CreateSocialPostCommentAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostCommentCreateDto"];
+        "application/xml": components["schemas"]["SocialPostCommentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count social post comments
+   * @description Returns the count of comments for a specific social post.
+   */
+  GetSocialPostCommentsCountAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social post comment by ID
+   * @description Retrieves a specific comment from a social post by its ID.
+   */
   GetSocialPostCommentAsync: {
     parameters: {
       query: {
@@ -1982,6 +2800,96 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["SocialPostCommentDtoEnvelope"];
           "application/xml": components["schemas"]["SocialPostCommentDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a social post comment
+   * @description Updates an existing comment on a specific social post.
+   */
+  UpdateSocialPostCommentAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        commentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostCommentUpdateDto"];
+        "application/xml": components["schemas"]["SocialPostCommentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a social post comment
+   * @description Deletes a comment from a specific social post.
+   */
+  DeleteSocialPostCommentAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        commentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -2134,8 +3042,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["SocialProfileDtoListEnvelope"];
-          "application/xml": components["schemas"]["SocialProfileDtoListEnvelope"];
+          "application/json": components["schemas"]["FollowRecordDtoListEnvelope"];
+          "application/xml": components["schemas"]["FollowRecordDtoListEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -2195,10 +3103,10 @@ export interface operations {
     };
   };
   /**
-   * Get Follows
-   * @description Get a list of follows for a social profile.
+   * Get Follower Profiles
+   * @description Get a list of follower profiles for a social profile.
    */
-  GetFollowsAsync: {
+  GetFollowerProfilesAsync: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2235,10 +3143,170 @@ export interface operations {
     };
   };
   /**
+   * Count Follower Profiles
+   * @description Count follower profiles for a social profile.
+   */
+  CountFollowerProfilesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Follows
+   * @description Get a list of follows for a social profile.
+   */
+  GetFollowsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["FollowRecordDtoListEnvelope"];
+          "application/xml": components["schemas"]["FollowRecordDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Count Follows
    * @description Count follows for a social profile.
    */
   CountFollowsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Followed Profiles
+   * @description Get a list of followed profiles for a social profile.
+   */
+  GetFollowedProfilesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialProfileDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialProfileDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count Followed Profiles
+   * @description Count followed profiles for a social profile.
+   */
+  CountFollowedProfilesAsync: {
     parameters: {
       query?: {
         "api-version"?: string;

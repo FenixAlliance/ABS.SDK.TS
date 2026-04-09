@@ -81,12 +81,12 @@ export interface paths {
      * Get all cart lines
      * @description Get all cart lines
      */
-    get: operations["GetItemsInCartAsync"];
+    get: operations["GetCartItems"];
     /**
      * Clear all items from a cart
      * @description Clear all items from a cart
      */
-    delete: operations["ClearCartAsync"];
+    delete: operations["ClearCartRecords"];
   };
   "/api/v2/CartService/Carts/{cartId}/Items/{itemId}": {
     /**
@@ -124,7 +124,7 @@ export interface paths {
      * Decrease an Item in a cart
      * @description Decrease an Item in a cart
      */
-    put: operations["RemoveItemFromCartAsync"];
+    put: operations["DecreaseCartItemQuantity"];
   };
   "/api/v2/CartService/Carts/{cartId}/Lines": {
     /**
@@ -169,7 +169,7 @@ export interface paths {
      * Get all wishlists in a cart
      * @description Get all wishlists in a cart
      */
-    get: operations["GetWishListAsync"];
+    get: operations["GetCartWishList"];
     /**
      * Create a new wish list
      * @description Create a new wish list
@@ -193,14 +193,14 @@ export interface paths {
      * Assesses if a WishList exists
      * @description Assesses if a WishList exists but does not return the content
      */
-    head: operations["WishListExistsHeadAsync"];
+    head: operations["CartWishListExistsHead"];
   };
   "/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}": {
     /**
      * Get a wish list by ID
      * @description Get a wish list by ID
      */
-    get: operations["GetCartWishListDetailsAsync"];
+    get: operations["GetCartWishListDetails"];
     /**
      * Update a wish list
      * @description Update a wish list
@@ -210,14 +210,14 @@ export interface paths {
      * Delete a wish list
      * @description Delete a wish list
      */
-    delete: operations["DeleteWishList"];
+    delete: operations["DeleteCartWishList"];
   };
   "/api/v2/CartService/Carts/{cartId}/WishLists/{wishListId}/Records": {
     /**
      * Get all records in a wish list
      * @description Get all records in a wish list
      */
-    get: operations["GetCartWishListItemsAsync"];
+    get: operations["GetCartWishListItems"];
     /**
      * Add a record to a wish list
      * @description Add a record to a wish list
@@ -234,26 +234,26 @@ export interface paths {
      * Remove a record from a wish list
      * @description Remove a record from a wish list
      */
-    delete: operations["DeleteWishListRecord"];
+    delete: operations["DeleteCartWishListRecord"];
   };
   "/api/v2/CartService/Carts/{cartId}/Compare": {
     /**
      * Get all items in the compare table
      * @description Get all items in the compare table
      */
-    get: operations["GetItemToCompareRecords"];
+    get: operations["GetCartCompareRecords"];
   };
   "/api/v2/CartService/Carts/{cartId}/Compare/{itemId}": {
     /**
      * Get an item from the compare table
      * @description Get an item from the compare table
      */
-    get: operations["GetItemToCompareRecord"];
+    get: operations["GetCartCompareRecord"];
     /**
      * Add an item to the compare table
      * @description Add an item to the compare table
      */
-    post: operations["AddItemToCompareTableAsync"];
+    post: operations["AddItemToCartCompareTable"];
     /**
      * Remove an item from the compare table
      * @description Remove an item from the compare table
@@ -268,814 +268,132 @@ export interface paths {
     get: operations["IsItemInCompareTableAsync"];
   };
   "/api/v2/CartService/Compare/{cartId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          cartId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ItemToCompareCartRecordDtoListEnvelope"];
-            "application/xml": components["schemas"]["ItemToCompareCartRecordDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get items to compare in a cart
+     * @description Retrieves all items added to the compare table for the specified cart.
+     */
+    get: operations["GetItemToCompareRecords"];
   };
   "/api/v2/CartService/Compare/{recordId}/Details": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          recordId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ItemToCompareCartRecordDtoEnvelope"];
-            "application/xml": components["schemas"]["ItemToCompareCartRecordDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get compare record details
+     * @description Retrieves the details of a specific item-to-compare cart record.
+     */
+    get: operations["GetItemToCompareRecord"];
   };
   "/api/v2/CartService/Compare": {
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["AddProductToCompareRequest"];
-          "application/xml": components["schemas"]["AddProductToCompareRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ItemCartRecordDto"];
-            "application/xml": components["schemas"]["ItemCartRecordDto"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Add an item to the compare table
+     * @description Adds a product to the compare table for the specified cart with tracking.
+     */
+    post: operations["AddItemToCompareTableAsync"];
   };
   "/api/v2/CartService/Compare/{recordId}": {
-    delete: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
+    /**
+     * Remove an item from the compare table
+     * @description Removes a specific record from the compare table by its record ID.
+     */
+    delete: operations["RemoveItemFromCompareTable"];
+  };
+  "/version": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
         };
-        path: {
-          recordId: string;
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
-          content: {
-            "application/json": components["schemas"]["ItemToCompareCartRecordDto"];
-            "application/xml": components["schemas"]["ItemToCompareCartRecordDto"];
-          };
+          content: never;
         };
-        /** @description Not Found */
-        404: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
       };
     };
   };
-  "/api/v2/CartService/Records/AddItem": {
+  "/login": {
     post: {
       parameters: {
         query?: {
-          cartId?: string;
-          itemId?: string;
-          quantity?: number;
-          "api-version"?: string;
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
       };
     };
   };
-  "/api/v2/CartService/Records/{cartID}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          cartId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ItemCartRecordDtoListEnvelope"];
-            "application/xml": components["schemas"]["ItemCartRecordDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/Records": {
+  "/refresh": {
     post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["ItemCartRecordCreateDto"];
-          "application/xml": components["schemas"]["ItemCartRecordCreateDto"];
+          "application/json": components["schemas"]["RefreshRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          cartId?: string;
-          productId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
       };
     };
   };
-  "/api/v2/CartService/Records/IsInCart": {
-    get: {
-      parameters: {
-        query: {
-          itemID: string;
-          cartID: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BooleanEnvelope"];
-            "application/xml": components["schemas"]["BooleanEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-      };
-    };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
   };
-  "/api/v2/CartService/Records/ClearCart": {
+  "/resendConfirmationEmail": {
     post: {
-      parameters: {
-        query: {
-          cartID: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/Records/{recordId}/Details": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          recordId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ItemCartRecordDtoEnvelope"];
-            "application/xml": components["schemas"]["ItemCartRecordDtoEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/Records/{recordId}": {
-    put: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          recordId: string;
-        };
-      };
-      requestBody?: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["ItemCartRecordUpdateDto"];
-          "application/xml": components["schemas"]["ItemCartRecordUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          recordId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/Records/{recordId}/Increase": {
-    put: {
-      parameters: {
-        query?: {
-          quantity?: number;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          recordId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/Records/{recordId}/Decrease": {
-    put: {
-      parameters: {
-        query?: {
-          quantity?: number;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          recordId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists/Contains": {
-    get: {
-      parameters: {
-        query?: {
-          cartId?: string;
-          productId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BooleanEnvelope"];
-            "application/xml": components["schemas"]["BooleanEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists/Exists": {
-    get: {
-      parameters: {
-        query?: {
-          wishListId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BooleanEnvelope"];
-            "application/xml": components["schemas"]["BooleanEnvelope"];
-          };
-        };
-      };
-    };
-    head: {
-      parameters: {
-        query?: {
-          wishListId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists": {
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["NewWishListRequest"];
-          "application/xml": components["schemas"]["NewWishListRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists/{wishListId}": {
-    put: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          wishListId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["WishListUpdateDto"];
-          "application/xml": components["schemas"]["WishListUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          wishListId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists/{cartId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          cartId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WishListDto"][];
-            "application/xml": components["schemas"]["WishListDto"][];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists/{wishListId}/Records": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          wishListId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WishListItemRecordDto"][];
-            "application/xml": components["schemas"]["WishListItemRecordDto"][];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists/{wishListId}/Details": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          wishListId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["WishListDto"];
-            "application/xml": components["schemas"]["WishListDto"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists/Records": {
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["ProductToWishListRequest"];
-          "application/xml": components["schemas"]["ProductToWishListRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/v2/CartService/WishLists/Records/{recordId}": {
-    delete: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          recordId: string;
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
         };
       };
       responses: {
@@ -1086,16 +404,285 @@ export interface paths {
       };
     };
   };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/api/v2/CartService/Records/AddItem": {
+    /**
+     * Add an item to a cart
+     * @description Adds an item with the specified quantity to the given cart.
+     */
+    post: operations["AddItemToCart"];
+  };
+  "/api/v2/CartService/Records/{cartId}": {
+    /**
+     * Get all items in a cart
+     * @description Retrieves all item cart records for the specified cart.
+     */
+    get: operations["GetItemsInCartAsync"];
+  };
+  "/api/v2/CartService/Records": {
+    /**
+     * Add a product to a cart with tracking
+     * @description Adds a product to the cart using a request body with cart ID, product ID, and quantity.
+     */
+    post: operations["AddProductToCartAsync"];
+    /**
+     * Remove a product from a cart
+     * @description Removes a product from the cart using cart ID and product ID query parameters.
+     */
+    delete: operations["RemoveProductFromCartByParams"];
+  };
+  "/api/v2/CartService/Records/IsInCart": {
+    /**
+     * Check if an item is in a cart
+     * @description Returns a boolean indicating whether the specified item is already in the given cart.
+     */
+    get: operations["IsItemAlreadyInCart"];
+  };
+  "/api/v2/CartService/Records/ClearCart": {
+    /**
+     * Clear all items from a cart
+     * @description Removes all item records from the specified cart.
+     */
+    post: operations["ClearCartAsync"];
+  };
+  "/api/v2/CartService/Records/{recordId}/Details": {
+    /**
+     * Get a cart record by ID
+     * @description Retrieves the details of a specific item cart record.
+     */
+    get: operations["GetItemCartRecord"];
+  };
+  "/api/v2/CartService/Records/{recordId}": {
+    /**
+     * Update a cart record
+     * @description Updates the specified item cart record with the provided data.
+     */
+    put: operations["UpdateItemCartRecord"];
+    /**
+     * Remove a product from a cart by record ID
+     * @description Removes a specific item record from the cart by its record ID.
+     */
+    delete: operations["RemoveProductFromCartByRecordId"];
+  };
+  "/api/v2/CartService/Records/{recordId}/Increase": {
+    /**
+     * Increase cart record quantity
+     * @description Increases the quantity of the specified item cart record by the given amount.
+     */
+    put: operations["IncreaseItemCartRecord"];
+  };
+  "/api/v2/CartService/Records/{recordId}/Decrease": {
+    /**
+     * Decrease cart record quantity
+     * @description Decreases the quantity of the specified item cart record by the given amount.
+     */
+    put: operations["DecreaseItemCartRecord"];
+  };
+  "/api/v2/CartService/WishLists/Contains": {
+    /**
+     * Check if a product is in any wish list
+     * @description Returns a boolean indicating whether the specified product exists in any wish list of the given cart.
+     */
+    get: operations["IsProductInWishLists"];
+  };
+  "/api/v2/CartService/WishLists/Exists": {
+    /**
+     * Check if a wish list exists
+     * @description Returns a boolean indicating whether the specified wish list exists.
+     */
+    get: operations["WishListExists"];
+    /**
+     * Check if a wish list exists (HEAD)
+     * @description HEAD request to check whether the specified wish list exists without returning a response body.
+     */
+    head: operations["WishListExistsHeadAsync"];
+  };
+  "/api/v2/CartService/WishLists": {
+    /**
+     * Create a wish list
+     * @description Creates a new wish list from the provided request data.
+     */
+    post: operations["CreateWishList"];
+  };
+  "/api/v2/CartService/WishLists/{wishListId}": {
+    /**
+     * Update a wish list
+     * @description Updates the specified wish list with the provided data.
+     */
+    put: operations["UpdateProductToWishList"];
+    /**
+     * Delete a wish list
+     * @description Deletes the specified wish list.
+     */
+    delete: operations["DeleteWishList"];
+  };
+  "/api/v2/CartService/WishLists/{cartId}": {
+    /**
+     * Get wish lists for a cart
+     * @description Retrieves all wish lists associated with the specified cart.
+     */
+    get: operations["GetWishListAsync"];
+  };
+  "/api/v2/CartService/WishLists/{wishListId}/Records": {
+    /**
+     * Get wish list item records
+     * @description Retrieves all item records in the specified wish list.
+     */
+    get: operations["GetCartWishListItemsAsync"];
+  };
+  "/api/v2/CartService/WishLists/{wishListId}/Details": {
+    /**
+     * Get wish list details
+     * @description Retrieves the full details of the specified wish list.
+     */
+    get: operations["GetCartWishListDetailsAsync"];
+  };
+  "/api/v2/CartService/WishLists/Records": {
+    /**
+     * Add a product to a wish list
+     * @description Adds the specified product to the given wish list.
+     */
+    post: operations["AddProductToWishList"];
+  };
+  "/api/v2/CartService/WishLists/Records/{recordId}": {
+    /**
+     * Delete a wish list record
+     * @description Removes a specific item record from a wish list by its record ID.
+     */
+    delete: operations["DeleteWishListRecord"];
+  };
 }
 
 export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     AddProductToCompareRequest: {
       id?: string | null;
-      cartID?: string | null;
-      productID?: string | null;
+      cartId?: string | null;
+      itemId?: string | null;
     };
     BooleanEnvelope: {
       isSuccess?: boolean;
@@ -1158,8 +745,8 @@ export interface components {
       result?: components["schemas"]["CountryDto"];
     };
     CountrySwitchRequest: {
-      cartID?: string | null;
-      countryID?: string | null;
+      cartId?: string | null;
+      countryId?: string | null;
     };
     CurrencyDto: {
       id?: string | null;
@@ -1176,6 +763,11 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["CurrencyDto"];
+    };
+    CurrencyId: {
+      value?: string | null;
+      code?: string | null;
+      country?: string | null;
     };
     CurrencySwitchRequest: {
       cartID?: string | null;
@@ -1196,6 +788,42 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    ForexRates: {
+      success?: boolean;
+      date?: string | null;
+      base?: string | null;
+      /** Format: int64 */
+      timestamp?: number;
+      /** Format: date-time */
+      requestTimestamp?: string;
+      rates?: {
+        [key: string]: number;
+      } | null;
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
     };
     ItemCartRecordCreateDto: {
       /** Format: uuid */
@@ -1250,33 +878,27 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      taxCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      forexRatesSnapshot?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      forexRates?: components["schemas"]["ForexRates"];
       /** Format: double */
       forexRate?: number;
       /** Format: double */
-      totalBaseAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalDiscountsInUsd?: number;
+      /** Format: double */
+      totalSurchargesInUsd?: number;
       /** Format: double */
       totalTaxBaseInUsd?: number;
       /** Format: double */
-      totalDiscountsInUsd?: number;
-      /** Format: double */
       totalTaxesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
+      totalWithheldTaxesInUsd?: number;
       /** Format: double */
       totalShippingCostInUsd?: number;
       /** Format: double */
@@ -1288,9 +910,7 @@ export interface components {
       /** Format: double */
       totalRefundCostInUsd?: number;
       /** Format: double */
-      totalSurchargesInUsd?: number;
-      /** Format: double */
-      totalAmountInUsd?: number;
+      totalInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
@@ -1299,28 +919,6 @@ export interface components {
       customGlobalSurchargesAmount?: number;
       /** Format: double */
       customGlobalDiscountsAmount?: number;
-      /** Format: double */
-      customBaseAmount?: number;
-      /** Format: double */
-      customDetailAmount?: number;
-      /** Format: double */
-      customDiscountsAmount?: number;
-      /** Format: double */
-      customTaxBase?: number;
-      /** Format: double */
-      customSurchargesAmount?: number;
-      /** Format: double */
-      customProfitAmount?: number;
-      /** Format: double */
-      customShippingCostAmount?: number;
-      /** Format: double */
-      customShippingTaxAmount?: number;
-      /** Format: double */
-      customTaxAmount?: number;
-      /** Format: double */
-      customWithholdingTaxAmount?: number;
-      /** Format: double */
-      customTotalAmount?: number;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1330,6 +928,55 @@ export interface components {
       quoteItemRecordId?: string | null;
       businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
+      currency?: components["schemas"]["CurrencyId"];
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      totalDetailAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      totalProfitAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      totalDiscountsAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      totalSurchargesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      totalTaxBaseAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      totalTaxesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      totalShippingCostAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      totalShippingTaxAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      totalWithheldTaxAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      totalAmount?: components["schemas"]["Money"];
       cartId?: string | null;
       itemID?: string | null;
       shippingAddressID?: string | null;
@@ -1396,6 +1043,17 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ItemToCompareCartRecordDto"][] | null;
     };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
+    Money: {
+      /** Format: double */
+      amount?: number;
+      currency?: components["schemas"]["CurrencyId"];
+    };
     NewWishListRequest: {
       title?: string | null;
       description?: string | null;
@@ -1405,12 +1063,42 @@ export interface components {
     };
     ProductToWishListRequest: {
       wishListId?: string | null;
-      productId?: string | null;
+      itemId?: string | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
     };
     WishListDto: {
+      id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      id?: string | null;
       title?: string | null;
       description?: string | null;
       cartId?: string | null;
@@ -1905,7 +1593,7 @@ export interface operations {
    * Get all cart lines
    * @description Get all cart lines
    */
-  GetItemsInCartAsync: {
+  GetCartItems: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -1945,7 +1633,7 @@ export interface operations {
    * Clear all items from a cart
    * @description Clear all items from a cart
    */
-  ClearCartAsync: {
+  ClearCartRecords: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2071,8 +1759,8 @@ export interface operations {
     };
   };
   /**
-   * Decrease an Item in a cart
-   * @description Decrease an Item in a cart
+   * Remove an Item from a cart
+   * @description Remove an Item from a cart
    */
   RemoveItemFromCartAsync: {
     parameters: {
@@ -2085,12 +1773,6 @@ export interface operations {
       path: {
         cartId: string;
         itemId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["ItemCartRecordUpdateDto"];
-        "application/xml": components["schemas"]["ItemCartRecordUpdateDto"];
       };
     };
     responses: {
@@ -2163,6 +1845,53 @@ export interface operations {
    * @description Increase an Item in a cart
    */
   IncreaseItemCartRecordQuantityAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cartId: string;
+        itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemCartRecordUpdateDto"];
+        "application/xml": components["schemas"]["ItemCartRecordUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Decrease an Item in a cart
+   * @description Decrease an Item in a cart
+   */
+  DecreaseCartItemQuantity: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2462,7 +2191,7 @@ export interface operations {
    * Get all wishlists in a cart
    * @description Get all wishlists in a cart
    */
-  GetWishListAsync: {
+  GetCartWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2630,7 +2359,7 @@ export interface operations {
    * Assesses if a WishList exists
    * @description Assesses if a WishList exists but does not return the content
    */
-  WishListExistsHeadAsync: {
+  CartWishListExistsHead: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2671,7 +2400,7 @@ export interface operations {
    * Get a wish list by ID
    * @description Get a wish list by ID
    */
-  GetCartWishListDetailsAsync: {
+  GetCartWishListDetails: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2759,7 +2488,7 @@ export interface operations {
    * Delete a wish list
    * @description Delete a wish list
    */
-  DeleteWishList: {
+  DeleteCartWishList: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2800,7 +2529,7 @@ export interface operations {
    * Get all records in a wish list
    * @description Get all records in a wish list
    */
-  GetCartWishListItemsAsync: {
+  GetCartWishListItems: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2930,7 +2659,7 @@ export interface operations {
    * Remove a record from a wish list
    * @description Remove a record from a wish list
    */
-  DeleteWishListRecord: {
+  DeleteCartWishListRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2972,7 +2701,7 @@ export interface operations {
    * Get all items in the compare table
    * @description Get all items in the compare table
    */
-  GetItemToCompareRecords: {
+  GetCartCompareRecords: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3012,7 +2741,7 @@ export interface operations {
    * Get an item from the compare table
    * @description Get an item from the compare table
    */
-  GetItemToCompareRecord: {
+  GetCartCompareRecord: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3053,7 +2782,7 @@ export interface operations {
    * Add an item to the compare table
    * @description Add an item to the compare table
    */
-  AddItemToCompareTableAsync: {
+  AddItemToCartCompareTable: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -3169,6 +2898,900 @@ export interface operations {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
+      };
+    };
+  };
+  /**
+   * Get items to compare in a cart
+   * @description Retrieves all items added to the compare table for the specified cart.
+   */
+  GetItemToCompareRecords: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cartId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemToCompareCartRecordDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemToCompareCartRecordDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get compare record details
+   * @description Retrieves the details of a specific item-to-compare cart record.
+   */
+  GetItemToCompareRecord: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemToCompareCartRecordDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemToCompareCartRecordDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add an item to the compare table
+   * @description Adds a product to the compare table for the specified cart with tracking.
+   */
+  AddItemToCompareTableAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AddProductToCompareRequest"];
+        "application/xml": components["schemas"]["AddProductToCompareRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemCartRecordDto"];
+          "application/xml": components["schemas"]["ItemCartRecordDto"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove an item from the compare table
+   * @description Removes a specific record from the compare table by its record ID.
+   */
+  RemoveItemFromCompareTable: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemToCompareCartRecordDto"];
+          "application/xml": components["schemas"]["ItemToCompareCartRecordDto"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Add an item to a cart
+   * @description Adds an item with the specified quantity to the given cart.
+   */
+  AddItemToCart: {
+    parameters: {
+      query?: {
+        cartId?: string;
+        itemId?: string;
+        quantity?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all items in a cart
+   * @description Retrieves all item cart records for the specified cart.
+   */
+  GetItemsInCartAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cartId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemCartRecordDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemCartRecordDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a product to a cart with tracking
+   * @description Adds a product to the cart using a request body with cart ID, product ID, and quantity.
+   */
+  AddProductToCartAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemCartRecordCreateDto"];
+        "application/xml": components["schemas"]["ItemCartRecordCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a product from a cart
+   * @description Removes a product from the cart using cart ID and product ID query parameters.
+   */
+  RemoveProductFromCartByParams: {
+    parameters: {
+      query?: {
+        cartId?: string;
+        productId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Check if an item is in a cart
+   * @description Returns a boolean indicating whether the specified item is already in the given cart.
+   */
+  IsItemAlreadyInCart: {
+    parameters: {
+      query: {
+        itemID: string;
+        cartID: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BooleanEnvelope"];
+          "application/xml": components["schemas"]["BooleanEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Clear all items from a cart
+   * @description Removes all item records from the specified cart.
+   */
+  ClearCartAsync: {
+    parameters: {
+      query: {
+        cartID: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a cart record by ID
+   * @description Retrieves the details of a specific item cart record.
+   */
+  GetItemCartRecord: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ItemCartRecordDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemCartRecordDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a cart record
+   * @description Updates the specified item cart record with the provided data.
+   */
+  UpdateItemCartRecord: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemCartRecordUpdateDto"];
+        "application/xml": components["schemas"]["ItemCartRecordUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a product from a cart by record ID
+   * @description Removes a specific item record from the cart by its record ID.
+   */
+  RemoveProductFromCartByRecordId: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Increase cart record quantity
+   * @description Increases the quantity of the specified item cart record by the given amount.
+   */
+  IncreaseItemCartRecord: {
+    parameters: {
+      query?: {
+        quantity?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Decrease cart record quantity
+   * @description Decreases the quantity of the specified item cart record by the given amount.
+   */
+  DecreaseItemCartRecord: {
+    parameters: {
+      query?: {
+        quantity?: number;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Check if a product is in any wish list
+   * @description Returns a boolean indicating whether the specified product exists in any wish list of the given cart.
+   */
+  IsProductInWishLists: {
+    parameters: {
+      query?: {
+        cartId?: string;
+        productId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BooleanEnvelope"];
+          "application/xml": components["schemas"]["BooleanEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Check if a wish list exists
+   * @description Returns a boolean indicating whether the specified wish list exists.
+   */
+  WishListExists: {
+    parameters: {
+      query?: {
+        wishListId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BooleanEnvelope"];
+          "application/xml": components["schemas"]["BooleanEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Check if a wish list exists (HEAD)
+   * @description HEAD request to check whether the specified wish list exists without returning a response body.
+   */
+  WishListExistsHeadAsync: {
+    parameters: {
+      query?: {
+        wishListId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a wish list
+   * @description Creates a new wish list from the provided request data.
+   */
+  CreateWishList: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NewWishListRequest"];
+        "application/xml": components["schemas"]["NewWishListRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a wish list
+   * @description Updates the specified wish list with the provided data.
+   */
+  UpdateProductToWishList: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        wishListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WishListUpdateDto"];
+        "application/xml": components["schemas"]["WishListUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a wish list
+   * @description Deletes the specified wish list.
+   */
+  DeleteWishList: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        wishListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get wish lists for a cart
+   * @description Retrieves all wish lists associated with the specified cart.
+   */
+  GetWishListAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cartId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WishListDto"][];
+          "application/xml": components["schemas"]["WishListDto"][];
+        };
+      };
+    };
+  };
+  /**
+   * Get wish list item records
+   * @description Retrieves all item records in the specified wish list.
+   */
+  GetCartWishListItemsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        wishListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WishListItemRecordDto"][];
+          "application/xml": components["schemas"]["WishListItemRecordDto"][];
+        };
+      };
+    };
+  };
+  /**
+   * Get wish list details
+   * @description Retrieves the full details of the specified wish list.
+   */
+  GetCartWishListDetailsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        wishListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WishListDto"];
+          "application/xml": components["schemas"]["WishListDto"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a product to a wish list
+   * @description Adds the specified product to the given wish list.
+   */
+  AddProductToWishList: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProductToWishListRequest"];
+        "application/xml": components["schemas"]["ProductToWishListRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a wish list record
+   * @description Removes a specific item record from a wish list by its record ID.
+   */
+  DeleteWishListRecord: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
     };
   };

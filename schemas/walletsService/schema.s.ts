@@ -5,6 +5,231 @@
 
 
 export interface paths {
+  "/version": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
+    post: {
+      parameters: {
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
   "/api/v2/WalletsService/Wallets/{walletId}": {
     /**
      * Get Wallet Details
@@ -159,17 +384,25 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
       publicName?: string | null;
       firstName?: string | null;
       lastName?: string | null;
@@ -180,22 +413,31 @@ export interface components {
       timezoneId?: string | null;
       languageId?: string | null;
       socialProfileId?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
+      /** Format: uri */
       gitHubUrl?: string | null;
+      /** Format: uri */
       twitchUrl?: string | null;
+      /** Format: uri */
       redditUrl?: string | null;
+      /** Format: uri */
       tikTokUrl?: string | null;
+      /** Format: uri */
       websiteUrl?: string | null;
+      /** Format: uri */
       twitterUrl?: string | null;
+      /** Format: uri */
       facebookUrl?: string | null;
+      /** Format: uri */
       youTubeUrl?: string | null;
+      /** Format: uri */
       linkedInUrl?: string | null;
+      /** Format: uri */
       instagramUrl?: string | null;
       githubUsername?: string | null;
       duns?: string | null;
       taxId?: string | null;
-      /** Format: email */
-      email?: string | null;
       about?: string | null;
       street?: string | null;
       cartId?: string | null;
@@ -226,10 +468,6 @@ export interface components {
       /** Format: date-time */
       birthday?: string | null;
     };
-    Currency: {
-      code?: string | null;
-      country?: string | null;
-    };
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -255,7 +493,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -273,61 +510,71 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       /** Format: int32 */
       orderLinesCount?: number;
       quoteId?: string | null;
@@ -338,21 +585,12 @@ export interface components {
       billingLocationId?: string | null;
       shippingLocationId?: string | null;
       qualifiedIdentifier?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      freightTerms?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      orderStatus?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      freightTerms?: "FOB" | "NoCharge";
+      /** @enum {string} */
+      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -378,7 +616,7 @@ export interface components {
       individual?: components["schemas"]["ContactDto"];
       organization?: components["schemas"]["ContactDto"];
       receiverTenant?: components["schemas"]["TenantDto"];
-      enrollment?: components["schemas"]["TenantEnrolmentDto"];
+      enrollment?: components["schemas"]["TenantEnrollmentDto"];
     };
     ExtendedOrderDtoListEnvelope: {
       isSuccess?: boolean;
@@ -388,6 +626,30 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedOrderDto"][] | null;
+    };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
     };
     Int32Envelope: {
       isSuccess?: boolean;
@@ -408,7 +670,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -426,61 +687,73 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       paid?: boolean;
       /** Format: int64 */
       number?: number;
@@ -495,21 +768,12 @@ export interface components {
       receiverWalletAccountId?: string | null;
       /** Format: date-time */
       paymentDue?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      invoiceType?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      documentType?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      invoiceStatus?: 0 | 1 | 2 | 3 | 4;
+      /** @enum {string} */
+      invoiceType?: "PurchaseInvoice" | "SalesInvoice" | "CreditNote" | "DebitNote";
+      /** @enum {string} */
+      documentType?: "Standard" | "DebitNote" | "CreditNote";
+      /** @enum {string} */
+      invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
     };
     InvoiceDtoListEnvelope: {
       isSuccess?: boolean;
@@ -623,10 +887,11 @@ export interface components {
       isDefaultReturnAddress?: boolean;
       isDefaultSuppingLocation?: boolean;
     };
-    Money: {
-      /** Format: double */
-      amount?: number;
-      currency?: components["schemas"]["Currency"];
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
     };
     OrderDto: {
       id?: string | null;
@@ -637,7 +902,6 @@ export interface components {
       title?: string | null;
       userId?: string | null;
       tenantId?: string | null;
-      currencyId?: string | null;
       description?: string | null;
       priceListId?: string | null;
       enrollmentId?: string | null;
@@ -655,61 +919,71 @@ export interface components {
       stateId?: string | null;
       cityId?: string | null;
       customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       /** Format: double */
       forexRate?: number;
+      currencyId?: string | null;
       /** Format: double */
-      total?: number;
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalTaxes?: number;
-      /** Format: double */
-      totalTaxBase?: number;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
       /** Format: double */
       totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
       /** Format: double */
       totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxesInUsd?: number;
+      total?: number;
+      totalCurrencyId?: string | null;
       /** Format: double */
-      totalAmountInUsd?: number;
+      totalDetailInUsd?: number;
       /** Format: double */
       totalProfitInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
       /** Format: double */
       totalDiscountsInUsd?: number;
       /** Format: double */
       totalSurchargesInUsd?: number;
       /** Format: double */
-      totalDetailAmountInUsd?: number;
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalGlobalDiscountsInUsd?: number;
       /** Format: double */
       totalGlobalSurchargesInUsd?: number;
       /** Format: double */
-      totalWithholdingTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
-      currency?: components["schemas"]["Currency"];
-      totalInUsd?: components["schemas"]["Money"];
-      totalTaxAmountInUsd?: components["schemas"]["Money"];
-      totalTaxBaseAmountInUsd?: components["schemas"]["Money"];
-      totalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmountInUsd?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmountInUsd?: components["schemas"]["Money"];
-      totalAmount?: components["schemas"]["Money"];
-      totalTaxAmount?: components["schemas"]["Money"];
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
+      totalInUsd?: number;
       /** Format: int32 */
       orderLinesCount?: number;
       quoteId?: string | null;
@@ -720,21 +994,12 @@ export interface components {
       billingLocationId?: string | null;
       shippingLocationId?: string | null;
       qualifiedIdentifier?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      costCalculationMethod?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      freightTerms?: 0 | 1;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      orderStatus?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      freightTerms?: "FOB" | "NoCharge";
+      /** @enum {string} */
+      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
       /** Format: date-time */
       requestedDeliveryDate?: string;
       /** Format: double */
@@ -769,8 +1034,6 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** Format: date-time */
-      timeStamp?: string;
       test?: boolean;
       invoiceId?: string | null;
       tenantId?: string | null;
@@ -794,21 +1057,12 @@ export interface components {
       correlationCode?: string | null;
       /** Format: date-time */
       lastUpdated?: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      onBehalfOf?: 0 | 1 | 2 | 3;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      paymentType?: 0 | 1 | 2;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      paymentStatus?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+      /** @enum {string} */
+      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
+      /** @enum {string} */
+      paymentType?: "Paid" | "Received" | "Internal";
+      /** @enum {string} */
+      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
       /** Format: double */
       baseCost?: number;
       signature?: string | null;
@@ -844,7 +1098,7 @@ export interface components {
       accountingEntryId?: string | null;
       paymentGatewayId?: string | null;
       bankAccountId?: string | null;
-      enrolmentId?: string | null;
+      enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
     };
@@ -856,6 +1110,21 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["PaymentDto"][] | null;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
     };
     TenantDto: {
       id?: string | null;
@@ -898,7 +1167,7 @@ export interface components {
       businessLegalName?: string | null;
       twitterUsername?: string | null;
     };
-    TenantEnrolmentDto: {
+    TenantEnrollmentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
@@ -909,6 +1178,21 @@ export interface components {
       isAdmin?: boolean;
       isDisabled?: boolean;
     };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
     UserDto: {
       id?: string | null;
       /** Format: date-time */
@@ -916,6 +1200,7 @@ export interface components {
       fullName?: string | null;
       qualifiedName?: string | null;
       publicName?: string | null;
+      handler?: string | null;
       lastName?: string | null;
       firstName?: string | null;
       coverUrl?: string | null;
@@ -934,11 +1219,8 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      gender?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -957,21 +1239,15 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      availability?: 0 | 1 | 2 | 3 | 4 | null;
+      /** @enum {string|null} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      siteTheme?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      siteTheme?: "System" | "Light" | "Dark" | null;
     };
     WalletDto: {
       id?: string | null;
@@ -1020,6 +1296,21 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
   /**
    * Get Wallet Details
    * @description Get details of a specific wallet by ID.

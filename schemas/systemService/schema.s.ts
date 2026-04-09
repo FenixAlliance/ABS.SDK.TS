@@ -6,31 +6,132 @@
 
 export interface paths {
   "/api/v2/SystemService/Antiforgery/GetAndStoreTokens": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
+    /**
+     * Get and store antiforgery tokens
+     * @description Generates antiforgery tokens and stores them in the current HTTP context.
+     */
+    get: operations["GetAndStoreTokens"];
   };
   "/api/v2/SystemService/Antiforgery/IsRequestValid": {
+    /**
+     * Validate antiforgery request
+     * @description Validates whether the current HTTP request contains a valid antiforgery token.
+     */
+    get: operations["IsRequestValidAsync"];
+  };
+  "/api/v2/SystemService/Emails/SendBasic": {
+    /**
+     * Send a basic transactional email to recipients.
+     * @description This action is only available for global administrators (business_owner role).
+     */
+    post: operations["AdminSendBasicEmail"];
+  };
+  "/api/v2/SystemService/Emails/Preview": {
+    /**
+     * Preview a rendered basic email template.
+     * @description This action is only available for global administrators (business_owner role).
+     */
+    post: operations["AdminPreviewBasicEmailTemplate"];
+  };
+  "/version": {
     get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
+    post: {
       parameters: {
         query?: {
-          "api-version"?: string;
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
         };
       };
       responses: {
@@ -41,1207 +142,191 @@ export interface paths {
       };
     };
   };
-  "/api/Licensing/Licenses/Validate": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["LicenseKey"];
-          "application/xml": components["schemas"]["LicenseKey"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BooleanEnvelope"];
-            "application/xml": components["schemas"]["BooleanEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/Licensing/Licenses/Validate/Errors": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["LicenseKey"];
-          "application/xml": components["schemas"]["LicenseKey"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["LicenseValidationErrorListEnvelope"];
-            "application/xml": components["schemas"]["LicenseValidationErrorListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/Licensing/Licenses/Validate/Attributes": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["LicenseKey"];
-          "application/xml": components["schemas"]["LicenseKey"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["LicenseAttributesListEnvelope"];
-            "application/xml": components["schemas"]["LicenseAttributesListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/Licensing/Licenses/Generate": {
+  "/forgotPassword": {
     post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
         };
       };
-      requestBody?: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
         content: {
-          "application/json": components["schemas"]["LicenseKeyRequest"];
-          "application/xml": components["schemas"]["LicenseKeyRequest"];
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["StringEnvelope"];
-            "application/xml": components["schemas"]["StringEnvelope"];
+            "application/json": components["schemas"]["TwoFactorResponse"];
           };
         };
-        /** @description Unauthorized */
-        401: {
+        /** @description Bad Request */
+        400: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
           };
         };
-        /** @description Forbidden */
-        403: {
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
           content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["InfoResponse"];
           };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
         };
       };
     };
   };
   "/api/v2/SystemService/Licensing/Licenses": {
-    get: {
-      parameters: {
-        query?: {
-          tenantId?: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/xml": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "text/plain": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "application/octet-stream": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "text/json": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-            "text/xml": components["schemas"]["SuiteLicenseDtoListEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of licenses
+     * @description Retrieves a list of suite licenses, optionally filtered by tenant.
+     */
+    get: operations["GetLicensesAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          licenseId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/xml": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "text/plain": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "application/octet-stream": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "text/json": components["schemas"]["SuiteLicenseDtoEnvelope"];
-            "text/xml": components["schemas"]["SuiteLicenseDtoEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a license by ID
+     * @description Retrieves a single suite license by its unique identifier.
+     */
+    get: operations["GetLicenseByIdAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Assignments": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          licenseId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve license assignments
+     * @description Retrieves all license assignments for a given license.
+     */
+    get: operations["GetLicenseAssignmentsAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Attributes": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          licenseId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve license attributes
+     * @description Retrieves all additional attributes for a given license.
+     */
+    get: operations["GetLicenseAttributesAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Features": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          licenseId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve license features
+     * @description Retrieves all features for a given license.
+     */
+    get: operations["GetLicenseFeaturesAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Quota": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          licenseId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-            "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve license record quota
+     * @description Retrieves the record quota for a given license.
+     */
+    get: operations["GetLicenseRecordsQuotaAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/Redeem": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/xml": components["schemas"]["LicenseValidationRequest"];
-          "text/plain": components["schemas"]["LicenseValidationRequest"];
-          "text/xml": components["schemas"]["LicenseValidationRequest"];
-          "application/*+xml": components["schemas"]["LicenseValidationRequest"];
-          "application/json-patch+json": components["schemas"]["LicenseValidationRequest"];
-          "text/json": components["schemas"]["LicenseValidationRequest"];
-          "application/*+json": components["schemas"]["LicenseValidationRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
-            "application/json": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
-            "application/xml": components["schemas"]["BooleanEnvelope"];
-            "text/plain": components["schemas"]["BooleanEnvelope"];
-            "application/octet-stream": components["schemas"]["BooleanEnvelope"];
-            "text/json": components["schemas"]["BooleanEnvelope"];
-            "text/xml": components["schemas"]["BooleanEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Redeem a license
+     * @description Redeems a license for the current tenant user.
+     */
+    post: operations["RedeemLicenseAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/Validate": {
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody: {
-        content: {
-          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/json;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
-          "application/json;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
-          "application/xml": components["schemas"]["LicenseValidationRequest"];
-          "text/plain": components["schemas"]["LicenseValidationRequest"];
-          "text/xml": components["schemas"]["LicenseValidationRequest"];
-          "application/*+xml": components["schemas"]["LicenseValidationRequest"];
-          "application/json-patch+json": components["schemas"]["LicenseValidationRequest"];
-          "text/json": components["schemas"]["LicenseValidationRequest"];
-          "application/*+json": components["schemas"]["LicenseValidationRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/xml": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "text/plain": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "application/octet-stream": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "text/json": components["schemas"]["GeneralValidationFailureListEnvelope"];
-            "text/xml": components["schemas"]["GeneralValidationFailureListEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Validate a license
+     * @description Validates a license key and returns validation failures if any.
+     */
+    post: operations["ValidateLicenseAsync"];
   };
   "/api/v2/SystemService/Migrations": {
-    get: {
-      parameters: {
-        query?: {
-          pending?: boolean;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["StringListEnvelope"];
-            "application/xml": components["schemas"]["StringListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve database migrations
+     * @description Retrieves the list of applied or pending database migrations.
+     */
+    get: operations["Migrations"];
   };
   "/api/v2/SystemService/Migrations/Migrate": {
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["StringListEnvelope"];
-            "application/xml": components["schemas"]["StringListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Apply pending database migrations
+     * @description Applies all pending database migrations and returns the list of migrations that were applied.
+     */
+    post: operations["Migrate"];
   };
   "/api/v2/StudioService/Modules": {
     /** Get all modules available on this suite server instance. */
@@ -1250,6 +335,56 @@ export interface paths {
   "/api/v2/StudioService/Modules/Data": {
     /** Get all modules available to a tenant user. */
     get: operations["GetAvailableModules"];
+  };
+  "/api/v2/SystemService/Options": {
+    /**
+     * Retrieve a list of system options
+     * @description Retrieve a list of system options for a portal
+     */
+    get: operations["GetSystemOptions"];
+    /**
+     * Create a new system option
+     * @description Create a new system option
+     */
+    post: operations["CreateSystemOption"];
+  };
+  "/api/v2/SystemService/Options/Count": {
+    /**
+     * Get the count of system options
+     * @description Get the count of system options for a portal
+     */
+    get: operations["GetSystemOptionsCount"];
+  };
+  "/api/v2/SystemService/Options/{optionId}": {
+    /**
+     * Retrieve a single system option by its ID
+     * @description Retrieve a single system option by its ID
+     */
+    get: operations["GetSystemOptionById"];
+    /**
+     * Update a system option
+     * @description Update a system option
+     */
+    put: operations["UpdateSystemOption"];
+    /**
+     * Delete a system option
+     * @description Delete a system option
+     */
+    delete: operations["DeleteSystemOption"];
+  };
+  "/api/v2/SystemService/Options/Key/{key}": {
+    /**
+     * Retrieve a single system option by its key
+     * @description Retrieve a single system option by its key
+     */
+    get: operations["GetSystemOptionByKey"];
+  };
+  "/api/v2/SystemService/Options/Upsert/{key}": {
+    /**
+     * Create or update a system option by key
+     * @description Create or update a system option by key
+     */
+    put: operations["UpsertSystemOption"];
   };
   "/api/v2/SystemService/Tenants": {
     /**
@@ -1301,303 +436,90 @@ export interface paths {
      */
     delete: operations["DeleteTenant"];
   };
+  "/api/v2/SystemService/Tenants/{tenantId}/Emails/Preview": {
+    /**
+     * Preview the rendered email for a user.
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    post: operations["AdminPreviewTenantEmail"];
+  };
+  "/api/v2/SystemService/Tenants/{tenantId}/Emails/Send": {
+    /**
+     * Send an email to a user.
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    post: operations["AdminSendTenantEmail"];
+  };
   "/api/v2/SystemService/Users": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["UserDtoListEnvelope"];
-            "application/xml": components["schemas"]["UserDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["AccountHolderCreateDto"];
-          "application/xml": components["schemas"]["AccountHolderCreateDto"];
-        };
-      };
-      responses: {
-        /** @description Created */
-        201: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of users
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    get: operations["GetUsersAsync"];
+    /**
+     * Create a new user
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    post: operations["CreateAccountHolderAsync"];
   };
   "/api/v2/SystemService/Users/Count": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of users
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    get: operations["GetUsersCountAsync"];
   };
   "/api/v2/SystemService/Users/Extended": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ExtendedUserDtoListEnvelope"];
-            "application/xml": components["schemas"]["ExtendedUserDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve a list of extended users
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    get: operations["GetExtendedUsersAsync"];
   };
   "/api/v2/SystemService/Users/Extended/Count": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["Int32Envelope"];
-            "application/xml": components["schemas"]["Int32Envelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Get the count of extended users
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    get: operations["GetExtendedUsersCountAsync"];
   };
   "/api/v2/SystemService/Users/{userId}": {
+    /**
+     * Retrieve a user by ID
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
     get: operations["GetUserAsync"];
-    put: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          userId: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["AccountHolderUpdateDto"];
-          "application/xml": components["schemas"]["AccountHolderUpdateDto"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-    delete: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          userId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Update a user
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    put: operations["UpdateAccountHolderAsync"];
+    /**
+     * Delete a user
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    delete: operations["DeleteAccountHolderAsync"];
   };
   "/api/v2/SystemService/Users/{userId}/Extended": {
-    get: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-        path: {
-          userId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ExtendedUserDtoEnvelope"];
-            "application/xml": components["schemas"]["ExtendedUserDtoEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Retrieve an extended user by ID
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    get: operations["GetExtendedAccountHolderAsync"];
+  };
+  "/api/v2/SystemService/Users/{userId}/Emails/Preview": {
+    /**
+     * Preview the rendered email for a user.
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    post: operations["AdminPreviewUserEmailTemplate"];
+  };
+  "/api/v2/SystemService/Users/{userId}/Emails/Send": {
+    /**
+     * Send an email to a user.
+     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     */
+    post: operations["AdminSendUserEmail"];
   };
 }
 
@@ -1605,46 +527,12 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    AccountHolderCreateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      qualifiedName?: string | null;
-      /** Format: date-time */
-      birthday?: string;
-      firstName?: string | null;
-      lastName?: string | null;
-      publicName?: string | null;
-      idProvider?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      gender?: 0 | 1 | 2;
-      email?: string | null;
-      about?: string | null;
-      status?: string | null;
-      jobTitle?: string | null;
-      gitHubUrl?: string | null;
-      websiteUrl?: string | null;
-      twitterUrl?: string | null;
-      facebookUrl?: string | null;
-      youTubeUrl?: string | null;
-      linkedInUrl?: string | null;
-      instagramUrl?: string | null;
-      timezoneId?: string | null;
-      languageId?: string | null;
-      currencyId?: string | null;
-      countryId?: string | null;
-      stateId?: string | null;
-      cityId?: string | null;
-      password?: string | null;
-    };
-    AccountHolderUpdateDto: Record<string, never>;
-    AdditionalAttribute: {
-      key?: string | null;
-      value?: string | null;
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
     };
     BooleanEnvelope: {
       isSuccess?: boolean;
@@ -1673,6 +561,25 @@ export interface components {
       itemCartRecordsCount?: number | null;
       /** Format: int32 */
       itemToCompareRecordsCount?: number | null;
+    };
+    EmailDispatchRequest: {
+      title: string;
+      message: string;
+      /** Format: uri */
+      buttonLink?: string | null;
+      buttonText?: string | null;
+      alertMessage?: string | null;
+      /** @enum {string} */
+      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      culture: string;
+      uiCulture: string;
+      recipients: string[];
+      contactIds?: string[] | null;
+      tenantIds?: string[] | null;
+      userIds?: string[] | null;
+      /** Format: uri */
+      templateUrl?: string | null;
+      emailTemplateId?: string | null;
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -1750,6 +657,7 @@ export interface components {
       fullName?: string | null;
       qualifiedName?: string | null;
       publicName?: string | null;
+      handler?: string | null;
       lastName?: string | null;
       firstName?: string | null;
       coverUrl?: string | null;
@@ -1768,11 +676,8 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      gender?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -1791,21 +696,15 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      availability?: 0 | 1 | 2 | 3 | 4 | null;
+      /** @enum {string|null} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      siteTheme?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      siteTheme?: "System" | "Light" | "Dark" | null;
       cart?: components["schemas"]["CartDto"];
       wallet?: components["schemas"]["WalletDto"];
       socialProfile?: components["schemas"]["SocialProfileDto"];
@@ -1829,18 +728,20 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ExtendedUserDto"][] | null;
     };
-    GeneralValidationFailure: {
-      message?: string | null;
-      howToResolve?: string | null;
+    ForgotPasswordRequest: {
+      email: string | null;
     };
-    GeneralValidationFailureListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["GeneralValidationFailure"][] | null;
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
     };
     ISwaggerContact: {
       name?: string | null;
@@ -1867,6 +768,28 @@ export interface components {
       openApiContact?: components["schemas"]["ISwaggerContact"];
       license?: components["schemas"]["ISwaggerLicense"];
     };
+    IValidationFailure: {
+      message?: string | null;
+      howToResolve?: string | null;
+    };
+    IValidationFailureListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["IValidationFailure"][] | null;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
     Int32Envelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1877,65 +800,14 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
-    LicenseAttributes: Record<string, never>;
-    LicenseAttributesListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["LicenseAttributes"][] | null;
-    };
-    LicenseFeature: {
-      key?: string | null;
-      value?: string | null;
-    };
-    LicenseKey: {
-      key?: string | null;
-    };
-    LicenseKeyRequest: {
-      /** Format: uuid */
-      userId?: string;
-      /** Format: uuid */
-      tenantId?: string | null;
-      /** Format: uuid */
-      orderId?: string | null;
-      /** Format: uuid */
-      paymentId?: string | null;
-      /** Format: uuid */
-      invoiceId?: string | null;
-      /** Format: uuid */
-      enrollmentId?: string | null;
-      /** Format: uuid */
-      entitlementId?: string | null;
-      /** Format: int32 */
-      seats?: number;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      licenseType?: 1 | 2 | 3;
-      /** Format: date-time */
-      expirationDate?: string;
-      features?: components["schemas"]["LicenseFeature"][] | null;
-      additionalAttributes?: components["schemas"]["AdditionalAttribute"][] | null;
-    };
-    LicenseValidationError: {
-      message?: string | null;
-      howToResolve?: string | null;
-    };
-    LicenseValidationErrorListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["LicenseValidationError"][] | null;
-    };
     LicenseValidationRequest: {
       licenseKey: string;
+    };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
     };
     Module: {
       enable?: boolean;
@@ -1946,11 +818,8 @@ export interface components {
       name?: string | null;
       fullName?: string | null;
       description?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1 | 2 | 3;
+      /** @enum {string} */
+      type?: "Module" | "Integration" | "StudioModule" | "StudioIntegration";
       configuration?: string | null;
       author?: string | null;
       authorUrl?: string | null;
@@ -1981,6 +850,96 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["Module"][] | null;
     };
+    ObjectEmailDispatchRequest: {
+      title: string;
+      message: string;
+      /** Format: uri */
+      buttonLink?: string | null;
+      buttonText?: string | null;
+      alertMessage?: string | null;
+      /** @enum {string} */
+      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      culture: string;
+      uiCulture: string;
+      recipients: string[];
+      contactIds?: string[] | null;
+      tenantIds?: string[] | null;
+      userIds?: string[] | null;
+      /** Format: uri */
+      templateUrl?: string | null;
+      emailTemplateId?: string | null;
+      payload?: unknown;
+    };
+    OptionCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      key: string;
+      value: string;
+      portalId?: string | null;
+      frozen?: boolean;
+      autoload?: boolean;
+      transient?: boolean;
+      /** Format: int32 */
+      expiration?: number;
+    };
+    OptionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      key?: string | null;
+      value?: string | null;
+      portalId?: string | null;
+      frozen?: boolean;
+      autoload?: boolean;
+      transient?: boolean;
+      /** Format: int32 */
+      expiration?: number;
+    };
+    OptionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["OptionDto"];
+    };
+    OptionDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["OptionDto"][] | null;
+    };
+    OptionUpdateDto: {
+      key?: string | null;
+      value?: string | null;
+      portalId?: string | null;
+      frozen?: boolean;
+      autoload?: boolean;
+      transient?: boolean;
+      /** Format: int32 */
+      expiration?: number;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
+    };
     SocialProfileDto: {
       id?: string | null;
       /** Format: date-time */
@@ -2004,11 +963,8 @@ export interface components {
       unreadNotificationsCount?: number | null;
       /** Format: int32 */
       unreadMessagesCount?: number | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      type?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      type?: "User" | "Tenant" | "Contact" | null;
       socialFeedId?: string | null;
       twitterUrl?: string | null;
       facebookURL?: string | null;
@@ -2019,15 +975,6 @@ export interface components {
       dribbleURL?: string | null;
       domain?: string | null;
       notes?: string | null;
-    };
-    StringEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: string | null;
     };
     StringListEnvelope: {
       isSuccess?: boolean;
@@ -2112,22 +1059,31 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      duns?: string | null;
-      name?: string | null;
+      name: string;
       legalName?: string | null;
-      email?: string | null;
+      /** Format: email */
+      email: string;
+      /** Format: tel */
       phone?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
-      about?: string | null;
       handler?: string | null;
-      currencyId?: string | null;
+      about?: string | null;
+      slogan?: string | null;
+      currencyId: string;
+      duns?: string | null;
+      taxId?: string | null;
+      /** Format: uri */
+      avatarUrl?: string | null;
+      countryId: string;
+      stateId?: string | null;
+      cityId?: string | null;
       languageId?: string | null;
       timezoneId?: string | null;
-      cityId?: string | null;
-      stateId?: string | null;
-      countryId?: string | null;
-      taxId?: string | null;
-      avatarUrl?: string | null;
+      businessTypeId?: string | null;
+      businessSegmentId?: string | null;
+      businessIndustryId?: string | null;
+      businessSizeId?: string | null;
     };
     TenantDto: {
       id?: string | null;
@@ -2189,12 +1145,22 @@ export interface components {
       result?: components["schemas"]["TenantDto"][] | null;
     };
     TenantUpdateDto: {
-      name?: string | null;
-      duns?: string | null;
-      slogan?: string | null;
+      name: string;
       legalName?: string | null;
+      /** Format: email */
+      email: string;
+      /** Format: tel */
       phone?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
+      about?: string | null;
+      slogan?: string | null;
+      handler?: string | null;
+      currencyId: string;
+      duns?: string | null;
+      taxId?: string | null;
+      /** Format: uri */
+      avatarUrl?: string | null;
       twitterUsername?: string | null;
       facebookUrl?: string | null;
       twitterUrl?: string | null;
@@ -2204,15 +1170,59 @@ export interface components {
       youTubeUrl?: string | null;
       whatsAppNumber?: string | null;
       supportPhoneNumber?: string | null;
-      taxId?: string | null;
-      about?: string | null;
-      currencyId?: string | null;
+      countryId: string;
       timezoneId?: string | null;
       languageId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
+    };
+    UserCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      birthday?: string;
+      firstName?: string | null;
+      lastName?: string | null;
+      publicName?: string | null;
+      idProvider?: string | null;
+      /** @enum {string} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay";
+      email?: string | null;
+      about?: string | null;
+      status?: string | null;
+      jobTitle?: string | null;
+      gitHubUrl?: string | null;
+      websiteUrl?: string | null;
+      twitterUrl?: string | null;
+      facebookUrl?: string | null;
+      youTubeUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      timezoneId?: string | null;
+      languageId?: string | null;
+      currencyId?: string | null;
       countryId?: string | null;
       stateId?: string | null;
       cityId?: string | null;
-      email?: string | null;
+      password?: string | null;
     };
     UserDto: {
       id?: string | null;
@@ -2221,6 +1231,7 @@ export interface components {
       fullName?: string | null;
       qualifiedName?: string | null;
       publicName?: string | null;
+      handler?: string | null;
       lastName?: string | null;
       firstName?: string | null;
       coverUrl?: string | null;
@@ -2239,11 +1250,8 @@ export interface components {
       birthday?: string | null;
       idProvider?: string | null;
       languageId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      gender?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
       cityId?: string | null;
       stateId?: string | null;
       email?: string | null;
@@ -2262,21 +1270,15 @@ export interface components {
       identityProvider?: string | null;
       phoneNumberConfirmed?: boolean;
       emailConfirmed?: boolean;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      availability?: 0 | 1 | 2 | 3 | 4 | null;
+      /** @enum {string|null} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
       lockoutEnabled?: boolean;
       /** Format: date-time */
       lockoutEnd?: string | null;
       /** Format: int32 */
       enrollmentsCount?: number | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      siteTheme?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      siteTheme?: "System" | "Light" | "Dark" | null;
     };
     UserDtoEnvelope: {
       isSuccess?: boolean;
@@ -2305,11 +1307,39 @@ export interface components {
       dateFormat?: string | null;
       currencyFormat?: string | null;
       dateTimeFormat?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      siteTheme?: 0 | 1 | 2;
+      /** @enum {string} */
+      siteTheme?: "System" | "Light" | "Dark";
+    };
+    UserUpdateDto: {
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      publicName?: string | null;
+      idProvider?: string | null;
+      /** @enum {string} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay";
+      email?: string | null;
+      about?: string | null;
+      status?: string | null;
+      jobTitle?: string | null;
+      timezoneId?: string | null;
+      languageId?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      gitHubUrl?: string | null;
+      websiteUrl?: string | null;
+      twitterUrl?: string | null;
+      facebookUrl?: string | null;
+      youTubeUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      webUrl?: string | null;
+      /** @enum {string} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available";
     };
     WalletDto: {
       id?: string | null;
@@ -2349,6 +1379,1183 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get and store antiforgery tokens
+   * @description Generates antiforgery tokens and stores them in the current HTTP context.
+   */
+  GetAndStoreTokens: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Validate antiforgery request
+   * @description Validates whether the current HTTP request contains a valid antiforgery token.
+   */
+  IsRequestValidAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Send a basic transactional email to recipients.
+   * @description This action is only available for global administrators (business_owner role).
+   */
+  AdminSendBasicEmail: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ObjectEmailDispatchRequest"];
+        "application/xml": components["schemas"]["ObjectEmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TenantDtoListEnvelope"];
+          "application/xml": components["schemas"]["TenantDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Preview a rendered basic email template.
+   * @description This action is only available for global administrators (business_owner role).
+   */
+  AdminPreviewBasicEmailTemplate: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ObjectEmailDispatchRequest"];
+        "application/xml": components["schemas"]["ObjectEmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Retrieve a list of licenses
+   * @description Retrieves a list of suite licenses, optionally filtered by tenant.
+   */
+  GetLicensesAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/xml": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "text/plain": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "application/octet-stream": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "text/json": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+          "text/xml": components["schemas"]["SuiteLicenseDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a license by ID
+   * @description Retrieves a single suite license by its unique identifier.
+   */
+  GetLicenseByIdAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/xml": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "text/plain": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "application/octet-stream": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "text/json": components["schemas"]["SuiteLicenseDtoEnvelope"];
+          "text/xml": components["schemas"]["SuiteLicenseDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve license assignments
+   * @description Retrieves all license assignments for a given license.
+   */
+  GetLicenseAssignmentsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve license attributes
+   * @description Retrieves all additional attributes for a given license.
+   */
+  GetLicenseAttributesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve license features
+   * @description Retrieves all features for a given license.
+   */
+  GetLicenseFeaturesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve license record quota
+   * @description Retrieves the record quota for a given license.
+   */
+  GetLicenseRecordsQuotaAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/plain": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "application/octet-stream": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/json": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+          "text/xml": components["schemas"]["SuiteLicenseAssignmentDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Redeem a license
+   * @description Redeems a license for the current tenant user.
+   */
+  RedeemLicenseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/xml": components["schemas"]["LicenseValidationRequest"];
+        "text/plain": components["schemas"]["LicenseValidationRequest"];
+        "text/xml": components["schemas"]["LicenseValidationRequest"];
+        "application/*+xml": components["schemas"]["LicenseValidationRequest"];
+        "application/json-patch+json": components["schemas"]["LicenseValidationRequest"];
+        "text/json": components["schemas"]["LicenseValidationRequest"];
+        "application/*+json": components["schemas"]["LicenseValidationRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["BooleanEnvelope"];
+          "application/json": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["BooleanEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["BooleanEnvelope"];
+          "application/xml": components["schemas"]["BooleanEnvelope"];
+          "text/plain": components["schemas"]["BooleanEnvelope"];
+          "application/octet-stream": components["schemas"]["BooleanEnvelope"];
+          "text/json": components["schemas"]["BooleanEnvelope"];
+          "text/xml": components["schemas"]["BooleanEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Validate a license
+   * @description Validates a license key and returns validation failures if any.
+   */
+  ValidateLicenseAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/json;IEEE754Compatible=false": components["schemas"]["LicenseValidationRequest"];
+        "application/json;IEEE754Compatible=true": components["schemas"]["LicenseValidationRequest"];
+        "application/xml": components["schemas"]["LicenseValidationRequest"];
+        "text/plain": components["schemas"]["LicenseValidationRequest"];
+        "text/xml": components["schemas"]["LicenseValidationRequest"];
+        "application/*+xml": components["schemas"]["LicenseValidationRequest"];
+        "application/json-patch+json": components["schemas"]["LicenseValidationRequest"];
+        "text/json": components["schemas"]["LicenseValidationRequest"];
+        "application/*+json": components["schemas"]["LicenseValidationRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/xml": components["schemas"]["IValidationFailureListEnvelope"];
+          "text/plain": components["schemas"]["IValidationFailureListEnvelope"];
+          "application/octet-stream": components["schemas"]["IValidationFailureListEnvelope"];
+          "text/json": components["schemas"]["IValidationFailureListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+          "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+          "text/plain": components["schemas"]["ErrorEnvelope"];
+          "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+          "text/json": components["schemas"]["ErrorEnvelope"];
+          "text/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve database migrations
+   * @description Retrieves the list of applied or pending database migrations.
+   */
+  Migrations: {
+    parameters: {
+      query?: {
+        pending?: boolean;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringListEnvelope"];
+          "application/xml": components["schemas"]["StringListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Apply pending database migrations
+   * @description Applies all pending database migrations and returns the list of migrations that were applied.
+   */
+  Migrate: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StringListEnvelope"];
+          "application/xml": components["schemas"]["StringListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Get all modules available on this suite server instance. */
   GetAllModules: {
     parameters: {
@@ -2401,6 +2608,341 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ModuleListEnvelope"];
           "application/xml": components["schemas"]["ModuleListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of system options
+   * @description Retrieve a list of system options for a portal
+   */
+  GetSystemOptions: {
+    parameters: {
+      query: {
+        portalId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoListEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new system option
+   * @description Create a new system option
+   */
+  CreateSystemOption: {
+    parameters: {
+      query: {
+        key: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionCreateDto"];
+        "application/xml": components["schemas"]["OptionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of system options
+   * @description Get the count of system options for a portal
+   */
+  GetSystemOptionsCount: {
+    parameters: {
+      query: {
+        portalId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single system option by its ID
+   * @description Retrieve a single system option by its ID
+   */
+  GetSystemOptionById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a system option
+   * @description Update a system option
+   */
+  UpdateSystemOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionUpdateDto"];
+        "application/xml": components["schemas"]["OptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a system option
+   * @description Delete a system option
+   */
+  DeleteSystemOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single system option by its key
+   * @description Retrieve a single system option by its key
+   */
+  GetSystemOptionByKey: {
+    parameters: {
+      query: {
+        portalId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        key: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create or update a system option by key
+   * @description Create or update a system option by key
+   */
+  UpsertSystemOption: {
+    parameters: {
+      query?: {
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        key: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionUpdateDto"];
+        "application/xml": components["schemas"]["OptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -2736,6 +3278,259 @@ export interface operations {
       };
     };
   };
+  /**
+   * Preview the rendered email for a user.
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  AdminPreviewTenantEmail: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Send an email to a user.
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  AdminSendTenantEmail: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Retrieve a list of users
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  GetUsersAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UserDtoListEnvelope"];
+          "application/xml": components["schemas"]["UserDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new user
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  CreateAccountHolderAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UserCreateDto"];
+        "application/xml": components["schemas"]["UserCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of users
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  GetUsersCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of extended users
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  GetExtendedUsersAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedUserDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedUserDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of extended users
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  GetExtendedUsersCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a user by ID
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
   GetUserAsync: {
     parameters: {
       query?: {
@@ -2754,6 +3549,217 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["UserDtoEnvelope"];
           "application/xml": components["schemas"]["UserDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a user
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  UpdateAccountHolderAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UserUpdateDto"];
+        "application/xml": components["schemas"]["UserUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a user
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  DeleteAccountHolderAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve an extended user by ID
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  GetExtendedAccountHolderAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedUserDtoEnvelope"];
+          "application/xml": components["schemas"]["ExtendedUserDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Preview the rendered email for a user.
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  AdminPreviewUserEmailTemplate: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Send an email to a user.
+   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   */
+  AdminSendUserEmail: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */

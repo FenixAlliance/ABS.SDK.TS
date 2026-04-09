@@ -198,151 +198,322 @@ export interface paths {
      */
     post: operations["UpsertUserOntoAnotherTenantContactListAsync"];
   };
-  "/api/v2/CrmService/Sync": {
+  "/api/v2/CrmService/Contacts/{contactId}/Emails/Preview": {
+    /**
+     * Preview the rendered email for a contact.
+     * @description This action is only available for global administrators (business_owner role).
+     */
+    post: operations["PreviewContactEmailTemplate"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Emails/Send": {
+    /**
+     * Send an email to a contact.
+     * @description This action is only available for global administrators (business_owner role).
+     */
+    post: operations["SendContactEmail"];
+  };
+  "/version": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/health": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/hello": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/register": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RegisterRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/login": {
     post: {
       parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
+        query?: {
+          useCookies?: boolean;
+          useSessionCookies?: boolean;
         };
-        header?: {
-          "x-api-version"?: string;
+      };
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["LoginRequest"];
         };
       };
       responses: {
         /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["ContactDtoListEnvelope"];
-            "application/xml": components["schemas"]["ContactDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["AccessTokenResponse"];
           };
         };
       };
     };
+  };
+  "/refresh": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["RefreshRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AccessTokenResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/confirmEmail": {
+    get: operations["MapIdentityApi-/confirmEmail"];
+  };
+  "/resendConfirmationEmail": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResendConfirmationEmailRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/forgotPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ForgotPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/resetPassword": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["ResetPasswordRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+      };
+    };
+  };
+  "/manage/2fa": {
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["TwoFactorRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TwoFactorResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/manage/info": {
+    get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+    post: {
+      requestBody: {
+        content: {
+          "application/json": components["schemas"]["InfoRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["InfoResponse"];
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/problem+json": components["schemas"]["HttpValidationProblemDetails"];
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Options": {
+    /**
+     * Retrieve a list of contact options
+     * @description Retrieve a list of options for a contact
+     */
+    get: operations["GetContactOptions"];
+    /**
+     * Create a new contact option
+     * @description Create a new option for a contact
+     */
+    post: operations["CreateContactOption"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Options/Count": {
+    /**
+     * Get the count of contact options
+     * @description Get the count of options for a contact
+     */
+    get: operations["GetContactOptionsCount"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Options/{optionId}": {
+    /**
+     * Retrieve a single contact option by its ID
+     * @description Retrieve a single contact option by its ID
+     */
+    get: operations["GetContactOptionById"];
+    /**
+     * Update a contact option
+     * @description Update a contact option
+     */
+    put: operations["UpdateContactOption"];
+    /**
+     * Delete a contact option
+     * @description Delete a contact option
+     */
+    delete: operations["DeleteContactOption"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Options/Key/{key}": {
+    /**
+     * Retrieve a single contact option by its key
+     * @description Retrieve a single contact option by its key
+     */
+    get: operations["GetContactOptionByKey"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Options/Upsert/{key}": {
+    /**
+     * Create or update a contact option by key
+     * @description Create or update a contact option by key
+     */
+    put: operations["UpsertContactOption"];
+  };
+  "/api/v2/CrmService/Sync": {
+    /**
+     * Sync the current user into the current tenant's contact list
+     * @description Synchronizes the currently authenticated user into the current tenant's CRM contact list.
+     */
+    post: operations["SyncCurrentHolderToCurrentTenantCrm"];
   };
   "/api/v2/CrmService/Sync/Me": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ContactDtoListEnvelope"];
-            "application/xml": components["schemas"]["ContactDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Sync the current user into a tenant's contact list
+     * @description Synchronizes the currently authenticated user into the specified tenant's CRM contact list.
+     */
+    post: operations["SyncCurrentHolderToTenantCrm"];
   };
   "/api/v2/CrmService/Sync/User": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          relatedUserId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["ContactDtoListEnvelope"];
-            "application/xml": components["schemas"]["ContactDtoListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Sync a user into a tenant's contact list
+     * @description Synchronizes a specified user into the tenant's CRM contact list.
+     */
+    post: operations["SyncHolderToTenantCrmAsync"];
   };
   "/api/v2/CrmService/Sync/Tenant": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          relatedTenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["EmptyEnvelope"];
-            "application/xml": components["schemas"]["EmptyEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+    /**
+     * Sync a tenant into another tenant's contact list
+     * @description Synchronizes a tenant into another tenant's CRM contact list.
+     */
+    post: operations["SyncTenantToTenantCrm"];
   };
 }
 
@@ -350,6 +521,13 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
+    AccessTokenResponse: {
+      tokenType?: string | null;
+      accessToken: string | null;
+      /** Format: int64 */
+      expiresIn: number;
+      refreshToken: string | null;
+    };
     CartDto: {
       id?: string | null;
       ip?: string | null;
@@ -384,11 +562,8 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       tenantId: string;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type: 0 | 1;
+      /** @enum {string} */
+      type: "Individual" | "Organization";
       firstName: string;
       lastName?: string | null;
       /** Format: email */
@@ -426,11 +601,12 @@ export interface components {
       linkedInUrl?: string | null;
       instagramUrl?: string | null;
       githubUsername?: string | null;
-      instagramUsername?: unknown;
-      tikTokUsername?: unknown;
-      stackExchangeUrl?: unknown;
-      stackOverflowUrl?: unknown;
-      parentContactId?: unknown;
+      instagramUsername?: string | null;
+      tikTokUsername?: string | null;
+      stackExchangeUrl?: string | null;
+      stackOverflowUrl?: string | null;
+      parentContactId?: string | null;
+      faxNumber?: string | null;
     };
     ContactDto: {
       id?: string | null;
@@ -438,11 +614,12 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
       publicName?: string | null;
       firstName?: string | null;
       lastName?: string | null;
@@ -453,22 +630,31 @@ export interface components {
       timezoneId?: string | null;
       languageId?: string | null;
       socialProfileId?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
+      /** Format: uri */
       gitHubUrl?: string | null;
+      /** Format: uri */
       twitchUrl?: string | null;
+      /** Format: uri */
       redditUrl?: string | null;
+      /** Format: uri */
       tikTokUrl?: string | null;
+      /** Format: uri */
       websiteUrl?: string | null;
+      /** Format: uri */
       twitterUrl?: string | null;
+      /** Format: uri */
       facebookUrl?: string | null;
+      /** Format: uri */
       youTubeUrl?: string | null;
+      /** Format: uri */
       linkedInUrl?: string | null;
+      /** Format: uri */
       instagramUrl?: string | null;
       githubUsername?: string | null;
       duns?: string | null;
       taxId?: string | null;
-      /** Format: email */
-      email?: string | null;
       about?: string | null;
       street?: string | null;
       cartId?: string | null;
@@ -562,11 +748,8 @@ export interface components {
       result?: components["schemas"]["ContactProfileDto"][] | null;
     };
     ContactUpdateDto: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type: 0 | 1;
+      /** @enum {string} */
+      type: "Individual" | "Organization";
       /** Format: date-time */
       birthday?: string | null;
       duns?: string | null;
@@ -585,9 +768,11 @@ export interface components {
       jobTitle?: string | null;
       countryId?: string | null;
       parentContactId?: string | null;
+      addressLine1?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
       stateId?: string | null;
       cityId?: string | null;
-      postalCode?: string | null;
       streetLine1?: string | null;
       streetLine2?: string | null;
       currencyId?: string | null;
@@ -596,20 +781,39 @@ export interface components {
       coverUrl?: string | null;
       githubUsername?: string | null;
       instagramUsername?: string | null;
+      webUrl?: string | null;
       twitchUrl?: string | null;
       redditUrl?: string | null;
       gitHubUrl?: string | null;
-      githubUrl?: string | null;
       tikTokUrl?: string | null;
       twitterUrl?: string | null;
       youTubeUrl?: string | null;
-      websiteUrl?: string | null;
       facebookUrl?: string | null;
       linkedInUrl?: string | null;
       instagramUrl?: string | null;
       tikTokUsername?: string | null;
       stackExchangeUrl?: string | null;
       stackOverflowUrl?: string | null;
+      faxNumber?: string | null;
+    };
+    EmailDispatchRequest: {
+      title: string;
+      message: string;
+      /** Format: uri */
+      buttonLink?: string | null;
+      buttonText?: string | null;
+      alertMessage?: string | null;
+      /** @enum {string} */
+      alertType?: "None" | "Info" | "Error" | "Warning" | "Success" | "Action" | "Alert";
+      culture: string;
+      uiCulture: string;
+      recipients: string[];
+      contactIds?: string[] | null;
+      tenantIds?: string[] | null;
+      userIds?: string[] | null;
+      /** Format: uri */
+      templateUrl?: string | null;
+      emailTemplateId?: string | null;
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -618,6 +822,15 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: string | null;
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -633,11 +846,12 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
       publicName?: string | null;
       firstName?: string | null;
       lastName?: string | null;
@@ -648,22 +862,31 @@ export interface components {
       timezoneId?: string | null;
       languageId?: string | null;
       socialProfileId?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
+      /** Format: uri */
       gitHubUrl?: string | null;
+      /** Format: uri */
       twitchUrl?: string | null;
+      /** Format: uri */
       redditUrl?: string | null;
+      /** Format: uri */
       tikTokUrl?: string | null;
+      /** Format: uri */
       websiteUrl?: string | null;
+      /** Format: uri */
       twitterUrl?: string | null;
+      /** Format: uri */
       facebookUrl?: string | null;
+      /** Format: uri */
       youTubeUrl?: string | null;
+      /** Format: uri */
       linkedInUrl?: string | null;
+      /** Format: uri */
       instagramUrl?: string | null;
       githubUsername?: string | null;
       duns?: string | null;
       taxId?: string | null;
-      /** Format: email */
-      email?: string | null;
       about?: string | null;
       street?: string | null;
       cartId?: string | null;
@@ -717,16 +940,123 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ExtendedContactDto"][] | null;
     };
+    ForgotPasswordRequest: {
+      email: string | null;
+    };
+    HttpValidationProblemDetails: {
+      type?: string | null;
+      title?: string | null;
+      /** Format: int32 */
+      status?: number | null;
+      detail?: string | null;
+      instance?: string | null;
+      errors?: {
+        [key: string]: string[];
+      } | null;
+      [key: string]: unknown;
+    };
+    InfoRequest: {
+      newEmail?: string | null;
+      newPassword?: string | null;
+      oldPassword?: string | null;
+    };
+    InfoResponse: {
+      email: string | null;
+      isEmailConfirmed: boolean;
+    };
+    Int32Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      /** Format: int32 */
+      result?: number;
+    };
+    LoginRequest: {
+      email: string | null;
+      password: string | null;
+      twoFactorCode?: string | null;
+      twoFactorRecoveryCode?: string | null;
+    };
     Operation: {
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      operationType?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
       path?: string | null;
       op?: string | null;
       from?: string | null;
       value?: unknown;
+    };
+    OptionCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      key: string;
+      value: string;
+      portalId?: string | null;
+      frozen?: boolean;
+      autoload?: boolean;
+      transient?: boolean;
+      /** Format: int32 */
+      expiration?: number;
+    };
+    OptionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      key?: string | null;
+      value?: string | null;
+      portalId?: string | null;
+      frozen?: boolean;
+      autoload?: boolean;
+      transient?: boolean;
+      /** Format: int32 */
+      expiration?: number;
+    };
+    OptionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["OptionDto"];
+    };
+    OptionDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["OptionDto"][] | null;
+    };
+    OptionUpdateDto: {
+      key?: string | null;
+      value?: string | null;
+      portalId?: string | null;
+      frozen?: boolean;
+      autoload?: boolean;
+      transient?: boolean;
+      /** Format: int32 */
+      expiration?: number;
+    };
+    RefreshRequest: {
+      refreshToken: string | null;
+    };
+    RegisterRequest: {
+      email: string | null;
+      password: string | null;
+    };
+    ResendConfirmationEmailRequest: {
+      email: string | null;
+    };
+    ResetPasswordRequest: {
+      email: string | null;
+      resetCode: string | null;
+      newPassword: string | null;
     };
     SimpleContactDto: {
       id?: string | null;
@@ -734,11 +1064,12 @@ export interface components {
       timestamp?: string | null;
       qualifiedName?: string | null;
       tenantId?: string | null;
-      /**
-       * Format: int32
-       * @enum {integer}
-       */
-      type?: 0 | 1;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
       publicName?: string | null;
       firstName?: string | null;
       lastName?: string | null;
@@ -749,16 +1080,27 @@ export interface components {
       timezoneId?: string | null;
       languageId?: string | null;
       socialProfileId?: string | null;
+      /** Format: uri */
       webUrl?: string | null;
+      /** Format: uri */
       gitHubUrl?: string | null;
+      /** Format: uri */
       twitchUrl?: string | null;
+      /** Format: uri */
       redditUrl?: string | null;
+      /** Format: uri */
       tikTokUrl?: string | null;
+      /** Format: uri */
       websiteUrl?: string | null;
+      /** Format: uri */
       twitterUrl?: string | null;
+      /** Format: uri */
       facebookUrl?: string | null;
+      /** Format: uri */
       youTubeUrl?: string | null;
+      /** Format: uri */
       linkedInUrl?: string | null;
+      /** Format: uri */
       instagramUrl?: string | null;
       githubUsername?: string | null;
     };
@@ -785,11 +1127,8 @@ export interface components {
       unreadNotificationsCount?: number | null;
       /** Format: int32 */
       unreadMessagesCount?: number | null;
-      /**
-       * Format: int32
-       * @enum {integer|null}
-       */
-      type?: 0 | 1 | 2 | null;
+      /** @enum {string|null} */
+      type?: "User" | "Tenant" | "Contact" | null;
       socialFeedId?: string | null;
       twitterUrl?: string | null;
       facebookURL?: string | null;
@@ -809,6 +1148,21 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"];
+    };
+    TwoFactorRequest: {
+      enable?: boolean | null;
+      twoFactorCode?: string | null;
+      resetSharedKey?: boolean;
+      resetRecoveryCodes?: boolean;
+      forgetMachine?: boolean;
+    };
+    TwoFactorResponse: {
+      sharedKey: string | null;
+      /** Format: int32 */
+      recoveryCodesLeft: number;
+      recoveryCodes?: string[] | null;
+      isTwoFactorEnabled: boolean;
+      isMachineRemembered: boolean;
     };
     WalletDto: {
       id?: string | null;
@@ -901,8 +1255,8 @@ export interface operations {
    */
   CreateContactAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -2070,6 +2424,590 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ContactDtoEnvelope"];
           "application/xml": components["schemas"]["ContactDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Preview the rendered email for a contact.
+   * @description This action is only available for global administrators (business_owner role).
+   */
+  PreviewContactEmailTemplate: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Send an email to a contact.
+   * @description This action is only available for global administrators (business_owner role).
+   */
+  SendContactEmail: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailDispatchRequest"];
+        "application/xml": components["schemas"]["EmailDispatchRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  "MapIdentityApi-/confirmEmail": {
+    parameters: {
+      query: {
+        userId: string;
+        code: string;
+        changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Retrieve a list of contact options
+   * @description Retrieve a list of options for a contact
+   */
+  GetContactOptions: {
+    parameters: {
+      query: {
+        tenantId: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoListEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new contact option
+   * @description Create a new option for a contact
+   */
+  CreateContactOption: {
+    parameters: {
+      query: {
+        tenantId: string;
+        key: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionCreateDto"];
+        "application/xml": components["schemas"]["OptionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of contact options
+   * @description Get the count of options for a contact
+   */
+  GetContactOptionsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single contact option by its ID
+   * @description Retrieve a single contact option by its ID
+   */
+  GetContactOptionById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a contact option
+   * @description Update a contact option
+   */
+  UpdateContactOption: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionUpdateDto"];
+        "application/xml": components["schemas"]["OptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a contact option
+   * @description Delete a contact option
+   */
+  DeleteContactOption: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single contact option by its key
+   * @description Retrieve a single contact option by its key
+   */
+  GetContactOptionByKey: {
+    parameters: {
+      query: {
+        tenantId: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        key: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create or update a contact option by key
+   * @description Create or update a contact option by key
+   */
+  UpsertContactOption: {
+    parameters: {
+      query: {
+        tenantId: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        key: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionUpdateDto"];
+        "application/xml": components["schemas"]["OptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sync the current user into the current tenant's contact list
+   * @description Synchronizes the currently authenticated user into the current tenant's CRM contact list.
+   */
+  SyncCurrentHolderToCurrentTenantCrm: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sync the current user into a tenant's contact list
+   * @description Synchronizes the currently authenticated user into the specified tenant's CRM contact list.
+   */
+  SyncCurrentHolderToTenantCrm: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sync a user into a tenant's contact list
+   * @description Synchronizes a specified user into the tenant's CRM contact list.
+   */
+  SyncHolderToTenantCrmAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        relatedUserId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sync a tenant into another tenant's contact list
+   * @description Synchronizes a tenant into another tenant's CRM contact list.
+   */
+  SyncTenantToTenantCrm: {
+    parameters: {
+      query: {
+        tenantId: string;
+        relatedTenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
