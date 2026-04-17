@@ -2097,6 +2097,21 @@ export type WebPortalDtoEnvelopeWritable = {
     result?: WebPortalDto;
 };
 
+export type WebPortalDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<WebPortalDto> | null;
+};
+
+export type WebPortalDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<WebPortalDto> | null;
+};
+
 export type WebPortalUpdateDto = {
     root?: boolean;
     title?: string | null;
@@ -3217,6 +3232,41 @@ export type CreateBlogPostTagAsyncResponses = {
 
 export type CreateBlogPostTagAsyncResponse = CreateBlogPostTagAsyncResponses[keyof CreateBlogPostTagAsyncResponses];
 
+export type CountBlogPostTagsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ContentService/BlogPostTags/Count';
+};
+
+export type CountBlogPostTagsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountBlogPostTagsAsyncError = CountBlogPostTagsAsyncErrors[keyof CountBlogPostTagsAsyncErrors];
+
+export type CountBlogPostTagsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountBlogPostTagsAsyncResponse = CountBlogPostTagsAsyncResponses[keyof CountBlogPostTagsAsyncResponses];
+
 export type DeleteBlogPostTagAsyncData = {
     body?: never;
     headers?: {
@@ -3700,6 +3750,111 @@ export type PostManageInfoResponses = {
 
 export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
 
+export type GetPortalsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ContentService/Portals';
+};
+
+export type GetPortalsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetPortalsAsyncError = GetPortalsAsyncErrors[keyof GetPortalsAsyncErrors];
+
+export type GetPortalsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WebPortalDtoListEnvelopeReadable;
+};
+
+export type GetPortalsAsyncResponse = GetPortalsAsyncResponses[keyof GetPortalsAsyncResponses];
+
+export type CreateWebPortalAsyncData = {
+    body?: WebPortalCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ContentService/Portals';
+};
+
+export type CreateWebPortalAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateWebPortalAsyncError = CreateWebPortalAsyncErrors[keyof CreateWebPortalAsyncErrors];
+
+export type CreateWebPortalAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateWebPortalAsyncResponse = CreateWebPortalAsyncResponses[keyof CreateWebPortalAsyncResponses];
+
+export type CountPortalsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ContentService/Portals/Count';
+};
+
+export type CountPortalsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountPortalsAsyncError = CountPortalsAsyncErrors[keyof CountPortalsAsyncErrors];
+
+export type CountPortalsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountPortalsAsyncResponse = CountPortalsAsyncResponses[keyof CountPortalsAsyncResponses];
+
 export type GetRootWebPortalAsyncData = {
     body?: never;
     headers?: {
@@ -4090,41 +4245,6 @@ export type GetWebPortalOptionsAsyncResponses = {
 
 export type GetWebPortalOptionsAsyncResponse = GetWebPortalOptionsAsyncResponses[keyof GetWebPortalOptionsAsyncResponses];
 
-export type CreateWebPortalAsyncData = {
-    body?: WebPortalCreateDto;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/ContentService/Portals';
-};
-
-export type CreateWebPortalAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type CreateWebPortalAsyncError = CreateWebPortalAsyncErrors[keyof CreateWebPortalAsyncErrors];
-
-export type CreateWebPortalAsyncResponses = {
-    /**
-     * Created
-     */
-    201: EmptyEnvelopeReadable;
-};
-
-export type CreateWebPortalAsyncResponse = CreateWebPortalAsyncResponses[keyof CreateWebPortalAsyncResponses];
-
 export type GetLatestCurrencyRatesModelAsyncData = {
     body?: never;
     headers?: {
@@ -4435,6 +4555,41 @@ export type CreateWebPageCategoryAsyncResponses = {
 };
 
 export type CreateWebPageCategoryAsyncResponse = CreateWebPageCategoryAsyncResponses[keyof CreateWebPageCategoryAsyncResponses];
+
+export type CountWebPageCategoriesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ContentService/WebPageCategories/Count';
+};
+
+export type CountWebPageCategoriesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountWebPageCategoriesAsyncError = CountWebPageCategoriesAsyncErrors[keyof CountWebPageCategoriesAsyncErrors];
+
+export type CountWebPageCategoriesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountWebPageCategoriesAsyncResponse = CountWebPageCategoriesAsyncResponses[keyof CountWebPageCategoriesAsyncResponses];
 
 export type DeleteWebPageCategoryAsyncData = {
     body?: never;
@@ -5056,6 +5211,41 @@ export type CreateWebPageTagAsyncResponses = {
 };
 
 export type CreateWebPageTagAsyncResponse = CreateWebPageTagAsyncResponses[keyof CreateWebPageTagAsyncResponses];
+
+export type CountWebPageTagsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ContentService/WebPageTags/Count';
+};
+
+export type CountWebPageTagsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountWebPageTagsAsyncError = CountWebPageTagsAsyncErrors[keyof CountWebPageTagsAsyncErrors];
+
+export type CountWebPageTagsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountWebPageTagsAsyncResponse = CountWebPageTagsAsyncResponses[keyof CountWebPageTagsAsyncResponses];
 
 export type DeleteWebPageTagAsyncData = {
     body?: never;

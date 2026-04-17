@@ -198,6 +198,13 @@ export interface paths {
      */
     post: operations["CreateBlogPostTagAsync"];
   };
+  "/api/v2/ContentService/BlogPostTags/Count": {
+    /**
+     * Count blog post tags
+     * @description Counts all blog post tags for the specified tenant.
+     */
+    get: operations["CountBlogPostTagsAsync"];
+  };
   "/api/v2/ContentService/BlogPostTags/{blogPostTagId}": {
     /**
      * Get blog post tag by ID
@@ -461,6 +468,25 @@ export interface paths {
       };
     };
   };
+  "/api/v2/ContentService/Portals": {
+    /**
+     * Get portals
+     * @description Retrieves all portals for the specified tenant.
+     */
+    get: operations["GetPortalsAsync"];
+    /**
+     * Create a new web portal
+     * @description Create a new web portal
+     */
+    post: operations["CreateWebPortalAsync"];
+  };
+  "/api/v2/ContentService/Portals/Count": {
+    /**
+     * Count portals
+     * @description Counts all portals for the specified tenant.
+     */
+    get: operations["CountPortalsAsync"];
+  };
   "/api/v2/ContentService/Portals/Root": {
     /**
      * Get the root portal
@@ -532,13 +558,6 @@ export interface paths {
      */
     get: operations["GetWebPortalOptionsAsync"];
   };
-  "/api/v2/ContentService/Portals": {
-    /**
-     * Create a new web portal
-     * @description Create a new web portal
-     */
-    post: operations["CreateWebPortalAsync"];
-  };
   "/api/v2/ContentService/Themes/Update": {
     /**
      * Update base web content themes
@@ -593,6 +612,13 @@ export interface paths {
      * @description Creates a new web page category for the specified tenant.
      */
     post: operations["CreateWebPageCategoryAsync"];
+  };
+  "/api/v2/ContentService/WebPageCategories/Count": {
+    /**
+     * Count web page categories
+     * @description Counts all web page categories for the specified tenant.
+     */
+    get: operations["CountWebPageCategoriesAsync"];
   };
   "/api/v2/ContentService/WebPageCategories/{webPageCategoryId}": {
     /**
@@ -706,6 +732,13 @@ export interface paths {
      * @description Creates a new web page tag for the specified tenant.
      */
     post: operations["CreateWebPageTagAsync"];
+  };
+  "/api/v2/ContentService/WebPageTags/Count": {
+    /**
+     * Count web page tags
+     * @description Counts all web page tags for the specified tenant.
+     */
+    get: operations["CountWebPageTagsAsync"];
   };
   "/api/v2/ContentService/WebPageTags/{webPageTagId}": {
     /**
@@ -2692,6 +2725,15 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["WebPortalDto"];
     };
+    WebPortalDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WebPortalDto"][] | null;
+    };
     WebPortalUpdateDto: {
       root?: boolean;
       title?: string | null;
@@ -3970,6 +4012,44 @@ export interface operations {
     };
   };
   /**
+   * Count blog post tags
+   * @description Counts all blog post tags for the specified tenant.
+   */
+  CountBlogPostTagsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get blog post tag by ID
    * @description Retrieves a specific blog post tag by its ID.
    */
@@ -4227,6 +4307,126 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /**
+   * Get portals
+   * @description Retrieves all portals for the specified tenant.
+   */
+  GetPortalsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPortalDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebPortalDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new web portal
+   * @description Create a new web portal
+   */
+  CreateWebPortalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPortalCreateDto"];
+        "application/xml": components["schemas"]["WebPortalCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count portals
+   * @description Counts all portals for the specified tenant.
+   */
+  CountPortalsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };
@@ -4672,50 +4872,6 @@ export interface operations {
     };
   };
   /**
-   * Create a new web portal
-   * @description Create a new web portal
-   */
-  CreateWebPortalAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["WebPortalCreateDto"];
-        "application/xml": components["schemas"]["WebPortalCreateDto"];
-      };
-    };
-    responses: {
-      /** @description Created */
-      201: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
    * Update base web content themes
    * @description Triggers an update of the base web content themes.
    */
@@ -5058,6 +5214,44 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count web page categories
+   * @description Counts all web page categories for the specified tenant.
+   */
+  CountWebPageCategoriesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
         };
       };
       /** @description Unauthorized */
@@ -5735,6 +5929,44 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count web page tags
+   * @description Counts all web page tags for the specified tenant.
+   */
+  CountWebPageTagsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
         };
       };
       /** @description Unauthorized */
