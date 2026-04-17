@@ -801,7 +801,6 @@ export interface components {
       stateId?: string | null;
       postalCode?: string | null;
       countryId?: string | null;
-      tenantId?: string | null;
       /** Format: double */
       longitude?: number;
       /** Format: double */
@@ -874,7 +873,6 @@ export interface components {
       stateId?: string | null;
       postalCode?: string | null;
       countryId?: string | null;
-      tenantId?: string | null;
       /** Format: double */
       longitude?: number;
       /** Format: double */

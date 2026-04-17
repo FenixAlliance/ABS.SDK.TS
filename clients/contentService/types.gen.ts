@@ -182,8 +182,6 @@ export type BlogPostCategoryCreateDto = {
     imageURL?: string | null;
     image?: string | null;
     webPortalID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type BlogPostCategoryDto = {
@@ -288,8 +286,6 @@ export type BlogPostCommentDtoListEnvelopeWritable = {
 export type BlogPostCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     title?: string | null;
     code?: string | null;
     published?: boolean;
@@ -411,8 +407,6 @@ export type BlogPostTagCreateDto = {
     imageURL?: string | null;
     image?: string | null;
     webPortalID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type BlogPostTagDto = {
@@ -1559,8 +1553,6 @@ export type TypographyOptions = {
 export type WebContentCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     title?: string | null;
     code?: string | null;
     published?: boolean;
@@ -1734,7 +1726,6 @@ export type WebPageCategoryCreateDto = {
     imageURL?: string | null;
     image?: string | null;
     webPortalID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type WebPageCategoryDto = {
@@ -1803,8 +1794,6 @@ export type WebPageCategoryUpdateDto = {
 export type WebPageCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     title?: string | null;
     code?: string | null;
     published?: boolean;
@@ -1933,7 +1922,6 @@ export type WebPageTagCreateDto = {
     imageURL?: string | null;
     image?: string | null;
     webPortalID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type WebPageTagDto = {
@@ -2073,11 +2061,9 @@ export type WebPortalCreateDto = {
     title?: string | null;
     domain?: string | null;
     disabled?: boolean;
-    businessID?: string | null;
     description?: string | null;
     websiteThemeID?: string | null;
     businessDomainID?: string | null;
-    businessProfileRecordID?: string | null;
     businessPortalApplicationID?: string | null;
 };
 
@@ -2119,13 +2105,12 @@ export type WebPortalUpdateDto = {
     description?: string | null;
     websiteThemeID?: string | null;
     businessDomainID?: string | null;
-    businessProfileRecordID?: string | null;
     businessPortalApplicationID?: string | null;
 };
 
 export type WebTemplateCreateDto = {
-    id?: string | null;
-    timestamp?: string | null;
+    id?: string;
+    timestamp?: string;
     slug?: string | null;
     name?: string | null;
     title?: string | null;

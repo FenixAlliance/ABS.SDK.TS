@@ -521,7 +521,6 @@ export type LocationCreateDto = {
     stateId?: string | null;
     postalCode?: string | null;
     countryId?: string | null;
-    tenantId?: string | null;
     longitude?: number;
     latitude?: number;
     isRoutable?: boolean;
@@ -603,7 +602,6 @@ export type LocationUpdateDto = {
     stateId?: string | null;
     postalCode?: string | null;
     countryId?: string | null;
-    tenantId?: string | null;
     longitude?: number;
     latitude?: number;
     isRoutable?: boolean;

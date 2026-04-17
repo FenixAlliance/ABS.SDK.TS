@@ -16,8 +16,6 @@ export type AccessTokenResponseWritable = {
 export type AssetCategoryCreateDto = {
     id?: string;
     timestamp?: string;
-    businessId?: string | null;
-    businessProfileRecordId?: string | null;
     name?: string | null;
     description?: string | null;
 };
@@ -71,8 +69,6 @@ export type AssetCategoryUpdateDto = {
 export type AssetCreateDto = {
     id?: string;
     timestamp?: string;
-    businessId?: string | null;
-    businessProfileRecordId?: string | null;
     name?: string | null;
     description?: string | null;
     assetClass?: 'Fixed' | 'Stock';
@@ -94,6 +90,8 @@ export type AssetCreateDto = {
 };
 
 export type AssetDepreciationRecordCreateDto = {
+    id?: string;
+    timestamp?: string;
     assetId?: string | null;
     assetDepreciationPolicyId?: string | null;
     depreciationAmount?: number;
@@ -309,6 +307,8 @@ export type AssetRepairUpdateDto = {
 };
 
 export type AssetTransferCreateDto = {
+    id?: string;
+    timestamp?: string;
     assetId?: string | null;
     isRootTransfer?: boolean;
     serialList?: string | null;
@@ -391,8 +391,6 @@ export type AssetTransferUpdateDto = {
 export type AssetTypeCreateDto = {
     id?: string;
     timestamp?: string;
-    businessId?: string | null;
-    businessProfileRecordId?: string | null;
     name?: string | null;
     description?: string | null;
 };

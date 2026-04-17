@@ -561,7 +561,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId: string;
       /** @enum {string} */
       type: "Individual" | "Organization";
       firstName: string;

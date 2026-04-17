@@ -180,12 +180,9 @@ export type SupportEntitlementCreateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    accountHolderID?: string | null;
     individualID?: string | null;
     organizationID?: string | null;
     receiverBusinessID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     paymentTokenID?: string | null;
     walletAccountID?: string | null;
     securityCertificateID?: string | null;
@@ -313,12 +310,9 @@ export type SupportEntitlementUpdateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    accountHolderID?: string | null;
     individualID?: string | null;
     organizationID?: string | null;
     receiverBusinessID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     paymentTokenID?: string | null;
     walletAccountID?: string | null;
     securityCertificateID?: string | null;
@@ -337,8 +331,6 @@ export type SupportRequestAttachmentCreateDto = {
     validResponse?: boolean;
     parentFileUploadId?: string | null;
     filePath?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     metadata?: string | null;
     supportRequestID?: string | null;
 };
@@ -422,11 +414,8 @@ export type SupportRequestCreateDto = {
     description?: string | null;
     approved?: boolean;
     approvedTimestamp?: string;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     supportEntitlementID?: string | null;
     contactID?: string | null;
-    accountHolderID?: string | null;
 };
 
 export type SupportRequestDto = {
@@ -534,10 +523,7 @@ export type SupportTicketCreateDto = {
     id?: string;
     timestamp?: string;
     description?: string | null;
-    accountHolderID?: string | null;
     contactID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     supportTicketTypeID?: string | null;
     supportEntitlementID?: string | null;
     supportPriorityID?: string | null;
@@ -587,9 +573,10 @@ export type SupportTicketDtoListEnvelopeWritable = {
 };
 
 export type SupportTicketPriorityCreateDto = {
+    id?: string;
+    timestamp?: string;
     title?: string | null;
     description?: string | null;
-    businessID?: string | null;
     supportEntitlementID?: string | null;
 };
 
@@ -642,7 +629,6 @@ export type SupportTicketTypeCreateDto = {
     timestamp?: string;
     title?: string | null;
     description?: string | null;
-    businessID?: string | null;
 };
 
 export type SupportTicketTypeDto = {
@@ -692,9 +678,7 @@ export type SupportTicketTypeUpdateDto = {
 
 export type SupportTicketUpdateDto = {
     description?: string | null;
-    accountHolderID?: string | null;
     contactID?: string | null;
-    businessProfileRecordID?: string | null;
     supportTicketTypeID?: string | null;
     supportEntitlementID?: string | null;
     supportPriorityID?: string | null;

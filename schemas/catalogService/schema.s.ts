@@ -1281,7 +1281,6 @@ export interface components {
       pattern?: string | null;
       features?: string | null;
       material?: string | null;
-      tenantId?: string | null;
       permalink?: string | null;
       brandName?: string | null;
       variations?: string | null;
@@ -1733,7 +1732,6 @@ export interface components {
       onDiscount?: boolean;
       /** Format: double */
       totalTax?: number;
-      tenantId?: string | null;
       permalink?: string | null;
       brandName?: string | null;
       /** Format: int32 */
@@ -1765,7 +1763,6 @@ export interface components {
       hasVariations?: boolean;
       /** Format: int32 */
       questionsCount?: number;
-      enrollmentId?: string | null;
       supplierCode?: string | null;
       /** Format: date-time */
       auctionEnd?: string;
@@ -2031,7 +2028,6 @@ export interface components {
       timestamp?: string;
       name: string;
       description?: string | null;
-      businessID: string;
     };
     ItemAttributeDto: {
       id?: string | null;
@@ -2101,7 +2097,6 @@ export interface components {
       websiteURL?: string | null;
       featured?: boolean;
       trending?: boolean;
-      businessID: string;
     };
     ItemBrandDto: {
       id?: string | null;
@@ -2153,8 +2148,6 @@ export interface components {
       description?: string | null;
       /** Format: uri */
       imageURL?: string | null;
-      businessID: string;
-      businessProfileRecordID?: string | null;
       parentItemCategoryID?: string | null;
     };
     ItemCategoryDto: {
@@ -2250,8 +2243,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID: string;
-      businessProfileRecordID?: string | null;
       itemID?: string | null;
       isItemMozaicBG?: boolean;
       mD5Hash?: string | null;
@@ -2270,7 +2261,6 @@ export interface components {
       validResponse?: boolean;
       socialProfileID?: string | null;
       parentFileUploadID?: string | null;
-      accountHolderID?: string | null;
     };
     ItemImageDto: {
       id?: string | null;
@@ -2343,7 +2333,6 @@ export interface components {
       needsRevision: boolean;
       question: string;
       socialProfileID?: string | null;
-      businessID: string;
       itemID: string;
     };
     ItemQuestionDto: {
@@ -2384,7 +2373,6 @@ export interface components {
       needsRevision: boolean;
       question: string;
       socialProfileID?: string | null;
-      businessID: string;
     };
     ItemQuestionUpdateDto: {
       title?: string | null;
@@ -2618,7 +2606,6 @@ export interface components {
       timestamp?: string;
       title: string;
       description?: string | null;
-      businessID: string;
     };
     ItemTagDto: {
       id?: string | null;
@@ -2719,7 +2706,6 @@ export interface components {
       /** Format: uri */
       imageURL?: string | null;
       googleCategoryTaxonomy?: string | null;
-      businessID: string;
       itemCategoryID: string;
       itemGoogleCategoryID?: string | null;
     };
@@ -2934,8 +2920,6 @@ export interface components {
       customState?: string | null;
       customCity?: string | null;
       cityID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     PricingRuleDto: {
       id?: string | null;

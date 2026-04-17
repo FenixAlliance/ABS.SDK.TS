@@ -590,10 +590,8 @@ export type InvoiceDtoListEnvelopeWritable = {
 export type InvoiceLineAppliedTaxCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
     invoiceId?: string | null;
     taxPolicyId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type InvoiceLineAppliedTaxDto = {
@@ -1022,10 +1020,8 @@ export type InvoiceUpdateDto = {
     closed?: boolean;
     title?: string | null;
     userId?: string | null;
-    tenantId?: string | null;
     priceListId?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
     individualId?: string | null;
     paymentTermId?: string | null;
     organizationId?: string | null;

@@ -450,7 +450,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       invoiceId?: string | null;
-      tenantId?: string | null;
       emisorWalletId?: string | null;
       receiverWalletId?: string | null;
       currencyId?: string | null;
@@ -512,7 +511,6 @@ export interface components {
       accountingEntryId?: string | null;
       paymentGatewayId?: string | null;
       bankAccountId?: string | null;
-      enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
       emisorWalletAccountId?: string | null;
@@ -606,8 +604,6 @@ export interface components {
       timestamp?: string;
       name: string;
       description?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     PaymentMethodDto: {
       id?: string | null;
@@ -647,8 +643,6 @@ export interface components {
       timestamp?: string;
       name: string;
       description?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     PaymentModeDto: {
       id?: string | null;
@@ -700,8 +694,6 @@ export interface components {
       /** Format: double */
       creditYears?: number;
       paymentModeID?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     PaymentTermDto: {
       id?: string | null;
@@ -760,7 +752,6 @@ export interface components {
     };
     PaymentUpdateDto: {
       invoiceId?: string | null;
-      tenantId?: string | null;
       emisorWalletId?: string | null;
       receiverWalletId?: string | null;
       currencyId?: string | null;
@@ -822,7 +813,6 @@ export interface components {
       accountingEntryId?: string | null;
       paymentGatewayId?: string | null;
       bankAccountId?: string | null;
-      enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
       emisorWalletAccountId?: string | null;

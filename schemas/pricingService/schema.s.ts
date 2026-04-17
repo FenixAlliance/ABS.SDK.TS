@@ -427,8 +427,6 @@ export interface components {
       percent?: number;
       /** Format: double */
       value?: number;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       discountListId?: string | null;
     };
     DiscountDto: {
@@ -474,8 +472,6 @@ export interface components {
       timestamp?: string;
       name?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     DiscountListDto: {
       id?: string | null;
@@ -507,8 +503,6 @@ export interface components {
     DiscountListUpdateDto: {
       name?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     DiscountUpdateDto: {
       description?: string | null;
@@ -520,8 +514,6 @@ export interface components {
       percent?: number;
       /** Format: double */
       value?: number;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       discountListId?: string | null;
     };
     EmptyEnvelope: {
@@ -624,11 +616,9 @@ export interface components {
       timestamp?: string;
       itemId: string;
       unitId?: string | null;
-      tenantId?: string | null;
       currencyId?: string | null;
       priceListId?: string | null;
       unitGroupId?: string | null;
-      enrollmentId?: string | null;
       discountListId?: string | null;
       roundingPolicyId?: string | null;
       /** Format: double */
@@ -719,8 +709,6 @@ export interface components {
       currencyId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     PriceListDto: {
       id?: string | null;

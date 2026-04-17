@@ -554,8 +554,6 @@ export type TenantCreateDto = {
 export type TenantDepartmentCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
@@ -609,7 +607,6 @@ export type TenantDepartmentUpdateDto = {
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
-    businessProfileRecordID?: string | null;
     organizationProfileID?: string | null;
     parentDepartmentID?: string | null;
 };
@@ -711,7 +708,6 @@ export type TenantDtoEnvelopeWritable = {
 export type TenantEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
     userId?: string | null;
 };
 
@@ -766,7 +762,6 @@ export type TenantIndustryCreateDto = {
     timestamp?: string;
     name?: string | null;
     parentBusinessIndustryID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type TenantIndustryDto = {
@@ -810,15 +805,12 @@ export type TenantIndustryDtoListEnvelopeWritable = {
 export type TenantIndustryUpdateDto = {
     name?: string | null;
     parentBusinessIndustryID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type TenantInvitationCreateDto = {
     id?: string;
     timestamp?: string;
     userEmail: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type TenantInvitationDto = {
@@ -866,8 +858,6 @@ export type TenantInvitationDtoListEnvelopeWritable = {
 export type TenantPositionCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     title?: string | null;
     description?: string | null;
 };
@@ -916,7 +906,6 @@ export type TenantPositionUpdateDto = {
     title?: string | null;
     description?: string | null;
     type?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type TenantSegmentCreateDto = {
@@ -1026,8 +1015,6 @@ export type TenantSizeUpdateDto = {
 export type TenantTeamContactEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID: string;
-    businessProfileRecordID: string;
     businessTeamID: string;
     contactID: string;
 };
@@ -1072,8 +1059,6 @@ export type TenantTeamContactEnrollmentDtoListEnvelopeWritable = {
 };
 
 export type TenantTeamContactEnrollmentUpdateDto = {
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     businessTeamID?: string | null;
     contactID?: string | null;
 };
@@ -1081,8 +1066,6 @@ export type TenantTeamContactEnrollmentUpdateDto = {
 export type TenantTeamCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID: string;
-    businessProfileRecordID?: string | null;
     name?: string | null;
     description?: string | null;
     avatarURL?: string | null;
@@ -1137,8 +1120,6 @@ export type TenantTeamDtoListEnvelopeWritable = {
 export type TenantTeamEmployeeEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID: string;
-    businessProfileRecordID: string;
     businessTeamID: string;
     employeeProfileID: string;
 };
@@ -1183,8 +1164,6 @@ export type TenantTeamEmployeeEnrollmentDtoListEnvelopeWritable = {
 };
 
 export type TenantTeamEmployeeEnrollmentUpdateDto = {
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     businessTeamID?: string | null;
     employeeProfileID?: string | null;
 };
@@ -1192,8 +1171,6 @@ export type TenantTeamEmployeeEnrollmentUpdateDto = {
 export type TenantTeamProjectEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID: string;
-    businessProfileRecordID: string;
     businessTeamID: string;
     projectID: string;
 };
@@ -1238,8 +1215,6 @@ export type TenantTeamProjectEnrollmentDtoListEnvelopeWritable = {
 };
 
 export type TenantTeamProjectEnrollmentUpdateDto = {
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     businessTeamID?: string | null;
     projectID?: string | null;
 };
@@ -1247,8 +1222,6 @@ export type TenantTeamProjectEnrollmentUpdateDto = {
 export type TenantTeamRecordCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID: string;
-    businessProfileRecordID: string;
     businessTeamID: string;
 };
 
@@ -1291,16 +1264,12 @@ export type TenantTeamRecordDtoListEnvelopeWritable = {
 };
 
 export type TenantTeamRecordUpdateDto = {
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     businessTeamID?: string | null;
 };
 
 export type TenantTeamUpdateDto = {
     id?: string | null;
     timestamp?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     name?: string | null;
     description?: string | null;
     avatarURL?: string | null;
@@ -1312,8 +1281,6 @@ export type TenantTeamUpdateDto = {
 export type TenantTerritoryCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     name?: string | null;
     description?: string | null;
     parentTerritoryID?: string | null;
@@ -1416,8 +1383,6 @@ export type TenantTypeUpdateDto = {
 export type TenantUnitCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     name?: string | null;
     description?: string | null;
     disabled?: boolean;

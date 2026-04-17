@@ -929,8 +929,6 @@ export interface components {
       imageURL?: string | null;
       image?: string | null;
       webPortalID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     BlogPostCategoryDto: {
       id?: string | null;
@@ -1018,8 +1016,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       title?: string | null;
       code?: string | null;
       published?: boolean;
@@ -1133,8 +1129,6 @@ export interface components {
       imageURL?: string | null;
       image?: string | null;
       webPortalID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     BlogPostTagDto: {
       id?: string | null;
@@ -2189,8 +2183,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       title?: string | null;
       code?: string | null;
       published?: boolean;
@@ -2362,7 +2354,6 @@ export interface components {
       imageURL?: string | null;
       image?: string | null;
       webPortalID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     WebPageCategoryDto: {
       id?: string | null;
@@ -2419,8 +2410,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       title?: string | null;
       code?: string | null;
       published?: boolean;
@@ -2541,7 +2530,6 @@ export interface components {
       imageURL?: string | null;
       image?: string | null;
       webPortalID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     WebPageTagDto: {
       id?: string | null;
@@ -2675,11 +2663,9 @@ export interface components {
       title?: string | null;
       domain?: string | null;
       disabled?: boolean;
-      businessID?: string | null;
       description?: string | null;
       websiteThemeID?: string | null;
       businessDomainID?: string | null;
-      businessProfileRecordID?: string | null;
       businessPortalApplicationID?: string | null;
     };
     WebPortalDto: {
@@ -2714,13 +2700,13 @@ export interface components {
       description?: string | null;
       websiteThemeID?: string | null;
       businessDomainID?: string | null;
-      businessProfileRecordID?: string | null;
       businessPortalApplicationID?: string | null;
     };
     WebTemplateCreateDto: {
-      id?: string | null;
+      /** Format: uuid */
+      id?: string;
       /** Format: date-time */
-      timestamp?: string | null;
+      timestamp?: string;
       slug?: string | null;
       name?: string | null;
       title?: string | null;

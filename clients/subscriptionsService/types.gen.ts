@@ -192,7 +192,6 @@ export type SubscriptionPlanCreateDto = {
     pattern?: string | null;
     features?: string | null;
     material?: string | null;
-    tenantId?: string | null;
     permalink?: string | null;
     brandName?: string | null;
     variations?: string | null;
@@ -580,7 +579,6 @@ export type SubscriptionPlanUpdateDto = {
     material?: string | null;
     onDiscount?: boolean;
     totalTax?: number;
-    tenantId?: string | null;
     permalink?: string | null;
     brandName?: string | null;
     reviewsCount?: number;
@@ -605,7 +603,6 @@ export type SubscriptionPlanUpdateDto = {
     customTaxValue?: number;
     hasVariations?: boolean;
     questionsCount?: number;
-    enrollmentId?: string | null;
     supplierCode?: string | null;
     auctionEnd?: string;
     purchaseNote?: string | null;

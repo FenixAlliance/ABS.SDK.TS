@@ -903,6 +903,10 @@ export interface components {
       message?: string | null;
     };
     SocialGroupCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       name?: string | null;
       title?: string | null;
       avatarURL?: string | null;

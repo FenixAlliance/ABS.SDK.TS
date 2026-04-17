@@ -1580,8 +1580,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
@@ -1622,7 +1620,6 @@ export interface components {
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
-      businessProfileRecordID?: string | null;
       organizationProfileID?: string | null;
       parentDepartmentID?: string | null;
     };
@@ -1681,7 +1678,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
       userId?: string | null;
     };
     TenantEnrollmentDto: {
@@ -1724,7 +1720,6 @@ export interface components {
       timestamp?: string;
       name?: string | null;
       parentBusinessIndustryID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     TenantIndustryDto: {
       id?: string | null;
@@ -1755,7 +1750,6 @@ export interface components {
     TenantIndustryUpdateDto: {
       name?: string | null;
       parentBusinessIndustryID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     TenantInvitationCreateDto: {
       /** Format: uuid */
@@ -1764,8 +1758,6 @@ export interface components {
       timestamp?: string;
       /** Format: email */
       userEmail: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     TenantInvitationDto: {
       id?: string | null;
@@ -1803,8 +1795,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       title?: string | null;
       description?: string | null;
     };
@@ -1840,7 +1830,6 @@ export interface components {
       title?: string | null;
       description?: string | null;
       type?: string | null;
-      businessProfileRecordID?: string | null;
     };
     TenantSegmentCreateDto: {
       /** Format: uuid */
@@ -1939,8 +1928,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID: string;
-      businessProfileRecordID: string;
       businessTeamID: string;
       contactID: string;
     };
@@ -1972,8 +1959,6 @@ export interface components {
       result?: components["schemas"]["TenantTeamContactEnrollmentDto"][] | null;
     };
     TenantTeamContactEnrollmentUpdateDto: {
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       businessTeamID?: string | null;
       contactID?: string | null;
     };
@@ -1982,8 +1967,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID: string;
-      businessProfileRecordID?: string | null;
       name?: string | null;
       description?: string | null;
       /** Format: uri */
@@ -2028,8 +2011,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID: string;
-      businessProfileRecordID: string;
       businessTeamID: string;
       employeeProfileID: string;
     };
@@ -2061,8 +2042,6 @@ export interface components {
       result?: components["schemas"]["TenantTeamEmployeeEnrollmentDto"][] | null;
     };
     TenantTeamEmployeeEnrollmentUpdateDto: {
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       businessTeamID?: string | null;
       employeeProfileID?: string | null;
     };
@@ -2071,8 +2050,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID: string;
-      businessProfileRecordID: string;
       businessTeamID: string;
       projectID: string;
     };
@@ -2104,8 +2081,6 @@ export interface components {
       result?: components["schemas"]["TenantTeamProjectEnrollmentDto"][] | null;
     };
     TenantTeamProjectEnrollmentUpdateDto: {
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       businessTeamID?: string | null;
       projectID?: string | null;
     };
@@ -2114,8 +2089,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID: string;
-      businessProfileRecordID: string;
       businessTeamID: string;
     };
     TenantTeamRecordDto: {
@@ -2145,16 +2118,12 @@ export interface components {
       result?: components["schemas"]["TenantTeamRecordDto"][] | null;
     };
     TenantTeamRecordUpdateDto: {
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       businessTeamID?: string | null;
     };
     TenantTeamUpdateDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       name?: string | null;
       description?: string | null;
       avatarURL?: string | null;
@@ -2167,8 +2136,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       name?: string | null;
       description?: string | null;
       parentTerritoryID?: string | null;
@@ -2247,8 +2214,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       name?: string | null;
       description?: string | null;
       disabled?: boolean;

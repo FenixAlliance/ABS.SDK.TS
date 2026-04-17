@@ -572,8 +572,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessId?: string | null;
-      businessProfileRecordId?: string | null;
       name?: string | null;
       description?: string | null;
     };
@@ -616,8 +614,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessId?: string | null;
-      businessProfileRecordId?: string | null;
       name?: string | null;
       description?: string | null;
       /** @enum {string} */
@@ -643,6 +639,10 @@ export interface components {
       organizationDepartmentId?: string | null;
     };
     AssetDepreciationRecordCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       assetId?: string | null;
       assetDepreciationPolicyId?: string | null;
       /** Format: double */
@@ -860,6 +860,10 @@ export interface components {
       assetMaintenanceTeamId?: string | null;
     };
     AssetTransferCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       assetId?: string | null;
       isRootTransfer?: boolean;
       serialList?: string | null;
@@ -930,8 +934,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessId?: string | null;
-      businessProfileRecordId?: string | null;
       name?: string | null;
       description?: string | null;
     };

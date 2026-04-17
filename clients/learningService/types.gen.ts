@@ -33,7 +33,6 @@ export type CourseArticleCreateDto = {
     content?: string | null;
     courseID: string;
     courseWikiID: string;
-    businessID: string;
 };
 
 export type CourseArticleDto = {
@@ -61,7 +60,6 @@ export type CourseAssignmentCreateDto = {
     instructions?: string | null;
     points?: number;
     courseID: string;
-    businessID: string;
     courseUnitID?: string | null;
     courseCohortID?: string | null;
     courseAssignmentTypeID?: string | null;
@@ -104,7 +102,6 @@ export type CourseCategoryCreateDto = {
     description?: string | null;
     imageURL?: string | null;
     isFeatured?: boolean;
-    businessID: string;
 };
 
 export type CourseCategoryDto = {
@@ -128,10 +125,8 @@ export type CourseCertificateTemplateCreateDto = {
     id?: string;
     timestamp?: string;
     courseID: string;
-    businessID: string;
     webPortalID?: string | null;
     websiteThemeID?: string | null;
-    businessProfileRecordID?: string | null;
     socialProfileID?: string | null;
     parentWebContentID?: string | null;
     parentWebContentVersionID?: string | null;
@@ -155,7 +150,6 @@ export type CourseCohortCreateDto = {
     timestamp?: string;
     name: string;
     courseID: string;
-    businessID: string;
     startDateTime?: string | null;
     endDateTime?: string | null;
     expectedStartDateTime?: string | null;
@@ -187,8 +181,6 @@ export type CourseCompletionCertificateCreateDto = {
     timestamp?: string;
     studentProfileID: string;
     courseEnrollmentID: string;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     courseCompletionCertificateTemplateID?: string | null;
     courseID?: string | null;
 };
@@ -213,8 +205,6 @@ export type CourseCompletionCertificateDto = {
 export type CourseCompletionCertificateUpdateDto = {
     studentProfileID?: string | null;
     courseEnrollmentID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     courseCompletionCertificateTemplateID?: string | null;
     courseID?: string | null;
 };
@@ -397,7 +387,6 @@ export type CourseEnrollmentCreateDto = {
     courseID?: string | null;
     courseCohortID?: string | null;
     studentProfileID?: string | null;
-    businessProfileRecordID?: string | null;
     courseCompletionCertificateID?: string | null;
 };
 
@@ -427,7 +416,6 @@ export type CourseFileCreateDto = {
     contentType?: string | null;
     fileLength?: number;
     courseID: string;
-    businessID: string;
 };
 
 export type CourseFileDto = {
@@ -456,7 +444,6 @@ export type CourseForumCreateDto = {
     title: string;
     description?: string | null;
     courseID: string;
-    businessID: string;
 };
 
 export type CourseForumDto = {
@@ -483,7 +470,6 @@ export type CourseHandoutCreateDto = {
     releaseDateTime?: string | null;
     courseID: string;
     courseUnitID?: string | null;
-    businessID: string;
 };
 
 export type CourseHandoutDto = {
@@ -515,7 +501,6 @@ export type CourseLibraryCreateDto = {
     description?: string | null;
     courseID: string;
     courseUnitID?: string | null;
-    businessID: string;
     releaseDateTime?: string | null;
 };
 
@@ -544,7 +529,6 @@ export type CourseNewsCreateDto = {
     description?: string | null;
     content?: string | null;
     courseID: string;
-    businessID: string;
 };
 
 export type CourseNewsDto = {
@@ -571,7 +555,6 @@ export type CoursePageCreateDto = {
     content?: string | null;
     slug?: string | null;
     courseID: string;
-    businessID: string;
 };
 
 export type CoursePageDto = {
@@ -599,7 +582,6 @@ export type CourseProblemSetCreateDto = {
     description?: string | null;
     overallScore?: number;
     courseID: string;
-    businessID: string;
     courseUnitID?: string | null;
     courseGradingRubricID?: string | null;
     releaseDateTime?: string | null;
@@ -633,7 +615,6 @@ export type CourseSectionCreateDto = {
     icon?: string | null;
     description?: string | null;
     courseID: string;
-    businessID: string;
     releaseDateTime?: string | null;
     hideFromStudents?: boolean;
 };
@@ -666,7 +647,6 @@ export type CourseUnitComponentCreateDto = {
     content?: string | null;
     order?: number;
     courseID: string;
-    businessID: string;
     courseUnitID?: string | null;
 };
 
@@ -698,7 +678,6 @@ export type CourseUnitCreateDto = {
     content?: string | null;
     courseID: string;
     courseSectionID: string;
-    businessID: string;
     courseContentGroupID?: string | null;
     releaseDateTime?: string | null;
 };
@@ -736,7 +715,6 @@ export type CourseWikiCreateDto = {
     title: string;
     description?: string | null;
     courseID: string;
-    businessID: string;
     courseUnitID?: string | null;
     releaseDateTime?: string | null;
 };
@@ -831,9 +809,7 @@ export type InstructorProfileCreateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    businessID?: string | null;
     contactID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type InstructorProfileDto = {
@@ -958,9 +934,7 @@ export type StudentProfileCreateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    businessID?: string | null;
     contactID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type StudentProfileDto = {
@@ -1026,9 +1000,7 @@ export type StudentProfileUpdateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    businessID?: string | null;
     contactID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type TwoFactorRequest = {

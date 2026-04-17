@@ -347,6 +347,8 @@ export type SocialFeedPostUpdateDto = {
 };
 
 export type SocialGroupCreateDto = {
+    id?: string;
+    timestamp?: string;
     name?: string | null;
     title?: string | null;
     avatarURL?: string | null;

@@ -900,8 +900,6 @@ export interface components {
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       currencyId?: string | null;
       description?: string | null;
       /** Format: double */
@@ -1021,7 +1019,6 @@ export interface components {
       shippingLocationId?: string | null;
       locationId?: string | null;
       quoteItemRecordId?: string | null;
-      businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
       quoteId?: string | null;
     };
@@ -1194,8 +1191,6 @@ export interface components {
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       currencyId?: string | null;
       description?: string | null;
       /** Format: double */
@@ -1315,7 +1310,6 @@ export interface components {
       shippingLocationId?: string | null;
       locationId?: string | null;
       quoteItemRecordId?: string | null;
-      businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
     };
     QuoteLineUpsertDto: {
@@ -1325,8 +1319,6 @@ export interface components {
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       currencyId?: string | null;
       description?: string | null;
       /** Format: double */
@@ -1446,7 +1438,6 @@ export interface components {
       shippingLocationId?: string | null;
       locationId?: string | null;
       quoteItemRecordId?: string | null;
-      businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
       id?: string | null;
       quoteId?: string | null;
@@ -1455,10 +1446,8 @@ export interface components {
       closed?: boolean;
       title?: string | null;
       userId?: string | null;
-      tenantId?: string | null;
       priceListId?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
       individualId?: string | null;
       paymentTermId?: string | null;
       organizationId?: string | null;

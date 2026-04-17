@@ -930,8 +930,6 @@ export interface components {
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       currencyId?: string | null;
       description?: string | null;
       /** Format: double */
@@ -1051,7 +1049,6 @@ export interface components {
       shippingLocationId?: string | null;
       locationId?: string | null;
       quoteItemRecordId?: string | null;
-      businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
       orderId?: string | null;
     };
@@ -1224,8 +1221,6 @@ export interface components {
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       currencyId?: string | null;
       description?: string | null;
       /** Format: double */
@@ -1345,11 +1340,9 @@ export interface components {
       shippingLocationId?: string | null;
       locationId?: string | null;
       quoteItemRecordId?: string | null;
-      businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
     };
     OrderUpdateDto: {
-      tenantId?: string | null;
       firstName?: string | null;
       lastName?: string | null;
       companyName?: string | null;
@@ -1408,7 +1401,6 @@ export interface components {
       /** Format: double */
       forexRate?: number;
       currencyId?: string | null;
-      enrollmentId?: string | null;
       individualId?: string | null;
       organizationId?: string | null;
       /** Format: double */

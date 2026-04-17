@@ -674,12 +674,9 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      accountHolderID?: string | null;
       individualID?: string | null;
       organizationID?: string | null;
       receiverBusinessID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       paymentTokenID?: string | null;
       walletAccountID?: string | null;
       securityCertificateID?: string | null;
@@ -813,12 +810,9 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      accountHolderID?: string | null;
       individualID?: string | null;
       organizationID?: string | null;
       receiverBusinessID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       paymentTokenID?: string | null;
       walletAccountID?: string | null;
       securityCertificateID?: string | null;
@@ -838,8 +832,6 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadId?: string | null;
       filePath?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       metadata?: string | null;
       supportRequestID?: string | null;
     };
@@ -914,11 +906,8 @@ export interface components {
       approved?: boolean;
       /** Format: date-time */
       approvedTimestamp?: string;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       supportEntitlementID?: string | null;
       contactID?: string | null;
-      accountHolderID?: string | null;
     };
     SupportRequestDto: {
       id?: string | null;
@@ -1007,10 +996,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       description?: string | null;
-      accountHolderID?: string | null;
       contactID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       supportTicketTypeID?: string | null;
       supportEntitlementID?: string | null;
       supportPriorityID?: string | null;
@@ -1047,9 +1033,12 @@ export interface components {
       result?: components["schemas"]["SupportTicketDto"][] | null;
     };
     SupportTicketPriorityCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       title?: string | null;
       description?: string | null;
-      businessID?: string | null;
       supportEntitlementID?: string | null;
     };
     SupportTicketPriorityDto: {
@@ -1090,7 +1079,6 @@ export interface components {
       timestamp?: string;
       title?: string | null;
       description?: string | null;
-      businessID?: string | null;
     };
     SupportTicketTypeDto: {
       id?: string | null;
@@ -1127,9 +1115,7 @@ export interface components {
     };
     SupportTicketUpdateDto: {
       description?: string | null;
-      accountHolderID?: string | null;
       contactID?: string | null;
-      businessProfileRecordID?: string | null;
       supportTicketTypeID?: string | null;
       supportEntitlementID?: string | null;
       supportPriorityID?: string | null;

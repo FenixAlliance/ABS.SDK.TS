@@ -290,7 +290,6 @@ export type ServiceCreateDto = {
     pattern?: string | null;
     features?: string | null;
     material?: string | null;
-    tenantId?: string | null;
     permalink?: string | null;
     brandName?: string | null;
     variations?: string | null;
@@ -705,7 +704,6 @@ export type ServiceLevelCreateDto = {
     pattern?: string | null;
     features?: string | null;
     material?: string | null;
-    tenantId?: string | null;
     permalink?: string | null;
     brandName?: string | null;
     variations?: string | null;
@@ -1085,7 +1083,6 @@ export type ServiceLevelUpdateDto = {
     material?: string | null;
     onDiscount?: boolean;
     totalTax?: number;
-    tenantId?: string | null;
     permalink?: string | null;
     brandName?: string | null;
     reviewsCount?: number;
@@ -1110,7 +1107,6 @@ export type ServiceLevelUpdateDto = {
     customTaxValue?: number;
     hasVariations?: boolean;
     questionsCount?: number;
-    enrollmentId?: string | null;
     supplierCode?: string | null;
     auctionEnd?: string;
     purchaseNote?: string | null;
@@ -1307,7 +1303,6 @@ export type ServiceUpdateDto = {
     material?: string | null;
     onDiscount?: boolean;
     totalTax?: number;
-    tenantId?: string | null;
     permalink?: string | null;
     brandName?: string | null;
     reviewsCount?: number;
@@ -1332,7 +1327,6 @@ export type ServiceUpdateDto = {
     customTaxValue?: number;
     hasVariations?: boolean;
     questionsCount?: number;
-    enrollmentId?: string | null;
     supplierCode?: string | null;
     auctionEnd?: string;
     purchaseNote?: string | null;

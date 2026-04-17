@@ -19,8 +19,6 @@ export type EmailGroupCreateDto = {
     name?: string | null;
     description?: string | null;
     enabled?: boolean;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type EmailGroupDto = {
@@ -67,15 +65,11 @@ export type EmailGroupUpdateDto = {
     name?: string | null;
     description?: string | null;
     enabled?: boolean;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type EmailSignatureCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     title?: string | null;
     code?: string | null;
     published?: boolean;
@@ -237,8 +231,6 @@ export type EmailSignatureUpdateDto = {
 export type EmailTemplateCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     title?: string | null;
     code?: string | null;
     published?: boolean;
@@ -495,8 +487,6 @@ export type MarketingCampaignCreateDto = {
     expectedResponsePercent?: number;
     marketingAreaId?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type MarketingCampaignDto = {
@@ -550,8 +540,6 @@ export type MarketingCampaignUpdateDto = {
     expectedResponsePercent?: number;
     marketingAreaId?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type MarketingListCreateDto = {
@@ -566,8 +554,6 @@ export type MarketingListCreateDto = {
     modifiedOn?: string;
     lastUsedOn?: string;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     marketingListType?: 'Static' | 'Dynamic';
     marketingListTarget?: 'Individual' | 'Organization' | 'Lead';
 };
@@ -630,8 +616,6 @@ export type MarketingListUpdateDto = {
     modifiedOn?: string;
     lastUsedOn?: string;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     marketingListType?: 'Static' | 'Dynamic';
     marketingListTarget?: 'Individual' | 'Organization' | 'Lead';
 };
@@ -642,8 +626,6 @@ export type NewsletterCreateDto = {
     name?: string | null;
     code?: string | null;
     title?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type NewsletterDto = {
@@ -674,8 +656,6 @@ export type NewsletterDtoEnvelopeWritable = {
 export type NewsletterUpdateDto = {
     code?: string | null;
     title?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     name?: string | null;
 };
 
@@ -802,12 +782,12 @@ export type ResetPasswordRequest = {
 };
 
 export type SocialMediaPostCreateDto = {
+    id?: string;
+    timestamp?: string;
     title?: string | null;
     content?: string | null;
     featuredImageUrl?: string | null;
-    tenantId?: string | null;
     socialPostBucketId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type SocialMediaPostDto = {
@@ -855,17 +835,13 @@ export type SocialMediaPostUpdateDto = {
     title?: string | null;
     content?: string | null;
     featuredImageUrl?: string | null;
-    tenantId?: string | null;
     socialPostBucketId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type SocialPostBucketCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type SocialPostBucketDto = {
@@ -908,8 +884,6 @@ export type SocialPostBucketDtoListEnvelopeWritable = {
 
 export type SocialPostBucketUpdateDto = {
     name?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type TwoFactorRequest = {

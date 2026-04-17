@@ -2052,9 +2052,7 @@ export interface components {
       code?: string | null;
       path?: string | null;
       prefix?: string | null;
-      tenantId?: string | null;
       currencyId: string;
-      enrollmentId?: string | null;
       accountTypeId?: string | null;
       parentAccountId?: string | null;
       /** @enum {string} */
@@ -2118,8 +2116,6 @@ export interface components {
       title?: string | null;
       description?: string | null;
       parentAccountGroupId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     AccountGroupDto: {
       id?: string | null;
@@ -2153,8 +2149,6 @@ export interface components {
       title?: string | null;
       description?: string | null;
       parentAccountGroupId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     AccountRelationCreateDto: {
       /** Format: uuid */
@@ -2162,8 +2156,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       accountId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     AccountRelationDto: {
       id?: string | null;
@@ -2184,8 +2176,6 @@ export interface components {
     };
     AccountRelationUpdateDto: {
       accountId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     AccountTypeCreateDto: {
       /** Format: uuid */
@@ -2194,8 +2184,6 @@ export interface components {
       timestamp?: string;
       name?: string | null;
       description?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     AccountTypeDto: {
       id?: string | null;
@@ -2218,8 +2206,6 @@ export interface components {
     AccountTypeUpdateDto: {
       name?: string | null;
       description?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     AccountUpdateDto: {
       group?: boolean;
@@ -2239,8 +2225,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       description: string;
       /** Format: date-time */
       date?: string | null;
@@ -2299,8 +2283,6 @@ export interface components {
       result?: components["schemas"]["AccountingEntryDto"][] | null;
     };
     AccountingEntryUpdateDto: {
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       description?: string | null;
       /** Format: double */
       amount?: number;
@@ -2319,8 +2301,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** Format: date-time */
       dateStart?: string;
       /** Format: date-time */
@@ -2358,8 +2338,6 @@ export interface components {
     };
     AccountingPeriodUpdateDto: {
       name?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** Format: date-time */
       dateStart?: string;
       /** Format: date-time */
@@ -2370,8 +2348,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       taxPolicyId?: string | null;
       invoiceId?: string | null;
       itemId?: string | null;
@@ -2413,8 +2389,6 @@ export interface components {
       result?: components["schemas"]["AppliedTaxPolicyRecordDto"][] | null;
     };
     AppliedTaxPolicyRecordUpdateDto: {
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       taxPolicyId?: string | null;
       invoiceId?: string | null;
       itemId?: string | null;
@@ -2434,9 +2408,7 @@ export interface components {
       code?: string | null;
       path?: string | null;
       prefix?: string | null;
-      tenantId?: string | null;
       currencyId: string;
-      enrollmentId?: string | null;
       accountTypeId?: string | null;
       parentAccountId?: string | null;
       /** @enum {string} */
@@ -2580,10 +2552,8 @@ export interface components {
       endDate?: string;
       /** Format: int32 */
       validityInDays?: number;
-      tenantId?: string | null;
       /** @enum {string} */
       bankGuaranteeType?: "Receiving" | "Providing";
-      enrollmentId?: string | null;
       contactId?: string | null;
       projectId?: string | null;
       orderId?: string | null;
@@ -2655,10 +2625,8 @@ export interface components {
       endDate?: string;
       /** Format: int32 */
       validityInDays?: number;
-      tenantId?: string | null;
       /** @enum {string} */
       bankGuaranteeType?: "Receiving" | "Providing";
-      enrollmentId?: string | null;
       contactId?: string | null;
       projectId?: string | null;
       orderId?: string | null;
@@ -2734,8 +2702,6 @@ export interface components {
       unitId?: string | null;
       transactionCategoryId?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       bankProfileId?: string | null;
       bankAccountId?: string | null;
     };
@@ -2750,7 +2716,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       contactId?: string | null;
-      tenantId?: string | null;
       taxId: string;
       phone: string;
       email: string;
@@ -2850,7 +2815,6 @@ export interface components {
     };
     BillingProfileUpdateDto: {
       contactId?: string | null;
-      tenantId?: string | null;
       taxId?: string | null;
       phone?: string | null;
       email?: string | null;
@@ -2876,8 +2840,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       description: string;
       /** Format: date-time */
       date?: string | null;
@@ -2938,8 +2900,6 @@ export interface components {
       result?: components["schemas"]["BudgetAccountEntryDto"][] | null;
     };
     BudgetAccountEntryUpdateDto: {
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       description?: string | null;
       /** Format: double */
       amount?: number;
@@ -2959,7 +2919,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
-      tenantId?: string | null;
       fiscalYearId?: string | null;
     };
     BudgetDto: {
@@ -3007,8 +2966,6 @@ export interface components {
       addedAmount?: number;
       /** Format: double */
       taxComission?: number;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       salaryId?: string | null;
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
@@ -3066,8 +3023,6 @@ export interface components {
       addedAmount?: number;
       /** Format: double */
       taxComission?: number;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       salaryId?: string | null;
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
@@ -3080,7 +3035,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
-      tenantId?: string | null;
       fiscalYearId?: string | null;
       costCentreId?: string | null;
     };
@@ -3126,7 +3080,6 @@ export interface components {
       description?: string | null;
       /** @enum {string} */
       costCentreType?: "Service" | "Production";
-      tenantId?: string | null;
       costCentresGroupId?: string | null;
       parentCostCentreId?: string | null;
     };
@@ -3169,7 +3122,6 @@ export interface components {
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
-      tenantId?: string | null;
       parentCostCentresGroupId?: string | null;
     };
     CostCentreGroupDto: {
@@ -3204,7 +3156,6 @@ export interface components {
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
-      tenantId?: string | null;
       parentCostCentresGroupId?: string | null;
     };
     CostCentreUpdateDto: {
@@ -3213,7 +3164,6 @@ export interface components {
       description?: string | null;
       /** @enum {string} */
       costCentreType?: "Service" | "Production";
-      tenantId?: string | null;
       costCentresGroupId?: string | null;
       parentCostCentreId?: string | null;
     };
@@ -3258,7 +3208,6 @@ export interface components {
       timestamp?: string;
       name: string;
       description?: string | null;
-      tenantID?: string | null;
     };
     FinancialBookDto: {
       id?: string | null;
@@ -3289,7 +3238,6 @@ export interface components {
     FinancialBookUpdateDto: {
       name?: string | null;
       description?: string | null;
-      tenantId?: string | null;
     };
     FiscalAuthorityCreateDto: {
       /** Format: uuid */
@@ -3347,8 +3295,6 @@ export interface components {
       code?: string | null;
       name?: string | null;
       fiscalAuthorityId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     FiscalIdentificationTypeDto: {
       id?: string | null;
@@ -3382,8 +3328,6 @@ export interface components {
       code?: string | null;
       name?: string | null;
       fiscalAuthorityId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     FiscalPeriodCreateDto: {
       /** Format: uuid */
@@ -3395,8 +3339,6 @@ export interface components {
       fromDate?: string;
       /** Format: date-time */
       toDate?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       fiscalYearId?: string | null;
     };
     FiscalPeriodDto: {
@@ -3436,8 +3378,6 @@ export interface components {
       fromDate?: string;
       /** Format: date-time */
       toDate?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       fiscalYearId?: string | null;
     };
     FiscalRegimeCreateDto: {
@@ -3448,8 +3388,6 @@ export interface components {
       code?: string | null;
       name?: string | null;
       fiscalAuthorityId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     FiscalRegimeDto: {
       id?: string | null;
@@ -3483,8 +3421,6 @@ export interface components {
       code?: string | null;
       name?: string | null;
       fiscalAuthorityId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     FiscalResponsibilityCreateDto: {
       /** Format: uuid */
@@ -3494,8 +3430,6 @@ export interface components {
       code?: string | null;
       name?: string | null;
       fiscalAuthorityId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     FiscalResponsibilityDto: {
       id?: string | null;
@@ -3532,8 +3466,6 @@ export interface components {
       timestamp?: string;
       fiscalResponsibilityId?: string | null;
       billingProfileId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     FiscalResponsibilityRecordDto: {
       id?: string | null;
@@ -3565,15 +3497,11 @@ export interface components {
     FiscalResponsibilityRecordUpdateDto: {
       fiscalResponsibilityId?: string | null;
       billingProfileId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     FiscalResponsibilityUpdateDto: {
       code?: string | null;
       name?: string | null;
       fiscalAuthorityId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     FiscalYearCreateDto: {
       /** Format: uuid */
@@ -3583,12 +3511,11 @@ export interface components {
       name?: string | null;
       description?: string | null;
       closed?: boolean;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** Format: date-time */
       endDate?: string;
       /** Format: date-time */
       startDate?: string;
+      fiscalAuthorityId?: string | null;
     };
     FiscalYearDto: {
       id?: string | null;
@@ -3640,6 +3567,7 @@ export interface components {
       endDate?: string;
       /** Format: date-time */
       startDate?: string;
+      fiscalAuthorityId?: string | null;
     };
     ForgotPasswordRequest: {
       email: string | null;
@@ -3649,8 +3577,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     GrantDto: {
       id?: string | null;
@@ -3677,10 +3603,7 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["GrantDto"][] | null;
     };
-    GrantUpdateDto: {
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-    };
+    GrantUpdateDto: Record<string, never>;
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -3732,8 +3655,6 @@ export interface components {
       /** Format: date-time */
       validTo: string;
       fiscalAuthorityId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** @enum {string} */
       documentType?: "Standard" | "DebitNote" | "CreditNote";
     };
@@ -3795,8 +3716,6 @@ export interface components {
       /** Format: date-time */
       validTo?: string;
       fiscalAuthorityId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** @enum {string} */
       documentType?: "Standard" | "DebitNote" | "CreditNote";
     };
@@ -3853,8 +3772,6 @@ export interface components {
       description?: string | null;
       /** Format: date-time */
       dateTime?: string;
-      tenantID?: string | null;
-      enrollmentID?: string | null;
       parentJournalID?: string | null;
       journalTypeID?: string | null;
       ledgerID?: string | null;
@@ -3974,8 +3891,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     JournalTypeDto: {
       id?: string | null;
@@ -4005,8 +3920,6 @@ export interface components {
     };
     JournalTypeUpdateDto: {
       name?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     JournalUpdateDto: {
       name?: string | null;
@@ -4055,8 +3968,6 @@ export interface components {
       name: string;
       /** @enum {string} */
       ledgerClass?: "Assets" | "Equity" | "Gains" | "Losses" | "Revenue" | "Expenses" | "Liabilities";
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     LedgerTypeDto: {
       id?: string | null;
@@ -4090,16 +4001,12 @@ export interface components {
       name?: string | null;
       /** @enum {string|null} */
       ledgerClass?: "Assets" | "Equity" | "Gains" | "Losses" | "Revenue" | "Expenses" | "Liabilities" | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     LoanApplicationCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     LoanApplicationDto: {
       id?: string | null;
@@ -4126,10 +4033,7 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["LoanApplicationDto"][] | null;
     };
-    LoanApplicationUpdateDto: {
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-    };
+    LoanApplicationUpdateDto: Record<string, never>;
     LoanCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -4146,8 +4050,6 @@ export interface components {
       isCompundInterestRate?: boolean;
       loanTypeId?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     LoanDto: {
       id?: string | null;
@@ -4197,7 +4099,6 @@ export interface components {
       isCompundInterestRate?: boolean;
       loanTypeId?: string | null;
       currencyId?: string | null;
-      enrollmentId?: string | null;
     };
     LoginRequest: {
       email: string | null;
@@ -4277,8 +4178,6 @@ export interface components {
       addedAmount?: number;
       /** Format: double */
       taxComission?: number;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       salaryId?: string | null;
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
@@ -4287,8 +4186,11 @@ export interface components {
       paymentId?: string | null;
     };
     ReceiptCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       title?: string | null;
-      userId?: string | null;
       priceListId?: string | null;
       description?: string | null;
       individualId?: string | null;
@@ -4305,9 +4207,6 @@ export interface components {
       countryId?: string | null;
       stateId?: string | null;
       cityId?: string | null;
-      billingLocationId?: string | null;
-      shippingLocationId?: string | null;
-      shippingMethodId?: string | null;
       currencyId?: string | null;
       /** Format: double */
       totalDetail?: number;
@@ -4322,17 +4221,11 @@ export interface components {
       totalSurcharges?: number;
       totalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalShippingTax?: number;
-      totalShippingTaxCurrencyId?: string | null;
-      /** Format: double */
       totalShippingCost?: number;
       totalShippingCostCurrencyId?: string | null;
       /** Format: double */
-      totalGlobalDiscounts?: number;
-      totalGlobalDiscountsCurrencyId?: string | null;
-      /** Format: double */
-      totalGlobalSurcharges?: number;
-      totalGlobalSurchargesCurrencyId?: string | null;
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
       /** Format: double */
       totalWithheldTax?: number;
       totalWithheldTaxCurrencyId?: string | null;
@@ -4343,6 +4236,12 @@ export interface components {
       totalTaxes?: number;
       totalTaxesCurrencyId?: string | null;
       /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
       total?: number;
       totalCurrencyId?: string | null;
       /** @enum {string} */
@@ -4350,7 +4249,6 @@ export interface components {
       /** @enum {string} */
       taxCalculationMethod?: "Included" | "Excluded";
       paymentId?: string | null;
-      tenantId?: string | null;
       /** Format: double */
       forexRate?: number;
       /** Format: double */
@@ -4358,9 +4256,7 @@ export interface components {
       /** Format: double */
       totalAmountInUSD?: number;
       closed?: boolean;
-      accountHolderId?: string | null;
       contactId?: string | null;
-      enrollmentId?: string | null;
       /** @enum {string} */
       receiptType?: "PaymentReceipt" | "PurchaseReceipt";
       orderId?: string | null;
@@ -4401,7 +4297,6 @@ export interface components {
     };
     ReceiptUpdateDto: {
       paymentId?: string | null;
-      tenantId?: string | null;
       /** Format: double */
       forexRate?: number;
       /** Format: double */
@@ -4410,9 +4305,7 @@ export interface components {
       totalAmountInUsd?: number;
       closed?: boolean;
       currencyId?: string | null;
-      accountHolderId?: string | null;
       contactId?: string | null;
-      enrollmentId?: string | null;
       orderId?: string | null;
       invoiceId?: string | null;
     };
@@ -4441,8 +4334,6 @@ export interface components {
       description?: string | null;
       forexRates?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     ShareClassDto: {
       id?: string | null;
@@ -4480,16 +4371,12 @@ export interface components {
       description?: string | null;
       forexRates?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     ShareIssuanceCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** Format: int32 */
       unitPrice?: number;
       /** Format: int32 */
@@ -4527,8 +4414,6 @@ export interface components {
       result?: components["schemas"]["ShareIssuanceDto"][] | null;
     };
     ShareIssuanceUpdateDto: {
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** Format: int32 */
       unitPrice?: number;
       /** Format: int32 */
@@ -4546,8 +4431,6 @@ export interface components {
       newShareHolderId?: string | null;
       formerShareHolderId?: string | null;
       shareTransferReasonId?: string | null;
-      enrollmentId?: string | null;
-      tenantId?: string | null;
     };
     ShareTransferDto: {
       id?: string | null;
@@ -4587,8 +4470,6 @@ export interface components {
       timestamp?: string;
       name?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
-      tenantId?: string | null;
     };
     ShareTransferReasonDto: {
       id?: string | null;
@@ -4620,8 +4501,6 @@ export interface components {
     ShareTransferReasonUpdateDto: {
       name?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
-      tenantId?: string | null;
     };
     ShareTransferUpdateDto: {
       description?: string | null;
@@ -4630,8 +4509,6 @@ export interface components {
       newShareHolderId?: string | null;
       formerShareHolderId?: string | null;
       shareTransferReasonId?: string | null;
-      enrollmentId?: string | null;
-      tenantId?: string | null;
     };
     TaxPolicyCreateDto: {
       /** Format: uuid */
@@ -4666,8 +4543,6 @@ export interface components {
       customState?: string | null;
       customCity?: string | null;
       cityId?: string | null;
-      enrollmentId?: string | null;
-      tenantId?: string | null;
       zero?: boolean;
       reduced?: boolean;
       withholding?: boolean;
@@ -4759,8 +4634,6 @@ export interface components {
       customState?: string | null;
       customCity?: string | null;
       cityId?: string | null;
-      enrollmentId?: string | null;
-      tenantId?: string | null;
       zero?: boolean;
       reduced?: boolean;
       withholding?: boolean;
@@ -4790,12 +4663,10 @@ export interface components {
       cumulativeTransactionThreshold?: number;
       fiscalAuthorityId?: string | null;
       fiscalYearId?: string | null;
-      tenantId?: string | null;
       countryId?: string | null;
       taxClassId?: string | null;
       currencyId?: string | null;
       taxPolicyId?: string | null;
-      enrollmentId?: string | null;
     };
     TaxRateDto: {
       id?: string | null;
@@ -4865,12 +4736,10 @@ export interface components {
       cumulativeTransactionThreshold?: number;
       fiscalAuthorityId?: string | null;
       fiscalYearId?: string | null;
-      tenantId?: string | null;
       countryId?: string | null;
       taxClassId?: string | null;
       currencyId?: string | null;
       taxPolicyId?: string | null;
-      enrollmentId?: string | null;
     };
     /** Format: uuid */
     TenantId: string;
@@ -4881,8 +4750,6 @@ export interface components {
       timestamp?: string;
       name?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
-      tenantId?: string | null;
     };
     TransactionCategoryDto: {
       id?: string | null;
@@ -4914,8 +4781,6 @@ export interface components {
     TransactionCategoryUpdateDto: {
       name?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
-      tenantId?: string | null;
     };
     TransactionCreateDto: {
       /** Format: uuid */
@@ -4938,8 +4803,6 @@ export interface components {
       unitId?: string | null;
       transactionCategoryId?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     TransactionDto: {
       id?: string | null;
@@ -4999,8 +4862,6 @@ export interface components {
       unitId?: string | null;
       transactionCategoryId?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;

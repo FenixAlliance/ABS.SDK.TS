@@ -94,7 +94,6 @@ export type PaymentCreateDto = {
     id?: string;
     timestamp?: string;
     invoiceId?: string | null;
-    tenantId?: string | null;
     emisorWalletId?: string | null;
     receiverWalletId?: string | null;
     currencyId?: string | null;
@@ -146,7 +145,6 @@ export type PaymentCreateDto = {
     accountingEntryId?: string | null;
     paymentGatewayId?: string | null;
     bankAccountId?: string | null;
-    enrollmentId?: string | null;
     bankId?: string | null;
     paymentTokenId?: string | null;
     emisorWalletAccountId?: string | null;
@@ -235,8 +233,6 @@ export type PaymentMethodCreateDto = {
     timestamp?: string;
     name: string;
     description?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type PaymentMethodDto = {
@@ -288,8 +284,6 @@ export type PaymentModeCreateDto = {
     timestamp?: string;
     name: string;
     description?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type PaymentModeDto = {
@@ -348,8 +342,6 @@ export type PaymentTermCreateDto = {
     creditMonths?: number;
     creditYears?: number;
     paymentModeID?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type PaymentTermDto = {
@@ -412,7 +404,6 @@ export type PaymentTermUpdateDto = {
 
 export type PaymentUpdateDto = {
     invoiceId?: string | null;
-    tenantId?: string | null;
     emisorWalletId?: string | null;
     receiverWalletId?: string | null;
     currencyId?: string | null;
@@ -464,7 +455,6 @@ export type PaymentUpdateDto = {
     accountingEntryId?: string | null;
     paymentGatewayId?: string | null;
     bankAccountId?: string | null;
-    enrollmentId?: string | null;
     bankId?: string | null;
     paymentTokenId?: string | null;
     emisorWalletAccountId?: string | null;

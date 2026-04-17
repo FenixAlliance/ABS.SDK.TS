@@ -610,8 +610,6 @@ export interface components {
       contactEmail?: string | null;
       privacyPolicyURL?: string | null;
       termsAndConditionsURL?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       requireHttps?: boolean;
       requireAppSecret?: boolean;
       enableClientOauthLogin?: boolean;
@@ -844,6 +842,10 @@ export interface components {
       twoFactorRecoveryCode?: string | null;
     };
     OAuthApplicationCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       displayName: string;
       clientId?: string | null;
       clientSecret?: string | null;
@@ -853,8 +855,6 @@ export interface components {
       redirectUris?: string | null;
       postLogoutRedirectUris?: string | null;
       logo?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     OAuthApplicationDto: {
       id?: string | null;
@@ -981,7 +981,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name: string;
-      tenantId: string;
       description?: string | null;
     };
     SecurityPermissionDto: {
@@ -1021,8 +1020,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name: string;
-      /** Format: uuid */
-      tenantId: string;
       description?: string | null;
     };
     SecurityRoleDto: {

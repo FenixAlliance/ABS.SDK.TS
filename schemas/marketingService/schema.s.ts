@@ -546,8 +546,6 @@ export interface components {
       name?: string | null;
       description?: string | null;
       enabled?: boolean;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     EmailGroupDto: {
       id?: string | null;
@@ -581,16 +579,12 @@ export interface components {
       name?: string | null;
       description?: string | null;
       enabled?: boolean;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     EmailSignatureCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       title?: string | null;
       code?: string | null;
       published?: boolean;
@@ -750,8 +744,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       title?: string | null;
       code?: string | null;
       published?: boolean;
@@ -993,8 +985,6 @@ export interface components {
       expectedResponsePercent?: number;
       marketingAreaId?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     MarketingCampaignDto: {
       id?: string | null;
@@ -1057,8 +1047,6 @@ export interface components {
       expectedResponsePercent?: number;
       marketingAreaId?: string | null;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     MarketingListCreateDto: {
       /** Format: uuid */
@@ -1077,8 +1065,6 @@ export interface components {
       /** Format: date-time */
       lastUsedOn?: string;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** @enum {string} */
       marketingListType?: "Static" | "Dynamic";
       /** @enum {string} */
@@ -1138,8 +1124,6 @@ export interface components {
       /** Format: date-time */
       lastUsedOn?: string;
       currencyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       /** @enum {string} */
       marketingListType?: "Static" | "Dynamic";
       /** @enum {string} */
@@ -1153,8 +1137,6 @@ export interface components {
       name?: string | null;
       code?: string | null;
       title?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     NewsletterDto: {
       id?: string | null;
@@ -1178,8 +1160,6 @@ export interface components {
     NewsletterUpdateDto: {
       code?: string | null;
       title?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       name?: string | null;
     };
     OrderDto: {
@@ -1335,13 +1315,15 @@ export interface components {
       newPassword: string | null;
     };
     SocialMediaPostCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       title?: string | null;
       content?: string | null;
       /** Format: uri */
       featuredImageUrl?: string | null;
-      tenantId?: string | null;
       socialPostBucketId?: string | null;
-      enrollmentId?: string | null;
     };
     SocialMediaPostDto: {
       id?: string | null;
@@ -1377,9 +1359,7 @@ export interface components {
       content?: string | null;
       /** Format: uri */
       featuredImageUrl?: string | null;
-      tenantId?: string | null;
       socialPostBucketId?: string | null;
-      enrollmentId?: string | null;
     };
     SocialPostBucketCreateDto: {
       /** Format: uuid */
@@ -1387,8 +1367,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     SocialPostBucketDto: {
       id?: string | null;
@@ -1418,8 +1396,6 @@ export interface components {
     };
     SocialPostBucketUpdateDto: {
       name?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;

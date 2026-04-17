@@ -32,8 +32,6 @@ export type DiscountCreateDto = {
     endQuantity?: number;
     percent?: number;
     value?: number;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     discountListId?: string | null;
 };
 
@@ -86,8 +84,6 @@ export type DiscountListCreateDto = {
     timestamp?: string;
     name?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type DiscountListDto = {
@@ -132,8 +128,6 @@ export type DiscountListDtoListEnvelopeWritable = {
 export type DiscountListUpdateDto = {
     name?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type DiscountUpdateDto = {
@@ -142,8 +136,6 @@ export type DiscountUpdateDto = {
     endQuantity?: number;
     percent?: number;
     value?: number;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     discountListId?: string | null;
 };
 
@@ -297,11 +289,9 @@ export type ItemPriceCreateDto = {
     timestamp?: string;
     itemId: string;
     unitId?: string | null;
-    tenantId?: string | null;
     currencyId?: string | null;
     priceListId?: string | null;
     unitGroupId?: string | null;
-    enrollmentId?: string | null;
     discountListId?: string | null;
     roundingPolicyId?: string | null;
     price?: number;
@@ -408,8 +398,6 @@ export type PriceListCreateDto = {
     currencyId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type PriceListDto = {

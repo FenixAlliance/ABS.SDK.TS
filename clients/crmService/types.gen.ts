@@ -45,7 +45,6 @@ export type CartDtoEnvelopeWritable = {
 export type ContactCreateDtoReadable = {
     id?: string;
     timestamp?: string;
-    tenantId: string;
     type: 'Individual' | 'Organization';
     firstName: string;
     lastName?: string | null;
@@ -91,7 +90,6 @@ export type ContactCreateDtoReadable = {
 export type ContactCreateDtoWritable = {
     id?: string;
     timestamp?: string;
-    tenantId: string;
     type: 'Individual' | 'Organization';
     firstName: string;
     lastName?: string | null;

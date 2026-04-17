@@ -22,9 +22,7 @@ export type AccountCreateDto = {
     code?: string | null;
     path?: string | null;
     prefix?: string | null;
-    tenantId?: string | null;
     currencyId: string;
-    enrollmentId?: string | null;
     accountTypeId?: string | null;
     parentAccountId?: string | null;
     accountCategory: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
@@ -120,8 +118,6 @@ export type AccountGroupCreateDto = {
     title?: string | null;
     description?: string | null;
     parentAccountGroupId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type AccountGroupDto = {
@@ -168,16 +164,12 @@ export type AccountGroupUpdateDto = {
     title?: string | null;
     description?: string | null;
     parentAccountGroupId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type AccountRelationCreateDto = {
     id?: string;
     timestamp?: string;
     accountId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type AccountRelationDto = {
@@ -205,8 +197,6 @@ export type AccountRelationDtoListEnvelopeWritable = {
 
 export type AccountRelationUpdateDto = {
     accountId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type AccountTypeCreateDto = {
@@ -214,8 +204,6 @@ export type AccountTypeCreateDto = {
     timestamp?: string;
     name?: string | null;
     description?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type AccountTypeDto = {
@@ -245,8 +233,6 @@ export type AccountTypeDtoListEnvelopeWritable = {
 export type AccountTypeUpdateDto = {
     name?: string | null;
     description?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type AccountUpdateDto = {
@@ -265,8 +251,6 @@ export type AccountUpdateDto = {
 export type AccountingEntryCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     description: string;
     date?: string | null;
     amount?: number;
@@ -352,8 +336,6 @@ export type AccountingEntryDtoListEnvelopeWritable = {
 };
 
 export type AccountingEntryUpdateDto = {
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     description?: string | null;
     amount?: number;
     date?: string | null;
@@ -368,8 +350,6 @@ export type AccountingPeriodCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     dateStart?: string;
     dateEnd?: string;
 };
@@ -416,8 +396,6 @@ export type AccountingPeriodDtoListEnvelopeWritable = {
 
 export type AccountingPeriodUpdateDto = {
     name?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     dateStart?: string;
     dateEnd?: string;
 };
@@ -425,8 +403,6 @@ export type AccountingPeriodUpdateDto = {
 export type AppliedTaxPolicyRecordCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     taxPolicyId?: string | null;
     invoiceId?: string | null;
     itemId?: string | null;
@@ -477,8 +453,6 @@ export type AppliedTaxPolicyRecordDtoListEnvelopeWritable = {
 };
 
 export type AppliedTaxPolicyRecordUpdateDto = {
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     taxPolicyId?: string | null;
     invoiceId?: string | null;
     itemId?: string | null;
@@ -495,9 +469,7 @@ export type BankAccountCreateDto = {
     code?: string | null;
     path?: string | null;
     prefix?: string | null;
-    tenantId?: string | null;
     currencyId: string;
-    enrollmentId?: string | null;
     accountTypeId?: string | null;
     parentAccountId?: string | null;
     accountCategory: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
@@ -684,9 +656,7 @@ export type BankGuaranteeCreateDto = {
     startDate?: string;
     endDate?: string;
     validityInDays?: number;
-    tenantId?: string | null;
     bankGuaranteeType?: 'Receiving' | 'Providing';
-    enrollmentId?: string | null;
     contactId?: string | null;
     projectId?: string | null;
     orderId?: string | null;
@@ -758,9 +728,7 @@ export type BankGuaranteeUpdateDto = {
     startDate?: string;
     endDate?: string;
     validityInDays?: number;
-    tenantId?: string | null;
     bankGuaranteeType?: 'Receiving' | 'Providing';
-    enrollmentId?: string | null;
     contactId?: string | null;
     projectId?: string | null;
     orderId?: string | null;
@@ -838,8 +806,6 @@ export type BankTransactionUpdateDto = {
     unitId?: string | null;
     transactionCategoryId?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     bankProfileId?: string | null;
     bankAccountId?: string | null;
 };
@@ -854,7 +820,6 @@ export type BillingProfileCreateDto = {
     id?: string;
     timestamp?: string;
     contactId?: string | null;
-    tenantId?: string | null;
     taxId: string;
     phone: string;
     email: string;
@@ -965,7 +930,6 @@ export type BillingProfileDtoIReadOnlyListEnvelopeWritable = {
 
 export type BillingProfileUpdateDto = {
     contactId?: string | null;
-    tenantId?: string | null;
     taxId?: string | null;
     phone?: string | null;
     email?: string | null;
@@ -990,8 +954,6 @@ export type BillingProfileUpdateDto = {
 export type BudgetAccountEntryCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     description: string;
     date?: string | null;
     amount?: number;
@@ -1080,8 +1042,6 @@ export type BudgetAccountEntryDtoIReadOnlyListEnvelopeWritable = {
 };
 
 export type BudgetAccountEntryUpdateDto = {
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     description?: string | null;
     amount?: number;
     date?: string | null;
@@ -1097,7 +1057,6 @@ export type BudgetCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
-    tenantId?: string | null;
     fiscalYearId?: string | null;
 };
 
@@ -1153,8 +1112,6 @@ export type CommissionCreateDto = {
     addedPercent?: number;
     addedAmount?: number;
     taxComission?: number;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     salaryId?: string | null;
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
@@ -1217,8 +1174,6 @@ export type CommissionUpdateDto = {
     addedPercent?: number;
     addedAmount?: number;
     taxComission?: number;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     salaryId?: string | null;
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
@@ -1230,7 +1185,6 @@ export type CostCentreBudgetCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
-    tenantId?: string | null;
     fiscalYearId?: string | null;
     costCentreId?: string | null;
 };
@@ -1287,7 +1241,6 @@ export type CostCentreCreateDto = {
     disabled?: boolean;
     description?: string | null;
     costCentreType?: 'Service' | 'Production';
-    tenantId?: string | null;
     costCentresGroupId?: string | null;
     parentCostCentreId?: string | null;
 };
@@ -1340,7 +1293,6 @@ export type CostCentreGroupCreateDto = {
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
-    tenantId?: string | null;
     parentCostCentresGroupId?: string | null;
 };
 
@@ -1388,7 +1340,6 @@ export type CostCentreGroupUpdateDto = {
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
-    tenantId?: string | null;
     parentCostCentresGroupId?: string | null;
 };
 
@@ -1397,7 +1348,6 @@ export type CostCentreUpdateDto = {
     disabled?: boolean;
     description?: string | null;
     costCentreType?: 'Service' | 'Production';
-    tenantId?: string | null;
     costCentresGroupId?: string | null;
     parentCostCentreId?: string | null;
 };
@@ -1455,7 +1405,6 @@ export type FinancialBookCreateDto = {
     timestamp?: string;
     name: string;
     description?: string | null;
-    tenantID?: string | null;
 };
 
 export type FinancialBookDto = {
@@ -1499,7 +1448,6 @@ export type FinancialBookDtoListEnvelopeWritable = {
 export type FinancialBookUpdateDto = {
     name?: string | null;
     description?: string | null;
-    tenantId?: string | null;
 };
 
 export type FiscalAuthorityCreateDto = {
@@ -1568,8 +1516,6 @@ export type FiscalIdentificationTypeCreateDto = {
     code?: string | null;
     name?: string | null;
     fiscalAuthorityId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type FiscalIdentificationTypeDto = {
@@ -1616,8 +1562,6 @@ export type FiscalIdentificationTypeUpdateDto = {
     code?: string | null;
     name?: string | null;
     fiscalAuthorityId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type FiscalPeriodCreateDto = {
@@ -1626,8 +1570,6 @@ export type FiscalPeriodCreateDto = {
     name?: string | null;
     fromDate?: string;
     toDate?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     fiscalYearId?: string | null;
 };
 
@@ -1676,8 +1618,6 @@ export type FiscalPeriodUpdateDto = {
     name?: string | null;
     fromDate?: string;
     toDate?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     fiscalYearId?: string | null;
 };
 
@@ -1687,8 +1627,6 @@ export type FiscalRegimeCreateDto = {
     code?: string | null;
     name?: string | null;
     fiscalAuthorityId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type FiscalRegimeDto = {
@@ -1735,8 +1673,6 @@ export type FiscalRegimeUpdateDto = {
     code?: string | null;
     name?: string | null;
     fiscalAuthorityId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type FiscalResponsibilityCreateDto = {
@@ -1745,8 +1681,6 @@ export type FiscalResponsibilityCreateDto = {
     code?: string | null;
     name?: string | null;
     fiscalAuthorityId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type FiscalResponsibilityDto = {
@@ -1794,8 +1728,6 @@ export type FiscalResponsibilityRecordCreateDto = {
     timestamp?: string;
     fiscalResponsibilityId?: string | null;
     billingProfileId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type FiscalResponsibilityRecordDto = {
@@ -1840,16 +1772,12 @@ export type FiscalResponsibilityRecordDtoListEnvelopeWritable = {
 export type FiscalResponsibilityRecordUpdateDto = {
     fiscalResponsibilityId?: string | null;
     billingProfileId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type FiscalResponsibilityUpdateDto = {
     code?: string | null;
     name?: string | null;
     fiscalAuthorityId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type FiscalYearCreateDto = {
@@ -1858,10 +1786,9 @@ export type FiscalYearCreateDto = {
     name?: string | null;
     description?: string | null;
     closed?: boolean;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     endDate?: string;
     startDate?: string;
+    fiscalAuthorityId?: string | null;
 };
 
 export type FiscalYearDto = {
@@ -1928,6 +1855,7 @@ export type FiscalYearUpdateDto = {
     closed?: boolean;
     endDate?: string;
     startDate?: string;
+    fiscalAuthorityId?: string | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -1937,8 +1865,6 @@ export type ForgotPasswordRequest = {
 export type GrantCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type GrantDto = {
@@ -1979,8 +1905,7 @@ export type GrantDtoIReadOnlyListEnvelopeWritable = {
 };
 
 export type GrantUpdateDto = {
-    tenantId?: string | null;
-    enrollmentId?: string | null;
+    [key: string]: never;
 };
 
 export type HttpValidationProblemDetails = {
@@ -2036,8 +1961,6 @@ export type InvoiceEnumerationRangeCreateDto = {
     validFrom: string;
     validTo: string;
     fiscalAuthorityId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
 };
 
@@ -2100,8 +2023,6 @@ export type InvoiceEnumerationRangeUpdateDto = {
     validFrom?: string;
     validTo?: string;
     fiscalAuthorityId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
 };
 
@@ -2165,8 +2086,6 @@ export type JournalCreateDto = {
     name: string;
     description?: string | null;
     dateTime?: string;
-    tenantID?: string | null;
-    enrollmentID?: string | null;
     parentJournalID?: string | null;
     journalTypeID?: string | null;
     ledgerID?: string | null;
@@ -2320,8 +2239,6 @@ export type JournalTypeCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type JournalTypeDto = {
@@ -2364,8 +2281,6 @@ export type JournalTypeDtoIReadOnlyListEnvelopeWritable = {
 
 export type JournalTypeUpdateDto = {
     name?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type JournalUpdateDto = {
@@ -2423,8 +2338,6 @@ export type LedgerTypeCreateDto = {
     timestamp?: string;
     name: string;
     ledgerClass?: 'Assets' | 'Equity' | 'Gains' | 'Losses' | 'Revenue' | 'Expenses' | 'Liabilities';
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type LedgerTypeDto = {
@@ -2469,15 +2382,11 @@ export type LedgerTypeDtoIReadOnlyListEnvelopeWritable = {
 export type LedgerTypeUpdateDto = {
     name?: string | null;
     ledgerClass?: 'Assets' | 'Equity' | 'Gains' | 'Losses' | 'Revenue' | 'Expenses' | 'Liabilities';
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type LoanApplicationCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type LoanApplicationDto = {
@@ -2518,8 +2427,7 @@ export type LoanApplicationDtoIReadOnlyListEnvelopeWritable = {
 };
 
 export type LoanApplicationUpdateDto = {
-    tenantId?: string | null;
-    enrollmentId?: string | null;
+    [key: string]: never;
 };
 
 export type LoanCreateDto = {
@@ -2532,8 +2440,6 @@ export type LoanCreateDto = {
     isCompundInterestRate?: boolean;
     loanTypeId?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type LoanDto = {
@@ -2588,7 +2494,6 @@ export type LoanUpdateDto = {
     isCompundInterestRate?: boolean;
     loanTypeId?: string | null;
     currencyId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type LoginRequest = {
@@ -2678,8 +2583,6 @@ export type PaymentCommissionUpdateDto = {
     addedPercent?: number;
     addedAmount?: number;
     taxComission?: number;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     salaryId?: string | null;
     emisorWalletAccountId?: string | null;
     receiverWalletAccountId?: string | null;
@@ -2689,8 +2592,9 @@ export type PaymentCommissionUpdateDto = {
 };
 
 export type ReceiptCreateDto = {
+    id?: string;
+    timestamp?: string;
     title?: string | null;
-    userId?: string | null;
     priceListId?: string | null;
     description?: string | null;
     individualId?: string | null;
@@ -2707,9 +2611,6 @@ export type ReceiptCreateDto = {
     countryId?: string | null;
     stateId?: string | null;
     cityId?: string | null;
-    billingLocationId?: string | null;
-    shippingLocationId?: string | null;
-    shippingMethodId?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -2719,33 +2620,30 @@ export type ReceiptCreateDto = {
     totalDiscountsCurrencyId?: string | null;
     totalSurcharges?: number;
     totalSurchargesCurrencyId?: string | null;
-    totalShippingTax?: number;
-    totalShippingTaxCurrencyId?: string | null;
     totalShippingCost?: number;
     totalShippingCostCurrencyId?: string | null;
-    totalGlobalDiscounts?: number;
-    totalGlobalDiscountsCurrencyId?: string | null;
-    totalGlobalSurcharges?: number;
-    totalGlobalSurchargesCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
     totalWithheldTax?: number;
     totalWithheldTaxCurrencyId?: string | null;
     totalTaxBase?: number;
     totalTaxBaseCurrencyId?: string | null;
     totalTaxes?: number;
     totalTaxesCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
     total?: number;
     totalCurrencyId?: string | null;
     costCalculationMethod?: 'Automatic' | 'Custom';
     taxCalculationMethod?: 'Included' | 'Excluded';
     paymentId?: string | null;
-    tenantId?: string | null;
     forexRate?: number;
     totalAmount?: number;
     totalAmountInUSD?: number;
     closed?: boolean;
-    accountHolderId?: string | null;
     contactId?: string | null;
-    enrollmentId?: string | null;
     receiptType?: 'PaymentReceipt' | 'PurchaseReceipt';
     orderId?: string | null;
     invoiceId?: string | null;
@@ -2797,15 +2695,12 @@ export type ReceiptDtoIReadOnlyListEnvelopeWritable = {
 
 export type ReceiptUpdateDto = {
     paymentId?: string | null;
-    tenantId?: string | null;
     forexRate?: number;
     totalAmount?: number;
     totalAmountInUsd?: number;
     closed?: boolean;
     currencyId?: string | null;
-    accountHolderId?: string | null;
     contactId?: string | null;
-    enrollmentId?: string | null;
     orderId?: string | null;
     invoiceId?: string | null;
 };
@@ -2837,8 +2732,6 @@ export type ShareClassCreateDto = {
     description?: string | null;
     forexRates?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type ShareClassDto = {
@@ -2889,15 +2782,11 @@ export type ShareClassUpdateDto = {
     description?: string | null;
     forexRates?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type ShareIssuanceCreateDto = {
     id?: string;
     timestamp?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     unitPrice?: number;
     quantity?: number;
     currencyId?: string | null;
@@ -2944,8 +2833,6 @@ export type ShareIssuanceDtoListEnvelopeWritable = {
 };
 
 export type ShareIssuanceUpdateDto = {
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     unitPrice?: number;
     quantity?: number;
     currencyId?: string | null;
@@ -2959,8 +2846,6 @@ export type ShareTransferCreateDto = {
     newShareHolderId?: string | null;
     formerShareHolderId?: string | null;
     shareTransferReasonId?: string | null;
-    enrollmentId?: string | null;
-    tenantId?: string | null;
 };
 
 export type ShareTransferDto = {
@@ -3010,8 +2895,6 @@ export type ShareTransferReasonCreateDto = {
     timestamp?: string;
     name?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
-    tenantId?: string | null;
 };
 
 export type ShareTransferReasonDto = {
@@ -3056,8 +2939,6 @@ export type ShareTransferReasonDtoListEnvelopeWritable = {
 export type ShareTransferReasonUpdateDto = {
     name?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
-    tenantId?: string | null;
 };
 
 export type ShareTransferUpdateDto = {
@@ -3066,8 +2947,6 @@ export type ShareTransferUpdateDto = {
     newShareHolderId?: string | null;
     formerShareHolderId?: string | null;
     shareTransferReasonId?: string | null;
-    enrollmentId?: string | null;
-    tenantId?: string | null;
 };
 
 export type TaxPolicyCreateDto = {
@@ -3094,8 +2973,6 @@ export type TaxPolicyCreateDto = {
     customState?: string | null;
     customCity?: string | null;
     cityId?: string | null;
-    enrollmentId?: string | null;
-    tenantId?: string | null;
     zero?: boolean;
     reduced?: boolean;
     withholding?: boolean;
@@ -3186,8 +3063,6 @@ export type TaxPolicyUpdateDto = {
     customState?: string | null;
     customCity?: string | null;
     cityId?: string | null;
-    enrollmentId?: string | null;
-    tenantId?: string | null;
     zero?: boolean;
     reduced?: boolean;
     withholding?: boolean;
@@ -3211,12 +3086,10 @@ export type TaxRateCreateDto = {
     cumulativeTransactionThreshold?: number;
     fiscalAuthorityId?: string | null;
     fiscalYearId?: string | null;
-    tenantId?: string | null;
     countryId?: string | null;
     taxClassId?: string | null;
     currencyId?: string | null;
     taxPolicyId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type TaxRateDto = {
@@ -3289,12 +3162,10 @@ export type TaxRateUpdateDto = {
     cumulativeTransactionThreshold?: number;
     fiscalAuthorityId?: string | null;
     fiscalYearId?: string | null;
-    tenantId?: string | null;
     countryId?: string | null;
     taxClassId?: string | null;
     currencyId?: string | null;
     taxPolicyId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type TenantId = string;
@@ -3304,8 +3175,6 @@ export type TransactionCategoryCreateDto = {
     timestamp?: string;
     name?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
-    tenantId?: string | null;
 };
 
 export type TransactionCategoryDto = {
@@ -3350,8 +3219,6 @@ export type TransactionCategoryDtoListEnvelopeWritable = {
 export type TransactionCategoryUpdateDto = {
     name?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
-    tenantId?: string | null;
 };
 
 export type TransactionCreateDto = {
@@ -3368,8 +3235,6 @@ export type TransactionCreateDto = {
     unitId?: string | null;
     transactionCategoryId?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type TransactionDto = {
@@ -3432,8 +3297,6 @@ export type TransactionUpdateDto = {
     unitId?: string | null;
     transactionCategoryId?: string | null;
     currencyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
 };
 
 export type TwoFactorRequest = {

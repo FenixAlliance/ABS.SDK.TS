@@ -46,7 +46,6 @@ export type CatalogItemCreateDto = {
     pattern?: string | null;
     features?: string | null;
     material?: string | null;
-    tenantId?: string | null;
     permalink?: string | null;
     brandName?: string | null;
     variations?: string | null;
@@ -424,7 +423,6 @@ export type CatalogItemUpdateDto = {
     material?: string | null;
     onDiscount?: boolean;
     totalTax?: number;
-    tenantId?: string | null;
     permalink?: string | null;
     brandName?: string | null;
     reviewsCount?: number;
@@ -449,7 +447,6 @@ export type CatalogItemUpdateDto = {
     customTaxValue?: number;
     hasVariations?: boolean;
     questionsCount?: number;
-    enrollmentId?: string | null;
     supplierCode?: string | null;
     auctionEnd?: string;
     purchaseNote?: string | null;
@@ -719,7 +716,6 @@ export type ItemAttributeCreateDto = {
     timestamp?: string;
     name: string;
     description?: string | null;
-    businessID: string;
 };
 
 export type ItemAttributeDto = {
@@ -812,7 +808,6 @@ export type ItemBrandCreateDto = {
     websiteURL?: string | null;
     featured?: boolean;
     trending?: boolean;
-    businessID: string;
 };
 
 export type ItemBrandDto = {
@@ -873,8 +868,6 @@ export type ItemCategoryCreateDto = {
     title: string;
     description?: string | null;
     imageURL?: string | null;
-    businessID: string;
-    businessProfileRecordID?: string | null;
     parentItemCategoryID?: string | null;
 };
 
@@ -988,8 +981,6 @@ export type ItemGoogleCategoryDtoListEnvelopeWritable = {
 export type ItemImageCreateDto = {
     id?: string;
     timestamp?: string;
-    businessID: string;
-    businessProfileRecordID?: string | null;
     itemID?: string | null;
     isItemMozaicBG?: boolean;
     mD5Hash?: string | null;
@@ -1006,7 +997,6 @@ export type ItemImageCreateDto = {
     validResponse?: boolean;
     socialProfileID?: string | null;
     parentFileUploadID?: string | null;
-    accountHolderID?: string | null;
 };
 
 export type ItemImageDto = {
@@ -1088,7 +1078,6 @@ export type ItemQuestionCreateDto = {
     needsRevision: boolean;
     question: string;
     socialProfileID?: string | null;
-    businessID: string;
     itemID: string;
 };
 
@@ -1140,7 +1129,6 @@ export type ItemQuestionRecordCreateDto = {
     needsRevision: boolean;
     question: string;
     socialProfileID?: string | null;
-    businessID: string;
 };
 
 export type ItemQuestionUpdateDto = {
@@ -1396,7 +1384,6 @@ export type ItemTagCreateDto = {
     timestamp?: string;
     title: string;
     description?: string | null;
-    businessID: string;
 };
 
 export type ItemTagDto = {
@@ -1513,7 +1500,6 @@ export type ItemTypeCreateDto = {
     description?: string | null;
     imageURL?: string | null;
     googleCategoryTaxonomy?: string | null;
-    businessID: string;
     itemCategoryID: string;
     itemGoogleCategoryID?: string | null;
 };
@@ -1797,8 +1783,6 @@ export type PricingRuleCreateDto = {
     customState?: string | null;
     customCity?: string | null;
     cityID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type PricingRuleDto = {

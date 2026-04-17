@@ -1615,7 +1615,6 @@ export interface components {
       content?: string | null;
       courseID: string;
       courseWikiID: string;
-      businessID: string;
     };
     CourseArticleDto: {
       id?: string | null;
@@ -1644,7 +1643,6 @@ export interface components {
       /** Format: double */
       points?: number;
       courseID: string;
-      businessID: string;
       courseUnitID?: string | null;
       courseCohortID?: string | null;
       courseAssignmentTypeID?: string | null;
@@ -1692,7 +1690,6 @@ export interface components {
       description?: string | null;
       imageURL?: string | null;
       isFeatured?: boolean;
-      businessID: string;
     };
     CourseCategoryDto: {
       id?: string | null;
@@ -1716,10 +1713,8 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       courseID: string;
-      businessID: string;
       webPortalID?: string | null;
       websiteThemeID?: string | null;
-      businessProfileRecordID?: string | null;
       socialProfileID?: string | null;
       parentWebContentID?: string | null;
       parentWebContentVersionID?: string | null;
@@ -1744,7 +1739,6 @@ export interface components {
       timestamp?: string;
       name: string;
       courseID: string;
-      businessID: string;
       /** Format: date-time */
       startDateTime?: string | null;
       /** Format: date-time */
@@ -1788,8 +1782,6 @@ export interface components {
       timestamp?: string;
       studentProfileID: string;
       courseEnrollmentID: string;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       courseCompletionCertificateTemplateID?: string | null;
       courseID?: string | null;
     };
@@ -1814,8 +1806,6 @@ export interface components {
     CourseCompletionCertificateUpdateDto: {
       studentProfileID?: string | null;
       courseEnrollmentID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
       courseCompletionCertificateTemplateID?: string | null;
       courseID?: string | null;
     };
@@ -2039,7 +2029,6 @@ export interface components {
       courseID?: string | null;
       courseCohortID?: string | null;
       studentProfileID?: string | null;
-      businessProfileRecordID?: string | null;
       courseCompletionCertificateID?: string | null;
     };
     CourseEnrollmentDto: {
@@ -2072,7 +2061,6 @@ export interface components {
       /** Format: int64 */
       fileLength?: number;
       courseID: string;
-      businessID: string;
     };
     CourseFileDto: {
       id?: string | null;
@@ -2103,7 +2091,6 @@ export interface components {
       title: string;
       description?: string | null;
       courseID: string;
-      businessID: string;
     };
     CourseForumDto: {
       id?: string | null;
@@ -2131,7 +2118,6 @@ export interface components {
       releaseDateTime?: string | null;
       courseID: string;
       courseUnitID?: string | null;
-      businessID: string;
     };
     CourseHandoutDto: {
       id?: string | null;
@@ -2165,7 +2151,6 @@ export interface components {
       description?: string | null;
       courseID: string;
       courseUnitID?: string | null;
-      businessID: string;
       /** Format: date-time */
       releaseDateTime?: string | null;
     };
@@ -2197,7 +2182,6 @@ export interface components {
       description?: string | null;
       content?: string | null;
       courseID: string;
-      businessID: string;
     };
     CourseNewsDto: {
       id?: string | null;
@@ -2224,7 +2208,6 @@ export interface components {
       content?: string | null;
       slug?: string | null;
       courseID: string;
-      businessID: string;
     };
     CoursePageDto: {
       id?: string | null;
@@ -2253,7 +2236,6 @@ export interface components {
       /** Format: double */
       overallScore?: number;
       courseID: string;
-      businessID: string;
       courseUnitID?: string | null;
       courseGradingRubricID?: string | null;
       /** Format: date-time */
@@ -2292,7 +2274,6 @@ export interface components {
       icon?: string | null;
       description?: string | null;
       courseID: string;
-      businessID: string;
       /** Format: date-time */
       releaseDateTime?: string | null;
       hideFromStudents?: boolean;
@@ -2329,7 +2310,6 @@ export interface components {
       /** Format: int32 */
       order?: number;
       courseID: string;
-      businessID: string;
       courseUnitID?: string | null;
     };
     CourseUnitComponentDto: {
@@ -2363,7 +2343,6 @@ export interface components {
       content?: string | null;
       courseID: string;
       courseSectionID: string;
-      businessID: string;
       courseContentGroupID?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
@@ -2403,7 +2382,6 @@ export interface components {
       title: string;
       description?: string | null;
       courseID: string;
-      businessID: string;
       courseUnitID?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
@@ -2492,9 +2470,7 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      businessID?: string | null;
       contactID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     InstructorProfileDto: {
       id?: string | null;
@@ -2618,9 +2594,7 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      businessID?: string | null;
       contactID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     StudentProfileDto: {
       id?: string | null;
@@ -2689,9 +2663,7 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      businessID?: string | null;
       contactID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;

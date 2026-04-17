@@ -804,8 +804,6 @@ export interface components {
       name?: string | null;
       description?: string | null;
       parentBusinessProcessId?: string | null;
-      tenantId?: string | null;
-      tenantEnrollmentId?: string | null;
     };
     DealUnitFlowDto: {
       id?: string | null;
@@ -844,9 +842,7 @@ export interface components {
       order?: number;
       name?: string | null;
       dealUnitFlowId?: string | null;
-      tenantId?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
       parentBusinessProcessStageId?: string | null;
     };
     DealUnitFlowStageDto: {
@@ -885,7 +881,6 @@ export interface components {
       order?: number;
       name?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
       dealUnitFlowId?: string | null;
       parentBusinessProcessStageId?: string | null;
     };
@@ -893,18 +888,19 @@ export interface components {
       name?: string | null;
       description?: string | null;
       parentBusinessProcessId?: string | null;
-      tenantId?: string | null;
       tenantEnrollmentId?: string | null;
     };
     DealUnitLineCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       closed?: boolean;
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       currencyId?: string | null;
       description?: string | null;
       /** Format: double */
@@ -985,17 +981,17 @@ export interface components {
       totalDetail?: number;
       totalDetailCurrencyId?: string | null;
       /** Format: double */
-      totalProfit?: number;
-      totalProfitCurrencyId?: string | null;
-      /** Format: double */
       totalDiscounts?: number;
       totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
       /** Format: double */
       totalSurcharges?: number;
       totalSurchargesCurrencyId?: string | null;
       /** Format: double */
-      totalTaxBase?: number;
-      totalTaxBaseCurrencyId?: string | null;
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
       /** Format: double */
       totalShippingCost?: number;
       totalShippingCostCurrencyId?: string | null;
@@ -1024,7 +1020,6 @@ export interface components {
       shippingLocationId?: string | null;
       locationId?: string | null;
       quoteItemRecordId?: string | null;
-      businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
       dealUnitId?: string | null;
     };
@@ -1197,8 +1192,6 @@ export interface components {
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       currencyId?: string | null;
       description?: string | null;
       /** Format: double */
@@ -1318,17 +1311,14 @@ export interface components {
       shippingLocationId?: string | null;
       locationId?: string | null;
       quoteItemRecordId?: string | null;
-      businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
     };
     DealUnitUpdateDto: {
       closed?: boolean;
       title?: string | null;
       userId?: string | null;
-      tenantId?: string | null;
       priceListId?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
       individualId?: string | null;
       paymentTermId?: string | null;
       organizationId?: string | null;
@@ -1713,8 +1703,6 @@ export interface components {
       modifiedDate?: string;
       /** Format: date-time */
       expirationDate?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       salesLiteratureTypeId?: string | null;
     };
     SalesLiteratureDto: {
@@ -1766,8 +1754,6 @@ export interface components {
       modifiedDate?: string;
       /** Format: date-time */
       expirationDate?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       salesLiteratureTypeId?: string | null;
     };
     TenantDto: {

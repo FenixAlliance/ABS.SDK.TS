@@ -708,7 +708,6 @@ export interface components {
       pattern?: string | null;
       features?: string | null;
       material?: string | null;
-      tenantId?: string | null;
       permalink?: string | null;
       brandName?: string | null;
       variations?: string | null;
@@ -1181,7 +1180,6 @@ export interface components {
       pattern?: string | null;
       features?: string | null;
       material?: string | null;
-      tenantId?: string | null;
       permalink?: string | null;
       brandName?: string | null;
       variations?: string | null;
@@ -1635,7 +1633,6 @@ export interface components {
       onDiscount?: boolean;
       /** Format: double */
       totalTax?: number;
-      tenantId?: string | null;
       permalink?: string | null;
       brandName?: string | null;
       /** Format: int32 */
@@ -1667,7 +1664,6 @@ export interface components {
       hasVariations?: boolean;
       /** Format: int32 */
       questionsCount?: number;
-      enrollmentId?: string | null;
       supplierCode?: string | null;
       /** Format: date-time */
       auctionEnd?: string;
@@ -1889,7 +1885,6 @@ export interface components {
       onDiscount?: boolean;
       /** Format: double */
       totalTax?: number;
-      tenantId?: string | null;
       permalink?: string | null;
       brandName?: string | null;
       /** Format: int32 */
@@ -1921,7 +1916,6 @@ export interface components {
       hasVariations?: boolean;
       /** Format: int32 */
       questionsCount?: number;
-      enrollmentId?: string | null;
       supplierCode?: string | null;
       /** Format: date-time */
       auctionEnd?: string;

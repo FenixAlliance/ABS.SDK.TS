@@ -622,8 +622,6 @@ export type QuoteLineCreateDto = {
     itemShortDescription?: string | null;
     itemPrimaryImageUrl?: string | null;
     shippingPolicyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     currencyId?: string | null;
     description?: string | null;
     quantity?: number;
@@ -709,7 +707,6 @@ export type QuoteLineCreateDto = {
     shippingLocationId?: string | null;
     locationId?: string | null;
     quoteItemRecordId?: string | null;
-    businessProfileRecordId?: string | null;
     parentBillingItemRecordId?: string | null;
     quoteId?: string | null;
 };
@@ -973,8 +970,6 @@ export type QuoteLineUpdateDto = {
     itemShortDescription?: string | null;
     itemPrimaryImageUrl?: string | null;
     shippingPolicyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     currencyId?: string | null;
     description?: string | null;
     quantity?: number;
@@ -1060,7 +1055,6 @@ export type QuoteLineUpdateDto = {
     shippingLocationId?: string | null;
     locationId?: string | null;
     quoteItemRecordId?: string | null;
-    businessProfileRecordId?: string | null;
     parentBillingItemRecordId?: string | null;
 };
 
@@ -1071,8 +1065,6 @@ export type QuoteLineUpsertDto = {
     itemShortDescription?: string | null;
     itemPrimaryImageUrl?: string | null;
     shippingPolicyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     currencyId?: string | null;
     description?: string | null;
     quantity?: number;
@@ -1158,7 +1150,6 @@ export type QuoteLineUpsertDto = {
     shippingLocationId?: string | null;
     locationId?: string | null;
     quoteItemRecordId?: string | null;
-    businessProfileRecordId?: string | null;
     parentBillingItemRecordId?: string | null;
     id?: string | null;
     quoteId?: string | null;
@@ -1168,10 +1159,8 @@ export type QuoteUpdateDto = {
     closed?: boolean;
     title?: string | null;
     userId?: string | null;
-    tenantId?: string | null;
     priceListId?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
     individualId?: string | null;
     paymentTermId?: string | null;
     organizationId?: string | null;

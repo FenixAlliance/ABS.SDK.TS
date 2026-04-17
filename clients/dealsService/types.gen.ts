@@ -349,8 +349,6 @@ export type DealUnitFlowCreateDto = {
     name?: string | null;
     description?: string | null;
     parentBusinessProcessId?: string | null;
-    tenantId?: string | null;
-    tenantEnrollmentId?: string | null;
 };
 
 export type DealUnitFlowDto = {
@@ -399,9 +397,7 @@ export type DealUnitFlowStageCreateDto = {
     order?: number;
     name?: string | null;
     dealUnitFlowId?: string | null;
-    tenantId?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
     parentBusinessProcessStageId?: string | null;
 };
 
@@ -451,7 +447,6 @@ export type DealUnitFlowStageUpdateDto = {
     order?: number;
     name?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
     dealUnitFlowId?: string | null;
     parentBusinessProcessStageId?: string | null;
 };
@@ -460,19 +455,18 @@ export type DealUnitFlowUpdateDto = {
     name?: string | null;
     description?: string | null;
     parentBusinessProcessId?: string | null;
-    tenantId?: string | null;
     tenantEnrollmentId?: string | null;
 };
 
 export type DealUnitLineCreateDto = {
+    id?: string;
+    timestamp?: string;
     closed?: boolean;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
     itemPrimaryImageUrl?: string | null;
     shippingPolicyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     currencyId?: string | null;
     description?: string | null;
     quantity?: number;
@@ -529,14 +523,14 @@ export type DealUnitLineCreateDto = {
     customGlobalDiscountsAmountCurrencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
-    totalProfit?: number;
-    totalProfitCurrencyId?: string | null;
     totalDiscounts?: number;
     totalDiscountsCurrencyId?: string | null;
-    totalSurcharges?: number;
-    totalSurchargesCurrencyId?: string | null;
     totalTaxBase?: number;
     totalTaxBaseCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
     totalShippingCost?: number;
     totalShippingCostCurrencyId?: string | null;
     totalShippingTax?: number;
@@ -558,7 +552,6 @@ export type DealUnitLineCreateDto = {
     shippingLocationId?: string | null;
     locationId?: string | null;
     quoteItemRecordId?: string | null;
-    businessProfileRecordId?: string | null;
     parentBillingItemRecordId?: string | null;
     dealUnitId?: string | null;
 };
@@ -822,8 +815,6 @@ export type DealUnitLineUpdateDto = {
     itemShortDescription?: string | null;
     itemPrimaryImageUrl?: string | null;
     shippingPolicyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     currencyId?: string | null;
     description?: string | null;
     quantity?: number;
@@ -909,7 +900,6 @@ export type DealUnitLineUpdateDto = {
     shippingLocationId?: string | null;
     locationId?: string | null;
     quoteItemRecordId?: string | null;
-    businessProfileRecordId?: string | null;
     parentBillingItemRecordId?: string | null;
 };
 
@@ -917,10 +907,8 @@ export type DealUnitUpdateDto = {
     closed?: boolean;
     title?: string | null;
     userId?: string | null;
-    tenantId?: string | null;
     priceListId?: string | null;
     description?: string | null;
-    enrollmentId?: string | null;
     individualId?: string | null;
     paymentTermId?: string | null;
     organizationId?: string | null;
@@ -1394,8 +1382,6 @@ export type SalesLiteratureCreateDto = {
     description?: string | null;
     modifiedDate?: string;
     expirationDate?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     salesLiteratureTypeId?: string | null;
 };
 
@@ -1456,8 +1442,6 @@ export type SalesLiteratureUpdateDto = {
     description?: string | null;
     modifiedDate?: string;
     expirationDate?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     salesLiteratureTypeId?: string | null;
 };
 

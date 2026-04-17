@@ -29,8 +29,6 @@ export type BusinessApplicationCreateDto = {
     contactEmail?: string | null;
     privacyPolicyURL?: string | null;
     termsAndConditionsURL?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
     requireHttps?: boolean;
     requireAppSecret?: boolean;
     enableClientOauthLogin?: boolean;
@@ -315,6 +313,8 @@ export type LoginRequest = {
 };
 
 export type OAuthApplicationCreateDto = {
+    id?: string;
+    timestamp?: string;
     displayName: string;
     clientId?: string | null;
     clientSecret?: string | null;
@@ -324,8 +324,6 @@ export type OAuthApplicationCreateDto = {
     redirectUris?: string | null;
     postLogoutRedirectUris?: string | null;
     logo?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type OAuthApplicationDto = {
@@ -484,7 +482,6 @@ export type SecurityPermissionCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
-    tenantId: string;
     description?: string | null;
 };
 
@@ -536,7 +533,6 @@ export type SecurityRoleCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
-    tenantId: string;
     description?: string | null;
 };
 

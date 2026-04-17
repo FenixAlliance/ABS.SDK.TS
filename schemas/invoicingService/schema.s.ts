@@ -1055,10 +1055,8 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      tenantId?: string | null;
       invoiceId?: string | null;
       taxPolicyId?: string | null;
-      enrollmentId?: string | null;
     };
     InvoiceLineAppliedTaxDto: {
       id?: string | null;
@@ -1394,10 +1392,8 @@ export interface components {
       closed?: boolean;
       title?: string | null;
       userId?: string | null;
-      tenantId?: string | null;
       priceListId?: string | null;
       description?: string | null;
-      enrollmentId?: string | null;
       individualId?: string | null;
       paymentTermId?: string | null;
       organizationId?: string | null;
