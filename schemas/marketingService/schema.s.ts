@@ -585,21 +585,21 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      title?: string | null;
-      code?: string | null;
+      title: string;
       published?: boolean;
       description?: string | null;
-      htmlContent?: string | null;
+      code?: string | null;
+      markup?: string | null;
       featuredImageUrl?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
     };
     EmailSignatureDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -706,7 +706,7 @@ export interface components {
       compilationPath?: string | null;
       htmlContent?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -744,14 +744,14 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      title?: string | null;
-      code?: string | null;
+      title: string;
       published?: boolean;
       description?: string | null;
-      htmlContent?: string | null;
+      code?: string | null;
+      markup?: string | null;
       featuredImageUrl?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       marketingCampaignId?: string | null;
     };
     EmailTemplateDto: {
@@ -759,7 +759,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -868,7 +868,7 @@ export interface components {
       compilationPath?: string | null;
       htmlContent?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;

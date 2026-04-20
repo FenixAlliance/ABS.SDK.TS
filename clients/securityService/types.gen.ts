@@ -3013,5 +3013,5 @@ export type GetWebhookRequestsCountAsyncResponses = {
 export type GetWebhookRequestsCountAsyncResponse = GetWebhookRequestsCountAsyncResponses[keyof GetWebhookRequestsCountAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

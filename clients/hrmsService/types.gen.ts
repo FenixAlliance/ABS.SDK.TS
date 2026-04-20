@@ -1494,5 +1494,5 @@ export type UpdateJobOfferAsyncResponses = {
 export type UpdateJobOfferAsyncResponse = UpdateJobOfferAsyncResponses[keyof UpdateJobOfferAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

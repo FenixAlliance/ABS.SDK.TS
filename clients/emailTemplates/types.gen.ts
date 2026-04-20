@@ -350,5 +350,5 @@ export type PostManageInfoResponses = {
 export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

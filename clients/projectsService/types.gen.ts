@@ -1587,5 +1587,5 @@ export type CreateTaskTypeAsyncResponses = {
 export type CreateTaskTypeAsyncResponse = CreateTaskTypeAsyncResponses[keyof CreateTaskTypeAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

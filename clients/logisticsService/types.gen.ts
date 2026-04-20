@@ -536,5 +536,5 @@ export type GetContactsAsyncResponses = {
 export type GetContactsAsyncResponse = GetContactsAsyncResponses[keyof GetContactsAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

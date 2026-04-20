@@ -423,5 +423,5 @@ export type GetShipmentsAsyncResponses = {
 export type GetShipmentsAsyncResponse = GetShipmentsAsyncResponses[keyof GetShipmentsAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

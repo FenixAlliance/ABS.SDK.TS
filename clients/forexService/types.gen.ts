@@ -728,5 +728,5 @@ export type GetHistoricalCurrencyRateAsyncResponses = {
 export type GetHistoricalCurrencyRateAsyncResponse = GetHistoricalCurrencyRateAsyncResponses[keyof GetHistoricalCurrencyRateAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

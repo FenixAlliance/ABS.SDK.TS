@@ -1650,5 +1650,5 @@ export type GetTotalSavingsInUsdResponses = {
 export type GetTotalSavingsInUsdResponse = GetTotalSavingsInUsdResponses[keyof GetTotalSavingsInUsdResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

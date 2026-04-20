@@ -1754,10 +1754,10 @@ export type WebPortalDto = {
     disabled?: boolean;
     tenantId?: string | null;
     description?: string | null;
-    websiteThemeID?: string | null;
-    businessDomainID?: string | null;
-    businessProfileRecordID?: string | null;
-    businessPortalApplicationID?: string | null;
+    enrollmentId?: string | null;
+    websiteThemeId?: string | null;
+    businessDomainId?: string | null;
+    businessPortalApplicationId?: string | null;
 };
 
 export type WebPortalDtoListEnvelopeReadable = {
@@ -7386,5 +7386,5 @@ export type UpdateTenantUnitResponses = {
 export type UpdateTenantUnitResponse = UpdateTenantUnitResponses[keyof UpdateTenantUnitResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

@@ -3300,5 +3300,5 @@ export type UpdateMessageAsyncResponses = {
 export type UpdateMessageAsyncResponse = UpdateMessageAsyncResponses[keyof UpdateMessageAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

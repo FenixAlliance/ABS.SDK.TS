@@ -286,21 +286,21 @@ export type BlogPostCommentDtoListEnvelopeWritable = {
 export type BlogPostCreateDto = {
     id?: string;
     timestamp?: string;
-    title?: string | null;
-    code?: string | null;
+    title: string;
     published?: boolean;
     description?: string | null;
-    htmlContent?: string | null;
+    code?: string | null;
+    markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
-    blogPostCategoryID?: string | null;
-    webTemplateID?: string | null;
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
+    blogPostCategoryId?: string | null;
+    webTemplateId?: string | null;
 };
 
 export type BlogPostDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -357,8 +357,8 @@ export type BlogPostDto = {
     socialProfileId?: string | null;
     parentWebContentId?: string | null;
     parentWebContentVersionId?: string | null;
-    blogPostCategoryID?: string | null;
-    webTemplateID?: string | null;
+    blogPostCategoryId?: string | null;
+    webTemplateId?: string | null;
 };
 
 export type BlogPostDtoEnvelopeReadable = {
@@ -502,7 +502,7 @@ export type BlogPostUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -529,6 +529,8 @@ export type BlogPostUpdateDto = {
     cornerstoneContent?: boolean;
     isEssentialContent?: boolean;
     allowSearchEngineIndexing?: boolean;
+    blogPostCategoryId?: string | null;
+    webTemplateId?: string | null;
 };
 
 export type BrandingOptions = {
@@ -1553,19 +1555,19 @@ export type TypographyOptions = {
 export type WebContentCreateDto = {
     id?: string;
     timestamp?: string;
-    title?: string | null;
-    code?: string | null;
+    title: string;
     published?: boolean;
     description?: string | null;
-    htmlContent?: string | null;
+    code?: string | null;
+    markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
 };
 
 export type WebContentDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -1682,7 +1684,7 @@ export type WebContentUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -1794,20 +1796,20 @@ export type WebPageCategoryUpdateDto = {
 export type WebPageCreateDto = {
     id?: string;
     timestamp?: string;
-    title?: string | null;
-    code?: string | null;
+    title: string;
     published?: boolean;
     description?: string | null;
-    htmlContent?: string | null;
+    code?: string | null;
+    markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     webTemplateID?: string | null;
 };
 
 export type WebPageDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -2015,7 +2017,7 @@ export type WebPageUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -2076,10 +2078,10 @@ export type WebPortalDto = {
     disabled?: boolean;
     tenantId?: string | null;
     description?: string | null;
-    websiteThemeID?: string | null;
-    businessDomainID?: string | null;
-    businessProfileRecordID?: string | null;
-    businessPortalApplicationID?: string | null;
+    enrollmentId?: string | null;
+    websiteThemeId?: string | null;
+    businessDomainId?: string | null;
+    businessPortalApplicationId?: string | null;
 };
 
 export type WebPortalDtoEnvelopeReadable = {
@@ -5569,5 +5571,5 @@ export type UpdateWebTemplateAsyncResponses = {
 };
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

@@ -2917,5 +2917,5 @@ export type UpdateSalesLiteratureAsyncResponses = {
 export type UpdateSalesLiteratureAsyncResponse = UpdateSalesLiteratureAsyncResponses[keyof UpdateSalesLiteratureAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

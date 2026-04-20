@@ -70,19 +70,19 @@ export type EmailGroupUpdateDto = {
 export type EmailSignatureCreateDto = {
     id?: string;
     timestamp?: string;
-    title?: string | null;
-    code?: string | null;
+    title: string;
     published?: boolean;
     description?: string | null;
-    htmlContent?: string | null;
+    code?: string | null;
+    markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
 };
 
 export type EmailSignatureDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -199,7 +199,7 @@ export type EmailSignatureUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -231,20 +231,20 @@ export type EmailSignatureUpdateDto = {
 export type EmailTemplateCreateDto = {
     id?: string;
     timestamp?: string;
-    title?: string | null;
-    code?: string | null;
+    title: string;
     published?: boolean;
     description?: string | null;
-    htmlContent?: string | null;
+    code?: string | null;
+    markup?: string | null;
     featuredImageUrl?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     marketingCampaignId?: string | null;
 };
 
 export type EmailTemplateDto = {
     id?: string | null;
     timestamp?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     order?: number;
     slug?: string | null;
     name?: string | null;
@@ -363,7 +363,7 @@ export type EmailTemplateUpdateDto = {
     generatedCode?: string | null;
     compilationPath?: string | null;
     htmlContent?: string | null;
-    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown';
+    codeType?: 'Razor' | 'CSharp' | 'CSHtml' | 'Liquid' | 'Html5' | 'Markdown' | 'Markup';
     cSharpContent?: string | null;
     razorContent?: string | null;
     cssContent?: string | null;
@@ -3069,5 +3069,5 @@ export type GetTrackingPixelAsyncResponses = {
 export type GetTrackingPixelAsyncResponse = GetTrackingPixelAsyncResponses[keyof GetTrackingPixelAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

@@ -2324,5 +2324,5 @@ export type GetCurrentUserInvitationAsyncResponses = {
 export type GetCurrentUserInvitationAsyncResponse = GetCurrentUserInvitationAsyncResponses[keyof GetCurrentUserInvitationAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

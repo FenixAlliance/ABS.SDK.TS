@@ -1302,5 +1302,5 @@ export type SaveFileAsyncResponses = {
 export type SaveFileAsyncResponse = SaveFileAsyncResponses[keyof SaveFileAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

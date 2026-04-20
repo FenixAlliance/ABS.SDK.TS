@@ -2505,10 +2505,10 @@ export interface components {
       disabled?: boolean;
       tenantId?: string | null;
       description?: string | null;
-      websiteThemeID?: string | null;
-      businessDomainID?: string | null;
-      businessProfileRecordID?: string | null;
-      businessPortalApplicationID?: string | null;
+      enrollmentId?: string | null;
+      websiteThemeId?: string | null;
+      businessDomainId?: string | null;
+      businessPortalApplicationId?: string | null;
     };
     WebPortalDtoListEnvelope: {
       isSuccess?: boolean;

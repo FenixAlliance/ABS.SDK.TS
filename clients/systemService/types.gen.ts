@@ -2867,5 +2867,5 @@ export type AdminSendUserEmailResponses = {
 export type AdminSendUserEmailResponse = AdminSendUserEmailResponses[keyof AdminSendUserEmailResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

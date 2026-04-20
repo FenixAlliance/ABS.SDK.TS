@@ -1049,23 +1049,23 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      title?: string | null;
-      code?: string | null;
+      title: string;
       published?: boolean;
       description?: string | null;
-      htmlContent?: string | null;
+      code?: string | null;
+      markup?: string | null;
       featuredImageUrl?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
-      blogPostCategoryID?: string | null;
-      webTemplateID?: string | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      blogPostCategoryId?: string | null;
+      webTemplateId?: string | null;
     };
     BlogPostDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -1123,8 +1123,8 @@ export interface components {
       socialProfileId?: string | null;
       parentWebContentId?: string | null;
       parentWebContentVersionId?: string | null;
-      blogPostCategoryID?: string | null;
-      webTemplateID?: string | null;
+      blogPostCategoryId?: string | null;
+      webTemplateId?: string | null;
     };
     BlogPostDtoEnvelope: {
       isSuccess?: boolean;
@@ -1245,7 +1245,7 @@ export interface components {
       compilationPath?: string | null;
       htmlContent?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -1277,6 +1277,8 @@ export interface components {
       cornerstoneContent?: boolean;
       isEssentialContent?: boolean;
       allowSearchEngineIndexing?: boolean;
+      blogPostCategoryId?: string | null;
+      webTemplateId?: string | null;
     };
     BrandingOptions: {
       defaultLang?: string | null;
@@ -2216,21 +2218,21 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      title?: string | null;
-      code?: string | null;
+      title: string;
       published?: boolean;
       description?: string | null;
-      htmlContent?: string | null;
+      code?: string | null;
+      markup?: string | null;
       featuredImageUrl?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
     };
     WebContentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -2337,7 +2339,7 @@ export interface components {
       compilationPath?: string | null;
       htmlContent?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -2443,14 +2445,14 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      title?: string | null;
-      code?: string | null;
+      title: string;
       published?: boolean;
       description?: string | null;
-      htmlContent?: string | null;
+      code?: string | null;
+      markup?: string | null;
       featuredImageUrl?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       webTemplateID?: string | null;
     };
     WebPageDto: {
@@ -2458,7 +2460,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       /** Format: int32 */
       order?: number;
       slug?: string | null;
@@ -2644,7 +2646,7 @@ export interface components {
       compilationPath?: string | null;
       htmlContent?: string | null;
       /** @enum {string|null} */
-      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | null;
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
       cSharpContent?: string | null;
       razorContent?: string | null;
       cssContent?: string | null;
@@ -2711,10 +2713,10 @@ export interface components {
       disabled?: boolean;
       tenantId?: string | null;
       description?: string | null;
-      websiteThemeID?: string | null;
-      businessDomainID?: string | null;
-      businessProfileRecordID?: string | null;
-      businessPortalApplicationID?: string | null;
+      enrollmentId?: string | null;
+      websiteThemeId?: string | null;
+      businessDomainId?: string | null;
+      businessPortalApplicationId?: string | null;
     };
     WebPortalDtoEnvelope: {
       isSuccess?: boolean;

@@ -2775,5 +2775,5 @@ export type SyncTenantToTenantCrmResponses = {
 export type SyncTenantToTenantCrmResponse = SyncTenantToTenantCrmResponses[keyof SyncTenantToTenantCrmResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

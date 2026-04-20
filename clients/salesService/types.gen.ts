@@ -371,5 +371,5 @@ export type GetQuoteAsyncResponses = {
 };
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

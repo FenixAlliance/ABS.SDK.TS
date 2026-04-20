@@ -1616,5 +1616,5 @@ export type UpdatePaymentTermAsyncResponses = {
 export type UpdatePaymentTermAsyncResponse = UpdatePaymentTermAsyncResponses[keyof UpdatePaymentTermAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://localhost:44388' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };
