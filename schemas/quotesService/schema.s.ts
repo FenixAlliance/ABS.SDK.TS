@@ -230,6 +230,78 @@ export interface paths {
       };
     };
   };
+  "/Account/PerformExternalLogin": {
+    post: {
+      requestBody?: {
+        content: {
+          "multipart/form-data": {
+            provider?: string;
+            returnUrl?: string;
+          };
+          "application/x-www-form-urlencoded": {
+            provider?: string;
+            returnUrl?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/Account/Logout": {
+    post: {
+      requestBody?: {
+        content: {
+          "multipart/form-data": {
+            returnUrl?: string;
+          };
+          "application/x-www-form-urlencoded": {
+            returnUrl?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/Account/Manage/LinkExternalLogin": {
+    post: {
+      requestBody?: {
+        content: {
+          "multipart/form-data": {
+            provider?: string;
+          };
+          "application/x-www-form-urlencoded": {
+            provider?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/Account/Manage/DownloadPersonalData": {
+    post: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/api/v2/QuotesService/Quotes": {
     /**
      * Get a list of quotes.
