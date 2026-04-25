@@ -2165,6 +2165,69 @@ export type PostManageInfoResponses = {
 
 export type PostManageInfoResponse = PostManageInfoResponses[keyof PostManageInfoResponses];
 
+export type PostAccountPerformExternalLoginData = {
+    body?: {
+        provider?: string;
+        returnUrl?: string;
+    };
+    path?: never;
+    query?: never;
+    url: '/Account/PerformExternalLogin';
+};
+
+export type PostAccountPerformExternalLoginResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostAccountLogoutData = {
+    body?: {
+        returnUrl?: string;
+    };
+    path?: never;
+    query?: never;
+    url: '/Account/Logout';
+};
+
+export type PostAccountLogoutResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostAccountManageLinkExternalLoginData = {
+    body?: {
+        provider?: string;
+    };
+    path?: never;
+    query?: never;
+    url: '/Account/Manage/LinkExternalLogin';
+};
+
+export type PostAccountManageLinkExternalLoginResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostAccountManageDownloadPersonalDataData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/Account/Manage/DownloadPersonalData';
+};
+
+export type PostAccountManageDownloadPersonalDataResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type GetItemAttachmentsAsyncData = {
     body?: never;
     headers?: {
