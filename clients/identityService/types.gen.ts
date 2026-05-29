@@ -15,7 +15,7 @@ export type AccessTokenResponseWritable = {
 
 export type AppId = string;
 
-export type AuthorizationResult = {
+export type AuthResult = {
     userId?: UserId;
     tenantId?: TenantId;
     portalId?: PortalId;
@@ -32,13 +32,13 @@ export type AuthorizationResultEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: AuthorizationResult;
+    result?: AuthResult;
 };
 
 export type AuthorizationResultEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: AuthorizationResult;
+    result?: AuthResult;
 };
 
 export type EnrollmentId = string;

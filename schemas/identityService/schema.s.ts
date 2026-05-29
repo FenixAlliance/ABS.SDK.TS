@@ -447,7 +447,7 @@ export interface components {
     };
     /** Format: uuid */
     AppId: string;
-    AuthorizationResult: {
+    AuthResult: {
       userId?: components["schemas"]["UserId"];
       tenantId?: components["schemas"]["TenantId"];
       portalId?: components["schemas"]["PortalId"];
@@ -464,7 +464,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
-      result?: components["schemas"]["AuthorizationResult"];
+      result?: components["schemas"]["AuthResult"];
     };
     /** Format: uuid */
     EnrollmentId: string;
