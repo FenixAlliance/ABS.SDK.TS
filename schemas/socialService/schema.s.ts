@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/version": {
     get: {
       responses: {
@@ -647,6 +756,13 @@ export interface paths {
      */
     get: operations["CountNotificationsAsync"];
   };
+  "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}": {
+    /**
+     * Get Notification
+     * @description Get a notification by ID for a social profile.
+     */
+    get: operations["GetNotificationByIdAsync"];
+  };
   "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations": {
     /**
      * Get Conversations
@@ -768,6 +884,8 @@ export interface components {
     };
     FollowRecordDto: {
       id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
       type?: string | null;
       followerId?: string | null;
       followedId?: string | null;
@@ -835,6 +953,15 @@ export interface components {
       readTimestamp?: string;
       /** Format: date-time */
       issuedTimestamp?: string;
+    };
+    NotificationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["NotificationDto"];
     };
     NotificationDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1753,6 +1880,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+        socialProfileId: string;
         "api-version"?: string;
       };
       header?: {
@@ -1876,6 +2004,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+        socialProfileId: string;
         "api-version"?: string;
       };
       header?: {
@@ -1923,6 +2052,7 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+        socialProfileId: string;
         "api-version"?: string;
       };
       header?: {
@@ -3622,6 +3752,47 @@ export interface operations {
     };
   };
   /**
+   * Get Notification
+   * @description Get a notification by ID for a social profile.
+   */
+  GetNotificationByIdAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+        notificationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["NotificationDtoEnvelope"];
+          "application/xml": components["schemas"]["NotificationDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get Conversations
    * @description Get a list of conversations for a social profile.
    */
@@ -3753,7 +3924,8 @@ export interface operations {
    */
   GetMessagesAsync: {
     parameters: {
-      query?: {
+      query: {
+        socialProfileId: string;
         "api-version"?: string;
       };
       header?: {
@@ -3840,7 +4012,8 @@ export interface operations {
    */
   CountMessagesAsync: {
     parameters: {
-      query?: {
+      query: {
+        socialProfileId: string;
         "api-version"?: string;
       };
       header?: {

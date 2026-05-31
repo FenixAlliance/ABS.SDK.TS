@@ -756,11 +756,20 @@ export type ItemAttributeDtoListEnvelopeWritable = {
     result?: Array<ItemAttributeDto> | null;
 };
 
+export type ItemAttributeOptionCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    description?: string | null;
+    itemAttributeId: string;
+};
+
 export type ItemAttributeOptionDto = {
     id?: string | null;
     timestamp?: string | null;
     name?: string | null;
     description?: string | null;
+    itemAttributeId?: string | null;
     businessID?: string | null;
 };
 
@@ -792,6 +801,11 @@ export type ItemAttributeOptionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<ItemAttributeOptionDto> | null;
+};
+
+export type ItemAttributeOptionUpdateDto = {
+    name: string;
+    description?: string | null;
 };
 
 export type ItemAttributeUpdateDto = {
@@ -862,6 +876,62 @@ export type ItemBrandUpdateDto = {
     trending?: boolean;
 };
 
+export type ItemBundleCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    code?: string | null;
+    description?: string | null;
+    disabled?: boolean;
+};
+
+export type ItemBundleDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    code?: string | null;
+    description?: string | null;
+    disabled?: boolean;
+    businessID?: string | null;
+};
+
+export type ItemBundleDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemBundleDto;
+};
+
+export type ItemBundleDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemBundleDto;
+};
+
+export type ItemBundleDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemBundleDto> | null;
+};
+
+export type ItemBundleDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemBundleDto> | null;
+};
+
+export type ItemBundleUpdateDto = {
+    name: string;
+    code?: string | null;
+    description?: string | null;
+    disabled?: boolean;
+};
+
 export type ItemCategoryCreateDto = {
     id?: string;
     timestamp?: string;
@@ -928,6 +998,58 @@ export type ItemCategoryUpdateDto = {
     enableForLicenses?: boolean;
     enableForServices?: boolean;
     enableForSubscriptions?: boolean;
+};
+
+export type ItemFamilyCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    code?: string | null;
+    description?: string | null;
+};
+
+export type ItemFamilyDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    code?: string | null;
+    description?: string | null;
+    businessID?: string | null;
+};
+
+export type ItemFamilyDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemFamilyDto;
+};
+
+export type ItemFamilyDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemFamilyDto;
+};
+
+export type ItemFamilyDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemFamilyDto> | null;
+};
+
+export type ItemFamilyDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemFamilyDto> | null;
+};
+
+export type ItemFamilyUpdateDto = {
+    name: string;
+    description?: string | null;
 };
 
 export type ItemGoogleCategoryDto = {
@@ -1759,32 +1881,6 @@ export type MoneyEnvelopeWritable = {
     result?: MoneyWritable;
 };
 
-export type PricingRuleCreateDto = {
-    id?: string;
-    timestamp?: string;
-    code?: string | null;
-    title?: string | null;
-    description?: string | null;
-    isFree?: boolean;
-    reduce?: boolean;
-    isEnabled?: boolean;
-    isDefault?: boolean;
-    allowInternational?: boolean;
-    hours?: number;
-    days?: number;
-    weeks?: number;
-    months?: number;
-    years?: number;
-    value?: number;
-    percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
-    customState?: string | null;
-    customCity?: string | null;
-    cityID?: string | null;
-};
-
 export type PricingRuleDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -1842,29 +1938,6 @@ export type PricingRuleDtoListEnvelopeWritable = {
     result?: Array<PricingRuleDto> | null;
 };
 
-export type PricingRuleUpdateDto = {
-    title?: string | null;
-    description?: string | null;
-    isFree?: boolean;
-    reduce?: boolean;
-    isEnabled?: boolean;
-    isDefault?: boolean;
-    allowInternational?: boolean;
-    hours?: number;
-    days?: number;
-    weeks?: number;
-    months?: number;
-    years?: number;
-    value?: number;
-    percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
-    customState?: string | null;
-    customCity?: string | null;
-    cityID?: string | null;
-};
-
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -1898,6 +1971,37 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetVersionData = {
@@ -2234,8 +2338,8 @@ export type GetItemAttachmentsAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemAttachments';
@@ -2344,6 +2448,7 @@ export type GetItemAttachmentByIdAsyncData = {
         itemAttachmentId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemAttachments/{itemAttachmentId}';
@@ -2408,14 +2513,228 @@ export type UpdateItemAttachmentAsyncResponses = {
 
 export type UpdateItemAttachmentAsyncResponse = UpdateItemAttachmentAsyncResponses[keyof UpdateItemAttachmentAsyncResponses];
 
-export type CountItemAttributesAsyncData = {
+export type GetItemAttributeOptionsAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemAttributeOptions';
+};
+
+export type GetItemAttributeOptionsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemAttributeOptionsAsyncError = GetItemAttributeOptionsAsyncErrors[keyof GetItemAttributeOptionsAsyncErrors];
+
+export type GetItemAttributeOptionsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemAttributeOptionDtoListEnvelopeReadable;
+};
+
+export type GetItemAttributeOptionsAsyncResponse = GetItemAttributeOptionsAsyncResponses[keyof GetItemAttributeOptionsAsyncResponses];
+
+export type CreateItemAttributeOptionAsyncData = {
+    body?: ItemAttributeOptionCreateDto;
     headers?: {
         'x-api-version'?: string;
     };
     path?: never;
     query: {
         tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemAttributeOptions';
+};
+
+export type CreateItemAttributeOptionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateItemAttributeOptionAsyncError = CreateItemAttributeOptionAsyncErrors[keyof CreateItemAttributeOptionAsyncErrors];
+
+export type CreateItemAttributeOptionAsyncResponses = {
+    /**
+     * Created
+     */
+    201: ItemAttributeOptionDtoEnvelopeReadable;
+};
+
+export type CreateItemAttributeOptionAsyncResponse = CreateItemAttributeOptionAsyncResponses[keyof CreateItemAttributeOptionAsyncResponses];
+
+export type GetItemAttributeOptionsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemAttributeOptions/Count';
+};
+
+export type GetItemAttributeOptionsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemAttributeOptionsCountAsyncError = GetItemAttributeOptionsCountAsyncErrors[keyof GetItemAttributeOptionsCountAsyncErrors];
+
+export type GetItemAttributeOptionsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemAttributeOptionsCountAsyncResponse = GetItemAttributeOptionsCountAsyncResponses[keyof GetItemAttributeOptionsCountAsyncResponses];
+
+export type DeleteItemAttributeOptionAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemAttributeOptionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}';
+};
+
+export type DeleteItemAttributeOptionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemAttributeOptionAsyncError = DeleteItemAttributeOptionAsyncErrors[keyof DeleteItemAttributeOptionAsyncErrors];
+
+export type DeleteItemAttributeOptionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetItemAttributeOptionByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemAttributeOptionId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}';
+};
+
+export type GetItemAttributeOptionByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemAttributeOptionByIdAsyncError = GetItemAttributeOptionByIdAsyncErrors[keyof GetItemAttributeOptionByIdAsyncErrors];
+
+export type GetItemAttributeOptionByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemAttributeOptionDtoEnvelopeReadable;
+};
+
+export type GetItemAttributeOptionByIdAsyncResponse = GetItemAttributeOptionByIdAsyncResponses[keyof GetItemAttributeOptionByIdAsyncResponses];
+
+export type UpdateItemAttributeOptionAsyncData = {
+    body?: ItemAttributeOptionUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemAttributeOptionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}';
+};
+
+export type UpdateItemAttributeOptionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemAttributeOptionAsyncError = UpdateItemAttributeOptionAsyncErrors[keyof UpdateItemAttributeOptionAsyncErrors];
+
+export type UpdateItemAttributeOptionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemAttributeOptionDtoEnvelopeReadable;
+};
+
+export type UpdateItemAttributeOptionAsyncResponse = UpdateItemAttributeOptionAsyncResponses[keyof UpdateItemAttributeOptionAsyncResponses];
+
+export type CountItemAttributesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemAttributes/Count';
@@ -2449,8 +2768,8 @@ export type GetItemAttributesAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemAttributes';
@@ -2557,6 +2876,7 @@ export type GetItemAttributeByIdAsyncData = {
         itemAttributeId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemAttributes/{itemAttributeId}';
@@ -2625,8 +2945,8 @@ export type GetItemBrandsAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemBrands';
@@ -2733,6 +3053,7 @@ export type GetItemBrandByIdAsyncData = {
         itemBrandId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemBrands/{itemBrandId}';
@@ -2797,14 +3118,228 @@ export type UpdateItemBrandAsyncResponses = {
 
 export type UpdateItemBrandAsyncResponse = UpdateItemBrandAsyncResponses[keyof UpdateItemBrandAsyncResponses];
 
-export type CountItemCategoriesAsyncData = {
+export type GetItemBundlesAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemBundles';
+};
+
+export type GetItemBundlesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemBundlesAsyncError = GetItemBundlesAsyncErrors[keyof GetItemBundlesAsyncErrors];
+
+export type GetItemBundlesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemBundleDtoListEnvelopeReadable;
+};
+
+export type GetItemBundlesAsyncResponse = GetItemBundlesAsyncResponses[keyof GetItemBundlesAsyncResponses];
+
+export type CreateItemBundleAsyncData = {
+    body?: ItemBundleCreateDto;
     headers?: {
         'x-api-version'?: string;
     };
     path?: never;
     query: {
         tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemBundles';
+};
+
+export type CreateItemBundleAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateItemBundleAsyncError = CreateItemBundleAsyncErrors[keyof CreateItemBundleAsyncErrors];
+
+export type CreateItemBundleAsyncResponses = {
+    /**
+     * Created
+     */
+    201: ItemBundleDtoEnvelopeReadable;
+};
+
+export type CreateItemBundleAsyncResponse = CreateItemBundleAsyncResponses[keyof CreateItemBundleAsyncResponses];
+
+export type GetItemBundlesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemBundles/Count';
+};
+
+export type GetItemBundlesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemBundlesCountAsyncError = GetItemBundlesCountAsyncErrors[keyof GetItemBundlesCountAsyncErrors];
+
+export type GetItemBundlesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemBundlesCountAsyncResponse = GetItemBundlesCountAsyncResponses[keyof GetItemBundlesCountAsyncResponses];
+
+export type DeleteItemBundleAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemBundleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemBundles/{itemBundleId}';
+};
+
+export type DeleteItemBundleAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemBundleAsyncError = DeleteItemBundleAsyncErrors[keyof DeleteItemBundleAsyncErrors];
+
+export type DeleteItemBundleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetItemBundleByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemBundleId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemBundles/{itemBundleId}';
+};
+
+export type GetItemBundleByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemBundleByIdAsyncError = GetItemBundleByIdAsyncErrors[keyof GetItemBundleByIdAsyncErrors];
+
+export type GetItemBundleByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemBundleDtoEnvelopeReadable;
+};
+
+export type GetItemBundleByIdAsyncResponse = GetItemBundleByIdAsyncResponses[keyof GetItemBundleByIdAsyncResponses];
+
+export type UpdateItemBundleAsyncData = {
+    body?: ItemBundleUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemBundleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemBundles/{itemBundleId}';
+};
+
+export type UpdateItemBundleAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemBundleAsyncError = UpdateItemBundleAsyncErrors[keyof UpdateItemBundleAsyncErrors];
+
+export type UpdateItemBundleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemBundleDtoEnvelopeReadable;
+};
+
+export type UpdateItemBundleAsyncResponse = UpdateItemBundleAsyncResponses[keyof UpdateItemBundleAsyncResponses];
+
+export type CountItemCategoriesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemCategories/Count';
@@ -2876,6 +3411,7 @@ export type GetItemCategoryByIdAsyncData = {
         itemCategoryId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemCategories/{itemCategoryId}';
@@ -2944,8 +3480,8 @@ export type GetItemCategoriesAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemCategories';
@@ -3007,6 +3543,220 @@ export type CreateItemCategoryAsyncResponses = {
 };
 
 export type CreateItemCategoryAsyncResponse = CreateItemCategoryAsyncResponses[keyof CreateItemCategoryAsyncResponses];
+
+export type GetItemFamiliesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemFamilies';
+};
+
+export type GetItemFamiliesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemFamiliesAsyncError = GetItemFamiliesAsyncErrors[keyof GetItemFamiliesAsyncErrors];
+
+export type GetItemFamiliesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemFamilyDtoListEnvelopeReadable;
+};
+
+export type GetItemFamiliesAsyncResponse = GetItemFamiliesAsyncResponses[keyof GetItemFamiliesAsyncResponses];
+
+export type CreateItemFamilyAsyncData = {
+    body?: ItemFamilyCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemFamilies';
+};
+
+export type CreateItemFamilyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateItemFamilyAsyncError = CreateItemFamilyAsyncErrors[keyof CreateItemFamilyAsyncErrors];
+
+export type CreateItemFamilyAsyncResponses = {
+    /**
+     * Created
+     */
+    201: ItemFamilyDtoEnvelopeReadable;
+};
+
+export type CreateItemFamilyAsyncResponse = CreateItemFamilyAsyncResponses[keyof CreateItemFamilyAsyncResponses];
+
+export type GetItemFamiliesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemFamilies/Count';
+};
+
+export type GetItemFamiliesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemFamiliesCountAsyncError = GetItemFamiliesCountAsyncErrors[keyof GetItemFamiliesCountAsyncErrors];
+
+export type GetItemFamiliesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemFamiliesCountAsyncResponse = GetItemFamiliesCountAsyncResponses[keyof GetItemFamiliesCountAsyncResponses];
+
+export type DeleteItemFamilyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemFamilyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemFamilies/{itemFamilyId}';
+};
+
+export type DeleteItemFamilyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemFamilyAsyncError = DeleteItemFamilyAsyncErrors[keyof DeleteItemFamilyAsyncErrors];
+
+export type DeleteItemFamilyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetItemFamilyByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemFamilyId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemFamilies/{itemFamilyId}';
+};
+
+export type GetItemFamilyByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemFamilyByIdAsyncError = GetItemFamilyByIdAsyncErrors[keyof GetItemFamilyByIdAsyncErrors];
+
+export type GetItemFamilyByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemFamilyDtoEnvelopeReadable;
+};
+
+export type GetItemFamilyByIdAsyncResponse = GetItemFamilyByIdAsyncResponses[keyof GetItemFamilyByIdAsyncResponses];
+
+export type UpdateItemFamilyAsyncData = {
+    body?: ItemFamilyUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        itemFamilyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/CatalogService/ItemFamilies/{itemFamilyId}';
+};
+
+export type UpdateItemFamilyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemFamilyAsyncError = UpdateItemFamilyAsyncErrors[keyof UpdateItemFamilyAsyncErrors];
+
+export type UpdateItemFamilyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemFamilyDtoEnvelopeReadable;
+};
+
+export type UpdateItemFamilyAsyncResponse = UpdateItemFamilyAsyncResponses[keyof UpdateItemFamilyAsyncResponses];
 
 export type GetItemGoogleCategoriesAsyncData = {
     body?: never;
@@ -3291,8 +4041,8 @@ export type GetItemImagesAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemImages';
@@ -3399,6 +4149,7 @@ export type GetItemImageByIdAsyncData = {
         itemImageId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemImages/{itemImageId}';
@@ -3467,8 +4218,8 @@ export type GetItemQuestionsAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemQuestions';
@@ -3575,6 +4326,7 @@ export type GetItemQuestionByIdAsyncData = {
         itemQuestionId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemQuestions/{itemQuestionId}';
@@ -3644,6 +4396,7 @@ export type GetItemRefundPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -3714,6 +4467,7 @@ export type CountItemRefundPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -3787,6 +4541,7 @@ export type GetItemRefundPolicyByIdAsyncData = {
         itemRefundPolicyId: string;
     };
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -3822,6 +4577,7 @@ export type GetItemReturnPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -3892,6 +4648,7 @@ export type CountItemReturnPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -3965,6 +4722,7 @@ export type GetItemReturnPolicyByIdAsyncData = {
         itemReturnPolicyId: string;
     };
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -4107,6 +4865,7 @@ export type GetItemReviewByIdAsyncData = {
         itemReviewId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemReviews/{itemReviewId}';
@@ -4492,7 +5251,8 @@ export type GetStockItemTagsByItemIdData = {
     path: {
         itemId: string;
     };
-    query?: {
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Tags';
@@ -4528,7 +5288,8 @@ export type CountStockItemTagsByItemIdData = {
     path: {
         itemId: string;
     };
-    query?: {
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Tags/Count';
@@ -4603,7 +5364,8 @@ export type GetStockItemTagByIdData = {
         itemId: string;
         itemTagId: string;
     };
-    query?: {
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Tags/{itemTagId}';
@@ -4677,7 +5439,8 @@ export type GetStockItemTypesByItemIdData = {
     path: {
         itemId: string;
     };
-    query?: {
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Types';
@@ -4752,7 +5515,8 @@ export type GetStockItemTypeByIdData = {
         itemId: string;
         itemTypeId: string;
     };
-    query?: {
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/Items/{itemId}/Types/{itemTypeId}';
@@ -6976,6 +7740,7 @@ export type GetItemShippingPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7046,6 +7811,7 @@ export type CountItemShippingPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7119,6 +7885,7 @@ export type GetItemShippingPolicyByIdAsyncData = {
         itemShippingPolicyId: string;
     };
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7153,8 +7920,8 @@ export type GetItemTagsAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemTags';
@@ -7261,6 +8028,7 @@ export type GetItemTagByIdAsyncData = {
         itemTagId: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemTags/{itemTagId}';
@@ -7330,6 +8098,7 @@ export type GetItemTaxPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7400,6 +8169,7 @@ export type CountItemTaxPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7473,6 +8243,7 @@ export type GetItemTaxPolicyByIdAsyncData = {
         itemTaxPolicyId: string;
     };
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7507,8 +8278,8 @@ export type CountItemTypesAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemTypes/Count';
@@ -7542,8 +8313,8 @@ export type GetItemTypesAsyncData = {
         'x-api-version'?: string;
     };
     path?: never;
-    query: {
-        tenantId: string;
+    query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemTypes';
@@ -7652,6 +8423,7 @@ export type GetItemTypeByIdAsyncData = {
         itemTypeID: string;
     };
     query?: {
+        tenantId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/CatalogService/ItemTypes/{itemTypeID}';
@@ -7721,6 +8493,7 @@ export type GetItemWarrantyPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7791,6 +8564,7 @@ export type CountItemWarrantyPoliciesAsyncData = {
     };
     path?: never;
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7864,6 +8638,7 @@ export type GetItemWarrantyPolicyByIdAsyncData = {
         itemWarrantyPolicyId: string;
     };
     query?: {
+        tenantId?: string;
         itemId?: string;
         'api-version'?: string;
     };
@@ -7996,181 +8771,6 @@ export type GetMerchantByIdResponses = {
 
 export type GetMerchantByIdResponse = GetMerchantByIdResponses[keyof GetMerchantByIdResponses];
 
-export type GetPricingRulesData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/CatalogService/PricingRules';
-};
-
-export type GetPricingRulesErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetPricingRulesError = GetPricingRulesErrors[keyof GetPricingRulesErrors];
-
-export type GetPricingRulesResponses = {
-    /**
-     * OK
-     */
-    200: PricingRuleDtoListEnvelopeReadable;
-};
-
-export type GetPricingRulesResponse = GetPricingRulesResponses[keyof GetPricingRulesResponses];
-
-export type CreatePricingRuleData = {
-    body?: PricingRuleCreateDto;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/CatalogService/PricingRules';
-};
-
-export type CreatePricingRuleErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type CreatePricingRuleError = CreatePricingRuleErrors[keyof CreatePricingRuleErrors];
-
-export type CreatePricingRuleResponses = {
-    /**
-     * Created
-     */
-    201: PricingRuleDtoEnvelopeReadable;
-};
-
-export type CreatePricingRuleResponse = CreatePricingRuleResponses[keyof CreatePricingRuleResponses];
-
-export type DeletePricingRuleData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        pricingRuleId: string;
-    };
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/CatalogService/PricingRules/{pricingRuleId}';
-};
-
-export type DeletePricingRuleErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type DeletePricingRuleError = DeletePricingRuleErrors[keyof DeletePricingRuleErrors];
-
-export type DeletePricingRuleResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
-export type GetPricingRuleByIdData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        pricingRuleId: string;
-    };
-    query?: {
-        'api-version'?: string;
-    };
-    url: '/api/v2/CatalogService/PricingRules/{pricingRuleId}';
-};
-
-export type GetPricingRuleByIdErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetPricingRuleByIdError = GetPricingRuleByIdErrors[keyof GetPricingRuleByIdErrors];
-
-export type GetPricingRuleByIdResponses = {
-    /**
-     * OK
-     */
-    200: PricingRuleDtoEnvelopeReadable;
-};
-
-export type GetPricingRuleByIdResponse = GetPricingRuleByIdResponses[keyof GetPricingRuleByIdResponses];
-
-export type UpdatePricingRuleData = {
-    body?: PricingRuleUpdateDto;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        pricingRuleId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/CatalogService/PricingRules/Update';
-};
-
-export type UpdatePricingRuleErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type UpdatePricingRuleError = UpdatePricingRuleErrors[keyof UpdatePricingRuleErrors];
-
-export type UpdatePricingRuleResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

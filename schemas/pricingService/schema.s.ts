@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/api/v2/PricingService/DiscountLists": {
     /**
      * Retrieves all discount lists
@@ -467,6 +576,80 @@ export interface paths {
      */
     get: operations["GetTotalSavingsInUsd"];
   };
+  "/api/v2/PricingService/PricingRules": {
+    /**
+     * Get all pricing rules
+     * @description Retrieves all pricing rules for the specified tenant, with optional OData query options.
+     */
+    get: operations["GetPricingRules"];
+    /**
+     * Create a new pricing rule
+     * @description Creates a new pricing rule for the specified tenant.
+     */
+    post: operations["CreatePricingRule"];
+  };
+  "/api/v2/PricingService/PricingRules/{pricingRuleId}": {
+    /**
+     * Get pricing rule by ID
+     * @description Retrieves a pricing rule by its unique identifier.
+     */
+    get: operations["GetPricingRuleById"];
+    /**
+     * Delete a pricing rule
+     * @description Deletes a pricing rule for the specified tenant and rule ID.
+     */
+    delete: operations["DeletePricingRule"];
+  };
+  "/api/v2/PricingService/PricingRules/Count": {
+    /**
+     * Counts pricing rules
+     * @description Gets the count of pricing rules for the current tenant.
+     */
+    get: operations["GetPricingRulesCountAsync"];
+  };
+  "/api/v2/PricingService/PricingRules/Update": {
+    /**
+     * Update a pricing rule
+     * @description Updates an existing pricing rule for the specified tenant and rule ID.
+     */
+    put: operations["UpdatePricingRule"];
+  };
+  "/api/v2/PricingService/RoundingPolicies": {
+    /**
+     * Gets all rounding policies
+     * @description Retrieves all rounding policies for the current tenant with OData support.
+     */
+    get: operations["GetRoundingPoliciesAsync"];
+    /**
+     * Creates a rounding policy
+     * @description Creates a new rounding policy for the current tenant.
+     */
+    post: operations["CreateRoundingPolicyAsync"];
+  };
+  "/api/v2/PricingService/RoundingPolicies/Count": {
+    /**
+     * Counts rounding policies
+     * @description Gets the count of rounding policies for the current tenant.
+     */
+    get: operations["GetRoundingPoliciesCountAsync"];
+  };
+  "/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}": {
+    /**
+     * Gets a rounding policy by ID
+     * @description Retrieves the details of a rounding policy using its unique ID.
+     */
+    get: operations["GetRoundingPolicyByIdAsync"];
+    /**
+     * Updates a rounding policy
+     * @description Updates the specified rounding policy.
+     */
+    put: operations["UpdateRoundingPolicyAsync"];
+    /**
+     * Deletes a rounding policy
+     * @description Deletes the specified rounding policy.
+     */
+    delete: operations["DeleteRoundingPolicyAsync"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -829,6 +1012,121 @@ export interface components {
       unitId?: string | null;
       unitGroupId?: string | null;
     };
+    PricingRuleCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
+    PricingRuleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      businessID?: string | null;
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
+    PricingRuleDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PricingRuleDto"];
+    };
+    PricingRuleDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PricingRuleDto"][] | null;
+    };
+    PricingRuleUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -843,6 +1141,123 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    RoundingPolicyCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityId?: string | null;
+    };
+    RoundingPolicyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    RoundingPolicyDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RoundingPolicyDto"];
+    };
+    RoundingPolicyDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RoundingPolicyDto"][] | null;
+    };
+    RoundingPolicyUpdateDto: {
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityId?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -1915,6 +2330,489 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all pricing rules
+   * @description Retrieves all pricing rules for the specified tenant, with optional OData query options.
+   */
+  GetPricingRules: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PricingRuleDtoListEnvelope"];
+          "application/xml": components["schemas"]["PricingRuleDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new pricing rule
+   * @description Creates a new pricing rule for the specified tenant.
+   */
+  CreatePricingRule: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PricingRuleCreateDto"];
+        "application/xml": components["schemas"]["PricingRuleCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["PricingRuleDtoEnvelope"];
+          "application/xml": components["schemas"]["PricingRuleDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get pricing rule by ID
+   * @description Retrieves a pricing rule by its unique identifier.
+   */
+  GetPricingRuleById: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pricingRuleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PricingRuleDtoEnvelope"];
+          "application/xml": components["schemas"]["PricingRuleDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a pricing rule
+   * @description Deletes a pricing rule for the specified tenant and rule ID.
+   */
+  DeletePricingRule: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pricingRuleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts pricing rules
+   * @description Gets the count of pricing rules for the current tenant.
+   */
+  GetPricingRulesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a pricing rule
+   * @description Updates an existing pricing rule for the specified tenant and rule ID.
+   */
+  UpdatePricingRule: {
+    parameters: {
+      query: {
+        tenantId: string;
+        pricingRuleId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PricingRuleUpdateDto"];
+        "application/xml": components["schemas"]["PricingRuleUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets all rounding policies
+   * @description Retrieves all rounding policies for the current tenant with OData support.
+   */
+  GetRoundingPoliciesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RoundingPolicyDtoListEnvelope"];
+          "application/xml": components["schemas"]["RoundingPolicyDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a rounding policy
+   * @description Creates a new rounding policy for the current tenant.
+   */
+  CreateRoundingPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RoundingPolicyCreateDto"];
+        "application/xml": components["schemas"]["RoundingPolicyCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts rounding policies
+   * @description Gets the count of rounding policies for the current tenant.
+   */
+  GetRoundingPoliciesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a rounding policy by ID
+   * @description Retrieves the details of a rounding policy using its unique ID.
+   */
+  GetRoundingPolicyByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        roundingPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RoundingPolicyDtoEnvelope"];
+          "application/xml": components["schemas"]["RoundingPolicyDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a rounding policy
+   * @description Updates the specified rounding policy.
+   */
+  UpdateRoundingPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        roundingPolicyId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RoundingPolicyUpdateDto"];
+        "application/xml": components["schemas"]["RoundingPolicyUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a rounding policy
+   * @description Deletes the specified rounding policy.
+   */
+  DeleteRoundingPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        roundingPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

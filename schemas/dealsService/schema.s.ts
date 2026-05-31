@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/api/v2/DealsService/DealUnitFlows": {
     /**
      * Get deal unit flows
@@ -474,49 +583,6 @@ export interface paths {
       };
     };
   };
-  "/api/v2/DealsService/SalesLiteratures/Count": {
-    /**
-     * Get sales literatures count
-     * @description Returns the total count of sales literatures for the specified tenant with OData filter support.
-     */
-    get: operations["CountSalesLiteraturesAsync"];
-  };
-  "/api/v2/DealsService/SalesLiteratures": {
-    /**
-     * Get sales literatures
-     * @description Retrieves a list of sales literatures for the specified tenant with OData query support.
-     */
-    get: operations["GetSalesLiteraturesAsync"];
-    /**
-     * Create a sales literature
-     * @description Creates a new sales literature for the specified tenant.
-     */
-    post: operations["CreateSalesLiteratureAsync"];
-  };
-  "/api/v2/DealsService/SalesLiteratures/Extended": {
-    /**
-     * Get extended sales literatures
-     * @description Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
-     */
-    get: operations["GetExtendedSalesLiteraturesAsync"];
-  };
-  "/api/v2/DealsService/SalesLiteratures/{salesLiteratureId}": {
-    /**
-     * Get sales literature by ID
-     * @description Retrieves a single sales literature by its unique identifier.
-     */
-    get: operations["GetSalesLiteratureAsync"];
-    /**
-     * Update a sales literature
-     * @description Updates an existing sales literature by its unique identifier.
-     */
-    put: operations["UpdateSalesLiteratureAsync"];
-    /**
-     * Delete a sales literature
-     * @description Deletes an existing sales literature by its unique identifier.
-     */
-    delete: operations["DeleteSalesLiteratureAsync"];
-  };
 }
 
 export type webhooks = Record<string, never>;
@@ -606,11 +672,6 @@ export interface components {
       identityProviderAccessToken?: string | null;
       /** Format: date-time */
       birthday?: string | null;
-    };
-    CurrencyId: {
-      value?: string | null;
-      code?: string | null;
-      country?: string | null;
     };
     DealUnitCreateDto: {
       /** Format: uuid */
@@ -739,6 +800,7 @@ export interface components {
       costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
+      forexRatesSnapshot?: string | null;
       currencyId?: string | null;
       /** Format: double */
       totalDetail?: number;
@@ -968,13 +1030,71 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       closed?: boolean;
+      title?: string | null;
+      priceListId?: string | null;
+      description?: string | null;
+      individualId?: string | null;
+      paymentTermId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      companyName?: string | null;
+      billingEmail?: string | null;
+      addressLine1?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      currencyId?: string | null;
-      description?: string | null;
       /** Format: double */
       quantity?: number;
       free?: boolean;
@@ -1004,13 +1124,7 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
       forexRatesSnapshot?: string | null;
-      /** Format: double */
-      forexRate?: number;
       /** Format: double */
       totalBaseAmountInUsd?: number;
       /** Format: double */
@@ -1049,42 +1163,6 @@ export interface components {
       /** Format: double */
       customGlobalDiscountsAmount?: number;
       customGlobalDiscountsAmountCurrencyId?: string | null;
-      /** Format: double */
-      totalDetail?: number;
-      totalDetailCurrencyId?: string | null;
-      /** Format: double */
-      totalDiscounts?: number;
-      totalDiscountsCurrencyId?: string | null;
-      /** Format: double */
-      totalTaxBase?: number;
-      totalTaxBaseCurrencyId?: string | null;
-      /** Format: double */
-      totalSurcharges?: number;
-      totalSurchargesCurrencyId?: string | null;
-      /** Format: double */
-      totalProfit?: number;
-      totalProfitCurrencyId?: string | null;
-      /** Format: double */
-      totalShippingCost?: number;
-      totalShippingCostCurrencyId?: string | null;
-      /** Format: double */
-      totalShippingTax?: number;
-      totalShippingTaxCurrencyId?: string | null;
-      /** Format: double */
-      totalTaxes?: number;
-      totalTaxesCurrencyId?: string | null;
-      /** Format: double */
-      totalWithheldTax?: number;
-      totalWithheldTaxCurrencyId?: string | null;
-      /** Format: double */
-      totalGlobalDiscounts?: number;
-      totalGlobalDiscountsCurrencyId?: string | null;
-      /** Format: double */
-      totalGlobalSurcharges?: number;
-      totalGlobalSurchargesCurrencyId?: string | null;
-      /** Format: double */
-      total?: number;
-      totalCurrencyId?: string | null;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
@@ -1100,15 +1178,100 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       closed?: boolean;
+      type?: string | null;
+      title?: string | null;
+      userId?: string | null;
+      tenantId?: string | null;
+      description?: string | null;
+      priceListId?: string | null;
+      enrollmentId?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      companyName?: string | null;
+      billingEmail?: string | null;
+      addressLine1?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** Format: double */
+      forexRate?: number;
+      forexRatesSnapshot?: string | null;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** Format: double */
+      totalDetailInUsd?: number;
+      /** Format: double */
+      totalProfitInUsd?: number;
+      /** Format: double */
+      totalDiscountsInUsd?: number;
+      /** Format: double */
+      totalSurchargesInUsd?: number;
+      /** Format: double */
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
+      /** Format: double */
+      totalGlobalDiscountsInUsd?: number;
+      /** Format: double */
+      totalGlobalSurchargesInUsd?: number;
+      /** Format: double */
+      totalInUsd?: number;
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-      currencyId?: string | null;
-      description?: string | null;
       /** Format: double */
       quantity?: number;
       free?: boolean;
@@ -1138,43 +1301,12 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      forexRates?: components["schemas"]["ForexRates"];
-      /** Format: double */
-      forexRate?: number;
-      /** Format: double */
-      totalDetailInUsd?: number;
-      /** Format: double */
-      totalProfitInUsd?: number;
-      /** Format: double */
-      totalDiscountsInUsd?: number;
-      /** Format: double */
-      totalSurchargesInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
-      /** Format: double */
-      totalTaxesInUsd?: number;
-      /** Format: double */
-      totalWithheldTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalWarrantyCostInUsd?: number;
       /** Format: double */
       totalReturnCostInUsd?: number;
       /** Format: double */
       totalRefundCostInUsd?: number;
-      /** Format: double */
-      totalInUsd?: number;
-      /** Format: double */
-      totalGlobalDiscountsInUsd?: number;
-      /** Format: double */
-      totalGlobalSurchargesInUsd?: number;
       /** Format: double */
       customGlobalSurchargesAmount?: number;
       /** Format: double */
@@ -1188,55 +1320,6 @@ export interface components {
       quoteItemRecordId?: string | null;
       businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
-      currency?: components["schemas"]["CurrencyId"];
-      /** Format: double */
-      totalDetail?: number;
-      totalDetailCurrencyId?: string | null;
-      totalDetailAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalProfit?: number;
-      totalProfitCurrencyId?: string | null;
-      totalProfitAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalDiscounts?: number;
-      totalDiscountsCurrencyId?: string | null;
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalSurcharges?: number;
-      totalSurchargesCurrencyId?: string | null;
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalTaxBase?: number;
-      totalTaxBaseCurrencyId?: string | null;
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalTaxes?: number;
-      totalTaxesCurrencyId?: string | null;
-      totalTaxesAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalShippingCost?: number;
-      totalShippingCostCurrencyId?: string | null;
-      totalShippingCostAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalShippingTax?: number;
-      totalShippingTaxCurrencyId?: string | null;
-      totalShippingTaxAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalWithheldTax?: number;
-      totalWithheldTaxCurrencyId?: string | null;
-      totalWithheldTaxAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalGlobalDiscounts?: number;
-      totalGlobalDiscountsCurrencyId?: string | null;
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalGlobalSurcharges?: number;
-      totalGlobalSurchargesCurrencyId?: string | null;
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      total?: number;
-      totalCurrencyId?: string | null;
-      totalAmount?: components["schemas"]["Money"];
       dealUnitId?: string | null;
     };
     DealUnitLineDtoEnvelope: {
@@ -1259,13 +1342,75 @@ export interface components {
     };
     DealUnitLineUpdateDto: {
       closed?: boolean;
+      title?: string | null;
+      userId?: string | null;
+      priceListId?: string | null;
+      description?: string | null;
+      individualId?: string | null;
+      paymentTermId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      companyName?: string | null;
+      billingEmail?: string | null;
+      addressLine1?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      billingLocationId?: string | null;
+      shippingLocationId?: string | null;
+      shippingMethodId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      currencyId?: string | null;
-      description?: string | null;
       /** Format: double */
       quantity?: number;
       free?: boolean;
@@ -1295,13 +1440,7 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
       forexRatesSnapshot?: string | null;
-      /** Format: double */
-      forexRate?: number;
       /** Format: double */
       totalBaseAmountInUsd?: number;
       /** Format: double */
@@ -1340,47 +1479,10 @@ export interface components {
       /** Format: double */
       customGlobalDiscountsAmount?: number;
       customGlobalDiscountsAmountCurrencyId?: string | null;
-      /** Format: double */
-      totalDetail?: number;
-      totalDetailCurrencyId?: string | null;
-      /** Format: double */
-      totalProfit?: number;
-      totalProfitCurrencyId?: string | null;
-      /** Format: double */
-      totalDiscounts?: number;
-      totalDiscountsCurrencyId?: string | null;
-      /** Format: double */
-      totalSurcharges?: number;
-      totalSurchargesCurrencyId?: string | null;
-      /** Format: double */
-      totalTaxBase?: number;
-      totalTaxBaseCurrencyId?: string | null;
-      /** Format: double */
-      totalShippingCost?: number;
-      totalShippingCostCurrencyId?: string | null;
-      /** Format: double */
-      totalShippingTax?: number;
-      totalShippingTaxCurrencyId?: string | null;
-      /** Format: double */
-      totalTaxes?: number;
-      totalTaxesCurrencyId?: string | null;
-      /** Format: double */
-      totalWithheldTax?: number;
-      totalWithheldTaxCurrencyId?: string | null;
-      /** Format: double */
-      totalGlobalDiscounts?: number;
-      totalGlobalDiscountsCurrencyId?: string | null;
-      /** Format: double */
-      totalGlobalSurcharges?: number;
-      totalGlobalSurchargesCurrencyId?: string | null;
-      /** Format: double */
-      total?: number;
-      totalCurrencyId?: string | null;
       returnPolicyId?: string | null;
       refundPolicyId?: string | null;
       warrantyPolicyId?: string | null;
       shipmentPolicyId?: string | null;
-      shippingLocationId?: string | null;
       locationId?: string | null;
       quoteItemRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
@@ -1530,6 +1632,7 @@ export interface components {
       costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
+      forexRatesSnapshot?: string | null;
       currencyId?: string | null;
       /** Format: double */
       totalDetail?: number;
@@ -1665,44 +1768,6 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ExtendedDealUnitDto"][] | null;
     };
-    ExtendedSalesLiteratureDto: {
-      id?: string | null;
-      /** Format: date-time */
-      timestamp?: string | null;
-      title?: string | null;
-      content?: string | null;
-      description?: string | null;
-      /** Format: date-time */
-      modifiedDate?: string;
-      /** Format: date-time */
-      expirationDate?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-      salesLiteratureTypeId?: string | null;
-      salesLiteratureType?: components["schemas"]["SalesLiteratureTypeDto"];
-      tenant?: components["schemas"]["TenantDto"];
-    };
-    ExtendedSalesLiteratureDtoListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["ExtendedSalesLiteratureDto"][] | null;
-    };
-    ForexRates: {
-      success?: boolean;
-      date?: string | null;
-      base?: string | null;
-      /** Format: int64 */
-      timestamp?: number;
-      /** Format: date-time */
-      requestTimestamp?: string;
-      rates?: {
-        [key: string]: number;
-      } | null;
-    };
     ForgotPasswordRequest: {
       email: string | null;
     };
@@ -1743,11 +1808,6 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Money: {
-      /** Format: double */
-      amount?: number;
-      currency?: components["schemas"]["CurrencyId"];
-    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1762,71 +1822,6 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
-    };
-    SalesLiteratureCreateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      title?: string | null;
-      content?: string | null;
-      description?: string | null;
-      /** Format: date-time */
-      modifiedDate?: string;
-      /** Format: date-time */
-      expirationDate?: string;
-      salesLiteratureTypeId?: string | null;
-    };
-    SalesLiteratureDto: {
-      id?: string | null;
-      /** Format: date-time */
-      timestamp?: string | null;
-      title?: string | null;
-      content?: string | null;
-      description?: string | null;
-      /** Format: date-time */
-      modifiedDate?: string;
-      /** Format: date-time */
-      expirationDate?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-      salesLiteratureTypeId?: string | null;
-    };
-    SalesLiteratureDtoEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["SalesLiteratureDto"];
-    };
-    SalesLiteratureDtoListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["SalesLiteratureDto"][] | null;
-    };
-    SalesLiteratureTypeDto: {
-      id?: string | null;
-      /** Format: date-time */
-      timestamp?: string | null;
-      name?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-    };
-    SalesLiteratureUpdateDto: {
-      title?: string | null;
-      content?: string | null;
-      description?: string | null;
-      /** Format: date-time */
-      modifiedDate?: string;
-      /** Format: date-time */
-      expirationDate?: string;
-      salesLiteratureTypeId?: string | null;
     };
     TenantDto: {
       id?: string | null;
@@ -2852,216 +2847,6 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
-      };
-    };
-  };
-  /**
-   * Get sales literatures count
-   * @description Returns the total count of sales literatures for the specified tenant with OData filter support.
-   */
-  CountSalesLiteraturesAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["Int32Envelope"];
-          "application/xml": components["schemas"]["Int32Envelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get sales literatures
-   * @description Retrieves a list of sales literatures for the specified tenant with OData query support.
-   */
-  GetSalesLiteraturesAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["SalesLiteratureDtoListEnvelope"];
-          "application/xml": components["schemas"]["SalesLiteratureDtoListEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Create a sales literature
-   * @description Creates a new sales literature for the specified tenant.
-   */
-  CreateSalesLiteratureAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["SalesLiteratureCreateDto"];
-        "application/xml": components["schemas"]["SalesLiteratureCreateDto"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get extended sales literatures
-   * @description Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
-   */
-  GetExtendedSalesLiteraturesAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["ExtendedSalesLiteratureDtoListEnvelope"];
-          "application/xml": components["schemas"]["ExtendedSalesLiteratureDtoListEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get sales literature by ID
-   * @description Retrieves a single sales literature by its unique identifier.
-   */
-  GetSalesLiteratureAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        salesLiteratureId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["SalesLiteratureDtoEnvelope"];
-          "application/xml": components["schemas"]["SalesLiteratureDtoEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Update a sales literature
-   * @description Updates an existing sales literature by its unique identifier.
-   */
-  UpdateSalesLiteratureAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        salesLiteratureId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["SalesLiteratureUpdateDto"];
-        "application/xml": components["schemas"]["SalesLiteratureUpdateDto"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Delete a sales literature
-   * @description Deletes an existing sales literature by its unique identifier.
-   */
-  DeleteSalesLiteratureAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        salesLiteratureId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
       };
     };
   };

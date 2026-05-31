@@ -138,6 +138,24 @@ export type ProjectDtoListEnvelopeWritable = {
     result?: Array<ProjectDto> | null;
 };
 
+export type ProjectHoursApprovalApproverUpdateDto = {
+    approverContactID?: string | null;
+};
+
+export type ProjectHoursApprovalCreateDto = {
+    id?: string;
+    timestamp?: string;
+    requesterContactID?: string | null;
+    approverContactID?: string | null;
+    projectPeriodID?: string | null;
+    comments?: string | null;
+};
+
+export type ProjectHoursApprovalStatusUpdateDto = {
+    approvalStatus?: 'Pending' | 'Approved' | 'Rejected';
+    comments?: string | null;
+};
+
 export type ProjectPeriodCreateDto = {
     id?: string;
     timestamp?: string;
@@ -187,10 +205,27 @@ export type ProjectTaskCreateDto = {
 export type ProjectTaskDto = {
     id?: string | null;
     timestamp?: string | null;
+    title?: string | null;
+    description?: string | null;
     startDate?: string;
     dueLine?: string;
     projectID?: string | null;
     projectTaskBucketID?: string | null;
+};
+
+export type ProjectTaskDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ProjectTaskDto;
+};
+
+export type ProjectTaskDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ProjectTaskDto;
 };
 
 export type ProjectTaskDtoListEnvelopeReadable = {
@@ -209,8 +244,22 @@ export type ProjectTaskDtoListEnvelopeWritable = {
 };
 
 export type ProjectTaskUpdateDto = {
+    title?: string | null;
+    description?: string | null;
     startDate?: string;
     dueLine?: string;
+};
+
+export type ProjectTimeLogCreateDto = {
+    id?: string;
+    timestamp?: string;
+    timeSpan?: string;
+    logDate?: string;
+    comments?: string | null;
+    projectTaskID: string;
+    projectPeriodID: string;
+    projectTimeLogRecordType?: 'RegularHours' | 'OvertimeToPay' | 'OvertimeToCompensate';
+    projectID?: string | null;
 };
 
 export type ProjectTimeLogDto = {
@@ -229,6 +278,21 @@ export type ProjectTimeLogDto = {
     type?: string | null;
 };
 
+export type ProjectTimeLogDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ProjectTimeLogDto;
+};
+
+export type ProjectTimeLogDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ProjectTimeLogDto;
+};
+
 export type ProjectTimeLogDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -242,6 +306,15 @@ export type ProjectTimeLogDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<ProjectTimeLogDto> | null;
+};
+
+export type ProjectTimeLogUpdateDto = {
+    logDate?: string;
+    timeSpan?: string;
+    comments?: string | null;
+    projectTaskID?: string | null;
+    projectPeriodID?: string | null;
+    projectTimeLogRecordType?: 'RegularHours' | 'OvertimeToPay' | 'OvertimeToCompensate';
 };
 
 export type ProjectUpdateDto = {
@@ -339,6 +412,37 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetVersionData = {
@@ -1294,6 +1398,193 @@ export type GetProjectTaskCategoriesCountAsyncResponses = {
 
 export type GetProjectTaskCategoriesCountAsyncResponse = GetProjectTaskCategoriesCountAsyncResponses[keyof GetProjectTaskCategoriesCountAsyncResponses];
 
+export type GetProjectTasksAsync2Data = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/ProjectTasks';
+};
+
+export type GetProjectTasksAsync2Errors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProjectTasksAsync2Error = GetProjectTasksAsync2Errors[keyof GetProjectTasksAsync2Errors];
+
+export type GetProjectTasksAsync2Responses = {
+    /**
+     * OK
+     */
+    200: ProjectTaskDtoListEnvelopeReadable;
+};
+
+export type GetProjectTasksAsync2Response = GetProjectTasksAsync2Responses[keyof GetProjectTasksAsync2Responses];
+
+export type CreateProjectTaskAsync2Data = {
+    body?: ProjectTaskCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/ProjectTasks';
+};
+
+export type CreateProjectTaskAsync2Errors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateProjectTaskAsync2Error = CreateProjectTaskAsync2Errors[keyof CreateProjectTaskAsync2Errors];
+
+export type CreateProjectTaskAsync2Responses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateProjectTaskAsync2Response = CreateProjectTaskAsync2Responses[keyof CreateProjectTaskAsync2Responses];
+
+export type GetProjectTasksCountAsync2Data = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/ProjectTasks/Count';
+};
+
+export type GetProjectTasksCountAsync2Responses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetProjectTasksCountAsync2Response = GetProjectTasksCountAsync2Responses[keyof GetProjectTasksCountAsync2Responses];
+
+export type DeleteProjectTaskAsync2Data = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        projectTaskId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/ProjectTasks/{projectTaskId}';
+};
+
+export type DeleteProjectTaskAsync2Errors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type DeleteProjectTaskAsync2Error = DeleteProjectTaskAsync2Errors[keyof DeleteProjectTaskAsync2Errors];
+
+export type DeleteProjectTaskAsync2Responses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteProjectTaskAsync2Response = DeleteProjectTaskAsync2Responses[keyof DeleteProjectTaskAsync2Responses];
+
+export type GetProjectTaskByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        projectTaskId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/ProjectTasks/{projectTaskId}';
+};
+
+export type GetProjectTaskByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetProjectTaskByIdAsyncError = GetProjectTaskByIdAsyncErrors[keyof GetProjectTaskByIdAsyncErrors];
+
+export type GetProjectTaskByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProjectTaskDtoEnvelopeReadable;
+};
+
+export type GetProjectTaskByIdAsyncResponse = GetProjectTaskByIdAsyncResponses[keyof GetProjectTaskByIdAsyncResponses];
+
+export type UpdateProjectTaskAsync2Data = {
+    body?: ProjectTaskUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        projectTaskId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/ProjectTasks/{projectTaskId}';
+};
+
+export type UpdateProjectTaskAsync2Errors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateProjectTaskAsync2Error = UpdateProjectTaskAsync2Errors[keyof UpdateProjectTaskAsync2Errors];
+
+export type UpdateProjectTaskAsync2Responses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateProjectTaskAsync2Response = UpdateProjectTaskAsync2Responses[keyof UpdateProjectTaskAsync2Responses];
+
 export type GetTenantTaskCategoriesAsyncData = {
     body?: never;
     path?: never;
@@ -1649,6 +1940,430 @@ export type CreateTaskTypeAsyncResponses = {
 
 export type CreateTaskTypeAsyncResponse = CreateTaskTypeAsyncResponses[keyof CreateTaskTypeAsyncResponses];
 
+export type RequestProjectHoursApprovalAsyncData = {
+    body?: ProjectHoursApprovalCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogApprovals';
+};
+
+export type RequestProjectHoursApprovalAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type RequestProjectHoursApprovalAsyncError = RequestProjectHoursApprovalAsyncErrors[keyof RequestProjectHoursApprovalAsyncErrors];
+
+export type RequestProjectHoursApprovalAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type UpdateProjectHoursApprovalStatusAsyncData = {
+    body?: ProjectHoursApprovalStatusUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        approvalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogApprovals/{approvalId}/Status';
+};
+
+export type UpdateProjectHoursApprovalStatusAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateProjectHoursApprovalStatusAsyncError = UpdateProjectHoursApprovalStatusAsyncErrors[keyof UpdateProjectHoursApprovalStatusAsyncErrors];
+
+export type UpdateProjectHoursApprovalStatusAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type UpdateProjectHoursApprovalApproverAsyncData = {
+    body?: ProjectHoursApprovalApproverUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        approvalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogApprovals/{approvalId}/Approver';
+};
+
+export type UpdateProjectHoursApprovalApproverAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateProjectHoursApprovalApproverAsyncError = UpdateProjectHoursApprovalApproverAsyncErrors[keyof UpdateProjectHoursApprovalApproverAsyncErrors];
+
+export type UpdateProjectHoursApprovalApproverAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetProjectPeriodTimeLogsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        projectPeriodId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs';
+};
+
+export type GetProjectPeriodTimeLogsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProjectPeriodTimeLogsAsyncError = GetProjectPeriodTimeLogsAsyncErrors[keyof GetProjectPeriodTimeLogsAsyncErrors];
+
+export type GetProjectPeriodTimeLogsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProjectTimeLogDtoListEnvelopeReadable;
+};
+
+export type GetProjectPeriodTimeLogsAsyncResponse = GetProjectPeriodTimeLogsAsyncResponses[keyof GetProjectPeriodTimeLogsAsyncResponses];
+
+export type CreateProjectTimeLogAsyncData = {
+    body?: ProjectTimeLogCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs';
+};
+
+export type CreateProjectTimeLogAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateProjectTimeLogAsyncError = CreateProjectTimeLogAsyncErrors[keyof CreateProjectTimeLogAsyncErrors];
+
+export type CreateProjectTimeLogAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type CountProjectPeriodTimeLogsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        projectPeriodId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs/Count';
+};
+
+export type CountProjectPeriodTimeLogsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountProjectPeriodTimeLogsAsyncError = CountProjectPeriodTimeLogsAsyncErrors[keyof CountProjectPeriodTimeLogsAsyncErrors];
+
+export type CountProjectPeriodTimeLogsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountProjectPeriodTimeLogsAsyncResponse = CountProjectPeriodTimeLogsAsyncResponses[keyof CountProjectPeriodTimeLogsAsyncResponses];
+
+export type GetProjectTimeLogsByResponsibleContactAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        contactId: string;
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs/ByResponsibleContact';
+};
+
+export type GetProjectTimeLogsByResponsibleContactAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProjectTimeLogsByResponsibleContactAsyncError = GetProjectTimeLogsByResponsibleContactAsyncErrors[keyof GetProjectTimeLogsByResponsibleContactAsyncErrors];
+
+export type GetProjectTimeLogsByResponsibleContactAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProjectTimeLogDtoListEnvelopeReadable;
+};
+
+export type GetProjectTimeLogsByResponsibleContactAsyncResponse = GetProjectTimeLogsByResponsibleContactAsyncResponses[keyof GetProjectTimeLogsByResponsibleContactAsyncResponses];
+
+export type GetProjectTimeLogsCreatedByContactAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        contactId: string;
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs/CreatedByContact';
+};
+
+export type GetProjectTimeLogsCreatedByContactAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProjectTimeLogsCreatedByContactAsyncError = GetProjectTimeLogsCreatedByContactAsyncErrors[keyof GetProjectTimeLogsCreatedByContactAsyncErrors];
+
+export type GetProjectTimeLogsCreatedByContactAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProjectTimeLogDtoListEnvelopeReadable;
+};
+
+export type GetProjectTimeLogsCreatedByContactAsyncResponse = GetProjectTimeLogsCreatedByContactAsyncResponses[keyof GetProjectTimeLogsCreatedByContactAsyncResponses];
+
+export type GetProjectTimeLogsAsync2Data = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        projectId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs/ForProject/{projectId}';
+};
+
+export type GetProjectTimeLogsAsync2Errors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProjectTimeLogsAsync2Error = GetProjectTimeLogsAsync2Errors[keyof GetProjectTimeLogsAsync2Errors];
+
+export type GetProjectTimeLogsAsync2Responses = {
+    /**
+     * OK
+     */
+    200: ProjectTimeLogDtoListEnvelopeReadable;
+};
+
+export type GetProjectTimeLogsAsync2Response = GetProjectTimeLogsAsync2Responses[keyof GetProjectTimeLogsAsync2Responses];
+
+export type DeleteProjectTimeLogAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        timeLogId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs/{timeLogId}';
+};
+
+export type DeleteProjectTimeLogAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteProjectTimeLogAsyncError = DeleteProjectTimeLogAsyncErrors[keyof DeleteProjectTimeLogAsyncErrors];
+
+export type DeleteProjectTimeLogAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetProjectTimeLogByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        timeLogId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs/{timeLogId}';
+};
+
+export type GetProjectTimeLogByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProjectTimeLogByIdAsyncError = GetProjectTimeLogByIdAsyncErrors[keyof GetProjectTimeLogByIdAsyncErrors];
+
+export type GetProjectTimeLogByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProjectTimeLogDtoEnvelopeReadable;
+};
+
+export type GetProjectTimeLogByIdAsyncResponse = GetProjectTimeLogByIdAsyncResponses[keyof GetProjectTimeLogByIdAsyncResponses];
+
+export type UpdateProjectTimeLogAsyncData = {
+    body?: ProjectTimeLogUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        timeLogId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs/{timeLogId}';
+};
+
+export type UpdateProjectTimeLogAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateProjectTimeLogAsyncError = UpdateProjectTimeLogAsyncErrors[keyof UpdateProjectTimeLogAsyncErrors];
+
+export type UpdateProjectTimeLogAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

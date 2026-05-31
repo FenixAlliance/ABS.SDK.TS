@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/version": {
     get: {
       responses: {
@@ -302,6 +411,132 @@ export interface paths {
       };
     };
   };
+  "/api/v2/SupportService/InquiryRequests": {
+    /** Retrieve inquiry requests */
+    get: operations["GetInquiryRequestsAsync"];
+    /** Create an inquiry request */
+    post: operations["CreateInquiryRequestAsync"];
+  };
+  "/api/v2/SupportService/InquiryRequests/Count": {
+    /** Get inquiry requests count */
+    get: operations["GetInquiryRequestsCountAsync"];
+  };
+  "/api/v2/SupportService/InquiryRequests/{inquiryRequestId}": {
+    /** Retrieve an inquiry request by ID */
+    get: operations["GetInquiryRequestAsync"];
+    /** Update an inquiry request */
+    put: operations["UpdateInquiryRequestAsync"];
+    /** Delete an inquiry request */
+    delete: operations["DeleteInquiryRequestAsync"];
+  };
+  "/api/v2/SupportService/KnowledgeArticles": {
+    /** Retrieve knowledge articles */
+    get: operations["GetKnowledgeArticlesAsync"];
+    /** Create a knowledge article */
+    post: operations["CreateKnowledgeArticleAsync"];
+  };
+  "/api/v2/SupportService/KnowledgeArticles/Count": {
+    /** Get knowledge articles count */
+    get: operations["GetKnowledgeArticlesCountAsync"];
+  };
+  "/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}": {
+    /** Retrieve a knowledge article by ID */
+    get: operations["GetKnowledgeArticleAsync"];
+    /** Update a knowledge article */
+    put: operations["UpdateKnowledgeArticleAsync"];
+    /** Delete a knowledge article */
+    delete: operations["DeleteKnowledgeArticleAsync"];
+  };
+  "/api/v2/SupportService/MaintenanceVisits": {
+    /** Retrieve maintenance visits */
+    get: operations["GetMaintenanceVisitsAsync"];
+    /** Create a maintenance visit */
+    post: operations["CreateMaintenanceVisitAsync"];
+  };
+  "/api/v2/SupportService/MaintenanceVisits/Count": {
+    /** Get maintenance visits count */
+    get: operations["GetMaintenanceVisitsCountAsync"];
+  };
+  "/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}": {
+    /** Retrieve a maintenance visit by ID */
+    get: operations["GetMaintenanceVisitAsync"];
+    /** Update a maintenance visit */
+    put: operations["UpdateMaintenanceVisitAsync"];
+    /** Delete a maintenance visit */
+    delete: operations["DeleteMaintenanceVisitAsync"];
+  };
+  "/api/v2/SupportService/RefundPolicies": {
+    /** Retrieve a list of refund policies */
+    get: operations["GetRefundPoliciesAsync"];
+    /** Create a new refund policy */
+    post: operations["CreateRefundPolicyAsync"];
+  };
+  "/api/v2/SupportService/RefundPolicies/Count": {
+    /** Get the count of refund policies */
+    get: operations["GetRefundPoliciesCountAsync"];
+  };
+  "/api/v2/SupportService/RefundPolicies/{refundPolicyId}": {
+    /** Retrieve a refund policy by ID */
+    get: operations["GetRefundPolicyAsync"];
+    /** Update a refund policy */
+    put: operations["UpdateRefundPolicyAsync"];
+    /** Delete a refund policy */
+    delete: operations["DeleteRefundPolicyAsync"];
+  };
+  "/api/v2/SupportService/RefundRequests": {
+    /** Retrieve refund requests */
+    get: operations["GetRefundRequestsAsync"];
+    /** Create a refund request */
+    post: operations["CreateRefundRequestAsync"];
+  };
+  "/api/v2/SupportService/RefundRequests/Count": {
+    /** Get refund requests count */
+    get: operations["GetRefundRequestsCountAsync"];
+  };
+  "/api/v2/SupportService/RefundRequests/{refundRequestId}": {
+    /** Retrieve a refund request by ID */
+    get: operations["GetRefundRequestAsync"];
+    /** Update a refund request */
+    put: operations["UpdateRefundRequestAsync"];
+    /** Delete a refund request */
+    delete: operations["DeleteRefundRequestAsync"];
+  };
+  "/api/v2/SupportService/ReturnPolicies": {
+    /** Retrieve a list of return policies */
+    get: operations["GetReturnPoliciesAsync"];
+    /** Create a new return policy */
+    post: operations["CreateReturnPolicyAsync"];
+  };
+  "/api/v2/SupportService/ReturnPolicies/Count": {
+    /** Get the count of return policies */
+    get: operations["GetReturnPoliciesCountAsync"];
+  };
+  "/api/v2/SupportService/ReturnPolicies/{returnPolicyId}": {
+    /** Retrieve a return policy by ID */
+    get: operations["GetReturnPolicyAsync"];
+    /** Update a return policy */
+    put: operations["UpdateReturnPolicyAsync"];
+    /** Delete a return policy */
+    delete: operations["DeleteReturnPolicyAsync"];
+  };
+  "/api/v2/SupportService/ReturnRequests": {
+    /** Retrieve return requests */
+    get: operations["GetReturnRequestsAsync"];
+    /** Create a return request */
+    post: operations["CreateReturnRequestAsync"];
+  };
+  "/api/v2/SupportService/ReturnRequests/Count": {
+    /** Get return requests count */
+    get: operations["GetReturnRequestsCountAsync"];
+  };
+  "/api/v2/SupportService/ReturnRequests/{returnRequestId}": {
+    /** Retrieve a return request by ID */
+    get: operations["GetReturnRequestAsync"];
+    /** Update a return request */
+    put: operations["UpdateReturnRequestAsync"];
+    /** Delete a return request */
+    delete: operations["DeleteReturnRequestAsync"];
+  };
   "/api/v2/SupportService/SupportEntitlements": {
     /**
      * Retrieve a list of support entitlements
@@ -582,6 +817,42 @@ export interface paths {
      */
     delete: operations["DeleteSupportTicketTypeAsync"];
   };
+  "/api/v2/SupportService/WarrantyPolicies": {
+    /** Retrieve a list of warranty policies */
+    get: operations["GetWarrantyPoliciesAsync"];
+    /** Create a new warranty policy */
+    post: operations["CreateWarrantyPolicyAsync"];
+  };
+  "/api/v2/SupportService/WarrantyPolicies/Count": {
+    /** Get the count of warranty policies */
+    get: operations["GetWarrantyPoliciesCountAsync"];
+  };
+  "/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}": {
+    /** Retrieve a warranty policy by ID */
+    get: operations["GetWarrantyPolicyAsync"];
+    /** Update a warranty policy */
+    put: operations["UpdateWarrantyPolicyAsync"];
+    /** Delete a warranty policy */
+    delete: operations["DeleteWarrantyPolicyAsync"];
+  };
+  "/api/v2/SupportService/WarrantyRequests": {
+    /** Retrieve warranty requests */
+    get: operations["GetWarrantyRequestsAsync"];
+    /** Create a warranty request */
+    post: operations["CreateWarrantyRequestAsync"];
+  };
+  "/api/v2/SupportService/WarrantyRequests/Count": {
+    /** Get warranty requests count */
+    get: operations["GetWarrantyRequestsCountAsync"];
+  };
+  "/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}": {
+    /** Retrieve a warranty request by ID */
+    get: operations["GetWarrantyRequestAsync"];
+    /** Update a warranty request */
+    put: operations["UpdateWarrantyRequestAsync"];
+    /** Delete a warranty request */
+    delete: operations["DeleteWarrantyRequestAsync"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -635,6 +906,74 @@ export interface components {
       email: string | null;
       isEmailConfirmed: boolean;
     };
+    InquiryRequestCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      type?: string | null;
+      name: string;
+      lastName?: string | null;
+      /** Format: email */
+      email: string;
+      organizationName?: string | null;
+      jobRole?: string | null;
+      organizationDomain?: string | null;
+      countryId?: string | null;
+      phone?: string | null;
+      message: string;
+      socialProfileId?: string | null;
+    };
+    InquiryRequestDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      type?: string | null;
+      name?: string | null;
+      lastName?: string | null;
+      email?: string | null;
+      organizationName?: string | null;
+      jobRole?: string | null;
+      organizationDomain?: string | null;
+      countryId?: string | null;
+      phone?: string | null;
+      message?: string | null;
+      tenantId?: string | null;
+      businessProfileRecordId?: string | null;
+      accountHolderId?: string | null;
+      socialProfileId?: string | null;
+    };
+    InquiryRequestDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["InquiryRequestDto"];
+    };
+    InquiryRequestDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["InquiryRequestDto"][] | null;
+    };
+    InquiryRequestUpdateDto: {
+      type?: string | null;
+      name?: string | null;
+      lastName?: string | null;
+      email?: string | null;
+      organizationName?: string | null;
+      jobRole?: string | null;
+      organizationDomain?: string | null;
+      countryId?: string | null;
+      phone?: string | null;
+      message?: string | null;
+      socialProfileId?: string | null;
+    };
     Int32Envelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -645,12 +984,468 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
+    ItemRefundPolicyCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
+    ItemRefundPolicyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      shippingCourierID?: string | null;
+      type?: string | null;
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+      businessID?: string | null;
+      businessProfileRecordID?: string | null;
+    };
+    ItemRefundPolicyDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemRefundPolicyDto"];
+    };
+    ItemRefundPolicyDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemRefundPolicyDto"][] | null;
+    };
+    ItemRefundPolicyUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
+    ItemReturnPolicyCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      shippingCourierID?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
+    ItemReturnPolicyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      shippingCourierID?: string | null;
+      type?: string | null;
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+      businessID?: string | null;
+      businessProfileRecordID?: string | null;
+    };
+    ItemReturnPolicyDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemReturnPolicyDto"];
+    };
+    ItemReturnPolicyDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemReturnPolicyDto"][] | null;
+    };
+    ItemReturnPolicyUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      shippingCourierID?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
+    ItemWarrantyPolicyCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      isExtendedWarranty?: boolean;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
+    ItemWarrantyPolicyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      isExtendedWarranty?: boolean;
+      code: string;
+      title: string;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+      businessID: string;
+      businessProfileRecordID?: string | null;
+    };
+    ItemWarrantyPolicyDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemWarrantyPolicyDto"];
+    };
+    ItemWarrantyPolicyDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemWarrantyPolicyDto"][] | null;
+    };
+    ItemWarrantyPolicyUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      isExtendedWarranty?: boolean;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID?: string | null;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+    };
+    KnowledgeArticleCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      slug?: string | null;
+      excerpt?: string | null;
+      description?: string | null;
+      content?: string | null;
+      highlightImage?: string | null;
+      seoTitle?: string | null;
+      seoKeyWords?: string | null;
+      metaDescription?: string | null;
+      published?: boolean;
+      enable?: boolean;
+    };
+    KnowledgeArticleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      title?: string | null;
+      slug?: string | null;
+      excerpt?: string | null;
+      description?: string | null;
+      content?: string | null;
+      highlightImage?: string | null;
+      seoTitle?: string | null;
+      seoKeyWords?: string | null;
+      metaDescription?: string | null;
+      published?: boolean;
+      enable?: boolean;
+      /** Format: date-time */
+      releaseDateTime?: string;
+      /** Format: date-time */
+      lastModification?: string;
+      tenantId?: string | null;
+      businessProfileRecordId?: string | null;
+    };
+    KnowledgeArticleDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["KnowledgeArticleDto"];
+    };
+    KnowledgeArticleDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["KnowledgeArticleDto"][] | null;
+    };
+    KnowledgeArticleUpdateDto: {
+      title?: string | null;
+      slug?: string | null;
+      excerpt?: string | null;
+      description?: string | null;
+      content?: string | null;
+      highlightImage?: string | null;
+      seoTitle?: string | null;
+      seoKeyWords?: string | null;
+      metaDescription?: string | null;
+      published?: boolean;
+      enable?: boolean;
+    };
     LoginRequest: {
       email: string | null;
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    MaintenanceVisitCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+    };
+    MaintenanceVisitDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      businessProfileRecordId?: string | null;
+    };
+    MaintenanceVisitDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["MaintenanceVisitDto"];
+    };
+    MaintenanceVisitDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["MaintenanceVisitDto"][] | null;
+    };
+    MaintenanceVisitUpdateDto: Record<string, never>;
     PrivateMessageDto: {
       id?: string | null;
       /** Format: date-time */
@@ -680,6 +1475,66 @@ export interface components {
     RefreshRequest: {
       refreshToken: string | null;
     };
+    RefundRequestCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      supportEntitlementId?: string | null;
+      contactId?: string | null;
+      refundPolicyId?: string | null;
+      paymentId?: string | null;
+    };
+    RefundRequestDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      title?: string | null;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      tenantId?: string | null;
+      businessProfileRecordId?: string | null;
+      supportEntitlementId?: string | null;
+      contactId?: string | null;
+      accountHolderId?: string | null;
+      refundPolicyId?: string | null;
+      paymentId?: string | null;
+    };
+    RefundRequestDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RefundRequestDto"];
+    };
+    RefundRequestDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RefundRequestDto"][] | null;
+    };
+    RefundRequestUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      supportEntitlementId?: string | null;
+      refundPolicyId?: string | null;
+      paymentId?: string | null;
+    };
     RegisterRequest: {
       email: string | null;
       password: string | null;
@@ -691,6 +1546,63 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    ReturnRequestCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      supportEntitlementId?: string | null;
+      contactId?: string | null;
+      returnPolicyId?: string | null;
+    };
+    ReturnRequestDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      title?: string | null;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      tenantId?: string | null;
+      businessProfileRecordId?: string | null;
+      supportEntitlementId?: string | null;
+      contactId?: string | null;
+      accountHolderId?: string | null;
+      returnPolicyId?: string | null;
+    };
+    ReturnRequestDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ReturnRequestDto"];
+    };
+    ReturnRequestDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ReturnRequestDto"][] | null;
+    };
+    ReturnRequestUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      supportEntitlementId?: string | null;
+      returnPolicyId?: string | null;
     };
     SupportEntitlementCreateDto: {
       /** Format: uuid */
@@ -1207,6 +2119,63 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    WarrantyRequestCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      supportEntitlementId?: string | null;
+      contactId?: string | null;
+      warrantyPolicyId?: string | null;
+    };
+    WarrantyRequestDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      title?: string | null;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      tenantId?: string | null;
+      businessProfileRecordId?: string | null;
+      supportEntitlementId?: string | null;
+      contactId?: string | null;
+      accountHolderId?: string | null;
+      warrantyPolicyId?: string | null;
+    };
+    WarrantyRequestDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WarrantyRequestDto"];
+    };
+    WarrantyRequestDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WarrantyRequestDto"][] | null;
+    };
+    WarrantyRequestUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      approved?: boolean;
+      /** Format: date-time */
+      approvedTimestamp?: string;
+      supportEntitlementId?: string | null;
+      warrantyPolicyId?: string | null;
+    };
   };
   responses: never;
   parameters: never;
@@ -1233,6 +2202,1203 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /** Retrieve inquiry requests */
+  GetInquiryRequestsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InquiryRequestDtoListEnvelope"];
+          "application/xml": components["schemas"]["InquiryRequestDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create an inquiry request */
+  CreateInquiryRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InquiryRequestCreateDto"];
+        "application/xml": components["schemas"]["InquiryRequestCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get inquiry requests count */
+  GetInquiryRequestsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve an inquiry request by ID */
+  GetInquiryRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        inquiryRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InquiryRequestDtoEnvelope"];
+          "application/xml": components["schemas"]["InquiryRequestDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update an inquiry request */
+  UpdateInquiryRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        inquiryRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InquiryRequestUpdateDto"];
+        "application/xml": components["schemas"]["InquiryRequestUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete an inquiry request */
+  DeleteInquiryRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        inquiryRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve knowledge articles */
+  GetKnowledgeArticlesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["KnowledgeArticleDtoListEnvelope"];
+          "application/xml": components["schemas"]["KnowledgeArticleDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a knowledge article */
+  CreateKnowledgeArticleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["KnowledgeArticleCreateDto"];
+        "application/xml": components["schemas"]["KnowledgeArticleCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get knowledge articles count */
+  GetKnowledgeArticlesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a knowledge article by ID */
+  GetKnowledgeArticleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        knowledgeArticleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["KnowledgeArticleDtoEnvelope"];
+          "application/xml": components["schemas"]["KnowledgeArticleDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a knowledge article */
+  UpdateKnowledgeArticleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        knowledgeArticleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["KnowledgeArticleUpdateDto"];
+        "application/xml": components["schemas"]["KnowledgeArticleUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a knowledge article */
+  DeleteKnowledgeArticleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        knowledgeArticleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve maintenance visits */
+  GetMaintenanceVisitsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MaintenanceVisitDtoListEnvelope"];
+          "application/xml": components["schemas"]["MaintenanceVisitDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a maintenance visit */
+  CreateMaintenanceVisitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MaintenanceVisitCreateDto"];
+        "application/xml": components["schemas"]["MaintenanceVisitCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get maintenance visits count */
+  GetMaintenanceVisitsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a maintenance visit by ID */
+  GetMaintenanceVisitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        maintenanceVisitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MaintenanceVisitDtoEnvelope"];
+          "application/xml": components["schemas"]["MaintenanceVisitDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a maintenance visit */
+  UpdateMaintenanceVisitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        maintenanceVisitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MaintenanceVisitUpdateDto"];
+        "application/xml": components["schemas"]["MaintenanceVisitUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a maintenance visit */
+  DeleteMaintenanceVisitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        maintenanceVisitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a list of refund policies */
+  GetRefundPoliciesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemRefundPolicyDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemRefundPolicyDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a new refund policy */
+  CreateRefundPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRefundPolicyCreateDto"];
+        "application/xml": components["schemas"]["ItemRefundPolicyCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get the count of refund policies */
+  GetRefundPoliciesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a refund policy by ID */
+  GetRefundPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        refundPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemRefundPolicyDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemRefundPolicyDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a refund policy */
+  UpdateRefundPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        refundPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRefundPolicyUpdateDto"];
+        "application/xml": components["schemas"]["ItemRefundPolicyUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a refund policy */
+  DeleteRefundPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        refundPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve refund requests */
+  GetRefundRequestsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RefundRequestDtoListEnvelope"];
+          "application/xml": components["schemas"]["RefundRequestDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a refund request */
+  CreateRefundRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RefundRequestCreateDto"];
+        "application/xml": components["schemas"]["RefundRequestCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get refund requests count */
+  GetRefundRequestsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a refund request by ID */
+  GetRefundRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        refundRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RefundRequestDtoEnvelope"];
+          "application/xml": components["schemas"]["RefundRequestDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a refund request */
+  UpdateRefundRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        refundRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RefundRequestUpdateDto"];
+        "application/xml": components["schemas"]["RefundRequestUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a refund request */
+  DeleteRefundRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        refundRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a list of return policies */
+  GetReturnPoliciesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemReturnPolicyDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemReturnPolicyDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a new return policy */
+  CreateReturnPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemReturnPolicyCreateDto"];
+        "application/xml": components["schemas"]["ItemReturnPolicyCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get the count of return policies */
+  GetReturnPoliciesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a return policy by ID */
+  GetReturnPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        returnPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemReturnPolicyDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemReturnPolicyDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a return policy */
+  UpdateReturnPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        returnPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemReturnPolicyUpdateDto"];
+        "application/xml": components["schemas"]["ItemReturnPolicyUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a return policy */
+  DeleteReturnPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        returnPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve return requests */
+  GetReturnRequestsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ReturnRequestDtoListEnvelope"];
+          "application/xml": components["schemas"]["ReturnRequestDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a return request */
+  CreateReturnRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ReturnRequestCreateDto"];
+        "application/xml": components["schemas"]["ReturnRequestCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get return requests count */
+  GetReturnRequestsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a return request by ID */
+  GetReturnRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        returnRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ReturnRequestDtoEnvelope"];
+          "application/xml": components["schemas"]["ReturnRequestDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a return request */
+  UpdateReturnRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        returnRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ReturnRequestUpdateDto"];
+        "application/xml": components["schemas"]["ReturnRequestUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a return request */
+  DeleteReturnRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        returnRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
     };
   };
@@ -3154,6 +5320,384 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a list of warranty policies */
+  GetWarrantyPoliciesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemWarrantyPolicyDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemWarrantyPolicyDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a new warranty policy */
+  CreateWarrantyPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemWarrantyPolicyCreateDto"];
+        "application/xml": components["schemas"]["ItemWarrantyPolicyCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get the count of warranty policies */
+  GetWarrantyPoliciesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a warranty policy by ID */
+  GetWarrantyPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warrantyPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemWarrantyPolicyDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemWarrantyPolicyDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a warranty policy */
+  UpdateWarrantyPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warrantyPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemWarrantyPolicyUpdateDto"];
+        "application/xml": components["schemas"]["ItemWarrantyPolicyUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a warranty policy */
+  DeleteWarrantyPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warrantyPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve warranty requests */
+  GetWarrantyRequestsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WarrantyRequestDtoListEnvelope"];
+          "application/xml": components["schemas"]["WarrantyRequestDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a warranty request */
+  CreateWarrantyRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WarrantyRequestCreateDto"];
+        "application/xml": components["schemas"]["WarrantyRequestCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get warranty requests count */
+  GetWarrantyRequestsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /** Retrieve a warranty request by ID */
+  GetWarrantyRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warrantyRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WarrantyRequestDtoEnvelope"];
+          "application/xml": components["schemas"]["WarrantyRequestDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a warranty request */
+  UpdateWarrantyRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warrantyRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WarrantyRequestUpdateDto"];
+        "application/xml": components["schemas"]["WarrantyRequestUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a warranty request */
+  DeleteWarrantyRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warrantyRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
     };

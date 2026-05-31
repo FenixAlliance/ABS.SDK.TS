@@ -328,6 +328,7 @@ export type OAuthApplicationCreateDto = {
 
 export type OAuthApplicationDto = {
     id?: string | null;
+    timestamp?: string | null;
     applicationType?: string | null;
     clientId?: string | null;
     concurrencyToken?: string | null;
@@ -392,6 +393,7 @@ export type OAuthApplicationUpdateDto = {
 
 export type OAuthAuthorizationDto = {
     id?: string | null;
+    timestamp?: string | null;
     concurrencyToken?: string | null;
     creationDate?: string | null;
     properties?: string | null;
@@ -873,6 +875,111 @@ export type UpdateBusinessApplicationAsyncResponses = {
 };
 
 export type UpdateBusinessApplicationAsyncResponse = UpdateBusinessApplicationAsyncResponses[keyof UpdateBusinessApplicationAsyncResponses];
+
+export type GetPermissionsByApplicationAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        applicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Applications/{applicationId}/Permissions';
+};
+
+export type GetPermissionsByApplicationAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetPermissionsByApplicationAsyncError = GetPermissionsByApplicationAsyncErrors[keyof GetPermissionsByApplicationAsyncErrors];
+
+export type GetPermissionsByApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SecurityPermissionDtoListEnvelopeReadable;
+};
+
+export type GetPermissionsByApplicationAsyncResponse = GetPermissionsByApplicationAsyncResponses[keyof GetPermissionsByApplicationAsyncResponses];
+
+export type GetRolesByApplicationAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        applicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Applications/{applicationId}/Roles';
+};
+
+export type GetRolesByApplicationAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRolesByApplicationAsyncError = GetRolesByApplicationAsyncErrors[keyof GetRolesByApplicationAsyncErrors];
+
+export type GetRolesByApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SecurityRoleDtoListEnvelopeReadable;
+};
+
+export type GetRolesByApplicationAsyncResponse = GetRolesByApplicationAsyncResponses[keyof GetRolesByApplicationAsyncResponses];
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
 
 export type GetVersionData = {
     body?: never;
@@ -3076,5 +3183,5 @@ export type GetWebhookRequestsCountAsyncResponses = {
 export type GetWebhookRequestsCountAsyncResponse = GetWebhookRequestsCountAsyncResponses[keyof GetWebhookRequestsCountAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

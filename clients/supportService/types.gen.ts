@@ -68,6 +68,85 @@ export type InfoResponse = {
     isEmailConfirmed: boolean;
 };
 
+export type InquiryRequestCreateDto = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    name: string;
+    lastName?: string | null;
+    email: string;
+    organizationName?: string | null;
+    jobRole?: string | null;
+    organizationDomain?: string | null;
+    countryId?: string | null;
+    phone?: string | null;
+    message: string;
+    socialProfileId?: string | null;
+};
+
+export type InquiryRequestDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    type?: string | null;
+    name?: string | null;
+    lastName?: string | null;
+    email?: string | null;
+    organizationName?: string | null;
+    jobRole?: string | null;
+    organizationDomain?: string | null;
+    countryId?: string | null;
+    phone?: string | null;
+    message?: string | null;
+    tenantId?: string | null;
+    businessProfileRecordId?: string | null;
+    accountHolderId?: string | null;
+    socialProfileId?: string | null;
+};
+
+export type InquiryRequestDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: InquiryRequestDto;
+};
+
+export type InquiryRequestDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: InquiryRequestDto;
+};
+
+export type InquiryRequestDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<InquiryRequestDto> | null;
+};
+
+export type InquiryRequestDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<InquiryRequestDto> | null;
+};
+
+export type InquiryRequestUpdateDto = {
+    type?: string | null;
+    name?: string | null;
+    lastName?: string | null;
+    email?: string | null;
+    organizationName?: string | null;
+    jobRole?: string | null;
+    organizationDomain?: string | null;
+    countryId?: string | null;
+    phone?: string | null;
+    message?: string | null;
+    socialProfileId?: string | null;
+};
+
 export type Int32EnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -83,11 +162,464 @@ export type Int32EnvelopeWritable = {
     result?: number;
 };
 
+export type ItemRefundPolicyCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
+export type ItemRefundPolicyDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    shippingCourierID?: string | null;
+    type?: string | null;
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+    businessID?: string | null;
+    businessProfileRecordID?: string | null;
+};
+
+export type ItemRefundPolicyDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemRefundPolicyDto;
+};
+
+export type ItemRefundPolicyDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemRefundPolicyDto;
+};
+
+export type ItemRefundPolicyDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemRefundPolicyDto> | null;
+};
+
+export type ItemRefundPolicyDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemRefundPolicyDto> | null;
+};
+
+export type ItemRefundPolicyUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
+export type ItemReturnPolicyCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    shippingCourierID?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
+export type ItemReturnPolicyDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    shippingCourierID?: string | null;
+    type?: string | null;
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+    businessID?: string | null;
+    businessProfileRecordID?: string | null;
+};
+
+export type ItemReturnPolicyDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemReturnPolicyDto;
+};
+
+export type ItemReturnPolicyDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemReturnPolicyDto;
+};
+
+export type ItemReturnPolicyDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemReturnPolicyDto> | null;
+};
+
+export type ItemReturnPolicyDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemReturnPolicyDto> | null;
+};
+
+export type ItemReturnPolicyUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    shippingCourierID?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
+export type ItemWarrantyPolicyCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    isExtendedWarranty?: boolean;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
+export type ItemWarrantyPolicyDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    isExtendedWarranty?: boolean;
+    code: string;
+    title: string;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+    businessID: string;
+    businessProfileRecordID?: string | null;
+};
+
+export type ItemWarrantyPolicyDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemWarrantyPolicyDto;
+};
+
+export type ItemWarrantyPolicyDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemWarrantyPolicyDto;
+};
+
+export type ItemWarrantyPolicyDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemWarrantyPolicyDto> | null;
+};
+
+export type ItemWarrantyPolicyDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemWarrantyPolicyDto> | null;
+};
+
+export type ItemWarrantyPolicyUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    isExtendedWarranty?: boolean;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
+export type KnowledgeArticleCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    slug?: string | null;
+    excerpt?: string | null;
+    description?: string | null;
+    content?: string | null;
+    highlightImage?: string | null;
+    seoTitle?: string | null;
+    seoKeyWords?: string | null;
+    metaDescription?: string | null;
+    published?: boolean;
+    enable?: boolean;
+};
+
+export type KnowledgeArticleDto = {
+    id?: string | null;
+    timestamp?: string;
+    title?: string | null;
+    slug?: string | null;
+    excerpt?: string | null;
+    description?: string | null;
+    content?: string | null;
+    highlightImage?: string | null;
+    seoTitle?: string | null;
+    seoKeyWords?: string | null;
+    metaDescription?: string | null;
+    published?: boolean;
+    enable?: boolean;
+    releaseDateTime?: string;
+    lastModification?: string;
+    tenantId?: string | null;
+    businessProfileRecordId?: string | null;
+};
+
+export type KnowledgeArticleDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: KnowledgeArticleDto;
+};
+
+export type KnowledgeArticleDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: KnowledgeArticleDto;
+};
+
+export type KnowledgeArticleDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<KnowledgeArticleDto> | null;
+};
+
+export type KnowledgeArticleDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<KnowledgeArticleDto> | null;
+};
+
+export type KnowledgeArticleUpdateDto = {
+    title?: string | null;
+    slug?: string | null;
+    excerpt?: string | null;
+    description?: string | null;
+    content?: string | null;
+    highlightImage?: string | null;
+    seoTitle?: string | null;
+    seoKeyWords?: string | null;
+    metaDescription?: string | null;
+    published?: boolean;
+    enable?: boolean;
+};
+
 export type LoginRequest = {
     email: string | null;
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
+};
+
+export type MaintenanceVisitCreateDto = {
+    id?: string;
+    timestamp?: string;
+};
+
+export type MaintenanceVisitDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    businessProfileRecordId?: string | null;
+};
+
+export type MaintenanceVisitDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: MaintenanceVisitDto;
+};
+
+export type MaintenanceVisitDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: MaintenanceVisitDto;
+};
+
+export type MaintenanceVisitDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<MaintenanceVisitDto> | null;
+};
+
+export type MaintenanceVisitDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<MaintenanceVisitDto> | null;
+};
+
+export type MaintenanceVisitUpdateDto = {
+    [key: string]: never;
 };
 
 export type PrivateMessageDto = {
@@ -123,6 +655,75 @@ export type RefreshRequest = {
     refreshToken: string | null;
 };
 
+export type RefundRequestCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    supportEntitlementId?: string | null;
+    contactId?: string | null;
+    refundPolicyId?: string | null;
+    paymentId?: string | null;
+};
+
+export type RefundRequestDto = {
+    id?: string | null;
+    timestamp?: string;
+    title?: string | null;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    tenantId?: string | null;
+    businessProfileRecordId?: string | null;
+    supportEntitlementId?: string | null;
+    contactId?: string | null;
+    accountHolderId?: string | null;
+    refundPolicyId?: string | null;
+    paymentId?: string | null;
+};
+
+export type RefundRequestDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: RefundRequestDto;
+};
+
+export type RefundRequestDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: RefundRequestDto;
+};
+
+export type RefundRequestDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<RefundRequestDto> | null;
+};
+
+export type RefundRequestDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<RefundRequestDto> | null;
+};
+
+export type RefundRequestUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    supportEntitlementId?: string | null;
+    refundPolicyId?: string | null;
+    paymentId?: string | null;
+};
+
 export type RegisterRequest = {
     email: string | null;
     password: string | null;
@@ -136,6 +737,72 @@ export type ResetPasswordRequest = {
     email: string | null;
     resetCode: string | null;
     newPassword: string | null;
+};
+
+export type ReturnRequestCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    supportEntitlementId?: string | null;
+    contactId?: string | null;
+    returnPolicyId?: string | null;
+};
+
+export type ReturnRequestDto = {
+    id?: string | null;
+    timestamp?: string;
+    title?: string | null;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    tenantId?: string | null;
+    businessProfileRecordId?: string | null;
+    supportEntitlementId?: string | null;
+    contactId?: string | null;
+    accountHolderId?: string | null;
+    returnPolicyId?: string | null;
+};
+
+export type ReturnRequestDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ReturnRequestDto;
+};
+
+export type ReturnRequestDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ReturnRequestDto;
+};
+
+export type ReturnRequestDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ReturnRequestDto> | null;
+};
+
+export type ReturnRequestDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ReturnRequestDto> | null;
+};
+
+export type ReturnRequestUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    supportEntitlementId?: string | null;
+    returnPolicyId?: string | null;
 };
 
 export type SupportEntitlementCreateDto = {
@@ -700,6 +1367,103 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
+export type WarrantyRequestCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    supportEntitlementId?: string | null;
+    contactId?: string | null;
+    warrantyPolicyId?: string | null;
+};
+
+export type WarrantyRequestDto = {
+    id?: string | null;
+    timestamp?: string;
+    title?: string | null;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    tenantId?: string | null;
+    businessProfileRecordId?: string | null;
+    supportEntitlementId?: string | null;
+    contactId?: string | null;
+    accountHolderId?: string | null;
+    warrantyPolicyId?: string | null;
+};
+
+export type WarrantyRequestDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: WarrantyRequestDto;
+};
+
+export type WarrantyRequestDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: WarrantyRequestDto;
+};
+
+export type WarrantyRequestDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<WarrantyRequestDto> | null;
+};
+
+export type WarrantyRequestDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<WarrantyRequestDto> | null;
+};
+
+export type WarrantyRequestUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    approved?: boolean;
+    approvedTimestamp?: string;
+    supportEntitlementId?: string | null;
+    warrantyPolicyId?: string | null;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type GetVersionData = {
     body?: never;
     path?: never;
@@ -1027,6 +1791,1128 @@ export type PostAccountManageDownloadPersonalDataResponses = {
      */
     200: unknown;
 };
+
+export type GetInquiryRequestsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/InquiryRequests';
+};
+
+export type GetInquiryRequestsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: InquiryRequestDtoListEnvelopeReadable;
+};
+
+export type GetInquiryRequestsAsyncResponse = GetInquiryRequestsAsyncResponses[keyof GetInquiryRequestsAsyncResponses];
+
+export type CreateInquiryRequestAsyncData = {
+    body?: InquiryRequestCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/InquiryRequests';
+};
+
+export type CreateInquiryRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateInquiryRequestAsyncResponse = CreateInquiryRequestAsyncResponses[keyof CreateInquiryRequestAsyncResponses];
+
+export type GetInquiryRequestsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/InquiryRequests/Count';
+};
+
+export type GetInquiryRequestsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetInquiryRequestsCountAsyncResponse = GetInquiryRequestsCountAsyncResponses[keyof GetInquiryRequestsCountAsyncResponses];
+
+export type DeleteInquiryRequestAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        inquiryRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/InquiryRequests/{inquiryRequestId}';
+};
+
+export type DeleteInquiryRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteInquiryRequestAsyncResponse = DeleteInquiryRequestAsyncResponses[keyof DeleteInquiryRequestAsyncResponses];
+
+export type GetInquiryRequestAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        inquiryRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/InquiryRequests/{inquiryRequestId}';
+};
+
+export type GetInquiryRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: InquiryRequestDtoEnvelopeReadable;
+};
+
+export type GetInquiryRequestAsyncResponse = GetInquiryRequestAsyncResponses[keyof GetInquiryRequestAsyncResponses];
+
+export type UpdateInquiryRequestAsyncData = {
+    body?: InquiryRequestUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        inquiryRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/InquiryRequests/{inquiryRequestId}';
+};
+
+export type UpdateInquiryRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateInquiryRequestAsyncResponse = UpdateInquiryRequestAsyncResponses[keyof UpdateInquiryRequestAsyncResponses];
+
+export type GetKnowledgeArticlesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/KnowledgeArticles';
+};
+
+export type GetKnowledgeArticlesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: KnowledgeArticleDtoListEnvelopeReadable;
+};
+
+export type GetKnowledgeArticlesAsyncResponse = GetKnowledgeArticlesAsyncResponses[keyof GetKnowledgeArticlesAsyncResponses];
+
+export type CreateKnowledgeArticleAsyncData = {
+    body?: KnowledgeArticleCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/KnowledgeArticles';
+};
+
+export type CreateKnowledgeArticleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateKnowledgeArticleAsyncResponse = CreateKnowledgeArticleAsyncResponses[keyof CreateKnowledgeArticleAsyncResponses];
+
+export type GetKnowledgeArticlesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/KnowledgeArticles/Count';
+};
+
+export type GetKnowledgeArticlesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetKnowledgeArticlesCountAsyncResponse = GetKnowledgeArticlesCountAsyncResponses[keyof GetKnowledgeArticlesCountAsyncResponses];
+
+export type DeleteKnowledgeArticleAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        knowledgeArticleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}';
+};
+
+export type DeleteKnowledgeArticleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteKnowledgeArticleAsyncResponse = DeleteKnowledgeArticleAsyncResponses[keyof DeleteKnowledgeArticleAsyncResponses];
+
+export type GetKnowledgeArticleAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        knowledgeArticleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}';
+};
+
+export type GetKnowledgeArticleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: KnowledgeArticleDtoEnvelopeReadable;
+};
+
+export type GetKnowledgeArticleAsyncResponse = GetKnowledgeArticleAsyncResponses[keyof GetKnowledgeArticleAsyncResponses];
+
+export type UpdateKnowledgeArticleAsyncData = {
+    body?: KnowledgeArticleUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        knowledgeArticleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}';
+};
+
+export type UpdateKnowledgeArticleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateKnowledgeArticleAsyncResponse = UpdateKnowledgeArticleAsyncResponses[keyof UpdateKnowledgeArticleAsyncResponses];
+
+export type GetMaintenanceVisitsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/MaintenanceVisits';
+};
+
+export type GetMaintenanceVisitsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MaintenanceVisitDtoListEnvelopeReadable;
+};
+
+export type GetMaintenanceVisitsAsyncResponse = GetMaintenanceVisitsAsyncResponses[keyof GetMaintenanceVisitsAsyncResponses];
+
+export type CreateMaintenanceVisitAsyncData = {
+    body?: MaintenanceVisitCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/MaintenanceVisits';
+};
+
+export type CreateMaintenanceVisitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateMaintenanceVisitAsyncResponse = CreateMaintenanceVisitAsyncResponses[keyof CreateMaintenanceVisitAsyncResponses];
+
+export type GetMaintenanceVisitsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/MaintenanceVisits/Count';
+};
+
+export type GetMaintenanceVisitsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetMaintenanceVisitsCountAsyncResponse = GetMaintenanceVisitsCountAsyncResponses[keyof GetMaintenanceVisitsCountAsyncResponses];
+
+export type DeleteMaintenanceVisitAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        maintenanceVisitId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}';
+};
+
+export type DeleteMaintenanceVisitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteMaintenanceVisitAsyncResponse = DeleteMaintenanceVisitAsyncResponses[keyof DeleteMaintenanceVisitAsyncResponses];
+
+export type GetMaintenanceVisitAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        maintenanceVisitId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}';
+};
+
+export type GetMaintenanceVisitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MaintenanceVisitDtoEnvelopeReadable;
+};
+
+export type GetMaintenanceVisitAsyncResponse = GetMaintenanceVisitAsyncResponses[keyof GetMaintenanceVisitAsyncResponses];
+
+export type UpdateMaintenanceVisitAsyncData = {
+    body?: MaintenanceVisitUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        maintenanceVisitId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}';
+};
+
+export type UpdateMaintenanceVisitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateMaintenanceVisitAsyncResponse = UpdateMaintenanceVisitAsyncResponses[keyof UpdateMaintenanceVisitAsyncResponses];
+
+export type GetRefundPoliciesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundPolicies';
+};
+
+export type GetRefundPoliciesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRefundPoliciesAsyncError = GetRefundPoliciesAsyncErrors[keyof GetRefundPoliciesAsyncErrors];
+
+export type GetRefundPoliciesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemRefundPolicyDtoListEnvelopeReadable;
+};
+
+export type GetRefundPoliciesAsyncResponse = GetRefundPoliciesAsyncResponses[keyof GetRefundPoliciesAsyncResponses];
+
+export type CreateRefundPolicyAsyncData = {
+    body?: ItemRefundPolicyCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundPolicies';
+};
+
+export type CreateRefundPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateRefundPolicyAsyncError = CreateRefundPolicyAsyncErrors[keyof CreateRefundPolicyAsyncErrors];
+
+export type CreateRefundPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateRefundPolicyAsyncResponse = CreateRefundPolicyAsyncResponses[keyof CreateRefundPolicyAsyncResponses];
+
+export type GetRefundPoliciesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundPolicies/Count';
+};
+
+export type GetRefundPoliciesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRefundPoliciesCountAsyncError = GetRefundPoliciesCountAsyncErrors[keyof GetRefundPoliciesCountAsyncErrors];
+
+export type GetRefundPoliciesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetRefundPoliciesCountAsyncResponse = GetRefundPoliciesCountAsyncResponses[keyof GetRefundPoliciesCountAsyncResponses];
+
+export type DeleteRefundPolicyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        refundPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundPolicies/{refundPolicyId}';
+};
+
+export type DeleteRefundPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteRefundPolicyAsyncError = DeleteRefundPolicyAsyncErrors[keyof DeleteRefundPolicyAsyncErrors];
+
+export type DeleteRefundPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteRefundPolicyAsyncResponse = DeleteRefundPolicyAsyncResponses[keyof DeleteRefundPolicyAsyncResponses];
+
+export type GetRefundPolicyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        refundPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundPolicies/{refundPolicyId}';
+};
+
+export type GetRefundPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRefundPolicyAsyncError = GetRefundPolicyAsyncErrors[keyof GetRefundPolicyAsyncErrors];
+
+export type GetRefundPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemRefundPolicyDtoEnvelopeReadable;
+};
+
+export type GetRefundPolicyAsyncResponse = GetRefundPolicyAsyncResponses[keyof GetRefundPolicyAsyncResponses];
+
+export type UpdateRefundPolicyAsyncData = {
+    body?: ItemRefundPolicyUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        refundPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundPolicies/{refundPolicyId}';
+};
+
+export type UpdateRefundPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateRefundPolicyAsyncError = UpdateRefundPolicyAsyncErrors[keyof UpdateRefundPolicyAsyncErrors];
+
+export type UpdateRefundPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateRefundPolicyAsyncResponse = UpdateRefundPolicyAsyncResponses[keyof UpdateRefundPolicyAsyncResponses];
+
+export type GetRefundRequestsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundRequests';
+};
+
+export type GetRefundRequestsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RefundRequestDtoListEnvelopeReadable;
+};
+
+export type GetRefundRequestsAsyncResponse = GetRefundRequestsAsyncResponses[keyof GetRefundRequestsAsyncResponses];
+
+export type CreateRefundRequestAsyncData = {
+    body?: RefundRequestCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundRequests';
+};
+
+export type CreateRefundRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateRefundRequestAsyncResponse = CreateRefundRequestAsyncResponses[keyof CreateRefundRequestAsyncResponses];
+
+export type GetRefundRequestsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundRequests/Count';
+};
+
+export type GetRefundRequestsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetRefundRequestsCountAsyncResponse = GetRefundRequestsCountAsyncResponses[keyof GetRefundRequestsCountAsyncResponses];
+
+export type DeleteRefundRequestAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        refundRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundRequests/{refundRequestId}';
+};
+
+export type DeleteRefundRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteRefundRequestAsyncResponse = DeleteRefundRequestAsyncResponses[keyof DeleteRefundRequestAsyncResponses];
+
+export type GetRefundRequestAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        refundRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundRequests/{refundRequestId}';
+};
+
+export type GetRefundRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RefundRequestDtoEnvelopeReadable;
+};
+
+export type GetRefundRequestAsyncResponse = GetRefundRequestAsyncResponses[keyof GetRefundRequestAsyncResponses];
+
+export type UpdateRefundRequestAsyncData = {
+    body?: RefundRequestUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        refundRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundRequests/{refundRequestId}';
+};
+
+export type UpdateRefundRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateRefundRequestAsyncResponse = UpdateRefundRequestAsyncResponses[keyof UpdateRefundRequestAsyncResponses];
+
+export type GetReturnPoliciesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnPolicies';
+};
+
+export type GetReturnPoliciesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetReturnPoliciesAsyncError = GetReturnPoliciesAsyncErrors[keyof GetReturnPoliciesAsyncErrors];
+
+export type GetReturnPoliciesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemReturnPolicyDtoListEnvelopeReadable;
+};
+
+export type GetReturnPoliciesAsyncResponse = GetReturnPoliciesAsyncResponses[keyof GetReturnPoliciesAsyncResponses];
+
+export type CreateReturnPolicyAsyncData = {
+    body?: ItemReturnPolicyCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnPolicies';
+};
+
+export type CreateReturnPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateReturnPolicyAsyncError = CreateReturnPolicyAsyncErrors[keyof CreateReturnPolicyAsyncErrors];
+
+export type CreateReturnPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateReturnPolicyAsyncResponse = CreateReturnPolicyAsyncResponses[keyof CreateReturnPolicyAsyncResponses];
+
+export type GetReturnPoliciesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnPolicies/Count';
+};
+
+export type GetReturnPoliciesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetReturnPoliciesCountAsyncError = GetReturnPoliciesCountAsyncErrors[keyof GetReturnPoliciesCountAsyncErrors];
+
+export type GetReturnPoliciesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetReturnPoliciesCountAsyncResponse = GetReturnPoliciesCountAsyncResponses[keyof GetReturnPoliciesCountAsyncResponses];
+
+export type DeleteReturnPolicyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        returnPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnPolicies/{returnPolicyId}';
+};
+
+export type DeleteReturnPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteReturnPolicyAsyncError = DeleteReturnPolicyAsyncErrors[keyof DeleteReturnPolicyAsyncErrors];
+
+export type DeleteReturnPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteReturnPolicyAsyncResponse = DeleteReturnPolicyAsyncResponses[keyof DeleteReturnPolicyAsyncResponses];
+
+export type GetReturnPolicyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        returnPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnPolicies/{returnPolicyId}';
+};
+
+export type GetReturnPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetReturnPolicyAsyncError = GetReturnPolicyAsyncErrors[keyof GetReturnPolicyAsyncErrors];
+
+export type GetReturnPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemReturnPolicyDtoEnvelopeReadable;
+};
+
+export type GetReturnPolicyAsyncResponse = GetReturnPolicyAsyncResponses[keyof GetReturnPolicyAsyncResponses];
+
+export type UpdateReturnPolicyAsyncData = {
+    body?: ItemReturnPolicyUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        returnPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnPolicies/{returnPolicyId}';
+};
+
+export type UpdateReturnPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateReturnPolicyAsyncError = UpdateReturnPolicyAsyncErrors[keyof UpdateReturnPolicyAsyncErrors];
+
+export type UpdateReturnPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateReturnPolicyAsyncResponse = UpdateReturnPolicyAsyncResponses[keyof UpdateReturnPolicyAsyncResponses];
+
+export type GetReturnRequestsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnRequests';
+};
+
+export type GetReturnRequestsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ReturnRequestDtoListEnvelopeReadable;
+};
+
+export type GetReturnRequestsAsyncResponse = GetReturnRequestsAsyncResponses[keyof GetReturnRequestsAsyncResponses];
+
+export type CreateReturnRequestAsyncData = {
+    body?: ReturnRequestCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnRequests';
+};
+
+export type CreateReturnRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateReturnRequestAsyncResponse = CreateReturnRequestAsyncResponses[keyof CreateReturnRequestAsyncResponses];
+
+export type GetReturnRequestsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnRequests/Count';
+};
+
+export type GetReturnRequestsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetReturnRequestsCountAsyncResponse = GetReturnRequestsCountAsyncResponses[keyof GetReturnRequestsCountAsyncResponses];
+
+export type DeleteReturnRequestAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        returnRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnRequests/{returnRequestId}';
+};
+
+export type DeleteReturnRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteReturnRequestAsyncResponse = DeleteReturnRequestAsyncResponses[keyof DeleteReturnRequestAsyncResponses];
+
+export type GetReturnRequestAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        returnRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnRequests/{returnRequestId}';
+};
+
+export type GetReturnRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ReturnRequestDtoEnvelopeReadable;
+};
+
+export type GetReturnRequestAsyncResponse = GetReturnRequestAsyncResponses[keyof GetReturnRequestAsyncResponses];
+
+export type UpdateReturnRequestAsyncData = {
+    body?: ReturnRequestUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        returnRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnRequests/{returnRequestId}';
+};
+
+export type UpdateReturnRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateReturnRequestAsyncResponse = UpdateReturnRequestAsyncResponses[keyof UpdateReturnRequestAsyncResponses];
 
 export type GetSupportEntitlementsAsyncData = {
     body?: never;
@@ -2700,6 +4586,360 @@ export type UpdateSupportTicketTypeAsyncResponses = {
 
 export type UpdateSupportTicketTypeAsyncResponse = UpdateSupportTicketTypeAsyncResponses[keyof UpdateSupportTicketTypeAsyncResponses];
 
+export type GetWarrantyPoliciesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyPolicies';
+};
+
+export type GetWarrantyPoliciesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWarrantyPoliciesAsyncError = GetWarrantyPoliciesAsyncErrors[keyof GetWarrantyPoliciesAsyncErrors];
+
+export type GetWarrantyPoliciesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemWarrantyPolicyDtoListEnvelopeReadable;
+};
+
+export type GetWarrantyPoliciesAsyncResponse = GetWarrantyPoliciesAsyncResponses[keyof GetWarrantyPoliciesAsyncResponses];
+
+export type CreateWarrantyPolicyAsyncData = {
+    body?: ItemWarrantyPolicyCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyPolicies';
+};
+
+export type CreateWarrantyPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateWarrantyPolicyAsyncError = CreateWarrantyPolicyAsyncErrors[keyof CreateWarrantyPolicyAsyncErrors];
+
+export type CreateWarrantyPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateWarrantyPolicyAsyncResponse = CreateWarrantyPolicyAsyncResponses[keyof CreateWarrantyPolicyAsyncResponses];
+
+export type GetWarrantyPoliciesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyPolicies/Count';
+};
+
+export type GetWarrantyPoliciesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWarrantyPoliciesCountAsyncError = GetWarrantyPoliciesCountAsyncErrors[keyof GetWarrantyPoliciesCountAsyncErrors];
+
+export type GetWarrantyPoliciesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWarrantyPoliciesCountAsyncResponse = GetWarrantyPoliciesCountAsyncResponses[keyof GetWarrantyPoliciesCountAsyncResponses];
+
+export type DeleteWarrantyPolicyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warrantyPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}';
+};
+
+export type DeleteWarrantyPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteWarrantyPolicyAsyncError = DeleteWarrantyPolicyAsyncErrors[keyof DeleteWarrantyPolicyAsyncErrors];
+
+export type DeleteWarrantyPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteWarrantyPolicyAsyncResponse = DeleteWarrantyPolicyAsyncResponses[keyof DeleteWarrantyPolicyAsyncResponses];
+
+export type GetWarrantyPolicyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warrantyPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}';
+};
+
+export type GetWarrantyPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWarrantyPolicyAsyncError = GetWarrantyPolicyAsyncErrors[keyof GetWarrantyPolicyAsyncErrors];
+
+export type GetWarrantyPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemWarrantyPolicyDtoEnvelopeReadable;
+};
+
+export type GetWarrantyPolicyAsyncResponse = GetWarrantyPolicyAsyncResponses[keyof GetWarrantyPolicyAsyncResponses];
+
+export type UpdateWarrantyPolicyAsyncData = {
+    body?: ItemWarrantyPolicyUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warrantyPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}';
+};
+
+export type UpdateWarrantyPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateWarrantyPolicyAsyncError = UpdateWarrantyPolicyAsyncErrors[keyof UpdateWarrantyPolicyAsyncErrors];
+
+export type UpdateWarrantyPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateWarrantyPolicyAsyncResponse = UpdateWarrantyPolicyAsyncResponses[keyof UpdateWarrantyPolicyAsyncResponses];
+
+export type GetWarrantyRequestsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyRequests';
+};
+
+export type GetWarrantyRequestsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WarrantyRequestDtoListEnvelopeReadable;
+};
+
+export type GetWarrantyRequestsAsyncResponse = GetWarrantyRequestsAsyncResponses[keyof GetWarrantyRequestsAsyncResponses];
+
+export type CreateWarrantyRequestAsyncData = {
+    body?: WarrantyRequestCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyRequests';
+};
+
+export type CreateWarrantyRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateWarrantyRequestAsyncResponse = CreateWarrantyRequestAsyncResponses[keyof CreateWarrantyRequestAsyncResponses];
+
+export type GetWarrantyRequestsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyRequests/Count';
+};
+
+export type GetWarrantyRequestsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWarrantyRequestsCountAsyncResponse = GetWarrantyRequestsCountAsyncResponses[keyof GetWarrantyRequestsCountAsyncResponses];
+
+export type DeleteWarrantyRequestAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warrantyRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}';
+};
+
+export type DeleteWarrantyRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteWarrantyRequestAsyncResponse = DeleteWarrantyRequestAsyncResponses[keyof DeleteWarrantyRequestAsyncResponses];
+
+export type GetWarrantyRequestAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warrantyRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}';
+};
+
+export type GetWarrantyRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WarrantyRequestDtoEnvelopeReadable;
+};
+
+export type GetWarrantyRequestAsyncResponse = GetWarrantyRequestAsyncResponses[keyof GetWarrantyRequestAsyncResponses];
+
+export type UpdateWarrantyRequestAsyncData = {
+    body?: WarrantyRequestUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warrantyRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}';
+};
+
+export type UpdateWarrantyRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateWarrantyRequestAsyncResponse = UpdateWarrantyRequestAsyncResponses[keyof UpdateWarrantyRequestAsyncResponses];
+
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

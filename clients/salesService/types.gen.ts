@@ -13,6 +13,77 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type EmptyEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+};
+
+export type EmptyEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+};
+
+export type ErrorEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+};
+
+export type ErrorEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+};
+
+export type ExtendedSalesLiteratureDtoReadable = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    content?: string | null;
+    description?: string | null;
+    modifiedDate?: string;
+    expirationDate?: string;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    salesLiteratureTypeId?: string | null;
+    salesLiteratureType?: SalesLiteratureTypeDto;
+    tenant?: TenantDtoReadable;
+};
+
+export type ExtendedSalesLiteratureDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    content?: string | null;
+    description?: string | null;
+    modifiedDate?: string;
+    expirationDate?: string;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    salesLiteratureTypeId?: string | null;
+    salesLiteratureType?: SalesLiteratureTypeDto;
+    tenant?: TenantDtoWritable;
+};
+
+export type ExtendedSalesLiteratureDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ExtendedSalesLiteratureDtoReadable> | null;
+};
+
+export type ExtendedSalesLiteratureDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ExtendedSalesLiteratureDtoWritable> | null;
+};
+
 export type ForgotPasswordRequest = {
     email: string | null;
 };
@@ -42,11 +113,140 @@ export type InfoResponse = {
     isEmailConfirmed: boolean;
 };
 
+export type Int32EnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: number;
+};
+
+export type Int32EnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: number;
+};
+
 export type LoginRequest = {
     email: string | null;
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
+};
+
+export type LoyaltyProgramCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    priceListId?: string | null;
+};
+
+export type LoyaltyProgramDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    title?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+};
+
+export type LoyaltyProgramDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: LoyaltyProgramDto;
+};
+
+export type LoyaltyProgramDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: LoyaltyProgramDto;
+};
+
+export type LoyaltyProgramDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<LoyaltyProgramDto> | null;
+};
+
+export type LoyaltyProgramDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<LoyaltyProgramDto> | null;
+};
+
+export type LoyaltyProgramUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+};
+
+export type PointOfSaleCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    code?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    locationId?: string | null;
+};
+
+export type PointOfSaleDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    locationId?: string | null;
+    priceListId?: string | null;
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+};
+
+export type PointOfSaleDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: PointOfSaleDto;
+};
+
+export type PointOfSaleDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: PointOfSaleDto;
+};
+
+export type PointOfSaleDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<PointOfSaleDto> | null;
+};
+
+export type PointOfSaleDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<PointOfSaleDto> | null;
+};
+
+export type PointOfSaleUpdateDto = {
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    locationId?: string | null;
 };
 
 export type RefreshRequest = {
@@ -68,6 +268,210 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SalesLiteratureCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title?: string | null;
+    content?: string | null;
+    description?: string | null;
+    modifiedDate?: string;
+    expirationDate?: string;
+    salesLiteratureTypeId?: string | null;
+};
+
+export type SalesLiteratureDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    content?: string | null;
+    description?: string | null;
+    modifiedDate?: string;
+    expirationDate?: string;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    salesLiteratureTypeId?: string | null;
+};
+
+export type SalesLiteratureDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: SalesLiteratureDto;
+};
+
+export type SalesLiteratureDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: SalesLiteratureDto;
+};
+
+export type SalesLiteratureDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<SalesLiteratureDto> | null;
+};
+
+export type SalesLiteratureDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<SalesLiteratureDto> | null;
+};
+
+export type SalesLiteratureTypeDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type SalesLiteratureUpdateDto = {
+    title?: string | null;
+    content?: string | null;
+    description?: string | null;
+    modifiedDate?: string;
+    expirationDate?: string;
+    salesLiteratureTypeId?: string | null;
+};
+
+export type StoreCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    eCommerce?: boolean;
+    currencyId?: string | null;
+};
+
+export type StoreDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    name?: string | null;
+    eCommerce?: boolean;
+    currencyId?: string | null;
+};
+
+export type StoreDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: StoreDto;
+};
+
+export type StoreDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: StoreDto;
+};
+
+export type StoreDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<StoreDto> | null;
+};
+
+export type StoreDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<StoreDto> | null;
+};
+
+export type StoreUpdateDto = {
+    name?: string | null;
+    eCommerce?: boolean | null;
+    currencyId?: string | null;
+};
+
+export type TenantDtoReadable = {
+    id?: string | null;
+    timestamp?: string | null;
+    readonly qualifiedName?: string | null;
+    taxId?: string | null;
+    about?: string | null;
+    walletId?: string | null;
+    socialFeedId?: string | null;
+    businessIndustryId?: string | null;
+    businessSegmentId?: string | null;
+    socialProfileId?: string | null;
+    languageId?: string | null;
+    name?: string | null;
+    duns?: string | null;
+    slogan?: string | null;
+    legalName?: string | null;
+    coverUrl?: string | null;
+    avatarUrl?: string | null;
+    cartId?: string | null;
+    currencyId?: string | null;
+    timezoneId?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    webUrl?: string | null;
+    facebookUrl?: string | null;
+    twitterUrl?: string | null;
+    gitHubUrl?: string | null;
+    linkedInUrl?: string | null;
+    instagramUrl?: string | null;
+    youTubeUrl?: string | null;
+    whatsAppNumber?: string | null;
+    supportPhoneNumber?: string | null;
+    verified?: boolean;
+    readonly businessName?: string | null;
+    readonly businessLegalName?: string | null;
+    twitterUsername?: string | null;
+};
+
+export type TenantDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    taxId?: string | null;
+    about?: string | null;
+    walletId?: string | null;
+    socialFeedId?: string | null;
+    businessIndustryId?: string | null;
+    businessSegmentId?: string | null;
+    socialProfileId?: string | null;
+    languageId?: string | null;
+    name?: string | null;
+    duns?: string | null;
+    slogan?: string | null;
+    legalName?: string | null;
+    coverUrl?: string | null;
+    avatarUrl?: string | null;
+    cartId?: string | null;
+    currencyId?: string | null;
+    timezoneId?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    webUrl?: string | null;
+    facebookUrl?: string | null;
+    twitterUrl?: string | null;
+    gitHubUrl?: string | null;
+    linkedInUrl?: string | null;
+    instagramUrl?: string | null;
+    youTubeUrl?: string | null;
+    whatsAppNumber?: string | null;
+    supportPhoneNumber?: string | null;
+    verified?: boolean;
+    twitterUsername?: string | null;
+};
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -82,6 +486,37 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetVersionData = {
@@ -412,6 +847,174 @@ export type PostAccountManageDownloadPersonalDataResponses = {
     200: unknown;
 };
 
+export type CountLoyaltyProgramsAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/LoyaltyPrograms/Count';
+};
+
+export type CountLoyaltyProgramsAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CountLoyaltyProgramsAsyncError = CountLoyaltyProgramsAsyncErrors[keyof CountLoyaltyProgramsAsyncErrors];
+
+export type CountLoyaltyProgramsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountLoyaltyProgramsAsyncResponse = CountLoyaltyProgramsAsyncResponses[keyof CountLoyaltyProgramsAsyncResponses];
+
+export type GetLoyaltyProgramsAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/LoyaltyPrograms';
+};
+
+export type GetLoyaltyProgramsAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetLoyaltyProgramsAsyncError = GetLoyaltyProgramsAsyncErrors[keyof GetLoyaltyProgramsAsyncErrors];
+
+export type GetLoyaltyProgramsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: LoyaltyProgramDtoListEnvelopeReadable;
+};
+
+export type GetLoyaltyProgramsAsyncResponse = GetLoyaltyProgramsAsyncResponses[keyof GetLoyaltyProgramsAsyncResponses];
+
+export type CreateLoyaltyProgramAsyncData = {
+    body?: LoyaltyProgramCreateDto;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/LoyaltyPrograms';
+};
+
+export type CreateLoyaltyProgramAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CreateLoyaltyProgramAsyncError = CreateLoyaltyProgramAsyncErrors[keyof CreateLoyaltyProgramAsyncErrors];
+
+export type CreateLoyaltyProgramAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateLoyaltyProgramAsyncResponse = CreateLoyaltyProgramAsyncResponses[keyof CreateLoyaltyProgramAsyncResponses];
+
+export type DeleteLoyaltyProgramAsyncData = {
+    body?: never;
+    path: {
+        loyaltyProgramId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}';
+};
+
+export type DeleteLoyaltyProgramAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteLoyaltyProgramAsyncError = DeleteLoyaltyProgramAsyncErrors[keyof DeleteLoyaltyProgramAsyncErrors];
+
+export type DeleteLoyaltyProgramAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteLoyaltyProgramAsyncResponse = DeleteLoyaltyProgramAsyncResponses[keyof DeleteLoyaltyProgramAsyncResponses];
+
+export type GetLoyaltyProgramAsyncData = {
+    body?: never;
+    path: {
+        loyaltyProgramId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}';
+};
+
+export type GetLoyaltyProgramAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetLoyaltyProgramAsyncError = GetLoyaltyProgramAsyncErrors[keyof GetLoyaltyProgramAsyncErrors];
+
+export type GetLoyaltyProgramAsyncResponses = {
+    /**
+     * OK
+     */
+    200: LoyaltyProgramDtoEnvelopeReadable;
+};
+
+export type GetLoyaltyProgramAsyncResponse = GetLoyaltyProgramAsyncResponses[keyof GetLoyaltyProgramAsyncResponses];
+
+export type UpdateLoyaltyProgramAsyncData = {
+    body?: LoyaltyProgramUpdateDto;
+    path: {
+        loyaltyProgramId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}';
+};
+
+export type UpdateLoyaltyProgramAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UpdateLoyaltyProgramAsyncError = UpdateLoyaltyProgramAsyncErrors[keyof UpdateLoyaltyProgramAsyncErrors];
+
+export type UpdateLoyaltyProgramAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateLoyaltyProgramAsyncResponse = UpdateLoyaltyProgramAsyncResponses[keyof UpdateLoyaltyProgramAsyncResponses];
+
 export type GetQuoteAsyncData = {
     body?: never;
     headers?: {
@@ -433,6 +1036,537 @@ export type GetQuoteAsyncResponses = {
     200: unknown;
 };
 
+export type CountPointOfSalesAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/PointOfSales/Count';
+};
+
+export type CountPointOfSalesAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CountPointOfSalesAsyncError = CountPointOfSalesAsyncErrors[keyof CountPointOfSalesAsyncErrors];
+
+export type CountPointOfSalesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountPointOfSalesAsyncResponse = CountPointOfSalesAsyncResponses[keyof CountPointOfSalesAsyncResponses];
+
+export type GetPointOfSalesAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/PointOfSales';
+};
+
+export type GetPointOfSalesAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetPointOfSalesAsyncError = GetPointOfSalesAsyncErrors[keyof GetPointOfSalesAsyncErrors];
+
+export type GetPointOfSalesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PointOfSaleDtoListEnvelopeReadable;
+};
+
+export type GetPointOfSalesAsyncResponse = GetPointOfSalesAsyncResponses[keyof GetPointOfSalesAsyncResponses];
+
+export type CreatePointOfSaleAsyncData = {
+    body?: PointOfSaleCreateDto;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/PointOfSales';
+};
+
+export type CreatePointOfSaleAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CreatePointOfSaleAsyncError = CreatePointOfSaleAsyncErrors[keyof CreatePointOfSaleAsyncErrors];
+
+export type CreatePointOfSaleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreatePointOfSaleAsyncResponse = CreatePointOfSaleAsyncResponses[keyof CreatePointOfSaleAsyncResponses];
+
+export type DeletePointOfSaleAsyncData = {
+    body?: never;
+    path: {
+        pointOfSaleId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/PointOfSales/{pointOfSaleId}';
+};
+
+export type DeletePointOfSaleAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeletePointOfSaleAsyncError = DeletePointOfSaleAsyncErrors[keyof DeletePointOfSaleAsyncErrors];
+
+export type DeletePointOfSaleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeletePointOfSaleAsyncResponse = DeletePointOfSaleAsyncResponses[keyof DeletePointOfSaleAsyncResponses];
+
+export type GetPointOfSaleAsyncData = {
+    body?: never;
+    path: {
+        pointOfSaleId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/PointOfSales/{pointOfSaleId}';
+};
+
+export type GetPointOfSaleAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetPointOfSaleAsyncError = GetPointOfSaleAsyncErrors[keyof GetPointOfSaleAsyncErrors];
+
+export type GetPointOfSaleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PointOfSaleDtoEnvelopeReadable;
+};
+
+export type GetPointOfSaleAsyncResponse = GetPointOfSaleAsyncResponses[keyof GetPointOfSaleAsyncResponses];
+
+export type UpdatePointOfSaleAsyncData = {
+    body?: PointOfSaleUpdateDto;
+    path: {
+        pointOfSaleId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/PointOfSales/{pointOfSaleId}';
+};
+
+export type UpdatePointOfSaleAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UpdatePointOfSaleAsyncError = UpdatePointOfSaleAsyncErrors[keyof UpdatePointOfSaleAsyncErrors];
+
+export type UpdatePointOfSaleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdatePointOfSaleAsyncResponse = UpdatePointOfSaleAsyncResponses[keyof UpdatePointOfSaleAsyncResponses];
+
+export type CountSalesLiteraturesAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/SalesLiteratures/Count';
+};
+
+export type CountSalesLiteraturesAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CountSalesLiteraturesAsyncError = CountSalesLiteraturesAsyncErrors[keyof CountSalesLiteraturesAsyncErrors];
+
+export type CountSalesLiteraturesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountSalesLiteraturesAsyncResponse = CountSalesLiteraturesAsyncResponses[keyof CountSalesLiteraturesAsyncResponses];
+
+export type GetSalesLiteraturesAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/SalesLiteratures';
+};
+
+export type GetSalesLiteraturesAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetSalesLiteraturesAsyncError = GetSalesLiteraturesAsyncErrors[keyof GetSalesLiteraturesAsyncErrors];
+
+export type GetSalesLiteraturesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SalesLiteratureDtoListEnvelopeReadable;
+};
+
+export type GetSalesLiteraturesAsyncResponse = GetSalesLiteraturesAsyncResponses[keyof GetSalesLiteraturesAsyncResponses];
+
+export type CreateSalesLiteratureAsyncData = {
+    body?: SalesLiteratureCreateDto;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/SalesLiteratures';
+};
+
+export type CreateSalesLiteratureAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CreateSalesLiteratureAsyncError = CreateSalesLiteratureAsyncErrors[keyof CreateSalesLiteratureAsyncErrors];
+
+export type CreateSalesLiteratureAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateSalesLiteratureAsyncResponse = CreateSalesLiteratureAsyncResponses[keyof CreateSalesLiteratureAsyncResponses];
+
+export type GetExtendedSalesLiteraturesAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/SalesLiteratures/Extended';
+};
+
+export type GetExtendedSalesLiteraturesAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetExtendedSalesLiteraturesAsyncError = GetExtendedSalesLiteraturesAsyncErrors[keyof GetExtendedSalesLiteraturesAsyncErrors];
+
+export type GetExtendedSalesLiteraturesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ExtendedSalesLiteratureDtoListEnvelopeReadable;
+};
+
+export type GetExtendedSalesLiteraturesAsyncResponse = GetExtendedSalesLiteraturesAsyncResponses[keyof GetExtendedSalesLiteraturesAsyncResponses];
+
+export type DeleteSalesLiteratureAsyncData = {
+    body?: never;
+    path: {
+        salesLiteratureId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}';
+};
+
+export type DeleteSalesLiteratureAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteSalesLiteratureAsyncError = DeleteSalesLiteratureAsyncErrors[keyof DeleteSalesLiteratureAsyncErrors];
+
+export type DeleteSalesLiteratureAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSalesLiteratureAsyncResponse = DeleteSalesLiteratureAsyncResponses[keyof DeleteSalesLiteratureAsyncResponses];
+
+export type GetSalesLiteratureAsyncData = {
+    body?: never;
+    path: {
+        salesLiteratureId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}';
+};
+
+export type GetSalesLiteratureAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetSalesLiteratureAsyncError = GetSalesLiteratureAsyncErrors[keyof GetSalesLiteratureAsyncErrors];
+
+export type GetSalesLiteratureAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SalesLiteratureDtoEnvelopeReadable;
+};
+
+export type GetSalesLiteratureAsyncResponse = GetSalesLiteratureAsyncResponses[keyof GetSalesLiteratureAsyncResponses];
+
+export type UpdateSalesLiteratureAsyncData = {
+    body?: SalesLiteratureUpdateDto;
+    path: {
+        salesLiteratureId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}';
+};
+
+export type UpdateSalesLiteratureAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UpdateSalesLiteratureAsyncError = UpdateSalesLiteratureAsyncErrors[keyof UpdateSalesLiteratureAsyncErrors];
+
+export type UpdateSalesLiteratureAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSalesLiteratureAsyncResponse = UpdateSalesLiteratureAsyncResponses[keyof UpdateSalesLiteratureAsyncResponses];
+
+export type CountStoresAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/Stores/Count';
+};
+
+export type CountStoresAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CountStoresAsyncError = CountStoresAsyncErrors[keyof CountStoresAsyncErrors];
+
+export type CountStoresAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountStoresAsyncResponse = CountStoresAsyncResponses[keyof CountStoresAsyncResponses];
+
+export type GetStoresAsyncData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/Stores';
+};
+
+export type GetStoresAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetStoresAsyncError = GetStoresAsyncErrors[keyof GetStoresAsyncErrors];
+
+export type GetStoresAsyncResponses = {
+    /**
+     * OK
+     */
+    200: StoreDtoListEnvelopeReadable;
+};
+
+export type GetStoresAsyncResponse = GetStoresAsyncResponses[keyof GetStoresAsyncResponses];
+
+export type CreateStoreAsyncData = {
+    body?: StoreCreateDto;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/Stores';
+};
+
+export type CreateStoreAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type CreateStoreAsyncError = CreateStoreAsyncErrors[keyof CreateStoreAsyncErrors];
+
+export type CreateStoreAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateStoreAsyncResponse = CreateStoreAsyncResponses[keyof CreateStoreAsyncResponses];
+
+export type DeleteStoreAsyncData = {
+    body?: never;
+    path: {
+        storeId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/Stores/{storeId}';
+};
+
+export type DeleteStoreAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteStoreAsyncError = DeleteStoreAsyncErrors[keyof DeleteStoreAsyncErrors];
+
+export type DeleteStoreAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteStoreAsyncResponse = DeleteStoreAsyncResponses[keyof DeleteStoreAsyncResponses];
+
+export type GetStoreAsyncData = {
+    body?: never;
+    path: {
+        storeId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/Stores/{storeId}';
+};
+
+export type GetStoreAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetStoreAsyncError = GetStoreAsyncErrors[keyof GetStoreAsyncErrors];
+
+export type GetStoreAsyncResponses = {
+    /**
+     * OK
+     */
+    200: StoreDtoEnvelopeReadable;
+};
+
+export type GetStoreAsyncResponse = GetStoreAsyncResponses[keyof GetStoreAsyncResponses];
+
+export type UpdateStoreAsyncData = {
+    body?: StoreUpdateDto;
+    path: {
+        storeId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/Stores/{storeId}';
+};
+
+export type UpdateStoreAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UpdateStoreAsyncError = UpdateStoreAsyncErrors[keyof UpdateStoreAsyncErrors];
+
+export type UpdateStoreAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateStoreAsyncResponse = UpdateStoreAsyncResponses[keyof UpdateStoreAsyncResponses];
+
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

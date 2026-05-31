@@ -13,6 +13,225 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BillOfLadingCreateDto = {
+    id?: string;
+    timestamp?: string;
+    billOfLadingNumber?: string | null;
+    title?: string | null;
+    description?: string | null;
+    billOfLadingType?: string | null;
+    isNegotiable?: boolean;
+    isClean?: boolean;
+    numberOfOriginals?: number;
+    freightPaymentType?: string | null;
+    shippingTerms?: string | null;
+    freightChargesDescription?: string | null;
+    declaredValueAmount?: number;
+    declaredValueCurrencyId?: string | null;
+    vesselName?: string | null;
+    voyageNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    shippingCourierId?: string | null;
+    portOfLoadingId?: string | null;
+    portOfDischargeId?: string | null;
+    placeOfReceiptId?: string | null;
+    placeOfDeliveryId?: string | null;
+    shipmentId?: string | null;
+    orderId?: string | null;
+    voyageId?: string | null;
+    marksAndNumbers?: string | null;
+    totalPackages?: number;
+    totalGrossWeightKg?: number;
+    totalVolumeM3?: number | null;
+};
+
+export type BillOfLadingDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    billOfLadingNumber?: string | null;
+    title?: string | null;
+    description?: string | null;
+    billOfLadingType?: string | null;
+    status?: string | null;
+    isNegotiable?: boolean;
+    isClean?: boolean;
+    numberOfOriginals?: number;
+    freightPaymentType?: string | null;
+    shippingTerms?: string | null;
+    freightChargesDescription?: string | null;
+    declaredValueAmount?: number;
+    declaredValueCurrencyId?: string | null;
+    issuedDate?: string | null;
+    onBoardDate?: string | null;
+    expiryDate?: string | null;
+    vesselName?: string | null;
+    voyageNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    shippingCourierId?: string | null;
+    portOfLoadingId?: string | null;
+    portOfDischargeId?: string | null;
+    placeOfReceiptId?: string | null;
+    placeOfDeliveryId?: string | null;
+    shipmentId?: string | null;
+    orderId?: string | null;
+    voyageId?: string | null;
+    marksAndNumbers?: string | null;
+    totalPackages?: number;
+    totalGrossWeightKg?: number;
+    totalVolumeM3?: number | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type BillOfLadingDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: BillOfLadingDto;
+};
+
+export type BillOfLadingDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: BillOfLadingDto;
+};
+
+export type BillOfLadingDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<BillOfLadingDto> | null;
+};
+
+export type BillOfLadingDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<BillOfLadingDto> | null;
+};
+
+export type BillOfLadingLineCreateDto = {
+    id?: string;
+    timestamp?: string;
+    description?: string | null;
+    quantity?: number;
+    packageType?: string | null;
+    grossWeightKg?: number;
+    volumeM3?: number | null;
+    marksAndNumbers?: string | null;
+    hsCode?: string | null;
+    itemId?: string | null;
+};
+
+export type BillOfLadingLineDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    description?: string | null;
+    quantity?: number;
+    packageType?: string | null;
+    grossWeightKg?: number;
+    volumeM3?: number | null;
+    marksAndNumbers?: string | null;
+    hsCode?: string | null;
+    itemId?: string | null;
+    billOfLadingId?: string | null;
+    tenantId?: string | null;
+};
+
+export type BillOfLadingLineDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: BillOfLadingLineDto;
+};
+
+export type BillOfLadingLineDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: BillOfLadingLineDto;
+};
+
+export type BillOfLadingLineDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<BillOfLadingLineDto> | null;
+};
+
+export type BillOfLadingLineDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<BillOfLadingLineDto> | null;
+};
+
+export type BillOfLadingLineUpdateDto = {
+    description?: string | null;
+    quantity?: number;
+    packageType?: string | null;
+    grossWeightKg?: number;
+    volumeM3?: number | null;
+    marksAndNumbers?: string | null;
+    hsCode?: string | null;
+    itemId?: string | null;
+};
+
+export type BillOfLadingUpdateDto = {
+    billOfLadingNumber?: string | null;
+    title?: string | null;
+    description?: string | null;
+    billOfLadingType?: string | null;
+    isNegotiable?: boolean;
+    isClean?: boolean;
+    numberOfOriginals?: number;
+    freightPaymentType?: string | null;
+    shippingTerms?: string | null;
+    freightChargesDescription?: string | null;
+    declaredValueAmount?: number;
+    declaredValueCurrencyId?: string | null;
+    expiryDate?: string | null;
+    vesselName?: string | null;
+    voyageNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    shippingCourierId?: string | null;
+    portOfLoadingId?: string | null;
+    portOfDischargeId?: string | null;
+    placeOfReceiptId?: string | null;
+    placeOfDeliveryId?: string | null;
+    shipmentId?: string | null;
+    orderId?: string | null;
+    voyageId?: string | null;
+    marksAndNumbers?: string | null;
+    totalPackages?: number;
+    totalGrossWeightKg?: number;
+    totalVolumeM3?: number | null;
+};
+
+export type EmptyEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+};
+
+export type EmptyEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+};
+
 export type ErrorEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -55,6 +274,138 @@ export type InfoResponse = {
     isEmailConfirmed: boolean;
 };
 
+export type Int32EnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: number;
+};
+
+export type Int32EnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: number;
+};
+
+export type ItemShippingPolicyCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    type: string;
+    code: string;
+    isExpressShipmentPolicy?: boolean;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID: string;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+    shippingCourierID: string;
+};
+
+export type ItemShippingPolicyDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    isExpressShipmentPolicy?: boolean;
+    shippingCourierID: string;
+    type: string;
+    code: string;
+    title: string;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID: string;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+    businessID: string;
+    businessProfileRecordID?: string | null;
+};
+
+export type ItemShippingPolicyDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemShippingPolicyDto;
+};
+
+export type ItemShippingPolicyDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemShippingPolicyDto;
+};
+
+export type ItemShippingPolicyDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemShippingPolicyDto> | null;
+};
+
+export type ItemShippingPolicyDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemShippingPolicyDto> | null;
+};
+
+export type ItemShippingPolicyUpdateDto = {
+    title: string;
+    description?: string | null;
+    type: string;
+    code: string;
+    isExpressShipmentPolicy?: boolean;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID: string;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+    shippingCourierID: string;
+};
+
 export type LoginRequest = {
     email: string | null;
     password: string | null;
@@ -81,14 +432,46 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
-export type ShipmentDto = {
-    id?: string | null;
+export type ShipmentCreateDto = {
+    id?: string;
+    timestamp?: string;
     trackingCode?: string | null;
     isInternational?: boolean;
+    expectedShippingDate?: string;
+    expectedDeliveryDate?: string;
+    shippingTerms?: 'NC' | 'EXW' | 'FCA' | 'FOB' | 'FAS' | 'CFR' | 'CIF' | 'CPT' | 'CIP' | 'DDP' | 'DAP' | 'DPU';
+    orderID?: string | null;
+};
+
+export type ShipmentDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    trackingCode?: string | null;
+    isInternational?: boolean;
+    shipped?: boolean;
+    delivered?: boolean;
     shipmentTimestamp?: string;
     deliveryTimestamp?: string;
     expectedShippingDate?: string;
     expectedDeliveryDate?: string;
+    shippingTerms?: 'NC' | 'EXW' | 'FCA' | 'FOB' | 'FAS' | 'CFR' | 'CIF' | 'CPT' | 'CIP' | 'DDP' | 'DAP' | 'DPU';
+    orderID?: string | null;
+    businessID?: string | null;
+};
+
+export type ShipmentDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ShipmentDto;
+};
+
+export type ShipmentDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ShipmentDto;
 };
 
 export type ShipmentDtoListEnvelopeReadable = {
@@ -106,6 +489,358 @@ export type ShipmentDtoListEnvelopeWritable = {
     result?: Array<ShipmentDto> | null;
 };
 
+export type ShipmentUpdateDto = {
+    trackingCode?: string | null;
+    isInternational?: boolean;
+    shipped?: boolean;
+    delivered?: boolean;
+    shipmentTimestamp?: string;
+    deliveryTimestamp?: string;
+    expectedShippingDate?: string;
+    expectedDeliveryDate?: string;
+    shippingTerms?: 'NC' | 'EXW' | 'FCA' | 'FOB' | 'FAS' | 'CFR' | 'CIF' | 'CPT' | 'CIP' | 'DDP' | 'DAP' | 'DPU';
+    orderID?: string | null;
+};
+
+export type ShippingClassCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    slug?: string | null;
+};
+
+export type ShippingClassDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    slug?: string | null;
+    businessID?: string | null;
+};
+
+export type ShippingClassDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ShippingClassDto;
+};
+
+export type ShippingClassDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ShippingClassDto;
+};
+
+export type ShippingClassDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ShippingClassDto> | null;
+};
+
+export type ShippingClassDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ShippingClassDto> | null;
+};
+
+export type ShippingClassUpdateDto = {
+    name?: string | null;
+    slug?: string | null;
+};
+
+export type ShippingCourierCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    logoURL?: string | null;
+    countryID?: string | null;
+    businessProfileRecordID?: string | null;
+};
+
+export type ShippingCourierDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    logoURL?: string | null;
+    countryID?: string | null;
+    businessID?: string | null;
+    businessProfileRecordID?: string | null;
+};
+
+export type ShippingCourierDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ShippingCourierDto;
+};
+
+export type ShippingCourierDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ShippingCourierDto;
+};
+
+export type ShippingCourierDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ShippingCourierDto> | null;
+};
+
+export type ShippingCourierDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ShippingCourierDto> | null;
+};
+
+export type ShippingCourierUpdateDto = {
+    name?: string | null;
+    logoURL?: string | null;
+    countryID?: string | null;
+    businessProfileRecordID?: string | null;
+};
+
+export type ShippingLabelCreateDto = {
+    id?: string;
+    timestamp?: string;
+    trackingCode: string;
+    expectedDelivery?: string;
+    locationID?: string | null;
+    shipmentID?: string | null;
+    shippingCourierID?: string | null;
+};
+
+export type ShippingLabelDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    trackingCode?: string | null;
+    expectedDelivery?: string;
+    locationID?: string | null;
+    businessID?: string | null;
+    shipmentID?: string | null;
+    shippingCourierID?: string | null;
+};
+
+export type ShippingLabelDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ShippingLabelDto;
+};
+
+export type ShippingLabelDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ShippingLabelDto;
+};
+
+export type ShippingLabelDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ShippingLabelDto> | null;
+};
+
+export type ShippingLabelDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ShippingLabelDto> | null;
+};
+
+export type ShippingLabelUpdateDto = {
+    trackingCode?: string | null;
+    expectedDelivery?: string;
+    locationID?: string | null;
+    shipmentID?: string | null;
+    shippingCourierID?: string | null;
+};
+
+export type ShippingMethodCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    description?: string | null;
+    cost?: number;
+    taxable?: boolean;
+    taxIncluded?: boolean;
+    currencyID?: string | null;
+    shippingClassCalculationType?: 'PerClass' | 'PerOrder';
+};
+
+export type ShippingMethodDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    description?: string | null;
+    cost?: number;
+    taxable?: boolean;
+    taxIncluded?: boolean;
+    currencyID?: string | null;
+    businessID?: string | null;
+    shippingClassCalculationType?: 'PerClass' | 'PerOrder';
+};
+
+export type ShippingMethodDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ShippingMethodDto;
+};
+
+export type ShippingMethodDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ShippingMethodDto;
+};
+
+export type ShippingMethodDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ShippingMethodDto> | null;
+};
+
+export type ShippingMethodDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ShippingMethodDto> | null;
+};
+
+export type ShippingMethodUpdateDto = {
+    name?: string | null;
+    description?: string | null;
+    cost?: number;
+    taxable?: boolean;
+    taxIncluded?: boolean;
+    currencyID?: string | null;
+    shippingClassCalculationType?: 'PerClass' | 'PerOrder';
+};
+
+export type ShippingRegionCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    postalCodes?: string | null;
+};
+
+export type ShippingRegionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    postalCodes?: string | null;
+    businessID?: string | null;
+};
+
+export type ShippingRegionDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ShippingRegionDto;
+};
+
+export type ShippingRegionDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ShippingRegionDto;
+};
+
+export type ShippingRegionDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ShippingRegionDto> | null;
+};
+
+export type ShippingRegionDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ShippingRegionDto> | null;
+};
+
+export type ShippingRegionUpdateDto = {
+    name?: string | null;
+    postalCodes?: string | null;
+};
+
+export type ShippingZoneCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    default?: boolean;
+    everywhere?: boolean;
+    postalCodes?: string | null;
+    countryCodes?: string | null;
+};
+
+export type ShippingZoneDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    default?: boolean;
+    everywhere?: boolean;
+    postalCodes?: string | null;
+    countryCodes?: string | null;
+    businessID?: string | null;
+};
+
+export type ShippingZoneDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ShippingZoneDto;
+};
+
+export type ShippingZoneDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ShippingZoneDto;
+};
+
+export type ShippingZoneDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ShippingZoneDto> | null;
+};
+
+export type ShippingZoneDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ShippingZoneDto> | null;
+};
+
+export type ShippingZoneUpdateDto = {
+    name?: string | null;
+    default?: boolean;
+    everywhere?: boolean;
+    postalCodes?: string | null;
+    countryCodes?: string | null;
+};
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -120,6 +855,425 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetBillsOfLadingAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading';
+};
+
+export type GetBillsOfLadingAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetBillsOfLadingAsyncError = GetBillsOfLadingAsyncErrors[keyof GetBillsOfLadingAsyncErrors];
+
+export type GetBillsOfLadingAsyncResponses = {
+    /**
+     * OK
+     */
+    200: BillOfLadingDtoListEnvelopeReadable;
+};
+
+export type GetBillsOfLadingAsyncResponse = GetBillsOfLadingAsyncResponses[keyof GetBillsOfLadingAsyncResponses];
+
+export type CreateBillOfLadingAsyncData = {
+    body?: BillOfLadingCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading';
+};
+
+export type CreateBillOfLadingAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateBillOfLadingAsyncError = CreateBillOfLadingAsyncErrors[keyof CreateBillOfLadingAsyncErrors];
+
+export type CreateBillOfLadingAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateBillOfLadingAsyncResponse = CreateBillOfLadingAsyncResponses[keyof CreateBillOfLadingAsyncResponses];
+
+export type GetBillsOfLadingCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/Count';
+};
+
+export type GetBillsOfLadingCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetBillsOfLadingCountAsyncError = GetBillsOfLadingCountAsyncErrors[keyof GetBillsOfLadingCountAsyncErrors];
+
+export type GetBillsOfLadingCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetBillsOfLadingCountAsyncResponse = GetBillsOfLadingCountAsyncResponses[keyof GetBillsOfLadingCountAsyncResponses];
+
+export type DeleteBillOfLadingAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}';
+};
+
+export type DeleteBillOfLadingAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteBillOfLadingAsyncError = DeleteBillOfLadingAsyncErrors[keyof DeleteBillOfLadingAsyncErrors];
+
+export type DeleteBillOfLadingAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteBillOfLadingAsyncResponse = DeleteBillOfLadingAsyncResponses[keyof DeleteBillOfLadingAsyncResponses];
+
+export type GetBillOfLadingByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}';
+};
+
+export type GetBillOfLadingByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetBillOfLadingByIdAsyncError = GetBillOfLadingByIdAsyncErrors[keyof GetBillOfLadingByIdAsyncErrors];
+
+export type GetBillOfLadingByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: BillOfLadingDtoEnvelopeReadable;
+};
+
+export type GetBillOfLadingByIdAsyncResponse = GetBillOfLadingByIdAsyncResponses[keyof GetBillOfLadingByIdAsyncResponses];
+
+export type UpdateBillOfLadingAsyncData = {
+    body?: BillOfLadingUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}';
+};
+
+export type UpdateBillOfLadingAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateBillOfLadingAsyncError = UpdateBillOfLadingAsyncErrors[keyof UpdateBillOfLadingAsyncErrors];
+
+export type UpdateBillOfLadingAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateBillOfLadingAsyncResponse = UpdateBillOfLadingAsyncResponses[keyof UpdateBillOfLadingAsyncResponses];
+
+export type GetBillOfLadingLinesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines';
+};
+
+export type GetBillOfLadingLinesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetBillOfLadingLinesAsyncError = GetBillOfLadingLinesAsyncErrors[keyof GetBillOfLadingLinesAsyncErrors];
+
+export type GetBillOfLadingLinesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: BillOfLadingLineDtoListEnvelopeReadable;
+};
+
+export type GetBillOfLadingLinesAsyncResponse = GetBillOfLadingLinesAsyncResponses[keyof GetBillOfLadingLinesAsyncResponses];
+
+export type CreateBillOfLadingLineAsyncData = {
+    body?: BillOfLadingLineCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines';
+};
+
+export type CreateBillOfLadingLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateBillOfLadingLineAsyncError = CreateBillOfLadingLineAsyncErrors[keyof CreateBillOfLadingLineAsyncErrors];
+
+export type CreateBillOfLadingLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateBillOfLadingLineAsyncResponse = CreateBillOfLadingLineAsyncResponses[keyof CreateBillOfLadingLineAsyncResponses];
+
+export type GetBillOfLadingLinesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/Count';
+};
+
+export type GetBillOfLadingLinesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetBillOfLadingLinesCountAsyncResponse = GetBillOfLadingLinesCountAsyncResponses[keyof GetBillOfLadingLinesCountAsyncResponses];
+
+export type DeleteBillOfLadingLineAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}';
+};
+
+export type DeleteBillOfLadingLineAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteBillOfLadingLineAsyncError = DeleteBillOfLadingLineAsyncErrors[keyof DeleteBillOfLadingLineAsyncErrors];
+
+export type DeleteBillOfLadingLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteBillOfLadingLineAsyncResponse = DeleteBillOfLadingLineAsyncResponses[keyof DeleteBillOfLadingLineAsyncResponses];
+
+export type GetBillOfLadingLineByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}';
+};
+
+export type GetBillOfLadingLineByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetBillOfLadingLineByIdAsyncError = GetBillOfLadingLineByIdAsyncErrors[keyof GetBillOfLadingLineByIdAsyncErrors];
+
+export type GetBillOfLadingLineByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: BillOfLadingLineDtoEnvelopeReadable;
+};
+
+export type GetBillOfLadingLineByIdAsyncResponse = GetBillOfLadingLineByIdAsyncResponses[keyof GetBillOfLadingLineByIdAsyncResponses];
+
+export type UpdateBillOfLadingLineAsyncData = {
+    body?: BillOfLadingLineUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billOfLadingId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}';
+};
+
+export type UpdateBillOfLadingLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateBillOfLadingLineAsyncError = UpdateBillOfLadingLineAsyncErrors[keyof UpdateBillOfLadingLineAsyncErrors];
+
+export type UpdateBillOfLadingLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateBillOfLadingLineAsyncResponse = UpdateBillOfLadingLineAsyncResponses[keyof UpdateBillOfLadingLineAsyncResponses];
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetVersionData = {
@@ -450,6 +1604,187 @@ export type PostAccountManageDownloadPersonalDataResponses = {
     200: unknown;
 };
 
+export type GetItemShippingPoliciesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ItemShippingPolicies';
+};
+
+export type GetItemShippingPoliciesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemShippingPoliciesAsyncError = GetItemShippingPoliciesAsyncErrors[keyof GetItemShippingPoliciesAsyncErrors];
+
+export type GetItemShippingPoliciesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemShippingPolicyDtoListEnvelopeReadable;
+};
+
+export type GetItemShippingPoliciesAsyncResponse = GetItemShippingPoliciesAsyncResponses[keyof GetItemShippingPoliciesAsyncResponses];
+
+export type CreateItemShippingPolicyAsyncData = {
+    body?: ItemShippingPolicyCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ItemShippingPolicies';
+};
+
+export type CreateItemShippingPolicyAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateItemShippingPolicyAsyncError = CreateItemShippingPolicyAsyncErrors[keyof CreateItemShippingPolicyAsyncErrors];
+
+export type CreateItemShippingPolicyAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type GetItemShippingPoliciesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ItemShippingPolicies/Count';
+};
+
+export type GetItemShippingPoliciesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemShippingPoliciesCountAsyncResponse = GetItemShippingPoliciesCountAsyncResponses[keyof GetItemShippingPoliciesCountAsyncResponses];
+
+export type DeleteItemShippingPolicyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        policyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}';
+};
+
+export type DeleteItemShippingPolicyAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemShippingPolicyAsyncError = DeleteItemShippingPolicyAsyncErrors[keyof DeleteItemShippingPolicyAsyncErrors];
+
+export type DeleteItemShippingPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetItemShippingPolicyByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        policyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}';
+};
+
+export type GetItemShippingPolicyByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetItemShippingPolicyByIdAsyncError = GetItemShippingPolicyByIdAsyncErrors[keyof GetItemShippingPolicyByIdAsyncErrors];
+
+export type GetItemShippingPolicyByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemShippingPolicyDtoEnvelopeReadable;
+};
+
+export type GetItemShippingPolicyByIdAsyncResponse = GetItemShippingPolicyByIdAsyncResponses[keyof GetItemShippingPolicyByIdAsyncResponses];
+
+export type UpdateItemShippingPolicyAsyncData = {
+    body?: ItemShippingPolicyUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        policyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}';
+};
+
+export type UpdateItemShippingPolicyAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemShippingPolicyAsyncError = UpdateItemShippingPolicyAsyncErrors[keyof UpdateItemShippingPolicyAsyncErrors];
+
+export type UpdateItemShippingPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type GetShipmentsAsyncData = {
     body?: never;
     headers?: {
@@ -485,6 +1820,1256 @@ export type GetShipmentsAsyncResponses = {
 
 export type GetShipmentsAsyncResponse = GetShipmentsAsyncResponses[keyof GetShipmentsAsyncResponses];
 
+export type CreateShipmentAsyncData = {
+    body?: ShipmentCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/Shipments';
+};
+
+export type CreateShipmentAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateShipmentAsyncError = CreateShipmentAsyncErrors[keyof CreateShipmentAsyncErrors];
+
+export type CreateShipmentAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type GetShipmentsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/Shipments/Count';
+};
+
+export type GetShipmentsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShipmentsCountAsyncError = GetShipmentsCountAsyncErrors[keyof GetShipmentsCountAsyncErrors];
+
+export type GetShipmentsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetShipmentsCountAsyncResponse = GetShipmentsCountAsyncResponses[keyof GetShipmentsCountAsyncResponses];
+
+export type DeleteShipmentAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        shipmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/Shipments/{shipmentId}';
+};
+
+export type DeleteShipmentAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteShipmentAsyncError = DeleteShipmentAsyncErrors[keyof DeleteShipmentAsyncErrors];
+
+export type DeleteShipmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShipmentByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        shipmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/Shipments/{shipmentId}';
+};
+
+export type GetShipmentByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetShipmentByIdAsyncError = GetShipmentByIdAsyncErrors[keyof GetShipmentByIdAsyncErrors];
+
+export type GetShipmentByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShipmentDtoEnvelopeReadable;
+};
+
+export type GetShipmentByIdAsyncResponse = GetShipmentByIdAsyncResponses[keyof GetShipmentByIdAsyncResponses];
+
+export type UpdateShipmentAsyncData = {
+    body?: ShipmentUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        shipmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/Shipments/{shipmentId}';
+};
+
+export type UpdateShipmentAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateShipmentAsyncError = UpdateShipmentAsyncErrors[keyof UpdateShipmentAsyncErrors];
+
+export type UpdateShipmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingClassesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingClasses';
+};
+
+export type GetShippingClassesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShippingClassesAsyncError = GetShippingClassesAsyncErrors[keyof GetShippingClassesAsyncErrors];
+
+export type GetShippingClassesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingClassDtoListEnvelopeReadable;
+};
+
+export type GetShippingClassesAsyncResponse = GetShippingClassesAsyncResponses[keyof GetShippingClassesAsyncResponses];
+
+export type CreateShippingClassAsyncData = {
+    body?: ShippingClassCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingClasses';
+};
+
+export type CreateShippingClassAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateShippingClassAsyncError = CreateShippingClassAsyncErrors[keyof CreateShippingClassAsyncErrors];
+
+export type CreateShippingClassAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type GetShippingClassesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingClasses/Count';
+};
+
+export type GetShippingClassesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetShippingClassesCountAsyncResponse = GetShippingClassesCountAsyncResponses[keyof GetShippingClassesCountAsyncResponses];
+
+export type DeleteShippingClassAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        classId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingClasses/{classId}';
+};
+
+export type DeleteShippingClassAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteShippingClassAsyncError = DeleteShippingClassAsyncErrors[keyof DeleteShippingClassAsyncErrors];
+
+export type DeleteShippingClassAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingClassByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        classId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingClasses/{classId}';
+};
+
+export type GetShippingClassByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetShippingClassByIdAsyncError = GetShippingClassByIdAsyncErrors[keyof GetShippingClassByIdAsyncErrors];
+
+export type GetShippingClassByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingClassDtoEnvelopeReadable;
+};
+
+export type GetShippingClassByIdAsyncResponse = GetShippingClassByIdAsyncResponses[keyof GetShippingClassByIdAsyncResponses];
+
+export type UpdateShippingClassAsyncData = {
+    body?: ShippingClassUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        classId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingClasses/{classId}';
+};
+
+export type UpdateShippingClassAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateShippingClassAsyncError = UpdateShippingClassAsyncErrors[keyof UpdateShippingClassAsyncErrors];
+
+export type UpdateShippingClassAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingCouriersAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingCouriers';
+};
+
+export type GetShippingCouriersAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShippingCouriersAsyncError = GetShippingCouriersAsyncErrors[keyof GetShippingCouriersAsyncErrors];
+
+export type GetShippingCouriersAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingCourierDtoListEnvelopeReadable;
+};
+
+export type GetShippingCouriersAsyncResponse = GetShippingCouriersAsyncResponses[keyof GetShippingCouriersAsyncResponses];
+
+export type CreateShippingCourierAsyncData = {
+    body?: ShippingCourierCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingCouriers';
+};
+
+export type CreateShippingCourierAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateShippingCourierAsyncError = CreateShippingCourierAsyncErrors[keyof CreateShippingCourierAsyncErrors];
+
+export type CreateShippingCourierAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type GetShippingCouriersCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingCouriers/Count';
+};
+
+export type GetShippingCouriersCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShippingCouriersCountAsyncError = GetShippingCouriersCountAsyncErrors[keyof GetShippingCouriersCountAsyncErrors];
+
+export type GetShippingCouriersCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetShippingCouriersCountAsyncResponse = GetShippingCouriersCountAsyncResponses[keyof GetShippingCouriersCountAsyncResponses];
+
+export type DeleteShippingCourierAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courierId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingCouriers/{courierId}';
+};
+
+export type DeleteShippingCourierAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteShippingCourierAsyncError = DeleteShippingCourierAsyncErrors[keyof DeleteShippingCourierAsyncErrors];
+
+export type DeleteShippingCourierAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingCourierByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courierId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingCouriers/{courierId}';
+};
+
+export type GetShippingCourierByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetShippingCourierByIdAsyncError = GetShippingCourierByIdAsyncErrors[keyof GetShippingCourierByIdAsyncErrors];
+
+export type GetShippingCourierByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingCourierDtoEnvelopeReadable;
+};
+
+export type GetShippingCourierByIdAsyncResponse = GetShippingCourierByIdAsyncResponses[keyof GetShippingCourierByIdAsyncResponses];
+
+export type UpdateShippingCourierAsyncData = {
+    body?: ShippingCourierUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courierId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingCouriers/{courierId}';
+};
+
+export type UpdateShippingCourierAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateShippingCourierAsyncError = UpdateShippingCourierAsyncErrors[keyof UpdateShippingCourierAsyncErrors];
+
+export type UpdateShippingCourierAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingLabelsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingLabels';
+};
+
+export type GetShippingLabelsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShippingLabelsAsyncError = GetShippingLabelsAsyncErrors[keyof GetShippingLabelsAsyncErrors];
+
+export type GetShippingLabelsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingLabelDtoListEnvelopeReadable;
+};
+
+export type GetShippingLabelsAsyncResponse = GetShippingLabelsAsyncResponses[keyof GetShippingLabelsAsyncResponses];
+
+export type CreateShippingLabelAsyncData = {
+    body?: ShippingLabelCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingLabels';
+};
+
+export type CreateShippingLabelAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateShippingLabelAsyncError = CreateShippingLabelAsyncErrors[keyof CreateShippingLabelAsyncErrors];
+
+export type CreateShippingLabelAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type GetShippingLabelsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingLabels/Count';
+};
+
+export type GetShippingLabelsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetShippingLabelsCountAsyncResponse = GetShippingLabelsCountAsyncResponses[keyof GetShippingLabelsCountAsyncResponses];
+
+export type DeleteShippingLabelAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        labelId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingLabels/{labelId}';
+};
+
+export type DeleteShippingLabelAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteShippingLabelAsyncError = DeleteShippingLabelAsyncErrors[keyof DeleteShippingLabelAsyncErrors];
+
+export type DeleteShippingLabelAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingLabelByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        labelId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingLabels/{labelId}';
+};
+
+export type GetShippingLabelByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetShippingLabelByIdAsyncError = GetShippingLabelByIdAsyncErrors[keyof GetShippingLabelByIdAsyncErrors];
+
+export type GetShippingLabelByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingLabelDtoEnvelopeReadable;
+};
+
+export type GetShippingLabelByIdAsyncResponse = GetShippingLabelByIdAsyncResponses[keyof GetShippingLabelByIdAsyncResponses];
+
+export type UpdateShippingLabelAsyncData = {
+    body?: ShippingLabelUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        labelId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingLabels/{labelId}';
+};
+
+export type UpdateShippingLabelAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateShippingLabelAsyncError = UpdateShippingLabelAsyncErrors[keyof UpdateShippingLabelAsyncErrors];
+
+export type UpdateShippingLabelAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingMethodsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingMethods';
+};
+
+export type GetShippingMethodsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShippingMethodsAsyncError = GetShippingMethodsAsyncErrors[keyof GetShippingMethodsAsyncErrors];
+
+export type GetShippingMethodsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingMethodDtoListEnvelopeReadable;
+};
+
+export type GetShippingMethodsAsyncResponse = GetShippingMethodsAsyncResponses[keyof GetShippingMethodsAsyncResponses];
+
+export type CreateShippingMethodAsyncData = {
+    body?: ShippingMethodCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingMethods';
+};
+
+export type CreateShippingMethodAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateShippingMethodAsyncError = CreateShippingMethodAsyncErrors[keyof CreateShippingMethodAsyncErrors];
+
+export type CreateShippingMethodAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type GetShippingMethodsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingMethods/Count';
+};
+
+export type GetShippingMethodsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetShippingMethodsCountAsyncResponse = GetShippingMethodsCountAsyncResponses[keyof GetShippingMethodsCountAsyncResponses];
+
+export type DeleteShippingMethodAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        methodId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingMethods/{methodId}';
+};
+
+export type DeleteShippingMethodAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteShippingMethodAsyncError = DeleteShippingMethodAsyncErrors[keyof DeleteShippingMethodAsyncErrors];
+
+export type DeleteShippingMethodAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingMethodByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        methodId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingMethods/{methodId}';
+};
+
+export type GetShippingMethodByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetShippingMethodByIdAsyncError = GetShippingMethodByIdAsyncErrors[keyof GetShippingMethodByIdAsyncErrors];
+
+export type GetShippingMethodByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingMethodDtoEnvelopeReadable;
+};
+
+export type GetShippingMethodByIdAsyncResponse = GetShippingMethodByIdAsyncResponses[keyof GetShippingMethodByIdAsyncResponses];
+
+export type UpdateShippingMethodAsyncData = {
+    body?: ShippingMethodUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        methodId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingMethods/{methodId}';
+};
+
+export type UpdateShippingMethodAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateShippingMethodAsyncError = UpdateShippingMethodAsyncErrors[keyof UpdateShippingMethodAsyncErrors];
+
+export type UpdateShippingMethodAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingRegionsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingRegions';
+};
+
+export type GetShippingRegionsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShippingRegionsAsyncError = GetShippingRegionsAsyncErrors[keyof GetShippingRegionsAsyncErrors];
+
+export type GetShippingRegionsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingRegionDtoListEnvelopeReadable;
+};
+
+export type GetShippingRegionsAsyncResponse = GetShippingRegionsAsyncResponses[keyof GetShippingRegionsAsyncResponses];
+
+export type CreateShippingRegionAsyncData = {
+    body?: ShippingRegionCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingRegions';
+};
+
+export type CreateShippingRegionAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateShippingRegionAsyncError = CreateShippingRegionAsyncErrors[keyof CreateShippingRegionAsyncErrors];
+
+export type CreateShippingRegionAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type GetShippingRegionsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingRegions/Count';
+};
+
+export type GetShippingRegionsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetShippingRegionsCountAsyncResponse = GetShippingRegionsCountAsyncResponses[keyof GetShippingRegionsCountAsyncResponses];
+
+export type DeleteShippingRegionAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        regionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingRegions/{regionId}';
+};
+
+export type DeleteShippingRegionAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteShippingRegionAsyncError = DeleteShippingRegionAsyncErrors[keyof DeleteShippingRegionAsyncErrors];
+
+export type DeleteShippingRegionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingRegionByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        regionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingRegions/{regionId}';
+};
+
+export type GetShippingRegionByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetShippingRegionByIdAsyncError = GetShippingRegionByIdAsyncErrors[keyof GetShippingRegionByIdAsyncErrors];
+
+export type GetShippingRegionByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingRegionDtoEnvelopeReadable;
+};
+
+export type GetShippingRegionByIdAsyncResponse = GetShippingRegionByIdAsyncResponses[keyof GetShippingRegionByIdAsyncResponses];
+
+export type UpdateShippingRegionAsyncData = {
+    body?: ShippingRegionUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        regionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingRegions/{regionId}';
+};
+
+export type UpdateShippingRegionAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateShippingRegionAsyncError = UpdateShippingRegionAsyncErrors[keyof UpdateShippingRegionAsyncErrors];
+
+export type UpdateShippingRegionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingZonesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingZones';
+};
+
+export type GetShippingZonesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShippingZonesAsyncError = GetShippingZonesAsyncErrors[keyof GetShippingZonesAsyncErrors];
+
+export type GetShippingZonesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingZoneDtoListEnvelopeReadable;
+};
+
+export type GetShippingZonesAsyncResponse = GetShippingZonesAsyncResponses[keyof GetShippingZonesAsyncResponses];
+
+export type CreateShippingZoneAsyncData = {
+    body?: ShippingZoneCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingZones';
+};
+
+export type CreateShippingZoneAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateShippingZoneAsyncError = CreateShippingZoneAsyncErrors[keyof CreateShippingZoneAsyncErrors];
+
+export type CreateShippingZoneAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
+export type GetShippingZonesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingZones/Count';
+};
+
+export type GetShippingZonesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetShippingZonesCountAsyncResponse = GetShippingZonesCountAsyncResponses[keyof GetShippingZonesCountAsyncResponses];
+
+export type DeleteShippingZoneAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        zoneId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingZones/{zoneId}';
+};
+
+export type DeleteShippingZoneAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteShippingZoneAsyncError = DeleteShippingZoneAsyncErrors[keyof DeleteShippingZoneAsyncErrors];
+
+export type DeleteShippingZoneAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetShippingZoneByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        zoneId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingZones/{zoneId}';
+};
+
+export type GetShippingZoneByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetShippingZoneByIdAsyncError = GetShippingZoneByIdAsyncErrors[keyof GetShippingZoneByIdAsyncErrors];
+
+export type GetShippingZoneByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ShippingZoneDtoEnvelopeReadable;
+};
+
+export type GetShippingZoneByIdAsyncResponse = GetShippingZoneByIdAsyncResponses[keyof GetShippingZoneByIdAsyncResponses];
+
+export type UpdateShippingZoneAsyncData = {
+    body?: ShippingZoneUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        zoneId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ShipmentsService/ShippingZones/{zoneId}';
+};
+
+export type UpdateShippingZoneAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateShippingZoneAsyncError = UpdateShippingZoneAsyncErrors[keyof UpdateShippingZoneAsyncErrors];
+
+export type UpdateShippingZoneAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

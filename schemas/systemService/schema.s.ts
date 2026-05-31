@@ -19,6 +19,177 @@ export interface paths {
      */
     get: operations["IsRequestValidAsync"];
   };
+  "/api/v2/SystemService/Carts": {
+    /**
+     * Retrieve a list of system carts
+     * @description Retrieve a list of all carts in the system
+     */
+    get: operations["GetSystemCarts"];
+  };
+  "/api/v2/SystemService/Carts/Count": {
+    /**
+     * Get the count of system carts
+     * @description Get the count of all carts in the system
+     */
+    get: operations["GetSystemCartsCount"];
+  };
+  "/api/v2/SystemService/Carts/{cartId}": {
+    /**
+     * Retrieve a single system cart by its ID
+     * @description Retrieve a single system cart by its ID
+     */
+    get: operations["GetSystemCartById"];
+    /**
+     * Delete a system cart
+     * @description Delete a system cart by its ID
+     */
+    delete: operations["DeleteSystemCart"];
+  };
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
+  "/api/v2/SystemService/Contacts/{contactId}/Options": {
+    /**
+     * Retrieve a list of contact options (admin)
+     * @description Admin endpoint to retrieve options for any contact
+     */
+    get: operations["GetSystemContactOptions"];
+    /**
+     * Create a new contact option (admin)
+     * @description Admin endpoint to create an option for any contact
+     */
+    post: operations["CreateSystemContactOption"];
+  };
+  "/api/v2/SystemService/Contacts/{contactId}/Options/Count": {
+    /**
+     * Get the count of contact options (admin)
+     * @description Admin endpoint to get the count of options for any contact
+     */
+    get: operations["GetSystemContactOptionsCount"];
+  };
+  "/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}": {
+    /**
+     * Retrieve a single contact option by its ID (admin)
+     * @description Admin endpoint to retrieve a single option for any contact
+     */
+    get: operations["GetSystemContactOptionById"];
+    /**
+     * Update a contact option (admin)
+     * @description Admin endpoint to update an option for any contact
+     */
+    put: operations["UpdateSystemContactOption"];
+    /**
+     * Delete a contact option (admin)
+     * @description Admin endpoint to delete an option for any contact
+     */
+    delete: operations["DeleteSystemContactOption"];
+  };
   "/api/v2/SystemService/Emails/SendBasic": {
     /**
      * Send a basic transactional email to recipients.
@@ -330,6 +501,200 @@ export interface paths {
       };
     };
   };
+  "/api/v2/SystemService/IPLookups": {
+    /**
+     * Retrieve a list of system IP lookups
+     * @description Retrieve a list of all IP lookups in the system
+     */
+    get: operations["GetSystemIPLookups"];
+  };
+  "/api/v2/SystemService/IPLookups/Count": {
+    /**
+     * Get the count of system IP lookups
+     * @description Get the count of all IP lookups in the system
+     */
+    get: operations["GetSystemIPLookupsCount"];
+  };
+  "/api/v2/SystemService/IPLookups/{ipLookupId}": {
+    /**
+     * Retrieve a single system IP lookup by its ID
+     * @description Retrieve a single system IP lookup by its ID
+     */
+    get: operations["GetSystemIPLookupById"];
+    /**
+     * Delete a system IP lookup
+     * @description Delete a system IP lookup by its ID
+     */
+    delete: operations["DeleteSystemIPLookup"];
+  };
+  "/api/Licensing/Licenses/Validate": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          "api-version"?: string;
+        };
+        header?: {
+          "x-api-version"?: string;
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["LicenseKey"];
+          "application/xml": components["schemas"]["LicenseKey"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["BooleanEnvelope"];
+            "application/xml": components["schemas"]["BooleanEnvelope"];
+          };
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
+  "/api/Licensing/Licenses/Validate/Errors": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          "api-version"?: string;
+        };
+        header?: {
+          "x-api-version"?: string;
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["LicenseKey"];
+          "application/xml": components["schemas"]["LicenseKey"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["LicenseValidationErrorListEnvelope"];
+            "application/xml": components["schemas"]["LicenseValidationErrorListEnvelope"];
+          };
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
+  "/api/Licensing/Licenses/Validate/Attributes": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          "api-version"?: string;
+        };
+        header?: {
+          "x-api-version"?: string;
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["LicenseKey"];
+          "application/xml": components["schemas"]["LicenseKey"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["LicenseAttributesListEnvelope"];
+            "application/xml": components["schemas"]["LicenseAttributesListEnvelope"];
+          };
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
+  "/api/Licensing/Licenses/Generate": {
+    post: {
+      parameters: {
+        query: {
+          tenantId: string;
+          "api-version"?: string;
+        };
+        header?: {
+          "x-api-version"?: string;
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["LicenseKeyRequest"];
+          "application/xml": components["schemas"]["LicenseKeyRequest"];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["StringEnvelope"];
+            "application/xml": components["schemas"]["StringEnvelope"];
+          };
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/api/v2/SystemService/Licensing/Licenses": {
     /**
      * Retrieve a list of licenses
@@ -458,6 +823,85 @@ export interface paths {
      */
     put: operations["UpsertSystemOption"];
   };
+  "/api/v2/SystemService/Overview": {
+    /**
+     * Get system overview information
+     * @description Returns runtime, memory, and entity count information for the system
+     */
+    get: operations["GetSystemOverview"];
+  };
+  "/api/v2/SystemService/Portals": {
+    /**
+     * Retrieve a list of system portals
+     * @description Retrieve a list of all web portals in the system
+     */
+    get: operations["GetSystemPortals"];
+    /**
+     * Create a new system portal
+     * @description Create a new web portal in the system
+     */
+    post: operations["CreateSystemPortal"];
+  };
+  "/api/v2/SystemService/Portals/Count": {
+    /**
+     * Get the count of system portals
+     * @description Get the count of all web portals in the system
+     */
+    get: operations["GetSystemPortalsCount"];
+  };
+  "/api/v2/SystemService/Portals/{portalId}": {
+    /**
+     * Retrieve a single system portal by its ID
+     * @description Retrieve a single system portal by its ID
+     */
+    get: operations["GetSystemPortalById"];
+    /**
+     * Update a system portal
+     * @description Update an existing web portal in the system
+     */
+    put: operations["UpdateSystemPortal"];
+    /**
+     * Delete a system portal
+     * @description Delete a web portal from the system
+     */
+    delete: operations["DeleteSystemPortal"];
+  };
+  "/api/v2/SystemService/Tenants/{tenantId}/Options": {
+    /**
+     * Retrieve a list of tenant options (admin)
+     * @description Admin endpoint to retrieve options for any tenant
+     */
+    get: operations["GetSystemTenantOptions"];
+    /**
+     * Create a new tenant option (admin)
+     * @description Admin endpoint to create an option for any tenant
+     */
+    post: operations["CreateSystemTenantOption"];
+  };
+  "/api/v2/SystemService/Tenants/{tenantId}/Options/Count": {
+    /**
+     * Get the count of tenant options (admin)
+     * @description Admin endpoint to get the count of options for any tenant
+     */
+    get: operations["GetSystemTenantOptionsCount"];
+  };
+  "/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}": {
+    /**
+     * Retrieve a single tenant option by its ID (admin)
+     * @description Admin endpoint to retrieve a single option for any tenant
+     */
+    get: operations["GetSystemTenantOptionById"];
+    /**
+     * Update a tenant option (admin)
+     * @description Admin endpoint to update an option for any tenant
+     */
+    put: operations["UpdateSystemTenantOption"];
+    /**
+     * Delete a tenant option (admin)
+     * @description Admin endpoint to delete an option for any tenant
+     */
+    delete: operations["DeleteSystemTenantOption"];
+  };
   "/api/v2/SystemService/Tenants": {
     /**
      * Get all tenants available on this suite server instance.
@@ -510,86 +954,122 @@ export interface paths {
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Emails/Preview": {
     /**
-     * Preview the rendered email for a user.
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * Preview the rendered email for a tenant.
+     * @description This action is only available for global administrators.
      */
     post: operations["AdminPreviewTenantEmail"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Emails/Send": {
     /**
-     * Send an email to a user.
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * Send an email to a tenant.
+     * @description This action is only available for global administrators.
      */
     post: operations["AdminSendTenantEmail"];
+  };
+  "/api/v2/SystemService/Users/{userId}/Options": {
+    /**
+     * Retrieve a list of user options (admin)
+     * @description Admin endpoint to retrieve options for any user
+     */
+    get: operations["GetSystemUserOptions"];
+    /**
+     * Create a new user option (admin)
+     * @description Admin endpoint to create an option for any user
+     */
+    post: operations["CreateSystemUserOption"];
+  };
+  "/api/v2/SystemService/Users/{userId}/Options/Count": {
+    /**
+     * Get the count of user options (admin)
+     * @description Admin endpoint to get the count of options for any user
+     */
+    get: operations["GetSystemUserOptionsCount"];
+  };
+  "/api/v2/SystemService/Users/{userId}/Options/{optionId}": {
+    /**
+     * Retrieve a single user option by its ID (admin)
+     * @description Admin endpoint to retrieve a single option for any user
+     */
+    get: operations["GetSystemUserOptionById"];
+    /**
+     * Update a user option (admin)
+     * @description Admin endpoint to update an option for any user
+     */
+    put: operations["UpdateSystemUserOption"];
+    /**
+     * Delete a user option (admin)
+     * @description Admin endpoint to delete an option for any user
+     */
+    delete: operations["DeleteSystemUserOption"];
   };
   "/api/v2/SystemService/Users": {
     /**
      * Retrieve a list of users
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     get: operations["GetUsersAsync"];
     /**
      * Create a new user
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     post: operations["CreateAccountHolderAsync"];
   };
   "/api/v2/SystemService/Users/Count": {
     /**
      * Get the count of users
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     get: operations["GetUsersCountAsync"];
   };
   "/api/v2/SystemService/Users/Extended": {
     /**
      * Retrieve a list of extended users
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     get: operations["GetExtendedUsersAsync"];
   };
   "/api/v2/SystemService/Users/Extended/Count": {
     /**
      * Get the count of extended users
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     get: operations["GetExtendedUsersCountAsync"];
   };
   "/api/v2/SystemService/Users/{userId}": {
     /**
      * Retrieve a user by ID
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     get: operations["GetUserAsync"];
     /**
      * Update a user
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     put: operations["UpdateAccountHolderAsync"];
     /**
      * Delete a user
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     delete: operations["DeleteAccountHolderAsync"];
   };
   "/api/v2/SystemService/Users/{userId}/Extended": {
     /**
      * Retrieve an extended user by ID
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     get: operations["GetExtendedAccountHolderAsync"];
   };
   "/api/v2/SystemService/Users/{userId}/Emails/Preview": {
     /**
      * Preview the rendered email for a user.
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     post: operations["AdminPreviewUserEmailTemplate"];
   };
   "/api/v2/SystemService/Users/{userId}/Emails/Send": {
     /**
      * Send an email to a user.
-     * @description This action is only available for users with the 'business_owner' role (global administrators).
+     * @description This action is only available for global administrators.
      */
     post: operations["AdminSendUserEmail"];
   };
@@ -606,6 +1086,10 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    AdditionalAttribute: {
+      key?: string | null;
+      value?: string | null;
+    };
     BooleanEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -617,6 +1101,8 @@ export interface components {
     };
     CartDto: {
       id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
       ip?: string | null;
       type?: string | null;
       /** Format: double */
@@ -633,6 +1119,24 @@ export interface components {
       itemCartRecordsCount?: number | null;
       /** Format: int32 */
       itemToCompareRecordsCount?: number | null;
+    };
+    CartDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CartDto"];
+    };
+    CartDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CartDto"][] | null;
     };
     EmailDispatchRequest: {
       title: string;
@@ -660,6 +1164,15 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: string | null;
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -815,6 +1328,32 @@ export interface components {
       } | null;
       [key: string]: unknown;
     };
+    IPLookupDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      ip?: string | null;
+      ua?: string | null;
+      city?: string | null;
+    };
+    IPLookupDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["IPLookupDto"];
+    };
+    IPLookupDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["IPLookupDto"][] | null;
+    };
     ISwaggerContact: {
       name?: string | null;
       email?: string | null;
@@ -872,6 +1411,60 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
+    LicenseAttributes: Record<string, never>;
+    LicenseAttributesListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LicenseAttributes"][] | null;
+    };
+    LicenseFeature: {
+      key?: string | null;
+      value?: string | null;
+    };
+    LicenseKey: {
+      key?: string | null;
+    };
+    LicenseKeyRequest: {
+      /** Format: uuid */
+      userId?: string;
+      /** Format: uuid */
+      tenantId?: string | null;
+      /** Format: uuid */
+      orderId?: string | null;
+      /** Format: uuid */
+      paymentId?: string | null;
+      /** Format: uuid */
+      invoiceId?: string | null;
+      /** Format: uuid */
+      enrollmentId?: string | null;
+      /** Format: uuid */
+      entitlementId?: string | null;
+      /** Format: int32 */
+      seats?: number;
+      /** @enum {string} */
+      licenseType?: "Trial" | "Standard" | "Enterprise";
+      /** Format: date-time */
+      expirationDate?: string;
+      features?: components["schemas"]["LicenseFeature"][] | null;
+      additionalAttributes?: components["schemas"]["AdditionalAttribute"][] | null;
+    };
+    LicenseValidationError: {
+      message?: string | null;
+      howToResolve?: string | null;
+    };
+    LicenseValidationErrorListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LicenseValidationError"][] | null;
+    };
     LicenseValidationRequest: {
       licenseKey: string;
     };
@@ -910,6 +1503,7 @@ export interface components {
       swaggerSpecs?: components["schemas"]["ISwaggerSpec"][] | null;
       url?: string | null;
       assemblyPaths?: string[] | null;
+      requiredPermissions?: (readonly string[]) | null;
       markedForDeletion?: boolean;
       version?: string | null;
     };
@@ -1048,6 +1642,15 @@ export interface components {
       domain?: string | null;
       notes?: string | null;
     };
+    StringEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: string | null;
+    };
     StringListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1125,6 +1728,42 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["SuiteLicenseDto"][] | null;
+    };
+    SystemOverviewDto: {
+      /** Format: date-span */
+      uptime?: string;
+      osDescription?: string | null;
+      machineName?: string | null;
+      processName?: string | null;
+      productVersion?: string | null;
+      /** Format: int64 */
+      privateMemoryMb?: number;
+      /** Format: int64 */
+      pagedMemoryMb?: number;
+      /** Format: int64 */
+      memoryWorkingSetMb?: number;
+      isDebugMode?: boolean;
+      isDevMode?: boolean;
+      frameworkDescription?: string | null;
+      runtimeIdentifier?: string | null;
+      osArchitecture?: string | null;
+      osPlatform?: string | null;
+      processArchitecture?: string | null;
+      /** Format: int32 */
+      usersCount?: number;
+      /** Format: int32 */
+      ordersCount?: number;
+      /** Format: int32 */
+      contactsCount?: number;
+    };
+    SystemOverviewDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SystemOverviewDto"];
     };
     TenantCreateDto: {
       /** Format: uuid */
@@ -1416,7 +2055,7 @@ export interface components {
     WalletDto: {
       id?: string | null;
       /** Format: date-time */
-      timestamp?: string;
+      timestamp?: string | null;
       /** Format: double */
       balance?: number;
       /** Format: double */
@@ -1436,6 +2075,63 @@ export interface components {
       ethereumPrivateKey?: string | null;
       /** Format: double */
       rollingReservePercent?: number;
+    };
+    WebPortalCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      root?: boolean;
+      title?: string | null;
+      domain?: string | null;
+      disabled?: boolean;
+      description?: string | null;
+      websiteThemeID?: string | null;
+      businessDomainID?: string | null;
+      businessPortalApplicationID?: string | null;
+    };
+    WebPortalDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      root?: boolean;
+      title?: string | null;
+      domain?: string | null;
+      disabled?: boolean;
+      tenantId?: string | null;
+      description?: string | null;
+      enrollmentId?: string | null;
+      websiteThemeId?: string | null;
+      businessDomainId?: string | null;
+      businessPortalApplicationId?: string | null;
+    };
+    WebPortalDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WebPortalDto"];
+    };
+    WebPortalDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WebPortalDto"][] | null;
+    };
+    WebPortalUpdateDto: {
+      root?: boolean;
+      title?: string | null;
+      domain?: string | null;
+      disabled?: boolean;
+      description?: string | null;
+      websiteThemeID?: string | null;
+      businessDomainID?: string | null;
+      businessPortalApplicationID?: string | null;
     };
   };
   responses: never;
@@ -1492,6 +2188,419 @@ export interface operations {
     };
   };
   /**
+   * Retrieve a list of system carts
+   * @description Retrieve a list of all carts in the system
+   */
+  GetSystemCarts: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CartDtoListEnvelope"];
+          "application/xml": components["schemas"]["CartDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of system carts
+   * @description Get the count of all carts in the system
+   */
+  GetSystemCartsCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single system cart by its ID
+   * @description Retrieve a single system cart by its ID
+   */
+  GetSystemCartById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cartId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CartDtoEnvelope"];
+          "application/xml": components["schemas"]["CartDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a system cart
+   * @description Delete a system cart by its ID
+   */
+  DeleteSystemCart: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cartId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of contact options (admin)
+   * @description Admin endpoint to retrieve options for any contact
+   */
+  GetSystemContactOptions: {
+    parameters: {
+      query?: {
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoListEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new contact option (admin)
+   * @description Admin endpoint to create an option for any contact
+   */
+  CreateSystemContactOption: {
+    parameters: {
+      query: {
+        key: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionCreateDto"];
+        "application/xml": components["schemas"]["OptionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of contact options (admin)
+   * @description Admin endpoint to get the count of options for any contact
+   */
+  GetSystemContactOptionsCount: {
+    parameters: {
+      query?: {
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single contact option by its ID (admin)
+   * @description Admin endpoint to retrieve a single option for any contact
+   */
+  GetSystemContactOptionById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a contact option (admin)
+   * @description Admin endpoint to update an option for any contact
+   */
+  UpdateSystemContactOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionUpdateDto"];
+        "application/xml": components["schemas"]["OptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a contact option (admin)
+   * @description Admin endpoint to delete an option for any contact
+   */
+  DeleteSystemContactOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Send a basic transactional email to recipients.
    * @description This action is only available for global administrators (business_owner role).
    */
@@ -1514,8 +2623,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["TenantDtoListEnvelope"];
-          "application/xml": components["schemas"]["TenantDtoListEnvelope"];
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
         };
       };
       /** @description Unauthorized */
@@ -1572,6 +2681,160 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /**
+   * Retrieve a list of system IP lookups
+   * @description Retrieve a list of all IP lookups in the system
+   */
+  GetSystemIPLookups: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["IPLookupDtoListEnvelope"];
+          "application/xml": components["schemas"]["IPLookupDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of system IP lookups
+   * @description Get the count of all IP lookups in the system
+   */
+  GetSystemIPLookupsCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single system IP lookup by its ID
+   * @description Retrieve a single system IP lookup by its ID
+   */
+  GetSystemIPLookupById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        ipLookupId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["IPLookupDtoEnvelope"];
+          "application/xml": components["schemas"]["IPLookupDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a system IP lookup
+   * @description Delete a system IP lookup by its ID
+   */
+  DeleteSystemIPLookup: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        ipLookupId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };
@@ -1690,7 +2953,8 @@ export interface operations {
    */
   GetLicenseByIdAsync: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -3034,6 +4298,545 @@ export interface operations {
     };
   };
   /**
+   * Get system overview information
+   * @description Returns runtime, memory, and entity count information for the system
+   */
+  GetSystemOverview: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SystemOverviewDtoEnvelope"];
+          "application/xml": components["schemas"]["SystemOverviewDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of system portals
+   * @description Retrieve a list of all web portals in the system
+   */
+  GetSystemPortals: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPortalDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebPortalDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new system portal
+   * @description Create a new web portal in the system
+   */
+  CreateSystemPortal: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPortalCreateDto"];
+        "application/xml": components["schemas"]["WebPortalCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of system portals
+   * @description Get the count of all web portals in the system
+   */
+  GetSystemPortalsCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single system portal by its ID
+   * @description Retrieve a single system portal by its ID
+   */
+  GetSystemPortalById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebPortalDtoEnvelope"];
+          "application/xml": components["schemas"]["WebPortalDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a system portal
+   * @description Update an existing web portal in the system
+   */
+  UpdateSystemPortal: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPortalUpdateDto"];
+        "application/xml": components["schemas"]["WebPortalUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a system portal
+   * @description Delete a web portal from the system
+   */
+  DeleteSystemPortal: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a list of tenant options (admin)
+   * @description Admin endpoint to retrieve options for any tenant
+   */
+  GetSystemTenantOptions: {
+    parameters: {
+      query?: {
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoListEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new tenant option (admin)
+   * @description Admin endpoint to create an option for any tenant
+   */
+  CreateSystemTenantOption: {
+    parameters: {
+      query: {
+        key: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionCreateDto"];
+        "application/xml": components["schemas"]["OptionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of tenant options (admin)
+   * @description Admin endpoint to get the count of options for any tenant
+   */
+  GetSystemTenantOptionsCount: {
+    parameters: {
+      query?: {
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single tenant option by its ID (admin)
+   * @description Admin endpoint to retrieve a single option for any tenant
+   */
+  GetSystemTenantOptionById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a tenant option (admin)
+   * @description Admin endpoint to update an option for any tenant
+   */
+  UpdateSystemTenantOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionUpdateDto"];
+        "application/xml": components["schemas"]["OptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a tenant option (admin)
+   * @description Admin endpoint to delete an option for any tenant
+   */
+  DeleteSystemTenantOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all tenants available on this suite server instance.
    * @description This action is only available for global administrators.
    */
@@ -3351,8 +5154,8 @@ export interface operations {
     };
   };
   /**
-   * Preview the rendered email for a user.
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * Preview the rendered email for a tenant.
+   * @description This action is only available for global administrators.
    */
   AdminPreviewTenantEmail: {
     parameters: {
@@ -3380,8 +5183,8 @@ export interface operations {
     };
   };
   /**
-   * Send an email to a user.
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * Send an email to a tenant.
+   * @description This action is only available for global administrators.
    */
   AdminSendTenantEmail: {
     parameters: {
@@ -3409,8 +5212,267 @@ export interface operations {
     };
   };
   /**
+   * Retrieve a list of user options (admin)
+   * @description Admin endpoint to retrieve options for any user
+   */
+  GetSystemUserOptions: {
+    parameters: {
+      query?: {
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoListEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new user option (admin)
+   * @description Admin endpoint to create an option for any user
+   */
+  CreateSystemUserOption: {
+    parameters: {
+      query: {
+        key: string;
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionCreateDto"];
+        "application/xml": components["schemas"]["OptionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of user options (admin)
+   * @description Admin endpoint to get the count of options for any user
+   */
+  GetSystemUserOptionsCount: {
+    parameters: {
+      query?: {
+        portalId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a single user option by its ID (admin)
+   * @description Admin endpoint to retrieve a single option for any user
+   */
+  GetSystemUserOptionById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OptionDtoEnvelope"];
+          "application/xml": components["schemas"]["OptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a user option (admin)
+   * @description Admin endpoint to update an option for any user
+   */
+  UpdateSystemUserOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionUpdateDto"];
+        "application/xml": components["schemas"]["OptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a user option (admin)
+   * @description Admin endpoint to delete an option for any user
+   */
+  DeleteSystemUserOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+        optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of users
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   GetUsersAsync: {
     parameters: {
@@ -3447,7 +5509,7 @@ export interface operations {
   };
   /**
    * Create a new user
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   CreateAccountHolderAsync: {
     parameters: {
@@ -3490,7 +5552,7 @@ export interface operations {
   };
   /**
    * Get the count of users
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   GetUsersCountAsync: {
     parameters: {
@@ -3527,7 +5589,7 @@ export interface operations {
   };
   /**
    * Retrieve a list of extended users
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   GetExtendedUsersAsync: {
     parameters: {
@@ -3564,7 +5626,7 @@ export interface operations {
   };
   /**
    * Get the count of extended users
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   GetExtendedUsersCountAsync: {
     parameters: {
@@ -3601,7 +5663,7 @@ export interface operations {
   };
   /**
    * Retrieve a user by ID
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   GetUserAsync: {
     parameters: {
@@ -3641,7 +5703,7 @@ export interface operations {
   };
   /**
    * Update a user
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   UpdateAccountHolderAsync: {
     parameters: {
@@ -3687,7 +5749,7 @@ export interface operations {
   };
   /**
    * Delete a user
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   DeleteAccountHolderAsync: {
     parameters: {
@@ -3727,7 +5789,7 @@ export interface operations {
   };
   /**
    * Retrieve an extended user by ID
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   GetExtendedAccountHolderAsync: {
     parameters: {
@@ -3767,7 +5829,7 @@ export interface operations {
   };
   /**
    * Preview the rendered email for a user.
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   AdminPreviewUserEmailTemplate: {
     parameters: {
@@ -3806,7 +5868,7 @@ export interface operations {
   };
   /**
    * Send an email to a user.
-   * @description This action is only available for users with the 'business_owner' role (global administrators).
+   * @description This action is only available for global administrators.
    */
   AdminSendUserEmail: {
     parameters: {

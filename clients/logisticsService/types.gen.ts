@@ -13,6 +13,138 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type AirwayBillCreateDto = {
+    id?: string;
+    timestamp?: string;
+    documentNumber?: string | null;
+    airwayBillType?: string | null;
+    masterAwbNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    carrierId?: string | null;
+    airlineCode?: string | null;
+    flightNumber?: string | null;
+    airportOfDepartureCode?: string | null;
+    airportOfDestinationCode?: string | null;
+    departureDate?: string | null;
+    arrivalDate?: string | null;
+    dateIssued?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    chargeableWeightKg?: number | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    declaredValueForCarriage?: number | null;
+    declaredValueForCustoms?: number | null;
+    insuranceAmount?: number | null;
+    specialHandlingCodes?: string | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+};
+
+export type AirwayBillDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    documentNumber?: string | null;
+    airwayBillType?: string | null;
+    masterAwbNumber?: string | null;
+    status?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    carrierId?: string | null;
+    airlineCode?: string | null;
+    flightNumber?: string | null;
+    airportOfDepartureCode?: string | null;
+    airportOfDestinationCode?: string | null;
+    departureDate?: string | null;
+    arrivalDate?: string | null;
+    dateIssued?: string | null;
+    dateDelivered?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    chargeableWeightKg?: number | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    declaredValueForCarriage?: number | null;
+    declaredValueForCustoms?: number | null;
+    insuranceAmount?: number | null;
+    specialHandlingCodes?: string | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    lines?: Array<WaybillLineDto> | null;
+};
+
+export type AirwayBillDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: AirwayBillDto;
+};
+
+export type AirwayBillDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: AirwayBillDto;
+};
+
+export type AirwayBillDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<AirwayBillDto> | null;
+};
+
+export type AirwayBillDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<AirwayBillDto> | null;
+};
+
+export type AirwayBillUpdateDto = {
+    documentNumber?: string | null;
+    airwayBillType?: string | null;
+    masterAwbNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    carrierId?: string | null;
+    airlineCode?: string | null;
+    flightNumber?: string | null;
+    airportOfDepartureCode?: string | null;
+    airportOfDestinationCode?: string | null;
+    departureDate?: string | null;
+    arrivalDate?: string | null;
+    dateIssued?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    chargeableWeightKg?: number | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    declaredValueForCarriage?: number | null;
+    declaredValueForCustoms?: number | null;
+    insuranceAmount?: number | null;
+    specialHandlingCodes?: string | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+};
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -136,19 +268,74 @@ export type ContactDtoWritable = {
     birthday?: string | null;
 };
 
-export type ContactDtoListEnvelopeReadable = {
+export type DeliveryNoteCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title?: string | null;
+    description?: string | null;
+    shipmentID?: string | null;
+    proofOfDeliveryID?: string | null;
+};
+
+export type DeliveryNoteDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    description?: string | null;
+};
+
+export type DeliveryNoteDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: Array<ContactDtoReadable> | null;
+    result?: DeliveryNoteDto;
 };
 
-export type ContactDtoListEnvelopeWritable = {
+export type DeliveryNoteDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: Array<ContactDtoWritable> | null;
+    result?: DeliveryNoteDto;
+};
+
+export type DeliveryNoteDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<DeliveryNoteDto> | null;
+};
+
+export type DeliveryNoteDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<DeliveryNoteDto> | null;
+};
+
+export type DeliveryNoteUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    shipmentID?: string | null;
+    proofOfDeliveryID?: string | null;
+};
+
+export type DisputeProofOfDeliveryRequest = {
+    reason?: string | null;
+};
+
+export type EmptyEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+};
+
+export type EmptyEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -193,11 +380,793 @@ export type InfoResponse = {
     isEmailConfirmed: boolean;
 };
 
+export type Int32EnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: number;
+};
+
+export type Int32EnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: number;
+};
+
+export type ItemPackingSlipCreateDto = {
+    id?: string;
+    timestamp?: string;
+    instructions?: string | null;
+    deliveryNoteId?: string | null;
+    orderId?: string | null;
+};
+
+export type ItemPackingSlipDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    instructions?: string | null;
+    deliveryNoteId?: string | null;
+    tenantId?: string | null;
+    orderId?: string | null;
+};
+
+export type ItemPackingSlipDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemPackingSlipDto;
+};
+
+export type ItemPackingSlipDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemPackingSlipDto;
+};
+
+export type ItemPackingSlipDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemPackingSlipDto> | null;
+};
+
+export type ItemPackingSlipDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemPackingSlipDto> | null;
+};
+
+export type ItemPackingSlipEntryCreateDto = {
+    id?: string;
+    timestamp?: string;
+    itemId: string;
+    itemPackingSlipId: string;
+    quantity: string;
+};
+
+export type ItemPackingSlipEntryDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    quantity?: string | null;
+    itemId?: string | null;
+    itemPackingSlipId?: string | null;
+    tenantId?: string | null;
+};
+
+export type ItemPackingSlipEntryDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemPackingSlipEntryDto;
+};
+
+export type ItemPackingSlipEntryDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemPackingSlipEntryDto;
+};
+
+export type ItemPackingSlipEntryDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemPackingSlipEntryDto> | null;
+};
+
+export type ItemPackingSlipEntryDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemPackingSlipEntryDto> | null;
+};
+
+export type ItemPackingSlipEntryUpdateDto = {
+    itemId?: string | null;
+    quantity?: string | null;
+};
+
+export type ItemPackingSlipUpdateDto = {
+    instructions?: string | null;
+    deliveryNoteId?: string | null;
+    orderId?: string | null;
+};
+
+export type ItemPickListCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    description?: string | null;
+    orderId?: string | null;
+};
+
+export type ItemPickListDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    description?: string | null;
+    orderId?: string | null;
+    tenantId?: string | null;
+};
+
+export type ItemPickListDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemPickListDto;
+};
+
+export type ItemPickListDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemPickListDto;
+};
+
+export type ItemPickListDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemPickListDto> | null;
+};
+
+export type ItemPickListDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemPickListDto> | null;
+};
+
+export type ItemPickListEntryCreateDto = {
+    id?: string;
+    timestamp?: string;
+    itemId: string;
+    warehouseId: string;
+    itemPickListId: string;
+    quantity?: number;
+    orderItemRecordId?: string | null;
+};
+
+export type ItemPickListEntryDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    quantity?: number;
+    itemId?: string | null;
+    warehouseId?: string | null;
+    itemPickListId?: string | null;
+    orderItemRecordId?: string | null;
+    tenantId?: string | null;
+};
+
+export type ItemPickListEntryDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemPickListEntryDto;
+};
+
+export type ItemPickListEntryDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemPickListEntryDto;
+};
+
+export type ItemPickListEntryDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemPickListEntryDto> | null;
+};
+
+export type ItemPickListEntryDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemPickListEntryDto> | null;
+};
+
+export type ItemPickListEntryUpdateDto = {
+    itemId?: string | null;
+    warehouseId?: string | null;
+    quantity?: number;
+    orderItemRecordId?: string | null;
+};
+
+export type ItemPickListUpdateDto = {
+    name?: string | null;
+    description?: string | null;
+    orderId?: string | null;
+};
+
+export type ItemRestockCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name?: string | null;
+    description?: string | null;
+};
+
+export type ItemRestockDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    description?: string | null;
+    tenantId?: string | null;
+    entryCount?: number;
+};
+
+export type ItemRestockDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemRestockDto;
+};
+
+export type ItemRestockDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemRestockDto;
+};
+
+export type ItemRestockDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemRestockDto> | null;
+};
+
+export type ItemRestockDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemRestockDto> | null;
+};
+
+export type ItemRestockEntryCreateDto = {
+    id?: string;
+    timestamp?: string;
+    itemId: string;
+    warehouseId: string;
+    itemRestockId: string;
+    quantity?: number;
+    orderItemRecordId?: string | null;
+};
+
+export type ItemRestockEntryDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    quantity?: number;
+    itemId?: string | null;
+    warehouseId?: string | null;
+    itemRestockId?: string | null;
+    orderItemRecordId?: string | null;
+    tenantId?: string | null;
+};
+
+export type ItemRestockEntryDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemRestockEntryDto;
+};
+
+export type ItemRestockEntryDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemRestockEntryDto;
+};
+
+export type ItemRestockEntryDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemRestockEntryDto> | null;
+};
+
+export type ItemRestockEntryDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemRestockEntryDto> | null;
+};
+
+export type ItemRestockEntryUpdateDto = {
+    itemId?: string | null;
+    warehouseId?: string | null;
+    quantity?: number;
+    orderItemRecordId?: string | null;
+};
+
+export type ItemRestockUpdateDto = {
+    name?: string | null;
+    description?: string | null;
+};
+
+export type ItemRetainSampleCreateDto = {
+    id?: string;
+    timestamp?: string;
+    warehouseId: string;
+    itemId: string;
+};
+
+export type ItemRetainSampleDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    warehouseId?: string | null;
+    itemId?: string | null;
+};
+
+export type ItemRetainSampleDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ItemRetainSampleDto;
+};
+
+export type ItemRetainSampleDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ItemRetainSampleDto;
+};
+
+export type ItemRetainSampleDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ItemRetainSampleDto> | null;
+};
+
+export type ItemRetainSampleDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ItemRetainSampleDto> | null;
+};
+
+export type ItemRetainSampleUpdateDto = {
+    warehouseId?: string | null;
+    itemId?: string | null;
+};
+
 export type LoginRequest = {
     email: string | null;
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
+};
+
+export type PortCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    company?: string | null;
+    email?: string | null;
+    address1: string;
+    address2?: string | null;
+    address3?: string | null;
+    unit?: string | null;
+    customCity?: string | null;
+    customState?: string | null;
+    postalCode?: string | null;
+    phone?: string | null;
+    fax?: string | null;
+    longitude?: number;
+    latitude?: number;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    cityId?: string | null;
+    unLocode?: string | null;
+    iataCode?: string | null;
+    portType?: string | null;
+    portAuthority?: string | null;
+    hasCustomsFacility?: boolean;
+    isFreeTradezone?: boolean;
+    isActive?: boolean;
+    parentPortId?: string | null;
+};
+
+export type PortDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    company?: string | null;
+    email?: string | null;
+    address1?: string | null;
+    address2?: string | null;
+    address3?: string | null;
+    unit?: string | null;
+    customCity?: string | null;
+    customState?: string | null;
+    postalCode?: string | null;
+    phone?: string | null;
+    fax?: string | null;
+    longitude?: number;
+    latitude?: number;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    cityId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    unLocode?: string | null;
+    iataCode?: string | null;
+    portType?: string | null;
+    portAuthority?: string | null;
+    hasCustomsFacility?: boolean;
+    isFreeTradezone?: boolean;
+    isActive?: boolean;
+    parentPortId?: string | null;
+};
+
+export type PortDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: PortDto;
+};
+
+export type PortDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: PortDto;
+};
+
+export type PortDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<PortDto> | null;
+};
+
+export type PortDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<PortDto> | null;
+};
+
+export type PortUpdateDto = {
+    title?: string | null;
+    company?: string | null;
+    email?: string | null;
+    address1?: string | null;
+    address2?: string | null;
+    address3?: string | null;
+    unit?: string | null;
+    customCity?: string | null;
+    customState?: string | null;
+    postalCode?: string | null;
+    phone?: string | null;
+    fax?: string | null;
+    longitude?: number;
+    latitude?: number;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    cityId?: string | null;
+    unLocode?: string | null;
+    iataCode?: string | null;
+    portType?: string | null;
+    portAuthority?: string | null;
+    hasCustomsFacility?: boolean;
+    isFreeTradezone?: boolean;
+    isActive?: boolean;
+    parentPortId?: string | null;
+};
+
+export type ProofOfDeliveryCreateDto = {
+    id?: string;
+    timestamp?: string;
+    documentNumber?: string | null;
+    shipmentId?: string | null;
+    billOfLadingId?: string | null;
+    seawayBillId?: string | null;
+    airwayBillId?: string | null;
+    roadWaybillId?: string | null;
+    railWaybillId?: string | null;
+    truckTripId?: string | null;
+    recipientName?: string | null;
+    recipientCompanyContactId?: string | null;
+    deliveryAddress?: string | null;
+    deliveryDate?: string | null;
+    deliveryTime?: string | null;
+    overallCondition?: string | null;
+    remarks?: string | null;
+};
+
+export type ProofOfDeliveryDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    documentNumber?: string | null;
+    status?: string | null;
+    shipmentId?: string | null;
+    billOfLadingId?: string | null;
+    seawayBillId?: string | null;
+    airwayBillId?: string | null;
+    roadWaybillId?: string | null;
+    railWaybillId?: string | null;
+    truckTripId?: string | null;
+    recipientName?: string | null;
+    recipientCompanyContactId?: string | null;
+    deliveryAddress?: string | null;
+    deliveryDate?: string | null;
+    deliveryTime?: string | null;
+    signedBy?: string | null;
+    signerIdentification?: string | null;
+    signatureDate?: string | null;
+    digitalSignatureReference?: string | null;
+    overallCondition?: string | null;
+    totalQuantityDelivered?: number | null;
+    totalQuantityRejected?: number | null;
+    remarks?: string | null;
+    photoEvidenceUri?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    lines?: Array<ProofOfDeliveryLineDto> | null;
+    deliveryNoteIds?: Array<string> | null;
+};
+
+export type ProofOfDeliveryDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: ProofOfDeliveryDto;
+};
+
+export type ProofOfDeliveryDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: ProofOfDeliveryDto;
+};
+
+export type ProofOfDeliveryDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ProofOfDeliveryDto> | null;
+};
+
+export type ProofOfDeliveryDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ProofOfDeliveryDto> | null;
+};
+
+export type ProofOfDeliveryLineCreateDto = {
+    id?: string;
+    timestamp?: string;
+    description?: string | null;
+    quantityExpected?: number | null;
+    quantityReceived?: number | null;
+    quantityRejected?: number | null;
+    condition?: string | null;
+    remarks?: string | null;
+    hsCode?: string | null;
+};
+
+export type ProofOfDeliveryLineDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    proofOfDeliveryId?: string | null;
+    lineNumber?: number;
+    description?: string | null;
+    quantityExpected?: number | null;
+    quantityReceived?: number | null;
+    quantityRejected?: number | null;
+    condition?: string | null;
+    remarks?: string | null;
+    hsCode?: string | null;
+    tenantId?: string | null;
+};
+
+export type ProofOfDeliveryLineDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<ProofOfDeliveryLineDto> | null;
+};
+
+export type ProofOfDeliveryLineDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<ProofOfDeliveryLineDto> | null;
+};
+
+export type ProofOfDeliveryLineUpdateDto = {
+    description?: string | null;
+    quantityExpected?: number | null;
+    quantityReceived?: number | null;
+    quantityRejected?: number | null;
+    condition?: string | null;
+    remarks?: string | null;
+    hsCode?: string | null;
+};
+
+export type ProofOfDeliveryUpdateDto = {
+    documentNumber?: string | null;
+    shipmentId?: string | null;
+    billOfLadingId?: string | null;
+    seawayBillId?: string | null;
+    airwayBillId?: string | null;
+    roadWaybillId?: string | null;
+    railWaybillId?: string | null;
+    truckTripId?: string | null;
+    recipientName?: string | null;
+    recipientCompanyContactId?: string | null;
+    deliveryAddress?: string | null;
+    deliveryDate?: string | null;
+    deliveryTime?: string | null;
+    overallCondition?: string | null;
+    totalQuantityDelivered?: number | null;
+    totalQuantityRejected?: number | null;
+    remarks?: string | null;
+    photoEvidenceUri?: string | null;
+};
+
+export type RailWaybillCreateDto = {
+    id?: string;
+    timestamp?: string;
+    documentNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    carrierId?: string | null;
+    railOperatorName?: string | null;
+    stationOfDeparture?: string | null;
+    stationOfDepartureCode?: string | null;
+    stationOfDestination?: string | null;
+    stationOfDestinationCode?: string | null;
+    prescribedRoute?: string | null;
+    wagonNumbers?: string | null;
+    dateOfAcceptance?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    customsFormalities?: string | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+};
+
+export type RailWaybillDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    documentNumber?: string | null;
+    status?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    carrierId?: string | null;
+    railOperatorName?: string | null;
+    stationOfDeparture?: string | null;
+    stationOfDepartureCode?: string | null;
+    stationOfDestination?: string | null;
+    stationOfDestinationCode?: string | null;
+    prescribedRoute?: string | null;
+    wagonNumbers?: string | null;
+    dateOfAcceptance?: string | null;
+    dateOfDelivery?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    customsFormalities?: string | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    senderSignedDate?: string | null;
+    carrierSignedDate?: string | null;
+    shipmentId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    lines?: Array<WaybillLineDto> | null;
+};
+
+export type RailWaybillDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: RailWaybillDto;
+};
+
+export type RailWaybillDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: RailWaybillDto;
+};
+
+export type RailWaybillDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<RailWaybillDto> | null;
+};
+
+export type RailWaybillDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<RailWaybillDto> | null;
+};
+
+export type RailWaybillUpdateDto = {
+    documentNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    carrierId?: string | null;
+    railOperatorName?: string | null;
+    stationOfDeparture?: string | null;
+    stationOfDepartureCode?: string | null;
+    stationOfDestination?: string | null;
+    stationOfDestinationCode?: string | null;
+    prescribedRoute?: string | null;
+    wagonNumbers?: string | null;
+    dateOfAcceptance?: string | null;
+    dateOfDelivery?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    customsFormalities?: string | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
 };
 
 export type RefreshRequest = {
@@ -209,6 +1178,10 @@ export type RegisterRequest = {
     password: string | null;
 };
 
+export type RejectProofOfDeliveryRequest = {
+    reason?: string | null;
+};
+
 export type ResendConfirmationEmailRequest = {
     email: string | null;
 };
@@ -217,6 +1190,643 @@ export type ResetPasswordRequest = {
     email: string | null;
     resetCode: string | null;
     newPassword: string | null;
+};
+
+export type RoadWaybillCreateDto = {
+    id?: string;
+    timestamp?: string;
+    documentNumber?: string | null;
+    roadWaybillType?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    carrierId?: string | null;
+    successiveCarriers?: string | null;
+    truckId?: string | null;
+    truckDriverId?: string | null;
+    vehicleRegistration?: string | null;
+    trailerRegistration?: string | null;
+    placeOfTakingOver?: string | null;
+    placeOfTakingOverPortId?: string | null;
+    placeOfDelivery?: string | null;
+    placeOfDeliveryPortId?: string | null;
+    dateOfTakingOver?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    adrDangerousGoods?: boolean;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+    truckTripId?: string | null;
+};
+
+export type RoadWaybillDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    documentNumber?: string | null;
+    roadWaybillType?: string | null;
+    status?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    carrierId?: string | null;
+    successiveCarriers?: string | null;
+    truckId?: string | null;
+    truckDriverId?: string | null;
+    vehicleRegistration?: string | null;
+    trailerRegistration?: string | null;
+    placeOfTakingOver?: string | null;
+    placeOfTakingOverPortId?: string | null;
+    placeOfDelivery?: string | null;
+    placeOfDeliveryPortId?: string | null;
+    dateOfTakingOver?: string | null;
+    dateOfDelivery?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    adrDangerousGoods?: boolean;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    senderSignedDate?: string | null;
+    carrierSignedDate?: string | null;
+    consigneeSignedDate?: string | null;
+    shipmentId?: string | null;
+    truckTripId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    lines?: Array<WaybillLineDto> | null;
+};
+
+export type RoadWaybillDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: RoadWaybillDto;
+};
+
+export type RoadWaybillDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: RoadWaybillDto;
+};
+
+export type RoadWaybillDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<RoadWaybillDto> | null;
+};
+
+export type RoadWaybillDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<RoadWaybillDto> | null;
+};
+
+export type RoadWaybillUpdateDto = {
+    documentNumber?: string | null;
+    roadWaybillType?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    carrierId?: string | null;
+    successiveCarriers?: string | null;
+    truckId?: string | null;
+    truckDriverId?: string | null;
+    vehicleRegistration?: string | null;
+    trailerRegistration?: string | null;
+    placeOfTakingOver?: string | null;
+    placeOfTakingOverPortId?: string | null;
+    placeOfDelivery?: string | null;
+    placeOfDeliveryPortId?: string | null;
+    dateOfTakingOver?: string | null;
+    dateOfDelivery?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalGrossWeightKg?: number | null;
+    totalPackages?: number | null;
+    totalVolumeM3?: number | null;
+    adrDangerousGoods?: boolean | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+    truckTripId?: string | null;
+};
+
+export type SeawayBillCreateDto = {
+    id?: string;
+    timestamp?: string;
+    documentNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    carrierId?: string | null;
+    vesselId?: string | null;
+    voyageId?: string | null;
+    portOfLoadingId?: string | null;
+    portOfDischargeId?: string | null;
+    placeOfReceipt?: string | null;
+    placeOfDelivery?: string | null;
+    dateIssued?: string | null;
+    dateShipped?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalWeight?: number | null;
+    totalPackages?: number | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+};
+
+export type SeawayBillDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    documentNumber?: string | null;
+    status?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    carrierId?: string | null;
+    vesselId?: string | null;
+    voyageId?: string | null;
+    portOfLoadingId?: string | null;
+    portOfDischargeId?: string | null;
+    placeOfReceipt?: string | null;
+    placeOfDelivery?: string | null;
+    dateIssued?: string | null;
+    dateShipped?: string | null;
+    dateDelivered?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalWeight?: number | null;
+    totalPackages?: number | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    lines?: Array<WaybillLineDto> | null;
+};
+
+export type SeawayBillDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: SeawayBillDto;
+};
+
+export type SeawayBillDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: SeawayBillDto;
+};
+
+export type SeawayBillDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<SeawayBillDto> | null;
+};
+
+export type SeawayBillDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<SeawayBillDto> | null;
+};
+
+export type SeawayBillUpdateDto = {
+    documentNumber?: string | null;
+    shipperContactId?: string | null;
+    consigneeContactId?: string | null;
+    notifyPartyContactId?: string | null;
+    carrierId?: string | null;
+    vesselId?: string | null;
+    voyageId?: string | null;
+    portOfLoadingId?: string | null;
+    portOfDischargeId?: string | null;
+    placeOfReceipt?: string | null;
+    placeOfDelivery?: string | null;
+    dateIssued?: string | null;
+    dateShipped?: string | null;
+    freightTerms?: string | null;
+    freightAmount?: number | null;
+    freightCurrencyId?: string | null;
+    totalWeight?: number | null;
+    totalPackages?: number | null;
+    specialInstructions?: string | null;
+    remarks?: string | null;
+    shipmentId?: string | null;
+};
+
+export type SignProofOfDeliveryRequest = {
+    signedBy?: string | null;
+    signerId?: string | null;
+};
+
+export type SupplierProfileCreateDto = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    contactId?: string | null;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+};
+
+export type SupplierProfileDtoReadable = {
+    id?: string | null;
+    timestamp?: string | null;
+    contactId?: string | null;
+    tenantId?: string | null;
+    type?: string | null;
+    enrollmentId?: string | null;
+    about?: string | null;
+    verified?: boolean;
+    submitted?: boolean;
+    avatarUrl?: string | null;
+    contact?: ContactDtoReadable;
+    readonly qualifiedName?: string | null;
+    verificationTimestamp?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+};
+
+export type SupplierProfileDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    contactId?: string | null;
+    tenantId?: string | null;
+    type?: string | null;
+    enrollmentId?: string | null;
+    about?: string | null;
+    verified?: boolean;
+    submitted?: boolean;
+    avatarUrl?: string | null;
+    contact?: ContactDtoWritable;
+    verificationTimestamp?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+};
+
+export type SupplierProfileDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: SupplierProfileDtoReadable;
+};
+
+export type SupplierProfileDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: SupplierProfileDtoWritable;
+};
+
+export type SupplierProfileDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<SupplierProfileDtoReadable> | null;
+};
+
+export type SupplierProfileDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<SupplierProfileDtoWritable> | null;
+};
+
+export type SupplierProfileUpdateDto = {
+    type?: string | null;
+    contactId?: string | null;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+};
+
+export type TruckCreateDto = {
+    id?: string;
+    timestamp?: string;
+    plateNumber?: string | null;
+    name?: string | null;
+    truckType?: string | null;
+    maxPayloadKg?: number | null;
+    teuCapacity?: number | null;
+    driverName?: string | null;
+    driverPhone?: string | null;
+    driverLicenseNumber?: string | null;
+    isActive?: boolean;
+    isRefrigerated?: boolean;
+    shippingCourierId?: string | null;
+};
+
+export type TruckDriverCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name?: string | null;
+    licenseNumber?: string | null;
+    licenseClass?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    contactId?: string | null;
+    shippingCourierId?: string | null;
+    adrCertified?: boolean;
+    licenseExpiryDate?: string | null;
+    medicalExamExpiryDate?: string | null;
+    nationalIdNumber?: string | null;
+    notes?: string | null;
+};
+
+export type TruckDriverDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    nationalIdNumber?: string | null;
+    licenseNumber?: string | null;
+    licenseClass?: string | null;
+    licenseExpiryDate?: string | null;
+    adrCertified?: boolean;
+    adrCertificateExpiryDate?: string | null;
+    medicalExamExpiryDate?: string | null;
+    isActive?: boolean;
+    notes?: string | null;
+    contactId?: string | null;
+    shippingCourierId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type TruckDriverDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: TruckDriverDto;
+};
+
+export type TruckDriverDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: TruckDriverDto;
+};
+
+export type TruckDriverDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<TruckDriverDto> | null;
+};
+
+export type TruckDriverDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<TruckDriverDto> | null;
+};
+
+export type TruckDriverUpdateDto = {
+    name?: string | null;
+    licenseNumber?: string | null;
+    licenseClass?: string | null;
+    phone?: string | null;
+    email?: string | null;
+    contactId?: string | null;
+    shippingCourierId?: string | null;
+    adrCertified?: boolean | null;
+    licenseExpiryDate?: string | null;
+    medicalExamExpiryDate?: string | null;
+    nationalIdNumber?: string | null;
+    notes?: string | null;
+};
+
+export type TruckDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    plateNumber?: string | null;
+    name?: string | null;
+    truckType?: string | null;
+    maxPayloadKg?: number | null;
+    teuCapacity?: number | null;
+    driverName?: string | null;
+    driverPhone?: string | null;
+    driverLicenseNumber?: string | null;
+    isActive?: boolean;
+    isRefrigerated?: boolean;
+    shippingCourierId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type TruckDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: TruckDto;
+};
+
+export type TruckDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: TruckDto;
+};
+
+export type TruckDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<TruckDto> | null;
+};
+
+export type TruckDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<TruckDto> | null;
+};
+
+export type TruckTripCreateDto = {
+    id?: string;
+    timestamp?: string;
+    tripNumber?: string | null;
+    containerNumber?: string | null;
+    sealNumber?: string | null;
+    departureTime?: string | null;
+    arrivalTime?: string | null;
+    distanceKm?: number | null;
+    notes?: string | null;
+    originPortId?: string | null;
+    originLocationId?: string | null;
+    destinationPortId?: string | null;
+    destinationLocationId?: string | null;
+    shipmentId?: string | null;
+    billOfLadingId?: string | null;
+};
+
+export type TruckTripDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tripNumber?: string | null;
+    truckTripStatus?: string | null;
+    containerNumber?: string | null;
+    sealNumber?: string | null;
+    departureTime?: string | null;
+    arrivalTime?: string | null;
+    actualDepartureTime?: string | null;
+    actualArrivalTime?: string | null;
+    distanceKm?: number | null;
+    notes?: string | null;
+    truckId?: string | null;
+    originPortId?: string | null;
+    originLocationId?: string | null;
+    destinationPortId?: string | null;
+    destinationLocationId?: string | null;
+    shipmentId?: string | null;
+    billOfLadingId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type TruckTripDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<TruckTripDto> | null;
+};
+
+export type TruckTripDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<TruckTripDto> | null;
+};
+
+export type TruckTripUpdateDto = {
+    tripNumber?: string | null;
+    containerNumber?: string | null;
+    sealNumber?: string | null;
+    departureTime?: string | null;
+    arrivalTime?: string | null;
+    distanceKm?: number | null;
+    notes?: string | null;
+    originPortId?: string | null;
+    originLocationId?: string | null;
+    destinationPortId?: string | null;
+    destinationLocationId?: string | null;
+    shipmentId?: string | null;
+    billOfLadingId?: string | null;
+};
+
+export type TruckUpdateDto = {
+    plateNumber?: string | null;
+    name?: string | null;
+    truckType?: string | null;
+    maxPayloadKg?: number | null;
+    teuCapacity?: number | null;
+    driverName?: string | null;
+    driverPhone?: string | null;
+    driverLicenseNumber?: string | null;
+    isActive?: boolean;
+    isRefrigerated?: boolean;
+    shippingCourierId?: string | null;
 };
 
 export type TwoFactorRequest = {
@@ -234,6 +1844,1138 @@ export type TwoFactorResponse = {
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
 };
+
+export type VesselCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name?: string | null;
+    imoNumber?: string | null;
+    mmsiNumber?: string | null;
+    callSign?: string | null;
+    flagCountryId?: string | null;
+    vesselType?: string | null;
+    vesselStatus?: string | null;
+    grossTonnage?: number | null;
+    deadweightTonnage?: number | null;
+    teuCapacity?: number | null;
+    lengthMeters?: number | null;
+    beamMeters?: number | null;
+    draftMeters?: number | null;
+    yearBuilt?: number | null;
+    shippingCourierId?: string | null;
+};
+
+export type VesselDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    imoNumber?: string | null;
+    mmsiNumber?: string | null;
+    callSign?: string | null;
+    flagCountryId?: string | null;
+    vesselType?: string | null;
+    vesselStatus?: string | null;
+    grossTonnage?: number | null;
+    deadweightTonnage?: number | null;
+    teuCapacity?: number | null;
+    lengthMeters?: number | null;
+    beamMeters?: number | null;
+    draftMeters?: number | null;
+    yearBuilt?: number | null;
+    shippingCourierId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type VesselDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: VesselDto;
+};
+
+export type VesselDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: VesselDto;
+};
+
+export type VesselDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<VesselDto> | null;
+};
+
+export type VesselDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<VesselDto> | null;
+};
+
+export type VesselUpdateDto = {
+    name?: string | null;
+    imoNumber?: string | null;
+    mmsiNumber?: string | null;
+    callSign?: string | null;
+    flagCountryId?: string | null;
+    vesselType?: string | null;
+    vesselStatus?: string | null;
+    grossTonnage?: number | null;
+    deadweightTonnage?: number | null;
+    teuCapacity?: number | null;
+    lengthMeters?: number | null;
+    beamMeters?: number | null;
+    draftMeters?: number | null;
+    yearBuilt?: number | null;
+    shippingCourierId?: string | null;
+};
+
+export type VoyageCreateDto = {
+    id?: string;
+    timestamp?: string;
+    voyageNumber?: string | null;
+    title?: string | null;
+    description?: string | null;
+    voyageDirection?: string | null;
+    departureDate?: string | null;
+    arrivalDate?: string | null;
+    vesselId?: string | null;
+};
+
+export type VoyageDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    voyageNumber?: string | null;
+    title?: string | null;
+    description?: string | null;
+    voyageStatus?: string | null;
+    voyageDirection?: string | null;
+    departureDate?: string | null;
+    arrivalDate?: string | null;
+    actualDepartureDate?: string | null;
+    actualArrivalDate?: string | null;
+    vesselId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type VoyageDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: VoyageDto;
+};
+
+export type VoyageDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: VoyageDto;
+};
+
+export type VoyageDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<VoyageDto> | null;
+};
+
+export type VoyageDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<VoyageDto> | null;
+};
+
+export type VoyagePortCallCreateDto = {
+    id?: string;
+    timestamp?: string;
+    sequenceNumber?: number;
+    portCallStatus?: string | null;
+    eta?: string | null;
+    etd?: string | null;
+    berthNumber?: string | null;
+    remarks?: string | null;
+    portId?: string | null;
+};
+
+export type VoyagePortCallDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    sequenceNumber?: number;
+    portCallStatus?: string | null;
+    eta?: string | null;
+    ata?: string | null;
+    etd?: string | null;
+    atd?: string | null;
+    berthNumber?: string | null;
+    remarks?: string | null;
+    voyageId?: string | null;
+    portId?: string | null;
+    tenantId?: string | null;
+};
+
+export type VoyagePortCallDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<VoyagePortCallDto> | null;
+};
+
+export type VoyagePortCallDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<VoyagePortCallDto> | null;
+};
+
+export type VoyagePortCallUpdateDto = {
+    sequenceNumber?: number;
+    portCallStatus?: string | null;
+    eta?: string | null;
+    ata?: string | null;
+    etd?: string | null;
+    atd?: string | null;
+    berthNumber?: string | null;
+    remarks?: string | null;
+    portId?: string | null;
+};
+
+export type VoyageUpdateDto = {
+    voyageNumber?: string | null;
+    title?: string | null;
+    description?: string | null;
+    voyageDirection?: string | null;
+    departureDate?: string | null;
+    arrivalDate?: string | null;
+    vesselId?: string | null;
+};
+
+export type WarehouseCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    address1: string;
+    address2?: string | null;
+    address3?: string | null;
+    postalCode?: string | null;
+    phone?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    isGroup?: boolean;
+    shipwireWarehouseId?: string | null;
+    parentWarehouseId?: string | null;
+};
+
+export type WarehouseDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    address1?: string | null;
+    address2?: string | null;
+    address3?: string | null;
+    postalCode?: string | null;
+    phone?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    tenantId?: string | null;
+    isGroup?: boolean;
+    shipwireWarehouseId?: string | null;
+    parentWarehouseId?: string | null;
+};
+
+export type WarehouseDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: WarehouseDto;
+};
+
+export type WarehouseDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: WarehouseDto;
+};
+
+export type WarehouseDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<WarehouseDto> | null;
+};
+
+export type WarehouseDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<WarehouseDto> | null;
+};
+
+export type WarehouseUpdateDto = {
+    title?: string | null;
+    address1?: string | null;
+    address2?: string | null;
+    address3?: string | null;
+    postalCode?: string | null;
+    phone?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    isGroup?: boolean;
+    shipwireWarehouseId?: string | null;
+    parentWarehouseId?: string | null;
+};
+
+export type WaybillLineCreateDto = {
+    id?: string;
+    timestamp?: string;
+    description?: string | null;
+    quantity?: number | null;
+    grossWeightKg?: number | null;
+    volumeM3?: number | null;
+    packageType?: string | null;
+    lengthCm?: number | null;
+    widthCm?: number | null;
+    heightCm?: number | null;
+    hsCode?: string | null;
+    marksAndNumbers?: string | null;
+    declaredValue?: number | null;
+    declaredValueCurrencyId?: string | null;
+    sealNumber?: string | null;
+    containerNumber?: string | null;
+    chargeableWeightKg?: number | null;
+    iataRateClass?: string | null;
+    dangerousGoodsClass?: string | null;
+    unHazmatNumber?: string | null;
+    wagonNumber?: string | null;
+};
+
+export type WaybillLineDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    parentDocumentType?: string | null;
+    seawayBillId?: string | null;
+    airwayBillId?: string | null;
+    roadWaybillId?: string | null;
+    railWaybillId?: string | null;
+    lineNumber?: number;
+    description?: string | null;
+    quantity?: number | null;
+    grossWeightKg?: number | null;
+    volumeM3?: number | null;
+    packageType?: string | null;
+    lengthCm?: number | null;
+    widthCm?: number | null;
+    heightCm?: number | null;
+    hsCode?: string | null;
+    marksAndNumbers?: string | null;
+    declaredValue?: number | null;
+    declaredValueCurrencyId?: string | null;
+    sealNumber?: string | null;
+    containerNumber?: string | null;
+    chargeableWeightKg?: number | null;
+    iataRateClass?: string | null;
+    dangerousGoodsClass?: string | null;
+    unHazmatNumber?: string | null;
+    wagonNumber?: string | null;
+    tenantId?: string | null;
+};
+
+export type WaybillLineDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<WaybillLineDto> | null;
+};
+
+export type WaybillLineDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<WaybillLineDto> | null;
+};
+
+export type WaybillLineUpdateDto = {
+    description?: string | null;
+    quantity?: number | null;
+    grossWeightKg?: number | null;
+    volumeM3?: number | null;
+    packageType?: string | null;
+    lengthCm?: number | null;
+    widthCm?: number | null;
+    heightCm?: number | null;
+    hsCode?: string | null;
+    marksAndNumbers?: string | null;
+    declaredValue?: number | null;
+    declaredValueCurrencyId?: string | null;
+    sealNumber?: string | null;
+    containerNumber?: string | null;
+    chargeableWeightKg?: number | null;
+    iataRateClass?: string | null;
+    dangerousGoodsClass?: string | null;
+    unHazmatNumber?: string | null;
+    wagonNumber?: string | null;
+};
+
+export type GetAirwayBillsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills';
+};
+
+export type GetAirwayBillsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetAirwayBillsAsyncError = GetAirwayBillsAsyncErrors[keyof GetAirwayBillsAsyncErrors];
+
+export type GetAirwayBillsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: AirwayBillDtoListEnvelopeReadable;
+};
+
+export type GetAirwayBillsAsyncResponse = GetAirwayBillsAsyncResponses[keyof GetAirwayBillsAsyncResponses];
+
+export type CreateAirwayBillAsyncData = {
+    body?: AirwayBillCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills';
+};
+
+export type CreateAirwayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateAirwayBillAsyncError = CreateAirwayBillAsyncErrors[keyof CreateAirwayBillAsyncErrors];
+
+export type CreateAirwayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateAirwayBillAsyncResponse = CreateAirwayBillAsyncResponses[keyof CreateAirwayBillAsyncResponses];
+
+export type GetAirwayBillsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/Count';
+};
+
+export type GetAirwayBillsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetAirwayBillsCountAsyncError = GetAirwayBillsCountAsyncErrors[keyof GetAirwayBillsCountAsyncErrors];
+
+export type GetAirwayBillsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetAirwayBillsCountAsyncResponse = GetAirwayBillsCountAsyncResponses[keyof GetAirwayBillsCountAsyncResponses];
+
+export type DeleteAirwayBillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}';
+};
+
+export type DeleteAirwayBillAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteAirwayBillAsyncError = DeleteAirwayBillAsyncErrors[keyof DeleteAirwayBillAsyncErrors];
+
+export type DeleteAirwayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteAirwayBillAsyncResponse = DeleteAirwayBillAsyncResponses[keyof DeleteAirwayBillAsyncResponses];
+
+export type GetAirwayBillByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}';
+};
+
+export type GetAirwayBillByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetAirwayBillByIdAsyncError = GetAirwayBillByIdAsyncErrors[keyof GetAirwayBillByIdAsyncErrors];
+
+export type GetAirwayBillByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: AirwayBillDtoEnvelopeReadable;
+};
+
+export type GetAirwayBillByIdAsyncResponse = GetAirwayBillByIdAsyncResponses[keyof GetAirwayBillByIdAsyncResponses];
+
+export type UpdateAirwayBillAsyncData = {
+    body?: AirwayBillUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}';
+};
+
+export type UpdateAirwayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateAirwayBillAsyncError = UpdateAirwayBillAsyncErrors[keyof UpdateAirwayBillAsyncErrors];
+
+export type UpdateAirwayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateAirwayBillAsyncResponse = UpdateAirwayBillAsyncResponses[keyof UpdateAirwayBillAsyncResponses];
+
+export type IssueAirwayBillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/Issue';
+};
+
+export type IssueAirwayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type IssueAirwayBillAsyncError = IssueAirwayBillAsyncErrors[keyof IssueAirwayBillAsyncErrors];
+
+export type IssueAirwayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type IssueAirwayBillAsyncResponse = IssueAirwayBillAsyncResponses[keyof IssueAirwayBillAsyncResponses];
+
+export type MarkAirwayBillInTransitAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/MarkInTransit';
+};
+
+export type MarkAirwayBillInTransitAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkAirwayBillInTransitAsyncError = MarkAirwayBillInTransitAsyncErrors[keyof MarkAirwayBillInTransitAsyncErrors];
+
+export type MarkAirwayBillInTransitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkAirwayBillInTransitAsyncResponse = MarkAirwayBillInTransitAsyncResponses[keyof MarkAirwayBillInTransitAsyncResponses];
+
+export type MarkAirwayBillArrivedAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/MarkArrived';
+};
+
+export type MarkAirwayBillArrivedAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkAirwayBillArrivedAsyncError = MarkAirwayBillArrivedAsyncErrors[keyof MarkAirwayBillArrivedAsyncErrors];
+
+export type MarkAirwayBillArrivedAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkAirwayBillArrivedAsyncResponse = MarkAirwayBillArrivedAsyncResponses[keyof MarkAirwayBillArrivedAsyncResponses];
+
+export type MarkAirwayBillDeliveredAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/MarkDelivered';
+};
+
+export type MarkAirwayBillDeliveredAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkAirwayBillDeliveredAsyncError = MarkAirwayBillDeliveredAsyncErrors[keyof MarkAirwayBillDeliveredAsyncErrors];
+
+export type MarkAirwayBillDeliveredAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkAirwayBillDeliveredAsyncResponse = MarkAirwayBillDeliveredAsyncResponses[keyof MarkAirwayBillDeliveredAsyncResponses];
+
+export type CancelAirwayBillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/Cancel';
+};
+
+export type CancelAirwayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CancelAirwayBillAsyncError = CancelAirwayBillAsyncErrors[keyof CancelAirwayBillAsyncErrors];
+
+export type CancelAirwayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CancelAirwayBillAsyncResponse = CancelAirwayBillAsyncResponses[keyof CancelAirwayBillAsyncResponses];
+
+export type GetAirwayBillLinesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/Lines';
+};
+
+export type GetAirwayBillLinesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetAirwayBillLinesAsyncError = GetAirwayBillLinesAsyncErrors[keyof GetAirwayBillLinesAsyncErrors];
+
+export type GetAirwayBillLinesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WaybillLineDtoListEnvelopeReadable;
+};
+
+export type GetAirwayBillLinesAsyncResponse = GetAirwayBillLinesAsyncResponses[keyof GetAirwayBillLinesAsyncResponses];
+
+export type AddAirwayBillLineAsyncData = {
+    body?: WaybillLineCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/Lines';
+};
+
+export type AddAirwayBillLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type AddAirwayBillLineAsyncError = AddAirwayBillLineAsyncErrors[keyof AddAirwayBillLineAsyncErrors];
+
+export type AddAirwayBillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AddAirwayBillLineAsyncResponse = AddAirwayBillLineAsyncResponses[keyof AddAirwayBillLineAsyncResponses];
+
+export type GetAirwayBillLinesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/Lines/Count';
+};
+
+export type GetAirwayBillLinesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetAirwayBillLinesCountAsyncError = GetAirwayBillLinesCountAsyncErrors[keyof GetAirwayBillLinesCountAsyncErrors];
+
+export type GetAirwayBillLinesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetAirwayBillLinesCountAsyncResponse = GetAirwayBillLinesCountAsyncResponses[keyof GetAirwayBillLinesCountAsyncResponses];
+
+export type RemoveAirwayBillLineAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/Lines/{lineId}';
+};
+
+export type RemoveAirwayBillLineAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type RemoveAirwayBillLineAsyncError = RemoveAirwayBillLineAsyncErrors[keyof RemoveAirwayBillLineAsyncErrors];
+
+export type RemoveAirwayBillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type RemoveAirwayBillLineAsyncResponse = RemoveAirwayBillLineAsyncResponses[keyof RemoveAirwayBillLineAsyncResponses];
+
+export type UpdateAirwayBillLineAsyncData = {
+    body?: WaybillLineUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/AirwayBills/{billId}/Lines/{lineId}';
+};
+
+export type UpdateAirwayBillLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateAirwayBillLineAsyncError = UpdateAirwayBillLineAsyncErrors[keyof UpdateAirwayBillLineAsyncErrors];
+
+export type UpdateAirwayBillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateAirwayBillLineAsyncResponse = UpdateAirwayBillLineAsyncResponses[keyof UpdateAirwayBillLineAsyncResponses];
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetDeliveryNotesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/DeliveryNotes';
+};
+
+export type GetDeliveryNotesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetDeliveryNotesAsyncError = GetDeliveryNotesAsyncErrors[keyof GetDeliveryNotesAsyncErrors];
+
+export type GetDeliveryNotesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DeliveryNoteDtoListEnvelopeReadable;
+};
+
+export type GetDeliveryNotesAsyncResponse = GetDeliveryNotesAsyncResponses[keyof GetDeliveryNotesAsyncResponses];
+
+export type CreateDeliveryNoteAsyncData = {
+    body?: DeliveryNoteCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/DeliveryNotes';
+};
+
+export type CreateDeliveryNoteAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateDeliveryNoteAsyncError = CreateDeliveryNoteAsyncErrors[keyof CreateDeliveryNoteAsyncErrors];
+
+export type CreateDeliveryNoteAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateDeliveryNoteAsyncResponse = CreateDeliveryNoteAsyncResponses[keyof CreateDeliveryNoteAsyncResponses];
+
+export type GetDeliveryNotesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/DeliveryNotes/Count';
+};
+
+export type GetDeliveryNotesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetDeliveryNotesCountAsyncResponse = GetDeliveryNotesCountAsyncResponses[keyof GetDeliveryNotesCountAsyncResponses];
+
+export type DeleteDeliveryNoteAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        deliveryNoteId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/DeliveryNotes/{deliveryNoteId}';
+};
+
+export type DeleteDeliveryNoteAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type DeleteDeliveryNoteAsyncError = DeleteDeliveryNoteAsyncErrors[keyof DeleteDeliveryNoteAsyncErrors];
+
+export type DeleteDeliveryNoteAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteDeliveryNoteAsyncResponse = DeleteDeliveryNoteAsyncResponses[keyof DeleteDeliveryNoteAsyncResponses];
+
+export type GetDeliveryNoteByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        deliveryNoteId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/DeliveryNotes/{deliveryNoteId}';
+};
+
+export type GetDeliveryNoteByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetDeliveryNoteByIdAsyncError = GetDeliveryNoteByIdAsyncErrors[keyof GetDeliveryNoteByIdAsyncErrors];
+
+export type GetDeliveryNoteByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DeliveryNoteDtoEnvelopeReadable;
+};
+
+export type GetDeliveryNoteByIdAsyncResponse = GetDeliveryNoteByIdAsyncResponses[keyof GetDeliveryNoteByIdAsyncResponses];
+
+export type UpdateDeliveryNoteAsyncData = {
+    body?: DeliveryNoteUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        deliveryNoteId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/DeliveryNotes/{deliveryNoteId}';
+};
+
+export type UpdateDeliveryNoteAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateDeliveryNoteAsyncError = UpdateDeliveryNoteAsyncErrors[keyof UpdateDeliveryNoteAsyncErrors];
+
+export type UpdateDeliveryNoteAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateDeliveryNoteAsyncResponse = UpdateDeliveryNoteAsyncResponses[keyof UpdateDeliveryNoteAsyncResponses];
 
 export type GetVersionData = {
     body?: never;
@@ -563,7 +3305,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
     200: unknown;
 };
 
-export type GetContactsAsyncData = {
+export type GetItemPackingSlipsAsyncData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -573,10 +3315,10 @@ export type GetContactsAsyncData = {
         tenantId: string;
         'api-version'?: string;
     };
-    url: '/api/v2/LogisticsService/Stock';
+    url: '/api/v2/LogisticsService/ItemPackingSlips';
 };
 
-export type GetContactsAsyncErrors = {
+export type GetItemPackingSlipsAsyncErrors = {
     /**
      * Unauthorized
      */
@@ -587,17 +3329,5458 @@ export type GetContactsAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetContactsAsyncError = GetContactsAsyncErrors[keyof GetContactsAsyncErrors];
+export type GetItemPackingSlipsAsyncError = GetItemPackingSlipsAsyncErrors[keyof GetItemPackingSlipsAsyncErrors];
 
-export type GetContactsAsyncResponses = {
+export type GetItemPackingSlipsAsyncResponses = {
     /**
      * OK
      */
-    200: ContactDtoListEnvelopeReadable;
+    200: ItemPackingSlipDtoListEnvelopeReadable;
 };
 
-export type GetContactsAsyncResponse = GetContactsAsyncResponses[keyof GetContactsAsyncResponses];
+export type GetItemPackingSlipsAsyncResponse = GetItemPackingSlipsAsyncResponses[keyof GetItemPackingSlipsAsyncResponses];
+
+export type CreateItemPackingSlipAsyncData = {
+    body?: ItemPackingSlipCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips';
+};
+
+export type CreateItemPackingSlipAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateItemPackingSlipAsyncError = CreateItemPackingSlipAsyncErrors[keyof CreateItemPackingSlipAsyncErrors];
+
+export type CreateItemPackingSlipAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateItemPackingSlipAsyncResponse = CreateItemPackingSlipAsyncResponses[keyof CreateItemPackingSlipAsyncResponses];
+
+export type GetItemPackingSlipsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/Count';
+};
+
+export type GetItemPackingSlipsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemPackingSlipsCountAsyncResponse = GetItemPackingSlipsCountAsyncResponses[keyof GetItemPackingSlipsCountAsyncResponses];
+
+export type DeleteItemPackingSlipAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}';
+};
+
+export type DeleteItemPackingSlipAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemPackingSlipAsyncError = DeleteItemPackingSlipAsyncErrors[keyof DeleteItemPackingSlipAsyncErrors];
+
+export type DeleteItemPackingSlipAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteItemPackingSlipAsyncResponse = DeleteItemPackingSlipAsyncResponses[keyof DeleteItemPackingSlipAsyncResponses];
+
+export type GetItemPackingSlipByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}';
+};
+
+export type GetItemPackingSlipByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetItemPackingSlipByIdAsyncError = GetItemPackingSlipByIdAsyncErrors[keyof GetItemPackingSlipByIdAsyncErrors];
+
+export type GetItemPackingSlipByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemPackingSlipDtoEnvelopeReadable;
+};
+
+export type GetItemPackingSlipByIdAsyncResponse = GetItemPackingSlipByIdAsyncResponses[keyof GetItemPackingSlipByIdAsyncResponses];
+
+export type UpdateItemPackingSlipAsyncData = {
+    body?: ItemPackingSlipUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}';
+};
+
+export type UpdateItemPackingSlipAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemPackingSlipAsyncError = UpdateItemPackingSlipAsyncErrors[keyof UpdateItemPackingSlipAsyncErrors];
+
+export type UpdateItemPackingSlipAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateItemPackingSlipAsyncResponse = UpdateItemPackingSlipAsyncResponses[keyof UpdateItemPackingSlipAsyncResponses];
+
+export type GetItemPackingSlipEntriesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries';
+};
+
+export type GetItemPackingSlipEntriesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemPackingSlipEntryDtoListEnvelopeReadable;
+};
+
+export type GetItemPackingSlipEntriesAsyncResponse = GetItemPackingSlipEntriesAsyncResponses[keyof GetItemPackingSlipEntriesAsyncResponses];
+
+export type CreateItemPackingSlipEntryAsyncData = {
+    body?: ItemPackingSlipEntryCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries';
+};
+
+export type CreateItemPackingSlipEntryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateItemPackingSlipEntryAsyncError = CreateItemPackingSlipEntryAsyncErrors[keyof CreateItemPackingSlipEntryAsyncErrors];
+
+export type CreateItemPackingSlipEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateItemPackingSlipEntryAsyncResponse = CreateItemPackingSlipEntryAsyncResponses[keyof CreateItemPackingSlipEntryAsyncResponses];
+
+export type GetItemPackingSlipEntriesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries/Count';
+};
+
+export type GetItemPackingSlipEntriesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemPackingSlipEntriesCountAsyncResponse = GetItemPackingSlipEntriesCountAsyncResponses[keyof GetItemPackingSlipEntriesCountAsyncResponses];
+
+export type DeleteItemPackingSlipEntryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries/{entryId}';
+};
+
+export type DeleteItemPackingSlipEntryAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemPackingSlipEntryAsyncError = DeleteItemPackingSlipEntryAsyncErrors[keyof DeleteItemPackingSlipEntryAsyncErrors];
+
+export type DeleteItemPackingSlipEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteItemPackingSlipEntryAsyncResponse = DeleteItemPackingSlipEntryAsyncResponses[keyof DeleteItemPackingSlipEntryAsyncResponses];
+
+export type GetItemPackingSlipEntryByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries/{entryId}';
+};
+
+export type GetItemPackingSlipEntryByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetItemPackingSlipEntryByIdAsyncError = GetItemPackingSlipEntryByIdAsyncErrors[keyof GetItemPackingSlipEntryByIdAsyncErrors];
+
+export type GetItemPackingSlipEntryByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemPackingSlipEntryDtoEnvelopeReadable;
+};
+
+export type GetItemPackingSlipEntryByIdAsyncResponse = GetItemPackingSlipEntryByIdAsyncResponses[keyof GetItemPackingSlipEntryByIdAsyncResponses];
+
+export type UpdateItemPackingSlipEntryAsyncData = {
+    body?: ItemPackingSlipEntryUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        packingSlipId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries/{entryId}';
+};
+
+export type UpdateItemPackingSlipEntryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemPackingSlipEntryAsyncError = UpdateItemPackingSlipEntryAsyncErrors[keyof UpdateItemPackingSlipEntryAsyncErrors];
+
+export type UpdateItemPackingSlipEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateItemPackingSlipEntryAsyncResponse = UpdateItemPackingSlipEntryAsyncResponses[keyof UpdateItemPackingSlipEntryAsyncResponses];
+
+export type GetItemPickListsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists';
+};
+
+export type GetItemPickListsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemPickListsAsyncError = GetItemPickListsAsyncErrors[keyof GetItemPickListsAsyncErrors];
+
+export type GetItemPickListsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemPickListDtoListEnvelopeReadable;
+};
+
+export type GetItemPickListsAsyncResponse = GetItemPickListsAsyncResponses[keyof GetItemPickListsAsyncResponses];
+
+export type CreateItemPickListAsyncData = {
+    body?: ItemPickListCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists';
+};
+
+export type CreateItemPickListAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateItemPickListAsyncError = CreateItemPickListAsyncErrors[keyof CreateItemPickListAsyncErrors];
+
+export type CreateItemPickListAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateItemPickListAsyncResponse = CreateItemPickListAsyncResponses[keyof CreateItemPickListAsyncResponses];
+
+export type GetItemPickListsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/Count';
+};
+
+export type GetItemPickListsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemPickListsCountAsyncResponse = GetItemPickListsCountAsyncResponses[keyof GetItemPickListsCountAsyncResponses];
+
+export type DeleteItemPickListAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}';
+};
+
+export type DeleteItemPickListAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemPickListAsyncError = DeleteItemPickListAsyncErrors[keyof DeleteItemPickListAsyncErrors];
+
+export type DeleteItemPickListAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteItemPickListAsyncResponse = DeleteItemPickListAsyncResponses[keyof DeleteItemPickListAsyncResponses];
+
+export type GetItemPickListByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}';
+};
+
+export type GetItemPickListByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetItemPickListByIdAsyncError = GetItemPickListByIdAsyncErrors[keyof GetItemPickListByIdAsyncErrors];
+
+export type GetItemPickListByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemPickListDtoEnvelopeReadable;
+};
+
+export type GetItemPickListByIdAsyncResponse = GetItemPickListByIdAsyncResponses[keyof GetItemPickListByIdAsyncResponses];
+
+export type UpdateItemPickListAsyncData = {
+    body?: ItemPickListUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}';
+};
+
+export type UpdateItemPickListAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemPickListAsyncError = UpdateItemPickListAsyncErrors[keyof UpdateItemPickListAsyncErrors];
+
+export type UpdateItemPickListAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateItemPickListAsyncResponse = UpdateItemPickListAsyncResponses[keyof UpdateItemPickListAsyncResponses];
+
+export type GetItemPickListEntriesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries';
+};
+
+export type GetItemPickListEntriesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemPickListEntryDtoListEnvelopeReadable;
+};
+
+export type GetItemPickListEntriesAsyncResponse = GetItemPickListEntriesAsyncResponses[keyof GetItemPickListEntriesAsyncResponses];
+
+export type CreateItemPickListEntryAsyncData = {
+    body?: ItemPickListEntryCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries';
+};
+
+export type CreateItemPickListEntryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateItemPickListEntryAsyncError = CreateItemPickListEntryAsyncErrors[keyof CreateItemPickListEntryAsyncErrors];
+
+export type CreateItemPickListEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateItemPickListEntryAsyncResponse = CreateItemPickListEntryAsyncResponses[keyof CreateItemPickListEntryAsyncResponses];
+
+export type GetItemPickListEntriesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries/Count';
+};
+
+export type GetItemPickListEntriesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemPickListEntriesCountAsyncResponse = GetItemPickListEntriesCountAsyncResponses[keyof GetItemPickListEntriesCountAsyncResponses];
+
+export type DeleteItemPickListEntryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries/{entryId}';
+};
+
+export type DeleteItemPickListEntryAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemPickListEntryAsyncError = DeleteItemPickListEntryAsyncErrors[keyof DeleteItemPickListEntryAsyncErrors];
+
+export type DeleteItemPickListEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteItemPickListEntryAsyncResponse = DeleteItemPickListEntryAsyncResponses[keyof DeleteItemPickListEntryAsyncResponses];
+
+export type GetItemPickListEntryByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries/{entryId}';
+};
+
+export type GetItemPickListEntryByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetItemPickListEntryByIdAsyncError = GetItemPickListEntryByIdAsyncErrors[keyof GetItemPickListEntryByIdAsyncErrors];
+
+export type GetItemPickListEntryByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemPickListEntryDtoEnvelopeReadable;
+};
+
+export type GetItemPickListEntryByIdAsyncResponse = GetItemPickListEntryByIdAsyncResponses[keyof GetItemPickListEntryByIdAsyncResponses];
+
+export type UpdateItemPickListEntryAsyncData = {
+    body?: ItemPickListEntryUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pickListId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries/{entryId}';
+};
+
+export type UpdateItemPickListEntryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemPickListEntryAsyncError = UpdateItemPickListEntryAsyncErrors[keyof UpdateItemPickListEntryAsyncErrors];
+
+export type UpdateItemPickListEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateItemPickListEntryAsyncResponse = UpdateItemPickListEntryAsyncResponses[keyof UpdateItemPickListEntryAsyncResponses];
+
+export type GetItemRestocksAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks';
+};
+
+export type GetItemRestocksAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemRestocksAsyncError = GetItemRestocksAsyncErrors[keyof GetItemRestocksAsyncErrors];
+
+export type GetItemRestocksAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemRestockDtoListEnvelopeReadable;
+};
+
+export type GetItemRestocksAsyncResponse = GetItemRestocksAsyncResponses[keyof GetItemRestocksAsyncResponses];
+
+export type CreateItemRestockAsyncData = {
+    body?: ItemRestockCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks';
+};
+
+export type CreateItemRestockAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateItemRestockAsyncError = CreateItemRestockAsyncErrors[keyof CreateItemRestockAsyncErrors];
+
+export type CreateItemRestockAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateItemRestockAsyncResponse = CreateItemRestockAsyncResponses[keyof CreateItemRestockAsyncResponses];
+
+export type GetItemRestocksCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/Count';
+};
+
+export type GetItemRestocksCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemRestocksCountAsyncResponse = GetItemRestocksCountAsyncResponses[keyof GetItemRestocksCountAsyncResponses];
+
+export type DeleteItemRestockAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}';
+};
+
+export type DeleteItemRestockAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemRestockAsyncError = DeleteItemRestockAsyncErrors[keyof DeleteItemRestockAsyncErrors];
+
+export type DeleteItemRestockAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteItemRestockAsyncResponse = DeleteItemRestockAsyncResponses[keyof DeleteItemRestockAsyncResponses];
+
+export type GetItemRestockByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}';
+};
+
+export type GetItemRestockByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetItemRestockByIdAsyncError = GetItemRestockByIdAsyncErrors[keyof GetItemRestockByIdAsyncErrors];
+
+export type GetItemRestockByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemRestockDtoEnvelopeReadable;
+};
+
+export type GetItemRestockByIdAsyncResponse = GetItemRestockByIdAsyncResponses[keyof GetItemRestockByIdAsyncResponses];
+
+export type UpdateItemRestockAsyncData = {
+    body?: ItemRestockUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}';
+};
+
+export type UpdateItemRestockAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemRestockAsyncError = UpdateItemRestockAsyncErrors[keyof UpdateItemRestockAsyncErrors];
+
+export type UpdateItemRestockAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateItemRestockAsyncResponse = UpdateItemRestockAsyncResponses[keyof UpdateItemRestockAsyncResponses];
+
+export type GetItemRestockEntriesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries';
+};
+
+export type GetItemRestockEntriesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemRestockEntryDtoListEnvelopeReadable;
+};
+
+export type GetItemRestockEntriesAsyncResponse = GetItemRestockEntriesAsyncResponses[keyof GetItemRestockEntriesAsyncResponses];
+
+export type CreateItemRestockEntryAsyncData = {
+    body?: ItemRestockEntryCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries';
+};
+
+export type CreateItemRestockEntryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateItemRestockEntryAsyncError = CreateItemRestockEntryAsyncErrors[keyof CreateItemRestockEntryAsyncErrors];
+
+export type CreateItemRestockEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateItemRestockEntryAsyncResponse = CreateItemRestockEntryAsyncResponses[keyof CreateItemRestockEntryAsyncResponses];
+
+export type GetItemRestockEntriesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries/Count';
+};
+
+export type GetItemRestockEntriesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemRestockEntriesCountAsyncResponse = GetItemRestockEntriesCountAsyncResponses[keyof GetItemRestockEntriesCountAsyncResponses];
+
+export type DeleteItemRestockEntryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries/{entryId}';
+};
+
+export type DeleteItemRestockEntryAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemRestockEntryAsyncError = DeleteItemRestockEntryAsyncErrors[keyof DeleteItemRestockEntryAsyncErrors];
+
+export type DeleteItemRestockEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteItemRestockEntryAsyncResponse = DeleteItemRestockEntryAsyncResponses[keyof DeleteItemRestockEntryAsyncResponses];
+
+export type GetItemRestockEntryByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries/{entryId}';
+};
+
+export type GetItemRestockEntryByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetItemRestockEntryByIdAsyncError = GetItemRestockEntryByIdAsyncErrors[keyof GetItemRestockEntryByIdAsyncErrors];
+
+export type GetItemRestockEntryByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemRestockEntryDtoEnvelopeReadable;
+};
+
+export type GetItemRestockEntryByIdAsyncResponse = GetItemRestockEntryByIdAsyncResponses[keyof GetItemRestockEntryByIdAsyncResponses];
+
+export type UpdateItemRestockEntryAsyncData = {
+    body?: ItemRestockEntryUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        restockId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries/{entryId}';
+};
+
+export type UpdateItemRestockEntryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemRestockEntryAsyncError = UpdateItemRestockEntryAsyncErrors[keyof UpdateItemRestockEntryAsyncErrors];
+
+export type UpdateItemRestockEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateItemRestockEntryAsyncResponse = UpdateItemRestockEntryAsyncResponses[keyof UpdateItemRestockEntryAsyncResponses];
+
+export type GetItemRetainSamplesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRetainSamples';
+};
+
+export type GetItemRetainSamplesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetItemRetainSamplesAsyncError = GetItemRetainSamplesAsyncErrors[keyof GetItemRetainSamplesAsyncErrors];
+
+export type GetItemRetainSamplesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemRetainSampleDtoListEnvelopeReadable;
+};
+
+export type GetItemRetainSamplesAsyncResponse = GetItemRetainSamplesAsyncResponses[keyof GetItemRetainSamplesAsyncResponses];
+
+export type CreateItemRetainSampleAsyncData = {
+    body?: ItemRetainSampleCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRetainSamples';
+};
+
+export type CreateItemRetainSampleAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateItemRetainSampleAsyncError = CreateItemRetainSampleAsyncErrors[keyof CreateItemRetainSampleAsyncErrors];
+
+export type CreateItemRetainSampleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateItemRetainSampleAsyncResponse = CreateItemRetainSampleAsyncResponses[keyof CreateItemRetainSampleAsyncResponses];
+
+export type GetItemRetainSamplesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRetainSamples/Count';
+};
+
+export type GetItemRetainSamplesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetItemRetainSamplesCountAsyncResponse = GetItemRetainSamplesCountAsyncResponses[keyof GetItemRetainSamplesCountAsyncResponses];
+
+export type DeleteItemRetainSampleAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        retainSampleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRetainSamples/{retainSampleId}';
+};
+
+export type DeleteItemRetainSampleAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteItemRetainSampleAsyncError = DeleteItemRetainSampleAsyncErrors[keyof DeleteItemRetainSampleAsyncErrors];
+
+export type DeleteItemRetainSampleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteItemRetainSampleAsyncResponse = DeleteItemRetainSampleAsyncResponses[keyof DeleteItemRetainSampleAsyncResponses];
+
+export type GetItemRetainSampleByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        retainSampleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRetainSamples/{retainSampleId}';
+};
+
+export type GetItemRetainSampleByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetItemRetainSampleByIdAsyncError = GetItemRetainSampleByIdAsyncErrors[keyof GetItemRetainSampleByIdAsyncErrors];
+
+export type GetItemRetainSampleByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ItemRetainSampleDtoEnvelopeReadable;
+};
+
+export type GetItemRetainSampleByIdAsyncResponse = GetItemRetainSampleByIdAsyncResponses[keyof GetItemRetainSampleByIdAsyncResponses];
+
+export type UpdateItemRetainSampleAsyncData = {
+    body?: ItemRetainSampleUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        retainSampleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ItemRetainSamples/{retainSampleId}';
+};
+
+export type UpdateItemRetainSampleAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateItemRetainSampleAsyncError = UpdateItemRetainSampleAsyncErrors[keyof UpdateItemRetainSampleAsyncErrors];
+
+export type UpdateItemRetainSampleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateItemRetainSampleAsyncResponse = UpdateItemRetainSampleAsyncResponses[keyof UpdateItemRetainSampleAsyncResponses];
+
+export type GetPortsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Ports';
+};
+
+export type GetPortsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetPortsAsyncError = GetPortsAsyncErrors[keyof GetPortsAsyncErrors];
+
+export type GetPortsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PortDtoListEnvelopeReadable;
+};
+
+export type GetPortsAsyncResponse = GetPortsAsyncResponses[keyof GetPortsAsyncResponses];
+
+export type CreatePortAsyncData = {
+    body?: PortCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Ports';
+};
+
+export type CreatePortAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreatePortAsyncError = CreatePortAsyncErrors[keyof CreatePortAsyncErrors];
+
+export type CreatePortAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreatePortAsyncResponse = CreatePortAsyncResponses[keyof CreatePortAsyncResponses];
+
+export type GetPortsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Ports/Count';
+};
+
+export type GetPortsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetPortsCountAsyncError = GetPortsCountAsyncErrors[keyof GetPortsCountAsyncErrors];
+
+export type GetPortsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetPortsCountAsyncResponse = GetPortsCountAsyncResponses[keyof GetPortsCountAsyncResponses];
+
+export type DeletePortAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        portId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Ports/{portId}';
+};
+
+export type DeletePortAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeletePortAsyncError = DeletePortAsyncErrors[keyof DeletePortAsyncErrors];
+
+export type DeletePortAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeletePortAsyncResponse = DeletePortAsyncResponses[keyof DeletePortAsyncResponses];
+
+export type GetPortByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        portId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Ports/{portId}';
+};
+
+export type GetPortByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetPortByIdAsyncError = GetPortByIdAsyncErrors[keyof GetPortByIdAsyncErrors];
+
+export type GetPortByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PortDtoEnvelopeReadable;
+};
+
+export type GetPortByIdAsyncResponse = GetPortByIdAsyncResponses[keyof GetPortByIdAsyncResponses];
+
+export type UpdatePortAsyncData = {
+    body?: PortUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        portId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Ports/{portId}';
+};
+
+export type UpdatePortAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdatePortAsyncError = UpdatePortAsyncErrors[keyof UpdatePortAsyncErrors];
+
+export type UpdatePortAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdatePortAsyncResponse = UpdatePortAsyncResponses[keyof UpdatePortAsyncResponses];
+
+export type GetProofsOfDeliveryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery';
+};
+
+export type GetProofsOfDeliveryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProofsOfDeliveryAsyncError = GetProofsOfDeliveryAsyncErrors[keyof GetProofsOfDeliveryAsyncErrors];
+
+export type GetProofsOfDeliveryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProofOfDeliveryDtoListEnvelopeReadable;
+};
+
+export type GetProofsOfDeliveryAsyncResponse = GetProofsOfDeliveryAsyncResponses[keyof GetProofsOfDeliveryAsyncResponses];
+
+export type CreateProofOfDeliveryAsyncData = {
+    body?: ProofOfDeliveryCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery';
+};
+
+export type CreateProofOfDeliveryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateProofOfDeliveryAsyncError = CreateProofOfDeliveryAsyncErrors[keyof CreateProofOfDeliveryAsyncErrors];
+
+export type CreateProofOfDeliveryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateProofOfDeliveryAsyncResponse = CreateProofOfDeliveryAsyncResponses[keyof CreateProofOfDeliveryAsyncResponses];
+
+export type GetProofsOfDeliveryCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/Count';
+};
+
+export type GetProofsOfDeliveryCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProofsOfDeliveryCountAsyncError = GetProofsOfDeliveryCountAsyncErrors[keyof GetProofsOfDeliveryCountAsyncErrors];
+
+export type GetProofsOfDeliveryCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetProofsOfDeliveryCountAsyncResponse = GetProofsOfDeliveryCountAsyncResponses[keyof GetProofsOfDeliveryCountAsyncResponses];
+
+export type DeleteProofOfDeliveryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}';
+};
+
+export type DeleteProofOfDeliveryAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteProofOfDeliveryAsyncError = DeleteProofOfDeliveryAsyncErrors[keyof DeleteProofOfDeliveryAsyncErrors];
+
+export type DeleteProofOfDeliveryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteProofOfDeliveryAsyncResponse = DeleteProofOfDeliveryAsyncResponses[keyof DeleteProofOfDeliveryAsyncResponses];
+
+export type GetProofOfDeliveryByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}';
+};
+
+export type GetProofOfDeliveryByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetProofOfDeliveryByIdAsyncError = GetProofOfDeliveryByIdAsyncErrors[keyof GetProofOfDeliveryByIdAsyncErrors];
+
+export type GetProofOfDeliveryByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProofOfDeliveryDtoEnvelopeReadable;
+};
+
+export type GetProofOfDeliveryByIdAsyncResponse = GetProofOfDeliveryByIdAsyncResponses[keyof GetProofOfDeliveryByIdAsyncResponses];
+
+export type UpdateProofOfDeliveryAsyncData = {
+    body?: ProofOfDeliveryUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}';
+};
+
+export type UpdateProofOfDeliveryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateProofOfDeliveryAsyncError = UpdateProofOfDeliveryAsyncErrors[keyof UpdateProofOfDeliveryAsyncErrors];
+
+export type UpdateProofOfDeliveryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateProofOfDeliveryAsyncResponse = UpdateProofOfDeliveryAsyncResponses[keyof UpdateProofOfDeliveryAsyncResponses];
+
+export type SignProofOfDeliveryAsyncData = {
+    body?: SignProofOfDeliveryRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Sign';
+};
+
+export type SignProofOfDeliveryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type SignProofOfDeliveryAsyncError = SignProofOfDeliveryAsyncErrors[keyof SignProofOfDeliveryAsyncErrors];
+
+export type SignProofOfDeliveryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type SignProofOfDeliveryAsyncResponse = SignProofOfDeliveryAsyncResponses[keyof SignProofOfDeliveryAsyncResponses];
+
+export type DisputeProofOfDeliveryAsyncData = {
+    body?: DisputeProofOfDeliveryRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Dispute';
+};
+
+export type DisputeProofOfDeliveryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type DisputeProofOfDeliveryAsyncError = DisputeProofOfDeliveryAsyncErrors[keyof DisputeProofOfDeliveryAsyncErrors];
+
+export type DisputeProofOfDeliveryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DisputeProofOfDeliveryAsyncResponse = DisputeProofOfDeliveryAsyncResponses[keyof DisputeProofOfDeliveryAsyncResponses];
+
+export type RejectProofOfDeliveryAsyncData = {
+    body?: RejectProofOfDeliveryRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Reject';
+};
+
+export type RejectProofOfDeliveryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type RejectProofOfDeliveryAsyncError = RejectProofOfDeliveryAsyncErrors[keyof RejectProofOfDeliveryAsyncErrors];
+
+export type RejectProofOfDeliveryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type RejectProofOfDeliveryAsyncResponse = RejectProofOfDeliveryAsyncResponses[keyof RejectProofOfDeliveryAsyncResponses];
+
+export type GetProofOfDeliveryLinesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines';
+};
+
+export type GetProofOfDeliveryLinesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProofOfDeliveryLinesAsyncError = GetProofOfDeliveryLinesAsyncErrors[keyof GetProofOfDeliveryLinesAsyncErrors];
+
+export type GetProofOfDeliveryLinesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProofOfDeliveryLineDtoListEnvelopeReadable;
+};
+
+export type GetProofOfDeliveryLinesAsyncResponse = GetProofOfDeliveryLinesAsyncResponses[keyof GetProofOfDeliveryLinesAsyncResponses];
+
+export type AddProofOfDeliveryLineAsyncData = {
+    body?: ProofOfDeliveryLineCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines';
+};
+
+export type AddProofOfDeliveryLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type AddProofOfDeliveryLineAsyncError = AddProofOfDeliveryLineAsyncErrors[keyof AddProofOfDeliveryLineAsyncErrors];
+
+export type AddProofOfDeliveryLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AddProofOfDeliveryLineAsyncResponse = AddProofOfDeliveryLineAsyncResponses[keyof AddProofOfDeliveryLineAsyncResponses];
+
+export type GetProofOfDeliveryLinesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines/Count';
+};
+
+export type GetProofOfDeliveryLinesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProofOfDeliveryLinesCountAsyncError = GetProofOfDeliveryLinesCountAsyncErrors[keyof GetProofOfDeliveryLinesCountAsyncErrors];
+
+export type GetProofOfDeliveryLinesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetProofOfDeliveryLinesCountAsyncResponse = GetProofOfDeliveryLinesCountAsyncResponses[keyof GetProofOfDeliveryLinesCountAsyncResponses];
+
+export type RemoveProofOfDeliveryLineAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines/{lineId}';
+};
+
+export type RemoveProofOfDeliveryLineAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type RemoveProofOfDeliveryLineAsyncError = RemoveProofOfDeliveryLineAsyncErrors[keyof RemoveProofOfDeliveryLineAsyncErrors];
+
+export type RemoveProofOfDeliveryLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type RemoveProofOfDeliveryLineAsyncResponse = RemoveProofOfDeliveryLineAsyncResponses[keyof RemoveProofOfDeliveryLineAsyncResponses];
+
+export type UpdateProofOfDeliveryLineAsyncData = {
+    body?: ProofOfDeliveryLineUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines/{lineId}';
+};
+
+export type UpdateProofOfDeliveryLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateProofOfDeliveryLineAsyncError = UpdateProofOfDeliveryLineAsyncErrors[keyof UpdateProofOfDeliveryLineAsyncErrors];
+
+export type UpdateProofOfDeliveryLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateProofOfDeliveryLineAsyncResponse = UpdateProofOfDeliveryLineAsyncResponses[keyof UpdateProofOfDeliveryLineAsyncResponses];
+
+export type GetProofOfDeliveryDeliveryNotesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes';
+};
+
+export type GetProofOfDeliveryDeliveryNotesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProofOfDeliveryDeliveryNotesAsyncError = GetProofOfDeliveryDeliveryNotesAsyncErrors[keyof GetProofOfDeliveryDeliveryNotesAsyncErrors];
+
+export type GetProofOfDeliveryDeliveryNotesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DeliveryNoteDtoListEnvelopeReadable;
+};
+
+export type GetProofOfDeliveryDeliveryNotesAsyncResponse = GetProofOfDeliveryDeliveryNotesAsyncResponses[keyof GetProofOfDeliveryDeliveryNotesAsyncResponses];
+
+export type GetProofOfDeliveryDeliveryNotesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes/Count';
+};
+
+export type GetProofOfDeliveryDeliveryNotesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetProofOfDeliveryDeliveryNotesCountAsyncError = GetProofOfDeliveryDeliveryNotesCountAsyncErrors[keyof GetProofOfDeliveryDeliveryNotesCountAsyncErrors];
+
+export type GetProofOfDeliveryDeliveryNotesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetProofOfDeliveryDeliveryNotesCountAsyncResponse = GetProofOfDeliveryDeliveryNotesCountAsyncResponses[keyof GetProofOfDeliveryDeliveryNotesCountAsyncResponses];
+
+export type DetachDeliveryNoteAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+        noteId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes/{noteId}';
+};
+
+export type DetachDeliveryNoteAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DetachDeliveryNoteAsyncError = DetachDeliveryNoteAsyncErrors[keyof DetachDeliveryNoteAsyncErrors];
+
+export type DetachDeliveryNoteAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DetachDeliveryNoteAsyncResponse = DetachDeliveryNoteAsyncResponses[keyof DetachDeliveryNoteAsyncResponses];
+
+export type AttachDeliveryNoteAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        podId: string;
+        noteId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes/{noteId}';
+};
+
+export type AttachDeliveryNoteAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type AttachDeliveryNoteAsyncError = AttachDeliveryNoteAsyncErrors[keyof AttachDeliveryNoteAsyncErrors];
+
+export type AttachDeliveryNoteAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AttachDeliveryNoteAsyncResponse = AttachDeliveryNoteAsyncResponses[keyof AttachDeliveryNoteAsyncResponses];
+
+export type GetRailWaybillsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills';
+};
+
+export type GetRailWaybillsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRailWaybillsAsyncError = GetRailWaybillsAsyncErrors[keyof GetRailWaybillsAsyncErrors];
+
+export type GetRailWaybillsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RailWaybillDtoListEnvelopeReadable;
+};
+
+export type GetRailWaybillsAsyncResponse = GetRailWaybillsAsyncResponses[keyof GetRailWaybillsAsyncResponses];
+
+export type CreateRailWaybillAsyncData = {
+    body?: RailWaybillCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills';
+};
+
+export type CreateRailWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateRailWaybillAsyncError = CreateRailWaybillAsyncErrors[keyof CreateRailWaybillAsyncErrors];
+
+export type CreateRailWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateRailWaybillAsyncResponse = CreateRailWaybillAsyncResponses[keyof CreateRailWaybillAsyncResponses];
+
+export type GetRailWaybillsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/Count';
+};
+
+export type GetRailWaybillsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRailWaybillsCountAsyncError = GetRailWaybillsCountAsyncErrors[keyof GetRailWaybillsCountAsyncErrors];
+
+export type GetRailWaybillsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetRailWaybillsCountAsyncResponse = GetRailWaybillsCountAsyncResponses[keyof GetRailWaybillsCountAsyncResponses];
+
+export type DeleteRailWaybillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}';
+};
+
+export type DeleteRailWaybillAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteRailWaybillAsyncError = DeleteRailWaybillAsyncErrors[keyof DeleteRailWaybillAsyncErrors];
+
+export type DeleteRailWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteRailWaybillAsyncResponse = DeleteRailWaybillAsyncResponses[keyof DeleteRailWaybillAsyncResponses];
+
+export type GetRailWaybillByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}';
+};
+
+export type GetRailWaybillByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetRailWaybillByIdAsyncError = GetRailWaybillByIdAsyncErrors[keyof GetRailWaybillByIdAsyncErrors];
+
+export type GetRailWaybillByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RailWaybillDtoEnvelopeReadable;
+};
+
+export type GetRailWaybillByIdAsyncResponse = GetRailWaybillByIdAsyncResponses[keyof GetRailWaybillByIdAsyncResponses];
+
+export type UpdateRailWaybillAsyncData = {
+    body?: RailWaybillUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}';
+};
+
+export type UpdateRailWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateRailWaybillAsyncError = UpdateRailWaybillAsyncErrors[keyof UpdateRailWaybillAsyncErrors];
+
+export type UpdateRailWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateRailWaybillAsyncResponse = UpdateRailWaybillAsyncResponses[keyof UpdateRailWaybillAsyncResponses];
+
+export type IssueRailWaybillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/Issue';
+};
+
+export type IssueRailWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type IssueRailWaybillAsyncError = IssueRailWaybillAsyncErrors[keyof IssueRailWaybillAsyncErrors];
+
+export type IssueRailWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type IssueRailWaybillAsyncResponse = IssueRailWaybillAsyncResponses[keyof IssueRailWaybillAsyncResponses];
+
+export type MarkRailWaybillInTransitAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/MarkInTransit';
+};
+
+export type MarkRailWaybillInTransitAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkRailWaybillInTransitAsyncError = MarkRailWaybillInTransitAsyncErrors[keyof MarkRailWaybillInTransitAsyncErrors];
+
+export type MarkRailWaybillInTransitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkRailWaybillInTransitAsyncResponse = MarkRailWaybillInTransitAsyncResponses[keyof MarkRailWaybillInTransitAsyncResponses];
+
+export type MarkRailWaybillDeliveredAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/MarkDelivered';
+};
+
+export type MarkRailWaybillDeliveredAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkRailWaybillDeliveredAsyncError = MarkRailWaybillDeliveredAsyncErrors[keyof MarkRailWaybillDeliveredAsyncErrors];
+
+export type MarkRailWaybillDeliveredAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkRailWaybillDeliveredAsyncResponse = MarkRailWaybillDeliveredAsyncResponses[keyof MarkRailWaybillDeliveredAsyncResponses];
+
+export type CancelRailWaybillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/Cancel';
+};
+
+export type CancelRailWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CancelRailWaybillAsyncError = CancelRailWaybillAsyncErrors[keyof CancelRailWaybillAsyncErrors];
+
+export type CancelRailWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CancelRailWaybillAsyncResponse = CancelRailWaybillAsyncResponses[keyof CancelRailWaybillAsyncResponses];
+
+export type GetRailWaybillLinesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines';
+};
+
+export type GetRailWaybillLinesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRailWaybillLinesAsyncError = GetRailWaybillLinesAsyncErrors[keyof GetRailWaybillLinesAsyncErrors];
+
+export type GetRailWaybillLinesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WaybillLineDtoListEnvelopeReadable;
+};
+
+export type GetRailWaybillLinesAsyncResponse = GetRailWaybillLinesAsyncResponses[keyof GetRailWaybillLinesAsyncResponses];
+
+export type AddRailWaybillLineAsyncData = {
+    body?: WaybillLineCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines';
+};
+
+export type AddRailWaybillLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type AddRailWaybillLineAsyncError = AddRailWaybillLineAsyncErrors[keyof AddRailWaybillLineAsyncErrors];
+
+export type AddRailWaybillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AddRailWaybillLineAsyncResponse = AddRailWaybillLineAsyncResponses[keyof AddRailWaybillLineAsyncResponses];
+
+export type GetRailWaybillLinesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines/Count';
+};
+
+export type GetRailWaybillLinesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRailWaybillLinesCountAsyncError = GetRailWaybillLinesCountAsyncErrors[keyof GetRailWaybillLinesCountAsyncErrors];
+
+export type GetRailWaybillLinesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetRailWaybillLinesCountAsyncResponse = GetRailWaybillLinesCountAsyncResponses[keyof GetRailWaybillLinesCountAsyncResponses];
+
+export type RemoveRailWaybillLineAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines/{lineId}';
+};
+
+export type RemoveRailWaybillLineAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type RemoveRailWaybillLineAsyncError = RemoveRailWaybillLineAsyncErrors[keyof RemoveRailWaybillLineAsyncErrors];
+
+export type RemoveRailWaybillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type RemoveRailWaybillLineAsyncResponse = RemoveRailWaybillLineAsyncResponses[keyof RemoveRailWaybillLineAsyncResponses];
+
+export type UpdateRailWaybillLineAsyncData = {
+    body?: WaybillLineUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines/{lineId}';
+};
+
+export type UpdateRailWaybillLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateRailWaybillLineAsyncError = UpdateRailWaybillLineAsyncErrors[keyof UpdateRailWaybillLineAsyncErrors];
+
+export type UpdateRailWaybillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateRailWaybillLineAsyncResponse = UpdateRailWaybillLineAsyncResponses[keyof UpdateRailWaybillLineAsyncResponses];
+
+export type GetRoadWaybillsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills';
+};
+
+export type GetRoadWaybillsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRoadWaybillsAsyncError = GetRoadWaybillsAsyncErrors[keyof GetRoadWaybillsAsyncErrors];
+
+export type GetRoadWaybillsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RoadWaybillDtoListEnvelopeReadable;
+};
+
+export type GetRoadWaybillsAsyncResponse = GetRoadWaybillsAsyncResponses[keyof GetRoadWaybillsAsyncResponses];
+
+export type CreateRoadWaybillAsyncData = {
+    body?: RoadWaybillCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills';
+};
+
+export type CreateRoadWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateRoadWaybillAsyncError = CreateRoadWaybillAsyncErrors[keyof CreateRoadWaybillAsyncErrors];
+
+export type CreateRoadWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateRoadWaybillAsyncResponse = CreateRoadWaybillAsyncResponses[keyof CreateRoadWaybillAsyncResponses];
+
+export type GetRoadWaybillsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/Count';
+};
+
+export type GetRoadWaybillsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRoadWaybillsCountAsyncError = GetRoadWaybillsCountAsyncErrors[keyof GetRoadWaybillsCountAsyncErrors];
+
+export type GetRoadWaybillsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetRoadWaybillsCountAsyncResponse = GetRoadWaybillsCountAsyncResponses[keyof GetRoadWaybillsCountAsyncResponses];
+
+export type DeleteRoadWaybillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}';
+};
+
+export type DeleteRoadWaybillAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteRoadWaybillAsyncError = DeleteRoadWaybillAsyncErrors[keyof DeleteRoadWaybillAsyncErrors];
+
+export type DeleteRoadWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteRoadWaybillAsyncResponse = DeleteRoadWaybillAsyncResponses[keyof DeleteRoadWaybillAsyncResponses];
+
+export type GetRoadWaybillByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}';
+};
+
+export type GetRoadWaybillByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetRoadWaybillByIdAsyncError = GetRoadWaybillByIdAsyncErrors[keyof GetRoadWaybillByIdAsyncErrors];
+
+export type GetRoadWaybillByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RoadWaybillDtoEnvelopeReadable;
+};
+
+export type GetRoadWaybillByIdAsyncResponse = GetRoadWaybillByIdAsyncResponses[keyof GetRoadWaybillByIdAsyncResponses];
+
+export type UpdateRoadWaybillAsyncData = {
+    body?: RoadWaybillUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}';
+};
+
+export type UpdateRoadWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateRoadWaybillAsyncError = UpdateRoadWaybillAsyncErrors[keyof UpdateRoadWaybillAsyncErrors];
+
+export type UpdateRoadWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateRoadWaybillAsyncResponse = UpdateRoadWaybillAsyncResponses[keyof UpdateRoadWaybillAsyncResponses];
+
+export type IssueRoadWaybillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/Issue';
+};
+
+export type IssueRoadWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type IssueRoadWaybillAsyncError = IssueRoadWaybillAsyncErrors[keyof IssueRoadWaybillAsyncErrors];
+
+export type IssueRoadWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type IssueRoadWaybillAsyncResponse = IssueRoadWaybillAsyncResponses[keyof IssueRoadWaybillAsyncResponses];
+
+export type MarkRoadWaybillInTransitAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/MarkInTransit';
+};
+
+export type MarkRoadWaybillInTransitAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkRoadWaybillInTransitAsyncError = MarkRoadWaybillInTransitAsyncErrors[keyof MarkRoadWaybillInTransitAsyncErrors];
+
+export type MarkRoadWaybillInTransitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkRoadWaybillInTransitAsyncResponse = MarkRoadWaybillInTransitAsyncResponses[keyof MarkRoadWaybillInTransitAsyncResponses];
+
+export type MarkRoadWaybillDeliveredAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/MarkDelivered';
+};
+
+export type MarkRoadWaybillDeliveredAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkRoadWaybillDeliveredAsyncError = MarkRoadWaybillDeliveredAsyncErrors[keyof MarkRoadWaybillDeliveredAsyncErrors];
+
+export type MarkRoadWaybillDeliveredAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkRoadWaybillDeliveredAsyncResponse = MarkRoadWaybillDeliveredAsyncResponses[keyof MarkRoadWaybillDeliveredAsyncResponses];
+
+export type DisputeRoadWaybillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/Dispute';
+};
+
+export type DisputeRoadWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type DisputeRoadWaybillAsyncError = DisputeRoadWaybillAsyncErrors[keyof DisputeRoadWaybillAsyncErrors];
+
+export type DisputeRoadWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DisputeRoadWaybillAsyncResponse = DisputeRoadWaybillAsyncResponses[keyof DisputeRoadWaybillAsyncResponses];
+
+export type CancelRoadWaybillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/Cancel';
+};
+
+export type CancelRoadWaybillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CancelRoadWaybillAsyncError = CancelRoadWaybillAsyncErrors[keyof CancelRoadWaybillAsyncErrors];
+
+export type CancelRoadWaybillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CancelRoadWaybillAsyncResponse = CancelRoadWaybillAsyncResponses[keyof CancelRoadWaybillAsyncResponses];
+
+export type GetRoadWaybillLinesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines';
+};
+
+export type GetRoadWaybillLinesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRoadWaybillLinesAsyncError = GetRoadWaybillLinesAsyncErrors[keyof GetRoadWaybillLinesAsyncErrors];
+
+export type GetRoadWaybillLinesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WaybillLineDtoListEnvelopeReadable;
+};
+
+export type GetRoadWaybillLinesAsyncResponse = GetRoadWaybillLinesAsyncResponses[keyof GetRoadWaybillLinesAsyncResponses];
+
+export type AddRoadWaybillLineAsyncData = {
+    body?: WaybillLineCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines';
+};
+
+export type AddRoadWaybillLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type AddRoadWaybillLineAsyncError = AddRoadWaybillLineAsyncErrors[keyof AddRoadWaybillLineAsyncErrors];
+
+export type AddRoadWaybillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AddRoadWaybillLineAsyncResponse = AddRoadWaybillLineAsyncResponses[keyof AddRoadWaybillLineAsyncResponses];
+
+export type GetRoadWaybillLinesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines/Count';
+};
+
+export type GetRoadWaybillLinesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRoadWaybillLinesCountAsyncError = GetRoadWaybillLinesCountAsyncErrors[keyof GetRoadWaybillLinesCountAsyncErrors];
+
+export type GetRoadWaybillLinesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetRoadWaybillLinesCountAsyncResponse = GetRoadWaybillLinesCountAsyncResponses[keyof GetRoadWaybillLinesCountAsyncResponses];
+
+export type RemoveRoadWaybillLineAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines/{lineId}';
+};
+
+export type RemoveRoadWaybillLineAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type RemoveRoadWaybillLineAsyncError = RemoveRoadWaybillLineAsyncErrors[keyof RemoveRoadWaybillLineAsyncErrors];
+
+export type RemoveRoadWaybillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type RemoveRoadWaybillLineAsyncResponse = RemoveRoadWaybillLineAsyncResponses[keyof RemoveRoadWaybillLineAsyncResponses];
+
+export type UpdateRoadWaybillLineAsyncData = {
+    body?: WaybillLineUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        waybillId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines/{lineId}';
+};
+
+export type UpdateRoadWaybillLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateRoadWaybillLineAsyncError = UpdateRoadWaybillLineAsyncErrors[keyof UpdateRoadWaybillLineAsyncErrors];
+
+export type UpdateRoadWaybillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateRoadWaybillLineAsyncResponse = UpdateRoadWaybillLineAsyncResponses[keyof UpdateRoadWaybillLineAsyncResponses];
+
+export type GetSeawayBillsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills';
+};
+
+export type GetSeawayBillsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSeawayBillsAsyncError = GetSeawayBillsAsyncErrors[keyof GetSeawayBillsAsyncErrors];
+
+export type GetSeawayBillsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SeawayBillDtoListEnvelopeReadable;
+};
+
+export type GetSeawayBillsAsyncResponse = GetSeawayBillsAsyncResponses[keyof GetSeawayBillsAsyncResponses];
+
+export type CreateSeawayBillAsyncData = {
+    body?: SeawayBillCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills';
+};
+
+export type CreateSeawayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateSeawayBillAsyncError = CreateSeawayBillAsyncErrors[keyof CreateSeawayBillAsyncErrors];
+
+export type CreateSeawayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateSeawayBillAsyncResponse = CreateSeawayBillAsyncResponses[keyof CreateSeawayBillAsyncResponses];
+
+export type GetSeawayBillsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/Count';
+};
+
+export type GetSeawayBillsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSeawayBillsCountAsyncError = GetSeawayBillsCountAsyncErrors[keyof GetSeawayBillsCountAsyncErrors];
+
+export type GetSeawayBillsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSeawayBillsCountAsyncResponse = GetSeawayBillsCountAsyncResponses[keyof GetSeawayBillsCountAsyncResponses];
+
+export type DeleteSeawayBillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}';
+};
+
+export type DeleteSeawayBillAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteSeawayBillAsyncError = DeleteSeawayBillAsyncErrors[keyof DeleteSeawayBillAsyncErrors];
+
+export type DeleteSeawayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSeawayBillAsyncResponse = DeleteSeawayBillAsyncResponses[keyof DeleteSeawayBillAsyncResponses];
+
+export type GetSeawayBillByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}';
+};
+
+export type GetSeawayBillByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetSeawayBillByIdAsyncError = GetSeawayBillByIdAsyncErrors[keyof GetSeawayBillByIdAsyncErrors];
+
+export type GetSeawayBillByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SeawayBillDtoEnvelopeReadable;
+};
+
+export type GetSeawayBillByIdAsyncResponse = GetSeawayBillByIdAsyncResponses[keyof GetSeawayBillByIdAsyncResponses];
+
+export type UpdateSeawayBillAsyncData = {
+    body?: SeawayBillUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}';
+};
+
+export type UpdateSeawayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateSeawayBillAsyncError = UpdateSeawayBillAsyncErrors[keyof UpdateSeawayBillAsyncErrors];
+
+export type UpdateSeawayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSeawayBillAsyncResponse = UpdateSeawayBillAsyncResponses[keyof UpdateSeawayBillAsyncResponses];
+
+export type IssueSeawayBillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/Issue';
+};
+
+export type IssueSeawayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type IssueSeawayBillAsyncError = IssueSeawayBillAsyncErrors[keyof IssueSeawayBillAsyncErrors];
+
+export type IssueSeawayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type IssueSeawayBillAsyncResponse = IssueSeawayBillAsyncResponses[keyof IssueSeawayBillAsyncResponses];
+
+export type MarkSeawayBillInTransitAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/MarkInTransit';
+};
+
+export type MarkSeawayBillInTransitAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkSeawayBillInTransitAsyncError = MarkSeawayBillInTransitAsyncErrors[keyof MarkSeawayBillInTransitAsyncErrors];
+
+export type MarkSeawayBillInTransitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkSeawayBillInTransitAsyncResponse = MarkSeawayBillInTransitAsyncResponses[keyof MarkSeawayBillInTransitAsyncResponses];
+
+export type MarkSeawayBillArrivedAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/MarkArrived';
+};
+
+export type MarkSeawayBillArrivedAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type MarkSeawayBillArrivedAsyncError = MarkSeawayBillArrivedAsyncErrors[keyof MarkSeawayBillArrivedAsyncErrors];
+
+export type MarkSeawayBillArrivedAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type MarkSeawayBillArrivedAsyncResponse = MarkSeawayBillArrivedAsyncResponses[keyof MarkSeawayBillArrivedAsyncResponses];
+
+export type ReleaseSeawayBillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/Release';
+};
+
+export type ReleaseSeawayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type ReleaseSeawayBillAsyncError = ReleaseSeawayBillAsyncErrors[keyof ReleaseSeawayBillAsyncErrors];
+
+export type ReleaseSeawayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ReleaseSeawayBillAsyncResponse = ReleaseSeawayBillAsyncResponses[keyof ReleaseSeawayBillAsyncResponses];
+
+export type CancelSeawayBillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/Cancel';
+};
+
+export type CancelSeawayBillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CancelSeawayBillAsyncError = CancelSeawayBillAsyncErrors[keyof CancelSeawayBillAsyncErrors];
+
+export type CancelSeawayBillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CancelSeawayBillAsyncResponse = CancelSeawayBillAsyncResponses[keyof CancelSeawayBillAsyncResponses];
+
+export type GetSeawayBillLinesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/Lines';
+};
+
+export type GetSeawayBillLinesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSeawayBillLinesAsyncError = GetSeawayBillLinesAsyncErrors[keyof GetSeawayBillLinesAsyncErrors];
+
+export type GetSeawayBillLinesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WaybillLineDtoListEnvelopeReadable;
+};
+
+export type GetSeawayBillLinesAsyncResponse = GetSeawayBillLinesAsyncResponses[keyof GetSeawayBillLinesAsyncResponses];
+
+export type AddSeawayBillLineAsyncData = {
+    body?: WaybillLineCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/Lines';
+};
+
+export type AddSeawayBillLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type AddSeawayBillLineAsyncError = AddSeawayBillLineAsyncErrors[keyof AddSeawayBillLineAsyncErrors];
+
+export type AddSeawayBillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AddSeawayBillLineAsyncResponse = AddSeawayBillLineAsyncResponses[keyof AddSeawayBillLineAsyncResponses];
+
+export type GetSeawayBillLinesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/Lines/Count';
+};
+
+export type GetSeawayBillLinesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSeawayBillLinesCountAsyncError = GetSeawayBillLinesCountAsyncErrors[keyof GetSeawayBillLinesCountAsyncErrors];
+
+export type GetSeawayBillLinesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSeawayBillLinesCountAsyncResponse = GetSeawayBillLinesCountAsyncResponses[keyof GetSeawayBillLinesCountAsyncResponses];
+
+export type RemoveSeawayBillLineAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/Lines/{lineId}';
+};
+
+export type RemoveSeawayBillLineAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type RemoveSeawayBillLineAsyncError = RemoveSeawayBillLineAsyncErrors[keyof RemoveSeawayBillLineAsyncErrors];
+
+export type RemoveSeawayBillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type RemoveSeawayBillLineAsyncResponse = RemoveSeawayBillLineAsyncResponses[keyof RemoveSeawayBillLineAsyncResponses];
+
+export type UpdateSeawayBillLineAsyncData = {
+    body?: WaybillLineUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billId: string;
+        lineId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SeawayBills/{billId}/Lines/{lineId}';
+};
+
+export type UpdateSeawayBillLineAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateSeawayBillLineAsyncError = UpdateSeawayBillLineAsyncErrors[keyof UpdateSeawayBillLineAsyncErrors];
+
+export type UpdateSeawayBillLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSeawayBillLineAsyncResponse = UpdateSeawayBillLineAsyncResponses[keyof UpdateSeawayBillLineAsyncResponses];
+
+export type GetSupplierProfilesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SupplierProfiles';
+};
+
+export type GetSupplierProfilesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSupplierProfilesAsyncError = GetSupplierProfilesAsyncErrors[keyof GetSupplierProfilesAsyncErrors];
+
+export type GetSupplierProfilesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SupplierProfileDtoListEnvelopeReadable;
+};
+
+export type GetSupplierProfilesAsyncResponse = GetSupplierProfilesAsyncResponses[keyof GetSupplierProfilesAsyncResponses];
+
+export type CreateSupplierProfileAsyncData = {
+    body?: SupplierProfileCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SupplierProfiles';
+};
+
+export type CreateSupplierProfileAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateSupplierProfileAsyncError = CreateSupplierProfileAsyncErrors[keyof CreateSupplierProfileAsyncErrors];
+
+export type CreateSupplierProfileAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateSupplierProfileAsyncResponse = CreateSupplierProfileAsyncResponses[keyof CreateSupplierProfileAsyncResponses];
+
+export type GetSupplierProfilesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SupplierProfiles/Count';
+};
+
+export type GetSupplierProfilesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSupplierProfilesCountAsyncError = GetSupplierProfilesCountAsyncErrors[keyof GetSupplierProfilesCountAsyncErrors];
+
+export type GetSupplierProfilesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSupplierProfilesCountAsyncResponse = GetSupplierProfilesCountAsyncResponses[keyof GetSupplierProfilesCountAsyncResponses];
+
+export type DeleteSupplierProfileAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supplierProfileId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SupplierProfiles/{supplierProfileId}';
+};
+
+export type DeleteSupplierProfileAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteSupplierProfileAsyncError = DeleteSupplierProfileAsyncErrors[keyof DeleteSupplierProfileAsyncErrors];
+
+export type DeleteSupplierProfileAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSupplierProfileAsyncResponse = DeleteSupplierProfileAsyncResponses[keyof DeleteSupplierProfileAsyncResponses];
+
+export type GetSupplierProfileByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supplierProfileId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SupplierProfiles/{supplierProfileId}';
+};
+
+export type GetSupplierProfileByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetSupplierProfileByIdAsyncError = GetSupplierProfileByIdAsyncErrors[keyof GetSupplierProfileByIdAsyncErrors];
+
+export type GetSupplierProfileByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SupplierProfileDtoEnvelopeReadable;
+};
+
+export type GetSupplierProfileByIdAsyncResponse = GetSupplierProfileByIdAsyncResponses[keyof GetSupplierProfileByIdAsyncResponses];
+
+export type UpdateSupplierProfileAsyncData = {
+    body?: SupplierProfileUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supplierProfileId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/SupplierProfiles/{supplierProfileId}';
+};
+
+export type UpdateSupplierProfileAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateSupplierProfileAsyncError = UpdateSupplierProfileAsyncErrors[keyof UpdateSupplierProfileAsyncErrors];
+
+export type UpdateSupplierProfileAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSupplierProfileAsyncResponse = UpdateSupplierProfileAsyncResponses[keyof UpdateSupplierProfileAsyncResponses];
+
+export type GetTruckDriversAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/TruckDrivers';
+};
+
+export type GetTruckDriversAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetTruckDriversAsyncError = GetTruckDriversAsyncErrors[keyof GetTruckDriversAsyncErrors];
+
+export type GetTruckDriversAsyncResponses = {
+    /**
+     * OK
+     */
+    200: TruckDriverDtoListEnvelopeReadable;
+};
+
+export type GetTruckDriversAsyncResponse = GetTruckDriversAsyncResponses[keyof GetTruckDriversAsyncResponses];
+
+export type CreateTruckDriverAsyncData = {
+    body?: TruckDriverCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/TruckDrivers';
+};
+
+export type CreateTruckDriverAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateTruckDriverAsyncError = CreateTruckDriverAsyncErrors[keyof CreateTruckDriverAsyncErrors];
+
+export type CreateTruckDriverAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateTruckDriverAsyncResponse = CreateTruckDriverAsyncResponses[keyof CreateTruckDriverAsyncResponses];
+
+export type GetTruckDriversCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/TruckDrivers/Count';
+};
+
+export type GetTruckDriversCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetTruckDriversCountAsyncError = GetTruckDriversCountAsyncErrors[keyof GetTruckDriversCountAsyncErrors];
+
+export type GetTruckDriversCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetTruckDriversCountAsyncResponse = GetTruckDriversCountAsyncResponses[keyof GetTruckDriversCountAsyncResponses];
+
+export type DeleteTruckDriverAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        driverId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/TruckDrivers/{driverId}';
+};
+
+export type DeleteTruckDriverAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteTruckDriverAsyncError = DeleteTruckDriverAsyncErrors[keyof DeleteTruckDriverAsyncErrors];
+
+export type DeleteTruckDriverAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteTruckDriverAsyncResponse = DeleteTruckDriverAsyncResponses[keyof DeleteTruckDriverAsyncResponses];
+
+export type GetTruckDriverByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        driverId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/TruckDrivers/{driverId}';
+};
+
+export type GetTruckDriverByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetTruckDriverByIdAsyncError = GetTruckDriverByIdAsyncErrors[keyof GetTruckDriverByIdAsyncErrors];
+
+export type GetTruckDriverByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: TruckDriverDtoEnvelopeReadable;
+};
+
+export type GetTruckDriverByIdAsyncResponse = GetTruckDriverByIdAsyncResponses[keyof GetTruckDriverByIdAsyncResponses];
+
+export type UpdateTruckDriverAsyncData = {
+    body?: TruckDriverUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        driverId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/TruckDrivers/{driverId}';
+};
+
+export type UpdateTruckDriverAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateTruckDriverAsyncError = UpdateTruckDriverAsyncErrors[keyof UpdateTruckDriverAsyncErrors];
+
+export type UpdateTruckDriverAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateTruckDriverAsyncResponse = UpdateTruckDriverAsyncResponses[keyof UpdateTruckDriverAsyncResponses];
+
+export type ActivateTruckDriverAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        driverId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/TruckDrivers/{driverId}/Activate';
+};
+
+export type ActivateTruckDriverAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type ActivateTruckDriverAsyncError = ActivateTruckDriverAsyncErrors[keyof ActivateTruckDriverAsyncErrors];
+
+export type ActivateTruckDriverAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ActivateTruckDriverAsyncResponse = ActivateTruckDriverAsyncResponses[keyof ActivateTruckDriverAsyncResponses];
+
+export type DeactivateTruckDriverAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        driverId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/TruckDrivers/{driverId}/Deactivate';
+};
+
+export type DeactivateTruckDriverAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type DeactivateTruckDriverAsyncError = DeactivateTruckDriverAsyncErrors[keyof DeactivateTruckDriverAsyncErrors];
+
+export type DeactivateTruckDriverAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeactivateTruckDriverAsyncResponse = DeactivateTruckDriverAsyncResponses[keyof DeactivateTruckDriverAsyncResponses];
+
+export type GetTrucksAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks';
+};
+
+export type GetTrucksAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetTrucksAsyncError = GetTrucksAsyncErrors[keyof GetTrucksAsyncErrors];
+
+export type GetTrucksAsyncResponses = {
+    /**
+     * OK
+     */
+    200: TruckDtoListEnvelopeReadable;
+};
+
+export type GetTrucksAsyncResponse = GetTrucksAsyncResponses[keyof GetTrucksAsyncResponses];
+
+export type CreateTruckAsyncData = {
+    body?: TruckCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks';
+};
+
+export type CreateTruckAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateTruckAsyncError = CreateTruckAsyncErrors[keyof CreateTruckAsyncErrors];
+
+export type CreateTruckAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateTruckAsyncResponse = CreateTruckAsyncResponses[keyof CreateTruckAsyncResponses];
+
+export type GetTrucksCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/Count';
+};
+
+export type GetTrucksCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetTrucksCountAsyncError = GetTrucksCountAsyncErrors[keyof GetTrucksCountAsyncErrors];
+
+export type GetTrucksCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetTrucksCountAsyncResponse = GetTrucksCountAsyncResponses[keyof GetTrucksCountAsyncResponses];
+
+export type DeleteTruckAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}';
+};
+
+export type DeleteTruckAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteTruckAsyncError = DeleteTruckAsyncErrors[keyof DeleteTruckAsyncErrors];
+
+export type DeleteTruckAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteTruckAsyncResponse = DeleteTruckAsyncResponses[keyof DeleteTruckAsyncResponses];
+
+export type GetTruckByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}';
+};
+
+export type GetTruckByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetTruckByIdAsyncError = GetTruckByIdAsyncErrors[keyof GetTruckByIdAsyncErrors];
+
+export type GetTruckByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: TruckDtoEnvelopeReadable;
+};
+
+export type GetTruckByIdAsyncResponse = GetTruckByIdAsyncResponses[keyof GetTruckByIdAsyncResponses];
+
+export type UpdateTruckAsyncData = {
+    body?: TruckUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}';
+};
+
+export type UpdateTruckAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateTruckAsyncError = UpdateTruckAsyncErrors[keyof UpdateTruckAsyncErrors];
+
+export type UpdateTruckAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateTruckAsyncResponse = UpdateTruckAsyncResponses[keyof UpdateTruckAsyncResponses];
+
+export type GetTruckTripsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips';
+};
+
+export type GetTruckTripsAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetTruckTripsAsyncError = GetTruckTripsAsyncErrors[keyof GetTruckTripsAsyncErrors];
+
+export type GetTruckTripsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: TruckTripDtoListEnvelopeReadable;
+};
+
+export type GetTruckTripsAsyncResponse = GetTruckTripsAsyncResponses[keyof GetTruckTripsAsyncResponses];
+
+export type CreateTruckTripAsyncData = {
+    body?: TruckTripCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips';
+};
+
+export type CreateTruckTripAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateTruckTripAsyncError = CreateTruckTripAsyncErrors[keyof CreateTruckTripAsyncErrors];
+
+export type CreateTruckTripAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateTruckTripAsyncResponse = CreateTruckTripAsyncResponses[keyof CreateTruckTripAsyncResponses];
+
+export type GetTruckTripsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips/Count';
+};
+
+export type GetTruckTripsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetTruckTripsCountAsyncError = GetTruckTripsCountAsyncErrors[keyof GetTruckTripsCountAsyncErrors];
+
+export type GetTruckTripsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetTruckTripsCountAsyncResponse = GetTruckTripsCountAsyncResponses[keyof GetTruckTripsCountAsyncResponses];
+
+export type DeleteTruckTripAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+        tripId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}';
+};
+
+export type DeleteTruckTripAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteTruckTripAsyncError = DeleteTruckTripAsyncErrors[keyof DeleteTruckTripAsyncErrors];
+
+export type DeleteTruckTripAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteTruckTripAsyncResponse = DeleteTruckTripAsyncResponses[keyof DeleteTruckTripAsyncResponses];
+
+export type UpdateTruckTripAsyncData = {
+    body?: TruckTripUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+        tripId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}';
+};
+
+export type UpdateTruckTripAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateTruckTripAsyncError = UpdateTruckTripAsyncErrors[keyof UpdateTruckTripAsyncErrors];
+
+export type UpdateTruckTripAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateTruckTripAsyncResponse = UpdateTruckTripAsyncResponses[keyof UpdateTruckTripAsyncResponses];
+
+export type DispatchTripAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+        tripId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Dispatch';
+};
+
+export type DispatchTripAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type DispatchTripAsyncError = DispatchTripAsyncErrors[keyof DispatchTripAsyncErrors];
+
+export type DispatchTripAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DispatchTripAsyncResponse = DispatchTripAsyncResponses[keyof DispatchTripAsyncResponses];
+
+export type DepartTripAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+        tripId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Depart';
+};
+
+export type DepartTripAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type DepartTripAsyncError = DepartTripAsyncErrors[keyof DepartTripAsyncErrors];
+
+export type DepartTripAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DepartTripAsyncResponse = DepartTripAsyncResponses[keyof DepartTripAsyncResponses];
+
+export type ArriveTripAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+        tripId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Arrive';
+};
+
+export type ArriveTripAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type ArriveTripAsyncError = ArriveTripAsyncErrors[keyof ArriveTripAsyncErrors];
+
+export type ArriveTripAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ArriveTripAsyncResponse = ArriveTripAsyncResponses[keyof ArriveTripAsyncResponses];
+
+export type DeliverTripAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+        tripId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Deliver';
+};
+
+export type DeliverTripAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type DeliverTripAsyncError = DeliverTripAsyncErrors[keyof DeliverTripAsyncErrors];
+
+export type DeliverTripAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeliverTripAsyncResponse = DeliverTripAsyncResponses[keyof DeliverTripAsyncResponses];
+
+export type CancelTripAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        truckId: string;
+        tripId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Cancel';
+};
+
+export type CancelTripAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CancelTripAsyncError = CancelTripAsyncErrors[keyof CancelTripAsyncErrors];
+
+export type CancelTripAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CancelTripAsyncResponse = CancelTripAsyncResponses[keyof CancelTripAsyncResponses];
+
+export type GetVesselsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Vessels';
+};
+
+export type GetVesselsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetVesselsAsyncError = GetVesselsAsyncErrors[keyof GetVesselsAsyncErrors];
+
+export type GetVesselsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: VesselDtoListEnvelopeReadable;
+};
+
+export type GetVesselsAsyncResponse = GetVesselsAsyncResponses[keyof GetVesselsAsyncResponses];
+
+export type CreateVesselAsyncData = {
+    body?: VesselCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Vessels';
+};
+
+export type CreateVesselAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateVesselAsyncError = CreateVesselAsyncErrors[keyof CreateVesselAsyncErrors];
+
+export type CreateVesselAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateVesselAsyncResponse = CreateVesselAsyncResponses[keyof CreateVesselAsyncResponses];
+
+export type GetVesselsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Vessels/Count';
+};
+
+export type GetVesselsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetVesselsCountAsyncError = GetVesselsCountAsyncErrors[keyof GetVesselsCountAsyncErrors];
+
+export type GetVesselsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetVesselsCountAsyncResponse = GetVesselsCountAsyncResponses[keyof GetVesselsCountAsyncResponses];
+
+export type DeleteVesselAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        vesselId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Vessels/{vesselId}';
+};
+
+export type DeleteVesselAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteVesselAsyncError = DeleteVesselAsyncErrors[keyof DeleteVesselAsyncErrors];
+
+export type DeleteVesselAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteVesselAsyncResponse = DeleteVesselAsyncResponses[keyof DeleteVesselAsyncResponses];
+
+export type GetVesselByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        vesselId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Vessels/{vesselId}';
+};
+
+export type GetVesselByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetVesselByIdAsyncError = GetVesselByIdAsyncErrors[keyof GetVesselByIdAsyncErrors];
+
+export type GetVesselByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: VesselDtoEnvelopeReadable;
+};
+
+export type GetVesselByIdAsyncResponse = GetVesselByIdAsyncResponses[keyof GetVesselByIdAsyncResponses];
+
+export type UpdateVesselAsyncData = {
+    body?: VesselUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        vesselId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Vessels/{vesselId}';
+};
+
+export type UpdateVesselAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateVesselAsyncError = UpdateVesselAsyncErrors[keyof UpdateVesselAsyncErrors];
+
+export type UpdateVesselAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateVesselAsyncResponse = UpdateVesselAsyncResponses[keyof UpdateVesselAsyncResponses];
+
+export type GetVoyagesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages';
+};
+
+export type GetVoyagesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetVoyagesAsyncError = GetVoyagesAsyncErrors[keyof GetVoyagesAsyncErrors];
+
+export type GetVoyagesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: VoyageDtoListEnvelopeReadable;
+};
+
+export type GetVoyagesAsyncResponse = GetVoyagesAsyncResponses[keyof GetVoyagesAsyncResponses];
+
+export type CreateVoyageAsyncData = {
+    body?: VoyageCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages';
+};
+
+export type CreateVoyageAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateVoyageAsyncError = CreateVoyageAsyncErrors[keyof CreateVoyageAsyncErrors];
+
+export type CreateVoyageAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateVoyageAsyncResponse = CreateVoyageAsyncResponses[keyof CreateVoyageAsyncResponses];
+
+export type GetVoyagesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/Count';
+};
+
+export type GetVoyagesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetVoyagesCountAsyncError = GetVoyagesCountAsyncErrors[keyof GetVoyagesCountAsyncErrors];
+
+export type GetVoyagesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetVoyagesCountAsyncResponse = GetVoyagesCountAsyncResponses[keyof GetVoyagesCountAsyncResponses];
+
+export type DeleteVoyageAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}';
+};
+
+export type DeleteVoyageAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteVoyageAsyncError = DeleteVoyageAsyncErrors[keyof DeleteVoyageAsyncErrors];
+
+export type DeleteVoyageAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteVoyageAsyncResponse = DeleteVoyageAsyncResponses[keyof DeleteVoyageAsyncResponses];
+
+export type GetVoyageByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}';
+};
+
+export type GetVoyageByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetVoyageByIdAsyncError = GetVoyageByIdAsyncErrors[keyof GetVoyageByIdAsyncErrors];
+
+export type GetVoyageByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: VoyageDtoEnvelopeReadable;
+};
+
+export type GetVoyageByIdAsyncResponse = GetVoyageByIdAsyncResponses[keyof GetVoyageByIdAsyncResponses];
+
+export type UpdateVoyageAsyncData = {
+    body?: VoyageUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}';
+};
+
+export type UpdateVoyageAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateVoyageAsyncError = UpdateVoyageAsyncErrors[keyof UpdateVoyageAsyncErrors];
+
+export type UpdateVoyageAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateVoyageAsyncResponse = UpdateVoyageAsyncResponses[keyof UpdateVoyageAsyncResponses];
+
+export type StartVoyageAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}/Start';
+};
+
+export type StartVoyageAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type StartVoyageAsyncError = StartVoyageAsyncErrors[keyof StartVoyageAsyncErrors];
+
+export type StartVoyageAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type StartVoyageAsyncResponse = StartVoyageAsyncResponses[keyof StartVoyageAsyncResponses];
+
+export type CompleteVoyageAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}/Complete';
+};
+
+export type CompleteVoyageAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CompleteVoyageAsyncError = CompleteVoyageAsyncErrors[keyof CompleteVoyageAsyncErrors];
+
+export type CompleteVoyageAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CompleteVoyageAsyncResponse = CompleteVoyageAsyncResponses[keyof CompleteVoyageAsyncResponses];
+
+export type CancelVoyageAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}/Cancel';
+};
+
+export type CancelVoyageAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CancelVoyageAsyncError = CancelVoyageAsyncErrors[keyof CancelVoyageAsyncErrors];
+
+export type CancelVoyageAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CancelVoyageAsyncResponse = CancelVoyageAsyncResponses[keyof CancelVoyageAsyncResponses];
+
+export type GetVoyagePortCallsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls';
+};
+
+export type GetVoyagePortCallsAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetVoyagePortCallsAsyncError = GetVoyagePortCallsAsyncErrors[keyof GetVoyagePortCallsAsyncErrors];
+
+export type GetVoyagePortCallsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: VoyagePortCallDtoListEnvelopeReadable;
+};
+
+export type GetVoyagePortCallsAsyncResponse = GetVoyagePortCallsAsyncResponses[keyof GetVoyagePortCallsAsyncResponses];
+
+export type CreateVoyagePortCallAsyncData = {
+    body?: VoyagePortCallCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls';
+};
+
+export type CreateVoyagePortCallAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateVoyagePortCallAsyncError = CreateVoyagePortCallAsyncErrors[keyof CreateVoyagePortCallAsyncErrors];
+
+export type CreateVoyagePortCallAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateVoyagePortCallAsyncResponse = CreateVoyagePortCallAsyncResponses[keyof CreateVoyagePortCallAsyncResponses];
+
+export type GetVoyagePortCallsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls/Count';
+};
+
+export type GetVoyagePortCallsCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetVoyagePortCallsCountAsyncError = GetVoyagePortCallsCountAsyncErrors[keyof GetVoyagePortCallsCountAsyncErrors];
+
+export type GetVoyagePortCallsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetVoyagePortCallsCountAsyncResponse = GetVoyagePortCallsCountAsyncResponses[keyof GetVoyagePortCallsCountAsyncResponses];
+
+export type DeleteVoyagePortCallAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+        portCallId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls/{portCallId}';
+};
+
+export type DeleteVoyagePortCallAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteVoyagePortCallAsyncError = DeleteVoyagePortCallAsyncErrors[keyof DeleteVoyagePortCallAsyncErrors];
+
+export type DeleteVoyagePortCallAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteVoyagePortCallAsyncResponse = DeleteVoyagePortCallAsyncResponses[keyof DeleteVoyagePortCallAsyncResponses];
+
+export type UpdateVoyagePortCallAsyncData = {
+    body?: VoyagePortCallUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        voyageId: string;
+        portCallId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls/{portCallId}';
+};
+
+export type UpdateVoyagePortCallAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateVoyagePortCallAsyncError = UpdateVoyagePortCallAsyncErrors[keyof UpdateVoyagePortCallAsyncErrors];
+
+export type UpdateVoyagePortCallAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateVoyagePortCallAsyncResponse = UpdateVoyagePortCallAsyncResponses[keyof UpdateVoyagePortCallAsyncResponses];
+
+export type GetWarehousesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Warehouses';
+};
+
+export type GetWarehousesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWarehousesAsyncError = GetWarehousesAsyncErrors[keyof GetWarehousesAsyncErrors];
+
+export type GetWarehousesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WarehouseDtoListEnvelopeReadable;
+};
+
+export type GetWarehousesAsyncResponse = GetWarehousesAsyncResponses[keyof GetWarehousesAsyncResponses];
+
+export type CreateWarehouseAsyncData = {
+    body?: WarehouseCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Warehouses';
+};
+
+export type CreateWarehouseAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type CreateWarehouseAsyncError = CreateWarehouseAsyncErrors[keyof CreateWarehouseAsyncErrors];
+
+export type CreateWarehouseAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateWarehouseAsyncResponse = CreateWarehouseAsyncResponses[keyof CreateWarehouseAsyncResponses];
+
+export type GetWarehousesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Warehouses/Count';
+};
+
+export type GetWarehousesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWarehousesCountAsyncResponse = GetWarehousesCountAsyncResponses[keyof GetWarehousesCountAsyncResponses];
+
+export type DeleteWarehouseAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warehouseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Warehouses/{warehouseId}';
+};
+
+export type DeleteWarehouseAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteWarehouseAsyncError = DeleteWarehouseAsyncErrors[keyof DeleteWarehouseAsyncErrors];
+
+export type DeleteWarehouseAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteWarehouseAsyncResponse = DeleteWarehouseAsyncResponses[keyof DeleteWarehouseAsyncResponses];
+
+export type GetWarehouseByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warehouseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Warehouses/{warehouseId}';
+};
+
+export type GetWarehouseByIdAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetWarehouseByIdAsyncError = GetWarehouseByIdAsyncErrors[keyof GetWarehouseByIdAsyncErrors];
+
+export type GetWarehouseByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WarehouseDtoEnvelopeReadable;
+};
+
+export type GetWarehouseByIdAsyncResponse = GetWarehouseByIdAsyncResponses[keyof GetWarehouseByIdAsyncResponses];
+
+export type UpdateWarehouseAsyncData = {
+    body?: WarehouseUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warehouseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LogisticsService/Warehouses/{warehouseId}';
+};
+
+export type UpdateWarehouseAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type UpdateWarehouseAsyncError = UpdateWarehouseAsyncErrors[keyof UpdateWarehouseAsyncErrors];
+
+export type UpdateWarehouseAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateWarehouseAsyncResponse = UpdateWarehouseAsyncResponses[keyof UpdateWarehouseAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

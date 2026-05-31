@@ -470,6 +470,57 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type MarketingAreaCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    description?: string | null;
+};
+
+export type MarketingAreaDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    name?: string | null;
+    description?: string | null;
+};
+
+export type MarketingAreaDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: MarketingAreaDto;
+};
+
+export type MarketingAreaDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: MarketingAreaDto;
+};
+
+export type MarketingAreaDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<MarketingAreaDto> | null;
+};
+
+export type MarketingAreaDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<MarketingAreaDto> | null;
+};
+
+export type MarketingAreaUpdateDto = {
+    name?: string | null;
+    description?: string | null;
+};
+
 export type MarketingCampaignCreateDto = {
     id?: string;
     timestamp?: string;
@@ -540,6 +591,80 @@ export type MarketingCampaignUpdateDto = {
     expectedResponsePercent?: number;
     marketingAreaId?: string | null;
     currencyId?: string | null;
+};
+
+export type MarketingLeadCreateDto = {
+    id?: string;
+    timestamp?: string;
+    firstName?: string | null;
+    lastName?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    company?: string | null;
+    jobTitle?: string | null;
+    source?: string | null;
+    notes?: string | null;
+    score?: number;
+};
+
+export type MarketingLeadDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    company?: string | null;
+    jobTitle?: string | null;
+    source?: string | null;
+    status?: string | null;
+    notes?: string | null;
+    score?: number;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type MarketingLeadDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: MarketingLeadDto;
+};
+
+export type MarketingLeadDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: MarketingLeadDto;
+};
+
+export type MarketingLeadDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<MarketingLeadDto> | null;
+};
+
+export type MarketingLeadDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<MarketingLeadDto> | null;
+};
+
+export type MarketingLeadUpdateDto = {
+    firstName?: string | null;
+    lastName?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    company?: string | null;
+    jobTitle?: string | null;
+    source?: string | null;
+    status?: string | null;
+    notes?: string | null;
+    score?: number;
 };
 
 export type MarketingListCreateDto = {
@@ -686,6 +811,7 @@ export type OrderDto = {
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
     forexRate?: number;
+    forexRatesSnapshot?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -900,6 +1026,37 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetEmailGroupsODataAsyncData = {
@@ -1938,6 +2095,234 @@ export type PostAccountManageDownloadPersonalDataResponses = {
     200: unknown;
 };
 
+export type GetMarketingAreasAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingAreas';
+};
+
+export type GetMarketingAreasAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetMarketingAreasAsyncError = GetMarketingAreasAsyncErrors[keyof GetMarketingAreasAsyncErrors];
+
+export type GetMarketingAreasAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MarketingAreaDtoListEnvelopeReadable;
+};
+
+export type GetMarketingAreasAsyncResponse = GetMarketingAreasAsyncResponses[keyof GetMarketingAreasAsyncResponses];
+
+export type CreateMarketingAreaAsyncData = {
+    body?: MarketingAreaCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingAreas';
+};
+
+export type CreateMarketingAreaAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateMarketingAreaAsyncError = CreateMarketingAreaAsyncErrors[keyof CreateMarketingAreaAsyncErrors];
+
+export type CreateMarketingAreaAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateMarketingAreaAsyncResponse = CreateMarketingAreaAsyncResponses[keyof CreateMarketingAreaAsyncResponses];
+
+export type GetMarketingAreasCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingAreas/Count';
+};
+
+export type GetMarketingAreasCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetMarketingAreasCountAsyncError = GetMarketingAreasCountAsyncErrors[keyof GetMarketingAreasCountAsyncErrors];
+
+export type GetMarketingAreasCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetMarketingAreasCountAsyncResponse = GetMarketingAreasCountAsyncResponses[keyof GetMarketingAreasCountAsyncResponses];
+
+export type DeleteMarketingAreaAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingAreaId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingAreas/{marketingAreaId}';
+};
+
+export type DeleteMarketingAreaAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteMarketingAreaAsyncError = DeleteMarketingAreaAsyncErrors[keyof DeleteMarketingAreaAsyncErrors];
+
+export type DeleteMarketingAreaAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteMarketingAreaAsyncResponse = DeleteMarketingAreaAsyncResponses[keyof DeleteMarketingAreaAsyncResponses];
+
+export type GetMarketingAreaByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingAreaId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingAreas/{marketingAreaId}';
+};
+
+export type GetMarketingAreaByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetMarketingAreaByIdAsyncError = GetMarketingAreaByIdAsyncErrors[keyof GetMarketingAreaByIdAsyncErrors];
+
+export type GetMarketingAreaByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MarketingAreaDtoEnvelopeReadable;
+};
+
+export type GetMarketingAreaByIdAsyncResponse = GetMarketingAreaByIdAsyncResponses[keyof GetMarketingAreaByIdAsyncResponses];
+
+export type UpdateMarketingAreaAsyncData = {
+    body?: MarketingAreaUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingAreaId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingAreas/{marketingAreaId}';
+};
+
+export type UpdateMarketingAreaAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateMarketingAreaAsyncError = UpdateMarketingAreaAsyncErrors[keyof UpdateMarketingAreaAsyncErrors];
+
+export type UpdateMarketingAreaAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateMarketingAreaAsyncResponse = UpdateMarketingAreaAsyncResponses[keyof UpdateMarketingAreaAsyncResponses];
+
 export type GetMarketingCampaignODataAsyncData = {
     body?: never;
     headers?: {
@@ -2168,6 +2553,144 @@ export type UpdateMarketingCampaignAsyncResponses = {
 };
 
 export type UpdateMarketingCampaignAsyncResponse = UpdateMarketingCampaignAsyncResponses[keyof UpdateMarketingCampaignAsyncResponses];
+
+export type GetMarketingLeadsODataAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingLeads';
+};
+
+export type GetMarketingLeadsODataAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MarketingLeadDtoListEnvelopeReadable;
+};
+
+export type GetMarketingLeadsODataAsyncResponse = GetMarketingLeadsODataAsyncResponses[keyof GetMarketingLeadsODataAsyncResponses];
+
+export type CreateMarketingLeadAsyncData = {
+    body: MarketingLeadCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingLeads';
+};
+
+export type CreateMarketingLeadAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateMarketingLeadAsyncResponse = CreateMarketingLeadAsyncResponses[keyof CreateMarketingLeadAsyncResponses];
+
+export type GetMarketingLeadsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingLeads/Count';
+};
+
+export type GetMarketingLeadsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetMarketingLeadsCountAsyncResponse = GetMarketingLeadsCountAsyncResponses[keyof GetMarketingLeadsCountAsyncResponses];
+
+export type DeleteMarketingLeadAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingLeadId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingLeads/{marketingLeadId}';
+};
+
+export type DeleteMarketingLeadAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteMarketingLeadAsyncResponse = DeleteMarketingLeadAsyncResponses[keyof DeleteMarketingLeadAsyncResponses];
+
+export type GetMarketingLeadDetailsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingLeadId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingLeads/{marketingLeadId}';
+};
+
+export type GetMarketingLeadDetailsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MarketingLeadDtoEnvelopeReadable;
+};
+
+export type GetMarketingLeadDetailsAsyncResponse = GetMarketingLeadDetailsAsyncResponses[keyof GetMarketingLeadDetailsAsyncResponses];
+
+export type UpdateMarketingLeadAsyncData = {
+    body: MarketingLeadUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingLeadId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingLeads/{marketingLeadId}';
+};
+
+export type UpdateMarketingLeadAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateMarketingLeadAsyncResponse = UpdateMarketingLeadAsyncResponses[keyof UpdateMarketingLeadAsyncResponses];
 
 export type GetMarketingListODataAsyncData = {
     body?: never;
@@ -3132,5 +3655,5 @@ export type GetTrackingPixelAsyncResponses = {
 export type GetTrackingPixelAsyncResponse = GetTrackingPixelAsyncResponses[keyof GetTrackingPixelAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

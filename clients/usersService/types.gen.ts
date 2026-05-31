@@ -57,6 +57,7 @@ export type AddressDtoListEnvelopeWritable = {
 
 export type CartDto = {
     id?: string | null;
+    timestamp?: string | null;
     ip?: string | null;
     type?: string | null;
     total?: number;
@@ -375,6 +376,7 @@ export type ExtendedUserDtoEnvelopeWritable = {
 
 export type FollowRecordDto = {
     id?: string | null;
+    timestamp?: string | null;
     type?: string | null;
     followerId?: string | null;
     followedId?: string | null;
@@ -965,7 +967,7 @@ export type UserUpdateDto = {
 
 export type WalletDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     balance?: number;
     cryptoBalance?: number;
     testMode?: boolean;
@@ -994,6 +996,37 @@ export type WalletDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: WalletDto;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetVersionData = {
@@ -2387,5 +2420,5 @@ export type GetCurrentUserInvitationAsyncResponses = {
 export type GetCurrentUserInvitationAsyncResponse = GetCurrentUserInvitationAsyncResponses[keyof GetCurrentUserInvitationAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

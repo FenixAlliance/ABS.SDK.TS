@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/version": {
     get: {
       responses: {
@@ -302,12 +411,163 @@ export interface paths {
       };
     };
   };
+  "/api/v2/SalesService/LoyaltyPrograms/Count": {
+    /**
+     * Get loyalty programs count
+     * @description Returns the total count of loyalty programs for the specified tenant with OData filter support.
+     */
+    get: operations["CountLoyaltyProgramsAsync"];
+  };
+  "/api/v2/SalesService/LoyaltyPrograms": {
+    /**
+     * Get loyalty programs
+     * @description Retrieves a list of loyalty programs for the specified tenant with OData query support.
+     */
+    get: operations["GetLoyaltyProgramsAsync"];
+    /**
+     * Create a loyalty program
+     * @description Creates a new loyalty program for the specified tenant.
+     */
+    post: operations["CreateLoyaltyProgramAsync"];
+  };
+  "/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}": {
+    /**
+     * Get loyalty program by ID
+     * @description Retrieves a single loyalty program by its unique identifier.
+     */
+    get: operations["GetLoyaltyProgramAsync"];
+    /**
+     * Update a loyalty program
+     * @description Updates an existing loyalty program by its unique identifier.
+     */
+    put: operations["UpdateLoyaltyProgramAsync"];
+    /**
+     * Delete a loyalty program
+     * @description Deletes an existing loyalty program by its unique identifier.
+     */
+    delete: operations["DeleteLoyaltyProgramAsync"];
+  };
   "/api/v2/SalesService/Margins/{marginId}/Details": {
     /**
      * Get margin details by ID
      * @description Retrieves the details of a specific sales margin by its ID.
      */
     get: operations["GetQuoteAsync"];
+  };
+  "/api/v2/SalesService/PointOfSales/Count": {
+    /**
+     * Get point of sales count
+     * @description Returns the total count of point of sales for the specified tenant with OData filter support.
+     */
+    get: operations["CountPointOfSalesAsync"];
+  };
+  "/api/v2/SalesService/PointOfSales": {
+    /**
+     * Get point of sales
+     * @description Retrieves a list of point of sales for the specified tenant with OData query support.
+     */
+    get: operations["GetPointOfSalesAsync"];
+    /**
+     * Create a point of sale
+     * @description Creates a new point of sale for the specified tenant.
+     */
+    post: operations["CreatePointOfSaleAsync"];
+  };
+  "/api/v2/SalesService/PointOfSales/{pointOfSaleId}": {
+    /**
+     * Get point of sale by ID
+     * @description Retrieves a single point of sale by its unique identifier.
+     */
+    get: operations["GetPointOfSaleAsync"];
+    /**
+     * Update a point of sale
+     * @description Updates an existing point of sale by its unique identifier.
+     */
+    put: operations["UpdatePointOfSaleAsync"];
+    /**
+     * Delete a point of sale
+     * @description Deletes an existing point of sale by its unique identifier.
+     */
+    delete: operations["DeletePointOfSaleAsync"];
+  };
+  "/api/v2/SalesService/SalesLiteratures/Count": {
+    /**
+     * Get sales literatures count
+     * @description Returns the total count of sales literatures for the specified tenant with OData filter support.
+     */
+    get: operations["CountSalesLiteraturesAsync"];
+  };
+  "/api/v2/SalesService/SalesLiteratures": {
+    /**
+     * Get sales literatures
+     * @description Retrieves a list of sales literatures for the specified tenant with OData query support.
+     */
+    get: operations["GetSalesLiteraturesAsync"];
+    /**
+     * Create a sales literature
+     * @description Creates a new sales literature for the specified tenant.
+     */
+    post: operations["CreateSalesLiteratureAsync"];
+  };
+  "/api/v2/SalesService/SalesLiteratures/Extended": {
+    /**
+     * Get extended sales literatures
+     * @description Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
+     */
+    get: operations["GetExtendedSalesLiteraturesAsync"];
+  };
+  "/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}": {
+    /**
+     * Get sales literature by ID
+     * @description Retrieves a single sales literature by its unique identifier.
+     */
+    get: operations["GetSalesLiteratureAsync"];
+    /**
+     * Update a sales literature
+     * @description Updates an existing sales literature by its unique identifier.
+     */
+    put: operations["UpdateSalesLiteratureAsync"];
+    /**
+     * Delete a sales literature
+     * @description Deletes an existing sales literature by its unique identifier.
+     */
+    delete: operations["DeleteSalesLiteratureAsync"];
+  };
+  "/api/v2/SalesService/Stores/Count": {
+    /**
+     * Get stores count
+     * @description Returns the total count of stores for the specified tenant with OData filter support.
+     */
+    get: operations["CountStoresAsync"];
+  };
+  "/api/v2/SalesService/Stores": {
+    /**
+     * Get stores
+     * @description Retrieves a list of stores for the specified tenant with OData query support.
+     */
+    get: operations["GetStoresAsync"];
+    /**
+     * Create a store
+     * @description Creates a new store for the specified tenant.
+     */
+    post: operations["CreateStoreAsync"];
+  };
+  "/api/v2/SalesService/Stores/{storeId}": {
+    /**
+     * Get store by ID
+     * @description Retrieves a single store by its unique identifier.
+     */
+    get: operations["GetStoreAsync"];
+    /**
+     * Update a store
+     * @description Updates an existing store by its unique identifier.
+     */
+    put: operations["UpdateStoreAsync"];
+    /**
+     * Delete a store
+     * @description Deletes an existing store by its unique identifier.
+     */
+    delete: operations["DeleteStoreAsync"];
   };
 }
 
@@ -321,6 +581,48 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    EmptyEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+    };
+    ErrorEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+    };
+    ExtendedSalesLiteratureDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      content?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      modifiedDate?: string;
+      /** Format: date-time */
+      expirationDate?: string;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      salesLiteratureTypeId?: string | null;
+      salesLiteratureType?: components["schemas"]["SalesLiteratureTypeDto"];
+      tenant?: components["schemas"]["TenantDto"];
+    };
+    ExtendedSalesLiteratureDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ExtendedSalesLiteratureDto"][] | null;
     };
     ForgotPasswordRequest: {
       email: string | null;
@@ -346,11 +648,111 @@ export interface components {
       email: string | null;
       isEmailConfirmed: boolean;
     };
+    Int32Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      /** Format: int32 */
+      result?: number;
+    };
     LoginRequest: {
       email: string | null;
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    LoyaltyProgramCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      priceListId?: string | null;
+    };
+    LoyaltyProgramDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      title?: string | null;
+      description?: string | null;
+      priceListId?: string | null;
+    };
+    LoyaltyProgramDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LoyaltyProgramDto"];
+    };
+    LoyaltyProgramDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LoyaltyProgramDto"][] | null;
+    };
+    LoyaltyProgramUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      priceListId?: string | null;
+    };
+    PointOfSaleCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      code?: string | null;
+      description?: string | null;
+      priceListId?: string | null;
+      locationId?: string | null;
+    };
+    PointOfSaleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      locationId?: string | null;
+      priceListId?: string | null;
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+    };
+    PointOfSaleDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PointOfSaleDto"];
+    };
+    PointOfSaleDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PointOfSaleDto"][] | null;
+    };
+    PointOfSaleUpdateDto: {
+      code?: string | null;
+      title?: string | null;
+      description?: string | null;
+      priceListId?: string | null;
+      locationId?: string | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -366,6 +768,154 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    SalesLiteratureCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title?: string | null;
+      content?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      modifiedDate?: string;
+      /** Format: date-time */
+      expirationDate?: string;
+      salesLiteratureTypeId?: string | null;
+    };
+    SalesLiteratureDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      content?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      modifiedDate?: string;
+      /** Format: date-time */
+      expirationDate?: string;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      salesLiteratureTypeId?: string | null;
+    };
+    SalesLiteratureDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SalesLiteratureDto"];
+    };
+    SalesLiteratureDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SalesLiteratureDto"][] | null;
+    };
+    SalesLiteratureTypeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    SalesLiteratureUpdateDto: {
+      title?: string | null;
+      content?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      modifiedDate?: string;
+      /** Format: date-time */
+      expirationDate?: string;
+      salesLiteratureTypeId?: string | null;
+    };
+    StoreCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      eCommerce?: boolean;
+      currencyId?: string | null;
+    };
+    StoreDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      name?: string | null;
+      eCommerce?: boolean;
+      currencyId?: string | null;
+    };
+    StoreDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["StoreDto"];
+    };
+    StoreDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["StoreDto"][] | null;
+    };
+    StoreUpdateDto: {
+      name?: string | null;
+      eCommerce?: boolean | null;
+      currencyId?: string | null;
+    };
+    TenantDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      qualifiedName?: string | null;
+      taxId?: string | null;
+      about?: string | null;
+      walletId?: string | null;
+      socialFeedId?: string | null;
+      businessIndustryId?: string | null;
+      businessSegmentId?: string | null;
+      socialProfileId?: string | null;
+      languageId?: string | null;
+      name?: string | null;
+      duns?: string | null;
+      slogan?: string | null;
+      legalName?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      cartId?: string | null;
+      currencyId?: string | null;
+      timezoneId?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      email?: string | null;
+      phone?: string | null;
+      webUrl?: string | null;
+      facebookUrl?: string | null;
+      twitterUrl?: string | null;
+      gitHubUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      youTubeUrl?: string | null;
+      whatsAppNumber?: string | null;
+      supportPhoneNumber?: string | null;
+      verified?: boolean;
+      businessName?: string | null;
+      businessLegalName?: string | null;
+      twitterUsername?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -412,6 +962,189 @@ export interface operations {
     };
   };
   /**
+   * Get loyalty programs count
+   * @description Returns the total count of loyalty programs for the specified tenant with OData filter support.
+   */
+  CountLoyaltyProgramsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get loyalty programs
+   * @description Retrieves a list of loyalty programs for the specified tenant with OData query support.
+   */
+  GetLoyaltyProgramsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LoyaltyProgramDtoListEnvelope"];
+          "application/xml": components["schemas"]["LoyaltyProgramDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a loyalty program
+   * @description Creates a new loyalty program for the specified tenant.
+   */
+  CreateLoyaltyProgramAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LoyaltyProgramCreateDto"];
+        "application/xml": components["schemas"]["LoyaltyProgramCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get loyalty program by ID
+   * @description Retrieves a single loyalty program by its unique identifier.
+   */
+  GetLoyaltyProgramAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        loyaltyProgramId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LoyaltyProgramDtoEnvelope"];
+          "application/xml": components["schemas"]["LoyaltyProgramDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a loyalty program
+   * @description Updates an existing loyalty program by its unique identifier.
+   */
+  UpdateLoyaltyProgramAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        loyaltyProgramId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LoyaltyProgramUpdateDto"];
+        "application/xml": components["schemas"]["LoyaltyProgramUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a loyalty program
+   * @description Deletes an existing loyalty program by its unique identifier.
+   */
+  DeleteLoyaltyProgramAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        loyaltyProgramId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get margin details by ID
    * @description Retrieves the details of a specific sales margin by its ID.
    */
@@ -431,6 +1164,582 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /**
+   * Get point of sales count
+   * @description Returns the total count of point of sales for the specified tenant with OData filter support.
+   */
+  CountPointOfSalesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get point of sales
+   * @description Retrieves a list of point of sales for the specified tenant with OData query support.
+   */
+  GetPointOfSalesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PointOfSaleDtoListEnvelope"];
+          "application/xml": components["schemas"]["PointOfSaleDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a point of sale
+   * @description Creates a new point of sale for the specified tenant.
+   */
+  CreatePointOfSaleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PointOfSaleCreateDto"];
+        "application/xml": components["schemas"]["PointOfSaleCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get point of sale by ID
+   * @description Retrieves a single point of sale by its unique identifier.
+   */
+  GetPointOfSaleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        pointOfSaleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PointOfSaleDtoEnvelope"];
+          "application/xml": components["schemas"]["PointOfSaleDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a point of sale
+   * @description Updates an existing point of sale by its unique identifier.
+   */
+  UpdatePointOfSaleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        pointOfSaleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PointOfSaleUpdateDto"];
+        "application/xml": components["schemas"]["PointOfSaleUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a point of sale
+   * @description Deletes an existing point of sale by its unique identifier.
+   */
+  DeletePointOfSaleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        pointOfSaleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get sales literatures count
+   * @description Returns the total count of sales literatures for the specified tenant with OData filter support.
+   */
+  CountSalesLiteraturesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get sales literatures
+   * @description Retrieves a list of sales literatures for the specified tenant with OData query support.
+   */
+  GetSalesLiteraturesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SalesLiteratureDtoListEnvelope"];
+          "application/xml": components["schemas"]["SalesLiteratureDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a sales literature
+   * @description Creates a new sales literature for the specified tenant.
+   */
+  CreateSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SalesLiteratureCreateDto"];
+        "application/xml": components["schemas"]["SalesLiteratureCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get extended sales literatures
+   * @description Retrieves a list of sales literatures with extended details for the specified tenant with OData query support.
+   */
+  GetExtendedSalesLiteraturesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExtendedSalesLiteratureDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExtendedSalesLiteratureDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get sales literature by ID
+   * @description Retrieves a single sales literature by its unique identifier.
+   */
+  GetSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        salesLiteratureId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SalesLiteratureDtoEnvelope"];
+          "application/xml": components["schemas"]["SalesLiteratureDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a sales literature
+   * @description Updates an existing sales literature by its unique identifier.
+   */
+  UpdateSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        salesLiteratureId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SalesLiteratureUpdateDto"];
+        "application/xml": components["schemas"]["SalesLiteratureUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a sales literature
+   * @description Deletes an existing sales literature by its unique identifier.
+   */
+  DeleteSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        salesLiteratureId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get stores count
+   * @description Returns the total count of stores for the specified tenant with OData filter support.
+   */
+  CountStoresAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get stores
+   * @description Retrieves a list of stores for the specified tenant with OData query support.
+   */
+  GetStoresAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StoreDtoListEnvelope"];
+          "application/xml": components["schemas"]["StoreDtoListEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a store
+   * @description Creates a new store for the specified tenant.
+   */
+  CreateStoreAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StoreCreateDto"];
+        "application/xml": components["schemas"]["StoreCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get store by ID
+   * @description Retrieves a single store by its unique identifier.
+   */
+  GetStoreAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        storeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StoreDtoEnvelope"];
+          "application/xml": components["schemas"]["StoreDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a store
+   * @description Updates an existing store by its unique identifier.
+   */
+  UpdateStoreAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        storeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StoreUpdateDto"];
+        "application/xml": components["schemas"]["StoreUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a store
+   * @description Deletes an existing store by its unique identifier.
+   */
+  DeleteStoreAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        storeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };

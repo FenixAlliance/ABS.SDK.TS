@@ -5,6 +5,259 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
+  "/api/v2/CrmService/ContactGroups": {
+    /**
+     * Get all contact groups
+     * @description Retrieves all contact groups for the specified tenant.
+     */
+    get: operations["GetContactGroupsAsync"];
+    /**
+     * Create a new contact group
+     * @description Creates a new contact group for the specified tenant.
+     */
+    post: operations["CreateContactGroupAsync"];
+  };
+  "/api/v2/CrmService/ContactGroups/Count": {
+    /**
+     * Get contact groups count
+     * @description Returns the count of contact groups for the specified tenant.
+     */
+    get: operations["GetContactGroupsCountAsync"];
+  };
+  "/api/v2/CrmService/ContactGroups/{id}": {
+    /**
+     * Get contact group by ID
+     * @description Retrieves a specific contact group by its identifier.
+     */
+    get: operations["GetContactGroupByIdAsync"];
+    /**
+     * Update a contact group
+     * @description Updates an existing contact group for the specified tenant.
+     */
+    put: operations["UpdateContactGroupAsync"];
+    /**
+     * Delete a contact group
+     * @description Deletes a contact group for the specified tenant.
+     */
+    delete: operations["DeleteContactGroupAsync"];
+  };
+  "/api/v2/CrmService/ContactProfiles": {
+    /**
+     * Get all contact profiles
+     * @description Retrieves all contact profiles for the specified tenant.
+     */
+    get: operations["GetContactProfilesAsync"];
+    /**
+     * Create a new contact profile
+     * @description Creates a new contact profile for the specified tenant. The ContactId must be provided in the request body.
+     */
+    post: operations["CreateContactProfileAsync"];
+  };
+  "/api/v2/CrmService/ContactProfiles/Count": {
+    /**
+     * Get contact profiles count
+     * @description Returns the count of contact profiles for the specified tenant.
+     */
+    get: operations["GetContactProfilesCountAsync"];
+  };
+  "/api/v2/CrmService/ContactProfiles/{id}": {
+    /**
+     * Get contact profile by ID
+     * @description Retrieves a specific contact profile by its identifier.
+     */
+    get: operations["GetContactProfileByIdAsync"];
+    /**
+     * Update a contact profile
+     * @description Updates an existing contact profile for the specified tenant.
+     */
+    put: operations["UpdateContactProfileAsync"];
+    /**
+     * Delete a contact profile
+     * @description Deletes a contact profile for the specified tenant.
+     */
+    delete: operations["DeleteContactProfileAsync"];
+  };
+  "/api/v2/CrmService/ContactRelations": {
+    /**
+     * Get all contact relations
+     * @description Retrieves all contact relations for the specified tenant.
+     */
+    get: operations["GetContactRelationsAsync"];
+    /**
+     * Create a new contact relation
+     * @description Creates a new contact relation for the specified tenant.
+     */
+    post: operations["CreateContactRelationAsync"];
+  };
+  "/api/v2/CrmService/ContactRelations/Count": {
+    /**
+     * Get contact relations count
+     * @description Returns the count of contact relations for the specified tenant.
+     */
+    get: operations["GetContactRelationsCountAsync"];
+  };
+  "/api/v2/CrmService/ContactRelations/{id}": {
+    /**
+     * Get contact relation by ID
+     * @description Retrieves a specific contact relation by its identifier.
+     */
+    get: operations["GetContactRelationByIdAsync"];
+    /**
+     * Update a contact relation
+     * @description Updates an existing contact relation for the specified tenant.
+     */
+    put: operations["UpdateContactRelationAsync"];
+    /**
+     * Delete a contact relation
+     * @description Deletes a contact relation for the specified tenant.
+     */
+    delete: operations["DeleteContactRelationAsync"];
+  };
+  "/api/v2/CrmService/ContactRelationTypes": {
+    /**
+     * Get all contact relation types
+     * @description Retrieves all contact relation types for the specified tenant.
+     */
+    get: operations["GetContactRelationTypesAsync"];
+    /**
+     * Create a new contact relation type
+     * @description Creates a new contact relation type for the specified tenant.
+     */
+    post: operations["CreateContactRelationTypeAsync"];
+  };
+  "/api/v2/CrmService/ContactRelationTypes/Count": {
+    /**
+     * Get contact relation types count
+     * @description Returns the count of contact relation types for the specified tenant.
+     */
+    get: operations["GetContactRelationTypesCountAsync"];
+  };
+  "/api/v2/CrmService/ContactRelationTypes/{id}": {
+    /**
+     * Get contact relation type by ID
+     * @description Retrieves a specific contact relation type by its identifier.
+     */
+    get: operations["GetContactRelationTypeByIdAsync"];
+    /**
+     * Update a contact relation type
+     * @description Updates an existing contact relation type for the specified tenant.
+     */
+    put: operations["UpdateContactRelationTypeAsync"];
+    /**
+     * Delete a contact relation type
+     * @description Deletes a contact relation type for the specified tenant.
+     */
+    delete: operations["DeleteContactRelationTypeAsync"];
+  };
   "/api/v2/CrmService/Contacts": {
     /**
      * Get all business owned contacts
@@ -148,6 +401,30 @@ export interface paths {
      * @description Get a contact's social profiles
      */
     get: operations["GetContactProfilesAsync"];
+    /**
+     * Create a contact profile
+     * @description Creates a new profile for the specified contact.
+     */
+    post: operations["CreateContactProfileAsync"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Profiles/Count": {
+    /**
+     * Get contact profiles count
+     * @description Returns the count of profiles for the specified contact.
+     */
+    get: operations["GetContactProfilesCountAsync"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Profiles/{profileId}": {
+    /**
+     * Update a contact profile
+     * @description Updates an existing profile for the specified contact.
+     */
+    put: operations["UpdateContactProfileAsync"];
+    /**
+     * Delete a contact profile
+     * @description Deletes a profile for the specified contact.
+     */
+    delete: operations["DeleteContactProfileAsync"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/SocialProfile": {
     /**
@@ -211,6 +488,42 @@ export interface paths {
      * @description This action is only available for global administrators (business_owner role).
      */
     post: operations["SendContactEmail"];
+  };
+  "/api/v2/CrmService/ContactSources": {
+    /**
+     * Get all contact sources
+     * @description Retrieves all contact sources for the specified tenant.
+     */
+    get: operations["GetContactSourcesAsync"];
+    /**
+     * Create a new contact source
+     * @description Creates a new contact source for the specified tenant.
+     */
+    post: operations["CreateContactSourceAsync"];
+  };
+  "/api/v2/CrmService/ContactSources/Count": {
+    /**
+     * Get contact sources count
+     * @description Returns the count of contact sources for the specified tenant.
+     */
+    get: operations["GetContactSourcesCountAsync"];
+  };
+  "/api/v2/CrmService/ContactSources/{id}": {
+    /**
+     * Get contact source by ID
+     * @description Retrieves a specific contact source by its identifier.
+     */
+    get: operations["GetContactSourceByIdAsync"];
+    /**
+     * Update a contact source
+     * @description Updates an existing contact source for the specified tenant.
+     */
+    put: operations["UpdateContactSourceAsync"];
+    /**
+     * Delete a contact source
+     * @description Deletes a contact source for the specified tenant.
+     */
+    delete: operations["DeleteContactSourceAsync"];
   };
   "/version": {
     get: {
@@ -600,8 +913,72 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    ApplyClause: {
+      transformations?: components["schemas"]["TransformationNode"][] | null;
+    };
+    ApplyQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      resultClrType?: components["schemas"]["Type"];
+      applyClause?: components["schemas"]["ApplyClause"];
+      rawValue?: string | null;
+    };
+    AsnEncodedData: {
+      oid?: components["schemas"]["Oid"];
+      /** Format: byte */
+      rawData?: string | null;
+    };
+    Assembly: {
+      definedTypes?: (readonly components["schemas"]["TypeInfo"][]) | null;
+      exportedTypes?: (readonly components["schemas"]["Type"][]) | null;
+      /** @deprecated */
+      codeBase?: string | null;
+      entryPoint?: components["schemas"]["MethodInfo"];
+      fullName?: string | null;
+      imageRuntimeVersion?: string | null;
+      isDynamic?: boolean;
+      location?: string | null;
+      reflectionOnly?: boolean;
+      isCollectible?: boolean;
+      isFullyTrusted?: boolean;
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      /** @deprecated */
+      escapedCodeBase?: string | null;
+      manifestModule?: components["schemas"]["Module"];
+      modules?: (readonly components["schemas"]["Module"][]) | null;
+      /** @deprecated */
+      globalAssemblyCache?: boolean;
+      /** Format: int64 */
+      hostContext?: number;
+      /** @enum {string} */
+      securityRuleSet?: "None" | "Level1" | "Level2";
+    };
+    AsymmetricAlgorithm: {
+      /** Format: int32 */
+      keySize?: number;
+      legalKeySizes?: (readonly components["schemas"]["KeySizes"][]) | null;
+      signatureAlgorithm?: string | null;
+      keyExchangeAlgorithm?: string | null;
+    };
+    ByteReadOnlyMemory: {
+      /** Format: int32 */
+      length?: number;
+      isEmpty?: boolean;
+      span?: components["schemas"]["ByteReadOnlySpan"];
+    };
+    ByteReadOnlySpan: {
+      /** Format: int32 */
+      length?: number;
+      isEmpty?: boolean;
+    };
+    CancellationToken: {
+      isCancellationRequested?: boolean;
+      canBeCanceled?: boolean;
+      waitHandle?: components["schemas"]["WaitHandle"];
+    };
     CartDto: {
       id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
       ip?: string | null;
       type?: string | null;
       /** Format: double */
@@ -627,6 +1004,97 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["CartDto"];
+    };
+    Claim: {
+      issuer?: string | null;
+      originalIssuer?: string | null;
+      properties?: {
+        [key: string]: string;
+      } | null;
+      subject?: components["schemas"]["ClaimsIdentity"];
+      type?: string | null;
+      value?: string | null;
+      valueType?: string | null;
+    };
+    ClaimsIdentity: {
+      authenticationType?: string | null;
+      isAuthenticated?: boolean;
+      actor?: components["schemas"]["ClaimsIdentity"];
+      bootstrapContext?: unknown;
+      claims?: (readonly components["schemas"]["Claim"][]) | null;
+      label?: string | null;
+      name?: string | null;
+      nameClaimType?: string | null;
+      roleClaimType?: string | null;
+    };
+    ClaimsPrincipal: {
+      claims?: (readonly components["schemas"]["Claim"][]) | null;
+      identities?: (readonly components["schemas"]["ClaimsIdentity"][]) | null;
+      identity?: components["schemas"]["IIdentity"];
+    };
+    ComputeClause: {
+      computedItems?: components["schemas"]["ComputeExpression"][] | null;
+    };
+    ComputeExpression: {
+      expression?: components["schemas"]["SingleValueNode"];
+      alias?: string | null;
+      typeReference?: components["schemas"]["IEdmTypeReference"];
+    };
+    ComputeQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      resultClrType?: components["schemas"]["Type"];
+      computeClause?: components["schemas"]["ComputeClause"];
+      rawValue?: string | null;
+      validator?: components["schemas"]["IComputeQueryValidator"];
+    };
+    ConnectionInfo: {
+      id?: string | null;
+      remoteIpAddress?: components["schemas"]["IPAddress"];
+      /** Format: int32 */
+      remotePort?: number;
+      localIpAddress?: components["schemas"]["IPAddress"];
+      /** Format: int32 */
+      localPort?: number;
+      clientCertificate?: components["schemas"]["X509Certificate2"];
+    };
+    ConstructorInfo: {
+      name?: string | null;
+      declaringType?: components["schemas"]["Type"];
+      reflectedType?: components["schemas"]["Type"];
+      module?: components["schemas"]["Module"];
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+      /** @enum {string} */
+      attributes?: "PrivateScope" | "Private" | "FamANDAssem" | "Assembly" | "Family" | "FamORAssem" | "Public" | "MemberAccessMask" | "UnmanagedExport" | "Static" | "Final" | "Virtual" | "HideBySig" | "NewSlot" | "CheckAccessOnOverride" | "Abstract" | "SpecialName" | "RTSpecialName" | "PinvokeImpl" | "HasSecurity" | "RequireSecObject" | "ReservedMask";
+      /** @enum {string} */
+      methodImplementationFlags?: "IL" | "Native" | "OPTIL" | "CodeTypeMask" | "ManagedMask" | "NoInlining" | "ForwardRef" | "Synchronized" | "NoOptimization" | "PreserveSig" | "AggressiveInlining" | "AggressiveOptimization" | "InternalCall" | "Async" | "MaxMethodImplVal";
+      /** @enum {string} */
+      callingConvention?: "Standard" | "VarArgs" | "Any" | "HasThis" | "ExplicitThis";
+      isAbstract?: boolean;
+      isConstructor?: boolean;
+      isFinal?: boolean;
+      isHideBySig?: boolean;
+      isSpecialName?: boolean;
+      isStatic?: boolean;
+      isVirtual?: boolean;
+      isAssembly?: boolean;
+      isFamily?: boolean;
+      isFamilyAndAssembly?: boolean;
+      isFamilyOrAssembly?: boolean;
+      isPrivate?: boolean;
+      isPublic?: boolean;
+      isConstructedGenericMethod?: boolean;
+      isGenericMethod?: boolean;
+      isGenericMethodDefinition?: boolean;
+      containsGenericParameters?: boolean;
+      methodHandle?: components["schemas"]["RuntimeMethodHandle"];
+      isSecurityCritical?: boolean;
+      isSecuritySafeCritical?: boolean;
+      isSecurityTransparent?: boolean;
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
     };
     ContactCreateDto: {
       /** Format: uuid */
@@ -774,17 +1242,49 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ContactDto"][] | null;
     };
+    ContactProfileCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+    };
     ContactProfileDto: {
       id?: string | null;
       /** Format: date-time */
-      timestamp?: string;
-      tenantId?: string | null;
+      timestamp?: string | null;
       contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
       enrollmentId?: string | null;
       about?: string | null;
       verified?: boolean;
       submitted?: boolean;
       avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
       qualifiedName?: string | null;
       /** Format: date-time */
       verificationTimestamp?: string | null;
@@ -809,6 +1309,12 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
     };
+    ContactProfileDtoETag: {
+      isWellFormed?: boolean;
+      entityType?: components["schemas"]["Type"];
+      isAny?: boolean;
+      isIfNoneMatch?: boolean;
+    };
     ContactProfileDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -817,6 +1323,219 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["ContactProfileDto"][] | null;
+    };
+    ContactProfileDtoODataQueryOptions: {
+      request?: components["schemas"]["HttpRequest"];
+      context?: components["schemas"]["ODataQueryContext"];
+      rawValues?: components["schemas"]["ODataRawQueryOptions"];
+      selectExpand?: components["schemas"]["SelectExpandQueryOption"];
+      apply?: components["schemas"]["ApplyQueryOption"];
+      compute?: components["schemas"]["ComputeQueryOption"];
+      filter?: components["schemas"]["FilterQueryOption"];
+      search?: components["schemas"]["SearchQueryOption"];
+      orderBy?: components["schemas"]["OrderByQueryOption"];
+      skip?: components["schemas"]["SkipQueryOption"];
+      skipToken?: components["schemas"]["SkipTokenQueryOption"];
+      top?: components["schemas"]["TopQueryOption"];
+      count?: components["schemas"]["CountQueryOption"];
+      validator?: components["schemas"]["IODataQueryValidator"];
+      ifMatch?: components["schemas"]["ContactProfileDtoETag"];
+      ifNoneMatch?: components["schemas"]["ContactProfileDtoETag"];
+    };
+    ContactProfileUpdateDto: {
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+    };
+    ContactRelationCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      contactId?: string | null;
+      relatedContactId?: string | null;
+      contactRelationTypeId?: string | null;
+    };
+    ContactRelationDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      contactId?: string | null;
+      contactName?: string | null;
+      relatedContactId?: string | null;
+      relatedContactName?: string | null;
+      contactRelationTypeId?: string | null;
+      contactRelationTypeName?: string | null;
+      qualifiedName?: string | null;
+      tenantId?: string | null;
+    };
+    ContactRelationDtoETag: {
+      isWellFormed?: boolean;
+      entityType?: components["schemas"]["Type"];
+      isAny?: boolean;
+      isIfNoneMatch?: boolean;
+    };
+    ContactRelationDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ContactRelationDto"][] | null;
+    };
+    ContactRelationDtoODataQueryOptions: {
+      request?: components["schemas"]["HttpRequest"];
+      context?: components["schemas"]["ODataQueryContext"];
+      rawValues?: components["schemas"]["ODataRawQueryOptions"];
+      selectExpand?: components["schemas"]["SelectExpandQueryOption"];
+      apply?: components["schemas"]["ApplyQueryOption"];
+      compute?: components["schemas"]["ComputeQueryOption"];
+      filter?: components["schemas"]["FilterQueryOption"];
+      search?: components["schemas"]["SearchQueryOption"];
+      orderBy?: components["schemas"]["OrderByQueryOption"];
+      skip?: components["schemas"]["SkipQueryOption"];
+      skipToken?: components["schemas"]["SkipTokenQueryOption"];
+      top?: components["schemas"]["TopQueryOption"];
+      count?: components["schemas"]["CountQueryOption"];
+      validator?: components["schemas"]["IODataQueryValidator"];
+      ifMatch?: components["schemas"]["ContactRelationDtoETag"];
+      ifNoneMatch?: components["schemas"]["ContactRelationDtoETag"];
+    };
+    ContactRelationTypeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      backName?: string | null;
+      description?: string | null;
+    };
+    ContactRelationTypeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      backName?: string | null;
+      description?: string | null;
+      businessID?: string | null;
+    };
+    ContactRelationTypeDtoETag: {
+      isWellFormed?: boolean;
+      entityType?: components["schemas"]["Type"];
+      isAny?: boolean;
+      isIfNoneMatch?: boolean;
+    };
+    ContactRelationTypeDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ContactRelationTypeDto"][] | null;
+    };
+    ContactRelationTypeDtoODataQueryOptions: {
+      request?: components["schemas"]["HttpRequest"];
+      context?: components["schemas"]["ODataQueryContext"];
+      rawValues?: components["schemas"]["ODataRawQueryOptions"];
+      selectExpand?: components["schemas"]["SelectExpandQueryOption"];
+      apply?: components["schemas"]["ApplyQueryOption"];
+      compute?: components["schemas"]["ComputeQueryOption"];
+      filter?: components["schemas"]["FilterQueryOption"];
+      search?: components["schemas"]["SearchQueryOption"];
+      orderBy?: components["schemas"]["OrderByQueryOption"];
+      skip?: components["schemas"]["SkipQueryOption"];
+      skipToken?: components["schemas"]["SkipTokenQueryOption"];
+      top?: components["schemas"]["TopQueryOption"];
+      count?: components["schemas"]["CountQueryOption"];
+      validator?: components["schemas"]["IODataQueryValidator"];
+      ifMatch?: components["schemas"]["ContactRelationTypeDtoETag"];
+      ifNoneMatch?: components["schemas"]["ContactRelationTypeDtoETag"];
+    };
+    ContactRelationTypeUpdateDto: {
+      name: string;
+      backName?: string | null;
+      description?: string | null;
+    };
+    ContactRelationUpdateDto: {
+      contactId?: string | null;
+      relatedContactId?: string | null;
+      contactRelationTypeId?: string | null;
+    };
+    ContactSourceCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+    };
+    ContactSourceDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      businessID?: string | null;
+    };
+    ContactSourceDtoETag: {
+      isWellFormed?: boolean;
+      entityType?: components["schemas"]["Type"];
+      isAny?: boolean;
+      isIfNoneMatch?: boolean;
+    };
+    ContactSourceDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ContactSourceDto"][] | null;
+    };
+    ContactSourceDtoODataQueryOptions: {
+      request?: components["schemas"]["HttpRequest"];
+      context?: components["schemas"]["ODataQueryContext"];
+      rawValues?: components["schemas"]["ODataRawQueryOptions"];
+      selectExpand?: components["schemas"]["SelectExpandQueryOption"];
+      apply?: components["schemas"]["ApplyQueryOption"];
+      compute?: components["schemas"]["ComputeQueryOption"];
+      filter?: components["schemas"]["FilterQueryOption"];
+      search?: components["schemas"]["SearchQueryOption"];
+      orderBy?: components["schemas"]["OrderByQueryOption"];
+      skip?: components["schemas"]["SkipQueryOption"];
+      skipToken?: components["schemas"]["SkipTokenQueryOption"];
+      top?: components["schemas"]["TopQueryOption"];
+      count?: components["schemas"]["CountQueryOption"];
+      validator?: components["schemas"]["IODataQueryValidator"];
+      ifMatch?: components["schemas"]["ContactSourceDtoETag"];
+      ifNoneMatch?: components["schemas"]["ContactSourceDtoETag"];
+    };
+    ContactSourceUpdateDto: {
+      name: string;
+      description?: string | null;
     };
     ContactUpdateDto: {
       /** @enum {string} */
@@ -867,6 +1586,102 @@ export interface components {
       stackOverflowUrl?: string | null;
       faxNumber?: string | null;
     };
+    ContactsGroupCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+    };
+    ContactsGroupDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      businessID?: string | null;
+      businessProfileRecordID?: string | null;
+    };
+    ContactsGroupDtoETag: {
+      isWellFormed?: boolean;
+      entityType?: components["schemas"]["Type"];
+      isAny?: boolean;
+      isIfNoneMatch?: boolean;
+    };
+    ContactsGroupDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ContactsGroupDto"][] | null;
+    };
+    ContactsGroupDtoODataQueryOptions: {
+      request?: components["schemas"]["HttpRequest"];
+      context?: components["schemas"]["ODataQueryContext"];
+      rawValues?: components["schemas"]["ODataRawQueryOptions"];
+      selectExpand?: components["schemas"]["SelectExpandQueryOption"];
+      apply?: components["schemas"]["ApplyQueryOption"];
+      compute?: components["schemas"]["ComputeQueryOption"];
+      filter?: components["schemas"]["FilterQueryOption"];
+      search?: components["schemas"]["SearchQueryOption"];
+      orderBy?: components["schemas"]["OrderByQueryOption"];
+      skip?: components["schemas"]["SkipQueryOption"];
+      skipToken?: components["schemas"]["SkipTokenQueryOption"];
+      top?: components["schemas"]["TopQueryOption"];
+      count?: components["schemas"]["CountQueryOption"];
+      validator?: components["schemas"]["IODataQueryValidator"];
+      ifMatch?: components["schemas"]["ContactsGroupDtoETag"];
+      ifNoneMatch?: components["schemas"]["ContactsGroupDtoETag"];
+    };
+    ContactsGroupUpdateDto: {
+      name: string;
+      description?: string | null;
+    };
+    CountQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      rawValue?: string | null;
+      value?: boolean;
+      validator?: components["schemas"]["ICountQueryValidator"];
+    };
+    CustomAttributeData: {
+      attributeType?: components["schemas"]["Type"];
+      constructor?: components["schemas"]["ConstructorInfo"];
+      constructorArguments?: (readonly components["schemas"]["CustomAttributeTypedArgument"][]) | null;
+      namedArguments?: (readonly components["schemas"]["CustomAttributeNamedArgument"][]) | null;
+    };
+    CustomAttributeNamedArgument: {
+      memberInfo?: components["schemas"]["MemberInfo"];
+      typedValue?: components["schemas"]["CustomAttributeTypedArgument"];
+      memberName?: string | null;
+      isField?: boolean;
+    };
+    CustomAttributeTypedArgument: {
+      argumentType?: components["schemas"]["Type"];
+      value?: unknown;
+    };
+    DefaultQueryConfigurations: {
+      enableExpand?: boolean;
+      enableSelect?: boolean;
+      enableCount?: boolean;
+      enableOrderBy?: boolean;
+      enableFilter?: boolean;
+      /** Format: int32 */
+      maxTop?: number | null;
+      enableSkipToken?: boolean;
+    };
+    ETag: {
+      isWellFormed?: boolean;
+      entityType?: components["schemas"]["Type"];
+      isAny?: boolean;
+      isIfNoneMatch?: boolean;
+    };
+    EdmReferentialConstraintPropertyPair: {
+      dependentProperty?: components["schemas"]["IEdmStructuralProperty"];
+      principalProperty?: components["schemas"]["IEdmStructuralProperty"];
+    };
     EmailDispatchRequest: {
       title: string;
       message: string;
@@ -910,6 +1725,26 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    EventInfo: {
+      name?: string | null;
+      declaringType?: components["schemas"]["Type"];
+      reflectedType?: components["schemas"]["Type"];
+      module?: components["schemas"]["Module"];
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
+      /** @enum {string} */
+      attributes?: "None" | "SpecialName" | "RTSpecialName";
+      isSpecialName?: boolean;
+      addMethod?: components["schemas"]["MethodInfo"];
+      removeMethod?: components["schemas"]["MethodInfo"];
+      raiseMethod?: components["schemas"]["MethodInfo"];
+      isMulticast?: boolean;
+      eventHandlerType?: components["schemas"]["Type"];
     };
     ExtendedContactDto: {
       id?: string | null;
@@ -1011,8 +1846,118 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ExtendedContactDto"][] | null;
     };
+    FieldInfo: {
+      name?: string | null;
+      declaringType?: components["schemas"]["Type"];
+      reflectedType?: components["schemas"]["Type"];
+      module?: components["schemas"]["Module"];
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
+      /** @enum {string} */
+      attributes?: "PrivateScope" | "Private" | "FamANDAssem" | "Assembly" | "Family" | "FamORAssem" | "Public" | "FieldAccessMask" | "Static" | "InitOnly" | "Literal" | "NotSerialized" | "HasFieldRVA" | "SpecialName" | "RTSpecialName" | "HasFieldMarshal" | "PinvokeImpl" | "HasDefault" | "ReservedMask";
+      fieldType?: components["schemas"]["Type"];
+      isInitOnly?: boolean;
+      isLiteral?: boolean;
+      /** @deprecated */
+      isNotSerialized?: boolean;
+      isPinvokeImpl?: boolean;
+      isSpecialName?: boolean;
+      isStatic?: boolean;
+      isAssembly?: boolean;
+      isFamily?: boolean;
+      isFamilyAndAssembly?: boolean;
+      isFamilyOrAssembly?: boolean;
+      isPrivate?: boolean;
+      isPublic?: boolean;
+      isSecurityCritical?: boolean;
+      isSecuritySafeCritical?: boolean;
+      isSecurityTransparent?: boolean;
+      fieldHandle?: components["schemas"]["RuntimeFieldHandle"];
+    };
+    FilterClause: {
+      expression?: components["schemas"]["SingleValueNode"];
+      rangeVariable?: components["schemas"]["RangeVariable"];
+      itemType?: components["schemas"]["IEdmTypeReference"];
+    };
+    FilterQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      validator?: components["schemas"]["IFilterQueryValidator"];
+      compute?: components["schemas"]["ComputeQueryOption"];
+      filterClause?: components["schemas"]["FilterClause"];
+      rawValue?: string | null;
+    };
     ForgotPasswordRequest: {
       email: string | null;
+    };
+    HostString: {
+      value?: string | null;
+      hasValue?: boolean;
+      host?: string | null;
+      /** Format: int32 */
+      port?: number | null;
+    };
+    HttpContext: {
+      features?: (readonly components["schemas"]["TypeObjectKeyValuePair"][]) | null;
+      request?: components["schemas"]["HttpRequest"];
+      response?: components["schemas"]["HttpResponse"];
+      connection?: components["schemas"]["ConnectionInfo"];
+      webSockets?: components["schemas"]["WebSocketManager"];
+      user?: components["schemas"]["ClaimsPrincipal"];
+      items?: {
+        [key: string]: unknown;
+      } | null;
+      requestServices?: components["schemas"]["IServiceProvider"];
+      requestAborted?: components["schemas"]["CancellationToken"];
+      traceIdentifier?: string | null;
+      session?: components["schemas"]["ISession"];
+    };
+    HttpRequest: {
+      httpContext?: components["schemas"]["HttpContext"];
+      method?: string | null;
+      scheme?: string | null;
+      isHttps?: boolean;
+      host?: components["schemas"]["HostString"];
+      pathBase?: components["schemas"]["PathString"];
+      path?: components["schemas"]["PathString"];
+      queryString?: components["schemas"]["QueryString"];
+      query?: components["schemas"]["StringStringValuesKeyValuePair"][] | null;
+      protocol?: string | null;
+      headers?: {
+        [key: string]: string[];
+      } | null;
+      cookies?: components["schemas"]["StringStringKeyValuePair"][] | null;
+      /** Format: int64 */
+      contentLength?: number | null;
+      contentType?: string | null;
+      /** Format: binary */
+      body?: string | null;
+      /** Format: binary */
+      bodyReader?: string | null;
+      hasFormContentType?: boolean;
+      form?: components["schemas"]["StringStringValuesKeyValuePair"][] | null;
+      routeValues?: {
+        [key: string]: unknown;
+      } | null;
+    };
+    HttpResponse: {
+      httpContext?: components["schemas"]["HttpContext"];
+      /** Format: int32 */
+      statusCode?: number;
+      headers?: {
+        [key: string]: string[];
+      } | null;
+      /** Format: binary */
+      body?: string | null;
+      bodyWriter?: components["schemas"]["PipeWriter"];
+      /** Format: int64 */
+      contentLength?: number | null;
+      contentType?: string | null;
+      cookies?: components["schemas"]["IResponseCookies"];
+      hasStarted?: boolean;
     };
     HttpValidationProblemDetails: {
       type?: string | null;
@@ -1026,6 +1971,172 @@ export interface components {
       } | null;
       [key: string]: unknown;
     };
+    IComputeQueryValidator: Record<string, never>;
+    ICountQueryValidator: Record<string, never>;
+    ICustomAttributeProvider: Record<string, never>;
+    IEdmDirectValueAnnotationsManager: Record<string, never>;
+    IEdmEntityContainer: {
+      name?: string | null;
+      /** @enum {string} */
+      schemaElementKind?: "None" | "TypeDefinition" | "Term" | "Action" | "EntityContainer" | "Function";
+      namespace?: string | null;
+      elements?: (readonly components["schemas"]["IEdmEntityContainerElement"][]) | null;
+    };
+    IEdmEntityContainerElement: {
+      name?: string | null;
+      /** @enum {string} */
+      containerElementKind?: "None" | "EntitySet" | "ActionImport" | "FunctionImport" | "Singleton";
+      container?: components["schemas"]["IEdmEntityContainer"];
+    };
+    IEdmEntityType: {
+      /** @enum {string} */
+      typeKind?: "None" | "Primitive" | "Entity" | "Complex" | "Collection" | "EntityReference" | "Enum" | "TypeDefinition" | "Untyped" | "Path";
+      name?: string | null;
+      isAbstract?: boolean;
+      isOpen?: boolean;
+      baseType?: components["schemas"]["IEdmStructuredType"];
+      declaredProperties?: (readonly components["schemas"]["IEdmProperty"][]) | null;
+      /** @enum {string} */
+      schemaElementKind?: "None" | "TypeDefinition" | "Term" | "Action" | "EntityContainer" | "Function";
+      namespace?: string | null;
+      declaredKey?: (readonly components["schemas"]["IEdmStructuralProperty"][]) | null;
+      hasStream?: boolean;
+    };
+    IEdmExpression: {
+      /** @enum {string} */
+      expressionKind?: "None" | "BinaryConstant" | "BooleanConstant" | "DateTimeOffsetConstant" | "DecimalConstant" | "FloatingConstant" | "GuidConstant" | "IntegerConstant" | "StringConstant" | "DurationConstant" | null | "Record" | "Collection" | "Path" | "If" | "Cast" | "IsOf" | "FunctionApplication" | "LabeledExpressionReference" | "Labeled" | "PropertyPath" | "NavigationPropertyPath" | "DateConstant" | "TimeOfDayConstant" | "EnumMember" | "AnnotationPath";
+    };
+    IEdmModel: {
+      schemaElements?: (readonly components["schemas"]["IEdmSchemaElement"][]) | null;
+      vocabularyAnnotations?: (readonly components["schemas"]["IEdmVocabularyAnnotation"][]) | null;
+      referencedModels?: (readonly components["schemas"]["IEdmModel"][]) | null;
+      declaredNamespaces?: (readonly string[]) | null;
+      directValueAnnotationsManager?: components["schemas"]["IEdmDirectValueAnnotationsManager"];
+      entityContainer?: components["schemas"]["IEdmEntityContainer"];
+    };
+    IEdmNavigationProperty: {
+      name?: string | null;
+      /** @enum {string} */
+      propertyKind?: "None" | "Structural" | "Navigation";
+      type?: components["schemas"]["IEdmTypeReference"];
+      declaringType?: components["schemas"]["IEdmStructuredType"];
+      partner?: components["schemas"]["IEdmNavigationProperty"];
+      /** @enum {string} */
+      onDelete?: "None" | "Cascade";
+      containsTarget?: boolean;
+      referentialConstraint?: components["schemas"]["IEdmReferentialConstraint"];
+    };
+    IEdmNavigationPropertyBinding: {
+      navigationProperty?: components["schemas"]["IEdmNavigationProperty"];
+      target?: components["schemas"]["IEdmNavigationSource"];
+      path?: components["schemas"]["IEdmPathExpression"];
+    };
+    IEdmNavigationSource: {
+      name?: string | null;
+      navigationPropertyBindings?: (readonly components["schemas"]["IEdmNavigationPropertyBinding"][]) | null;
+      path?: components["schemas"]["IEdmPathExpression"];
+      type?: components["schemas"]["IEdmType"];
+      entityType?: components["schemas"]["IEdmEntityType"];
+    };
+    IEdmPathExpression: {
+      /** @enum {string} */
+      expressionKind?: "None" | "BinaryConstant" | "BooleanConstant" | "DateTimeOffsetConstant" | "DecimalConstant" | "FloatingConstant" | "GuidConstant" | "IntegerConstant" | "StringConstant" | "DurationConstant" | null | "Record" | "Collection" | "Path" | "If" | "Cast" | "IsOf" | "FunctionApplication" | "LabeledExpressionReference" | "Labeled" | "PropertyPath" | "NavigationPropertyPath" | "DateConstant" | "TimeOfDayConstant" | "EnumMember" | "AnnotationPath";
+      pathSegments?: (readonly string[]) | null;
+      path?: string | null;
+    };
+    IEdmProperty: {
+      name?: string | null;
+      /** @enum {string} */
+      propertyKind?: "None" | "Structural" | "Navigation";
+      type?: components["schemas"]["IEdmTypeReference"];
+      declaringType?: components["schemas"]["IEdmStructuredType"];
+    };
+    IEdmReferentialConstraint: {
+      propertyPairs?: (readonly components["schemas"]["EdmReferentialConstraintPropertyPair"][]) | null;
+    };
+    IEdmSchemaElement: {
+      name?: string | null;
+      /** @enum {string} */
+      schemaElementKind?: "None" | "TypeDefinition" | "Term" | "Action" | "EntityContainer" | "Function";
+      namespace?: string | null;
+    };
+    IEdmStructuralProperty: {
+      name?: string | null;
+      /** @enum {string} */
+      propertyKind?: "None" | "Structural" | "Navigation";
+      type?: components["schemas"]["IEdmTypeReference"];
+      declaringType?: components["schemas"]["IEdmStructuredType"];
+      defaultValueString?: string | null;
+    };
+    IEdmStructuredType: {
+      /** @enum {string} */
+      typeKind?: "None" | "Primitive" | "Entity" | "Complex" | "Collection" | "EntityReference" | "Enum" | "TypeDefinition" | "Untyped" | "Path";
+      isAbstract?: boolean;
+      isOpen?: boolean;
+      baseType?: components["schemas"]["IEdmStructuredType"];
+      declaredProperties?: (readonly components["schemas"]["IEdmProperty"][]) | null;
+    };
+    IEdmTerm: {
+      name?: string | null;
+      /** @enum {string} */
+      schemaElementKind?: "None" | "TypeDefinition" | "Term" | "Action" | "EntityContainer" | "Function";
+      namespace?: string | null;
+      type?: components["schemas"]["IEdmTypeReference"];
+      appliesTo?: string | null;
+      defaultValue?: string | null;
+    };
+    IEdmType: {
+      /** @enum {string} */
+      typeKind?: "None" | "Primitive" | "Entity" | "Complex" | "Collection" | "EntityReference" | "Enum" | "TypeDefinition" | "Untyped" | "Path";
+    };
+    IEdmTypeReference: {
+      isNullable?: boolean;
+      definition?: components["schemas"]["IEdmType"];
+    };
+    IEdmVocabularyAnnotatable: Record<string, never>;
+    IEdmVocabularyAnnotation: {
+      qualifier?: string | null;
+      term?: components["schemas"]["IEdmTerm"];
+      target?: components["schemas"]["IEdmVocabularyAnnotatable"];
+      value?: components["schemas"]["IEdmExpression"];
+      usesDefault?: boolean;
+    };
+    IFilterQueryValidator: Record<string, never>;
+    IIdentity: {
+      name?: string | null;
+      authenticationType?: string | null;
+      isAuthenticated?: boolean;
+    };
+    IODataQueryValidator: Record<string, never>;
+    IOrderByQueryValidator: Record<string, never>;
+    IPAddress: {
+      /** @enum {string} */
+      addressFamily?: "Unspecified" | "Unix" | "InterNetwork" | "ImpLink" | "Pup" | "Chaos" | "NS" | "Iso" | "Ecma" | "DataKit" | "Ccitt" | "Sna" | "DecNet" | "DataLink" | "Lat" | "HyperChannel" | "AppleTalk" | "NetBios" | "VoiceView" | "FireFox" | "Banyan" | "Atm" | "InterNetworkV6" | "Cluster" | "Ieee12844" | "Irda" | "NetworkDesigners" | "Max" | "Packet" | "ControllerAreaNetwork" | "Unknown";
+      /** Format: int64 */
+      scopeId?: number;
+      isIPv6Multicast?: boolean;
+      isIPv6LinkLocal?: boolean;
+      isIPv6SiteLocal?: boolean;
+      isIPv6Teredo?: boolean;
+      isIPv6UniqueLocal?: boolean;
+      isIPv4MappedToIPv6?: boolean;
+      /**
+       * Format: int64
+       * @deprecated
+       */
+      address?: number;
+    };
+    IResponseCookies: Record<string, never>;
+    ISelectExpandQueryValidator: Record<string, never>;
+    IServiceProvider: Record<string, never>;
+    ISession: {
+      isAvailable?: boolean;
+      id?: string | null;
+      keys?: (readonly string[]) | null;
+    };
+    ISkipQueryValidator: Record<string, never>;
+    ISkipTokenQueryValidator: Record<string, never>;
+    ITopQueryValidator: Record<string, never>;
     InfoRequest: {
       newEmail?: string | null;
       newPassword?: string | null;
@@ -1045,11 +2156,163 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
+    IntPtr: Record<string, never>;
+    KeySizes: {
+      /** Format: int32 */
+      minSize?: number;
+      /** Format: int32 */
+      maxSize?: number;
+      /** Format: int32 */
+      skipSize?: number;
+    };
     LoginRequest: {
       email: string | null;
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    MemberInfo: {
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
+      name?: string | null;
+      declaringType?: components["schemas"]["Type"];
+      reflectedType?: components["schemas"]["Type"];
+      module?: components["schemas"]["Module"];
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+    };
+    MethodBase: {
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
+      name?: string | null;
+      declaringType?: components["schemas"]["Type"];
+      reflectedType?: components["schemas"]["Type"];
+      module?: components["schemas"]["Module"];
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+      /** @enum {string} */
+      attributes?: "PrivateScope" | "Private" | "FamANDAssem" | "Assembly" | "Family" | "FamORAssem" | "Public" | "MemberAccessMask" | "UnmanagedExport" | "Static" | "Final" | "Virtual" | "HideBySig" | "NewSlot" | "CheckAccessOnOverride" | "Abstract" | "SpecialName" | "RTSpecialName" | "PinvokeImpl" | "HasSecurity" | "RequireSecObject" | "ReservedMask";
+      /** @enum {string} */
+      methodImplementationFlags?: "IL" | "Native" | "OPTIL" | "CodeTypeMask" | "ManagedMask" | "NoInlining" | "ForwardRef" | "Synchronized" | "NoOptimization" | "PreserveSig" | "AggressiveInlining" | "AggressiveOptimization" | "InternalCall" | "Async" | "MaxMethodImplVal";
+      /** @enum {string} */
+      callingConvention?: "Standard" | "VarArgs" | "Any" | "HasThis" | "ExplicitThis";
+      isAbstract?: boolean;
+      isConstructor?: boolean;
+      isFinal?: boolean;
+      isHideBySig?: boolean;
+      isSpecialName?: boolean;
+      isStatic?: boolean;
+      isVirtual?: boolean;
+      isAssembly?: boolean;
+      isFamily?: boolean;
+      isFamilyAndAssembly?: boolean;
+      isFamilyOrAssembly?: boolean;
+      isPrivate?: boolean;
+      isPublic?: boolean;
+      isConstructedGenericMethod?: boolean;
+      isGenericMethod?: boolean;
+      isGenericMethodDefinition?: boolean;
+      containsGenericParameters?: boolean;
+      methodHandle?: components["schemas"]["RuntimeMethodHandle"];
+      isSecurityCritical?: boolean;
+      isSecuritySafeCritical?: boolean;
+      isSecurityTransparent?: boolean;
+    };
+    MethodInfo: {
+      name?: string | null;
+      declaringType?: components["schemas"]["Type"];
+      reflectedType?: components["schemas"]["Type"];
+      module?: components["schemas"]["Module"];
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+      /** @enum {string} */
+      attributes?: "PrivateScope" | "Private" | "FamANDAssem" | "Assembly" | "Family" | "FamORAssem" | "Public" | "MemberAccessMask" | "UnmanagedExport" | "Static" | "Final" | "Virtual" | "HideBySig" | "NewSlot" | "CheckAccessOnOverride" | "Abstract" | "SpecialName" | "RTSpecialName" | "PinvokeImpl" | "HasSecurity" | "RequireSecObject" | "ReservedMask";
+      /** @enum {string} */
+      methodImplementationFlags?: "IL" | "Native" | "OPTIL" | "CodeTypeMask" | "ManagedMask" | "NoInlining" | "ForwardRef" | "Synchronized" | "NoOptimization" | "PreserveSig" | "AggressiveInlining" | "AggressiveOptimization" | "InternalCall" | "Async" | "MaxMethodImplVal";
+      /** @enum {string} */
+      callingConvention?: "Standard" | "VarArgs" | "Any" | "HasThis" | "ExplicitThis";
+      isAbstract?: boolean;
+      isConstructor?: boolean;
+      isFinal?: boolean;
+      isHideBySig?: boolean;
+      isSpecialName?: boolean;
+      isStatic?: boolean;
+      isVirtual?: boolean;
+      isAssembly?: boolean;
+      isFamily?: boolean;
+      isFamilyAndAssembly?: boolean;
+      isFamilyOrAssembly?: boolean;
+      isPrivate?: boolean;
+      isPublic?: boolean;
+      isConstructedGenericMethod?: boolean;
+      isGenericMethod?: boolean;
+      isGenericMethodDefinition?: boolean;
+      containsGenericParameters?: boolean;
+      methodHandle?: components["schemas"]["RuntimeMethodHandle"];
+      isSecurityCritical?: boolean;
+      isSecuritySafeCritical?: boolean;
+      isSecurityTransparent?: boolean;
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
+      returnParameter?: components["schemas"]["ParameterInfo"];
+      returnType?: components["schemas"]["Type"];
+      returnTypeCustomAttributes?: components["schemas"]["ICustomAttributeProvider"];
+    };
+    Module: {
+      assembly?: components["schemas"]["Assembly"];
+      fullyQualifiedName?: string | null;
+      name?: string | null;
+      /** Format: int32 */
+      mdStreamVersion?: number;
+      /** Format: uuid */
+      moduleVersionId?: string;
+      scopeName?: string | null;
+      moduleHandle?: components["schemas"]["ModuleHandle"];
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      /** Format: int32 */
+      metadataToken?: number;
+    };
+    ModuleHandle: {
+      /** Format: int32 */
+      mdStreamVersion?: number;
+    };
+    ODataPathSegment: {
+      edmType?: components["schemas"]["IEdmType"];
+      identifier?: string | null;
+    };
+    ODataQueryContext: {
+      defaultQueryConfigurations?: components["schemas"]["DefaultQueryConfigurations"];
+      model?: components["schemas"]["IEdmModel"];
+      elementType?: components["schemas"]["IEdmType"];
+      navigationSource?: components["schemas"]["IEdmNavigationSource"];
+      elementClrType?: components["schemas"]["Type"];
+      path?: components["schemas"]["ODataPathSegment"][] | null;
+      requestContainer?: components["schemas"]["IServiceProvider"];
+    };
+    ODataRawQueryOptions: {
+      filter?: string | null;
+      apply?: string | null;
+      compute?: string | null;
+      search?: string | null;
+      orderBy?: string | null;
+      top?: string | null;
+      skip?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      count?: string | null;
+      format?: string | null;
+      skipToken?: string | null;
+      deltaToken?: string | null;
+    };
+    Oid: {
+      value?: string | null;
+      friendlyName?: string | null;
     };
     Operation: {
       /** @enum {string} */
@@ -1114,6 +2377,91 @@ export interface components {
       /** Format: int32 */
       expiration?: number;
     };
+    OrderByClause: {
+      thenBy?: components["schemas"]["OrderByClause"];
+      expression?: components["schemas"]["SingleValueNode"];
+      /** @enum {string} */
+      direction?: "Ascending" | "Descending";
+      rangeVariable?: components["schemas"]["RangeVariable"];
+      itemType?: components["schemas"]["IEdmTypeReference"];
+    };
+    OrderByNode: {
+      /** @enum {string} */
+      direction?: "Ascending" | "Descending";
+    };
+    OrderByQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      orderByNodes?: (readonly components["schemas"]["OrderByNode"][]) | null;
+      rawValue?: string | null;
+      validator?: components["schemas"]["IOrderByQueryValidator"];
+      compute?: components["schemas"]["ComputeQueryOption"];
+      orderByClause?: components["schemas"]["OrderByClause"];
+    };
+    ParameterInfo: {
+      /** @enum {string} */
+      attributes?: "None" | "In" | "Out" | "Lcid" | "Retval" | "Optional" | "HasDefault" | "HasFieldMarshal" | "Reserved3" | "Reserved4" | "ReservedMask";
+      member?: components["schemas"]["MemberInfo"];
+      name?: string | null;
+      parameterType?: components["schemas"]["Type"];
+      /** Format: int32 */
+      position?: number;
+      isIn?: boolean;
+      isLcid?: boolean;
+      isOptional?: boolean;
+      isOut?: boolean;
+      isRetval?: boolean;
+      defaultValue?: unknown;
+      rawDefaultValue?: unknown;
+      hasDefaultValue?: boolean;
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      /** Format: int32 */
+      metadataToken?: number;
+    };
+    PathString: {
+      value?: string | null;
+      hasValue?: boolean;
+    };
+    PipeWriter: {
+      canGetUnflushedBytes?: boolean;
+      /** Format: int64 */
+      unflushedBytes?: number;
+    };
+    PropertyInfo: {
+      name?: string | null;
+      declaringType?: components["schemas"]["Type"];
+      reflectedType?: components["schemas"]["Type"];
+      module?: components["schemas"]["Module"];
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
+      propertyType?: components["schemas"]["Type"];
+      /** @enum {string} */
+      attributes?: "None" | "SpecialName" | "RTSpecialName" | "HasDefault" | "Reserved2" | "Reserved3" | "Reserved4" | "ReservedMask";
+      isSpecialName?: boolean;
+      canRead?: boolean;
+      canWrite?: boolean;
+      getMethod?: components["schemas"]["MethodInfo"];
+      setMethod?: components["schemas"]["MethodInfo"];
+    };
+    PublicKey: {
+      encodedKeyValue?: components["schemas"]["AsnEncodedData"];
+      encodedParameters?: components["schemas"]["AsnEncodedData"];
+      key?: components["schemas"]["AsymmetricAlgorithm"];
+      oid?: components["schemas"]["Oid"];
+    };
+    QueryString: {
+      value?: string | null;
+      hasValue?: boolean;
+    };
+    RangeVariable: {
+      name?: string | null;
+      typeReference?: components["schemas"]["IEdmTypeReference"];
+      /** Format: int32 */
+      kind?: number;
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1129,6 +2477,43 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    RuntimeFieldHandle: {
+      value?: components["schemas"]["IntPtr"];
+    };
+    RuntimeMethodHandle: {
+      value?: components["schemas"]["IntPtr"];
+    };
+    RuntimeTypeHandle: {
+      value?: components["schemas"]["IntPtr"];
+    };
+    SafeWaitHandle: {
+      isClosed?: boolean;
+      isInvalid?: boolean;
+    };
+    SearchClause: {
+      expression?: components["schemas"]["SingleValueNode"];
+    };
+    SearchQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      resultClrType?: components["schemas"]["Type"];
+      searchClause?: components["schemas"]["SearchClause"];
+      rawValue?: string | null;
+    };
+    SelectExpandClause: {
+      selectedItems?: components["schemas"]["SelectItem"][] | null;
+      allSelected?: boolean;
+    };
+    SelectExpandQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      rawSelect?: string | null;
+      rawExpand?: string | null;
+      compute?: components["schemas"]["ComputeQueryOption"];
+      validator?: components["schemas"]["ISelectExpandQueryValidator"];
+      selectExpandClause?: components["schemas"]["SelectExpandClause"];
+      /** Format: int32 */
+      levelsMaxLiteralExpansionDepth?: number;
+    };
+    SelectItem: Record<string, never>;
     SimpleContactDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1175,6 +2560,25 @@ export interface components {
       instagramUrl?: string | null;
       githubUsername?: string | null;
     };
+    SingleValueNode: {
+      typeReference?: components["schemas"]["IEdmTypeReference"];
+      /** @enum {string} */
+      kind?: "None" | "Constant" | "Convert" | "NonResourceRangeVariableReference" | "BinaryOperator" | "UnaryOperator" | "SingleValuePropertyAccess" | "CollectionPropertyAccess" | "SingleValueFunctionCall" | "Any" | "CollectionNavigationNode" | "SingleNavigationNode" | "SingleValueOpenPropertyAccess" | "SingleResourceCast" | "All" | "CollectionResourceCast" | "ResourceRangeVariableReference" | "SingleResourceFunctionCall" | "CollectionFunctionCall" | "CollectionResourceFunctionCall" | "NamedFunctionParameter" | "ParameterAlias" | "EntitySet" | "KeyLookup" | "SearchTerm" | "CollectionOpenPropertyAccess" | "CollectionComplexNode" | "SingleComplexNode" | "Count" | "SingleValueCast" | "CollectionPropertyNode" | "AggregatedCollectionPropertyNode" | "In" | "CollectionConstant" | "RootPath" | "CustomQueryOption";
+    };
+    SkipQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      rawValue?: string | null;
+      /** Format: int32 */
+      value?: number;
+      validator?: components["schemas"]["ISkipQueryValidator"];
+    };
+    SkipTokenHandler: Record<string, never>;
+    SkipTokenQueryOption: {
+      rawValue?: string | null;
+      context?: components["schemas"]["ODataQueryContext"];
+      validator?: components["schemas"]["ISkipTokenQueryValidator"];
+      handler?: components["schemas"]["SkipTokenHandler"];
+    };
     SocialProfileDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1220,6 +2624,30 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"];
     };
+    StringStringKeyValuePair: {
+      key?: string | null;
+      value?: string | null;
+    };
+    StringStringValuesKeyValuePair: {
+      key?: string | null;
+      value?: string[];
+    };
+    StructLayoutAttribute: {
+      typeId?: unknown;
+      /** @enum {string} */
+      value?: "Sequential" | "Explicit" | "Auto";
+    };
+    TopQueryOption: {
+      context?: components["schemas"]["ODataQueryContext"];
+      rawValue?: string | null;
+      /** Format: int32 */
+      value?: number;
+      validator?: components["schemas"]["ITopQueryValidator"];
+    };
+    TransformationNode: {
+      /** @enum {string} */
+      kind?: "Aggregate" | "GroupBy" | "Filter" | "Compute" | "Expand";
+    };
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -1235,10 +2663,191 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    Type: {
+      name?: string | null;
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
+      namespace?: string | null;
+      assemblyQualifiedName?: string | null;
+      fullName?: string | null;
+      assembly?: components["schemas"]["Assembly"];
+      module?: components["schemas"]["Module"];
+      isInterface?: boolean;
+      isNested?: boolean;
+      declaringType?: components["schemas"]["Type"];
+      declaringMethod?: components["schemas"]["MethodBase"];
+      reflectedType?: components["schemas"]["Type"];
+      underlyingSystemType?: components["schemas"]["Type"];
+      isTypeDefinition?: boolean;
+      isArray?: boolean;
+      isByRef?: boolean;
+      isPointer?: boolean;
+      isConstructedGenericType?: boolean;
+      isGenericParameter?: boolean;
+      isGenericTypeParameter?: boolean;
+      isGenericMethodParameter?: boolean;
+      isGenericType?: boolean;
+      isGenericTypeDefinition?: boolean;
+      isSZArray?: boolean;
+      isVariableBoundArray?: boolean;
+      isByRefLike?: boolean;
+      isFunctionPointer?: boolean;
+      isUnmanagedFunctionPointer?: boolean;
+      hasElementType?: boolean;
+      genericTypeArguments?: (readonly components["schemas"]["Type"][]) | null;
+      /** Format: int32 */
+      genericParameterPosition?: number;
+      /** @enum {string} */
+      genericParameterAttributes?: "None" | "Covariant" | "Contravariant" | "VarianceMask" | "ReferenceTypeConstraint" | "NotNullableValueTypeConstraint" | "DefaultConstructorConstraint" | "SpecialConstraintMask" | "AllowByRefLike";
+      /** @enum {string} */
+      attributes?: "NotPublic" | "Public" | "NestedPublic" | "NestedPrivate" | "NestedFamily" | "NestedAssembly" | "NestedFamANDAssem" | "VisibilityMask" | "SequentialLayout" | "ExplicitLayout" | "LayoutMask" | "Interface" | "Abstract" | "Sealed" | "SpecialName" | "RTSpecialName" | "Import" | "Serializable" | "WindowsRuntime" | "UnicodeClass" | "AutoClass" | "StringFormatMask" | "HasSecurity" | "ReservedMask" | "BeforeFieldInit" | "CustomFormatMask";
+      isAbstract?: boolean;
+      isImport?: boolean;
+      isSealed?: boolean;
+      isSpecialName?: boolean;
+      isClass?: boolean;
+      isNestedAssembly?: boolean;
+      isNestedFamANDAssem?: boolean;
+      isNestedFamily?: boolean;
+      isNestedFamORAssem?: boolean;
+      isNestedPrivate?: boolean;
+      isNestedPublic?: boolean;
+      isNotPublic?: boolean;
+      isPublic?: boolean;
+      isAutoLayout?: boolean;
+      isExplicitLayout?: boolean;
+      isLayoutSequential?: boolean;
+      isAnsiClass?: boolean;
+      isAutoClass?: boolean;
+      isUnicodeClass?: boolean;
+      isCOMObject?: boolean;
+      isContextful?: boolean;
+      isEnum?: boolean;
+      isMarshalByRef?: boolean;
+      isPrimitive?: boolean;
+      isValueType?: boolean;
+      isSignatureType?: boolean;
+      isSecurityCritical?: boolean;
+      isSecuritySafeCritical?: boolean;
+      isSecurityTransparent?: boolean;
+      structLayoutAttribute?: components["schemas"]["StructLayoutAttribute"];
+      typeInitializer?: components["schemas"]["ConstructorInfo"];
+      typeHandle?: components["schemas"]["RuntimeTypeHandle"];
+      /** Format: uuid */
+      guid?: string;
+      baseType?: components["schemas"]["Type"];
+      /** @deprecated */
+      isSerializable?: boolean;
+      containsGenericParameters?: boolean;
+      isVisible?: boolean;
+    };
+    TypeInfo: {
+      name?: string | null;
+      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
+      isCollectible?: boolean;
+      /** Format: int32 */
+      metadataToken?: number;
+      /** @enum {string} */
+      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
+      namespace?: string | null;
+      assemblyQualifiedName?: string | null;
+      fullName?: string | null;
+      assembly?: components["schemas"]["Assembly"];
+      module?: components["schemas"]["Module"];
+      isInterface?: boolean;
+      isNested?: boolean;
+      declaringType?: components["schemas"]["Type"];
+      declaringMethod?: components["schemas"]["MethodBase"];
+      reflectedType?: components["schemas"]["Type"];
+      underlyingSystemType?: components["schemas"]["Type"];
+      isTypeDefinition?: boolean;
+      isArray?: boolean;
+      isByRef?: boolean;
+      isPointer?: boolean;
+      isConstructedGenericType?: boolean;
+      isGenericParameter?: boolean;
+      isGenericTypeParameter?: boolean;
+      isGenericMethodParameter?: boolean;
+      isGenericType?: boolean;
+      isGenericTypeDefinition?: boolean;
+      isSZArray?: boolean;
+      isVariableBoundArray?: boolean;
+      isByRefLike?: boolean;
+      isFunctionPointer?: boolean;
+      isUnmanagedFunctionPointer?: boolean;
+      hasElementType?: boolean;
+      genericTypeArguments?: (readonly components["schemas"]["Type"][]) | null;
+      /** Format: int32 */
+      genericParameterPosition?: number;
+      /** @enum {string} */
+      genericParameterAttributes?: "None" | "Covariant" | "Contravariant" | "VarianceMask" | "ReferenceTypeConstraint" | "NotNullableValueTypeConstraint" | "DefaultConstructorConstraint" | "SpecialConstraintMask" | "AllowByRefLike";
+      /** @enum {string} */
+      attributes?: "NotPublic" | "Public" | "NestedPublic" | "NestedPrivate" | "NestedFamily" | "NestedAssembly" | "NestedFamANDAssem" | "VisibilityMask" | "SequentialLayout" | "ExplicitLayout" | "LayoutMask" | "Interface" | "Abstract" | "Sealed" | "SpecialName" | "RTSpecialName" | "Import" | "Serializable" | "WindowsRuntime" | "UnicodeClass" | "AutoClass" | "StringFormatMask" | "HasSecurity" | "ReservedMask" | "BeforeFieldInit" | "CustomFormatMask";
+      isAbstract?: boolean;
+      isImport?: boolean;
+      isSealed?: boolean;
+      isSpecialName?: boolean;
+      isClass?: boolean;
+      isNestedAssembly?: boolean;
+      isNestedFamANDAssem?: boolean;
+      isNestedFamily?: boolean;
+      isNestedFamORAssem?: boolean;
+      isNestedPrivate?: boolean;
+      isNestedPublic?: boolean;
+      isNotPublic?: boolean;
+      isPublic?: boolean;
+      isAutoLayout?: boolean;
+      isExplicitLayout?: boolean;
+      isLayoutSequential?: boolean;
+      isAnsiClass?: boolean;
+      isAutoClass?: boolean;
+      isUnicodeClass?: boolean;
+      isCOMObject?: boolean;
+      isContextful?: boolean;
+      isEnum?: boolean;
+      isMarshalByRef?: boolean;
+      isPrimitive?: boolean;
+      isValueType?: boolean;
+      isSignatureType?: boolean;
+      isSecurityCritical?: boolean;
+      isSecuritySafeCritical?: boolean;
+      isSecurityTransparent?: boolean;
+      structLayoutAttribute?: components["schemas"]["StructLayoutAttribute"];
+      typeInitializer?: components["schemas"]["ConstructorInfo"];
+      typeHandle?: components["schemas"]["RuntimeTypeHandle"];
+      /** Format: uuid */
+      guid?: string;
+      baseType?: components["schemas"]["Type"];
+      /** @deprecated */
+      isSerializable?: boolean;
+      containsGenericParameters?: boolean;
+      isVisible?: boolean;
+      genericTypeParameters?: (readonly components["schemas"]["Type"][]) | null;
+      declaredConstructors?: (readonly components["schemas"]["ConstructorInfo"][]) | null;
+      declaredEvents?: (readonly components["schemas"]["EventInfo"][]) | null;
+      declaredFields?: (readonly components["schemas"]["FieldInfo"][]) | null;
+      declaredMembers?: (readonly components["schemas"]["MemberInfo"][]) | null;
+      declaredMethods?: (readonly components["schemas"]["MethodInfo"][]) | null;
+      declaredNestedTypes?: (readonly components["schemas"]["TypeInfo"][]) | null;
+      declaredProperties?: (readonly components["schemas"]["PropertyInfo"][]) | null;
+      implementedInterfaces?: (readonly components["schemas"]["Type"][]) | null;
+    };
+    TypeObjectKeyValuePair: {
+      key?: components["schemas"]["Type"];
+      value?: unknown;
+    };
+    WaitHandle: {
+      handle?: components["schemas"]["IntPtr"];
+      safeWaitHandle?: components["schemas"]["SafeWaitHandle"];
+    };
     WalletDto: {
       id?: string | null;
       /** Format: date-time */
-      timestamp?: string;
+      timestamp?: string | null;
       /** Format: double */
       balance?: number;
       /** Format: double */
@@ -1268,6 +2877,48 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["WalletDto"];
     };
+    WebSocketManager: {
+      isWebSocketRequest?: boolean;
+      webSocketRequestedProtocols?: (readonly string[]) | null;
+    };
+    X500DistinguishedName: {
+      oid?: components["schemas"]["Oid"];
+      /** Format: byte */
+      rawData?: string | null;
+      name?: string | null;
+    };
+    X509Certificate2: {
+      handle?: components["schemas"]["IntPtr"];
+      issuer?: string | null;
+      subject?: string | null;
+      serialNumberBytes?: components["schemas"]["ByteReadOnlyMemory"];
+      archived?: boolean;
+      extensions?: (readonly components["schemas"]["X509Extension"][]) | null;
+      friendlyName?: string | null;
+      hasPrivateKey?: boolean;
+      privateKey?: components["schemas"]["AsymmetricAlgorithm"];
+      issuerName?: components["schemas"]["X500DistinguishedName"];
+      /** Format: date-time */
+      notAfter?: string;
+      /** Format: date-time */
+      notBefore?: string;
+      publicKey?: components["schemas"]["PublicKey"];
+      /** Format: byte */
+      rawData?: string | null;
+      rawDataMemory?: components["schemas"]["ByteReadOnlyMemory"];
+      serialNumber?: string | null;
+      signatureAlgorithm?: components["schemas"]["Oid"];
+      subjectName?: components["schemas"]["X500DistinguishedName"];
+      thumbprint?: string | null;
+      /** Format: int32 */
+      version?: number;
+    };
+    X509Extension: {
+      oid?: components["schemas"]["Oid"];
+      /** Format: byte */
+      rawData?: string | null;
+      critical?: boolean;
+    };
   };
   responses: never;
   parameters: never;
@@ -1282,6 +2933,942 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get all contact groups
+   * @description Retrieves all contact groups for the specified tenant.
+   */
+  GetContactGroupsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactsGroupDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactsGroupDtoListEnvelope"];
+          "application/xml": components["schemas"]["ContactsGroupDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new contact group
+   * @description Creates a new contact group for the specified tenant.
+   */
+  CreateContactGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactsGroupCreateDto"];
+        "application/xml": components["schemas"]["ContactsGroupCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact groups count
+   * @description Returns the count of contact groups for the specified tenant.
+   */
+  GetContactGroupsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactsGroupDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact group by ID
+   * @description Retrieves a specific contact group by its identifier.
+   */
+  GetContactGroupByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactsGroupDto"];
+          "application/xml": components["schemas"]["ContactsGroupDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a contact group
+   * @description Updates an existing contact group for the specified tenant.
+   */
+  UpdateContactGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactsGroupUpdateDto"];
+        "application/xml": components["schemas"]["ContactsGroupUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a contact group
+   * @description Deletes a contact group for the specified tenant.
+   */
+  DeleteContactGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get a contact's social profiles
+   * @description Get a contact's social profiles
+   */
+  GetContactProfilesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactProfileDtoListEnvelope"];
+          "application/xml": components["schemas"]["ContactProfileDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a contact profile
+   * @description Creates a new profile for the specified contact.
+   */
+  CreateContactProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactProfileCreateDto"];
+        "application/xml": components["schemas"]["ContactProfileCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact profiles count
+   * @description Returns the count of profiles for the specified contact.
+   */
+  GetContactProfilesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactProfileDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact profile by ID
+   * @description Retrieves a specific contact profile by its identifier.
+   */
+  GetContactProfileByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactProfileDto"];
+          "application/xml": components["schemas"]["ContactProfileDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a contact profile
+   * @description Updates an existing profile for the specified contact.
+   */
+  UpdateContactProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        profileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactProfileUpdateDto"];
+        "application/xml": components["schemas"]["ContactProfileUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a contact profile
+   * @description Deletes a profile for the specified contact.
+   */
+  DeleteContactProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        profileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all contact relations
+   * @description Retrieves all contact relations for the specified tenant.
+   */
+  GetContactRelationsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactRelationDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactRelationDtoListEnvelope"];
+          "application/xml": components["schemas"]["ContactRelationDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new contact relation
+   * @description Creates a new contact relation for the specified tenant.
+   */
+  CreateContactRelationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactRelationCreateDto"];
+        "application/xml": components["schemas"]["ContactRelationCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact relations count
+   * @description Returns the count of contact relations for the specified tenant.
+   */
+  GetContactRelationsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactRelationDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact relation by ID
+   * @description Retrieves a specific contact relation by its identifier.
+   */
+  GetContactRelationByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactRelationDto"];
+          "application/xml": components["schemas"]["ContactRelationDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a contact relation
+   * @description Updates an existing contact relation for the specified tenant.
+   */
+  UpdateContactRelationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactRelationUpdateDto"];
+        "application/xml": components["schemas"]["ContactRelationUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a contact relation
+   * @description Deletes a contact relation for the specified tenant.
+   */
+  DeleteContactRelationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all contact relation types
+   * @description Retrieves all contact relation types for the specified tenant.
+   */
+  GetContactRelationTypesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactRelationTypeDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactRelationTypeDtoListEnvelope"];
+          "application/xml": components["schemas"]["ContactRelationTypeDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new contact relation type
+   * @description Creates a new contact relation type for the specified tenant.
+   */
+  CreateContactRelationTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactRelationTypeCreateDto"];
+        "application/xml": components["schemas"]["ContactRelationTypeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact relation types count
+   * @description Returns the count of contact relation types for the specified tenant.
+   */
+  GetContactRelationTypesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactRelationTypeDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact relation type by ID
+   * @description Retrieves a specific contact relation type by its identifier.
+   */
+  GetContactRelationTypeByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactRelationTypeDto"];
+          "application/xml": components["schemas"]["ContactRelationTypeDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a contact relation type
+   * @description Updates an existing contact relation type for the specified tenant.
+   */
+  UpdateContactRelationTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactRelationTypeUpdateDto"];
+        "application/xml": components["schemas"]["ContactRelationTypeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a contact relation type
+   * @description Deletes a contact relation type for the specified tenant.
+   */
+  DeleteContactRelationTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /**
    * Get all business owned contacts
    * @description Get all business owned contacts
@@ -2176,54 +4763,6 @@ export interface operations {
     };
   };
   /**
-   * Get a contact's social profiles
-   * @description Get a contact's social profiles
-   */
-  GetContactProfilesAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        contactId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["ContactProfileDtoListEnvelope"];
-          "application/xml": components["schemas"]["ContactProfileDtoListEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
    * Get a contact's social profile
    * @description Get a contact's social profile
    */
@@ -2568,6 +5107,234 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /**
+   * Get all contact sources
+   * @description Retrieves all contact sources for the specified tenant.
+   */
+  GetContactSourcesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactSourceDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactSourceDtoListEnvelope"];
+          "application/xml": components["schemas"]["ContactSourceDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new contact source
+   * @description Creates a new contact source for the specified tenant.
+   */
+  CreateContactSourceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactSourceCreateDto"];
+        "application/xml": components["schemas"]["ContactSourceCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact sources count
+   * @description Returns the count of contact sources for the specified tenant.
+   */
+  GetContactSourcesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        oDataQueryOptions?: components["schemas"]["ContactSourceDtoODataQueryOptions"];
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact source by ID
+   * @description Retrieves a specific contact source by its identifier.
+   */
+  GetContactSourceByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactSourceDto"];
+          "application/xml": components["schemas"]["ContactSourceDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a contact source
+   * @description Updates an existing contact source for the specified tenant.
+   */
+  UpdateContactSourceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactSourceUpdateDto"];
+        "application/xml": components["schemas"]["ContactSourceUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a contact source
+   * @description Deletes a contact source for the specified tenant.
+   */
+  DeleteContactSourceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };

@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/api/v2/MarketingService/EmailGroups": {
     /**
      * Get email groups
@@ -410,6 +519,42 @@ export interface paths {
       };
     };
   };
+  "/api/v2/MarketingService/MarketingAreas": {
+    /**
+     * Get marketing areas
+     * @description Retrieves marketing areas for the specified tenant.
+     */
+    get: operations["GetMarketingAreasAsync"];
+    /**
+     * Create a marketing area
+     * @description Creates a new marketing area for the specified tenant.
+     */
+    post: operations["CreateMarketingAreaAsync"];
+  };
+  "/api/v2/MarketingService/MarketingAreas/Count": {
+    /**
+     * Count marketing areas
+     * @description Counts marketing areas for the specified tenant.
+     */
+    get: operations["GetMarketingAreasCountAsync"];
+  };
+  "/api/v2/MarketingService/MarketingAreas/{marketingAreaId}": {
+    /**
+     * Get marketing area by ID
+     * @description Retrieves a specific marketing area by its identifier.
+     */
+    get: operations["GetMarketingAreaByIdAsync"];
+    /**
+     * Update a marketing area
+     * @description Updates an existing marketing area for the specified tenant.
+     */
+    put: operations["UpdateMarketingAreaAsync"];
+    /**
+     * Delete a marketing area
+     * @description Deletes a marketing area for the specified tenant.
+     */
+    delete: operations["DeleteMarketingAreaAsync"];
+  };
   "/api/v2/MarketingService/MarketingCampaigns": {
     /**
      * Get marketing campaigns
@@ -445,6 +590,27 @@ export interface paths {
      * @description Deletes a marketing campaign by its ID.
      */
     delete: operations["DeleteMarketingCampaignAsync"];
+  };
+  "/api/v2/MarketingService/MarketingLeads": {
+    /**
+     * Get marketing leads
+     * @description Retrieves a collection of marketing leads for the specified tenant using OData query options.
+     */
+    get: operations["GetMarketingLeadsODataAsync"];
+    /** Create a marketing lead */
+    post: operations["CreateMarketingLeadAsync"];
+  };
+  "/api/v2/MarketingService/MarketingLeads/Count": {
+    /** Get marketing leads count */
+    get: operations["GetMarketingLeadsCountAsync"];
+  };
+  "/api/v2/MarketingService/MarketingLeads/{marketingLeadId}": {
+    /** Get marketing lead by ID */
+    get: operations["GetMarketingLeadDetailsAsync"];
+    /** Update a marketing lead */
+    put: operations["UpdateMarketingLeadAsync"];
+    /** Delete a marketing lead */
+    delete: operations["DeleteMarketingLeadAsync"];
   };
   "/api/v2/MarketingService/MarketingLists": {
     /**
@@ -1030,6 +1196,45 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    MarketingAreaCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+    };
+    MarketingAreaDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      name?: string | null;
+      description?: string | null;
+    };
+    MarketingAreaDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["MarketingAreaDto"];
+    };
+    MarketingAreaDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["MarketingAreaDto"][] | null;
+    };
+    MarketingAreaUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+    };
     MarketingCampaignCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1119,6 +1324,71 @@ export interface components {
       expectedResponsePercent?: number;
       marketingAreaId?: string | null;
       currencyId?: string | null;
+    };
+    MarketingLeadCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      firstName?: string | null;
+      lastName?: string | null;
+      email?: string | null;
+      phone?: string | null;
+      company?: string | null;
+      jobTitle?: string | null;
+      source?: string | null;
+      notes?: string | null;
+      /** Format: int32 */
+      score?: number;
+    };
+    MarketingLeadDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      email?: string | null;
+      phone?: string | null;
+      company?: string | null;
+      jobTitle?: string | null;
+      source?: string | null;
+      status?: string | null;
+      notes?: string | null;
+      /** Format: int32 */
+      score?: number;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    MarketingLeadDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["MarketingLeadDto"];
+    };
+    MarketingLeadDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["MarketingLeadDto"][] | null;
+    };
+    MarketingLeadUpdateDto: {
+      firstName?: string | null;
+      lastName?: string | null;
+      email?: string | null;
+      phone?: string | null;
+      company?: string | null;
+      jobTitle?: string | null;
+      source?: string | null;
+      status?: string | null;
+      notes?: string | null;
+      /** Format: int32 */
+      score?: number;
     };
     MarketingListCreateDto: {
       /** Format: uuid */
@@ -1264,6 +1534,7 @@ export interface components {
       taxCalculationMethod?: "Included" | "Excluded";
       /** Format: double */
       forexRate?: number;
+      forexRatesSnapshot?: string | null;
       currencyId?: string | null;
       /** Format: double */
       totalDetail?: number;
@@ -2366,6 +2637,276 @@ export interface operations {
     };
   };
   /**
+   * Get marketing areas
+   * @description Retrieves marketing areas for the specified tenant.
+   */
+  GetMarketingAreasAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MarketingAreaDtoListEnvelope"];
+          "application/xml": components["schemas"]["MarketingAreaDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a marketing area
+   * @description Creates a new marketing area for the specified tenant.
+   */
+  CreateMarketingAreaAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingAreaCreateDto"];
+        "application/xml": components["schemas"]["MarketingAreaCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count marketing areas
+   * @description Counts marketing areas for the specified tenant.
+   */
+  GetMarketingAreasCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get marketing area by ID
+   * @description Retrieves a specific marketing area by its identifier.
+   */
+  GetMarketingAreaByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingAreaId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MarketingAreaDtoEnvelope"];
+          "application/xml": components["schemas"]["MarketingAreaDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a marketing area
+   * @description Updates an existing marketing area for the specified tenant.
+   */
+  UpdateMarketingAreaAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingAreaId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingAreaUpdateDto"];
+        "application/xml": components["schemas"]["MarketingAreaUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a marketing area
+   * @description Deletes a marketing area for the specified tenant.
+   */
+  DeleteMarketingAreaAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingAreaId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get marketing campaigns
    * @description Retrieves a collection of marketing campaigns for the specified tenant using OData query options.
    */
@@ -2645,6 +3186,156 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get marketing leads
+   * @description Retrieves a collection of marketing leads for the specified tenant using OData query options.
+   */
+  GetMarketingLeadsODataAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MarketingLeadDtoListEnvelope"];
+          "application/xml": components["schemas"]["MarketingLeadDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /** Create a marketing lead */
+  CreateMarketingLeadAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MarketingLeadCreateDto"];
+        "application/xml": components["schemas"]["MarketingLeadCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get marketing leads count */
+  GetMarketingLeadsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /** Get marketing lead by ID */
+  GetMarketingLeadDetailsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingLeadId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MarketingLeadDtoEnvelope"];
+          "application/xml": components["schemas"]["MarketingLeadDtoEnvelope"];
+        };
+      };
+    };
+  };
+  /** Update a marketing lead */
+  UpdateMarketingLeadAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingLeadId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MarketingLeadUpdateDto"];
+        "application/xml": components["schemas"]["MarketingLeadUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /** Delete a marketing lead */
+  DeleteMarketingLeadAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingLeadId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
     };

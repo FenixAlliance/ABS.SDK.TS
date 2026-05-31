@@ -90,6 +90,7 @@ export type ErrorEnvelopeWritable = {
 
 export type FollowRecordDto = {
     id?: string | null;
+    timestamp?: string | null;
     type?: string | null;
     followerId?: string | null;
     followedId?: string | null;
@@ -172,6 +173,21 @@ export type NotificationDto = {
     socialProfileID?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
+};
+
+export type NotificationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: NotificationDto;
+};
+
+export type NotificationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: NotificationDto;
 };
 
 export type NotificationDtoListEnvelopeReadable = {
@@ -729,6 +745,37 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetVersionData = {
@@ -1434,6 +1481,7 @@ export type CreateSocialGroupAsyncData = {
     path?: never;
     query: {
         tenantId: string;
+        socialProfileId: string;
         'api-version'?: string;
     };
     url: '/api/v2/SocialService/SocialGroups';
@@ -1506,6 +1554,7 @@ export type DeleteSocialGroupAsyncData = {
     };
     query: {
         tenantId: string;
+        socialProfileId: string;
         'api-version'?: string;
     };
     url: '/api/v2/SocialService/SocialGroups/{socialGroupId}';
@@ -1580,6 +1629,7 @@ export type UpdateSocialGroupAsyncData = {
     };
     query: {
         tenantId: string;
+        socialProfileId: string;
         'api-version'?: string;
     };
     url: '/api/v2/SocialService/SocialGroups/{socialGroupId}';
@@ -3069,6 +3119,43 @@ export type CountNotificationsAsyncResponses = {
 
 export type CountNotificationsAsyncResponse = CountNotificationsAsyncResponses[keyof CountNotificationsAsyncResponses];
 
+export type GetNotificationByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialProfileId: string;
+        notificationId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Notifications/{notificationId}';
+};
+
+export type GetNotificationByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetNotificationByIdAsyncError = GetNotificationByIdAsyncErrors[keyof GetNotificationByIdAsyncErrors];
+
+export type GetNotificationByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: NotificationDtoEnvelopeReadable;
+};
+
+export type GetNotificationByIdAsyncResponse = GetNotificationByIdAsyncResponses[keyof GetNotificationByIdAsyncResponses];
+
 export type GetConversationsAsyncData = {
     body?: never;
     headers?: {
@@ -3185,7 +3272,8 @@ export type GetMessagesAsyncData = {
     path: {
         conversationId: string;
     };
-    query?: {
+    query: {
+        socialProfileId: string;
         'api-version'?: string;
     };
     url: '/api/v2/SocialService/SocialProfiles/{conversationId}/Messages';
@@ -3258,7 +3346,8 @@ export type CountMessagesAsyncData = {
     path: {
         conversationId: string;
     };
-    query?: {
+    query: {
+        socialProfileId: string;
         'api-version'?: string;
     };
     url: '/api/v2/SocialService/SocialProfiles/{conversationId}/Messages/Count';
@@ -3363,5 +3452,5 @@ export type UpdateMessageAsyncResponses = {
 export type UpdateMessageAsyncResponse = UpdateMessageAsyncResponses[keyof UpdateMessageAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

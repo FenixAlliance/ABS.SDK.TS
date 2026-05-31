@@ -30,6 +30,7 @@ export type BooleanEnvelopeWritable = {
 
 export type CartDto = {
     id?: string | null;
+    timestamp?: string | null;
     ip?: string | null;
     type?: string | null;
     total?: number;
@@ -1714,7 +1715,7 @@ export type UserDtoListEnvelopeWritable = {
 
 export type WalletDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     balance?: number;
     cryptoBalance?: number;
     testMode?: boolean;
@@ -1773,6 +1774,37 @@ export type WebPortalDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<WebPortalDto> | null;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetTenantDepartmentsData = {
@@ -7449,5 +7481,5 @@ export type UpdateTenantUnitResponses = {
 export type UpdateTenantUnitResponse = UpdateTenantUnitResponses[keyof UpdateTenantUnitResponses];
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

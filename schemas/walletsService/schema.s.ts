@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/version": {
     get: {
       responses: {
@@ -350,6 +459,11 @@ export interface paths {
      * @description Get payments of a specific wallet by ID.
      */
     get: operations["GetWalletPaymentsAsync"];
+    /**
+     * Create Wallet Payment
+     * @description Create a new payment for a specific wallet by ID.
+     */
+    post: operations["CreateWalletPaymentAsync"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Payments/Count": {
     /**
@@ -450,6 +564,153 @@ export interface paths {
      */
     get: operations["GetOutgoingPaymentsCountAsync"];
   };
+  "/api/v2/WalletsService/Wallets/{walletId}/Quotes": {
+    /**
+     * Get Wallet Quotes
+     * @description Get quotes of a specific wallet by ID.
+     */
+    get: operations["GetWalletQuotesAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Quotes/Count": {
+    /**
+     * Get Wallet Quotes Count
+     * @description Get quotes count of a specific wallet by ID.
+     */
+    get: operations["GetWalletQuotesCountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/BankAccounts": {
+    /**
+     * Get Wallet Bank Accounts
+     * @description Get bank accounts of a specific wallet by ID.
+     */
+    get: operations["GetWalletBankAccountsAsync"];
+    /**
+     * Create Wallet Bank Account
+     * @description Create a new bank account for a specific wallet by ID.
+     */
+    post: operations["CreateWalletBankAccountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/Count": {
+    /**
+     * Get Wallet Bank Accounts Count
+     * @description Get bank accounts count of a specific wallet by ID.
+     */
+    get: operations["GetWalletBankAccountsCountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}": {
+    /**
+     * Get Wallet Bank Account
+     * @description Get a specific bank account of a specific wallet by ID.
+     */
+    get: operations["GetWalletBankAccountAsync"];
+    /**
+     * Update Wallet Bank Account
+     * @description Update a specific bank account of a specific wallet by ID.
+     */
+    put: operations["UpdateWalletBankAccountAsync"];
+    /**
+     * Delete Wallet Bank Account
+     * @description Delete a specific bank account of a specific wallet by ID.
+     */
+    delete: operations["DeleteWalletBankAccountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Withdraws": {
+    /**
+     * Get Wallet Withdraws
+     * @description Get withdraws of a specific wallet by ID.
+     */
+    get: operations["GetWalletWithdrawsAsync"];
+    /**
+     * Create Wallet Withdraw Request
+     * @description Create a new withdraw request for a specific wallet by ID.
+     */
+    post: operations["CreateWalletWithdrawRequestAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Withdraws/Count": {
+    /**
+     * Get Wallet Withdraws Count
+     * @description Get withdraws count of a specific wallet by ID.
+     */
+    get: operations["GetWalletWithdrawsCountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/WithdrawRequests": {
+    /**
+     * Get Wallet Withdraw Requests
+     * @description Get withdraw requests of a specific wallet by ID.
+     */
+    get: operations["GetWalletWithdrawRequestsAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/WithdrawRequests/Count": {
+    /**
+     * Get Wallet Withdraw Requests Count
+     * @description Get withdraw requests count of a specific wallet by ID.
+     */
+    get: operations["GetWalletWithdrawRequestsCountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Chargebacks": {
+    /**
+     * Get Wallet Chargebacks
+     * @description Get chargebacks of a specific wallet by ID.
+     */
+    get: operations["GetWalletChargebacksAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Chargebacks/Count": {
+    /**
+     * Get Wallet Chargebacks Count
+     * @description Get chargebacks count of a specific wallet by ID.
+     */
+    get: operations["GetWalletChargebacksCountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Refunds": {
+    /**
+     * Get Wallet Refunds
+     * @description Get refunds of a specific wallet by ID.
+     */
+    get: operations["GetWalletRefundsAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Refunds/Count": {
+    /**
+     * Get Wallet Refunds Count
+     * @description Get refunds count of a specific wallet by ID.
+     */
+    get: operations["GetWalletRefundsCountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Tokens": {
+    /**
+     * Get Wallet Tokens
+     * @description Get payment tokens of a specific wallet by ID.
+     */
+    get: operations["GetWalletTokensAsync"];
+    /**
+     * Create Wallet Token
+     * @description Create a new payment token for a specific wallet by ID.
+     */
+    post: operations["CreateWalletTokenAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Tokens/Count": {
+    /**
+     * Get Wallet Tokens Count
+     * @description Get payment tokens count of a specific wallet by ID.
+     */
+    get: operations["GetWalletTokensCountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}": {
+    /**
+     * Get Wallet Token
+     * @description Get a specific payment token of a specific wallet by ID.
+     */
+    get: operations["GetWalletTokenAsync"];
+    /**
+     * Update Wallet Token
+     * @description Update a specific payment token of a specific wallet by ID.
+     */
+    put: operations["UpdateWalletTokenAsync"];
+    /**
+     * Delete Wallet Token
+     * @description Delete a specific payment token of a specific wallet by ID.
+     */
+    delete: operations["DeleteWalletTokenAsync"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -462,6 +723,64 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    BankAccountCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      iban?: string | null;
+      swift?: string | null;
+      branchCode?: string | null;
+      bankAccountNumber?: string | null;
+      qualifiedName?: string | null;
+      bankId?: string | null;
+      bankProfileId?: string | null;
+    };
+    BankAccountDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      iban?: string | null;
+      swift?: string | null;
+      branchCode?: string | null;
+      bankAccountNumber?: string | null;
+      qualifiedName?: string | null;
+      bankId?: string | null;
+      bankProfileId?: string | null;
+      walletId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    BankAccountDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BankAccountDto"];
+    };
+    BankAccountDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BankAccountDto"][] | null;
+    };
+    BankAccountUpdateDto: {
+      name?: string | null;
+      iban?: string | null;
+      swift?: string | null;
+      branchCode?: string | null;
+      bankAccountNumber?: string | null;
+      qualifiedName?: string | null;
+      bankId?: string | null;
+      bankProfileId?: string | null;
     };
     ContactDto: {
       id?: string | null;
@@ -586,6 +905,7 @@ export interface components {
       taxCalculationMethod?: "Included" | "Excluded";
       /** Format: double */
       forexRate?: number;
+      forexRatesSnapshot?: string | null;
       currencyId?: string | null;
       /** Format: double */
       totalDetail?: number;
@@ -765,6 +1085,7 @@ export interface components {
       costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
+      forexRatesSnapshot?: string | null;
       currencyId?: string | null;
       /** Format: double */
       totalDetail?: number;
@@ -993,6 +1314,7 @@ export interface components {
       taxCalculationMethod?: "Included" | "Excluded";
       /** Format: double */
       forexRate?: number;
+      forexRatesSnapshot?: string | null;
       currencyId?: string | null;
       /** Format: double */
       totalDetail?: number;
@@ -1100,6 +1422,99 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["OrderDto"][] | null;
     };
+    PaymentChargebackDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: date-time */
+      requestDate?: string;
+      paymentId?: string | null;
+      bankProfileId?: string | null;
+      bankProfileName?: string | null;
+      /** Format: double */
+      totalFees?: number;
+    };
+    PaymentChargebackDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentChargebackDto"][] | null;
+    };
+    PaymentCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      invoiceId?: string | null;
+      emisorWalletId?: string | null;
+      receiverWalletId?: string | null;
+      currencyId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      /** Format: double */
+      totalCost?: number;
+      /** Format: double */
+      totalTaxes?: number;
+      closed?: boolean;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      response?: string | null;
+      authorization?: string | null;
+      referenceCode?: string | null;
+      correlationCode?: string | null;
+      /** Format: date-time */
+      lastUpdated?: string;
+      /** @enum {string} */
+      onBehalfOf?: "Self" | "Tenant" | "Individual" | "Organization";
+      /** @enum {string} */
+      paymentType?: "Paid" | "Received" | "Internal";
+      /** @enum {string} */
+      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+      /** Format: double */
+      baseCost?: number;
+      signature?: string | null;
+      signatureMismatch?: boolean;
+      isExternal?: boolean;
+      markedForRevision?: boolean;
+      forexRatesSnapshot?: string | null;
+      officialId?: string | null;
+      /** Format: date-time */
+      officialIdExpeditionDate?: string;
+      fiscalIdentificationTypeId?: string | null;
+      billingAddress?: string | null;
+      phone?: string | null;
+      cellphone?: string | null;
+      department?: string | null;
+      city?: string | null;
+      countryId?: string | null;
+      locationId?: string | null;
+      entitlementId?: string | null;
+      /** Format: double */
+      antiFraudScore?: number;
+      callRecordURL?: string | null;
+      called?: boolean;
+      verified?: boolean;
+      payerPictureTimestamp?: string | null;
+      payerPicture?: string | null;
+      identificationPictureTimestamp?: string | null;
+      identificationPicture?: string | null;
+      identificationBackPicture?: string | null;
+      identificationBackPictureTimestamp?: string | null;
+      ipLookupId?: string | null;
+      orderId?: string | null;
+      accountingEntryId?: string | null;
+      paymentGatewayId?: string | null;
+      bankAccountId?: string | null;
+      bankId?: string | null;
+      paymentTokenId?: string | null;
+      emisorWalletAccountId?: string | null;
+      receiverWalletAccountId?: string | null;
+    };
     PaymentDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1180,6 +1595,200 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["PaymentDto"][] | null;
+    };
+    PaymentRefundDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      paymentId?: string | null;
+      walletAccountId?: string | null;
+      refundRequestId?: string | null;
+      /** Format: double */
+      totalFees?: number;
+    };
+    PaymentRefundDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentRefundDto"][] | null;
+    };
+    PaymentTokenCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      mask: string;
+      tokenType?: string | null;
+      cardFranchise?: string | null;
+      cardExpirationMonth: string;
+      cardExpirationYear: string;
+      /** Format: date-time */
+      validUntil?: string | null;
+      paymentGatewayId?: string | null;
+    };
+    PaymentTokenDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      test?: boolean;
+      mask?: string | null;
+      tokenType?: string | null;
+      cardFranchise?: string | null;
+      cardExpirationMonth?: string | null;
+      cardExpirationYear?: string | null;
+      status?: string | null;
+      /** Format: date-time */
+      validUntil?: string | null;
+      walletAccountId?: string | null;
+      paymentGatewayId?: string | null;
+    };
+    PaymentTokenDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentTokenDto"];
+    };
+    PaymentTokenDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentTokenDto"][] | null;
+    };
+    PaymentTokenUpdateDto: {
+      mask?: string | null;
+      tokenType?: string | null;
+      cardFranchise?: string | null;
+      cardExpirationMonth?: string | null;
+      cardExpirationYear?: string | null;
+      status?: string | null;
+      /** Format: date-time */
+      validUntil?: string | null;
+      paymentGatewayId?: string | null;
+    };
+    QuoteDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      closed?: boolean;
+      type?: string | null;
+      title?: string | null;
+      userId?: string | null;
+      tenantId?: string | null;
+      description?: string | null;
+      priceListId?: string | null;
+      enrollmentId?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      companyName?: string | null;
+      billingEmail?: string | null;
+      addressLine1?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** Format: double */
+      forexRate?: number;
+      forexRatesSnapshot?: string | null;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** Format: double */
+      totalDetailInUsd?: number;
+      /** Format: double */
+      totalProfitInUsd?: number;
+      /** Format: double */
+      totalDiscountsInUsd?: number;
+      /** Format: double */
+      totalSurchargesInUsd?: number;
+      /** Format: double */
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
+      /** Format: double */
+      totalGlobalDiscountsInUsd?: number;
+      /** Format: double */
+      totalGlobalSurchargesInUsd?: number;
+      /** Format: double */
+      totalInUsd?: number;
+      cartId?: string | null;
+      dealUnitId?: string | null;
+      /** Format: date-time */
+      effectiveTo?: string | null;
+      /** Format: date-time */
+      effectiveFrom?: string | null;
+      /** @enum {string} */
+      quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
+      /** @enum {string} */
+      freightTerms?: "FOB" | "NoCharge";
+      /** Format: double */
+      customDiscountsAmount?: number;
+    };
+    QuoteDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["QuoteDto"][] | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1322,7 +1931,7 @@ export interface components {
     WalletDto: {
       id?: string | null;
       /** Format: date-time */
-      timestamp?: string;
+      timestamp?: string | null;
       /** Format: double */
       balance?: number;
       /** Format: double */
@@ -1351,6 +1960,64 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["WalletDto"];
+    };
+    WalletWithdrawDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** @enum {string} */
+      withdrawStatus?: "OnHold" | "Retained" | "Processing" | "OnValidation" | "Processed";
+      walletAccountId?: string | null;
+      walletWithdrawRequestId?: string | null;
+      /** Format: double */
+      balanceBeforeWithdraw?: number;
+      /** Format: double */
+      balanceAfterWithdraw?: number;
+      /** Format: double */
+      withdrawedAmount?: number;
+      currencyId?: string | null;
+    };
+    WalletWithdrawDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WalletWithdrawDto"][] | null;
+    };
+    WalletWithdrawRequestCreateDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: double */
+      requestedWithdrawAmount?: number;
+      currencyId?: string | null;
+      bankAccountId?: string | null;
+    };
+    WalletWithdrawRequestDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: double */
+      requestedWithdrawAmount?: number;
+      /** Format: double */
+      requestedWithdrawAmountInUSD?: number;
+      /** @enum {string} */
+      walletWithdrawRequestStatus?: "Pending" | "Processed" | "Cancelled" | "OnHold" | "Denied";
+      currencyId?: string | null;
+      businessId?: string | null;
+      walletAccountId?: string | null;
+      bankAccountId?: string | null;
+    };
+    WalletWithdrawRequestDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WalletWithdrawRequestDto"][] | null;
     };
   };
   responses: never;
@@ -1643,6 +2310,52 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["PaymentDtoListEnvelope"];
           "application/xml": components["schemas"]["PaymentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create Wallet Payment
+   * @description Create a new payment for a specific wallet by ID.
+   */
+  CreateWalletPaymentAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentCreateDto"];
+        "application/xml": components["schemas"]["PaymentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -2258,6 +2971,962 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["Int32Envelope"];
           "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Quotes
+   * @description Get quotes of a specific wallet by ID.
+   */
+  GetWalletQuotesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["QuoteDtoListEnvelope"];
+          "application/xml": components["schemas"]["QuoteDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Quotes Count
+   * @description Get quotes count of a specific wallet by ID.
+   */
+  GetWalletQuotesCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Bank Accounts
+   * @description Get bank accounts of a specific wallet by ID.
+   */
+  GetWalletBankAccountsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BankAccountDtoListEnvelope"];
+          "application/xml": components["schemas"]["BankAccountDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create Wallet Bank Account
+   * @description Create a new bank account for a specific wallet by ID.
+   */
+  CreateWalletBankAccountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankAccountCreateDto"];
+        "application/xml": components["schemas"]["BankAccountCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Bank Accounts Count
+   * @description Get bank accounts count of a specific wallet by ID.
+   */
+  GetWalletBankAccountsCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Bank Account
+   * @description Get a specific bank account of a specific wallet by ID.
+   */
+  GetWalletBankAccountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+        bankAccountId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BankAccountDtoEnvelope"];
+          "application/xml": components["schemas"]["BankAccountDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update Wallet Bank Account
+   * @description Update a specific bank account of a specific wallet by ID.
+   */
+  UpdateWalletBankAccountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+        bankAccountId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankAccountUpdateDto"];
+        "application/xml": components["schemas"]["BankAccountUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete Wallet Bank Account
+   * @description Delete a specific bank account of a specific wallet by ID.
+   */
+  DeleteWalletBankAccountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+        bankAccountId: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Withdraws
+   * @description Get withdraws of a specific wallet by ID.
+   */
+  GetWalletWithdrawsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WalletWithdrawDtoListEnvelope"];
+          "application/xml": components["schemas"]["WalletWithdrawDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create Wallet Withdraw Request
+   * @description Create a new withdraw request for a specific wallet by ID.
+   */
+  CreateWalletWithdrawRequestAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WalletWithdrawRequestCreateDto"];
+        "application/xml": components["schemas"]["WalletWithdrawRequestCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Withdraws Count
+   * @description Get withdraws count of a specific wallet by ID.
+   */
+  GetWalletWithdrawsCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Withdraw Requests
+   * @description Get withdraw requests of a specific wallet by ID.
+   */
+  GetWalletWithdrawRequestsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WalletWithdrawRequestDtoListEnvelope"];
+          "application/xml": components["schemas"]["WalletWithdrawRequestDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Withdraw Requests Count
+   * @description Get withdraw requests count of a specific wallet by ID.
+   */
+  GetWalletWithdrawRequestsCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Chargebacks
+   * @description Get chargebacks of a specific wallet by ID.
+   */
+  GetWalletChargebacksAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentChargebackDtoListEnvelope"];
+          "application/xml": components["schemas"]["PaymentChargebackDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Chargebacks Count
+   * @description Get chargebacks count of a specific wallet by ID.
+   */
+  GetWalletChargebacksCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Refunds
+   * @description Get refunds of a specific wallet by ID.
+   */
+  GetWalletRefundsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentRefundDtoListEnvelope"];
+          "application/xml": components["schemas"]["PaymentRefundDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Refunds Count
+   * @description Get refunds count of a specific wallet by ID.
+   */
+  GetWalletRefundsCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Tokens
+   * @description Get payment tokens of a specific wallet by ID.
+   */
+  GetWalletTokensAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentTokenDtoListEnvelope"];
+          "application/xml": components["schemas"]["PaymentTokenDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create Wallet Token
+   * @description Create a new payment token for a specific wallet by ID.
+   */
+  CreateWalletTokenAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentTokenCreateDto"];
+        "application/xml": components["schemas"]["PaymentTokenCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Tokens Count
+   * @description Get payment tokens count of a specific wallet by ID.
+   */
+  GetWalletTokensCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Token
+   * @description Get a specific payment token of a specific wallet by ID.
+   */
+  GetWalletTokenAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+        tokenId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentTokenDtoEnvelope"];
+          "application/xml": components["schemas"]["PaymentTokenDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update Wallet Token
+   * @description Update a specific payment token of a specific wallet by ID.
+   */
+  UpdateWalletTokenAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+        tokenId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentTokenUpdateDto"];
+        "application/xml": components["schemas"]["PaymentTokenUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete Wallet Token
+   * @description Delete a specific payment token of a specific wallet by ID.
+   */
+  DeleteWalletTokenAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+        tokenId: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */

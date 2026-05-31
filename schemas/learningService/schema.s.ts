@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/api/v2/LearningService/CourseArticles": {
     /**
      * Get all course articles
@@ -41,6 +150,42 @@ export interface paths {
      */
     delete: operations["DeleteCourseArticleAsync"];
   };
+  "/api/v2/LearningService/CourseAssignmentComponents": {
+    /**
+     * Get all course assignment components
+     * @description Retrieves all course assignment components for the specified tenant.
+     */
+    get: operations["GetCourseAssignmentComponentsAsync"];
+    /**
+     * Create a course assignment component
+     * @description Creates a new course assignment component for the specified tenant.
+     */
+    post: operations["CreateCourseAssignmentComponentAsync"];
+  };
+  "/api/v2/LearningService/CourseAssignmentComponents/Count": {
+    /**
+     * Get course assignment components count
+     * @description Returns the count of course assignment components for the specified tenant.
+     */
+    get: operations["GetCourseAssignmentComponentsCountAsync"];
+  };
+  "/api/v2/LearningService/CourseAssignmentComponents/{componentId}": {
+    /**
+     * Get course assignment component by ID
+     * @description Retrieves a specific course assignment component by its ID.
+     */
+    get: operations["GetCourseAssignmentComponentByIdAsync"];
+    /**
+     * Update a course assignment component
+     * @description Updates an existing course assignment component.
+     */
+    put: operations["UpdateCourseAssignmentComponentAsync"];
+    /**
+     * Delete a course assignment component
+     * @description Deletes a course assignment component by its ID.
+     */
+    delete: operations["DeleteCourseAssignmentComponentAsync"];
+  };
   "/api/v2/LearningService/CourseAssignments": {
     /**
      * Get all course assignments
@@ -76,6 +221,42 @@ export interface paths {
      * @description Deletes a course assignment for the specified tenant.
      */
     delete: operations["DeleteCourseAssignmentAsync"];
+  };
+  "/api/v2/LearningService/CourseAssignmentTypes": {
+    /**
+     * Get all course assignment types
+     * @description Retrieves all course assignment types for the specified tenant.
+     */
+    get: operations["GetCourseAssignmentTypesAsync"];
+    /**
+     * Create a course assignment type
+     * @description Creates a new course assignment type for the specified tenant.
+     */
+    post: operations["CreateCourseAssignmentTypeAsync"];
+  };
+  "/api/v2/LearningService/CourseAssignmentTypes/Count": {
+    /**
+     * Get course assignment types count
+     * @description Returns the count of course assignment types for the specified tenant.
+     */
+    get: operations["GetCourseAssignmentTypesCountAsync"];
+  };
+  "/api/v2/LearningService/CourseAssignmentTypes/{assignmentTypeId}": {
+    /**
+     * Get course assignment type by ID
+     * @description Retrieves a specific course assignment type by its ID.
+     */
+    get: operations["GetCourseAssignmentTypeByIdAsync"];
+    /**
+     * Update a course assignment type
+     * @description Updates an existing course assignment type.
+     */
+    put: operations["UpdateCourseAssignmentTypeAsync"];
+    /**
+     * Delete a course assignment type
+     * @description Deletes a course assignment type by its ID.
+     */
+    delete: operations["DeleteCourseAssignmentTypeAsync"];
   };
   "/api/v2/LearningService/CourseCategories": {
     /**
@@ -168,10 +349,22 @@ export interface paths {
      */
     get: operations["GetCourseCertificateTemplateAsync"];
     /**
+     * Update a certificate template
+     * @description Updates an existing course certificate template for the specified tenant.
+     */
+    put: operations["UpdateCourseCertificateTemplateAsync"];
+    /**
      * Delete a certificate template
      * @description Deletes a course certificate template for the specified tenant.
      */
     delete: operations["DeleteCourseCertificateTemplateAsync"];
+  };
+  "/api/v2/LearningService/CourseCertificates/Template/Count": {
+    /**
+     * Get certificate templates count
+     * @description Returns the count of course certificate templates for the specified tenant.
+     */
+    get: operations["GetCourseCertificateTemplatesCountAsync"];
   };
   "/api/v2/LearningService/CourseCohorts": {
     /**
@@ -208,6 +401,56 @@ export interface paths {
      * @description Deletes a course cohort for the specified tenant.
      */
     delete: operations["DeleteCourseCohortAsync"];
+  };
+  "/api/v2/LearningService/CourseContentGroups": {
+    /**
+     * Get all course content groups
+     * @description Retrieves all course content groups for the specified tenant.
+     */
+    get: operations["GetCourseContentGroupsAsync"];
+    /**
+     * Create a new course content group
+     * @description Creates a new course content group for the specified tenant.
+     */
+    post: operations["CreateCourseContentGroupAsync"];
+  };
+  "/api/v2/LearningService/CourseContentGroups/Count": {
+    /**
+     * Get course content groups count
+     * @description Returns the count of course content groups for the specified tenant.
+     */
+    get: operations["GetCourseContentGroupsCountAsync"];
+  };
+  "/api/v2/LearningService/CourseContentGroups/{groupId}": {
+    /**
+     * Get course content group by ID
+     * @description Retrieves a specific course content group by its ID.
+     */
+    get: operations["GetCourseContentGroupByIdAsync"];
+    /**
+     * Update a course content group
+     * @description Updates an existing course content group for the specified tenant.
+     */
+    put: operations["UpdateCourseContentGroupAsync"];
+    /**
+     * Delete a course content group
+     * @description Deletes a course content group for the specified tenant.
+     */
+    delete: operations["DeleteCourseContentGroupAsync"];
+  };
+  "/api/v2/LearningService/Courses/{courseId}/ContentGroups": {
+    /**
+     * Get course content groups by course
+     * @description Retrieves all course content groups for a specific course.
+     */
+    get: operations["GetCourseContentGroupsByCourseAsync"];
+  };
+  "/api/v2/LearningService/Courses/{courseId}/ContentGroups/Count": {
+    /**
+     * Get course content groups count by course
+     * @description Returns the count of course content groups for a specific course.
+     */
+    get: operations["GetCourseContentGroupsByCourseCountAsync"];
   };
   "/api/v2/LearningService/CourseEnrollments": {
     /**
@@ -323,6 +566,42 @@ export interface paths {
      * @description Deletes a course forum by its ID.
      */
     delete: operations["DeleteCourseForumAsync"];
+  };
+  "/api/v2/LearningService/CourseGradingRubrics": {
+    /**
+     * Get all course grading rubrics
+     * @description Retrieves all course grading rubrics for the specified tenant.
+     */
+    get: operations["GetCourseGradingRubricsAsync"];
+    /**
+     * Create a course grading rubric
+     * @description Creates a new course grading rubric for the specified tenant.
+     */
+    post: operations["CreateCourseGradingRubricAsync"];
+  };
+  "/api/v2/LearningService/CourseGradingRubrics/Count": {
+    /**
+     * Get course grading rubrics count
+     * @description Returns the count of course grading rubrics for the specified tenant.
+     */
+    get: operations["GetCourseGradingRubricsCountAsync"];
+  };
+  "/api/v2/LearningService/CourseGradingRubrics/{rubricId}": {
+    /**
+     * Get course grading rubric by ID
+     * @description Retrieves a specific course grading rubric by its ID.
+     */
+    get: operations["GetCourseGradingRubricByIdAsync"];
+    /**
+     * Update a course grading rubric
+     * @description Updates an existing course grading rubric.
+     */
+    put: operations["UpdateCourseGradingRubricAsync"];
+    /**
+     * Delete a course grading rubric
+     * @description Deletes a course grading rubric by its ID.
+     */
+    delete: operations["DeleteCourseGradingRubricAsync"];
   };
   "/api/v2/LearningService/CourseHandouts": {
     /**
@@ -784,6 +1063,42 @@ export interface paths {
      * @description Deletes a course section for the specified tenant.
      */
     delete: operations["DeleteCourseSectionAsync"];
+  };
+  "/api/v2/LearningService/CourseTeamMemberships": {
+    /**
+     * Get all course team memberships
+     * @description Retrieves all course team memberships for the specified tenant.
+     */
+    get: operations["GetCourseTeamMembershipsAsync"];
+    /**
+     * Create a course team membership
+     * @description Creates a new course team membership for the specified tenant.
+     */
+    post: operations["CreateCourseTeamMembershipAsync"];
+  };
+  "/api/v2/LearningService/CourseTeamMemberships/Count": {
+    /**
+     * Get course team memberships count
+     * @description Returns the count of course team memberships for the specified tenant.
+     */
+    get: operations["GetCourseTeamMembershipsCountAsync"];
+  };
+  "/api/v2/LearningService/CourseTeamMemberships/{membershipId}": {
+    /**
+     * Get course team membership by ID
+     * @description Retrieves a specific course team membership by its ID.
+     */
+    get: operations["GetCourseTeamMembershipByIdAsync"];
+    /**
+     * Update a course team membership
+     * @description Updates an existing course team membership.
+     */
+    put: operations["UpdateCourseTeamMembershipAsync"];
+    /**
+     * Delete a course team membership
+     * @description Deletes a course team membership by its ID.
+     */
+    delete: operations["DeleteCourseTeamMembershipAsync"];
   };
   "/api/v2/LearningService/CourseUnitComponents": {
     /**
@@ -1406,6 +1721,66 @@ export interface paths {
       };
     };
   };
+  "/api/v2/LearningService/Me/StudentProfiles": {
+    /** Get current user's student profiles */
+    get: operations["GetMyStudentProfilesAsync"];
+  };
+  "/api/v2/LearningService/Me/StudentProfiles/Count": {
+    /** Get current user's student profiles count */
+    get: operations["GetMyStudentProfilesCountAsync"];
+  };
+  "/api/v2/LearningService/Me/InstructorProfiles": {
+    /** Get current user's instructor profiles */
+    get: operations["GetMyInstructorProfilesAsync"];
+  };
+  "/api/v2/LearningService/Me/InstructorProfiles/Count": {
+    /** Get current user's instructor profiles count */
+    get: operations["GetMyInstructorProfilesCountAsync"];
+  };
+  "/api/v2/LearningService/Me/Enrollments": {
+    /** Get current user's course enrollments */
+    get: operations["GetMyEnrollmentsAsync"];
+  };
+  "/api/v2/LearningService/Me/Enrollments/Count": {
+    /** Get current user's enrollment count */
+    get: operations["GetMyEnrollmentsCountAsync"];
+  };
+  "/api/v2/LearningService/Me/Courses": {
+    /** Get current user's enrolled courses */
+    get: operations["GetMyStudentCoursesAsync"];
+  };
+  "/api/v2/LearningService/Me/Courses/Count": {
+    /** Get current user's enrolled courses count */
+    get: operations["GetMyStudentCoursesCountAsync"];
+  };
+  "/api/v2/LearningService/Me/InstructorCourses": {
+    /** Get current user's instructor courses */
+    get: operations["GetMyInstructorCoursesAsync"];
+  };
+  "/api/v2/LearningService/Me/InstructorCourses/Count": {
+    /** Get current user's instructor courses count */
+    get: operations["GetMyInstructorCoursesCountAsync"];
+  };
+  "/api/v2/LearningService/Me/Certificates": {
+    /** Get current user's completion certificates */
+    get: operations["GetMyCertificatesAsync"];
+  };
+  "/api/v2/LearningService/Me/Certificates/Count": {
+    /** Get current user's certificates count */
+    get: operations["GetMyCertificatesCountAsync"];
+  };
+  "/api/v2/LearningService/Me/AverageScore": {
+    /** Get current user's average score */
+    get: operations["GetMyAverageScoreAsync"];
+  };
+  "/api/v2/LearningService/Me/HoursCompleted": {
+    /** Get current user's completed hours */
+    get: operations["GetMyHoursCompletedAsync"];
+  };
+  "/api/v2/LearningService/Me/PendingTasks": {
+    /** Get current user's pending task count */
+    get: operations["GetMyPendingTaskCountAsync"];
+  };
   "/api/v2/LearningService/StudentProfiles": {
     get: {
       parameters: {
@@ -1670,12 +2045,107 @@ export interface components {
       /** Format: double */
       average?: number;
     };
+    AverageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AverageDto"];
+    };
+    ContactDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      qualifiedName?: string | null;
+      tenantId?: string | null;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
+      publicName?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      jobTitle?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      countryId?: string | null;
+      timezoneId?: string | null;
+      languageId?: string | null;
+      socialProfileId?: string | null;
+      /** Format: uri */
+      webUrl?: string | null;
+      /** Format: uri */
+      gitHubUrl?: string | null;
+      /** Format: uri */
+      twitchUrl?: string | null;
+      /** Format: uri */
+      redditUrl?: string | null;
+      /** Format: uri */
+      tikTokUrl?: string | null;
+      /** Format: uri */
+      websiteUrl?: string | null;
+      /** Format: uri */
+      twitterUrl?: string | null;
+      /** Format: uri */
+      facebookUrl?: string | null;
+      /** Format: uri */
+      youTubeUrl?: string | null;
+      /** Format: uri */
+      linkedInUrl?: string | null;
+      /** Format: uri */
+      instagramUrl?: string | null;
+      githubUsername?: string | null;
+      duns?: string | null;
+      taxId?: string | null;
+      about?: string | null;
+      street?: string | null;
+      cartId?: string | null;
+      cityId?: string | null;
+      zipCode?: string | null;
+      stateId?: string | null;
+      walletId?: string | null;
+      faxNumber?: string | null;
+      postalCode?: string | null;
+      currencyId?: string | null;
+      streetLine1?: string | null;
+      streetLine2?: string | null;
+      territoryId?: string | null;
+      mobilePhone?: string | null;
+      enrollmentId?: string | null;
+      annualRevenue?: string | null;
+      relatedUserId?: string | null;
+      businessPhone?: string | null;
+      ownerContactId?: string | null;
+      relatedTenantId?: string | null;
+      activityFeedId?: string | null;
+      parentContactId?: string | null;
+      identityProvider?: string | null;
+      partnerProfileId?: string | null;
+      primaryContactId?: string | null;
+      activeDirectoryId?: string | null;
+      identityProviderAccessToken?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
+    };
     CountDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       /** Format: int32 */
       count?: number;
+    };
+    CountDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CountDto"];
     };
     CourseArticleCreateDto: {
       /** Format: uuid */
@@ -1703,6 +2173,40 @@ export interface components {
       title?: string | null;
       description?: string | null;
       content?: string | null;
+    };
+    CourseAssignmentComponentCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      content?: string | null;
+      /** Format: int32 */
+      order?: number;
+      courseAssignmentID: string;
+      courseID: string;
+    };
+    CourseAssignmentComponentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      content?: string | null;
+      /** Format: int32 */
+      order?: number;
+      courseAssignmentID?: string | null;
+      courseID?: string | null;
+      tenantId?: string | null;
+    };
+    CourseAssignmentComponentUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      content?: string | null;
+      /** Format: int32 */
+      order?: number | null;
+      courseAssignmentID?: string | null;
     };
     CourseAssignmentCreateDto: {
       /** Format: uuid */
@@ -1738,6 +2242,46 @@ export interface components {
       courseUnitID?: string | null;
       courseSectionID?: string | null;
       tenantId?: string | null;
+    };
+    CourseAssignmentTypeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      abbreviation?: string | null;
+      /** Format: double */
+      weight?: number;
+      /** Format: int32 */
+      quantity?: number;
+      /** Format: int32 */
+      excluded?: number;
+      courseID: string;
+    };
+    CourseAssignmentTypeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      abbreviation?: string | null;
+      /** Format: double */
+      weight?: number;
+      /** Format: int32 */
+      quantity?: number;
+      /** Format: int32 */
+      excluded?: number;
+      courseID?: string | null;
+      tenantId?: string | null;
+    };
+    CourseAssignmentTypeUpdateDto: {
+      name?: string | null;
+      abbreviation?: string | null;
+      /** Format: double */
+      weight?: number | null;
+      /** Format: int32 */
+      quantity?: number | null;
+      /** Format: int32 */
+      excluded?: number | null;
     };
     CourseAssignmentUpdateDto: {
       title?: string | null;
@@ -1800,6 +2344,13 @@ export interface components {
       webPortalID?: string | null;
       websiteThemeID?: string | null;
       businessProfileRecordID?: string | null;
+      socialProfileID?: string | null;
+      parentWebContentID?: string | null;
+      parentWebContentVersionID?: string | null;
+    };
+    CourseCertificateTemplateUpdateDto: {
+      webPortalID?: string | null;
+      websiteThemeID?: string | null;
       socialProfileID?: string | null;
       parentWebContentID?: string | null;
       parentWebContentVersionID?: string | null;
@@ -1875,10 +2426,39 @@ export interface components {
       instructorName?: string | null;
       instructorLastName?: string | null;
     };
+    CourseCompletionCertificateDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CourseCompletionCertificateDto"][] | null;
+    };
     CourseCompletionCertificateUpdateDto: {
       studentProfileID?: string | null;
       courseEnrollmentID?: string | null;
       courseCompletionCertificateTemplateID?: string | null;
+      courseID?: string | null;
+    };
+    CourseContentGroupCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      courseID: string;
+    };
+    CourseContentGroupDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      courseID?: string | null;
+      businessID?: string | null;
+    };
+    CourseContentGroupUpdateDto: {
+      name?: string | null;
       courseID?: string | null;
     };
     CourseCreateDto: {
@@ -1886,7 +2466,33 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      title?: string | null;
+      title: string;
+      description: string;
+      sku?: string | null;
+      summary?: string | null;
+      code?: string | null;
+      version?: string | null;
+      courseCategoryID?: string | null;
+      instructorProfileID?: string | null;
+      currencyID?: string | null;
+      /** Format: double */
+      regularPrice?: number;
+      /** Format: int32 */
+      maxCourseEnrollments?: number;
+      /** Format: int32 */
+      totalEffortInWeeks?: number;
+      /** Format: int32 */
+      totalHoursPerWeek?: number;
+      /** Format: int32 */
+      totalEffortInHours?: number;
+      /** Format: date-time */
+      startDateTime?: string | null;
+      /** Format: date-time */
+      endDateTime?: string | null;
+      /** Format: date-time */
+      inscriptionsStartDateTime?: string | null;
+      /** Format: date-time */
+      inscriptionsEndDateTime?: string | null;
     };
     CourseDto: {
       id?: string | null;
@@ -2092,6 +2698,37 @@ export interface components {
       selectedShipmentPolicies?: string[] | null;
       selectedAttributesOptions?: string[] | null;
       selectedSellingMarginPolicies?: string[] | null;
+      code?: string | null;
+      version?: string | null;
+      courseCategoryID?: string | null;
+      courseCategoryName?: string | null;
+      instructorProfileID?: string | null;
+      instructorProfileName?: string | null;
+      /** Format: int32 */
+      maxCourseEnrollments?: number;
+      /** Format: int32 */
+      totalEffortInWeeks?: number;
+      /** Format: int32 */
+      totalHoursPerWeek?: number;
+      /** Format: int32 */
+      totalEffortInHours?: number;
+      /** Format: date-time */
+      startDateTime?: string | null;
+      /** Format: date-time */
+      endDateTime?: string | null;
+      /** Format: date-time */
+      inscriptionsStartDateTime?: string | null;
+      /** Format: date-time */
+      inscriptionsEndDateTime?: string | null;
+    };
+    CourseDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CourseDto"][] | null;
     };
     CourseEnrollmentCreateDto: {
       /** Format: uuid */
@@ -2112,6 +2749,15 @@ export interface components {
       studentProfileID?: string | null;
       businessProfileRecordID?: string | null;
       courseCompletionCertificateID?: string | null;
+    };
+    CourseEnrollmentDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CourseEnrollmentDto"][] | null;
     };
     CourseEnrollmentUpdateDto: {
       /** Format: uuid */
@@ -2176,6 +2822,31 @@ export interface components {
     CourseForumUpdateDto: {
       title?: string | null;
       description?: string | null;
+    };
+    CourseGradingRubricCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      enablePoints?: boolean;
+      courseID: string;
+    };
+    CourseGradingRubricDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      enablePoints?: boolean;
+      courseID?: string | null;
+      tenantId?: string | null;
+    };
+    CourseGradingRubricUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      enablePoints?: boolean | null;
     };
     CourseHandoutCreateDto: {
       /** Format: uuid */
@@ -2371,6 +3042,31 @@ export interface components {
       releaseDateTime?: string | null;
       hideFromStudents?: boolean;
     };
+    CourseTeamMembershipCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      courseID: string;
+      instructorProfileID: string;
+      /** @enum {string} */
+      courseTeamMembershipType?: "Admin" | "Staff";
+    };
+    CourseTeamMembershipDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      courseID?: string | null;
+      instructorProfileID?: string | null;
+      /** @enum {string} */
+      courseTeamMembershipType?: "Admin" | "Staff";
+      tenantId?: string | null;
+    };
+    CourseTeamMembershipUpdateDto: {
+      instructorProfileID?: string | null;
+      /** @enum {string|null} */
+      courseTeamMembershipType?: "Admin" | "Staff" | null;
+    };
     CourseUnitComponentCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2445,6 +3141,33 @@ export interface components {
     };
     CourseUpdateDto: {
       title?: string | null;
+      description?: string | null;
+      sku?: string | null;
+      summary?: string | null;
+      code?: string | null;
+      version?: string | null;
+      courseCategoryID?: string | null;
+      instructorProfileID?: string | null;
+      currencyID?: string | null;
+      /** Format: double */
+      regularPrice?: number | null;
+      /** Format: int32 */
+      maxCourseEnrollments?: number | null;
+      /** Format: int32 */
+      totalEffortInWeeks?: number | null;
+      /** Format: int32 */
+      totalHoursPerWeek?: number | null;
+      /** Format: int32 */
+      totalEffortInHours?: number | null;
+      /** Format: date-time */
+      startDateTime?: string | null;
+      /** Format: date-time */
+      endDateTime?: string | null;
+      /** Format: date-time */
+      inscriptionsStartDateTime?: string | null;
+      /** Format: date-time */
+      inscriptionsEndDateTime?: string | null;
+      published?: boolean | null;
     };
     CourseWikiCreateDto: {
       /** Format: uuid */
@@ -2514,14 +3237,10 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      authorized?: boolean;
+      type?: string | null;
+      contactId?: string | null;
       about?: string | null;
-      verified?: boolean;
-      submitted?: boolean;
       avatarUrl?: string | null;
-      qualifiedName?: string | null;
-      /** Format: date-time */
-      verificationTimestamp?: string;
       data?: string | null;
       dataLabel?: string | null;
       data1?: string | null;
@@ -2542,20 +3261,25 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
+      authorized?: boolean;
       contactID?: string | null;
     };
     InstructorProfileDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      authorized?: boolean;
+      contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
+      enrollmentId?: string | null;
       about?: string | null;
       verified?: boolean;
       submitted?: boolean;
       avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
       qualifiedName?: string | null;
       /** Format: date-time */
-      verificationTimestamp?: string;
+      verificationTimestamp?: string | null;
       data?: string | null;
       dataLabel?: string | null;
       data1?: string | null;
@@ -2576,22 +3300,25 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
+      authorized?: boolean;
       businessID?: string | null;
       contactID?: string | null;
       businessProfileRecordID?: string | null;
     };
+    InstructorProfileDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["InstructorProfileDto"][] | null;
+    };
     InstructorProfileUpdateDto: {
-      id?: string | null;
-      /** Format: date-time */
-      timestamp?: string | null;
-      authorized?: boolean;
+      type?: string | null;
+      contactId?: string | null;
       about?: string | null;
-      verified?: boolean;
-      submitted?: boolean;
       avatarUrl?: string | null;
-      qualifiedName?: string | null;
-      /** Format: date-time */
-      verificationTimestamp?: string;
       data?: string | null;
       dataLabel?: string | null;
       data1?: string | null;
@@ -2612,6 +3339,7 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
+      authorized?: boolean;
     };
     LoginRequest: {
       email: string | null;
@@ -2639,13 +3367,10 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      type?: string | null;
+      contactId?: string | null;
       about?: string | null;
-      verified?: boolean;
-      submitted?: boolean;
       avatarUrl?: string | null;
-      qualifiedName?: string | null;
-      /** Format: date-time */
-      verificationTimestamp?: string;
       data?: string | null;
       dataLabel?: string | null;
       data1?: string | null;
@@ -2672,13 +3397,18 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
+      enrollmentId?: string | null;
       about?: string | null;
       verified?: boolean;
       submitted?: boolean;
       avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
       qualifiedName?: string | null;
       /** Format: date-time */
-      verificationTimestamp?: string;
+      verificationTimestamp?: string | null;
       data?: string | null;
       dataLabel?: string | null;
       data1?: string | null;
@@ -2703,18 +3433,20 @@ export interface components {
       contactID?: string | null;
       businessProfileRecordID?: string | null;
     };
-    StudentProfileUpdateDto: {
-      /** Format: uuid */
-      id?: string;
+    StudentProfileDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["StudentProfileDto"][] | null;
+    };
+    StudentProfileUpdateDto: {
+      type?: string | null;
+      contactId?: string | null;
       about?: string | null;
-      verified?: boolean;
-      submitted?: boolean;
       avatarUrl?: string | null;
-      qualifiedName?: string | null;
-      /** Format: date-time */
-      verificationTimestamp?: string;
       data?: string | null;
       dataLabel?: string | null;
       data1?: string | null;
@@ -2964,6 +3696,203 @@ export interface operations {
     };
   };
   /**
+   * Get all course assignment components
+   * @description Retrieves all course assignment components for the specified tenant.
+   */
+  GetCourseAssignmentComponentsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseAssignmentComponentDto"][];
+          "application/xml": components["schemas"]["CourseAssignmentComponentDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a course assignment component
+   * @description Creates a new course assignment component for the specified tenant.
+   */
+  CreateCourseAssignmentComponentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentComponentCreateDto"];
+        "application/xml": components["schemas"]["CourseAssignmentComponentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course assignment components count
+   * @description Returns the count of course assignment components for the specified tenant.
+   */
+  GetCourseAssignmentComponentsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course assignment component by ID
+   * @description Retrieves a specific course assignment component by its ID.
+   */
+  GetCourseAssignmentComponentByIdAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        componentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseAssignmentComponentDto"];
+          "application/xml": components["schemas"]["CourseAssignmentComponentDto"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a course assignment component
+   * @description Updates an existing course assignment component.
+   */
+  UpdateCourseAssignmentComponentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        componentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentComponentUpdateDto"];
+        "application/xml": components["schemas"]["CourseAssignmentComponentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a course assignment component
+   * @description Deletes a course assignment component by its ID.
+   */
+  DeleteCourseAssignmentComponentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        componentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course assignments
    * @description Retrieves all course assignments for the specified tenant.
    */
@@ -3144,6 +4073,203 @@ export interface operations {
       };
       path: {
         assignmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all course assignment types
+   * @description Retrieves all course assignment types for the specified tenant.
+   */
+  GetCourseAssignmentTypesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseAssignmentTypeDto"][];
+          "application/xml": components["schemas"]["CourseAssignmentTypeDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a course assignment type
+   * @description Creates a new course assignment type for the specified tenant.
+   */
+  CreateCourseAssignmentTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentTypeCreateDto"];
+        "application/xml": components["schemas"]["CourseAssignmentTypeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course assignment types count
+   * @description Returns the count of course assignment types for the specified tenant.
+   */
+  GetCourseAssignmentTypesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course assignment type by ID
+   * @description Retrieves a specific course assignment type by its ID.
+   */
+  GetCourseAssignmentTypeByIdAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        assignmentTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseAssignmentTypeDto"];
+          "application/xml": components["schemas"]["CourseAssignmentTypeDto"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a course assignment type
+   * @description Updates an existing course assignment type.
+   */
+  UpdateCourseAssignmentTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        assignmentTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentTypeUpdateDto"];
+        "application/xml": components["schemas"]["CourseAssignmentTypeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a course assignment type
+   * @description Deletes a course assignment type by its ID.
+   */
+  DeleteCourseAssignmentTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        assignmentTypeId: string;
       };
     };
     responses: {
@@ -3655,6 +4781,43 @@ export interface operations {
     };
   };
   /**
+   * Update a certificate template
+   * @description Updates an existing course certificate template for the specified tenant.
+   */
+  UpdateCourseCertificateTemplateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseCertificateTemplateId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCertificateTemplateUpdateDto"];
+        "application/xml": components["schemas"]["CourseCertificateTemplateUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Delete a certificate template
    * @description Deletes a course certificate template for the specified tenant.
    */
@@ -3675,6 +4838,37 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get certificate templates count
+   * @description Returns the count of course certificate templates for the specified tenant.
+   */
+  GetCourseCertificateTemplatesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
       };
       /** @description Forbidden */
       403: {
@@ -3872,6 +5066,269 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all course content groups
+   * @description Retrieves all course content groups for the specified tenant.
+   */
+  GetCourseContentGroupsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseContentGroupDto"][];
+          "application/xml": components["schemas"]["CourseContentGroupDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new course content group
+   * @description Creates a new course content group for the specified tenant.
+   */
+  CreateCourseContentGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseContentGroupCreateDto"];
+        "application/xml": components["schemas"]["CourseContentGroupCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course content groups count
+   * @description Returns the count of course content groups for the specified tenant.
+   */
+  GetCourseContentGroupsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course content group by ID
+   * @description Retrieves a specific course content group by its ID.
+   */
+  GetCourseContentGroupByIdAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        groupId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseContentGroupDto"];
+          "application/xml": components["schemas"]["CourseContentGroupDto"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a course content group
+   * @description Updates an existing course content group for the specified tenant.
+   */
+  UpdateCourseContentGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        groupId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseContentGroupUpdateDto"];
+        "application/xml": components["schemas"]["CourseContentGroupUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a course content group
+   * @description Deletes a course content group for the specified tenant.
+   */
+  DeleteCourseContentGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        groupId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course content groups by course
+   * @description Retrieves all course content groups for a specific course.
+   */
+  GetCourseContentGroupsByCourseAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseContentGroupDto"][];
+          "application/xml": components["schemas"]["CourseContentGroupDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course content groups count by course
+   * @description Returns the count of course content groups for a specific course.
+   */
+  GetCourseContentGroupsByCourseCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
       };
       /** @description Forbidden */
       403: {
@@ -4498,6 +5955,203 @@ export interface operations {
       };
       path: {
         forumId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all course grading rubrics
+   * @description Retrieves all course grading rubrics for the specified tenant.
+   */
+  GetCourseGradingRubricsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseGradingRubricDto"][];
+          "application/xml": components["schemas"]["CourseGradingRubricDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a course grading rubric
+   * @description Creates a new course grading rubric for the specified tenant.
+   */
+  CreateCourseGradingRubricAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseGradingRubricCreateDto"];
+        "application/xml": components["schemas"]["CourseGradingRubricCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course grading rubrics count
+   * @description Returns the count of course grading rubrics for the specified tenant.
+   */
+  GetCourseGradingRubricsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course grading rubric by ID
+   * @description Retrieves a specific course grading rubric by its ID.
+   */
+  GetCourseGradingRubricByIdAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        rubricId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseGradingRubricDto"];
+          "application/xml": components["schemas"]["CourseGradingRubricDto"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a course grading rubric
+   * @description Updates an existing course grading rubric.
+   */
+  UpdateCourseGradingRubricAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        rubricId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseGradingRubricUpdateDto"];
+        "application/xml": components["schemas"]["CourseGradingRubricUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a course grading rubric
+   * @description Deletes a course grading rubric by its ID.
+   */
+  DeleteCourseGradingRubricAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        rubricId: string;
       };
     };
     responses: {
@@ -5416,8 +7070,8 @@ export interface operations {
    */
   GetCourseByIdAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -6870,6 +8524,203 @@ export interface operations {
     };
   };
   /**
+   * Get all course team memberships
+   * @description Retrieves all course team memberships for the specified tenant.
+   */
+  GetCourseTeamMembershipsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseTeamMembershipDto"][];
+          "application/xml": components["schemas"]["CourseTeamMembershipDto"][];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a course team membership
+   * @description Creates a new course team membership for the specified tenant.
+   */
+  CreateCourseTeamMembershipAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseTeamMembershipCreateDto"];
+        "application/xml": components["schemas"]["CourseTeamMembershipCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course team memberships count
+   * @description Returns the count of course team memberships for the specified tenant.
+   */
+  GetCourseTeamMembershipsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get course team membership by ID
+   * @description Retrieves a specific course team membership by its ID.
+   */
+  GetCourseTeamMembershipByIdAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        membershipId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseTeamMembershipDto"];
+          "application/xml": components["schemas"]["CourseTeamMembershipDto"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a course team membership
+   * @description Updates an existing course team membership.
+   */
+  UpdateCourseTeamMembershipAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        membershipId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseTeamMembershipUpdateDto"];
+        "application/xml": components["schemas"]["CourseTeamMembershipUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a course team membership
+   * @description Deletes a course team membership by its ID.
+   */
+  DeleteCourseTeamMembershipAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        membershipId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course unit components
    * @description Retrieves all course unit components for the specified tenant.
    */
@@ -7669,6 +9520,411 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /** Get current user's student profiles */
+  GetMyStudentProfilesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["StudentProfileDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["StudentProfileDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's student profiles count */
+  GetMyStudentProfilesCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's instructor profiles */
+  GetMyInstructorProfilesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InstructorProfileDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InstructorProfileDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's instructor profiles count */
+  GetMyInstructorProfilesCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's course enrollments */
+  GetMyEnrollmentsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseEnrollmentDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["CourseEnrollmentDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's enrollment count */
+  GetMyEnrollmentsCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's enrolled courses */
+  GetMyStudentCoursesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["CourseDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's enrolled courses count */
+  GetMyStudentCoursesCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's instructor courses */
+  GetMyInstructorCoursesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["CourseDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's instructor courses count */
+  GetMyInstructorCoursesCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's completion certificates */
+  GetMyCertificatesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CourseCompletionCertificateDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["CourseCompletionCertificateDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's certificates count */
+  GetMyCertificatesCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": number;
+          "application/xml": number;
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's average score */
+  GetMyAverageScoreAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AverageDtoEnvelope"];
+          "application/xml": components["schemas"]["AverageDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's completed hours */
+  GetMyHoursCompletedAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CountDtoEnvelope"];
+          "application/xml": components["schemas"]["CountDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /** Get current user's pending task count */
+  GetMyPendingTaskCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CountDtoEnvelope"];
+          "application/xml": components["schemas"]["CountDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };

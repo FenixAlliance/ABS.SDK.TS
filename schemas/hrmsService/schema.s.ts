@@ -5,6 +5,223 @@
 
 
 export interface paths {
+  "/api/v2/HrmsService/AppraisalStages": {
+    /**
+     * Get appraisal stages
+     * @description Retrieves appraisal stages for the specified tenant.
+     */
+    get: operations["GetAppraisalStagesAsync"];
+    /**
+     * Create an appraisal stage
+     * @description Creates a new appraisal stage for the specified tenant.
+     */
+    post: operations["CreateAppraisalStageAsync"];
+  };
+  "/api/v2/HrmsService/AppraisalStages/Count": {
+    /**
+     * Count appraisal stages
+     * @description Counts appraisal stages for the specified tenant.
+     */
+    get: operations["GetAppraisalStagesCountAsync"];
+  };
+  "/api/v2/HrmsService/AppraisalStages/{stageId}": {
+    /**
+     * Get appraisal stage by ID
+     * @description Retrieves a specific appraisal stage by its identifier.
+     */
+    get: operations["GetAppraisalStageByIdAsync"];
+    /**
+     * Update an appraisal stage
+     * @description Updates an existing appraisal stage for the specified tenant.
+     */
+    put: operations["UpdateAppraisalStageAsync"];
+    /**
+     * Delete an appraisal stage
+     * @description Deletes an appraisal stage for the specified tenant.
+     */
+    delete: operations["DeleteAppraisalStageAsync"];
+  };
+  "/api/v2/HrmsService/AppraisalWorkflows": {
+    /**
+     * Get appraisal workflows
+     * @description Retrieves appraisal workflows for the specified tenant.
+     */
+    get: operations["GetAppraisalWorkflowsAsync"];
+    /**
+     * Create an appraisal workflow
+     * @description Creates a new appraisal workflow for the specified tenant.
+     */
+    post: operations["CreateAppraisalWorkflowAsync"];
+  };
+  "/api/v2/HrmsService/AppraisalWorkflows/Count": {
+    /**
+     * Count appraisal workflows
+     * @description Counts appraisal workflows for the specified tenant.
+     */
+    get: operations["GetAppraisalWorkflowsCountAsync"];
+  };
+  "/api/v2/HrmsService/AppraisalWorkflows/{workflowId}": {
+    /**
+     * Get appraisal workflow by ID
+     * @description Retrieves a specific appraisal workflow by its identifier.
+     */
+    get: operations["GetAppraisalWorkflowByIdAsync"];
+    /**
+     * Update an appraisal workflow
+     * @description Updates an existing appraisal workflow for the specified tenant.
+     */
+    put: operations["UpdateAppraisalWorkflowAsync"];
+    /**
+     * Delete an appraisal workflow
+     * @description Deletes an appraisal workflow for the specified tenant.
+     */
+    delete: operations["DeleteAppraisalWorkflowAsync"];
+  };
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
+  "/api/v2/HrmsService/EmployeeAppraisalSessions": {
+    /**
+     * Get employee appraisal sessions
+     * @description Retrieves employee appraisal sessions for the specified tenant.
+     */
+    get: operations["GetEmployeeAppraisalSessionsAsync"];
+    /**
+     * Create an employee appraisal session
+     * @description Creates a new employee appraisal session for the specified tenant.
+     */
+    post: operations["CreateEmployeeAppraisalSessionAsync"];
+  };
+  "/api/v2/HrmsService/EmployeeAppraisalSessions/Count": {
+    /**
+     * Count employee appraisal sessions
+     * @description Counts employee appraisal sessions for the specified tenant.
+     */
+    get: operations["GetEmployeeAppraisalSessionsCountAsync"];
+  };
+  "/api/v2/HrmsService/EmployeeAppraisalSessions/{sessionId}": {
+    /**
+     * Get employee appraisal session by ID
+     * @description Retrieves a specific employee appraisal session by its identifier.
+     */
+    get: operations["GetEmployeeAppraisalSessionByIdAsync"];
+    /**
+     * Update an employee appraisal session
+     * @description Updates an existing employee appraisal session for the specified tenant.
+     */
+    put: operations["UpdateEmployeeAppraisalSessionAsync"];
+    /**
+     * Delete an employee appraisal session
+     * @description Deletes an employee appraisal session for the specified tenant.
+     */
+    delete: operations["DeleteEmployeeAppraisalSessionAsync"];
+  };
   "/api/v2/HrmsService/Employees": {
     /**
      * Get employees
@@ -40,6 +257,42 @@ export interface paths {
      * @description Deletes an employee for the specified tenant.
      */
     delete: operations["DeleteEmployeeAsync"];
+  };
+  "/api/v2/HrmsService/EmployeeTypes": {
+    /**
+     * Get employee types
+     * @description Retrieves employee types for the specified tenant.
+     */
+    get: operations["GetEmployeeTypesAsync"];
+    /**
+     * Create an employee type
+     * @description Creates a new employee type for the specified tenant.
+     */
+    post: operations["CreateEmployeeTypeAsync"];
+  };
+  "/api/v2/HrmsService/EmployeeTypes/Count": {
+    /**
+     * Count employee types
+     * @description Counts employee types for the specified tenant.
+     */
+    get: operations["GetEmployeeTypesCountAsync"];
+  };
+  "/api/v2/HrmsService/EmployeeTypes/{employeeTypeId}": {
+    /**
+     * Get employee type by ID
+     * @description Retrieves a specific employee type by its identifier.
+     */
+    get: operations["GetEmployeeTypeByIdAsync"];
+    /**
+     * Update an employee type
+     * @description Updates an existing employee type for the specified tenant.
+     */
+    put: operations["UpdateEmployeeTypeAsync"];
+    /**
+     * Delete an employee type
+     * @description Deletes an employee type for the specified tenant.
+     */
+    delete: operations["DeleteEmployeeTypeAsync"];
   };
   "/api/v2/HrmsService/Employers": {
     /**
@@ -446,6 +699,438 @@ export interface paths {
      */
     delete: operations["DeleteJobOfferAsync"];
   };
+  "/api/v2/HrmsService/JobTitles": {
+    /**
+     * Get job titles
+     * @description Retrieves job titles for the specified tenant.
+     */
+    get: operations["GetJobTitlesAsync"];
+    /**
+     * Create a job title
+     * @description Creates a new job title for the specified tenant.
+     */
+    post: operations["CreateJobTitleAsync"];
+  };
+  "/api/v2/HrmsService/JobTitles/Count": {
+    /**
+     * Count job titles
+     * @description Counts job titles for the specified tenant.
+     */
+    get: operations["GetJobTitlesCountAsync"];
+  };
+  "/api/v2/HrmsService/JobTitles/{jobTitleId}": {
+    /**
+     * Get job title by ID
+     * @description Retrieves a specific job title by its identifier.
+     */
+    get: operations["GetJobTitleByIdAsync"];
+    /**
+     * Update a job title
+     * @description Updates an existing job title for the specified tenant.
+     */
+    put: operations["UpdateJobTitleAsync"];
+    /**
+     * Delete a job title
+     * @description Deletes a job title for the specified tenant.
+     */
+    delete: operations["DeleteJobTitleAsync"];
+  };
+  "/api/v2/HrmsService/LeaveApplications": {
+    /**
+     * Get leave applications
+     * @description Retrieves leave applications for the specified tenant.
+     */
+    get: operations["GetLeaveApplicationsAsync"];
+    /**
+     * Create a leave application
+     * @description Creates a new leave application for the specified tenant.
+     */
+    post: operations["CreateLeaveApplicationAsync"];
+  };
+  "/api/v2/HrmsService/LeaveApplications/Count": {
+    /**
+     * Count leave applications
+     * @description Counts leave applications for the specified tenant.
+     */
+    get: operations["GetLeaveApplicationsCountAsync"];
+  };
+  "/api/v2/HrmsService/LeaveApplications/{leaveApplicationId}": {
+    /**
+     * Get leave application by ID
+     * @description Retrieves a specific leave application by its identifier.
+     */
+    get: operations["GetLeaveApplicationByIdAsync"];
+    /**
+     * Update a leave application
+     * @description Updates an existing leave application for the specified tenant.
+     */
+    put: operations["UpdateLeaveApplicationAsync"];
+    /**
+     * Delete a leave application
+     * @description Deletes a leave application for the specified tenant.
+     */
+    delete: operations["DeleteLeaveApplicationAsync"];
+  };
+  "/api/v2/HrmsService/LeaveTypes": {
+    /**
+     * Get leave types
+     * @description Retrieves leave types for the specified tenant.
+     */
+    get: operations["GetLeaveTypesAsync"];
+    /**
+     * Create a leave type
+     * @description Creates a new leave type for the specified tenant.
+     */
+    post: operations["CreateLeaveTypeAsync"];
+  };
+  "/api/v2/HrmsService/LeaveTypes/Count": {
+    /**
+     * Count leave types
+     * @description Counts leave types for the specified tenant.
+     */
+    get: operations["GetLeaveTypesCountAsync"];
+  };
+  "/api/v2/HrmsService/LeaveTypes/{leaveTypeId}": {
+    /**
+     * Get leave type by ID
+     * @description Retrieves a specific leave type by its identifier.
+     */
+    get: operations["GetLeaveTypeByIdAsync"];
+    /**
+     * Update a leave type
+     * @description Updates an existing leave type for the specified tenant.
+     */
+    put: operations["UpdateLeaveTypeAsync"];
+    /**
+     * Delete a leave type
+     * @description Deletes a leave type for the specified tenant.
+     */
+    delete: operations["DeleteLeaveTypeAsync"];
+  };
+  "/api/v2/HrmsService/PayrollPeriods": {
+    /**
+     * Get payroll periods
+     * @description Retrieves payroll periods for the specified tenant.
+     */
+    get: operations["GetPayrollPeriodsAsync"];
+    /**
+     * Create a payroll period
+     * @description Creates a new payroll period for the specified tenant.
+     */
+    post: operations["CreatePayrollPeriodAsync"];
+  };
+  "/api/v2/HrmsService/PayrollPeriods/Count": {
+    /**
+     * Count payroll periods
+     * @description Counts payroll periods for the specified tenant.
+     */
+    get: operations["GetPayrollPeriodsCountAsync"];
+  };
+  "/api/v2/HrmsService/PayrollPeriods/{periodId}": {
+    /**
+     * Get payroll period by ID
+     * @description Retrieves a specific payroll period by its identifier.
+     */
+    get: operations["GetPayrollPeriodByIdAsync"];
+    /**
+     * Update a payroll period
+     * @description Updates an existing payroll period for the specified tenant.
+     */
+    put: operations["UpdatePayrollPeriodAsync"];
+    /**
+     * Delete a payroll period
+     * @description Deletes a payroll period for the specified tenant.
+     */
+    delete: operations["DeletePayrollPeriodAsync"];
+  };
+  "/api/v2/HrmsService/Payrolls": {
+    /**
+     * Get payrolls
+     * @description Retrieves payrolls for the specified tenant.
+     */
+    get: operations["GetPayrollsAsync"];
+    /**
+     * Create a payroll
+     * @description Creates a new payroll for the specified tenant.
+     */
+    post: operations["CreatePayrollAsync"];
+  };
+  "/api/v2/HrmsService/Payrolls/Count": {
+    /**
+     * Count payrolls
+     * @description Counts payrolls for the specified tenant.
+     */
+    get: operations["GetPayrollsCountAsync"];
+  };
+  "/api/v2/HrmsService/Payrolls/{payrollId}": {
+    /**
+     * Get payroll by ID
+     * @description Retrieves a specific payroll by its identifier.
+     */
+    get: operations["GetPayrollByIdAsync"];
+    /**
+     * Update a payroll
+     * @description Updates an existing payroll for the specified tenant.
+     */
+    put: operations["UpdatePayrollAsync"];
+    /**
+     * Delete a payroll
+     * @description Deletes a payroll for the specified tenant.
+     */
+    delete: operations["DeletePayrollAsync"];
+  };
+  "/api/v2/HrmsService/Salaries": {
+    /**
+     * Get salaries
+     * @description Retrieves salaries for the specified tenant.
+     */
+    get: operations["GetSalariesAsync"];
+    /**
+     * Create a salary
+     * @description Creates a new salary for the specified tenant.
+     */
+    post: operations["CreateSalaryAsync"];
+  };
+  "/api/v2/HrmsService/Salaries/Count": {
+    /**
+     * Count salaries
+     * @description Counts salaries for the specified tenant.
+     */
+    get: operations["GetSalariesCountAsync"];
+  };
+  "/api/v2/HrmsService/Salaries/{salaryId}": {
+    /**
+     * Get salary by ID
+     * @description Retrieves a specific salary by its identifier.
+     */
+    get: operations["GetSalaryByIdAsync"];
+    /**
+     * Update a salary
+     * @description Updates an existing salary for the specified tenant.
+     */
+    put: operations["UpdateSalaryAsync"];
+    /**
+     * Delete a salary
+     * @description Deletes a salary for the specified tenant.
+     */
+    delete: operations["DeleteSalaryAsync"];
+  };
+  "/api/v2/HrmsService/Schedules": {
+    /**
+     * Get schedules
+     * @description Retrieves schedules for the specified tenant.
+     */
+    get: operations["GetSchedulesAsync"];
+    /**
+     * Create a schedule
+     * @description Creates a new schedule for the specified tenant.
+     */
+    post: operations["CreateScheduleAsync"];
+  };
+  "/api/v2/HrmsService/Schedules/Count": {
+    /**
+     * Count schedules
+     * @description Counts schedules for the specified tenant.
+     */
+    get: operations["GetSchedulesCountAsync"];
+  };
+  "/api/v2/HrmsService/Schedules/{scheduleId}": {
+    /**
+     * Get schedule by ID
+     * @description Retrieves a specific schedule by its identifier.
+     */
+    get: operations["GetScheduleByIdAsync"];
+    /**
+     * Update a schedule
+     * @description Updates an existing schedule for the specified tenant.
+     */
+    put: operations["UpdateScheduleAsync"];
+    /**
+     * Delete a schedule
+     * @description Deletes a schedule for the specified tenant.
+     */
+    delete: operations["DeleteScheduleAsync"];
+  };
+  "/api/v2/HrmsService/Shifts": {
+    /**
+     * Get shifts
+     * @description Retrieves shifts for the specified tenant.
+     */
+    get: operations["GetShiftsAsync"];
+    /**
+     * Create a shift
+     * @description Creates a new shift for the specified tenant.
+     */
+    post: operations["CreateShiftAsync"];
+  };
+  "/api/v2/HrmsService/Shifts/Count": {
+    /**
+     * Count shifts
+     * @description Counts shifts for the specified tenant.
+     */
+    get: operations["GetShiftsCountAsync"];
+  };
+  "/api/v2/HrmsService/Shifts/{shiftId}": {
+    /**
+     * Get shift by ID
+     * @description Retrieves a specific shift by its identifier.
+     */
+    get: operations["GetShiftByIdAsync"];
+    /**
+     * Update a shift
+     * @description Updates an existing shift for the specified tenant.
+     */
+    put: operations["UpdateShiftAsync"];
+    /**
+     * Delete a shift
+     * @description Deletes a shift for the specified tenant.
+     */
+    delete: operations["DeleteShiftAsync"];
+  };
+  "/api/v2/HrmsService/TimeIntervals": {
+    /**
+     * Get time intervals
+     * @description Retrieves time intervals for the specified tenant.
+     */
+    get: operations["GetTimeIntervalsAsync"];
+    /**
+     * Create a time interval
+     * @description Creates a new time interval for the specified tenant.
+     */
+    post: operations["CreateTimeIntervalAsync"];
+  };
+  "/api/v2/HrmsService/TimeIntervals/Count": {
+    /**
+     * Count time intervals
+     * @description Counts time intervals for the specified tenant.
+     */
+    get: operations["GetTimeIntervalsCountAsync"];
+  };
+  "/api/v2/HrmsService/TimeIntervals/{timeIntervalId}": {
+    /**
+     * Get time interval by ID
+     * @description Retrieves a specific time interval by its identifier.
+     */
+    get: operations["GetTimeIntervalByIdAsync"];
+    /**
+     * Update a time interval
+     * @description Updates an existing time interval for the specified tenant.
+     */
+    put: operations["UpdateTimeIntervalAsync"];
+    /**
+     * Delete a time interval
+     * @description Deletes a time interval for the specified tenant.
+     */
+    delete: operations["DeleteTimeIntervalAsync"];
+  };
+  "/api/v2/HrmsService/TrainingProgramCourses": {
+    /**
+     * Get training program courses
+     * @description Retrieves training program courses for the specified tenant.
+     */
+    get: operations["GetTrainingProgramCoursesAsync"];
+    /**
+     * Create a training program course
+     * @description Creates a new training program course for the specified tenant.
+     */
+    post: operations["CreateTrainingProgramCourseAsync"];
+  };
+  "/api/v2/HrmsService/TrainingProgramCourses/Count": {
+    /**
+     * Count training program courses
+     * @description Counts training program courses for the specified tenant.
+     */
+    get: operations["GetTrainingProgramCoursesCountAsync"];
+  };
+  "/api/v2/HrmsService/TrainingProgramCourses/{courseId}": {
+    /**
+     * Get training program course by ID
+     * @description Retrieves a specific training program course by its identifier.
+     */
+    get: operations["GetTrainingProgramCourseByIdAsync"];
+    /**
+     * Update a training program course
+     * @description Updates an existing training program course for the specified tenant.
+     */
+    put: operations["UpdateTrainingProgramCourseAsync"];
+    /**
+     * Delete a training program course
+     * @description Deletes a training program course for the specified tenant.
+     */
+    delete: operations["DeleteTrainingProgramCourseAsync"];
+  };
+  "/api/v2/HrmsService/TrainingProgramEvents": {
+    /**
+     * Get training program events
+     * @description Retrieves training program events for the specified tenant.
+     */
+    get: operations["GetTrainingProgramEventsAsync"];
+    /**
+     * Create a training program event
+     * @description Creates a new training program event for the specified tenant.
+     */
+    post: operations["CreateTrainingProgramEventAsync"];
+  };
+  "/api/v2/HrmsService/TrainingProgramEvents/Count": {
+    /**
+     * Count training program events
+     * @description Counts training program events for the specified tenant.
+     */
+    get: operations["GetTrainingProgramEventsCountAsync"];
+  };
+  "/api/v2/HrmsService/TrainingProgramEvents/{eventId}": {
+    /**
+     * Get training program event by ID
+     * @description Retrieves a specific training program event by its identifier.
+     */
+    get: operations["GetTrainingProgramEventByIdAsync"];
+    /**
+     * Update a training program event
+     * @description Updates an existing training program event for the specified tenant.
+     */
+    put: operations["UpdateTrainingProgramEventAsync"];
+    /**
+     * Delete a training program event
+     * @description Deletes a training program event for the specified tenant.
+     */
+    delete: operations["DeleteTrainingProgramEventAsync"];
+  };
+  "/api/v2/HrmsService/TrainingPrograms": {
+    /**
+     * Get training programs
+     * @description Retrieves training programs for the specified tenant.
+     */
+    get: operations["GetTrainingProgramsAsync"];
+    /**
+     * Create a training program
+     * @description Creates a new training program for the specified tenant.
+     */
+    post: operations["CreateTrainingProgramAsync"];
+  };
+  "/api/v2/HrmsService/TrainingPrograms/Count": {
+    /**
+     * Count training programs
+     * @description Counts training programs for the specified tenant.
+     */
+    get: operations["GetTrainingProgramsCountAsync"];
+  };
+  "/api/v2/HrmsService/TrainingPrograms/{programId}": {
+    /**
+     * Get training program by ID
+     * @description Retrieves a specific training program by its identifier.
+     */
+    get: operations["GetTrainingProgramByIdAsync"];
+    /**
+     * Update a training program
+     * @description Updates an existing training program for the specified tenant.
+     */
+    put: operations["UpdateTrainingProgramAsync"];
+    /**
+     * Delete a training program
+     * @description Deletes a training program for the specified tenant.
+     */
+    delete: operations["DeleteTrainingProgramAsync"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -459,16 +1144,294 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    AppraisalStageCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+      appraisalWorkflowId: string;
+      /** Format: int32 */
+      stageOrder: number;
+    };
+    AppraisalStageDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+      appraisalWorkflowId?: string | null;
+      /** Format: int32 */
+      stageOrder?: number;
+    };
+    AppraisalStageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AppraisalStageDto"];
+    };
+    AppraisalStageDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AppraisalStageDto"][] | null;
+    };
+    AppraisalStageUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+      appraisalWorkflowId?: string | null;
+      /** Format: int32 */
+      stageOrder?: number | null;
+    };
+    AppraisalWorkflowCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+    };
+    AppraisalWorkflowDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+    };
+    AppraisalWorkflowDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AppraisalWorkflowDto"];
+    };
+    AppraisalWorkflowDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AppraisalWorkflowDto"][] | null;
+    };
+    AppraisalWorkflowUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+    };
+    ContactDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      qualifiedName?: string | null;
+      tenantId?: string | null;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
+      publicName?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      jobTitle?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      countryId?: string | null;
+      timezoneId?: string | null;
+      languageId?: string | null;
+      socialProfileId?: string | null;
+      /** Format: uri */
+      webUrl?: string | null;
+      /** Format: uri */
+      gitHubUrl?: string | null;
+      /** Format: uri */
+      twitchUrl?: string | null;
+      /** Format: uri */
+      redditUrl?: string | null;
+      /** Format: uri */
+      tikTokUrl?: string | null;
+      /** Format: uri */
+      websiteUrl?: string | null;
+      /** Format: uri */
+      twitterUrl?: string | null;
+      /** Format: uri */
+      facebookUrl?: string | null;
+      /** Format: uri */
+      youTubeUrl?: string | null;
+      /** Format: uri */
+      linkedInUrl?: string | null;
+      /** Format: uri */
+      instagramUrl?: string | null;
+      githubUsername?: string | null;
+      duns?: string | null;
+      taxId?: string | null;
+      about?: string | null;
+      street?: string | null;
+      cartId?: string | null;
+      cityId?: string | null;
+      zipCode?: string | null;
+      stateId?: string | null;
+      walletId?: string | null;
+      faxNumber?: string | null;
+      postalCode?: string | null;
+      currencyId?: string | null;
+      streetLine1?: string | null;
+      streetLine2?: string | null;
+      territoryId?: string | null;
+      mobilePhone?: string | null;
+      enrollmentId?: string | null;
+      annualRevenue?: string | null;
+      relatedUserId?: string | null;
+      businessPhone?: string | null;
+      ownerContactId?: string | null;
+      relatedTenantId?: string | null;
+      activityFeedId?: string | null;
+      parentContactId?: string | null;
+      identityProvider?: string | null;
+      partnerProfileId?: string | null;
+      primaryContactId?: string | null;
+      activeDirectoryId?: string | null;
+      identityProviderAccessToken?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
+    };
+    EmployeeAppraisalSessionCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      employeeProfileId: string;
+      appraisalWorkflowId: string;
+      appraisalStageId?: string | null;
+    };
+    EmployeeAppraisalSessionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      employeeProfileId?: string | null;
+      appraisalWorkflowId?: string | null;
+      appraisalStageId?: string | null;
+    };
+    EmployeeAppraisalSessionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["EmployeeAppraisalSessionDto"];
+    };
+    EmployeeAppraisalSessionDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["EmployeeAppraisalSessionDto"][] | null;
+    };
+    EmployeeAppraisalSessionUpdateDto: {
+      employeeProfileId?: string | null;
+      appraisalWorkflowId?: string | null;
+      appraisalStageId?: string | null;
+    };
     EmployeeProfileCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      /** Format: double */
+      grossPay?: number;
+      /** Format: double */
+      netSalary?: number;
+      payrollCurrency?: string | null;
+      /** Format: int32 */
+      maxWorkHoursPerDay?: number;
+      jobTitleId?: string | null;
+      employeeTypeId?: string | null;
     };
     EmployeeProfileDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
+      enrollmentId?: string | null;
+      about?: string | null;
+      verified?: boolean;
+      submitted?: boolean;
+      avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      verificationTimestamp?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      /** Format: double */
+      grossPay?: number | null;
+      /** Format: double */
+      netSalary?: number | null;
+      payrollCurrency?: string | null;
+      /** Format: int32 */
+      maxWorkHoursPerDay?: number | null;
+      jobTitleId?: string | null;
+      employeeTypeId?: string | null;
     };
     EmployeeProfileDtoEnvelope: {
       isSuccess?: boolean;
@@ -488,17 +1451,146 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["EmployeeProfileDto"][] | null;
     };
-    EmployeeProfileUpdateDto: Record<string, never>;
+    EmployeeProfileUpdateDto: {
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      /** Format: double */
+      grossPay?: number | null;
+      /** Format: double */
+      netSalary?: number | null;
+      payrollCurrency?: string | null;
+      /** Format: int32 */
+      maxWorkHoursPerDay?: number | null;
+      jobTitleId?: string | null;
+      employeeTypeId?: string | null;
+    };
+    EmployeeTypeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      description?: string | null;
+    };
+    EmployeeTypeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    EmployeeTypeDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["EmployeeTypeDto"];
+    };
+    EmployeeTypeDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["EmployeeTypeDto"][] | null;
+    };
+    EmployeeTypeUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+    };
     EmployerProfileCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
     };
     EmployerProfileDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
+      enrollmentId?: string | null;
+      about?: string | null;
+      verified?: boolean;
+      submitted?: boolean;
+      avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      verificationTimestamp?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
     };
     EmployerProfileDtoEnvelope: {
       isSuccess?: boolean;
@@ -518,7 +1610,32 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["EmployerProfileDto"][] | null;
     };
-    EmployerProfileUpdateDto: Record<string, never>;
+    EmployerProfileUpdateDto: {
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+    };
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -558,6 +1675,47 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      remote?: boolean;
+      type?: string | null;
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      expectedDeliveryDate?: string;
+      /** Format: double */
+      minBudget?: number;
+      /** Format: double */
+      maxBudget?: number;
+      location?: string | null;
+      /** Format: int32 */
+      viewsCount?: number;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      externalUrl?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      employerProfileId?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
     };
     GigDtoEnvelope: {
       isSuccess?: boolean;
@@ -632,6 +1790,62 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      remote?: boolean;
+      /** Format: date-time */
+      expectedHireDate?: string;
+      title?: string | null;
+      description?: string | null;
+      technicalSkills?: string | null;
+      nonTechnicalSkills?: string | null;
+      certifications?: string | null;
+      projectExperience?: string | null;
+      technologies?: string | null;
+      benefits?: string | null;
+      isOfficialJobOffer?: boolean;
+      isRemoteJobOffer?: boolean;
+      isMidTimeJobOffer?: boolean;
+      isUndergraduateOption?: boolean;
+      /** Format: int32 */
+      minOverallExperienceYears?: number;
+      /** Format: int32 */
+      availiablePositionsCount?: number;
+      /** Format: int32 */
+      viewsCount?: number;
+      /** Format: double */
+      minSalaryAmount?: number;
+      /** Format: double */
+      maxSalaryAmount?: number;
+      imageUrl?: string | null;
+      location?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      externalUrl?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      currencyId?: string | null;
+      jobFieldId?: string | null;
+      employerProfileId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
     };
     JobOfferDtoEnvelope: {
       isSuccess?: boolean;
@@ -652,11 +1866,245 @@ export interface components {
       result?: components["schemas"]["JobOfferDto"][] | null;
     };
     JobOfferUpdateDto: Record<string, never>;
+    JobTitleCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title?: string | null;
+      description?: string | null;
+      /** Format: double */
+      grossPay?: number;
+      /** Format: double */
+      netSalary?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+    };
+    JobTitleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      /** Format: double */
+      grossPay?: number;
+      /** Format: double */
+      netSalary?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    JobTitleDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobTitleDto"];
+    };
+    JobTitleDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobTitleDto"][] | null;
+    };
+    JobTitleUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      /** Format: double */
+      grossPay?: number;
+      /** Format: double */
+      netSalary?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+    };
+    LeaveApplicationCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      justification?: string | null;
+      approved?: boolean;
+      onReview?: boolean;
+      leaveTypeId: string;
+      employeeProfileId: string;
+    };
+    LeaveApplicationDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      justification?: string | null;
+      approved?: boolean;
+      onReview?: boolean;
+      leaveTypeId?: string | null;
+      employeeProfileId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    LeaveApplicationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LeaveApplicationDto"];
+    };
+    LeaveApplicationDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LeaveApplicationDto"][] | null;
+    };
+    LeaveApplicationUpdateDto: {
+      justification?: string | null;
+      approved?: boolean | null;
+      onReview?: boolean | null;
+      leaveTypeId?: string | null;
+      employeeProfileId?: string | null;
+    };
+    LeaveTypeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+    };
+    LeaveTypeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+    };
+    LeaveTypeDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LeaveTypeDto"];
+    };
+    LeaveTypeDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LeaveTypeDto"][] | null;
+    };
+    LeaveTypeUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+    };
     LoginRequest: {
       email: string | null;
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    PayrollCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      payrollPeriodId: string;
+    };
+    PayrollDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      payrollPeriodId?: string | null;
+    };
+    PayrollDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PayrollDto"];
+    };
+    PayrollDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PayrollDto"][] | null;
+    };
+    PayrollPeriodCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      /** Format: date-time */
+      startDate: string;
+      /** Format: date-time */
+      endDate: string;
+    };
+    PayrollPeriodDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+    };
+    PayrollPeriodDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PayrollPeriodDto"];
+    };
+    PayrollPeriodDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PayrollPeriodDto"][] | null;
+    };
+    PayrollPeriodUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      startDate?: string | null;
+      /** Format: date-time */
+      endDate?: string | null;
+    };
+    PayrollUpdateDto: {
+      payrollPeriodId?: string | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -672,6 +2120,528 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    SalaryCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: double */
+      amount: number;
+      currencyId: string;
+      employeeProfileId: string;
+    };
+    SalaryDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: double */
+      amount?: number;
+      currencyId?: string | null;
+      employeeProfileId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    SalaryDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SalaryDto"];
+    };
+    SalaryDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SalaryDto"][] | null;
+    };
+    SalaryUpdateDto: {
+      /** Format: double */
+      amount?: number | null;
+      currencyId?: string | null;
+      employeeProfileId?: string | null;
+    };
+    ScheduleCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+      disabled?: boolean;
+      sunday?: boolean;
+      monday?: boolean;
+      tuesday?: boolean;
+      wednesday?: boolean;
+      thursday?: boolean;
+      friday?: boolean;
+      saturday?: boolean;
+      uniqueInterval?: boolean;
+      is24x7Interval?: boolean;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+      timezoneId?: string | null;
+      fiscalYearId?: string | null;
+      holidayScheduleId?: string | null;
+    };
+    ScheduleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      name?: string | null;
+      description?: string | null;
+      disabled?: boolean;
+      sunday?: boolean;
+      monday?: boolean;
+      tuesday?: boolean;
+      wednesday?: boolean;
+      thursday?: boolean;
+      friday?: boolean;
+      saturday?: boolean;
+      uniqueInterval?: boolean;
+      is24x7Interval?: boolean;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+      timezoneId?: string | null;
+      fiscalYearId?: string | null;
+      holidayScheduleId?: string | null;
+    };
+    ScheduleDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ScheduleDto"];
+    };
+    ScheduleDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ScheduleDto"][] | null;
+    };
+    ScheduleUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+      disabled?: boolean | null;
+      sunday?: boolean | null;
+      monday?: boolean | null;
+      tuesday?: boolean | null;
+      wednesday?: boolean | null;
+      thursday?: boolean | null;
+      friday?: boolean | null;
+      saturday?: boolean | null;
+      uniqueInterval?: boolean | null;
+      is24x7Interval?: boolean | null;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+      timezoneId?: string | null;
+      fiscalYearId?: string | null;
+      holidayScheduleId?: string | null;
+    };
+    ShiftCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      /** Format: date-time */
+      start: string;
+      /** Format: date-time */
+      end: string;
+      isBreak?: boolean;
+      occustOnMonday?: boolean;
+      occustOnTuesday?: boolean;
+      occustOnWednesday?: boolean;
+      occustOnThursday?: boolean;
+      occustOnFriday?: boolean;
+      occustOnSaturday?: boolean;
+      occustOnSunday?: boolean;
+      /** Format: int32 */
+      repeatEvery?: number;
+      /** @enum {string} */
+      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
+      /** Format: date-time */
+      recurrenceStart?: string | null;
+      /** Format: date-time */
+      recurrenceEnd?: string | null;
+      /** @enum {string} */
+      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      scheduleId?: string | null;
+      parentTimeIntervalId?: string | null;
+      employeeProfileId: string;
+    };
+    ShiftDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      start?: string;
+      /** Format: date-time */
+      end?: string;
+      isBreak?: boolean;
+      occustOnMonday?: boolean;
+      occustOnTuesday?: boolean;
+      occustOnWednesday?: boolean;
+      occustOnThursday?: boolean;
+      occustOnFriday?: boolean;
+      occustOnSaturday?: boolean;
+      occustOnSunday?: boolean;
+      /** Format: int32 */
+      repeatEvery?: number;
+      /** @enum {string} */
+      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
+      /** Format: date-time */
+      recurrenceStart?: string | null;
+      /** Format: date-time */
+      recurrenceEnd?: string | null;
+      /** @enum {string} */
+      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      scheduleId?: string | null;
+      parentTimeIntervalId?: string | null;
+      tenantId?: string | null;
+      employeeProfileId?: string | null;
+    };
+    ShiftDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShiftDto"];
+    };
+    ShiftDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShiftDto"][] | null;
+    };
+    ShiftUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+      isBreak?: boolean | null;
+      occustOnMonday?: boolean | null;
+      occustOnTuesday?: boolean | null;
+      occustOnWednesday?: boolean | null;
+      occustOnThursday?: boolean | null;
+      occustOnFriday?: boolean | null;
+      occustOnSaturday?: boolean | null;
+      occustOnSunday?: boolean | null;
+      /** Format: int32 */
+      repeatEvery?: number | null;
+      /** @enum {string|null} */
+      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year" | null;
+      /** Format: date-time */
+      recurrenceStart?: string | null;
+      /** Format: date-time */
+      recurrenceEnd?: string | null;
+      /** @enum {string|null} */
+      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | null;
+      scheduleId?: string | null;
+      parentTimeIntervalId?: string | null;
+      employeeProfileId?: string | null;
+    };
+    TimeIntervalCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      isBreak?: boolean;
+      occustOnMonday?: boolean;
+      occustOnTuesday?: boolean;
+      occustOnWednesday?: boolean;
+      occustOnThursday?: boolean;
+      occustOnFriday?: boolean;
+      occustOnSaturday?: boolean;
+      occustOnSunday?: boolean;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+      /** Format: int32 */
+      repeatEvery?: number;
+      scheduleId: string;
+      parentTimeIntervalId?: string | null;
+    };
+    TimeIntervalDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      isBreak?: boolean;
+      occustOnMonday?: boolean;
+      occustOnTuesday?: boolean;
+      occustOnWednesday?: boolean;
+      occustOnThursday?: boolean;
+      occustOnFriday?: boolean;
+      occustOnSaturday?: boolean;
+      occustOnSunday?: boolean;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+      /** Format: int32 */
+      repeatEvery?: number;
+      scheduleId?: string | null;
+      parentTimeIntervalId?: string | null;
+    };
+    TimeIntervalDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TimeIntervalDto"];
+    };
+    TimeIntervalDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TimeIntervalDto"][] | null;
+    };
+    TimeIntervalUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      isBreak?: boolean | null;
+      occustOnMonday?: boolean | null;
+      occustOnTuesday?: boolean | null;
+      occustOnWednesday?: boolean | null;
+      occustOnThursday?: boolean | null;
+      occustOnFriday?: boolean | null;
+      occustOnSaturday?: boolean | null;
+      occustOnSunday?: boolean | null;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+      /** Format: int32 */
+      repeatEvery?: number | null;
+      parentTimeIntervalId?: string | null;
+    };
+    TrainingProgramCourseCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      trainingProgramId: string;
+      courseId: string;
+    };
+    TrainingProgramCourseDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      trainingProgramId?: string | null;
+      courseId?: string | null;
+    };
+    TrainingProgramCourseDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TrainingProgramCourseDto"];
+    };
+    TrainingProgramCourseDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TrainingProgramCourseDto"][] | null;
+    };
+    TrainingProgramCourseUpdateDto: {
+      trainingProgramId?: string | null;
+      courseId?: string | null;
+    };
+    TrainingProgramCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+    };
+    TrainingProgramDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+    };
+    TrainingProgramDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TrainingProgramDto"];
+    };
+    TrainingProgramDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TrainingProgramDto"][] | null;
+    };
+    TrainingProgramEventCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      /** Format: date-time */
+      start: string;
+      /** Format: date-time */
+      end: string;
+      isBreak?: boolean;
+      occustOnMonday?: boolean;
+      occustOnTuesday?: boolean;
+      occustOnWednesday?: boolean;
+      occustOnThursday?: boolean;
+      occustOnFriday?: boolean;
+      occustOnSaturday?: boolean;
+      occustOnSunday?: boolean;
+      /** Format: int32 */
+      repeatEvery?: number;
+      /** @enum {string} */
+      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
+      /** Format: date-time */
+      recurrenceStart?: string | null;
+      /** Format: date-time */
+      recurrenceEnd?: string | null;
+      /** @enum {string} */
+      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      scheduleId?: string | null;
+      parentTimeIntervalId?: string | null;
+      trainingProgramId: string;
+    };
+    TrainingProgramEventDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      start?: string;
+      /** Format: date-time */
+      end?: string;
+      isBreak?: boolean;
+      occustOnMonday?: boolean;
+      occustOnTuesday?: boolean;
+      occustOnWednesday?: boolean;
+      occustOnThursday?: boolean;
+      occustOnFriday?: boolean;
+      occustOnSaturday?: boolean;
+      occustOnSunday?: boolean;
+      /** Format: int32 */
+      repeatEvery?: number;
+      /** @enum {string} */
+      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year";
+      /** Format: date-time */
+      recurrenceStart?: string | null;
+      /** Format: date-time */
+      recurrenceEnd?: string | null;
+      /** @enum {string} */
+      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      scheduleId?: string | null;
+      parentTimeIntervalId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      trainingProgramId?: string | null;
+    };
+    TrainingProgramEventDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TrainingProgramEventDto"];
+    };
+    TrainingProgramEventDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TrainingProgramEventDto"][] | null;
+    };
+    TrainingProgramEventUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      start?: string | null;
+      /** Format: date-time */
+      end?: string | null;
+      isBreak?: boolean | null;
+      occustOnMonday?: boolean | null;
+      occustOnTuesday?: boolean | null;
+      occustOnWednesday?: boolean | null;
+      occustOnThursday?: boolean | null;
+      occustOnFriday?: boolean | null;
+      occustOnSaturday?: boolean | null;
+      occustOnSunday?: boolean | null;
+      /** Format: int32 */
+      repeatEvery?: number | null;
+      /** @enum {string|null} */
+      repetitionCriteria?: "NotRepeat" | "WorkWeek" | "Day" | "Month" | "Year" | null;
+      /** Format: date-time */
+      recurrenceStart?: string | null;
+      /** Format: date-time */
+      recurrenceEnd?: string | null;
+      /** @enum {string|null} */
+      dayOfTheWeek?: "All" | "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | null;
+      scheduleId?: string | null;
+      parentTimeIntervalId?: string | null;
+      trainingProgramId?: string | null;
+    };
+    TrainingProgramUpdateDto: {
+      title?: string | null;
+      description?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -702,6 +2672,816 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get appraisal stages
+   * @description Retrieves appraisal stages for the specified tenant.
+   */
+  GetAppraisalStagesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AppraisalStageDtoListEnvelope"];
+          "application/xml": components["schemas"]["AppraisalStageDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an appraisal stage
+   * @description Creates a new appraisal stage for the specified tenant.
+   */
+  CreateAppraisalStageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppraisalStageCreateDto"];
+        "application/xml": components["schemas"]["AppraisalStageCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count appraisal stages
+   * @description Counts appraisal stages for the specified tenant.
+   */
+  GetAppraisalStagesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get appraisal stage by ID
+   * @description Retrieves a specific appraisal stage by its identifier.
+   */
+  GetAppraisalStageByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        stageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AppraisalStageDtoEnvelope"];
+          "application/xml": components["schemas"]["AppraisalStageDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an appraisal stage
+   * @description Updates an existing appraisal stage for the specified tenant.
+   */
+  UpdateAppraisalStageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        stageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppraisalStageUpdateDto"];
+        "application/xml": components["schemas"]["AppraisalStageUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an appraisal stage
+   * @description Deletes an appraisal stage for the specified tenant.
+   */
+  DeleteAppraisalStageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        stageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get appraisal workflows
+   * @description Retrieves appraisal workflows for the specified tenant.
+   */
+  GetAppraisalWorkflowsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AppraisalWorkflowDtoListEnvelope"];
+          "application/xml": components["schemas"]["AppraisalWorkflowDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an appraisal workflow
+   * @description Creates a new appraisal workflow for the specified tenant.
+   */
+  CreateAppraisalWorkflowAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppraisalWorkflowCreateDto"];
+        "application/xml": components["schemas"]["AppraisalWorkflowCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count appraisal workflows
+   * @description Counts appraisal workflows for the specified tenant.
+   */
+  GetAppraisalWorkflowsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get appraisal workflow by ID
+   * @description Retrieves a specific appraisal workflow by its identifier.
+   */
+  GetAppraisalWorkflowByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        workflowId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AppraisalWorkflowDtoEnvelope"];
+          "application/xml": components["schemas"]["AppraisalWorkflowDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an appraisal workflow
+   * @description Updates an existing appraisal workflow for the specified tenant.
+   */
+  UpdateAppraisalWorkflowAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        workflowId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppraisalWorkflowUpdateDto"];
+        "application/xml": components["schemas"]["AppraisalWorkflowUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an appraisal workflow
+   * @description Deletes an appraisal workflow for the specified tenant.
+   */
+  DeleteAppraisalWorkflowAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        workflowId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get employee appraisal sessions
+   * @description Retrieves employee appraisal sessions for the specified tenant.
+   */
+  GetEmployeeAppraisalSessionsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmployeeAppraisalSessionDtoListEnvelope"];
+          "application/xml": components["schemas"]["EmployeeAppraisalSessionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an employee appraisal session
+   * @description Creates a new employee appraisal session for the specified tenant.
+   */
+  CreateEmployeeAppraisalSessionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmployeeAppraisalSessionCreateDto"];
+        "application/xml": components["schemas"]["EmployeeAppraisalSessionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count employee appraisal sessions
+   * @description Counts employee appraisal sessions for the specified tenant.
+   */
+  GetEmployeeAppraisalSessionsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get employee appraisal session by ID
+   * @description Retrieves a specific employee appraisal session by its identifier.
+   */
+  GetEmployeeAppraisalSessionByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        sessionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmployeeAppraisalSessionDtoEnvelope"];
+          "application/xml": components["schemas"]["EmployeeAppraisalSessionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an employee appraisal session
+   * @description Updates an existing employee appraisal session for the specified tenant.
+   */
+  UpdateEmployeeAppraisalSessionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        sessionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmployeeAppraisalSessionUpdateDto"];
+        "application/xml": components["schemas"]["EmployeeAppraisalSessionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an employee appraisal session
+   * @description Deletes an employee appraisal session for the specified tenant.
+   */
+  DeleteEmployeeAppraisalSessionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        sessionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /**
    * Get employees
    * @description Retrieves employees for the specified tenant.
@@ -939,6 +3719,276 @@ export interface operations {
       };
       path: {
         employeeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get employee types
+   * @description Retrieves employee types for the specified tenant.
+   */
+  GetEmployeeTypesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmployeeTypeDtoListEnvelope"];
+          "application/xml": components["schemas"]["EmployeeTypeDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an employee type
+   * @description Creates a new employee type for the specified tenant.
+   */
+  CreateEmployeeTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmployeeTypeCreateDto"];
+        "application/xml": components["schemas"]["EmployeeTypeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count employee types
+   * @description Counts employee types for the specified tenant.
+   */
+  GetEmployeeTypesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get employee type by ID
+   * @description Retrieves a specific employee type by its identifier.
+   */
+  GetEmployeeTypeByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        employeeTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmployeeTypeDtoEnvelope"];
+          "application/xml": components["schemas"]["EmployeeTypeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an employee type
+   * @description Updates an existing employee type for the specified tenant.
+   */
+  UpdateEmployeeTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        employeeTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmployeeTypeUpdateDto"];
+        "application/xml": components["schemas"]["EmployeeTypeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an employee type
+   * @description Deletes an employee type for the specified tenant.
+   */
+  DeleteEmployeeTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        employeeTypeId: string;
       };
     };
     responses: {
@@ -1764,6 +4814,3246 @@ export interface operations {
       };
       path: {
         jobOfferId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job titles
+   * @description Retrieves job titles for the specified tenant.
+   */
+  GetJobTitlesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobTitleDtoListEnvelope"];
+          "application/xml": components["schemas"]["JobTitleDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a job title
+   * @description Creates a new job title for the specified tenant.
+   */
+  CreateJobTitleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobTitleCreateDto"];
+        "application/xml": components["schemas"]["JobTitleCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count job titles
+   * @description Counts job titles for the specified tenant.
+   */
+  GetJobTitlesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job title by ID
+   * @description Retrieves a specific job title by its identifier.
+   */
+  GetJobTitleByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobTitleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobTitleDtoEnvelope"];
+          "application/xml": components["schemas"]["JobTitleDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a job title
+   * @description Updates an existing job title for the specified tenant.
+   */
+  UpdateJobTitleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobTitleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobTitleUpdateDto"];
+        "application/xml": components["schemas"]["JobTitleUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a job title
+   * @description Deletes a job title for the specified tenant.
+   */
+  DeleteJobTitleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobTitleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get leave applications
+   * @description Retrieves leave applications for the specified tenant.
+   */
+  GetLeaveApplicationsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LeaveApplicationDtoListEnvelope"];
+          "application/xml": components["schemas"]["LeaveApplicationDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a leave application
+   * @description Creates a new leave application for the specified tenant.
+   */
+  CreateLeaveApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LeaveApplicationCreateDto"];
+        "application/xml": components["schemas"]["LeaveApplicationCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count leave applications
+   * @description Counts leave applications for the specified tenant.
+   */
+  GetLeaveApplicationsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get leave application by ID
+   * @description Retrieves a specific leave application by its identifier.
+   */
+  GetLeaveApplicationByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        leaveApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LeaveApplicationDtoEnvelope"];
+          "application/xml": components["schemas"]["LeaveApplicationDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a leave application
+   * @description Updates an existing leave application for the specified tenant.
+   */
+  UpdateLeaveApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        leaveApplicationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LeaveApplicationUpdateDto"];
+        "application/xml": components["schemas"]["LeaveApplicationUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a leave application
+   * @description Deletes a leave application for the specified tenant.
+   */
+  DeleteLeaveApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        leaveApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get leave types
+   * @description Retrieves leave types for the specified tenant.
+   */
+  GetLeaveTypesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LeaveTypeDtoListEnvelope"];
+          "application/xml": components["schemas"]["LeaveTypeDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a leave type
+   * @description Creates a new leave type for the specified tenant.
+   */
+  CreateLeaveTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LeaveTypeCreateDto"];
+        "application/xml": components["schemas"]["LeaveTypeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count leave types
+   * @description Counts leave types for the specified tenant.
+   */
+  GetLeaveTypesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get leave type by ID
+   * @description Retrieves a specific leave type by its identifier.
+   */
+  GetLeaveTypeByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        leaveTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LeaveTypeDtoEnvelope"];
+          "application/xml": components["schemas"]["LeaveTypeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a leave type
+   * @description Updates an existing leave type for the specified tenant.
+   */
+  UpdateLeaveTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        leaveTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LeaveTypeUpdateDto"];
+        "application/xml": components["schemas"]["LeaveTypeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a leave type
+   * @description Deletes a leave type for the specified tenant.
+   */
+  DeleteLeaveTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        leaveTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get payroll periods
+   * @description Retrieves payroll periods for the specified tenant.
+   */
+  GetPayrollPeriodsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PayrollPeriodDtoListEnvelope"];
+          "application/xml": components["schemas"]["PayrollPeriodDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a payroll period
+   * @description Creates a new payroll period for the specified tenant.
+   */
+  CreatePayrollPeriodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PayrollPeriodCreateDto"];
+        "application/xml": components["schemas"]["PayrollPeriodCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count payroll periods
+   * @description Counts payroll periods for the specified tenant.
+   */
+  GetPayrollPeriodsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get payroll period by ID
+   * @description Retrieves a specific payroll period by its identifier.
+   */
+  GetPayrollPeriodByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        periodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PayrollPeriodDtoEnvelope"];
+          "application/xml": components["schemas"]["PayrollPeriodDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a payroll period
+   * @description Updates an existing payroll period for the specified tenant.
+   */
+  UpdatePayrollPeriodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        periodId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PayrollPeriodUpdateDto"];
+        "application/xml": components["schemas"]["PayrollPeriodUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a payroll period
+   * @description Deletes a payroll period for the specified tenant.
+   */
+  DeletePayrollPeriodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        periodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get payrolls
+   * @description Retrieves payrolls for the specified tenant.
+   */
+  GetPayrollsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PayrollDtoListEnvelope"];
+          "application/xml": components["schemas"]["PayrollDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a payroll
+   * @description Creates a new payroll for the specified tenant.
+   */
+  CreatePayrollAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PayrollCreateDto"];
+        "application/xml": components["schemas"]["PayrollCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count payrolls
+   * @description Counts payrolls for the specified tenant.
+   */
+  GetPayrollsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get payroll by ID
+   * @description Retrieves a specific payroll by its identifier.
+   */
+  GetPayrollByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        payrollId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PayrollDtoEnvelope"];
+          "application/xml": components["schemas"]["PayrollDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a payroll
+   * @description Updates an existing payroll for the specified tenant.
+   */
+  UpdatePayrollAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        payrollId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PayrollUpdateDto"];
+        "application/xml": components["schemas"]["PayrollUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a payroll
+   * @description Deletes a payroll for the specified tenant.
+   */
+  DeletePayrollAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        payrollId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get salaries
+   * @description Retrieves salaries for the specified tenant.
+   */
+  GetSalariesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SalaryDtoListEnvelope"];
+          "application/xml": components["schemas"]["SalaryDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a salary
+   * @description Creates a new salary for the specified tenant.
+   */
+  CreateSalaryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SalaryCreateDto"];
+        "application/xml": components["schemas"]["SalaryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count salaries
+   * @description Counts salaries for the specified tenant.
+   */
+  GetSalariesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get salary by ID
+   * @description Retrieves a specific salary by its identifier.
+   */
+  GetSalaryByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        salaryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SalaryDtoEnvelope"];
+          "application/xml": components["schemas"]["SalaryDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a salary
+   * @description Updates an existing salary for the specified tenant.
+   */
+  UpdateSalaryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        salaryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SalaryUpdateDto"];
+        "application/xml": components["schemas"]["SalaryUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a salary
+   * @description Deletes a salary for the specified tenant.
+   */
+  DeleteSalaryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        salaryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get schedules
+   * @description Retrieves schedules for the specified tenant.
+   */
+  GetSchedulesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ScheduleDtoListEnvelope"];
+          "application/xml": components["schemas"]["ScheduleDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a schedule
+   * @description Creates a new schedule for the specified tenant.
+   */
+  CreateScheduleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ScheduleCreateDto"];
+        "application/xml": components["schemas"]["ScheduleCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count schedules
+   * @description Counts schedules for the specified tenant.
+   */
+  GetSchedulesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get schedule by ID
+   * @description Retrieves a specific schedule by its identifier.
+   */
+  GetScheduleByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        scheduleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ScheduleDtoEnvelope"];
+          "application/xml": components["schemas"]["ScheduleDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a schedule
+   * @description Updates an existing schedule for the specified tenant.
+   */
+  UpdateScheduleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        scheduleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ScheduleUpdateDto"];
+        "application/xml": components["schemas"]["ScheduleUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a schedule
+   * @description Deletes a schedule for the specified tenant.
+   */
+  DeleteScheduleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        scheduleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shifts
+   * @description Retrieves shifts for the specified tenant.
+   */
+  GetShiftsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShiftDtoListEnvelope"];
+          "application/xml": components["schemas"]["ShiftDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a shift
+   * @description Creates a new shift for the specified tenant.
+   */
+  CreateShiftAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShiftCreateDto"];
+        "application/xml": components["schemas"]["ShiftCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count shifts
+   * @description Counts shifts for the specified tenant.
+   */
+  GetShiftsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shift by ID
+   * @description Retrieves a specific shift by its identifier.
+   */
+  GetShiftByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shiftId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShiftDtoEnvelope"];
+          "application/xml": components["schemas"]["ShiftDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a shift
+   * @description Updates an existing shift for the specified tenant.
+   */
+  UpdateShiftAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shiftId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShiftUpdateDto"];
+        "application/xml": components["schemas"]["ShiftUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a shift
+   * @description Deletes a shift for the specified tenant.
+   */
+  DeleteShiftAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shiftId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get time intervals
+   * @description Retrieves time intervals for the specified tenant.
+   */
+  GetTimeIntervalsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TimeIntervalDtoListEnvelope"];
+          "application/xml": components["schemas"]["TimeIntervalDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a time interval
+   * @description Creates a new time interval for the specified tenant.
+   */
+  CreateTimeIntervalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TimeIntervalCreateDto"];
+        "application/xml": components["schemas"]["TimeIntervalCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count time intervals
+   * @description Counts time intervals for the specified tenant.
+   */
+  GetTimeIntervalsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get time interval by ID
+   * @description Retrieves a specific time interval by its identifier.
+   */
+  GetTimeIntervalByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        timeIntervalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TimeIntervalDtoEnvelope"];
+          "application/xml": components["schemas"]["TimeIntervalDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a time interval
+   * @description Updates an existing time interval for the specified tenant.
+   */
+  UpdateTimeIntervalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        timeIntervalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TimeIntervalUpdateDto"];
+        "application/xml": components["schemas"]["TimeIntervalUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a time interval
+   * @description Deletes a time interval for the specified tenant.
+   */
+  DeleteTimeIntervalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        timeIntervalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get training program courses
+   * @description Retrieves training program courses for the specified tenant.
+   */
+  GetTrainingProgramCoursesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TrainingProgramCourseDtoListEnvelope"];
+          "application/xml": components["schemas"]["TrainingProgramCourseDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a training program course
+   * @description Creates a new training program course for the specified tenant.
+   */
+  CreateTrainingProgramCourseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TrainingProgramCourseCreateDto"];
+        "application/xml": components["schemas"]["TrainingProgramCourseCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count training program courses
+   * @description Counts training program courses for the specified tenant.
+   */
+  GetTrainingProgramCoursesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get training program course by ID
+   * @description Retrieves a specific training program course by its identifier.
+   */
+  GetTrainingProgramCourseByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TrainingProgramCourseDtoEnvelope"];
+          "application/xml": components["schemas"]["TrainingProgramCourseDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a training program course
+   * @description Updates an existing training program course for the specified tenant.
+   */
+  UpdateTrainingProgramCourseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TrainingProgramCourseUpdateDto"];
+        "application/xml": components["schemas"]["TrainingProgramCourseUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a training program course
+   * @description Deletes a training program course for the specified tenant.
+   */
+  DeleteTrainingProgramCourseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get training program events
+   * @description Retrieves training program events for the specified tenant.
+   */
+  GetTrainingProgramEventsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TrainingProgramEventDtoListEnvelope"];
+          "application/xml": components["schemas"]["TrainingProgramEventDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a training program event
+   * @description Creates a new training program event for the specified tenant.
+   */
+  CreateTrainingProgramEventAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TrainingProgramEventCreateDto"];
+        "application/xml": components["schemas"]["TrainingProgramEventCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count training program events
+   * @description Counts training program events for the specified tenant.
+   */
+  GetTrainingProgramEventsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get training program event by ID
+   * @description Retrieves a specific training program event by its identifier.
+   */
+  GetTrainingProgramEventByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        eventId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TrainingProgramEventDtoEnvelope"];
+          "application/xml": components["schemas"]["TrainingProgramEventDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a training program event
+   * @description Updates an existing training program event for the specified tenant.
+   */
+  UpdateTrainingProgramEventAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        eventId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TrainingProgramEventUpdateDto"];
+        "application/xml": components["schemas"]["TrainingProgramEventUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a training program event
+   * @description Deletes a training program event for the specified tenant.
+   */
+  DeleteTrainingProgramEventAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        eventId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get training programs
+   * @description Retrieves training programs for the specified tenant.
+   */
+  GetTrainingProgramsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TrainingProgramDtoListEnvelope"];
+          "application/xml": components["schemas"]["TrainingProgramDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a training program
+   * @description Creates a new training program for the specified tenant.
+   */
+  CreateTrainingProgramAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TrainingProgramCreateDto"];
+        "application/xml": components["schemas"]["TrainingProgramCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count training programs
+   * @description Counts training programs for the specified tenant.
+   */
+  GetTrainingProgramsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get training program by ID
+   * @description Retrieves a specific training program by its identifier.
+   */
+  GetTrainingProgramByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        programId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TrainingProgramDtoEnvelope"];
+          "application/xml": components["schemas"]["TrainingProgramDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a training program
+   * @description Updates an existing training program for the specified tenant.
+   */
+  UpdateTrainingProgramAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        programId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TrainingProgramUpdateDto"];
+        "application/xml": components["schemas"]["TrainingProgramUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a training program
+   * @description Deletes a training program for the specified tenant.
+   */
+  DeleteTrainingProgramAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        programId: string;
       };
     };
     responses: {

@@ -5,6 +5,253 @@
 
 
 export interface paths {
+  "/api/v2/LogisticsService/AirwayBills": {
+    /**
+     * Get all airway bills
+     * @description Retrieves all airway bills for the specified tenant.
+     */
+    get: operations["GetAirwayBillsAsync"];
+    /**
+     * Create an airway bill
+     * @description Creates a new airway bill for the specified tenant.
+     */
+    post: operations["CreateAirwayBillAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/Count": {
+    /**
+     * Get airway bills count
+     * @description Returns the count of airway bills for the specified tenant.
+     */
+    get: operations["GetAirwayBillsCountAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}": {
+    /**
+     * Get airway bill by ID
+     * @description Retrieves a specific airway bill by its identifier.
+     */
+    get: operations["GetAirwayBillByIdAsync"];
+    /**
+     * Update an airway bill
+     * @description Updates an existing airway bill.
+     */
+    put: operations["UpdateAirwayBillAsync"];
+    /**
+     * Delete an airway bill
+     * @description Deletes an airway bill.
+     */
+    delete: operations["DeleteAirwayBillAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}/Issue": {
+    /**
+     * Issue an airway bill
+     * @description Issues an airway bill.
+     */
+    post: operations["IssueAirwayBillAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}/MarkInTransit": {
+    /**
+     * Mark airway bill in transit
+     * @description Marks an airway bill as in transit.
+     */
+    post: operations["MarkAirwayBillInTransitAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}/MarkArrived": {
+    /**
+     * Mark airway bill arrived
+     * @description Marks an airway bill as arrived.
+     */
+    post: operations["MarkAirwayBillArrivedAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}/MarkDelivered": {
+    /**
+     * Mark airway bill delivered
+     * @description Marks an airway bill as delivered.
+     */
+    post: operations["MarkAirwayBillDeliveredAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}/Cancel": {
+    /**
+     * Cancel an airway bill
+     * @description Cancels an airway bill.
+     */
+    post: operations["CancelAirwayBillAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}/Lines": {
+    /**
+     * Get airway bill lines
+     * @description Retrieves all lines for a specific airway bill.
+     */
+    get: operations["GetAirwayBillLinesAsync"];
+    /**
+     * Add a line to airway bill
+     * @description Adds a new line to an airway bill.
+     */
+    post: operations["AddAirwayBillLineAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}/Lines/Count": {
+    /**
+     * Get airway bill lines count
+     * @description Returns the count of lines for a specific airway bill.
+     */
+    get: operations["GetAirwayBillLinesCountAsync"];
+  };
+  "/api/v2/LogisticsService/AirwayBills/{billId}/Lines/{lineId}": {
+    /**
+     * Update an airway bill line
+     * @description Updates an existing line on an airway bill.
+     */
+    put: operations["UpdateAirwayBillLineAsync"];
+    /**
+     * Remove an airway bill line
+     * @description Removes a line from an airway bill.
+     */
+    delete: operations["RemoveAirwayBillLineAsync"];
+  };
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
+  "/api/v2/LogisticsService/DeliveryNotes": {
+    /**
+     * Get all delivery notes
+     * @description Retrieves all delivery notes for the specified tenant.
+     */
+    get: operations["GetDeliveryNotesAsync"];
+    /**
+     * Create a delivery note
+     * @description Creates a new delivery note.
+     */
+    post: operations["CreateDeliveryNoteAsync"];
+  };
+  "/api/v2/LogisticsService/DeliveryNotes/Count": {
+    /**
+     * Get delivery notes count
+     * @description Returns the count of delivery notes.
+     */
+    get: operations["GetDeliveryNotesCountAsync"];
+  };
+  "/api/v2/LogisticsService/DeliveryNotes/{deliveryNoteId}": {
+    /**
+     * Get delivery note by ID
+     * @description Retrieves a specific delivery note.
+     */
+    get: operations["GetDeliveryNoteByIdAsync"];
+    /**
+     * Update a delivery note
+     * @description Updates an existing delivery note.
+     */
+    put: operations["UpdateDeliveryNoteAsync"];
+    /**
+     * Delete a delivery note
+     * @description Deletes a delivery note.
+     */
+    delete: operations["DeleteDeliveryNoteAsync"];
+  };
   "/version": {
     get: {
       responses: {
@@ -302,12 +549,1054 @@ export interface paths {
       };
     };
   };
-  "/api/v2/LogisticsService/Stock": {
+  "/api/v2/LogisticsService/ItemPackingSlips": {
     /**
-     * Get all stock-related contacts
-     * @description Retrieves all business-owned contacts related to stock and logistics for the specified tenant.
+     * Get all item packing slips
+     * @description Retrieves all item packing slips for the specified tenant.
      */
-    get: operations["GetContactsAsync"];
+    get: operations["GetItemPackingSlipsAsync"];
+    /**
+     * Create an item packing slip
+     * @description Creates a new item packing slip.
+     */
+    post: operations["CreateItemPackingSlipAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPackingSlips/Count": {
+    /**
+     * Get item packing slips count
+     * @description Returns the count of item packing slips.
+     */
+    get: operations["GetItemPackingSlipsCountAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}": {
+    /**
+     * Get item packing slip by ID
+     * @description Retrieves a specific item packing slip.
+     */
+    get: operations["GetItemPackingSlipByIdAsync"];
+    /**
+     * Update an item packing slip
+     * @description Updates an existing item packing slip.
+     */
+    put: operations["UpdateItemPackingSlipAsync"];
+    /**
+     * Delete an item packing slip
+     * @description Deletes an item packing slip.
+     */
+    delete: operations["DeleteItemPackingSlipAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries": {
+    /**
+     * Get packing slip entries
+     * @description Retrieves all entries for the specified packing slip.
+     */
+    get: operations["GetItemPackingSlipEntriesAsync"];
+    /**
+     * Create a packing slip entry
+     * @description Creates a new packing slip entry.
+     */
+    post: operations["CreateItemPackingSlipEntryAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries/Count": {
+    /**
+     * Get packing slip entries count
+     * @description Returns the count of packing slip entries.
+     */
+    get: operations["GetItemPackingSlipEntriesCountAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries/{entryId}": {
+    /**
+     * Get packing slip entry by ID
+     * @description Retrieves a specific packing slip entry.
+     */
+    get: operations["GetItemPackingSlipEntryByIdAsync"];
+    /**
+     * Update a packing slip entry
+     * @description Updates an existing packing slip entry.
+     */
+    put: operations["UpdateItemPackingSlipEntryAsync"];
+    /**
+     * Delete a packing slip entry
+     * @description Deletes a packing slip entry.
+     */
+    delete: operations["DeleteItemPackingSlipEntryAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPickLists": {
+    /**
+     * Get all item pick lists
+     * @description Retrieves all item pick lists for the specified tenant.
+     */
+    get: operations["GetItemPickListsAsync"];
+    /**
+     * Create an item pick list
+     * @description Creates a new item pick list.
+     */
+    post: operations["CreateItemPickListAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPickLists/Count": {
+    /**
+     * Get item pick lists count
+     * @description Returns the count of item pick lists.
+     */
+    get: operations["GetItemPickListsCountAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPickLists/{pickListId}": {
+    /**
+     * Get item pick list by ID
+     * @description Retrieves a specific item pick list.
+     */
+    get: operations["GetItemPickListByIdAsync"];
+    /**
+     * Update an item pick list
+     * @description Updates an existing item pick list.
+     */
+    put: operations["UpdateItemPickListAsync"];
+    /**
+     * Delete an item pick list
+     * @description Deletes an item pick list.
+     */
+    delete: operations["DeleteItemPickListAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries": {
+    /**
+     * Get pick list entries
+     * @description Retrieves all entries for the specified pick list.
+     */
+    get: operations["GetItemPickListEntriesAsync"];
+    /**
+     * Create a pick list entry
+     * @description Creates a new pick list entry.
+     */
+    post: operations["CreateItemPickListEntryAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries/Count": {
+    /**
+     * Get pick list entries count
+     * @description Returns the count of pick list entries.
+     */
+    get: operations["GetItemPickListEntriesCountAsync"];
+  };
+  "/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries/{entryId}": {
+    /**
+     * Get pick list entry by ID
+     * @description Retrieves a specific pick list entry.
+     */
+    get: operations["GetItemPickListEntryByIdAsync"];
+    /**
+     * Update a pick list entry
+     * @description Updates an existing pick list entry.
+     */
+    put: operations["UpdateItemPickListEntryAsync"];
+    /**
+     * Delete a pick list entry
+     * @description Deletes a pick list entry.
+     */
+    delete: operations["DeleteItemPickListEntryAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRestocks": {
+    /**
+     * Get all item restocks
+     * @description Retrieves all item restocks for the specified tenant.
+     */
+    get: operations["GetItemRestocksAsync"];
+    /**
+     * Create an item restock
+     * @description Creates a new item restock.
+     */
+    post: operations["CreateItemRestockAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRestocks/Count": {
+    /**
+     * Get item restocks count
+     * @description Returns the count of item restocks.
+     */
+    get: operations["GetItemRestocksCountAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRestocks/{restockId}": {
+    /**
+     * Get item restock by ID
+     * @description Retrieves a specific item restock.
+     */
+    get: operations["GetItemRestockByIdAsync"];
+    /**
+     * Update an item restock
+     * @description Updates an existing item restock.
+     */
+    put: operations["UpdateItemRestockAsync"];
+    /**
+     * Delete an item restock
+     * @description Deletes an item restock.
+     */
+    delete: operations["DeleteItemRestockAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries": {
+    /**
+     * Get restock entries
+     * @description Retrieves all entries for the specified restock.
+     */
+    get: operations["GetItemRestockEntriesAsync"];
+    /**
+     * Create a restock entry
+     * @description Creates a new restock entry.
+     */
+    post: operations["CreateItemRestockEntryAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries/Count": {
+    /**
+     * Get restock entries count
+     * @description Returns the count of restock entries.
+     */
+    get: operations["GetItemRestockEntriesCountAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries/{entryId}": {
+    /**
+     * Get restock entry by ID
+     * @description Retrieves a specific restock entry.
+     */
+    get: operations["GetItemRestockEntryByIdAsync"];
+    /**
+     * Update a restock entry
+     * @description Updates an existing restock entry.
+     */
+    put: operations["UpdateItemRestockEntryAsync"];
+    /**
+     * Delete a restock entry
+     * @description Deletes a restock entry.
+     */
+    delete: operations["DeleteItemRestockEntryAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRetainSamples": {
+    /**
+     * Get all item retain samples
+     * @description Retrieves all item retain samples for the specified tenant.
+     */
+    get: operations["GetItemRetainSamplesAsync"];
+    /**
+     * Create an item retain sample
+     * @description Creates a new item retain sample.
+     */
+    post: operations["CreateItemRetainSampleAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRetainSamples/Count": {
+    /**
+     * Get item retain samples count
+     * @description Returns the count of item retain samples.
+     */
+    get: operations["GetItemRetainSamplesCountAsync"];
+  };
+  "/api/v2/LogisticsService/ItemRetainSamples/{retainSampleId}": {
+    /**
+     * Get item retain sample by ID
+     * @description Retrieves a specific item retain sample.
+     */
+    get: operations["GetItemRetainSampleByIdAsync"];
+    /**
+     * Update an item retain sample
+     * @description Updates an existing item retain sample.
+     */
+    put: operations["UpdateItemRetainSampleAsync"];
+    /**
+     * Delete an item retain sample
+     * @description Deletes an item retain sample.
+     */
+    delete: operations["DeleteItemRetainSampleAsync"];
+  };
+  "/api/v2/LogisticsService/Ports": {
+    /**
+     * Get all ports
+     * @description Retrieves all ports for the specified tenant.
+     */
+    get: operations["GetPortsAsync"];
+    /**
+     * Create a port
+     * @description Creates a new port for the specified tenant.
+     */
+    post: operations["CreatePortAsync"];
+  };
+  "/api/v2/LogisticsService/Ports/Count": {
+    /**
+     * Get ports count
+     * @description Returns the count of ports for the specified tenant.
+     */
+    get: operations["GetPortsCountAsync"];
+  };
+  "/api/v2/LogisticsService/Ports/{portId}": {
+    /**
+     * Get port by ID
+     * @description Retrieves a specific port by its identifier.
+     */
+    get: operations["GetPortByIdAsync"];
+    /**
+     * Update a port
+     * @description Updates an existing port.
+     */
+    put: operations["UpdatePortAsync"];
+    /**
+     * Delete a port
+     * @description Deletes a port.
+     */
+    delete: operations["DeletePortAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery": {
+    /**
+     * Get all proofs of delivery
+     * @description Retrieves all proofs of delivery for the specified tenant.
+     */
+    get: operations["GetProofsOfDeliveryAsync"];
+    /**
+     * Create a proof of delivery
+     * @description Creates a new proof of delivery for the specified tenant.
+     */
+    post: operations["CreateProofOfDeliveryAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/Count": {
+    /**
+     * Get proofs of delivery count
+     * @description Returns the count of proofs of delivery for the specified tenant.
+     */
+    get: operations["GetProofsOfDeliveryCountAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}": {
+    /**
+     * Get proof of delivery by ID
+     * @description Retrieves a specific proof of delivery by its identifier.
+     */
+    get: operations["GetProofOfDeliveryByIdAsync"];
+    /**
+     * Update a proof of delivery
+     * @description Updates an existing proof of delivery.
+     */
+    put: operations["UpdateProofOfDeliveryAsync"];
+    /**
+     * Delete a proof of delivery
+     * @description Deletes a proof of delivery.
+     */
+    delete: operations["DeleteProofOfDeliveryAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Sign": {
+    /**
+     * Sign a proof of delivery
+     * @description Signs a proof of delivery.
+     */
+    post: operations["SignProofOfDeliveryAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Dispute": {
+    /**
+     * Dispute a proof of delivery
+     * @description Disputes a proof of delivery.
+     */
+    post: operations["DisputeProofOfDeliveryAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Reject": {
+    /**
+     * Reject a proof of delivery
+     * @description Rejects a proof of delivery.
+     */
+    post: operations["RejectProofOfDeliveryAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines": {
+    /**
+     * Get proof of delivery lines
+     * @description Retrieves all lines for a specific proof of delivery.
+     */
+    get: operations["GetProofOfDeliveryLinesAsync"];
+    /**
+     * Add a line to proof of delivery
+     * @description Adds a new line to a proof of delivery.
+     */
+    post: operations["AddProofOfDeliveryLineAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines/Count": {
+    /**
+     * Get proof of delivery lines count
+     * @description Returns the count of lines for a specific proof of delivery.
+     */
+    get: operations["GetProofOfDeliveryLinesCountAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Lines/{lineId}": {
+    /**
+     * Update a proof of delivery line
+     * @description Updates an existing line on a proof of delivery.
+     */
+    put: operations["UpdateProofOfDeliveryLineAsync"];
+    /**
+     * Remove a proof of delivery line
+     * @description Removes a line from a proof of delivery.
+     */
+    delete: operations["RemoveProofOfDeliveryLineAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes": {
+    /**
+     * Get attached delivery notes
+     * @description Retrieves all delivery notes attached to a proof of delivery.
+     */
+    get: operations["GetProofOfDeliveryDeliveryNotesAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes/Count": {
+    /**
+     * Get delivery notes count
+     * @description Returns the count of delivery notes attached to a proof of delivery.
+     */
+    get: operations["GetProofOfDeliveryDeliveryNotesCountAsync"];
+  };
+  "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes/{noteId}": {
+    /**
+     * Attach a delivery note
+     * @description Attaches a delivery note to a proof of delivery.
+     */
+    post: operations["AttachDeliveryNoteAsync"];
+    /**
+     * Detach a delivery note
+     * @description Detaches a delivery note from a proof of delivery.
+     */
+    delete: operations["DetachDeliveryNoteAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills": {
+    /**
+     * Get all rail waybills
+     * @description Retrieves all rail waybills for the specified tenant.
+     */
+    get: operations["GetRailWaybillsAsync"];
+    /**
+     * Create a rail waybill
+     * @description Creates a new rail waybill for the specified tenant.
+     */
+    post: operations["CreateRailWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/Count": {
+    /**
+     * Get rail waybills count
+     * @description Returns the count of rail waybills for the specified tenant.
+     */
+    get: operations["GetRailWaybillsCountAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/{waybillId}": {
+    /**
+     * Get rail waybill by ID
+     * @description Retrieves a specific rail waybill by its identifier.
+     */
+    get: operations["GetRailWaybillByIdAsync"];
+    /**
+     * Update a rail waybill
+     * @description Updates an existing rail waybill.
+     */
+    put: operations["UpdateRailWaybillAsync"];
+    /**
+     * Delete a rail waybill
+     * @description Deletes a rail waybill.
+     */
+    delete: operations["DeleteRailWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/{waybillId}/Issue": {
+    /**
+     * Issue a rail waybill
+     * @description Issues a rail waybill.
+     */
+    post: operations["IssueRailWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/{waybillId}/MarkInTransit": {
+    /**
+     * Mark rail waybill in transit
+     * @description Marks a rail waybill as in transit.
+     */
+    post: operations["MarkRailWaybillInTransitAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/{waybillId}/MarkDelivered": {
+    /**
+     * Mark rail waybill delivered
+     * @description Marks a rail waybill as delivered.
+     */
+    post: operations["MarkRailWaybillDeliveredAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/{waybillId}/Cancel": {
+    /**
+     * Cancel a rail waybill
+     * @description Cancels a rail waybill.
+     */
+    post: operations["CancelRailWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines": {
+    /**
+     * Get rail waybill lines
+     * @description Retrieves all lines for a specific rail waybill.
+     */
+    get: operations["GetRailWaybillLinesAsync"];
+    /**
+     * Add a line to rail waybill
+     * @description Adds a new line to a rail waybill.
+     */
+    post: operations["AddRailWaybillLineAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines/Count": {
+    /**
+     * Get rail waybill lines count
+     * @description Returns the count of lines for a specific rail waybill.
+     */
+    get: operations["GetRailWaybillLinesCountAsync"];
+  };
+  "/api/v2/LogisticsService/RailWaybills/{waybillId}/Lines/{lineId}": {
+    /**
+     * Update a rail waybill line
+     * @description Updates an existing line on a rail waybill.
+     */
+    put: operations["UpdateRailWaybillLineAsync"];
+    /**
+     * Remove a rail waybill line
+     * @description Removes a line from a rail waybill.
+     */
+    delete: operations["RemoveRailWaybillLineAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills": {
+    /**
+     * Get all road waybills
+     * @description Retrieves all road waybills for the specified tenant.
+     */
+    get: operations["GetRoadWaybillsAsync"];
+    /**
+     * Create a road waybill
+     * @description Creates a new road waybill for the specified tenant.
+     */
+    post: operations["CreateRoadWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/Count": {
+    /**
+     * Get road waybills count
+     * @description Returns the count of road waybills for the specified tenant.
+     */
+    get: operations["GetRoadWaybillsCountAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}": {
+    /**
+     * Get road waybill by ID
+     * @description Retrieves a specific road waybill by its identifier.
+     */
+    get: operations["GetRoadWaybillByIdAsync"];
+    /**
+     * Update a road waybill
+     * @description Updates an existing road waybill.
+     */
+    put: operations["UpdateRoadWaybillAsync"];
+    /**
+     * Delete a road waybill
+     * @description Deletes a road waybill.
+     */
+    delete: operations["DeleteRoadWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Issue": {
+    /**
+     * Issue a road waybill
+     * @description Issues a road waybill.
+     */
+    post: operations["IssueRoadWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}/MarkInTransit": {
+    /**
+     * Mark road waybill in transit
+     * @description Marks a road waybill as in transit.
+     */
+    post: operations["MarkRoadWaybillInTransitAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}/MarkDelivered": {
+    /**
+     * Mark road waybill delivered
+     * @description Marks a road waybill as delivered.
+     */
+    post: operations["MarkRoadWaybillDeliveredAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Dispute": {
+    /**
+     * Dispute a road waybill
+     * @description Disputes a road waybill.
+     */
+    post: operations["DisputeRoadWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Cancel": {
+    /**
+     * Cancel a road waybill
+     * @description Cancels a road waybill.
+     */
+    post: operations["CancelRoadWaybillAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines": {
+    /**
+     * Get road waybill lines
+     * @description Retrieves all lines for a specific road waybill.
+     */
+    get: operations["GetRoadWaybillLinesAsync"];
+    /**
+     * Add a line to road waybill
+     * @description Adds a new line to a road waybill.
+     */
+    post: operations["AddRoadWaybillLineAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines/Count": {
+    /**
+     * Get road waybill lines count
+     * @description Returns the count of lines for a specific road waybill.
+     */
+    get: operations["GetRoadWaybillLinesCountAsync"];
+  };
+  "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Lines/{lineId}": {
+    /**
+     * Update a road waybill line
+     * @description Updates an existing line on a road waybill.
+     */
+    put: operations["UpdateRoadWaybillLineAsync"];
+    /**
+     * Remove a road waybill line
+     * @description Removes a line from a road waybill.
+     */
+    delete: operations["RemoveRoadWaybillLineAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills": {
+    /**
+     * Get all seaway bills
+     * @description Retrieves all seaway bills for the specified tenant.
+     */
+    get: operations["GetSeawayBillsAsync"];
+    /**
+     * Create a seaway bill
+     * @description Creates a new seaway bill for the specified tenant.
+     */
+    post: operations["CreateSeawayBillAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/Count": {
+    /**
+     * Get seaway bills count
+     * @description Returns the count of seaway bills for the specified tenant.
+     */
+    get: operations["GetSeawayBillsCountAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}": {
+    /**
+     * Get seaway bill by ID
+     * @description Retrieves a specific seaway bill by its identifier.
+     */
+    get: operations["GetSeawayBillByIdAsync"];
+    /**
+     * Update a seaway bill
+     * @description Updates an existing seaway bill.
+     */
+    put: operations["UpdateSeawayBillAsync"];
+    /**
+     * Delete a seaway bill
+     * @description Deletes a seaway bill.
+     */
+    delete: operations["DeleteSeawayBillAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}/Issue": {
+    /**
+     * Issue a seaway bill
+     * @description Issues a seaway bill.
+     */
+    post: operations["IssueSeawayBillAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}/MarkInTransit": {
+    /**
+     * Mark seaway bill in transit
+     * @description Marks a seaway bill as in transit.
+     */
+    post: operations["MarkSeawayBillInTransitAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}/MarkArrived": {
+    /**
+     * Mark seaway bill arrived
+     * @description Marks a seaway bill as arrived.
+     */
+    post: operations["MarkSeawayBillArrivedAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}/Release": {
+    /**
+     * Release a seaway bill
+     * @description Releases a seaway bill.
+     */
+    post: operations["ReleaseSeawayBillAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}/Cancel": {
+    /**
+     * Cancel a seaway bill
+     * @description Cancels a seaway bill.
+     */
+    post: operations["CancelSeawayBillAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}/Lines": {
+    /**
+     * Get seaway bill lines
+     * @description Retrieves all lines for a specific seaway bill.
+     */
+    get: operations["GetSeawayBillLinesAsync"];
+    /**
+     * Add a line to seaway bill
+     * @description Adds a new line to a seaway bill.
+     */
+    post: operations["AddSeawayBillLineAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}/Lines/Count": {
+    /**
+     * Get seaway bill lines count
+     * @description Returns the count of lines for a specific seaway bill.
+     */
+    get: operations["GetSeawayBillLinesCountAsync"];
+  };
+  "/api/v2/LogisticsService/SeawayBills/{billId}/Lines/{lineId}": {
+    /**
+     * Update a seaway bill line
+     * @description Updates an existing line on a seaway bill.
+     */
+    put: operations["UpdateSeawayBillLineAsync"];
+    /**
+     * Remove a seaway bill line
+     * @description Removes a line from a seaway bill.
+     */
+    delete: operations["RemoveSeawayBillLineAsync"];
+  };
+  "/api/v2/LogisticsService/SupplierProfiles": {
+    /**
+     * Get all supplier profiles
+     * @description Retrieves all supplier profiles for the specified tenant.
+     */
+    get: operations["GetSupplierProfilesAsync"];
+    /**
+     * Create a supplier profile
+     * @description Creates a new supplier profile for the specified tenant.
+     */
+    post: operations["CreateSupplierProfileAsync"];
+  };
+  "/api/v2/LogisticsService/SupplierProfiles/Count": {
+    /**
+     * Get supplier profiles count
+     * @description Returns the count of supplier profiles for the specified tenant.
+     */
+    get: operations["GetSupplierProfilesCountAsync"];
+  };
+  "/api/v2/LogisticsService/SupplierProfiles/{supplierProfileId}": {
+    /**
+     * Get supplier profile by ID
+     * @description Retrieves a specific supplier profile by its identifier.
+     */
+    get: operations["GetSupplierProfileByIdAsync"];
+    /**
+     * Update a supplier profile
+     * @description Updates an existing supplier profile.
+     */
+    put: operations["UpdateSupplierProfileAsync"];
+    /**
+     * Delete a supplier profile
+     * @description Deletes a supplier profile.
+     */
+    delete: operations["DeleteSupplierProfileAsync"];
+  };
+  "/api/v2/LogisticsService/TruckDrivers": {
+    /**
+     * Get all truck drivers
+     * @description Retrieves all truck drivers for the specified tenant.
+     */
+    get: operations["GetTruckDriversAsync"];
+    /**
+     * Create a truck driver
+     * @description Creates a new truck driver for the specified tenant.
+     */
+    post: operations["CreateTruckDriverAsync"];
+  };
+  "/api/v2/LogisticsService/TruckDrivers/Count": {
+    /**
+     * Get truck drivers count
+     * @description Returns the count of truck drivers for the specified tenant.
+     */
+    get: operations["GetTruckDriversCountAsync"];
+  };
+  "/api/v2/LogisticsService/TruckDrivers/{driverId}": {
+    /**
+     * Get truck driver by ID
+     * @description Retrieves a specific truck driver by its identifier.
+     */
+    get: operations["GetTruckDriverByIdAsync"];
+    /**
+     * Update a truck driver
+     * @description Updates an existing truck driver.
+     */
+    put: operations["UpdateTruckDriverAsync"];
+    /**
+     * Delete a truck driver
+     * @description Deletes a truck driver.
+     */
+    delete: operations["DeleteTruckDriverAsync"];
+  };
+  "/api/v2/LogisticsService/TruckDrivers/{driverId}/Activate": {
+    /**
+     * Activate a truck driver
+     * @description Activates a truck driver.
+     */
+    post: operations["ActivateTruckDriverAsync"];
+  };
+  "/api/v2/LogisticsService/TruckDrivers/{driverId}/Deactivate": {
+    /**
+     * Deactivate a truck driver
+     * @description Deactivates a truck driver.
+     */
+    post: operations["DeactivateTruckDriverAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks": {
+    /**
+     * Get all trucks
+     * @description Retrieves all trucks for the specified tenant.
+     */
+    get: operations["GetTrucksAsync"];
+    /**
+     * Create a truck
+     * @description Creates a new truck for the specified tenant.
+     */
+    post: operations["CreateTruckAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/Count": {
+    /**
+     * Get trucks count
+     * @description Returns the count of trucks for the specified tenant.
+     */
+    get: operations["GetTrucksCountAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}": {
+    /**
+     * Get truck by ID
+     * @description Retrieves a specific truck by its identifier.
+     */
+    get: operations["GetTruckByIdAsync"];
+    /**
+     * Update a truck
+     * @description Updates an existing truck.
+     */
+    put: operations["UpdateTruckAsync"];
+    /**
+     * Delete a truck
+     * @description Deletes a truck.
+     */
+    delete: operations["DeleteTruckAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}/Trips": {
+    /**
+     * Get truck trips
+     * @description Retrieves all trips for a specific truck.
+     */
+    get: operations["GetTruckTripsAsync"];
+    /**
+     * Create a truck trip
+     * @description Creates a new trip for a truck.
+     */
+    post: operations["CreateTruckTripAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}/Trips/Count": {
+    /**
+     * Get truck trips count
+     * @description Returns the count of trips for a specific truck.
+     */
+    get: operations["GetTruckTripsCountAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}": {
+    /**
+     * Update a truck trip
+     * @description Updates an existing truck trip.
+     */
+    put: operations["UpdateTruckTripAsync"];
+    /**
+     * Delete a truck trip
+     * @description Deletes a truck trip.
+     */
+    delete: operations["DeleteTruckTripAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Dispatch": {
+    /**
+     * Dispatch a trip
+     * @description Dispatches a truck trip.
+     */
+    post: operations["DispatchTripAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Depart": {
+    /**
+     * Depart a trip
+     * @description Marks a truck trip as departed.
+     */
+    post: operations["DepartTripAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Arrive": {
+    /**
+     * Arrive a trip
+     * @description Marks a truck trip as arrived.
+     */
+    post: operations["ArriveTripAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Deliver": {
+    /**
+     * Deliver a trip
+     * @description Marks a truck trip as delivered.
+     */
+    post: operations["DeliverTripAsync"];
+  };
+  "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Cancel": {
+    /**
+     * Cancel a trip
+     * @description Cancels a truck trip.
+     */
+    post: operations["CancelTripAsync"];
+  };
+  "/api/v2/LogisticsService/Vessels": {
+    /**
+     * Get all vessels
+     * @description Retrieves all vessels for the specified tenant.
+     */
+    get: operations["GetVesselsAsync"];
+    /**
+     * Create a vessel
+     * @description Creates a new vessel for the specified tenant.
+     */
+    post: operations["CreateVesselAsync"];
+  };
+  "/api/v2/LogisticsService/Vessels/Count": {
+    /**
+     * Get vessels count
+     * @description Returns the count of vessels for the specified tenant.
+     */
+    get: operations["GetVesselsCountAsync"];
+  };
+  "/api/v2/LogisticsService/Vessels/{vesselId}": {
+    /**
+     * Get vessel by ID
+     * @description Retrieves a specific vessel by its identifier.
+     */
+    get: operations["GetVesselByIdAsync"];
+    /**
+     * Update a vessel
+     * @description Updates an existing vessel.
+     */
+    put: operations["UpdateVesselAsync"];
+    /**
+     * Delete a vessel
+     * @description Deletes a vessel.
+     */
+    delete: operations["DeleteVesselAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages": {
+    /**
+     * Get all voyages
+     * @description Retrieves all voyages for the specified tenant.
+     */
+    get: operations["GetVoyagesAsync"];
+    /**
+     * Create a voyage
+     * @description Creates a new voyage for the specified tenant.
+     */
+    post: operations["CreateVoyageAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages/Count": {
+    /**
+     * Get voyages count
+     * @description Returns the count of voyages for the specified tenant.
+     */
+    get: operations["GetVoyagesCountAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages/{voyageId}": {
+    /**
+     * Get voyage by ID
+     * @description Retrieves a specific voyage by its identifier.
+     */
+    get: operations["GetVoyageByIdAsync"];
+    /**
+     * Update a voyage
+     * @description Updates an existing voyage.
+     */
+    put: operations["UpdateVoyageAsync"];
+    /**
+     * Delete a voyage
+     * @description Deletes a voyage.
+     */
+    delete: operations["DeleteVoyageAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages/{voyageId}/Start": {
+    /**
+     * Start a voyage
+     * @description Starts a voyage.
+     */
+    post: operations["StartVoyageAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages/{voyageId}/Complete": {
+    /**
+     * Complete a voyage
+     * @description Marks a voyage as completed.
+     */
+    post: operations["CompleteVoyageAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages/{voyageId}/Cancel": {
+    /**
+     * Cancel a voyage
+     * @description Cancels a voyage.
+     */
+    post: operations["CancelVoyageAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls": {
+    /**
+     * Get voyage port calls
+     * @description Retrieves all port calls for a specific voyage.
+     */
+    get: operations["GetVoyagePortCallsAsync"];
+    /**
+     * Create a port call
+     * @description Creates a new port call for a voyage.
+     */
+    post: operations["CreateVoyagePortCallAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls/Count": {
+    /**
+     * Get voyage port calls count
+     * @description Returns the count of port calls for a specific voyage.
+     */
+    get: operations["GetVoyagePortCallsCountAsync"];
+  };
+  "/api/v2/LogisticsService/Voyages/{voyageId}/PortCalls/{portCallId}": {
+    /**
+     * Update a port call
+     * @description Updates an existing port call.
+     */
+    put: operations["UpdateVoyagePortCallAsync"];
+    /**
+     * Delete a port call
+     * @description Deletes a port call.
+     */
+    delete: operations["DeleteVoyagePortCallAsync"];
+  };
+  "/api/v2/LogisticsService/Warehouses": {
+    /**
+     * Get all warehouses
+     * @description Retrieves all warehouses for the specified tenant.
+     */
+    get: operations["GetWarehousesAsync"];
+    /**
+     * Create a warehouse
+     * @description Creates a new warehouse.
+     */
+    post: operations["CreateWarehouseAsync"];
+  };
+  "/api/v2/LogisticsService/Warehouses/Count": {
+    /**
+     * Get warehouses count
+     * @description Returns the count of warehouses.
+     */
+    get: operations["GetWarehousesCountAsync"];
+  };
+  "/api/v2/LogisticsService/Warehouses/{warehouseId}": {
+    /**
+     * Get warehouse by ID
+     * @description Retrieves a specific warehouse.
+     */
+    get: operations["GetWarehouseByIdAsync"];
+    /**
+     * Update a warehouse
+     * @description Updates an existing warehouse.
+     */
+    put: operations["UpdateWarehouseAsync"];
+    /**
+     * Delete a warehouse
+     * @description Deletes a warehouse.
+     */
+    delete: operations["DeleteWarehouseAsync"];
   };
 }
 
@@ -321,6 +1610,160 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    AirwayBillCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      documentNumber?: string | null;
+      airwayBillType?: string | null;
+      masterAwbNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      carrierId?: string | null;
+      airlineCode?: string | null;
+      flightNumber?: string | null;
+      airportOfDepartureCode?: string | null;
+      airportOfDestinationCode?: string | null;
+      /** Format: date-time */
+      departureDate?: string | null;
+      /** Format: date-time */
+      arrivalDate?: string | null;
+      /** Format: date-time */
+      dateIssued?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      chargeableWeightKg?: number | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      /** Format: double */
+      declaredValueForCarriage?: number | null;
+      /** Format: double */
+      declaredValueForCustoms?: number | null;
+      /** Format: double */
+      insuranceAmount?: number | null;
+      specialHandlingCodes?: string | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
+    };
+    AirwayBillDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      documentNumber?: string | null;
+      airwayBillType?: string | null;
+      masterAwbNumber?: string | null;
+      status?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      carrierId?: string | null;
+      airlineCode?: string | null;
+      flightNumber?: string | null;
+      airportOfDepartureCode?: string | null;
+      airportOfDestinationCode?: string | null;
+      /** Format: date-time */
+      departureDate?: string | null;
+      /** Format: date-time */
+      arrivalDate?: string | null;
+      /** Format: date-time */
+      dateIssued?: string | null;
+      /** Format: date-time */
+      dateDelivered?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      chargeableWeightKg?: number | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      /** Format: double */
+      declaredValueForCarriage?: number | null;
+      /** Format: double */
+      declaredValueForCustoms?: number | null;
+      /** Format: double */
+      insuranceAmount?: number | null;
+      specialHandlingCodes?: string | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      lines?: components["schemas"]["WaybillLineDto"][] | null;
+    };
+    AirwayBillDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AirwayBillDto"];
+    };
+    AirwayBillDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AirwayBillDto"][] | null;
+    };
+    AirwayBillUpdateDto: {
+      documentNumber?: string | null;
+      airwayBillType?: string | null;
+      masterAwbNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      carrierId?: string | null;
+      airlineCode?: string | null;
+      flightNumber?: string | null;
+      airportOfDepartureCode?: string | null;
+      airportOfDestinationCode?: string | null;
+      /** Format: date-time */
+      departureDate?: string | null;
+      /** Format: date-time */
+      arrivalDate?: string | null;
+      /** Format: date-time */
+      dateIssued?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      chargeableWeightKg?: number | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      /** Format: double */
+      declaredValueForCarriage?: number | null;
+      /** Format: double */
+      declaredValueForCustoms?: number | null;
+      /** Format: double */
+      insuranceAmount?: number | null;
+      specialHandlingCodes?: string | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
     };
     ContactDto: {
       id?: string | null;
@@ -399,14 +1842,57 @@ export interface components {
       /** Format: date-time */
       birthday?: string | null;
     };
-    ContactDtoListEnvelope: {
+    DeliveryNoteCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title?: string | null;
+      description?: string | null;
+      shipmentID?: string | null;
+      proofOfDeliveryID?: string | null;
+    };
+    DeliveryNoteDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+    };
+    DeliveryNoteDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
-      result?: components["schemas"]["ContactDto"][] | null;
+      result?: components["schemas"]["DeliveryNoteDto"];
+    };
+    DeliveryNoteDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["DeliveryNoteDto"][] | null;
+    };
+    DeliveryNoteUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      shipmentID?: string | null;
+      proofOfDeliveryID?: string | null;
+    };
+    DisputeProofOfDeliveryRequest: {
+      reason?: string | null;
+    };
+    EmptyEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -440,11 +1926,715 @@ export interface components {
       email: string | null;
       isEmailConfirmed: boolean;
     };
+    Int32Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      /** Format: int32 */
+      result?: number;
+    };
+    ItemPackingSlipCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      instructions?: string | null;
+      deliveryNoteId?: string | null;
+      orderId?: string | null;
+    };
+    ItemPackingSlipDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      instructions?: string | null;
+      deliveryNoteId?: string | null;
+      tenantId?: string | null;
+      orderId?: string | null;
+    };
+    ItemPackingSlipDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPackingSlipDto"];
+    };
+    ItemPackingSlipDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPackingSlipDto"][] | null;
+    };
+    ItemPackingSlipEntryCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      itemId: string;
+      itemPackingSlipId: string;
+      quantity: string;
+    };
+    ItemPackingSlipEntryDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      quantity?: string | null;
+      itemId?: string | null;
+      itemPackingSlipId?: string | null;
+      tenantId?: string | null;
+    };
+    ItemPackingSlipEntryDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPackingSlipEntryDto"];
+    };
+    ItemPackingSlipEntryDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPackingSlipEntryDto"][] | null;
+    };
+    ItemPackingSlipEntryUpdateDto: {
+      itemId?: string | null;
+      quantity?: string | null;
+    };
+    ItemPackingSlipUpdateDto: {
+      instructions?: string | null;
+      deliveryNoteId?: string | null;
+      orderId?: string | null;
+    };
+    ItemPickListCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+      orderId?: string | null;
+    };
+    ItemPickListDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      orderId?: string | null;
+      tenantId?: string | null;
+    };
+    ItemPickListDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPickListDto"];
+    };
+    ItemPickListDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPickListDto"][] | null;
+    };
+    ItemPickListEntryCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      itemId: string;
+      warehouseId: string;
+      itemPickListId: string;
+      /** Format: double */
+      quantity?: number;
+      orderItemRecordId?: string | null;
+    };
+    ItemPickListEntryDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: double */
+      quantity?: number;
+      itemId?: string | null;
+      warehouseId?: string | null;
+      itemPickListId?: string | null;
+      orderItemRecordId?: string | null;
+      tenantId?: string | null;
+    };
+    ItemPickListEntryDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPickListEntryDto"];
+    };
+    ItemPickListEntryDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemPickListEntryDto"][] | null;
+    };
+    ItemPickListEntryUpdateDto: {
+      itemId?: string | null;
+      warehouseId?: string | null;
+      /** Format: double */
+      quantity?: number;
+      orderItemRecordId?: string | null;
+    };
+    ItemPickListUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+      orderId?: string | null;
+    };
+    ItemRestockCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      description?: string | null;
+    };
+    ItemRestockDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+      /** Format: int32 */
+      entryCount?: number;
+    };
+    ItemRestockDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemRestockDto"];
+    };
+    ItemRestockDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemRestockDto"][] | null;
+    };
+    ItemRestockEntryCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      itemId: string;
+      warehouseId: string;
+      itemRestockId: string;
+      /** Format: double */
+      quantity?: number;
+      orderItemRecordId?: string | null;
+    };
+    ItemRestockEntryDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: double */
+      quantity?: number;
+      itemId?: string | null;
+      warehouseId?: string | null;
+      itemRestockId?: string | null;
+      orderItemRecordId?: string | null;
+      tenantId?: string | null;
+    };
+    ItemRestockEntryDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemRestockEntryDto"];
+    };
+    ItemRestockEntryDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemRestockEntryDto"][] | null;
+    };
+    ItemRestockEntryUpdateDto: {
+      itemId?: string | null;
+      warehouseId?: string | null;
+      /** Format: double */
+      quantity?: number;
+      orderItemRecordId?: string | null;
+    };
+    ItemRestockUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+    };
+    ItemRetainSampleCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      warehouseId: string;
+      itemId: string;
+    };
+    ItemRetainSampleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      warehouseId?: string | null;
+      itemId?: string | null;
+    };
+    ItemRetainSampleDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemRetainSampleDto"];
+    };
+    ItemRetainSampleDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemRetainSampleDto"][] | null;
+    };
+    ItemRetainSampleUpdateDto: {
+      warehouseId?: string | null;
+      itemId?: string | null;
+    };
     LoginRequest: {
       email: string | null;
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    PortCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      company?: string | null;
+      email?: string | null;
+      address1: string;
+      address2?: string | null;
+      address3?: string | null;
+      unit?: string | null;
+      customCity?: string | null;
+      customState?: string | null;
+      postalCode?: string | null;
+      phone?: string | null;
+      fax?: string | null;
+      /** Format: double */
+      longitude?: number;
+      /** Format: double */
+      latitude?: number;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+      unLocode?: string | null;
+      iataCode?: string | null;
+      portType?: string | null;
+      portAuthority?: string | null;
+      hasCustomsFacility?: boolean;
+      isFreeTradezone?: boolean;
+      isActive?: boolean;
+      parentPortId?: string | null;
+    };
+    PortDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      company?: string | null;
+      email?: string | null;
+      address1?: string | null;
+      address2?: string | null;
+      address3?: string | null;
+      unit?: string | null;
+      customCity?: string | null;
+      customState?: string | null;
+      postalCode?: string | null;
+      phone?: string | null;
+      fax?: string | null;
+      /** Format: double */
+      longitude?: number;
+      /** Format: double */
+      latitude?: number;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      unLocode?: string | null;
+      iataCode?: string | null;
+      portType?: string | null;
+      portAuthority?: string | null;
+      hasCustomsFacility?: boolean;
+      isFreeTradezone?: boolean;
+      isActive?: boolean;
+      parentPortId?: string | null;
+    };
+    PortDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PortDto"];
+    };
+    PortDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["PortDto"][] | null;
+    };
+    PortUpdateDto: {
+      title?: string | null;
+      company?: string | null;
+      email?: string | null;
+      address1?: string | null;
+      address2?: string | null;
+      address3?: string | null;
+      unit?: string | null;
+      customCity?: string | null;
+      customState?: string | null;
+      postalCode?: string | null;
+      phone?: string | null;
+      fax?: string | null;
+      /** Format: double */
+      longitude?: number;
+      /** Format: double */
+      latitude?: number;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+      unLocode?: string | null;
+      iataCode?: string | null;
+      portType?: string | null;
+      portAuthority?: string | null;
+      hasCustomsFacility?: boolean;
+      isFreeTradezone?: boolean;
+      isActive?: boolean;
+      parentPortId?: string | null;
+    };
+    ProofOfDeliveryCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      documentNumber?: string | null;
+      shipmentId?: string | null;
+      billOfLadingId?: string | null;
+      seawayBillId?: string | null;
+      airwayBillId?: string | null;
+      roadWaybillId?: string | null;
+      railWaybillId?: string | null;
+      truckTripId?: string | null;
+      recipientName?: string | null;
+      recipientCompanyContactId?: string | null;
+      deliveryAddress?: string | null;
+      /** Format: date-time */
+      deliveryDate?: string | null;
+      /** Format: date-span */
+      deliveryTime?: string | null;
+      overallCondition?: string | null;
+      remarks?: string | null;
+    };
+    ProofOfDeliveryDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      documentNumber?: string | null;
+      status?: string | null;
+      shipmentId?: string | null;
+      billOfLadingId?: string | null;
+      seawayBillId?: string | null;
+      airwayBillId?: string | null;
+      roadWaybillId?: string | null;
+      railWaybillId?: string | null;
+      truckTripId?: string | null;
+      recipientName?: string | null;
+      recipientCompanyContactId?: string | null;
+      deliveryAddress?: string | null;
+      /** Format: date-time */
+      deliveryDate?: string | null;
+      /** Format: date-span */
+      deliveryTime?: string | null;
+      signedBy?: string | null;
+      signerIdentification?: string | null;
+      /** Format: date-time */
+      signatureDate?: string | null;
+      digitalSignatureReference?: string | null;
+      overallCondition?: string | null;
+      /** Format: int32 */
+      totalQuantityDelivered?: number | null;
+      /** Format: int32 */
+      totalQuantityRejected?: number | null;
+      remarks?: string | null;
+      photoEvidenceUri?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      lines?: components["schemas"]["ProofOfDeliveryLineDto"][] | null;
+      deliveryNoteIds?: string[] | null;
+    };
+    ProofOfDeliveryDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ProofOfDeliveryDto"];
+    };
+    ProofOfDeliveryDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ProofOfDeliveryDto"][] | null;
+    };
+    ProofOfDeliveryLineCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      description?: string | null;
+      /** Format: int32 */
+      quantityExpected?: number | null;
+      /** Format: int32 */
+      quantityReceived?: number | null;
+      /** Format: int32 */
+      quantityRejected?: number | null;
+      condition?: string | null;
+      remarks?: string | null;
+      hsCode?: string | null;
+    };
+    ProofOfDeliveryLineDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      proofOfDeliveryId?: string | null;
+      /** Format: int32 */
+      lineNumber?: number;
+      description?: string | null;
+      /** Format: int32 */
+      quantityExpected?: number | null;
+      /** Format: int32 */
+      quantityReceived?: number | null;
+      /** Format: int32 */
+      quantityRejected?: number | null;
+      condition?: string | null;
+      remarks?: string | null;
+      hsCode?: string | null;
+      tenantId?: string | null;
+    };
+    ProofOfDeliveryLineDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ProofOfDeliveryLineDto"][] | null;
+    };
+    ProofOfDeliveryLineUpdateDto: {
+      description?: string | null;
+      /** Format: int32 */
+      quantityExpected?: number | null;
+      /** Format: int32 */
+      quantityReceived?: number | null;
+      /** Format: int32 */
+      quantityRejected?: number | null;
+      condition?: string | null;
+      remarks?: string | null;
+      hsCode?: string | null;
+    };
+    ProofOfDeliveryUpdateDto: {
+      documentNumber?: string | null;
+      shipmentId?: string | null;
+      billOfLadingId?: string | null;
+      seawayBillId?: string | null;
+      airwayBillId?: string | null;
+      roadWaybillId?: string | null;
+      railWaybillId?: string | null;
+      truckTripId?: string | null;
+      recipientName?: string | null;
+      recipientCompanyContactId?: string | null;
+      deliveryAddress?: string | null;
+      /** Format: date-time */
+      deliveryDate?: string | null;
+      /** Format: date-span */
+      deliveryTime?: string | null;
+      overallCondition?: string | null;
+      /** Format: int32 */
+      totalQuantityDelivered?: number | null;
+      /** Format: int32 */
+      totalQuantityRejected?: number | null;
+      remarks?: string | null;
+      photoEvidenceUri?: string | null;
+    };
+    RailWaybillCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      documentNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      carrierId?: string | null;
+      railOperatorName?: string | null;
+      stationOfDeparture?: string | null;
+      stationOfDepartureCode?: string | null;
+      stationOfDestination?: string | null;
+      stationOfDestinationCode?: string | null;
+      prescribedRoute?: string | null;
+      wagonNumbers?: string | null;
+      /** Format: date-time */
+      dateOfAcceptance?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      customsFormalities?: string | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
+    };
+    RailWaybillDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      documentNumber?: string | null;
+      status?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      carrierId?: string | null;
+      railOperatorName?: string | null;
+      stationOfDeparture?: string | null;
+      stationOfDepartureCode?: string | null;
+      stationOfDestination?: string | null;
+      stationOfDestinationCode?: string | null;
+      prescribedRoute?: string | null;
+      wagonNumbers?: string | null;
+      /** Format: date-time */
+      dateOfAcceptance?: string | null;
+      /** Format: date-time */
+      dateOfDelivery?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      customsFormalities?: string | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      /** Format: date-time */
+      senderSignedDate?: string | null;
+      /** Format: date-time */
+      carrierSignedDate?: string | null;
+      shipmentId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      lines?: components["schemas"]["WaybillLineDto"][] | null;
+    };
+    RailWaybillDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RailWaybillDto"];
+    };
+    RailWaybillDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RailWaybillDto"][] | null;
+    };
+    RailWaybillUpdateDto: {
+      documentNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      carrierId?: string | null;
+      railOperatorName?: string | null;
+      stationOfDeparture?: string | null;
+      stationOfDepartureCode?: string | null;
+      stationOfDestination?: string | null;
+      stationOfDestinationCode?: string | null;
+      prescribedRoute?: string | null;
+      wagonNumbers?: string | null;
+      /** Format: date-time */
+      dateOfAcceptance?: string | null;
+      /** Format: date-time */
+      dateOfDelivery?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      customsFormalities?: string | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -453,6 +2643,9 @@ export interface components {
       email: string | null;
       password: string | null;
     };
+    RejectProofOfDeliveryRequest: {
+      reason?: string | null;
+    };
     ResendConfirmationEmailRequest: {
       email: string | null;
     };
@@ -460,6 +2653,602 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    RoadWaybillCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      documentNumber?: string | null;
+      roadWaybillType?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      carrierId?: string | null;
+      successiveCarriers?: string | null;
+      truckId?: string | null;
+      truckDriverId?: string | null;
+      vehicleRegistration?: string | null;
+      trailerRegistration?: string | null;
+      placeOfTakingOver?: string | null;
+      placeOfTakingOverPortId?: string | null;
+      placeOfDelivery?: string | null;
+      placeOfDeliveryPortId?: string | null;
+      /** Format: date-time */
+      dateOfTakingOver?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      adrDangerousGoods?: boolean;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
+      truckTripId?: string | null;
+    };
+    RoadWaybillDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      documentNumber?: string | null;
+      roadWaybillType?: string | null;
+      status?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      carrierId?: string | null;
+      successiveCarriers?: string | null;
+      truckId?: string | null;
+      truckDriverId?: string | null;
+      vehicleRegistration?: string | null;
+      trailerRegistration?: string | null;
+      placeOfTakingOver?: string | null;
+      placeOfTakingOverPortId?: string | null;
+      placeOfDelivery?: string | null;
+      placeOfDeliveryPortId?: string | null;
+      /** Format: date-time */
+      dateOfTakingOver?: string | null;
+      /** Format: date-time */
+      dateOfDelivery?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      adrDangerousGoods?: boolean;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      /** Format: date-time */
+      senderSignedDate?: string | null;
+      /** Format: date-time */
+      carrierSignedDate?: string | null;
+      /** Format: date-time */
+      consigneeSignedDate?: string | null;
+      shipmentId?: string | null;
+      truckTripId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      lines?: components["schemas"]["WaybillLineDto"][] | null;
+    };
+    RoadWaybillDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RoadWaybillDto"];
+    };
+    RoadWaybillDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RoadWaybillDto"][] | null;
+    };
+    RoadWaybillUpdateDto: {
+      documentNumber?: string | null;
+      roadWaybillType?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      carrierId?: string | null;
+      successiveCarriers?: string | null;
+      truckId?: string | null;
+      truckDriverId?: string | null;
+      vehicleRegistration?: string | null;
+      trailerRegistration?: string | null;
+      placeOfTakingOver?: string | null;
+      placeOfTakingOverPortId?: string | null;
+      placeOfDelivery?: string | null;
+      placeOfDeliveryPortId?: string | null;
+      /** Format: date-time */
+      dateOfTakingOver?: string | null;
+      /** Format: date-time */
+      dateOfDelivery?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalGrossWeightKg?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      adrDangerousGoods?: boolean | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
+      truckTripId?: string | null;
+    };
+    SeawayBillCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      documentNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      carrierId?: string | null;
+      vesselId?: string | null;
+      voyageId?: string | null;
+      portOfLoadingId?: string | null;
+      portOfDischargeId?: string | null;
+      placeOfReceipt?: string | null;
+      placeOfDelivery?: string | null;
+      /** Format: date-time */
+      dateIssued?: string | null;
+      /** Format: date-time */
+      dateShipped?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalWeight?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
+    };
+    SeawayBillDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      documentNumber?: string | null;
+      status?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      carrierId?: string | null;
+      vesselId?: string | null;
+      voyageId?: string | null;
+      portOfLoadingId?: string | null;
+      portOfDischargeId?: string | null;
+      placeOfReceipt?: string | null;
+      placeOfDelivery?: string | null;
+      /** Format: date-time */
+      dateIssued?: string | null;
+      /** Format: date-time */
+      dateShipped?: string | null;
+      /** Format: date-time */
+      dateDelivered?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalWeight?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      lines?: components["schemas"]["WaybillLineDto"][] | null;
+    };
+    SeawayBillDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SeawayBillDto"];
+    };
+    SeawayBillDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SeawayBillDto"][] | null;
+    };
+    SeawayBillUpdateDto: {
+      documentNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      carrierId?: string | null;
+      vesselId?: string | null;
+      voyageId?: string | null;
+      portOfLoadingId?: string | null;
+      portOfDischargeId?: string | null;
+      placeOfReceipt?: string | null;
+      placeOfDelivery?: string | null;
+      /** Format: date-time */
+      dateIssued?: string | null;
+      /** Format: date-time */
+      dateShipped?: string | null;
+      freightTerms?: string | null;
+      /** Format: double */
+      freightAmount?: number | null;
+      freightCurrencyId?: string | null;
+      /** Format: double */
+      totalWeight?: number | null;
+      /** Format: int32 */
+      totalPackages?: number | null;
+      specialInstructions?: string | null;
+      remarks?: string | null;
+      shipmentId?: string | null;
+    };
+    SignProofOfDeliveryRequest: {
+      signedBy?: string | null;
+      signerId?: string | null;
+    };
+    SupplierProfileCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+    };
+    SupplierProfileDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
+      enrollmentId?: string | null;
+      about?: string | null;
+      verified?: boolean;
+      submitted?: boolean;
+      avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      verificationTimestamp?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+    };
+    SupplierProfileDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SupplierProfileDto"];
+    };
+    SupplierProfileDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SupplierProfileDto"][] | null;
+    };
+    SupplierProfileUpdateDto: {
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+    };
+    TruckCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      plateNumber?: string | null;
+      name?: string | null;
+      truckType?: string | null;
+      /** Format: double */
+      maxPayloadKg?: number | null;
+      /** Format: int32 */
+      teuCapacity?: number | null;
+      driverName?: string | null;
+      driverPhone?: string | null;
+      driverLicenseNumber?: string | null;
+      isActive?: boolean;
+      isRefrigerated?: boolean;
+      shippingCourierId?: string | null;
+    };
+    TruckDriverCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      licenseNumber?: string | null;
+      licenseClass?: string | null;
+      phone?: string | null;
+      email?: string | null;
+      contactId?: string | null;
+      shippingCourierId?: string | null;
+      adrCertified?: boolean;
+      /** Format: date-time */
+      licenseExpiryDate?: string | null;
+      /** Format: date-time */
+      medicalExamExpiryDate?: string | null;
+      nationalIdNumber?: string | null;
+      notes?: string | null;
+    };
+    TruckDriverDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      phone?: string | null;
+      email?: string | null;
+      nationalIdNumber?: string | null;
+      licenseNumber?: string | null;
+      licenseClass?: string | null;
+      /** Format: date-time */
+      licenseExpiryDate?: string | null;
+      adrCertified?: boolean;
+      /** Format: date-time */
+      adrCertificateExpiryDate?: string | null;
+      /** Format: date-time */
+      medicalExamExpiryDate?: string | null;
+      isActive?: boolean;
+      notes?: string | null;
+      contactId?: string | null;
+      shippingCourierId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    TruckDriverDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TruckDriverDto"];
+    };
+    TruckDriverDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TruckDriverDto"][] | null;
+    };
+    TruckDriverUpdateDto: {
+      name?: string | null;
+      licenseNumber?: string | null;
+      licenseClass?: string | null;
+      phone?: string | null;
+      email?: string | null;
+      contactId?: string | null;
+      shippingCourierId?: string | null;
+      adrCertified?: boolean | null;
+      /** Format: date-time */
+      licenseExpiryDate?: string | null;
+      /** Format: date-time */
+      medicalExamExpiryDate?: string | null;
+      nationalIdNumber?: string | null;
+      notes?: string | null;
+    };
+    TruckDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      plateNumber?: string | null;
+      name?: string | null;
+      truckType?: string | null;
+      /** Format: double */
+      maxPayloadKg?: number | null;
+      /** Format: int32 */
+      teuCapacity?: number | null;
+      driverName?: string | null;
+      driverPhone?: string | null;
+      driverLicenseNumber?: string | null;
+      isActive?: boolean;
+      isRefrigerated?: boolean;
+      shippingCourierId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    TruckDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TruckDto"];
+    };
+    TruckDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TruckDto"][] | null;
+    };
+    TruckTripCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      tripNumber?: string | null;
+      containerNumber?: string | null;
+      sealNumber?: string | null;
+      /** Format: date-time */
+      departureTime?: string | null;
+      /** Format: date-time */
+      arrivalTime?: string | null;
+      /** Format: double */
+      distanceKm?: number | null;
+      notes?: string | null;
+      originPortId?: string | null;
+      originLocationId?: string | null;
+      destinationPortId?: string | null;
+      destinationLocationId?: string | null;
+      shipmentId?: string | null;
+      billOfLadingId?: string | null;
+    };
+    TruckTripDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tripNumber?: string | null;
+      truckTripStatus?: string | null;
+      containerNumber?: string | null;
+      sealNumber?: string | null;
+      /** Format: date-time */
+      departureTime?: string | null;
+      /** Format: date-time */
+      arrivalTime?: string | null;
+      /** Format: date-time */
+      actualDepartureTime?: string | null;
+      /** Format: date-time */
+      actualArrivalTime?: string | null;
+      /** Format: double */
+      distanceKm?: number | null;
+      notes?: string | null;
+      truckId?: string | null;
+      originPortId?: string | null;
+      originLocationId?: string | null;
+      destinationPortId?: string | null;
+      destinationLocationId?: string | null;
+      shipmentId?: string | null;
+      billOfLadingId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    TruckTripDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TruckTripDto"][] | null;
+    };
+    TruckTripUpdateDto: {
+      tripNumber?: string | null;
+      containerNumber?: string | null;
+      sealNumber?: string | null;
+      /** Format: date-time */
+      departureTime?: string | null;
+      /** Format: date-time */
+      arrivalTime?: string | null;
+      /** Format: double */
+      distanceKm?: number | null;
+      notes?: string | null;
+      originPortId?: string | null;
+      originLocationId?: string | null;
+      destinationPortId?: string | null;
+      destinationLocationId?: string | null;
+      shipmentId?: string | null;
+      billOfLadingId?: string | null;
+    };
+    TruckUpdateDto: {
+      plateNumber?: string | null;
+      name?: string | null;
+      truckType?: string | null;
+      /** Format: double */
+      maxPayloadKg?: number | null;
+      /** Format: int32 */
+      teuCapacity?: number | null;
+      driverName?: string | null;
+      driverPhone?: string | null;
+      driverLicenseNumber?: string | null;
+      isActive?: boolean;
+      isRefrigerated?: boolean;
+      shippingCourierId?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -476,6 +3265,411 @@ export interface components {
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
     };
+    VesselCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      imoNumber?: string | null;
+      mmsiNumber?: string | null;
+      callSign?: string | null;
+      flagCountryId?: string | null;
+      vesselType?: string | null;
+      vesselStatus?: string | null;
+      /** Format: double */
+      grossTonnage?: number | null;
+      /** Format: double */
+      deadweightTonnage?: number | null;
+      /** Format: int32 */
+      teuCapacity?: number | null;
+      /** Format: double */
+      lengthMeters?: number | null;
+      /** Format: double */
+      beamMeters?: number | null;
+      /** Format: double */
+      draftMeters?: number | null;
+      /** Format: int32 */
+      yearBuilt?: number | null;
+      shippingCourierId?: string | null;
+    };
+    VesselDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      imoNumber?: string | null;
+      mmsiNumber?: string | null;
+      callSign?: string | null;
+      flagCountryId?: string | null;
+      vesselType?: string | null;
+      vesselStatus?: string | null;
+      /** Format: double */
+      grossTonnage?: number | null;
+      /** Format: double */
+      deadweightTonnage?: number | null;
+      /** Format: int32 */
+      teuCapacity?: number | null;
+      /** Format: double */
+      lengthMeters?: number | null;
+      /** Format: double */
+      beamMeters?: number | null;
+      /** Format: double */
+      draftMeters?: number | null;
+      /** Format: int32 */
+      yearBuilt?: number | null;
+      shippingCourierId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    VesselDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["VesselDto"];
+    };
+    VesselDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["VesselDto"][] | null;
+    };
+    VesselUpdateDto: {
+      name?: string | null;
+      imoNumber?: string | null;
+      mmsiNumber?: string | null;
+      callSign?: string | null;
+      flagCountryId?: string | null;
+      vesselType?: string | null;
+      vesselStatus?: string | null;
+      /** Format: double */
+      grossTonnage?: number | null;
+      /** Format: double */
+      deadweightTonnage?: number | null;
+      /** Format: int32 */
+      teuCapacity?: number | null;
+      /** Format: double */
+      lengthMeters?: number | null;
+      /** Format: double */
+      beamMeters?: number | null;
+      /** Format: double */
+      draftMeters?: number | null;
+      /** Format: int32 */
+      yearBuilt?: number | null;
+      shippingCourierId?: string | null;
+    };
+    VoyageCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      voyageNumber?: string | null;
+      title?: string | null;
+      description?: string | null;
+      voyageDirection?: string | null;
+      /** Format: date-time */
+      departureDate?: string | null;
+      /** Format: date-time */
+      arrivalDate?: string | null;
+      vesselId?: string | null;
+    };
+    VoyageDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      voyageNumber?: string | null;
+      title?: string | null;
+      description?: string | null;
+      voyageStatus?: string | null;
+      voyageDirection?: string | null;
+      /** Format: date-time */
+      departureDate?: string | null;
+      /** Format: date-time */
+      arrivalDate?: string | null;
+      /** Format: date-time */
+      actualDepartureDate?: string | null;
+      /** Format: date-time */
+      actualArrivalDate?: string | null;
+      vesselId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    VoyageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["VoyageDto"];
+    };
+    VoyageDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["VoyageDto"][] | null;
+    };
+    VoyagePortCallCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      sequenceNumber?: number;
+      portCallStatus?: string | null;
+      /** Format: date-time */
+      eta?: string | null;
+      /** Format: date-time */
+      etd?: string | null;
+      berthNumber?: string | null;
+      remarks?: string | null;
+      portId?: string | null;
+    };
+    VoyagePortCallDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: int32 */
+      sequenceNumber?: number;
+      portCallStatus?: string | null;
+      /** Format: date-time */
+      eta?: string | null;
+      /** Format: date-time */
+      ata?: string | null;
+      /** Format: date-time */
+      etd?: string | null;
+      /** Format: date-time */
+      atd?: string | null;
+      berthNumber?: string | null;
+      remarks?: string | null;
+      voyageId?: string | null;
+      portId?: string | null;
+      tenantId?: string | null;
+    };
+    VoyagePortCallDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["VoyagePortCallDto"][] | null;
+    };
+    VoyagePortCallUpdateDto: {
+      /** Format: int32 */
+      sequenceNumber?: number;
+      portCallStatus?: string | null;
+      /** Format: date-time */
+      eta?: string | null;
+      /** Format: date-time */
+      ata?: string | null;
+      /** Format: date-time */
+      etd?: string | null;
+      /** Format: date-time */
+      atd?: string | null;
+      berthNumber?: string | null;
+      remarks?: string | null;
+      portId?: string | null;
+    };
+    VoyageUpdateDto: {
+      voyageNumber?: string | null;
+      title?: string | null;
+      description?: string | null;
+      voyageDirection?: string | null;
+      /** Format: date-time */
+      departureDate?: string | null;
+      /** Format: date-time */
+      arrivalDate?: string | null;
+      vesselId?: string | null;
+    };
+    WarehouseCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      address1: string;
+      address2?: string | null;
+      address3?: string | null;
+      postalCode?: string | null;
+      phone?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      isGroup?: boolean;
+      shipwireWarehouseId?: string | null;
+      parentWarehouseId?: string | null;
+    };
+    WarehouseDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      address1?: string | null;
+      address2?: string | null;
+      address3?: string | null;
+      postalCode?: string | null;
+      phone?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      isGroup?: boolean;
+      shipwireWarehouseId?: string | null;
+      parentWarehouseId?: string | null;
+    };
+    WarehouseDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WarehouseDto"];
+    };
+    WarehouseDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WarehouseDto"][] | null;
+    };
+    WarehouseUpdateDto: {
+      title?: string | null;
+      address1?: string | null;
+      address2?: string | null;
+      address3?: string | null;
+      postalCode?: string | null;
+      phone?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      isGroup?: boolean;
+      shipwireWarehouseId?: string | null;
+      parentWarehouseId?: string | null;
+    };
+    WaybillLineCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      description?: string | null;
+      /** Format: int32 */
+      quantity?: number | null;
+      /** Format: double */
+      grossWeightKg?: number | null;
+      /** Format: double */
+      volumeM3?: number | null;
+      packageType?: string | null;
+      /** Format: double */
+      lengthCm?: number | null;
+      /** Format: double */
+      widthCm?: number | null;
+      /** Format: double */
+      heightCm?: number | null;
+      hsCode?: string | null;
+      marksAndNumbers?: string | null;
+      /** Format: double */
+      declaredValue?: number | null;
+      declaredValueCurrencyId?: string | null;
+      sealNumber?: string | null;
+      containerNumber?: string | null;
+      /** Format: double */
+      chargeableWeightKg?: number | null;
+      iataRateClass?: string | null;
+      dangerousGoodsClass?: string | null;
+      unHazmatNumber?: string | null;
+      wagonNumber?: string | null;
+    };
+    WaybillLineDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      parentDocumentType?: string | null;
+      seawayBillId?: string | null;
+      airwayBillId?: string | null;
+      roadWaybillId?: string | null;
+      railWaybillId?: string | null;
+      /** Format: int32 */
+      lineNumber?: number;
+      description?: string | null;
+      /** Format: int32 */
+      quantity?: number | null;
+      /** Format: double */
+      grossWeightKg?: number | null;
+      /** Format: double */
+      volumeM3?: number | null;
+      packageType?: string | null;
+      /** Format: double */
+      lengthCm?: number | null;
+      /** Format: double */
+      widthCm?: number | null;
+      /** Format: double */
+      heightCm?: number | null;
+      hsCode?: string | null;
+      marksAndNumbers?: string | null;
+      /** Format: double */
+      declaredValue?: number | null;
+      declaredValueCurrencyId?: string | null;
+      sealNumber?: string | null;
+      containerNumber?: string | null;
+      /** Format: double */
+      chargeableWeightKg?: number | null;
+      iataRateClass?: string | null;
+      dangerousGoodsClass?: string | null;
+      unHazmatNumber?: string | null;
+      wagonNumber?: string | null;
+      tenantId?: string | null;
+    };
+    WaybillLineDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WaybillLineDto"][] | null;
+    };
+    WaybillLineUpdateDto: {
+      description?: string | null;
+      /** Format: int32 */
+      quantity?: number | null;
+      /** Format: double */
+      grossWeightKg?: number | null;
+      /** Format: double */
+      volumeM3?: number | null;
+      packageType?: string | null;
+      /** Format: double */
+      lengthCm?: number | null;
+      /** Format: double */
+      widthCm?: number | null;
+      /** Format: double */
+      heightCm?: number | null;
+      hsCode?: string | null;
+      marksAndNumbers?: string | null;
+      /** Format: double */
+      declaredValue?: number | null;
+      declaredValueCurrencyId?: string | null;
+      sealNumber?: string | null;
+      containerNumber?: string | null;
+      /** Format: double */
+      chargeableWeightKg?: number | null;
+      iataRateClass?: string | null;
+      dangerousGoodsClass?: string | null;
+      unHazmatNumber?: string | null;
+      wagonNumber?: string | null;
+    };
   };
   responses: never;
   parameters: never;
@@ -490,6 +3684,781 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get all airway bills
+   * @description Retrieves all airway bills for the specified tenant.
+   */
+  GetAirwayBillsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AirwayBillDtoListEnvelope"];
+          "application/xml": components["schemas"]["AirwayBillDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an airway bill
+   * @description Creates a new airway bill for the specified tenant.
+   */
+  CreateAirwayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AirwayBillCreateDto"];
+        "application/xml": components["schemas"]["AirwayBillCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get airway bills count
+   * @description Returns the count of airway bills for the specified tenant.
+   */
+  GetAirwayBillsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get airway bill by ID
+   * @description Retrieves a specific airway bill by its identifier.
+   */
+  GetAirwayBillByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AirwayBillDtoEnvelope"];
+          "application/xml": components["schemas"]["AirwayBillDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an airway bill
+   * @description Updates an existing airway bill.
+   */
+  UpdateAirwayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AirwayBillUpdateDto"];
+        "application/xml": components["schemas"]["AirwayBillUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an airway bill
+   * @description Deletes an airway bill.
+   */
+  DeleteAirwayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Issue an airway bill
+   * @description Issues an airway bill.
+   */
+  IssueAirwayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark airway bill in transit
+   * @description Marks an airway bill as in transit.
+   */
+  MarkAirwayBillInTransitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark airway bill arrived
+   * @description Marks an airway bill as arrived.
+   */
+  MarkAirwayBillArrivedAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark airway bill delivered
+   * @description Marks an airway bill as delivered.
+   */
+  MarkAirwayBillDeliveredAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel an airway bill
+   * @description Cancels an airway bill.
+   */
+  CancelAirwayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get airway bill lines
+   * @description Retrieves all lines for a specific airway bill.
+   */
+  GetAirwayBillLinesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WaybillLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["WaybillLineDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a line to airway bill
+   * @description Adds a new line to an airway bill.
+   */
+  AddAirwayBillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WaybillLineCreateDto"];
+        "application/xml": components["schemas"]["WaybillLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get airway bill lines count
+   * @description Returns the count of lines for a specific airway bill.
+   */
+  GetAirwayBillLinesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an airway bill line
+   * @description Updates an existing line on an airway bill.
+   */
+  UpdateAirwayBillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WaybillLineUpdateDto"];
+        "application/xml": components["schemas"]["WaybillLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove an airway bill line
+   * @description Removes a line from an airway bill.
+   */
+  RemoveAirwayBillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+        lineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all delivery notes
+   * @description Retrieves all delivery notes for the specified tenant.
+   */
+  GetDeliveryNotesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DeliveryNoteDtoListEnvelope"];
+          "application/xml": components["schemas"]["DeliveryNoteDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a delivery note
+   * @description Creates a new delivery note.
+   */
+  CreateDeliveryNoteAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DeliveryNoteCreateDto"];
+        "application/xml": components["schemas"]["DeliveryNoteCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get delivery notes count
+   * @description Returns the count of delivery notes.
+   */
+  GetDeliveryNotesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get delivery note by ID
+   * @description Retrieves a specific delivery note.
+   */
+  GetDeliveryNoteByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        deliveryNoteId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DeliveryNoteDtoEnvelope"];
+          "application/xml": components["schemas"]["DeliveryNoteDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a delivery note
+   * @description Updates an existing delivery note.
+   */
+  UpdateDeliveryNoteAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        deliveryNoteId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DeliveryNoteUpdateDto"];
+        "application/xml": components["schemas"]["DeliveryNoteUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a delivery note
+   * @description Deletes a delivery note.
+   */
+  DeleteDeliveryNoteAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        deliveryNoteId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   "MapIdentityApi-/confirmEmail": {
     parameters: {
       query: {
@@ -506,10 +4475,10 @@ export interface operations {
     };
   };
   /**
-   * Get all stock-related contacts
-   * @description Retrieves all business-owned contacts related to stock and logistics for the specified tenant.
+   * Get all item packing slips
+   * @description Retrieves all item packing slips for the specified tenant.
    */
-  GetContactsAsync: {
+  GetItemPackingSlipsAsync: {
     parameters: {
       query: {
         tenantId: string;
@@ -523,8 +4492,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["ContactDtoListEnvelope"];
-          "application/xml": components["schemas"]["ContactDtoListEnvelope"];
+          "application/json": components["schemas"]["ItemPackingSlipDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemPackingSlipDtoListEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -536,6 +4505,5941 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an item packing slip
+   * @description Creates a new item packing slip.
+   */
+  CreateItemPackingSlipAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPackingSlipCreateDto"];
+        "application/xml": components["schemas"]["ItemPackingSlipCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item packing slips count
+   * @description Returns the count of item packing slips.
+   */
+  GetItemPackingSlipsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item packing slip by ID
+   * @description Retrieves a specific item packing slip.
+   */
+  GetItemPackingSlipByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemPackingSlipDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemPackingSlipDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an item packing slip
+   * @description Updates an existing item packing slip.
+   */
+  UpdateItemPackingSlipAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPackingSlipUpdateDto"];
+        "application/xml": components["schemas"]["ItemPackingSlipUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an item packing slip
+   * @description Deletes an item packing slip.
+   */
+  DeleteItemPackingSlipAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get packing slip entries
+   * @description Retrieves all entries for the specified packing slip.
+   */
+  GetItemPackingSlipEntriesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemPackingSlipEntryDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemPackingSlipEntryDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a packing slip entry
+   * @description Creates a new packing slip entry.
+   */
+  CreateItemPackingSlipEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPackingSlipEntryCreateDto"];
+        "application/xml": components["schemas"]["ItemPackingSlipEntryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get packing slip entries count
+   * @description Returns the count of packing slip entries.
+   */
+  GetItemPackingSlipEntriesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get packing slip entry by ID
+   * @description Retrieves a specific packing slip entry.
+   */
+  GetItemPackingSlipEntryByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+        entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemPackingSlipEntryDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemPackingSlipEntryDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a packing slip entry
+   * @description Updates an existing packing slip entry.
+   */
+  UpdateItemPackingSlipEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPackingSlipEntryUpdateDto"];
+        "application/xml": components["schemas"]["ItemPackingSlipEntryUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a packing slip entry
+   * @description Deletes a packing slip entry.
+   */
+  DeleteItemPackingSlipEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+        entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all item pick lists
+   * @description Retrieves all item pick lists for the specified tenant.
+   */
+  GetItemPickListsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemPickListDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemPickListDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an item pick list
+   * @description Creates a new item pick list.
+   */
+  CreateItemPickListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPickListCreateDto"];
+        "application/xml": components["schemas"]["ItemPickListCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item pick lists count
+   * @description Returns the count of item pick lists.
+   */
+  GetItemPickListsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item pick list by ID
+   * @description Retrieves a specific item pick list.
+   */
+  GetItemPickListByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemPickListDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemPickListDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an item pick list
+   * @description Updates an existing item pick list.
+   */
+  UpdateItemPickListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPickListUpdateDto"];
+        "application/xml": components["schemas"]["ItemPickListUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an item pick list
+   * @description Deletes an item pick list.
+   */
+  DeleteItemPickListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get pick list entries
+   * @description Retrieves all entries for the specified pick list.
+   */
+  GetItemPickListEntriesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemPickListEntryDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemPickListEntryDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a pick list entry
+   * @description Creates a new pick list entry.
+   */
+  CreateItemPickListEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPickListEntryCreateDto"];
+        "application/xml": components["schemas"]["ItemPickListEntryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get pick list entries count
+   * @description Returns the count of pick list entries.
+   */
+  GetItemPickListEntriesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get pick list entry by ID
+   * @description Retrieves a specific pick list entry.
+   */
+  GetItemPickListEntryByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+        entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemPickListEntryDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemPickListEntryDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a pick list entry
+   * @description Updates an existing pick list entry.
+   */
+  UpdateItemPickListEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemPickListEntryUpdateDto"];
+        "application/xml": components["schemas"]["ItemPickListEntryUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a pick list entry
+   * @description Deletes a pick list entry.
+   */
+  DeleteItemPickListEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+        entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all item restocks
+   * @description Retrieves all item restocks for the specified tenant.
+   */
+  GetItemRestocksAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemRestockDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemRestockDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an item restock
+   * @description Creates a new item restock.
+   */
+  CreateItemRestockAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRestockCreateDto"];
+        "application/xml": components["schemas"]["ItemRestockCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item restocks count
+   * @description Returns the count of item restocks.
+   */
+  GetItemRestocksCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item restock by ID
+   * @description Retrieves a specific item restock.
+   */
+  GetItemRestockByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemRestockDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemRestockDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an item restock
+   * @description Updates an existing item restock.
+   */
+  UpdateItemRestockAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRestockUpdateDto"];
+        "application/xml": components["schemas"]["ItemRestockUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an item restock
+   * @description Deletes an item restock.
+   */
+  DeleteItemRestockAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get restock entries
+   * @description Retrieves all entries for the specified restock.
+   */
+  GetItemRestockEntriesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemRestockEntryDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemRestockEntryDtoListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a restock entry
+   * @description Creates a new restock entry.
+   */
+  CreateItemRestockEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRestockEntryCreateDto"];
+        "application/xml": components["schemas"]["ItemRestockEntryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get restock entries count
+   * @description Returns the count of restock entries.
+   */
+  GetItemRestockEntriesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get restock entry by ID
+   * @description Retrieves a specific restock entry.
+   */
+  GetItemRestockEntryByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+        entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemRestockEntryDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemRestockEntryDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a restock entry
+   * @description Updates an existing restock entry.
+   */
+  UpdateItemRestockEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRestockEntryUpdateDto"];
+        "application/xml": components["schemas"]["ItemRestockEntryUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a restock entry
+   * @description Deletes a restock entry.
+   */
+  DeleteItemRestockEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+        entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all item retain samples
+   * @description Retrieves all item retain samples for the specified tenant.
+   */
+  GetItemRetainSamplesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemRetainSampleDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemRetainSampleDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an item retain sample
+   * @description Creates a new item retain sample.
+   */
+  CreateItemRetainSampleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRetainSampleCreateDto"];
+        "application/xml": components["schemas"]["ItemRetainSampleCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item retain samples count
+   * @description Returns the count of item retain samples.
+   */
+  GetItemRetainSamplesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item retain sample by ID
+   * @description Retrieves a specific item retain sample.
+   */
+  GetItemRetainSampleByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        retainSampleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemRetainSampleDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemRetainSampleDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an item retain sample
+   * @description Updates an existing item retain sample.
+   */
+  UpdateItemRetainSampleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        retainSampleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRetainSampleUpdateDto"];
+        "application/xml": components["schemas"]["ItemRetainSampleUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an item retain sample
+   * @description Deletes an item retain sample.
+   */
+  DeleteItemRetainSampleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        retainSampleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all ports
+   * @description Retrieves all ports for the specified tenant.
+   */
+  GetPortsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PortDtoListEnvelope"];
+          "application/xml": components["schemas"]["PortDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a port
+   * @description Creates a new port for the specified tenant.
+   */
+  CreatePortAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PortCreateDto"];
+        "application/xml": components["schemas"]["PortCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get ports count
+   * @description Returns the count of ports for the specified tenant.
+   */
+  GetPortsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get port by ID
+   * @description Retrieves a specific port by its identifier.
+   */
+  GetPortByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PortDtoEnvelope"];
+          "application/xml": components["schemas"]["PortDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a port
+   * @description Updates an existing port.
+   */
+  UpdatePortAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PortUpdateDto"];
+        "application/xml": components["schemas"]["PortUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a port
+   * @description Deletes a port.
+   */
+  DeletePortAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all proofs of delivery
+   * @description Retrieves all proofs of delivery for the specified tenant.
+   */
+  GetProofsOfDeliveryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProofOfDeliveryDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProofOfDeliveryDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a proof of delivery
+   * @description Creates a new proof of delivery for the specified tenant.
+   */
+  CreateProofOfDeliveryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProofOfDeliveryCreateDto"];
+        "application/xml": components["schemas"]["ProofOfDeliveryCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get proofs of delivery count
+   * @description Returns the count of proofs of delivery for the specified tenant.
+   */
+  GetProofsOfDeliveryCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get proof of delivery by ID
+   * @description Retrieves a specific proof of delivery by its identifier.
+   */
+  GetProofOfDeliveryByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProofOfDeliveryDtoEnvelope"];
+          "application/xml": components["schemas"]["ProofOfDeliveryDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a proof of delivery
+   * @description Updates an existing proof of delivery.
+   */
+  UpdateProofOfDeliveryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProofOfDeliveryUpdateDto"];
+        "application/xml": components["schemas"]["ProofOfDeliveryUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a proof of delivery
+   * @description Deletes a proof of delivery.
+   */
+  DeleteProofOfDeliveryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sign a proof of delivery
+   * @description Signs a proof of delivery.
+   */
+  SignProofOfDeliveryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SignProofOfDeliveryRequest"];
+        "application/xml": components["schemas"]["SignProofOfDeliveryRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Dispute a proof of delivery
+   * @description Disputes a proof of delivery.
+   */
+  DisputeProofOfDeliveryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DisputeProofOfDeliveryRequest"];
+        "application/xml": components["schemas"]["DisputeProofOfDeliveryRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Reject a proof of delivery
+   * @description Rejects a proof of delivery.
+   */
+  RejectProofOfDeliveryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RejectProofOfDeliveryRequest"];
+        "application/xml": components["schemas"]["RejectProofOfDeliveryRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get proof of delivery lines
+   * @description Retrieves all lines for a specific proof of delivery.
+   */
+  GetProofOfDeliveryLinesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProofOfDeliveryLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProofOfDeliveryLineDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a line to proof of delivery
+   * @description Adds a new line to a proof of delivery.
+   */
+  AddProofOfDeliveryLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProofOfDeliveryLineCreateDto"];
+        "application/xml": components["schemas"]["ProofOfDeliveryLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get proof of delivery lines count
+   * @description Returns the count of lines for a specific proof of delivery.
+   */
+  GetProofOfDeliveryLinesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a proof of delivery line
+   * @description Updates an existing line on a proof of delivery.
+   */
+  UpdateProofOfDeliveryLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProofOfDeliveryLineUpdateDto"];
+        "application/xml": components["schemas"]["ProofOfDeliveryLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a proof of delivery line
+   * @description Removes a line from a proof of delivery.
+   */
+  RemoveProofOfDeliveryLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+        lineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get attached delivery notes
+   * @description Retrieves all delivery notes attached to a proof of delivery.
+   */
+  GetProofOfDeliveryDeliveryNotesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DeliveryNoteDtoListEnvelope"];
+          "application/xml": components["schemas"]["DeliveryNoteDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get delivery notes count
+   * @description Returns the count of delivery notes attached to a proof of delivery.
+   */
+  GetProofOfDeliveryDeliveryNotesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Attach a delivery note
+   * @description Attaches a delivery note to a proof of delivery.
+   */
+  AttachDeliveryNoteAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+        noteId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Detach a delivery note
+   * @description Detaches a delivery note from a proof of delivery.
+   */
+  DetachDeliveryNoteAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+        noteId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all rail waybills
+   * @description Retrieves all rail waybills for the specified tenant.
+   */
+  GetRailWaybillsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RailWaybillDtoListEnvelope"];
+          "application/xml": components["schemas"]["RailWaybillDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a rail waybill
+   * @description Creates a new rail waybill for the specified tenant.
+   */
+  CreateRailWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RailWaybillCreateDto"];
+        "application/xml": components["schemas"]["RailWaybillCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get rail waybills count
+   * @description Returns the count of rail waybills for the specified tenant.
+   */
+  GetRailWaybillsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get rail waybill by ID
+   * @description Retrieves a specific rail waybill by its identifier.
+   */
+  GetRailWaybillByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RailWaybillDtoEnvelope"];
+          "application/xml": components["schemas"]["RailWaybillDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a rail waybill
+   * @description Updates an existing rail waybill.
+   */
+  UpdateRailWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RailWaybillUpdateDto"];
+        "application/xml": components["schemas"]["RailWaybillUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a rail waybill
+   * @description Deletes a rail waybill.
+   */
+  DeleteRailWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Issue a rail waybill
+   * @description Issues a rail waybill.
+   */
+  IssueRailWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark rail waybill in transit
+   * @description Marks a rail waybill as in transit.
+   */
+  MarkRailWaybillInTransitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark rail waybill delivered
+   * @description Marks a rail waybill as delivered.
+   */
+  MarkRailWaybillDeliveredAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel a rail waybill
+   * @description Cancels a rail waybill.
+   */
+  CancelRailWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get rail waybill lines
+   * @description Retrieves all lines for a specific rail waybill.
+   */
+  GetRailWaybillLinesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WaybillLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["WaybillLineDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a line to rail waybill
+   * @description Adds a new line to a rail waybill.
+   */
+  AddRailWaybillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WaybillLineCreateDto"];
+        "application/xml": components["schemas"]["WaybillLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get rail waybill lines count
+   * @description Returns the count of lines for a specific rail waybill.
+   */
+  GetRailWaybillLinesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a rail waybill line
+   * @description Updates an existing line on a rail waybill.
+   */
+  UpdateRailWaybillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WaybillLineUpdateDto"];
+        "application/xml": components["schemas"]["WaybillLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a rail waybill line
+   * @description Removes a line from a rail waybill.
+   */
+  RemoveRailWaybillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+        lineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all road waybills
+   * @description Retrieves all road waybills for the specified tenant.
+   */
+  GetRoadWaybillsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RoadWaybillDtoListEnvelope"];
+          "application/xml": components["schemas"]["RoadWaybillDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a road waybill
+   * @description Creates a new road waybill for the specified tenant.
+   */
+  CreateRoadWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RoadWaybillCreateDto"];
+        "application/xml": components["schemas"]["RoadWaybillCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get road waybills count
+   * @description Returns the count of road waybills for the specified tenant.
+   */
+  GetRoadWaybillsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get road waybill by ID
+   * @description Retrieves a specific road waybill by its identifier.
+   */
+  GetRoadWaybillByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RoadWaybillDtoEnvelope"];
+          "application/xml": components["schemas"]["RoadWaybillDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a road waybill
+   * @description Updates an existing road waybill.
+   */
+  UpdateRoadWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RoadWaybillUpdateDto"];
+        "application/xml": components["schemas"]["RoadWaybillUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a road waybill
+   * @description Deletes a road waybill.
+   */
+  DeleteRoadWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Issue a road waybill
+   * @description Issues a road waybill.
+   */
+  IssueRoadWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark road waybill in transit
+   * @description Marks a road waybill as in transit.
+   */
+  MarkRoadWaybillInTransitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark road waybill delivered
+   * @description Marks a road waybill as delivered.
+   */
+  MarkRoadWaybillDeliveredAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Dispute a road waybill
+   * @description Disputes a road waybill.
+   */
+  DisputeRoadWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel a road waybill
+   * @description Cancels a road waybill.
+   */
+  CancelRoadWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get road waybill lines
+   * @description Retrieves all lines for a specific road waybill.
+   */
+  GetRoadWaybillLinesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WaybillLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["WaybillLineDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a line to road waybill
+   * @description Adds a new line to a road waybill.
+   */
+  AddRoadWaybillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WaybillLineCreateDto"];
+        "application/xml": components["schemas"]["WaybillLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get road waybill lines count
+   * @description Returns the count of lines for a specific road waybill.
+   */
+  GetRoadWaybillLinesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a road waybill line
+   * @description Updates an existing line on a road waybill.
+   */
+  UpdateRoadWaybillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WaybillLineUpdateDto"];
+        "application/xml": components["schemas"]["WaybillLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a road waybill line
+   * @description Removes a line from a road waybill.
+   */
+  RemoveRoadWaybillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+        lineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all seaway bills
+   * @description Retrieves all seaway bills for the specified tenant.
+   */
+  GetSeawayBillsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SeawayBillDtoListEnvelope"];
+          "application/xml": components["schemas"]["SeawayBillDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a seaway bill
+   * @description Creates a new seaway bill for the specified tenant.
+   */
+  CreateSeawayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SeawayBillCreateDto"];
+        "application/xml": components["schemas"]["SeawayBillCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get seaway bills count
+   * @description Returns the count of seaway bills for the specified tenant.
+   */
+  GetSeawayBillsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get seaway bill by ID
+   * @description Retrieves a specific seaway bill by its identifier.
+   */
+  GetSeawayBillByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SeawayBillDtoEnvelope"];
+          "application/xml": components["schemas"]["SeawayBillDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a seaway bill
+   * @description Updates an existing seaway bill.
+   */
+  UpdateSeawayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SeawayBillUpdateDto"];
+        "application/xml": components["schemas"]["SeawayBillUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a seaway bill
+   * @description Deletes a seaway bill.
+   */
+  DeleteSeawayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Issue a seaway bill
+   * @description Issues a seaway bill.
+   */
+  IssueSeawayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark seaway bill in transit
+   * @description Marks a seaway bill as in transit.
+   */
+  MarkSeawayBillInTransitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark seaway bill arrived
+   * @description Marks a seaway bill as arrived.
+   */
+  MarkSeawayBillArrivedAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Release a seaway bill
+   * @description Releases a seaway bill.
+   */
+  ReleaseSeawayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel a seaway bill
+   * @description Cancels a seaway bill.
+   */
+  CancelSeawayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get seaway bill lines
+   * @description Retrieves all lines for a specific seaway bill.
+   */
+  GetSeawayBillLinesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WaybillLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["WaybillLineDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add a line to seaway bill
+   * @description Adds a new line to a seaway bill.
+   */
+  AddSeawayBillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WaybillLineCreateDto"];
+        "application/xml": components["schemas"]["WaybillLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get seaway bill lines count
+   * @description Returns the count of lines for a specific seaway bill.
+   */
+  GetSeawayBillLinesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a seaway bill line
+   * @description Updates an existing line on a seaway bill.
+   */
+  UpdateSeawayBillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WaybillLineUpdateDto"];
+        "application/xml": components["schemas"]["WaybillLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Remove a seaway bill line
+   * @description Removes a line from a seaway bill.
+   */
+  RemoveSeawayBillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+        lineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all supplier profiles
+   * @description Retrieves all supplier profiles for the specified tenant.
+   */
+  GetSupplierProfilesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupplierProfileDtoListEnvelope"];
+          "application/xml": components["schemas"]["SupplierProfileDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a supplier profile
+   * @description Creates a new supplier profile for the specified tenant.
+   */
+  CreateSupplierProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupplierProfileCreateDto"];
+        "application/xml": components["schemas"]["SupplierProfileCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get supplier profiles count
+   * @description Returns the count of supplier profiles for the specified tenant.
+   */
+  GetSupplierProfilesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get supplier profile by ID
+   * @description Retrieves a specific supplier profile by its identifier.
+   */
+  GetSupplierProfileByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supplierProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SupplierProfileDtoEnvelope"];
+          "application/xml": components["schemas"]["SupplierProfileDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a supplier profile
+   * @description Updates an existing supplier profile.
+   */
+  UpdateSupplierProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supplierProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SupplierProfileUpdateDto"];
+        "application/xml": components["schemas"]["SupplierProfileUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a supplier profile
+   * @description Deletes a supplier profile.
+   */
+  DeleteSupplierProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supplierProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all truck drivers
+   * @description Retrieves all truck drivers for the specified tenant.
+   */
+  GetTruckDriversAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TruckDriverDtoListEnvelope"];
+          "application/xml": components["schemas"]["TruckDriverDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a truck driver
+   * @description Creates a new truck driver for the specified tenant.
+   */
+  CreateTruckDriverAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TruckDriverCreateDto"];
+        "application/xml": components["schemas"]["TruckDriverCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get truck drivers count
+   * @description Returns the count of truck drivers for the specified tenant.
+   */
+  GetTruckDriversCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get truck driver by ID
+   * @description Retrieves a specific truck driver by its identifier.
+   */
+  GetTruckDriverByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        driverId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TruckDriverDtoEnvelope"];
+          "application/xml": components["schemas"]["TruckDriverDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a truck driver
+   * @description Updates an existing truck driver.
+   */
+  UpdateTruckDriverAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        driverId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TruckDriverUpdateDto"];
+        "application/xml": components["schemas"]["TruckDriverUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a truck driver
+   * @description Deletes a truck driver.
+   */
+  DeleteTruckDriverAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        driverId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Activate a truck driver
+   * @description Activates a truck driver.
+   */
+  ActivateTruckDriverAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        driverId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deactivate a truck driver
+   * @description Deactivates a truck driver.
+   */
+  DeactivateTruckDriverAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        driverId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all trucks
+   * @description Retrieves all trucks for the specified tenant.
+   */
+  GetTrucksAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TruckDtoListEnvelope"];
+          "application/xml": components["schemas"]["TruckDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a truck
+   * @description Creates a new truck for the specified tenant.
+   */
+  CreateTruckAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TruckCreateDto"];
+        "application/xml": components["schemas"]["TruckCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get trucks count
+   * @description Returns the count of trucks for the specified tenant.
+   */
+  GetTrucksCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get truck by ID
+   * @description Retrieves a specific truck by its identifier.
+   */
+  GetTruckByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TruckDtoEnvelope"];
+          "application/xml": components["schemas"]["TruckDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a truck
+   * @description Updates an existing truck.
+   */
+  UpdateTruckAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TruckUpdateDto"];
+        "application/xml": components["schemas"]["TruckUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a truck
+   * @description Deletes a truck.
+   */
+  DeleteTruckAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get truck trips
+   * @description Retrieves all trips for a specific truck.
+   */
+  GetTruckTripsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TruckTripDtoListEnvelope"];
+          "application/xml": components["schemas"]["TruckTripDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a truck trip
+   * @description Creates a new trip for a truck.
+   */
+  CreateTruckTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TruckTripCreateDto"];
+        "application/xml": components["schemas"]["TruckTripCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get truck trips count
+   * @description Returns the count of trips for a specific truck.
+   */
+  GetTruckTripsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a truck trip
+   * @description Updates an existing truck trip.
+   */
+  UpdateTruckTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+        tripId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TruckTripUpdateDto"];
+        "application/xml": components["schemas"]["TruckTripUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a truck trip
+   * @description Deletes a truck trip.
+   */
+  DeleteTruckTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+        tripId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Dispatch a trip
+   * @description Dispatches a truck trip.
+   */
+  DispatchTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+        tripId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Depart a trip
+   * @description Marks a truck trip as departed.
+   */
+  DepartTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+        tripId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Arrive a trip
+   * @description Marks a truck trip as arrived.
+   */
+  ArriveTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+        tripId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deliver a trip
+   * @description Marks a truck trip as delivered.
+   */
+  DeliverTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+        tripId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel a trip
+   * @description Cancels a truck trip.
+   */
+  CancelTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+        tripId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all vessels
+   * @description Retrieves all vessels for the specified tenant.
+   */
+  GetVesselsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["VesselDtoListEnvelope"];
+          "application/xml": components["schemas"]["VesselDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a vessel
+   * @description Creates a new vessel for the specified tenant.
+   */
+  CreateVesselAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["VesselCreateDto"];
+        "application/xml": components["schemas"]["VesselCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get vessels count
+   * @description Returns the count of vessels for the specified tenant.
+   */
+  GetVesselsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get vessel by ID
+   * @description Retrieves a specific vessel by its identifier.
+   */
+  GetVesselByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        vesselId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["VesselDtoEnvelope"];
+          "application/xml": components["schemas"]["VesselDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a vessel
+   * @description Updates an existing vessel.
+   */
+  UpdateVesselAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        vesselId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["VesselUpdateDto"];
+        "application/xml": components["schemas"]["VesselUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a vessel
+   * @description Deletes a vessel.
+   */
+  DeleteVesselAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        vesselId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all voyages
+   * @description Retrieves all voyages for the specified tenant.
+   */
+  GetVoyagesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["VoyageDtoListEnvelope"];
+          "application/xml": components["schemas"]["VoyageDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a voyage
+   * @description Creates a new voyage for the specified tenant.
+   */
+  CreateVoyageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["VoyageCreateDto"];
+        "application/xml": components["schemas"]["VoyageCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get voyages count
+   * @description Returns the count of voyages for the specified tenant.
+   */
+  GetVoyagesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get voyage by ID
+   * @description Retrieves a specific voyage by its identifier.
+   */
+  GetVoyageByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["VoyageDtoEnvelope"];
+          "application/xml": components["schemas"]["VoyageDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a voyage
+   * @description Updates an existing voyage.
+   */
+  UpdateVoyageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["VoyageUpdateDto"];
+        "application/xml": components["schemas"]["VoyageUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a voyage
+   * @description Deletes a voyage.
+   */
+  DeleteVoyageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Start a voyage
+   * @description Starts a voyage.
+   */
+  StartVoyageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Complete a voyage
+   * @description Marks a voyage as completed.
+   */
+  CompleteVoyageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel a voyage
+   * @description Cancels a voyage.
+   */
+  CancelVoyageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get voyage port calls
+   * @description Retrieves all port calls for a specific voyage.
+   */
+  GetVoyagePortCallsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["VoyagePortCallDtoListEnvelope"];
+          "application/xml": components["schemas"]["VoyagePortCallDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a port call
+   * @description Creates a new port call for a voyage.
+   */
+  CreateVoyagePortCallAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["VoyagePortCallCreateDto"];
+        "application/xml": components["schemas"]["VoyagePortCallCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get voyage port calls count
+   * @description Returns the count of port calls for a specific voyage.
+   */
+  GetVoyagePortCallsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a port call
+   * @description Updates an existing port call.
+   */
+  UpdateVoyagePortCallAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+        portCallId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["VoyagePortCallUpdateDto"];
+        "application/xml": components["schemas"]["VoyagePortCallUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a port call
+   * @description Deletes a port call.
+   */
+  DeleteVoyagePortCallAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+        portCallId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all warehouses
+   * @description Retrieves all warehouses for the specified tenant.
+   */
+  GetWarehousesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WarehouseDtoListEnvelope"];
+          "application/xml": components["schemas"]["WarehouseDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a warehouse
+   * @description Creates a new warehouse.
+   */
+  CreateWarehouseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WarehouseCreateDto"];
+        "application/xml": components["schemas"]["WarehouseCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get warehouses count
+   * @description Returns the count of warehouses.
+   */
+  GetWarehousesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get warehouse by ID
+   * @description Retrieves a specific warehouse.
+   */
+  GetWarehouseByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warehouseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WarehouseDtoEnvelope"];
+          "application/xml": components["schemas"]["WarehouseDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a warehouse
+   * @description Updates an existing warehouse.
+   */
+  UpdateWarehouseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warehouseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WarehouseUpdateDto"];
+        "application/xml": components["schemas"]["WarehouseUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a warehouse
+   * @description Deletes a warehouse.
+   */
+  DeleteWarehouseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warehouseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

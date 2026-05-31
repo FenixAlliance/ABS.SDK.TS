@@ -5,6 +5,187 @@
 
 
 export interface paths {
+  "/api/v2/ShipmentsService/BillsOfLading": {
+    /**
+     * Get all bills of lading
+     * @description Retrieves all bills of lading for the specified tenant.
+     */
+    get: operations["GetBillsOfLadingAsync"];
+    /**
+     * Create a bill of lading
+     * @description Creates a new bill of lading for the specified tenant.
+     */
+    post: operations["CreateBillOfLadingAsync"];
+  };
+  "/api/v2/ShipmentsService/BillsOfLading/Count": {
+    /**
+     * Get bills of lading count
+     * @description Returns the count of bills of lading for the specified tenant.
+     */
+    get: operations["GetBillsOfLadingCountAsync"];
+  };
+  "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}": {
+    /**
+     * Get bill of lading by ID
+     * @description Retrieves a specific bill of lading by its identifier.
+     */
+    get: operations["GetBillOfLadingByIdAsync"];
+    /**
+     * Update a bill of lading
+     * @description Updates an existing bill of lading.
+     */
+    put: operations["UpdateBillOfLadingAsync"];
+    /**
+     * Delete a bill of lading
+     * @description Deletes a bill of lading.
+     */
+    delete: operations["DeleteBillOfLadingAsync"];
+  };
+  "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines": {
+    /**
+     * Get bill of lading lines
+     * @description Retrieves all lines for a specific bill of lading.
+     */
+    get: operations["GetBillOfLadingLinesAsync"];
+    /**
+     * Create a bill of lading line
+     * @description Creates a new line for a bill of lading.
+     */
+    post: operations["CreateBillOfLadingLineAsync"];
+  };
+  "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/Count": {
+    /**
+     * Get bill of lading lines count
+     * @description Returns the count of lines for a specific bill of lading.
+     */
+    get: operations["GetBillOfLadingLinesCountAsync"];
+  };
+  "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines/{lineId}": {
+    /**
+     * Get bill of lading line by ID
+     * @description Retrieves a specific line from a bill of lading.
+     */
+    get: operations["GetBillOfLadingLineByIdAsync"];
+    /**
+     * Update a bill of lading line
+     * @description Updates an existing line on a bill of lading.
+     */
+    put: operations["UpdateBillOfLadingLineAsync"];
+    /**
+     * Delete a bill of lading line
+     * @description Deletes a line from a bill of lading.
+     */
+    delete: operations["DeleteBillOfLadingLineAsync"];
+  };
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/version": {
     get: {
       responses: {
@@ -302,12 +483,293 @@ export interface paths {
       };
     };
   };
+  "/api/v2/ShipmentsService/ItemShippingPolicies": {
+    /**
+     * Get all item shipping policies
+     * @description Retrieves all item shipping policies for the specified tenant.
+     */
+    get: operations["GetItemShippingPoliciesAsync"];
+    /**
+     * Create an item shipping policy
+     * @description Creates a new item shipping policy.
+     */
+    post: operations["CreateItemShippingPolicyAsync"];
+  };
+  "/api/v2/ShipmentsService/ItemShippingPolicies/Count": {
+    /**
+     * Get item shipping policies count
+     * @description Returns the count of item shipping policies.
+     */
+    get: operations["GetItemShippingPoliciesCountAsync"];
+  };
+  "/api/v2/ShipmentsService/ItemShippingPolicies/{policyId}": {
+    /**
+     * Get item shipping policy by ID
+     * @description Retrieves a specific item shipping policy.
+     */
+    get: operations["GetItemShippingPolicyByIdAsync"];
+    /**
+     * Update an item shipping policy
+     * @description Updates an existing item shipping policy.
+     */
+    put: operations["UpdateItemShippingPolicyAsync"];
+    /**
+     * Delete an item shipping policy
+     * @description Deletes an item shipping policy.
+     */
+    delete: operations["DeleteItemShippingPolicyAsync"];
+  };
   "/api/v2/ShipmentsService/Shipments": {
     /**
-     * Retrieve a list of shipments
-     * @description Retrieves a list of shipments for the specified tenant.
+     * Get all shipments
+     * @description Retrieves all shipments for the specified tenant.
      */
     get: operations["GetShipmentsAsync"];
+    /**
+     * Create a shipment
+     * @description Creates a new shipment for the specified tenant.
+     */
+    post: operations["CreateShipmentAsync"];
+  };
+  "/api/v2/ShipmentsService/Shipments/Count": {
+    /**
+     * Get shipments count
+     * @description Returns the count of shipments for the specified tenant.
+     */
+    get: operations["GetShipmentsCountAsync"];
+  };
+  "/api/v2/ShipmentsService/Shipments/{shipmentId}": {
+    /**
+     * Get shipment by ID
+     * @description Retrieves a specific shipment by its ID.
+     */
+    get: operations["GetShipmentByIdAsync"];
+    /**
+     * Update a shipment
+     * @description Updates an existing shipment.
+     */
+    put: operations["UpdateShipmentAsync"];
+    /**
+     * Delete a shipment
+     * @description Deletes a shipment.
+     */
+    delete: operations["DeleteShipmentAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingClasses": {
+    /**
+     * Get all shipping classes
+     * @description Retrieves all shipping classes for the specified tenant.
+     */
+    get: operations["GetShippingClassesAsync"];
+    /**
+     * Create a shipping class
+     * @description Creates a new shipping class.
+     */
+    post: operations["CreateShippingClassAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingClasses/Count": {
+    /**
+     * Get shipping classes count
+     * @description Returns the count of shipping classes.
+     */
+    get: operations["GetShippingClassesCountAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingClasses/{classId}": {
+    /**
+     * Get shipping class by ID
+     * @description Retrieves a specific shipping class.
+     */
+    get: operations["GetShippingClassByIdAsync"];
+    /**
+     * Update a shipping class
+     * @description Updates an existing shipping class.
+     */
+    put: operations["UpdateShippingClassAsync"];
+    /**
+     * Delete a shipping class
+     * @description Deletes a shipping class.
+     */
+    delete: operations["DeleteShippingClassAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingCouriers": {
+    /**
+     * Get all shipping couriers
+     * @description Retrieves all shipping couriers for the specified tenant.
+     */
+    get: operations["GetShippingCouriersAsync"];
+    /**
+     * Create a shipping courier
+     * @description Creates a new shipping courier.
+     */
+    post: operations["CreateShippingCourierAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingCouriers/Count": {
+    /**
+     * Get shipping couriers count
+     * @description Returns the count of shipping couriers for the specified tenant.
+     */
+    get: operations["GetShippingCouriersCountAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingCouriers/{courierId}": {
+    /**
+     * Get shipping courier by ID
+     * @description Retrieves a specific shipping courier by its ID.
+     */
+    get: operations["GetShippingCourierByIdAsync"];
+    /**
+     * Update a shipping courier
+     * @description Updates an existing shipping courier.
+     */
+    put: operations["UpdateShippingCourierAsync"];
+    /**
+     * Delete a shipping courier
+     * @description Deletes a shipping courier.
+     */
+    delete: operations["DeleteShippingCourierAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingLabels": {
+    /**
+     * Get all shipping labels
+     * @description Retrieves all shipping labels for the specified tenant.
+     */
+    get: operations["GetShippingLabelsAsync"];
+    /**
+     * Create a shipping label
+     * @description Creates a new shipping label.
+     */
+    post: operations["CreateShippingLabelAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingLabels/Count": {
+    /**
+     * Get shipping labels count
+     * @description Returns the count of shipping labels.
+     */
+    get: operations["GetShippingLabelsCountAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingLabels/{labelId}": {
+    /**
+     * Get shipping label by ID
+     * @description Retrieves a specific shipping label.
+     */
+    get: operations["GetShippingLabelByIdAsync"];
+    /**
+     * Update a shipping label
+     * @description Updates an existing shipping label.
+     */
+    put: operations["UpdateShippingLabelAsync"];
+    /**
+     * Delete a shipping label
+     * @description Deletes a shipping label.
+     */
+    delete: operations["DeleteShippingLabelAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingMethods": {
+    /**
+     * Get all shipping methods
+     * @description Retrieves all shipping methods for the specified tenant.
+     */
+    get: operations["GetShippingMethodsAsync"];
+    /**
+     * Create a shipping method
+     * @description Creates a new shipping method.
+     */
+    post: operations["CreateShippingMethodAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingMethods/Count": {
+    /**
+     * Get shipping methods count
+     * @description Returns the count of shipping methods.
+     */
+    get: operations["GetShippingMethodsCountAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingMethods/{methodId}": {
+    /**
+     * Get shipping method by ID
+     * @description Retrieves a specific shipping method.
+     */
+    get: operations["GetShippingMethodByIdAsync"];
+    /**
+     * Update a shipping method
+     * @description Updates an existing shipping method.
+     */
+    put: operations["UpdateShippingMethodAsync"];
+    /**
+     * Delete a shipping method
+     * @description Deletes a shipping method.
+     */
+    delete: operations["DeleteShippingMethodAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingRegions": {
+    /**
+     * Get all shipping regions
+     * @description Retrieves all shipping regions for the specified tenant.
+     */
+    get: operations["GetShippingRegionsAsync"];
+    /**
+     * Create a shipping region
+     * @description Creates a new shipping region.
+     */
+    post: operations["CreateShippingRegionAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingRegions/Count": {
+    /**
+     * Get shipping regions count
+     * @description Returns the count of shipping regions.
+     */
+    get: operations["GetShippingRegionsCountAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingRegions/{regionId}": {
+    /**
+     * Get shipping region by ID
+     * @description Retrieves a specific shipping region.
+     */
+    get: operations["GetShippingRegionByIdAsync"];
+    /**
+     * Update a shipping region
+     * @description Updates an existing shipping region.
+     */
+    put: operations["UpdateShippingRegionAsync"];
+    /**
+     * Delete a shipping region
+     * @description Deletes a shipping region.
+     */
+    delete: operations["DeleteShippingRegionAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingZones": {
+    /**
+     * Get all shipping zones
+     * @description Retrieves all shipping zones for the specified tenant.
+     */
+    get: operations["GetShippingZonesAsync"];
+    /**
+     * Create a shipping zone
+     * @description Creates a new shipping zone.
+     */
+    post: operations["CreateShippingZoneAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingZones/Count": {
+    /**
+     * Get shipping zones count
+     * @description Returns the count of shipping zones.
+     */
+    get: operations["GetShippingZonesCountAsync"];
+  };
+  "/api/v2/ShipmentsService/ShippingZones/{zoneId}": {
+    /**
+     * Get shipping zone by ID
+     * @description Retrieves a specific shipping zone.
+     */
+    get: operations["GetShippingZoneByIdAsync"];
+    /**
+     * Update a shipping zone
+     * @description Updates an existing shipping zone.
+     */
+    put: operations["UpdateShippingZoneAsync"];
+    /**
+     * Delete a shipping zone
+     * @description Deletes a shipping zone.
+     */
+    delete: operations["DeleteShippingZoneAsync"];
   };
 }
 
@@ -321,6 +783,224 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    BillOfLadingCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      billOfLadingNumber?: string | null;
+      title?: string | null;
+      description?: string | null;
+      billOfLadingType?: string | null;
+      isNegotiable?: boolean;
+      isClean?: boolean;
+      /** Format: int32 */
+      numberOfOriginals?: number;
+      freightPaymentType?: string | null;
+      shippingTerms?: string | null;
+      freightChargesDescription?: string | null;
+      /** Format: double */
+      declaredValueAmount?: number;
+      declaredValueCurrencyId?: string | null;
+      vesselName?: string | null;
+      voyageNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      shippingCourierId?: string | null;
+      portOfLoadingId?: string | null;
+      portOfDischargeId?: string | null;
+      placeOfReceiptId?: string | null;
+      placeOfDeliveryId?: string | null;
+      shipmentId?: string | null;
+      orderId?: string | null;
+      voyageId?: string | null;
+      marksAndNumbers?: string | null;
+      /** Format: int32 */
+      totalPackages?: number;
+      /** Format: double */
+      totalGrossWeightKg?: number;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+    };
+    BillOfLadingDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      billOfLadingNumber?: string | null;
+      title?: string | null;
+      description?: string | null;
+      billOfLadingType?: string | null;
+      status?: string | null;
+      isNegotiable?: boolean;
+      isClean?: boolean;
+      /** Format: int32 */
+      numberOfOriginals?: number;
+      freightPaymentType?: string | null;
+      shippingTerms?: string | null;
+      freightChargesDescription?: string | null;
+      /** Format: double */
+      declaredValueAmount?: number;
+      declaredValueCurrencyId?: string | null;
+      /** Format: date-time */
+      issuedDate?: string | null;
+      /** Format: date-time */
+      onBoardDate?: string | null;
+      /** Format: date-time */
+      expiryDate?: string | null;
+      vesselName?: string | null;
+      voyageNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      shippingCourierId?: string | null;
+      portOfLoadingId?: string | null;
+      portOfDischargeId?: string | null;
+      placeOfReceiptId?: string | null;
+      placeOfDeliveryId?: string | null;
+      shipmentId?: string | null;
+      orderId?: string | null;
+      voyageId?: string | null;
+      marksAndNumbers?: string | null;
+      /** Format: int32 */
+      totalPackages?: number;
+      /** Format: double */
+      totalGrossWeightKg?: number;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    BillOfLadingDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BillOfLadingDto"];
+    };
+    BillOfLadingDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BillOfLadingDto"][] | null;
+    };
+    BillOfLadingLineCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      description?: string | null;
+      /** Format: double */
+      quantity?: number;
+      packageType?: string | null;
+      /** Format: double */
+      grossWeightKg?: number;
+      /** Format: double */
+      volumeM3?: number | null;
+      marksAndNumbers?: string | null;
+      hsCode?: string | null;
+      itemId?: string | null;
+    };
+    BillOfLadingLineDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      description?: string | null;
+      /** Format: double */
+      quantity?: number;
+      packageType?: string | null;
+      /** Format: double */
+      grossWeightKg?: number;
+      /** Format: double */
+      volumeM3?: number | null;
+      marksAndNumbers?: string | null;
+      hsCode?: string | null;
+      itemId?: string | null;
+      billOfLadingId?: string | null;
+      tenantId?: string | null;
+    };
+    BillOfLadingLineDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BillOfLadingLineDto"];
+    };
+    BillOfLadingLineDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BillOfLadingLineDto"][] | null;
+    };
+    BillOfLadingLineUpdateDto: {
+      description?: string | null;
+      /** Format: double */
+      quantity?: number;
+      packageType?: string | null;
+      /** Format: double */
+      grossWeightKg?: number;
+      /** Format: double */
+      volumeM3?: number | null;
+      marksAndNumbers?: string | null;
+      hsCode?: string | null;
+      itemId?: string | null;
+    };
+    BillOfLadingUpdateDto: {
+      billOfLadingNumber?: string | null;
+      title?: string | null;
+      description?: string | null;
+      billOfLadingType?: string | null;
+      isNegotiable?: boolean;
+      isClean?: boolean;
+      /** Format: int32 */
+      numberOfOriginals?: number;
+      freightPaymentType?: string | null;
+      shippingTerms?: string | null;
+      freightChargesDescription?: string | null;
+      /** Format: double */
+      declaredValueAmount?: number;
+      declaredValueCurrencyId?: string | null;
+      /** Format: date-time */
+      expiryDate?: string | null;
+      vesselName?: string | null;
+      voyageNumber?: string | null;
+      shipperContactId?: string | null;
+      consigneeContactId?: string | null;
+      notifyPartyContactId?: string | null;
+      shippingCourierId?: string | null;
+      portOfLoadingId?: string | null;
+      portOfDischargeId?: string | null;
+      placeOfReceiptId?: string | null;
+      placeOfDeliveryId?: string | null;
+      shipmentId?: string | null;
+      orderId?: string | null;
+      voyageId?: string | null;
+      marksAndNumbers?: string | null;
+      /** Format: int32 */
+      totalPackages?: number;
+      /** Format: double */
+      totalGrossWeightKg?: number;
+      /** Format: double */
+      totalVolumeM3?: number | null;
+    };
+    EmptyEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -354,6 +1034,142 @@ export interface components {
       email: string | null;
       isEmailConfirmed: boolean;
     };
+    Int32Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      /** Format: int32 */
+      result?: number;
+    };
+    ItemShippingPolicyCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      type: string;
+      code: string;
+      isExpressShipmentPolicy?: boolean;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID: string;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+      shippingCourierID: string;
+    };
+    ItemShippingPolicyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      isExpressShipmentPolicy?: boolean;
+      shippingCourierID: string;
+      type: string;
+      code: string;
+      title: string;
+      description?: string | null;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID: string;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+      businessID: string;
+      businessProfileRecordID?: string | null;
+    };
+    ItemShippingPolicyDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemShippingPolicyDto"];
+    };
+    ItemShippingPolicyDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemShippingPolicyDto"][] | null;
+    };
+    ItemShippingPolicyUpdateDto: {
+      title: string;
+      description?: string | null;
+      type: string;
+      code: string;
+      isExpressShipmentPolicy?: boolean;
+      isFree?: boolean;
+      reduce?: boolean;
+      isEnabled?: boolean;
+      isDefault?: boolean;
+      allowInternational?: boolean;
+      /** Format: int32 */
+      hours?: number;
+      /** Format: int32 */
+      days?: number;
+      /** Format: int32 */
+      weeks?: number;
+      /** Format: int32 */
+      months?: number;
+      /** Format: int32 */
+      years?: number;
+      /** Format: double */
+      value?: number;
+      /** Format: double */
+      percentage?: number;
+      currencyID: string;
+      countryID?: string | null;
+      countryStateID?: string | null;
+      customState?: string | null;
+      customCity?: string | null;
+      cityID?: string | null;
+      shippingCourierID: string;
+    };
     LoginRequest: {
       email: string | null;
       password: string | null;
@@ -375,10 +1191,29 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
-    ShipmentDto: {
-      id?: string | null;
+    ShipmentCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
       trackingCode?: string | null;
       isInternational?: boolean;
+      /** Format: date-time */
+      expectedShippingDate?: string;
+      /** Format: date-time */
+      expectedDeliveryDate?: string;
+      /** @enum {string} */
+      shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
+      orderID?: string | null;
+    };
+    ShipmentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      trackingCode?: string | null;
+      isInternational?: boolean;
+      shipped?: boolean;
+      delivered?: boolean;
       /** Format: date-time */
       shipmentTimestamp?: string;
       /** Format: date-time */
@@ -387,6 +1222,19 @@ export interface components {
       expectedShippingDate?: string;
       /** Format: date-time */
       expectedDeliveryDate?: string;
+      /** @enum {string} */
+      shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
+      orderID?: string | null;
+      businessID?: string | null;
+    };
+    ShipmentDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShipmentDto"];
     };
     ShipmentDtoListEnvelope: {
       isSuccess?: boolean;
@@ -396,6 +1244,299 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["ShipmentDto"][] | null;
+    };
+    ShipmentUpdateDto: {
+      trackingCode?: string | null;
+      isInternational?: boolean;
+      shipped?: boolean;
+      delivered?: boolean;
+      /** Format: date-time */
+      shipmentTimestamp?: string;
+      /** Format: date-time */
+      deliveryTimestamp?: string;
+      /** Format: date-time */
+      expectedShippingDate?: string;
+      /** Format: date-time */
+      expectedDeliveryDate?: string;
+      /** @enum {string} */
+      shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
+      orderID?: string | null;
+    };
+    ShippingClassCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      slug?: string | null;
+    };
+    ShippingClassDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      slug?: string | null;
+      businessID?: string | null;
+    };
+    ShippingClassDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingClassDto"];
+    };
+    ShippingClassDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingClassDto"][] | null;
+    };
+    ShippingClassUpdateDto: {
+      name?: string | null;
+      slug?: string | null;
+    };
+    ShippingCourierCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      logoURL?: string | null;
+      countryID?: string | null;
+      businessProfileRecordID?: string | null;
+    };
+    ShippingCourierDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      logoURL?: string | null;
+      countryID?: string | null;
+      businessID?: string | null;
+      businessProfileRecordID?: string | null;
+    };
+    ShippingCourierDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingCourierDto"];
+    };
+    ShippingCourierDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingCourierDto"][] | null;
+    };
+    ShippingCourierUpdateDto: {
+      name?: string | null;
+      logoURL?: string | null;
+      countryID?: string | null;
+      businessProfileRecordID?: string | null;
+    };
+    ShippingLabelCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      trackingCode: string;
+      /** Format: date-time */
+      expectedDelivery?: string;
+      locationID?: string | null;
+      shipmentID?: string | null;
+      shippingCourierID?: string | null;
+    };
+    ShippingLabelDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      trackingCode?: string | null;
+      /** Format: date-time */
+      expectedDelivery?: string;
+      locationID?: string | null;
+      businessID?: string | null;
+      shipmentID?: string | null;
+      shippingCourierID?: string | null;
+    };
+    ShippingLabelDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingLabelDto"];
+    };
+    ShippingLabelDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingLabelDto"][] | null;
+    };
+    ShippingLabelUpdateDto: {
+      trackingCode?: string | null;
+      /** Format: date-time */
+      expectedDelivery?: string;
+      locationID?: string | null;
+      shipmentID?: string | null;
+      shippingCourierID?: string | null;
+    };
+    ShippingMethodCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+      /** Format: double */
+      cost?: number;
+      taxable?: boolean;
+      taxIncluded?: boolean;
+      currencyID?: string | null;
+      /** @enum {string} */
+      shippingClassCalculationType?: "PerClass" | "PerOrder";
+    };
+    ShippingMethodDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      /** Format: double */
+      cost?: number;
+      taxable?: boolean;
+      taxIncluded?: boolean;
+      currencyID?: string | null;
+      businessID?: string | null;
+      /** @enum {string} */
+      shippingClassCalculationType?: "PerClass" | "PerOrder";
+    };
+    ShippingMethodDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingMethodDto"];
+    };
+    ShippingMethodDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingMethodDto"][] | null;
+    };
+    ShippingMethodUpdateDto: {
+      name?: string | null;
+      description?: string | null;
+      /** Format: double */
+      cost?: number;
+      taxable?: boolean;
+      taxIncluded?: boolean;
+      currencyID?: string | null;
+      /** @enum {string} */
+      shippingClassCalculationType?: "PerClass" | "PerOrder";
+    };
+    ShippingRegionCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      postalCodes?: string | null;
+    };
+    ShippingRegionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      postalCodes?: string | null;
+      businessID?: string | null;
+    };
+    ShippingRegionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingRegionDto"];
+    };
+    ShippingRegionDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingRegionDto"][] | null;
+    };
+    ShippingRegionUpdateDto: {
+      name?: string | null;
+      postalCodes?: string | null;
+    };
+    ShippingZoneCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      default?: boolean;
+      everywhere?: boolean;
+      postalCodes?: string | null;
+      countryCodes?: string | null;
+    };
+    ShippingZoneDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      default?: boolean;
+      everywhere?: boolean;
+      postalCodes?: string | null;
+      countryCodes?: string | null;
+      businessID?: string | null;
+    };
+    ShippingZoneDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingZoneDto"];
+    };
+    ShippingZoneDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ShippingZoneDto"][] | null;
+    };
+    ShippingZoneUpdateDto: {
+      name?: string | null;
+      default?: boolean;
+      everywhere?: boolean;
+      postalCodes?: string | null;
+      countryCodes?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -426,6 +1567,432 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get all bills of lading
+   * @description Retrieves all bills of lading for the specified tenant.
+   */
+  GetBillsOfLadingAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BillOfLadingDtoListEnvelope"];
+          "application/xml": components["schemas"]["BillOfLadingDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a bill of lading
+   * @description Creates a new bill of lading for the specified tenant.
+   */
+  CreateBillOfLadingAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BillOfLadingCreateDto"];
+        "application/xml": components["schemas"]["BillOfLadingCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get bills of lading count
+   * @description Returns the count of bills of lading for the specified tenant.
+   */
+  GetBillsOfLadingCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get bill of lading by ID
+   * @description Retrieves a specific bill of lading by its identifier.
+   */
+  GetBillOfLadingByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BillOfLadingDtoEnvelope"];
+          "application/xml": components["schemas"]["BillOfLadingDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a bill of lading
+   * @description Updates an existing bill of lading.
+   */
+  UpdateBillOfLadingAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BillOfLadingUpdateDto"];
+        "application/xml": components["schemas"]["BillOfLadingUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a bill of lading
+   * @description Deletes a bill of lading.
+   */
+  DeleteBillOfLadingAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get bill of lading lines
+   * @description Retrieves all lines for a specific bill of lading.
+   */
+  GetBillOfLadingLinesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BillOfLadingLineDtoListEnvelope"];
+          "application/xml": components["schemas"]["BillOfLadingLineDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a bill of lading line
+   * @description Creates a new line for a bill of lading.
+   */
+  CreateBillOfLadingLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BillOfLadingLineCreateDto"];
+        "application/xml": components["schemas"]["BillOfLadingLineCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get bill of lading lines count
+   * @description Returns the count of lines for a specific bill of lading.
+   */
+  GetBillOfLadingLinesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get bill of lading line by ID
+   * @description Retrieves a specific line from a bill of lading.
+   */
+  GetBillOfLadingLineByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+        lineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BillOfLadingLineDtoEnvelope"];
+          "application/xml": components["schemas"]["BillOfLadingLineDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a bill of lading line
+   * @description Updates an existing line on a bill of lading.
+   */
+  UpdateBillOfLadingLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BillOfLadingLineUpdateDto"];
+        "application/xml": components["schemas"]["BillOfLadingLineUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a bill of lading line
+   * @description Deletes a line from a bill of lading.
+   */
+  DeleteBillOfLadingLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+        lineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   "MapIdentityApi-/confirmEmail": {
     parameters: {
       query: {
@@ -442,8 +2009,206 @@ export interface operations {
     };
   };
   /**
-   * Retrieve a list of shipments
-   * @description Retrieves a list of shipments for the specified tenant.
+   * Get all item shipping policies
+   * @description Retrieves all item shipping policies for the specified tenant.
+   */
+  GetItemShippingPoliciesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemShippingPolicyDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemShippingPolicyDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an item shipping policy
+   * @description Creates a new item shipping policy.
+   */
+  CreateItemShippingPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemShippingPolicyCreateDto"];
+        "application/xml": components["schemas"]["ItemShippingPolicyCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item shipping policies count
+   * @description Returns the count of item shipping policies.
+   */
+  GetItemShippingPoliciesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item shipping policy by ID
+   * @description Retrieves a specific item shipping policy.
+   */
+  GetItemShippingPolicyByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        policyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemShippingPolicyDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemShippingPolicyDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an item shipping policy
+   * @description Updates an existing item shipping policy.
+   */
+  UpdateItemShippingPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        policyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemShippingPolicyUpdateDto"];
+        "application/xml": components["schemas"]["ItemShippingPolicyUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an item shipping policy
+   * @description Deletes an item shipping policy.
+   */
+  DeleteItemShippingPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        policyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all shipments
+   * @description Retrieves all shipments for the specified tenant.
    */
   GetShipmentsAsync: {
     parameters: {
@@ -472,6 +2237,1368 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a shipment
+   * @description Creates a new shipment for the specified tenant.
+   */
+  CreateShipmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShipmentCreateDto"];
+        "application/xml": components["schemas"]["ShipmentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipments count
+   * @description Returns the count of shipments for the specified tenant.
+   */
+  GetShipmentsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipment by ID
+   * @description Retrieves a specific shipment by its ID.
+   */
+  GetShipmentByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shipmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShipmentDtoEnvelope"];
+          "application/xml": components["schemas"]["ShipmentDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a shipment
+   * @description Updates an existing shipment.
+   */
+  UpdateShipmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shipmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShipmentUpdateDto"];
+        "application/xml": components["schemas"]["ShipmentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a shipment
+   * @description Deletes a shipment.
+   */
+  DeleteShipmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shipmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all shipping classes
+   * @description Retrieves all shipping classes for the specified tenant.
+   */
+  GetShippingClassesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingClassDtoListEnvelope"];
+          "application/xml": components["schemas"]["ShippingClassDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a shipping class
+   * @description Creates a new shipping class.
+   */
+  CreateShippingClassAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingClassCreateDto"];
+        "application/xml": components["schemas"]["ShippingClassCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping classes count
+   * @description Returns the count of shipping classes.
+   */
+  GetShippingClassesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping class by ID
+   * @description Retrieves a specific shipping class.
+   */
+  GetShippingClassByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        classId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingClassDtoEnvelope"];
+          "application/xml": components["schemas"]["ShippingClassDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a shipping class
+   * @description Updates an existing shipping class.
+   */
+  UpdateShippingClassAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        classId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingClassUpdateDto"];
+        "application/xml": components["schemas"]["ShippingClassUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a shipping class
+   * @description Deletes a shipping class.
+   */
+  DeleteShippingClassAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        classId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all shipping couriers
+   * @description Retrieves all shipping couriers for the specified tenant.
+   */
+  GetShippingCouriersAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingCourierDtoListEnvelope"];
+          "application/xml": components["schemas"]["ShippingCourierDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a shipping courier
+   * @description Creates a new shipping courier.
+   */
+  CreateShippingCourierAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingCourierCreateDto"];
+        "application/xml": components["schemas"]["ShippingCourierCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping couriers count
+   * @description Returns the count of shipping couriers for the specified tenant.
+   */
+  GetShippingCouriersCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping courier by ID
+   * @description Retrieves a specific shipping courier by its ID.
+   */
+  GetShippingCourierByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courierId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingCourierDtoEnvelope"];
+          "application/xml": components["schemas"]["ShippingCourierDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a shipping courier
+   * @description Updates an existing shipping courier.
+   */
+  UpdateShippingCourierAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courierId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingCourierUpdateDto"];
+        "application/xml": components["schemas"]["ShippingCourierUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a shipping courier
+   * @description Deletes a shipping courier.
+   */
+  DeleteShippingCourierAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courierId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all shipping labels
+   * @description Retrieves all shipping labels for the specified tenant.
+   */
+  GetShippingLabelsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingLabelDtoListEnvelope"];
+          "application/xml": components["schemas"]["ShippingLabelDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a shipping label
+   * @description Creates a new shipping label.
+   */
+  CreateShippingLabelAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingLabelCreateDto"];
+        "application/xml": components["schemas"]["ShippingLabelCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping labels count
+   * @description Returns the count of shipping labels.
+   */
+  GetShippingLabelsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping label by ID
+   * @description Retrieves a specific shipping label.
+   */
+  GetShippingLabelByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        labelId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingLabelDtoEnvelope"];
+          "application/xml": components["schemas"]["ShippingLabelDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a shipping label
+   * @description Updates an existing shipping label.
+   */
+  UpdateShippingLabelAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        labelId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingLabelUpdateDto"];
+        "application/xml": components["schemas"]["ShippingLabelUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a shipping label
+   * @description Deletes a shipping label.
+   */
+  DeleteShippingLabelAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        labelId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all shipping methods
+   * @description Retrieves all shipping methods for the specified tenant.
+   */
+  GetShippingMethodsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingMethodDtoListEnvelope"];
+          "application/xml": components["schemas"]["ShippingMethodDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a shipping method
+   * @description Creates a new shipping method.
+   */
+  CreateShippingMethodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingMethodCreateDto"];
+        "application/xml": components["schemas"]["ShippingMethodCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping methods count
+   * @description Returns the count of shipping methods.
+   */
+  GetShippingMethodsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping method by ID
+   * @description Retrieves a specific shipping method.
+   */
+  GetShippingMethodByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        methodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingMethodDtoEnvelope"];
+          "application/xml": components["schemas"]["ShippingMethodDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a shipping method
+   * @description Updates an existing shipping method.
+   */
+  UpdateShippingMethodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        methodId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingMethodUpdateDto"];
+        "application/xml": components["schemas"]["ShippingMethodUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a shipping method
+   * @description Deletes a shipping method.
+   */
+  DeleteShippingMethodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        methodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all shipping regions
+   * @description Retrieves all shipping regions for the specified tenant.
+   */
+  GetShippingRegionsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingRegionDtoListEnvelope"];
+          "application/xml": components["schemas"]["ShippingRegionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a shipping region
+   * @description Creates a new shipping region.
+   */
+  CreateShippingRegionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingRegionCreateDto"];
+        "application/xml": components["schemas"]["ShippingRegionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping regions count
+   * @description Returns the count of shipping regions.
+   */
+  GetShippingRegionsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping region by ID
+   * @description Retrieves a specific shipping region.
+   */
+  GetShippingRegionByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        regionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingRegionDtoEnvelope"];
+          "application/xml": components["schemas"]["ShippingRegionDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a shipping region
+   * @description Updates an existing shipping region.
+   */
+  UpdateShippingRegionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        regionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingRegionUpdateDto"];
+        "application/xml": components["schemas"]["ShippingRegionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a shipping region
+   * @description Deletes a shipping region.
+   */
+  DeleteShippingRegionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        regionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all shipping zones
+   * @description Retrieves all shipping zones for the specified tenant.
+   */
+  GetShippingZonesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingZoneDtoListEnvelope"];
+          "application/xml": components["schemas"]["ShippingZoneDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a shipping zone
+   * @description Creates a new shipping zone.
+   */
+  CreateShippingZoneAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingZoneCreateDto"];
+        "application/xml": components["schemas"]["ShippingZoneCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping zones count
+   * @description Returns the count of shipping zones.
+   */
+  GetShippingZonesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get shipping zone by ID
+   * @description Retrieves a specific shipping zone.
+   */
+  GetShippingZoneByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        zoneId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ShippingZoneDtoEnvelope"];
+          "application/xml": components["schemas"]["ShippingZoneDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a shipping zone
+   * @description Updates an existing shipping zone.
+   */
+  UpdateShippingZoneAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        zoneId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShippingZoneUpdateDto"];
+        "application/xml": components["schemas"]["ShippingZoneUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a shipping zone
+   * @description Deletes a shipping zone.
+   */
+  DeleteShippingZoneAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        zoneId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

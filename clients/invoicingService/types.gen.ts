@@ -110,6 +110,7 @@ export type ExtendedInvoiceDtoReadable = {
     taxCalculationMethod?: 'Included' | 'Excluded';
     costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
+    forexRatesSnapshot?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -168,7 +169,7 @@ export type ExtendedInvoiceDtoReadable = {
     individual?: SimpleContactDtoReadable;
     organization?: SimpleContactDtoReadable;
     enrollment?: SimpleTenantEnrollmentDto;
-    invoiceLines?: Array<InvoiceLineDtoReadable> | null;
+    invoiceLines?: Array<InvoiceLineDto> | null;
 };
 
 export type ExtendedInvoiceDtoWritable = {
@@ -199,6 +200,7 @@ export type ExtendedInvoiceDtoWritable = {
     taxCalculationMethod?: 'Included' | 'Excluded';
     costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
+    forexRatesSnapshot?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -257,7 +259,7 @@ export type ExtendedInvoiceDtoWritable = {
     individual?: SimpleContactDtoWritable;
     organization?: SimpleContactDtoWritable;
     enrollment?: SimpleTenantEnrollmentDto;
-    invoiceLines?: Array<InvoiceLineDtoWritable> | null;
+    invoiceLines?: Array<InvoiceLineDto> | null;
 };
 
 export type ExtendedInvoiceDtoListEnvelopeReadable = {
@@ -273,17 +275,6 @@ export type ExtendedInvoiceDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<ExtendedInvoiceDtoWritable> | null;
-};
-
-export type ForexRates = {
-    success?: boolean;
-    date?: string | null;
-    base?: string | null;
-    timestamp?: number;
-    requestTimestamp?: string;
-    rates?: {
-        [key: string]: number;
-    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -503,6 +494,7 @@ export type InvoiceDto = {
     taxCalculationMethod?: 'Included' | 'Excluded';
     costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
+    forexRatesSnapshot?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -684,19 +676,77 @@ export type InvoiceLineCreateDto = {
     itemPriceId?: string | null;
 };
 
-export type InvoiceLineDtoReadable = {
+export type InvoiceLineDto = {
     id?: string | null;
     timestamp?: string | null;
     closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
     itemId?: string | null;
     itemTitle?: string | null;
     itemShortDescription?: string | null;
     itemPrimaryImageUrl?: string | null;
     shippingPolicyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
-    currencyId?: string | null;
-    description?: string | null;
     quantity?: number;
     free?: boolean;
     freeReason?: string | null;
@@ -725,25 +775,9 @@ export type InvoiceLineDtoReadable = {
     priceListItemId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    forexRates?: ForexRates;
-    forexRate?: number;
-    totalDetailInUsd?: number;
-    totalProfitInUsd?: number;
-    totalDiscountsInUsd?: number;
-    totalSurchargesInUsd?: number;
-    totalTaxBaseInUsd?: number;
-    totalTaxesInUsd?: number;
-    totalWithheldTaxesInUsd?: number;
-    totalShippingCostInUsd?: number;
-    totalShippingTaxesInUsd?: number;
     totalWarrantyCostInUsd?: number;
     totalReturnCostInUsd?: number;
     totalRefundCostInUsd?: number;
-    totalInUsd?: number;
-    totalGlobalDiscountsInUsd?: number;
-    totalGlobalSurchargesInUsd?: number;
     customGlobalSurchargesAmount?: number;
     customGlobalDiscountsAmount?: number;
     returnPolicyId?: string | null;
@@ -755,154 +789,6 @@ export type InvoiceLineDtoReadable = {
     quoteItemRecordId?: string | null;
     businessProfileRecordId?: string | null;
     parentBillingItemRecordId?: string | null;
-    currency?: CurrencyIdReadable;
-    totalDetail?: number;
-    totalDetailCurrencyId?: string | null;
-    totalDetailAmount?: MoneyReadable;
-    totalProfit?: number;
-    totalProfitCurrencyId?: string | null;
-    totalProfitAmount?: MoneyReadable;
-    totalDiscounts?: number;
-    totalDiscountsCurrencyId?: string | null;
-    totalDiscountsAmount?: MoneyReadable;
-    totalSurcharges?: number;
-    totalSurchargesCurrencyId?: string | null;
-    totalSurchargesAmount?: MoneyReadable;
-    totalTaxBase?: number;
-    totalTaxBaseCurrencyId?: string | null;
-    totalTaxBaseAmount?: MoneyReadable;
-    totalTaxes?: number;
-    totalTaxesCurrencyId?: string | null;
-    totalTaxesAmount?: MoneyReadable;
-    totalShippingCost?: number;
-    totalShippingCostCurrencyId?: string | null;
-    totalShippingCostAmount?: MoneyReadable;
-    totalShippingTax?: number;
-    totalShippingTaxCurrencyId?: string | null;
-    totalShippingTaxAmount?: MoneyReadable;
-    totalWithheldTax?: number;
-    totalWithheldTaxCurrencyId?: string | null;
-    totalWithheldTaxAmount?: MoneyReadable;
-    totalGlobalDiscounts?: number;
-    totalGlobalDiscountsCurrencyId?: string | null;
-    totalGlobalDiscountsAmount?: MoneyReadable;
-    totalGlobalSurcharges?: number;
-    totalGlobalSurchargesCurrencyId?: string | null;
-    totalGlobalSurchargesAmount?: MoneyReadable;
-    total?: number;
-    totalCurrencyId?: string | null;
-    totalAmount?: MoneyReadable;
-    invoiceId?: string | null;
-};
-
-export type InvoiceLineDtoWritable = {
-    id?: string | null;
-    timestamp?: string | null;
-    closed?: boolean;
-    itemId?: string | null;
-    itemTitle?: string | null;
-    itemShortDescription?: string | null;
-    itemPrimaryImageUrl?: string | null;
-    shippingPolicyId?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
-    currencyId?: string | null;
-    description?: string | null;
-    quantity?: number;
-    free?: boolean;
-    freeReason?: string | null;
-    freeReasonCode?: string | null;
-    data?: string | null;
-    dataLabel?: string | null;
-    data1?: string | null;
-    data1Label?: string | null;
-    data2?: string | null;
-    data2Label?: string | null;
-    data3?: string | null;
-    data3Label?: string | null;
-    data4?: string | null;
-    data4Label?: string | null;
-    data5?: string | null;
-    data5Label?: string | null;
-    data6?: string | null;
-    data6Label?: string | null;
-    data7?: string | null;
-    data7Label?: string | null;
-    data8?: string | null;
-    data8Label?: string | null;
-    data9?: string | null;
-    data9Label?: string | null;
-    itemPriceId?: string | null;
-    priceListItemId?: string | null;
-    unitId?: string | null;
-    unitGroupId?: string | null;
-    taxCalculationMethod?: 'Included' | 'Excluded';
-    costCalculationMethod?: 'Automatic' | 'Custom';
-    forexRates?: ForexRates;
-    forexRate?: number;
-    totalDetailInUsd?: number;
-    totalProfitInUsd?: number;
-    totalDiscountsInUsd?: number;
-    totalSurchargesInUsd?: number;
-    totalTaxBaseInUsd?: number;
-    totalTaxesInUsd?: number;
-    totalWithheldTaxesInUsd?: number;
-    totalShippingCostInUsd?: number;
-    totalShippingTaxesInUsd?: number;
-    totalWarrantyCostInUsd?: number;
-    totalReturnCostInUsd?: number;
-    totalRefundCostInUsd?: number;
-    totalInUsd?: number;
-    totalGlobalDiscountsInUsd?: number;
-    totalGlobalSurchargesInUsd?: number;
-    customGlobalSurchargesAmount?: number;
-    customGlobalDiscountsAmount?: number;
-    returnPolicyId?: string | null;
-    refundPolicyId?: string | null;
-    warrantyPolicyId?: string | null;
-    shipmentPolicyId?: string | null;
-    shippingLocationId?: string | null;
-    locationId?: string | null;
-    quoteItemRecordId?: string | null;
-    businessProfileRecordId?: string | null;
-    parentBillingItemRecordId?: string | null;
-    currency?: CurrencyIdWritable;
-    totalDetail?: number;
-    totalDetailCurrencyId?: string | null;
-    totalDetailAmount?: MoneyWritable;
-    totalProfit?: number;
-    totalProfitCurrencyId?: string | null;
-    totalProfitAmount?: MoneyWritable;
-    totalDiscounts?: number;
-    totalDiscountsCurrencyId?: string | null;
-    totalDiscountsAmount?: MoneyWritable;
-    totalSurcharges?: number;
-    totalSurchargesCurrencyId?: string | null;
-    totalSurchargesAmount?: MoneyWritable;
-    totalTaxBase?: number;
-    totalTaxBaseCurrencyId?: string | null;
-    totalTaxBaseAmount?: MoneyWritable;
-    totalTaxes?: number;
-    totalTaxesCurrencyId?: string | null;
-    totalTaxesAmount?: MoneyWritable;
-    totalShippingCost?: number;
-    totalShippingCostCurrencyId?: string | null;
-    totalShippingCostAmount?: MoneyWritable;
-    totalShippingTax?: number;
-    totalShippingTaxCurrencyId?: string | null;
-    totalShippingTaxAmount?: MoneyWritable;
-    totalWithheldTax?: number;
-    totalWithheldTaxCurrencyId?: string | null;
-    totalWithheldTaxAmount?: MoneyWritable;
-    totalGlobalDiscounts?: number;
-    totalGlobalDiscountsCurrencyId?: string | null;
-    totalGlobalDiscountsAmount?: MoneyWritable;
-    totalGlobalSurcharges?: number;
-    totalGlobalSurchargesCurrencyId?: string | null;
-    totalGlobalSurchargesAmount?: MoneyWritable;
-    total?: number;
-    totalCurrencyId?: string | null;
-    totalAmount?: MoneyWritable;
     invoiceId?: string | null;
 };
 
@@ -912,13 +798,13 @@ export type InvoiceLineDtoEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: InvoiceLineDtoReadable;
+    result?: InvoiceLineDto;
 };
 
 export type InvoiceLineDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: InvoiceLineDtoWritable;
+    result?: InvoiceLineDto;
 };
 
 export type InvoiceLineDtoIReadOnlyListEnvelopeReadable = {
@@ -927,13 +813,13 @@ export type InvoiceLineDtoIReadOnlyListEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: Array<InvoiceLineDtoReadable> | null;
+    result?: Array<InvoiceLineDto> | null;
 };
 
 export type InvoiceLineDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: Array<InvoiceLineDtoWritable> | null;
+    result?: Array<InvoiceLineDto> | null;
 };
 
 export type InvoiceLineDtoListEnvelopeReadable = {
@@ -942,23 +828,66 @@ export type InvoiceLineDtoListEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: Array<InvoiceLineDtoReadable> | null;
+    result?: Array<InvoiceLineDto> | null;
 };
 
 export type InvoiceLineDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: Array<InvoiceLineDtoWritable> | null;
+    result?: Array<InvoiceLineDto> | null;
 };
 
 export type InvoiceLineUpdateDto = {
-    price?: number;
-    unitId?: string | null;
-    percent?: number;
-    unitGroupId?: string | null;
+    closed?: boolean;
+    title?: string | null;
+    userId?: string | null;
+    priceListId?: string | null;
+    description?: string | null;
+    individualId?: string | null;
+    paymentTermId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    billingLocationId?: string | null;
+    shippingLocationId?: string | null;
+    shippingMethodId?: string | null;
+    forexRate?: number;
     currencyId?: string | null;
-    discountListId?: string | null;
-    roundingPolicyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    costCalculationMethod?: 'Automatic' | 'Custom';
+    taxCalculationMethod?: 'Included' | 'Excluded';
     quantity?: number;
     itemId?: string | null;
     itemPriceId?: string | null;
@@ -1426,6 +1355,37 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetVersionData = {
@@ -2539,7 +2499,9 @@ export type GetInvoicePaymentsData = {
     path: {
         invoiceId: string;
     };
-    query?: never;
+    query: {
+        tenantId: string;
+    };
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Payments';
 };
 
@@ -2557,7 +2519,9 @@ export type GetInvoicePaymentsCountData = {
     path: {
         invoiceId: string;
     };
-    query?: never;
+    query: {
+        tenantId: string;
+    };
     url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Payments/Count';
 };
 
@@ -2573,7 +2537,8 @@ export type GetInvoicePaymentsCountResponse = GetInvoicePaymentsCountResponses[k
 export type AggregateInvoiceTotalsData = {
     body: Array<string>;
     path?: never;
-    query?: {
+    query: {
+        tenantId: string;
         currencyId?: string;
     };
     url: '/api/v2/InvoicingService/Invoices/TotalsAggregate';
@@ -2591,7 +2556,8 @@ export type AggregateInvoiceTotalsResponse = AggregateInvoiceTotalsResponses[key
 export type AggregateInvoiceTaxesData = {
     body: Array<string>;
     path?: never;
-    query?: {
+    query: {
+        tenantId: string;
         currencyId?: string;
     };
     url: '/api/v2/InvoicingService/Invoices/TaxesAggregate';
@@ -2609,7 +2575,8 @@ export type AggregateInvoiceTaxesResponse = AggregateInvoiceTaxesResponses[keyof
 export type AggregateInvoiceDiscountsData = {
     body: Array<string>;
     path?: never;
-    query?: {
+    query: {
+        tenantId: string;
         currencyId?: string;
     };
     url: '/api/v2/InvoicingService/Invoices/DiscountsAggregate';
@@ -2627,7 +2594,8 @@ export type AggregateInvoiceDiscountsResponse = AggregateInvoiceDiscountsRespons
 export type AggregateInvoiceTaxBasesData = {
     body: Array<string>;
     path?: never;
-    query?: {
+    query: {
+        tenantId: string;
         currencyId?: string;
     };
     url: '/api/v2/InvoicingService/Invoices/TaxBasesAggregate';
@@ -2645,7 +2613,8 @@ export type AggregateInvoiceTaxBasesResponse = AggregateInvoiceTaxBasesResponses
 export type AggregateInvoiceGlobalSurchargesData = {
     body: Array<string>;
     path?: never;
-    query?: {
+    query: {
+        tenantId: string;
         currencyId?: string;
     };
     url: '/api/v2/InvoicingService/Invoices/GlobalSurchargesAggregate';
@@ -2699,5 +2668,5 @@ export type PreviewInvoiceEmailResponses = {
 };
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

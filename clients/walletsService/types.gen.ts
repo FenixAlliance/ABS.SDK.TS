@@ -13,6 +13,76 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type BankAccountCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name?: string | null;
+    iban?: string | null;
+    swift?: string | null;
+    branchCode?: string | null;
+    bankAccountNumber?: string | null;
+    qualifiedName?: string | null;
+    bankId?: string | null;
+    bankProfileId?: string | null;
+};
+
+export type BankAccountDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    iban?: string | null;
+    swift?: string | null;
+    branchCode?: string | null;
+    bankAccountNumber?: string | null;
+    qualifiedName?: string | null;
+    bankId?: string | null;
+    bankProfileId?: string | null;
+    walletId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type BankAccountDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: BankAccountDto;
+};
+
+export type BankAccountDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: BankAccountDto;
+};
+
+export type BankAccountDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<BankAccountDto> | null;
+};
+
+export type BankAccountDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<BankAccountDto> | null;
+};
+
+export type BankAccountUpdateDto = {
+    name?: string | null;
+    iban?: string | null;
+    swift?: string | null;
+    branchCode?: string | null;
+    bankAccountNumber?: string | null;
+    qualifiedName?: string | null;
+    bankId?: string | null;
+    bankProfileId?: string | null;
+};
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -189,6 +259,7 @@ export type ExtendedOrderDtoReadable = {
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
     forexRate?: number;
+    forexRatesSnapshot?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -283,6 +354,7 @@ export type ExtendedOrderDtoWritable = {
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
     forexRate?: number;
+    forexRatesSnapshot?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -437,6 +509,7 @@ export type InvoiceDto = {
     taxCalculationMethod?: 'Included' | 'Excluded';
     costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
+    forexRatesSnapshot?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -647,6 +720,7 @@ export type OrderDto = {
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
     forexRate?: number;
+    forexRatesSnapshot?: string | null;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -721,6 +795,92 @@ export type OrderDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<OrderDto> | null;
+};
+
+export type PaymentChargebackDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    requestDate?: string;
+    paymentId?: string | null;
+    bankProfileId?: string | null;
+    bankProfileName?: string | null;
+    totalFees?: number;
+};
+
+export type PaymentChargebackDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<PaymentChargebackDto> | null;
+};
+
+export type PaymentChargebackDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<PaymentChargebackDto> | null;
+};
+
+export type PaymentCreateDto = {
+    id?: string;
+    timestamp?: string;
+    invoiceId?: string | null;
+    emisorWalletId?: string | null;
+    receiverWalletId?: string | null;
+    currencyId?: string | null;
+    forexRate?: number;
+    totalCost?: number;
+    totalTaxes?: number;
+    closed?: boolean;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    response?: string | null;
+    authorization?: string | null;
+    referenceCode?: string | null;
+    correlationCode?: string | null;
+    lastUpdated?: string;
+    onBehalfOf?: 'Self' | 'Tenant' | 'Individual' | 'Organization';
+    paymentType?: 'Paid' | 'Received' | 'Internal';
+    paymentStatus?: 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+    baseCost?: number;
+    signature?: string | null;
+    signatureMismatch?: boolean;
+    isExternal?: boolean;
+    markedForRevision?: boolean;
+    forexRatesSnapshot?: string | null;
+    officialId?: string | null;
+    officialIdExpeditionDate?: string;
+    fiscalIdentificationTypeId?: string | null;
+    billingAddress?: string | null;
+    phone?: string | null;
+    cellphone?: string | null;
+    department?: string | null;
+    city?: string | null;
+    countryId?: string | null;
+    locationId?: string | null;
+    entitlementId?: string | null;
+    antiFraudScore?: number;
+    callRecordURL?: string | null;
+    called?: boolean;
+    verified?: boolean;
+    payerPictureTimestamp?: string | null;
+    payerPicture?: string | null;
+    identificationPictureTimestamp?: string | null;
+    identificationPicture?: string | null;
+    identificationBackPicture?: string | null;
+    identificationBackPictureTimestamp?: string | null;
+    ipLookupId?: string | null;
+    orderId?: string | null;
+    accountingEntryId?: string | null;
+    paymentGatewayId?: string | null;
+    bankAccountId?: string | null;
+    bankId?: string | null;
+    paymentTokenId?: string | null;
+    emisorWalletAccountId?: string | null;
+    receiverWalletAccountId?: string | null;
 };
 
 export type PaymentDto = {
@@ -798,6 +958,188 @@ export type PaymentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<PaymentDto> | null;
+};
+
+export type PaymentRefundDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    paymentId?: string | null;
+    walletAccountId?: string | null;
+    refundRequestId?: string | null;
+    totalFees?: number;
+};
+
+export type PaymentRefundDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<PaymentRefundDto> | null;
+};
+
+export type PaymentRefundDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<PaymentRefundDto> | null;
+};
+
+export type PaymentTokenCreateDto = {
+    id?: string;
+    timestamp?: string;
+    mask: string;
+    tokenType?: string | null;
+    cardFranchise?: string | null;
+    cardExpirationMonth: string;
+    cardExpirationYear: string;
+    validUntil?: string | null;
+    paymentGatewayId?: string | null;
+};
+
+export type PaymentTokenDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    test?: boolean;
+    mask?: string | null;
+    tokenType?: string | null;
+    cardFranchise?: string | null;
+    cardExpirationMonth?: string | null;
+    cardExpirationYear?: string | null;
+    status?: string | null;
+    validUntil?: string | null;
+    walletAccountId?: string | null;
+    paymentGatewayId?: string | null;
+};
+
+export type PaymentTokenDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: PaymentTokenDto;
+};
+
+export type PaymentTokenDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: PaymentTokenDto;
+};
+
+export type PaymentTokenDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<PaymentTokenDto> | null;
+};
+
+export type PaymentTokenDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<PaymentTokenDto> | null;
+};
+
+export type PaymentTokenUpdateDto = {
+    mask?: string | null;
+    tokenType?: string | null;
+    cardFranchise?: string | null;
+    cardExpirationMonth?: string | null;
+    cardExpirationYear?: string | null;
+    status?: string | null;
+    validUntil?: string | null;
+    paymentGatewayId?: string | null;
+};
+
+export type QuoteDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    closed?: boolean;
+    type?: string | null;
+    title?: string | null;
+    userId?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    priceListId?: string | null;
+    enrollmentId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    companyName?: string | null;
+    billingEmail?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    postalCode?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    customerNotes?: string | null;
+    taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    currencyId?: string | null;
+    totalDetail?: number;
+    totalDetailCurrencyId?: string | null;
+    totalProfit?: number;
+    totalProfitCurrencyId?: string | null;
+    totalDiscounts?: number;
+    totalDiscountsCurrencyId?: string | null;
+    totalSurcharges?: number;
+    totalSurchargesCurrencyId?: string | null;
+    totalTaxBase?: number;
+    totalTaxBaseCurrencyId?: string | null;
+    totalTaxes?: number;
+    totalTaxesCurrencyId?: string | null;
+    totalShippingCost?: number;
+    totalShippingCostCurrencyId?: string | null;
+    totalShippingTax?: number;
+    totalShippingTaxCurrencyId?: string | null;
+    totalWithheldTax?: number;
+    totalWithheldTaxCurrencyId?: string | null;
+    totalGlobalDiscounts?: number;
+    totalGlobalDiscountsCurrencyId?: string | null;
+    totalGlobalSurcharges?: number;
+    totalGlobalSurchargesCurrencyId?: string | null;
+    total?: number;
+    totalCurrencyId?: string | null;
+    totalDetailInUsd?: number;
+    totalProfitInUsd?: number;
+    totalDiscountsInUsd?: number;
+    totalSurchargesInUsd?: number;
+    totalTaxBaseInUsd?: number;
+    totalTaxesInUsd?: number;
+    totalWithheldTaxesInUsd?: number;
+    totalShippingCostInUsd?: number;
+    totalShippingTaxesInUsd?: number;
+    totalGlobalDiscountsInUsd?: number;
+    totalGlobalSurchargesInUsd?: number;
+    totalInUsd?: number;
+    cartId?: string | null;
+    dealUnitId?: string | null;
+    effectiveTo?: string | null;
+    effectiveFrom?: string | null;
+    quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
+    freightTerms?: 'FOB' | 'NoCharge';
+    customDiscountsAmount?: number;
+};
+
+export type QuoteDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<QuoteDto> | null;
+};
+
+export type QuoteDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<QuoteDto> | null;
 };
 
 export type RefreshRequest = {
@@ -1026,7 +1368,7 @@ export type UserDtoWritable = {
 
 export type WalletDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     balance?: number;
     cryptoBalance?: number;
     testMode?: boolean;
@@ -1055,6 +1397,99 @@ export type WalletDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: WalletDto;
+};
+
+export type WalletWithdrawDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    withdrawStatus?: 'OnHold' | 'Retained' | 'Processing' | 'OnValidation' | 'Processed';
+    walletAccountId?: string | null;
+    walletWithdrawRequestId?: string | null;
+    balanceBeforeWithdraw?: number;
+    balanceAfterWithdraw?: number;
+    withdrawedAmount?: number;
+    currencyId?: string | null;
+};
+
+export type WalletWithdrawDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<WalletWithdrawDto> | null;
+};
+
+export type WalletWithdrawDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<WalletWithdrawDto> | null;
+};
+
+export type WalletWithdrawRequestCreateDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    requestedWithdrawAmount?: number;
+    currencyId?: string | null;
+    bankAccountId?: string | null;
+};
+
+export type WalletWithdrawRequestDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    requestedWithdrawAmount?: number;
+    requestedWithdrawAmountInUSD?: number;
+    walletWithdrawRequestStatus?: 'Pending' | 'Processed' | 'Cancelled' | 'OnHold' | 'Denied';
+    currencyId?: string | null;
+    businessId?: string | null;
+    walletAccountId?: string | null;
+    bankAccountId?: string | null;
+};
+
+export type WalletWithdrawRequestDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<WalletWithdrawRequestDto> | null;
+};
+
+export type WalletWithdrawRequestDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<WalletWithdrawRequestDto> | null;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetVersionData = {
@@ -1637,6 +2072,42 @@ export type GetWalletPaymentsAsyncResponses = {
 
 export type GetWalletPaymentsAsyncResponse = GetWalletPaymentsAsyncResponses[keyof GetWalletPaymentsAsyncResponses];
 
+export type CreateWalletPaymentAsyncData = {
+    body?: PaymentCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Payments';
+};
+
+export type CreateWalletPaymentAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateWalletPaymentAsyncError = CreateWalletPaymentAsyncErrors[keyof CreateWalletPaymentAsyncErrors];
+
+export type CreateWalletPaymentAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateWalletPaymentAsyncResponse = CreateWalletPaymentAsyncResponses[keyof CreateWalletPaymentAsyncResponses];
+
 export type GetWalletPaymentsCountAsyncData = {
     body?: never;
     headers?: {
@@ -2180,6 +2651,840 @@ export type GetOutgoingPaymentsCountAsyncResponses = {
 
 export type GetOutgoingPaymentsCountAsyncResponse = GetOutgoingPaymentsCountAsyncResponses[keyof GetOutgoingPaymentsCountAsyncResponses];
 
+export type GetWalletQuotesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Quotes';
+};
+
+export type GetWalletQuotesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletQuotesAsyncError = GetWalletQuotesAsyncErrors[keyof GetWalletQuotesAsyncErrors];
+
+export type GetWalletQuotesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: QuoteDtoListEnvelopeReadable;
+};
+
+export type GetWalletQuotesAsyncResponse = GetWalletQuotesAsyncResponses[keyof GetWalletQuotesAsyncResponses];
+
+export type GetWalletQuotesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Quotes/Count';
+};
+
+export type GetWalletQuotesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletQuotesCountAsyncError = GetWalletQuotesCountAsyncErrors[keyof GetWalletQuotesCountAsyncErrors];
+
+export type GetWalletQuotesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWalletQuotesCountAsyncResponse = GetWalletQuotesCountAsyncResponses[keyof GetWalletQuotesCountAsyncResponses];
+
+export type GetWalletBankAccountsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts';
+};
+
+export type GetWalletBankAccountsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletBankAccountsAsyncError = GetWalletBankAccountsAsyncErrors[keyof GetWalletBankAccountsAsyncErrors];
+
+export type GetWalletBankAccountsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: BankAccountDtoListEnvelopeReadable;
+};
+
+export type GetWalletBankAccountsAsyncResponse = GetWalletBankAccountsAsyncResponses[keyof GetWalletBankAccountsAsyncResponses];
+
+export type CreateWalletBankAccountAsyncData = {
+    body?: BankAccountCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts';
+};
+
+export type CreateWalletBankAccountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateWalletBankAccountAsyncError = CreateWalletBankAccountAsyncErrors[keyof CreateWalletBankAccountAsyncErrors];
+
+export type CreateWalletBankAccountAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateWalletBankAccountAsyncResponse = CreateWalletBankAccountAsyncResponses[keyof CreateWalletBankAccountAsyncResponses];
+
+export type GetWalletBankAccountsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/Count';
+};
+
+export type GetWalletBankAccountsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletBankAccountsCountAsyncError = GetWalletBankAccountsCountAsyncErrors[keyof GetWalletBankAccountsCountAsyncErrors];
+
+export type GetWalletBankAccountsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWalletBankAccountsCountAsyncResponse = GetWalletBankAccountsCountAsyncResponses[keyof GetWalletBankAccountsCountAsyncResponses];
+
+export type DeleteWalletBankAccountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        bankAccountId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}';
+};
+
+export type DeleteWalletBankAccountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteWalletBankAccountAsyncError = DeleteWalletBankAccountAsyncErrors[keyof DeleteWalletBankAccountAsyncErrors];
+
+export type DeleteWalletBankAccountAsyncResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type DeleteWalletBankAccountAsyncResponse = DeleteWalletBankAccountAsyncResponses[keyof DeleteWalletBankAccountAsyncResponses];
+
+export type GetWalletBankAccountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        bankAccountId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}';
+};
+
+export type GetWalletBankAccountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletBankAccountAsyncError = GetWalletBankAccountAsyncErrors[keyof GetWalletBankAccountAsyncErrors];
+
+export type GetWalletBankAccountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: BankAccountDtoEnvelopeReadable;
+};
+
+export type GetWalletBankAccountAsyncResponse = GetWalletBankAccountAsyncResponses[keyof GetWalletBankAccountAsyncResponses];
+
+export type UpdateWalletBankAccountAsyncData = {
+    body?: BankAccountUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        bankAccountId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}';
+};
+
+export type UpdateWalletBankAccountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateWalletBankAccountAsyncError = UpdateWalletBankAccountAsyncErrors[keyof UpdateWalletBankAccountAsyncErrors];
+
+export type UpdateWalletBankAccountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateWalletBankAccountAsyncResponse = UpdateWalletBankAccountAsyncResponses[keyof UpdateWalletBankAccountAsyncResponses];
+
+export type GetWalletWithdrawsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Withdraws';
+};
+
+export type GetWalletWithdrawsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletWithdrawsAsyncError = GetWalletWithdrawsAsyncErrors[keyof GetWalletWithdrawsAsyncErrors];
+
+export type GetWalletWithdrawsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WalletWithdrawDtoListEnvelopeReadable;
+};
+
+export type GetWalletWithdrawsAsyncResponse = GetWalletWithdrawsAsyncResponses[keyof GetWalletWithdrawsAsyncResponses];
+
+export type CreateWalletWithdrawRequestAsyncData = {
+    body?: WalletWithdrawRequestCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Withdraws';
+};
+
+export type CreateWalletWithdrawRequestAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateWalletWithdrawRequestAsyncError = CreateWalletWithdrawRequestAsyncErrors[keyof CreateWalletWithdrawRequestAsyncErrors];
+
+export type CreateWalletWithdrawRequestAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateWalletWithdrawRequestAsyncResponse = CreateWalletWithdrawRequestAsyncResponses[keyof CreateWalletWithdrawRequestAsyncResponses];
+
+export type GetWalletWithdrawsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Withdraws/Count';
+};
+
+export type GetWalletWithdrawsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletWithdrawsCountAsyncError = GetWalletWithdrawsCountAsyncErrors[keyof GetWalletWithdrawsCountAsyncErrors];
+
+export type GetWalletWithdrawsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWalletWithdrawsCountAsyncResponse = GetWalletWithdrawsCountAsyncResponses[keyof GetWalletWithdrawsCountAsyncResponses];
+
+export type GetWalletWithdrawRequestsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/WithdrawRequests';
+};
+
+export type GetWalletWithdrawRequestsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletWithdrawRequestsAsyncError = GetWalletWithdrawRequestsAsyncErrors[keyof GetWalletWithdrawRequestsAsyncErrors];
+
+export type GetWalletWithdrawRequestsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: WalletWithdrawRequestDtoListEnvelopeReadable;
+};
+
+export type GetWalletWithdrawRequestsAsyncResponse = GetWalletWithdrawRequestsAsyncResponses[keyof GetWalletWithdrawRequestsAsyncResponses];
+
+export type GetWalletWithdrawRequestsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/WithdrawRequests/Count';
+};
+
+export type GetWalletWithdrawRequestsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletWithdrawRequestsCountAsyncError = GetWalletWithdrawRequestsCountAsyncErrors[keyof GetWalletWithdrawRequestsCountAsyncErrors];
+
+export type GetWalletWithdrawRequestsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWalletWithdrawRequestsCountAsyncResponse = GetWalletWithdrawRequestsCountAsyncResponses[keyof GetWalletWithdrawRequestsCountAsyncResponses];
+
+export type GetWalletChargebacksAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Chargebacks';
+};
+
+export type GetWalletChargebacksAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletChargebacksAsyncError = GetWalletChargebacksAsyncErrors[keyof GetWalletChargebacksAsyncErrors];
+
+export type GetWalletChargebacksAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PaymentChargebackDtoListEnvelopeReadable;
+};
+
+export type GetWalletChargebacksAsyncResponse = GetWalletChargebacksAsyncResponses[keyof GetWalletChargebacksAsyncResponses];
+
+export type GetWalletChargebacksCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Chargebacks/Count';
+};
+
+export type GetWalletChargebacksCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletChargebacksCountAsyncError = GetWalletChargebacksCountAsyncErrors[keyof GetWalletChargebacksCountAsyncErrors];
+
+export type GetWalletChargebacksCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWalletChargebacksCountAsyncResponse = GetWalletChargebacksCountAsyncResponses[keyof GetWalletChargebacksCountAsyncResponses];
+
+export type GetWalletRefundsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Refunds';
+};
+
+export type GetWalletRefundsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletRefundsAsyncError = GetWalletRefundsAsyncErrors[keyof GetWalletRefundsAsyncErrors];
+
+export type GetWalletRefundsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PaymentRefundDtoListEnvelopeReadable;
+};
+
+export type GetWalletRefundsAsyncResponse = GetWalletRefundsAsyncResponses[keyof GetWalletRefundsAsyncResponses];
+
+export type GetWalletRefundsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Refunds/Count';
+};
+
+export type GetWalletRefundsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletRefundsCountAsyncError = GetWalletRefundsCountAsyncErrors[keyof GetWalletRefundsCountAsyncErrors];
+
+export type GetWalletRefundsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWalletRefundsCountAsyncResponse = GetWalletRefundsCountAsyncResponses[keyof GetWalletRefundsCountAsyncResponses];
+
+export type GetWalletTokensAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens';
+};
+
+export type GetWalletTokensAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletTokensAsyncError = GetWalletTokensAsyncErrors[keyof GetWalletTokensAsyncErrors];
+
+export type GetWalletTokensAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PaymentTokenDtoListEnvelopeReadable;
+};
+
+export type GetWalletTokensAsyncResponse = GetWalletTokensAsyncResponses[keyof GetWalletTokensAsyncResponses];
+
+export type CreateWalletTokenAsyncData = {
+    body?: PaymentTokenCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens';
+};
+
+export type CreateWalletTokenAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateWalletTokenAsyncError = CreateWalletTokenAsyncErrors[keyof CreateWalletTokenAsyncErrors];
+
+export type CreateWalletTokenAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateWalletTokenAsyncResponse = CreateWalletTokenAsyncResponses[keyof CreateWalletTokenAsyncResponses];
+
+export type GetWalletTokensCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/Count';
+};
+
+export type GetWalletTokensCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletTokensCountAsyncError = GetWalletTokensCountAsyncErrors[keyof GetWalletTokensCountAsyncErrors];
+
+export type GetWalletTokensCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetWalletTokensCountAsyncResponse = GetWalletTokensCountAsyncResponses[keyof GetWalletTokensCountAsyncResponses];
+
+export type DeleteWalletTokenAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        tokenId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}';
+};
+
+export type DeleteWalletTokenAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteWalletTokenAsyncError = DeleteWalletTokenAsyncErrors[keyof DeleteWalletTokenAsyncErrors];
+
+export type DeleteWalletTokenAsyncResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type DeleteWalletTokenAsyncResponse = DeleteWalletTokenAsyncResponses[keyof DeleteWalletTokenAsyncResponses];
+
+export type GetWalletTokenAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        tokenId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}';
+};
+
+export type GetWalletTokenAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetWalletTokenAsyncError = GetWalletTokenAsyncErrors[keyof GetWalletTokenAsyncErrors];
+
+export type GetWalletTokenAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PaymentTokenDtoEnvelopeReadable;
+};
+
+export type GetWalletTokenAsyncResponse = GetWalletTokenAsyncResponses[keyof GetWalletTokenAsyncResponses];
+
+export type UpdateWalletTokenAsyncData = {
+    body?: PaymentTokenUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        tokenId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}';
+};
+
+export type UpdateWalletTokenAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateWalletTokenAsyncError = UpdateWalletTokenAsyncErrors[keyof UpdateWalletTokenAsyncErrors];
+
+export type UpdateWalletTokenAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateWalletTokenAsyncResponse = UpdateWalletTokenAsyncResponses[keyof UpdateWalletTokenAsyncResponses];
+
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

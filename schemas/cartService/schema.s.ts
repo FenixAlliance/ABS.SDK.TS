@@ -295,6 +295,115 @@ export interface paths {
      */
     delete: operations["RemoveItemFromCompareTable"];
   };
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/version": {
     get: {
       responses: {
@@ -767,6 +876,8 @@ export interface components {
     };
     CartDto: {
       id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
       ip?: string | null;
       type?: string | null;
       /** Format: double */
@@ -822,6 +933,8 @@ export interface components {
     };
     CurrencyDto: {
       id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
       code?: string | null;
       name?: string | null;
       symbol?: string | null;
@@ -835,11 +948,6 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["CurrencyDto"];
-    };
-    CurrencyId: {
-      value?: string | null;
-      code?: string | null;
-      country?: string | null;
     };
     CurrencySwitchRequest: {
       cartID?: string | null;
@@ -860,18 +968,6 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
-    };
-    ForexRates: {
-      success?: boolean;
-      date?: string | null;
-      base?: string | null;
-      /** Format: int64 */
-      timestamp?: number;
-      /** Format: date-time */
-      requestTimestamp?: string;
-      rates?: {
-        [key: string]: number;
-      } | null;
     };
     ForgotPasswordRequest: {
       email: string | null;
@@ -912,15 +1008,100 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       closed?: boolean;
+      type?: string | null;
+      title?: string | null;
+      userId?: string | null;
+      tenantId?: string | null;
+      description?: string | null;
+      priceListId?: string | null;
+      enrollmentId?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      companyName?: string | null;
+      billingEmail?: string | null;
+      addressLine1?: string | null;
+      addressLine2?: string | null;
+      postalCode?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      customerNotes?: string | null;
+      /** @enum {string} */
+      taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
+      /** Format: double */
+      forexRate?: number;
+      forexRatesSnapshot?: string | null;
+      currencyId?: string | null;
+      /** Format: double */
+      totalDetail?: number;
+      totalDetailCurrencyId?: string | null;
+      /** Format: double */
+      totalProfit?: number;
+      totalProfitCurrencyId?: string | null;
+      /** Format: double */
+      totalDiscounts?: number;
+      totalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalSurcharges?: number;
+      totalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxBase?: number;
+      totalTaxBaseCurrencyId?: string | null;
+      /** Format: double */
+      totalTaxes?: number;
+      totalTaxesCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingCost?: number;
+      totalShippingCostCurrencyId?: string | null;
+      /** Format: double */
+      totalShippingTax?: number;
+      totalShippingTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalWithheldTax?: number;
+      totalWithheldTaxCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalDiscounts?: number;
+      totalGlobalDiscountsCurrencyId?: string | null;
+      /** Format: double */
+      totalGlobalSurcharges?: number;
+      totalGlobalSurchargesCurrencyId?: string | null;
+      /** Format: double */
+      total?: number;
+      totalCurrencyId?: string | null;
+      /** Format: double */
+      totalDetailInUsd?: number;
+      /** Format: double */
+      totalProfitInUsd?: number;
+      /** Format: double */
+      totalDiscountsInUsd?: number;
+      /** Format: double */
+      totalSurchargesInUsd?: number;
+      /** Format: double */
+      totalTaxBaseInUsd?: number;
+      /** Format: double */
+      totalTaxesInUsd?: number;
+      /** Format: double */
+      totalWithheldTaxesInUsd?: number;
+      /** Format: double */
+      totalShippingCostInUsd?: number;
+      /** Format: double */
+      totalShippingTaxesInUsd?: number;
+      /** Format: double */
+      totalGlobalDiscountsInUsd?: number;
+      /** Format: double */
+      totalGlobalSurchargesInUsd?: number;
+      /** Format: double */
+      totalInUsd?: number;
       itemId?: string | null;
       itemTitle?: string | null;
       itemShortDescription?: string | null;
       itemPrimaryImageUrl?: string | null;
       shippingPolicyId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-      currencyId?: string | null;
-      description?: string | null;
       /** Format: double */
       quantity?: number;
       free?: boolean;
@@ -950,43 +1131,12 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      /** @enum {string} */
-      taxCalculationMethod?: "Included" | "Excluded";
-      /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      forexRates?: components["schemas"]["ForexRates"];
-      /** Format: double */
-      forexRate?: number;
-      /** Format: double */
-      totalDetailInUsd?: number;
-      /** Format: double */
-      totalProfitInUsd?: number;
-      /** Format: double */
-      totalDiscountsInUsd?: number;
-      /** Format: double */
-      totalSurchargesInUsd?: number;
-      /** Format: double */
-      totalTaxBaseInUsd?: number;
-      /** Format: double */
-      totalTaxesInUsd?: number;
-      /** Format: double */
-      totalWithheldTaxesInUsd?: number;
-      /** Format: double */
-      totalShippingCostInUsd?: number;
-      /** Format: double */
-      totalShippingTaxesInUsd?: number;
       /** Format: double */
       totalWarrantyCostInUsd?: number;
       /** Format: double */
       totalReturnCostInUsd?: number;
       /** Format: double */
       totalRefundCostInUsd?: number;
-      /** Format: double */
-      totalInUsd?: number;
-      /** Format: double */
-      totalGlobalDiscountsInUsd?: number;
-      /** Format: double */
-      totalGlobalSurchargesInUsd?: number;
       /** Format: double */
       customGlobalSurchargesAmount?: number;
       /** Format: double */
@@ -1000,55 +1150,6 @@ export interface components {
       quoteItemRecordId?: string | null;
       businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
-      currency?: components["schemas"]["CurrencyId"];
-      /** Format: double */
-      totalDetail?: number;
-      totalDetailCurrencyId?: string | null;
-      totalDetailAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalProfit?: number;
-      totalProfitCurrencyId?: string | null;
-      totalProfitAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalDiscounts?: number;
-      totalDiscountsCurrencyId?: string | null;
-      totalDiscountsAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalSurcharges?: number;
-      totalSurchargesCurrencyId?: string | null;
-      totalSurchargesAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalTaxBase?: number;
-      totalTaxBaseCurrencyId?: string | null;
-      totalTaxBaseAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalTaxes?: number;
-      totalTaxesCurrencyId?: string | null;
-      totalTaxesAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalShippingCost?: number;
-      totalShippingCostCurrencyId?: string | null;
-      totalShippingCostAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalShippingTax?: number;
-      totalShippingTaxCurrencyId?: string | null;
-      totalShippingTaxAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalWithheldTax?: number;
-      totalWithheldTaxCurrencyId?: string | null;
-      totalWithheldTaxAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalGlobalDiscounts?: number;
-      totalGlobalDiscountsCurrencyId?: string | null;
-      totalGlobalDiscountsAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      totalGlobalSurcharges?: number;
-      totalGlobalSurchargesCurrencyId?: string | null;
-      totalGlobalSurchargesAmount?: components["schemas"]["Money"];
-      /** Format: double */
-      total?: number;
-      totalCurrencyId?: string | null;
-      totalAmount?: components["schemas"]["Money"];
       cartId?: string | null;
       itemID?: string | null;
       shippingAddressID?: string | null;
@@ -1120,11 +1221,6 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
-    };
-    Money: {
-      /** Format: double */
-      amount?: number;
-      currency?: components["schemas"]["CurrencyId"];
     };
     NewWishListRequest: {
       title?: string | null;

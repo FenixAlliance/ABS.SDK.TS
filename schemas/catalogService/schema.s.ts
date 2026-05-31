@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/version": {
     get: {
       responses: {
@@ -331,6 +440,42 @@ export interface paths {
      */
     delete: operations["DeleteItemAttachmentAsync"];
   };
+  "/api/v2/CatalogService/ItemAttributeOptions": {
+    /**
+     * Get all item attribute options
+     * @description Retrieves all item attribute options for the specified tenant using OData query options.
+     */
+    get: operations["GetItemAttributeOptionsAsync"];
+    /**
+     * Create a new item attribute option
+     * @description Creates a new item attribute option for the specified tenant.
+     */
+    post: operations["CreateItemAttributeOptionAsync"];
+  };
+  "/api/v2/CatalogService/ItemAttributeOptions/Count": {
+    /**
+     * Get item attribute options count
+     * @description Returns the count of item attribute options for the specified tenant.
+     */
+    get: operations["GetItemAttributeOptionsCountAsync"];
+  };
+  "/api/v2/CatalogService/ItemAttributeOptions/{itemAttributeOptionId}": {
+    /**
+     * Get item attribute option by ID
+     * @description Retrieves a specific item attribute option by its ID.
+     */
+    get: operations["GetItemAttributeOptionByIdAsync"];
+    /**
+     * Update an item attribute option
+     * @description Updates an existing item attribute option for the specified tenant.
+     */
+    put: operations["UpdateItemAttributeOptionAsync"];
+    /**
+     * Delete an item attribute option
+     * @description Deletes an item attribute option for the specified tenant.
+     */
+    delete: operations["DeleteItemAttributeOptionAsync"];
+  };
   "/api/v2/CatalogService/ItemAttributes/Count": {
     /**
      * Count item attributes
@@ -396,6 +541,42 @@ export interface paths {
      */
     delete: operations["DeleteItemBrandAsync"];
   };
+  "/api/v2/CatalogService/ItemBundles": {
+    /**
+     * Get all item bundles
+     * @description Retrieves all item bundles for the specified tenant using OData query options.
+     */
+    get: operations["GetItemBundlesAsync"];
+    /**
+     * Create a new item bundle
+     * @description Creates a new item bundle for the specified tenant.
+     */
+    post: operations["CreateItemBundleAsync"];
+  };
+  "/api/v2/CatalogService/ItemBundles/Count": {
+    /**
+     * Get item bundles count
+     * @description Returns the count of item bundles for the specified tenant.
+     */
+    get: operations["GetItemBundlesCountAsync"];
+  };
+  "/api/v2/CatalogService/ItemBundles/{itemBundleId}": {
+    /**
+     * Get item bundle by ID
+     * @description Retrieves a specific item bundle by its ID.
+     */
+    get: operations["GetItemBundleByIdAsync"];
+    /**
+     * Update an item bundle
+     * @description Updates an existing item bundle for the specified tenant.
+     */
+    put: operations["UpdateItemBundleAsync"];
+    /**
+     * Delete an item bundle
+     * @description Deletes an item bundle for the specified tenant.
+     */
+    delete: operations["DeleteItemBundleAsync"];
+  };
   "/api/v2/CatalogService/ItemCategories/Count": {
     /**
      * Count item categories
@@ -431,6 +612,42 @@ export interface paths {
      * @description Creates a new item category for the specified tenant.
      */
     post: operations["CreateItemCategoryAsync"];
+  };
+  "/api/v2/CatalogService/ItemFamilies": {
+    /**
+     * Get all item families
+     * @description Retrieves all item families for the specified tenant using OData query options.
+     */
+    get: operations["GetItemFamiliesAsync"];
+    /**
+     * Create a new item family
+     * @description Creates a new item family for the specified tenant.
+     */
+    post: operations["CreateItemFamilyAsync"];
+  };
+  "/api/v2/CatalogService/ItemFamilies/Count": {
+    /**
+     * Get item families count
+     * @description Returns the count of item families for the specified tenant.
+     */
+    get: operations["GetItemFamiliesCountAsync"];
+  };
+  "/api/v2/CatalogService/ItemFamilies/{itemFamilyId}": {
+    /**
+     * Get item family by ID
+     * @description Retrieves a specific item family by its ID.
+     */
+    get: operations["GetItemFamilyByIdAsync"];
+    /**
+     * Update an item family
+     * @description Updates an existing item family for the specified tenant.
+     */
+    put: operations["UpdateItemFamilyAsync"];
+    /**
+     * Delete an item family
+     * @description Deletes an item family for the specified tenant.
+     */
+    delete: operations["DeleteItemFamilyAsync"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories": {
     /**
@@ -1274,37 +1491,6 @@ export interface paths {
      */
     get: operations["GetMerchantById"];
   };
-  "/api/v2/CatalogService/PricingRules": {
-    /**
-     * Get all pricing rules
-     * @description Retrieves all pricing rules for the specified tenant, with optional OData query options.
-     */
-    get: operations["GetPricingRules"];
-    /**
-     * Create a new pricing rule
-     * @description Creates a new pricing rule for the specified tenant.
-     */
-    post: operations["CreatePricingRule"];
-  };
-  "/api/v2/CatalogService/PricingRules/{pricingRuleId}": {
-    /**
-     * Get pricing rule by ID
-     * @description Retrieves a pricing rule by its unique identifier.
-     */
-    get: operations["GetPricingRuleById"];
-    /**
-     * Delete a pricing rule
-     * @description Deletes a pricing rule for the specified tenant and rule ID.
-     */
-    delete: operations["DeletePricingRule"];
-  };
-  "/api/v2/CatalogService/PricingRules/Update": {
-    /**
-     * Update a pricing rule
-     * @description Updates an existing pricing rule for the specified tenant and rule ID.
-     */
-    put: operations["UpdatePricingRule"];
-  };
 }
 
 export type webhooks = Record<string, never>;
@@ -2127,12 +2313,22 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ItemAttributeDto"][] | null;
     };
+    ItemAttributeOptionCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+      itemAttributeId: string;
+    };
     ItemAttributeOptionDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       name?: string | null;
       description?: string | null;
+      itemAttributeId?: string | null;
       businessID?: string | null;
     };
     ItemAttributeOptionDtoEnvelope: {
@@ -2152,6 +2348,10 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["ItemAttributeOptionDto"][] | null;
+    };
+    ItemAttributeOptionUpdateDto: {
+      name: string;
+      description?: string | null;
     };
     ItemAttributeUpdateDto: {
       name: string;
@@ -2211,6 +2411,50 @@ export interface components {
       featured?: boolean;
       trending?: boolean;
     };
+    ItemBundleCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      code?: string | null;
+      description?: string | null;
+      disabled?: boolean;
+    };
+    ItemBundleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      code?: string | null;
+      description?: string | null;
+      disabled?: boolean;
+      businessID?: string | null;
+    };
+    ItemBundleDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemBundleDto"];
+    };
+    ItemBundleDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemBundleDto"][] | null;
+    };
+    ItemBundleUpdateDto: {
+      name: string;
+      code?: string | null;
+      description?: string | null;
+      disabled?: boolean;
+    };
     ItemCategoryCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2268,6 +2512,46 @@ export interface components {
       enableForLicenses?: boolean;
       enableForServices?: boolean;
       enableForSubscriptions?: boolean;
+    };
+    ItemFamilyCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      code?: string | null;
+      description?: string | null;
+    };
+    ItemFamilyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      code?: string | null;
+      description?: string | null;
+      businessID?: string | null;
+    };
+    ItemFamilyDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemFamilyDto"];
+    };
+    ItemFamilyDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ItemFamilyDto"][] | null;
+    };
+    ItemFamilyUpdateDto: {
+      name: string;
+      description?: string | null;
     };
     ItemGoogleCategoryDto: {
       id?: string | null;
@@ -2959,40 +3243,6 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
-    PricingRuleCreateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      code?: string | null;
-      title?: string | null;
-      description?: string | null;
-      isFree?: boolean;
-      reduce?: boolean;
-      isEnabled?: boolean;
-      isDefault?: boolean;
-      allowInternational?: boolean;
-      /** Format: int32 */
-      hours?: number;
-      /** Format: int32 */
-      days?: number;
-      /** Format: int32 */
-      weeks?: number;
-      /** Format: int32 */
-      months?: number;
-      /** Format: int32 */
-      years?: number;
-      /** Format: double */
-      value?: number;
-      /** Format: double */
-      percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
-      customState?: string | null;
-      customCity?: string | null;
-      cityID?: string | null;
-    };
     PricingRuleDto: {
       id?: string | null;
       /** Format: date-time */
@@ -3044,35 +3294,6 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["PricingRuleDto"][] | null;
-    };
-    PricingRuleUpdateDto: {
-      title?: string | null;
-      description?: string | null;
-      isFree?: boolean;
-      reduce?: boolean;
-      isEnabled?: boolean;
-      isDefault?: boolean;
-      allowInternational?: boolean;
-      /** Format: int32 */
-      hours?: number;
-      /** Format: int32 */
-      days?: number;
-      /** Format: int32 */
-      weeks?: number;
-      /** Format: int32 */
-      months?: number;
-      /** Format: int32 */
-      years?: number;
-      /** Format: double */
-      value?: number;
-      /** Format: double */
-      percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
-      customState?: string | null;
-      customCity?: string | null;
-      cityID?: string | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -3139,8 +3360,8 @@ export interface operations {
    */
   GetItemAttachmentsAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3222,6 +3443,7 @@ export interface operations {
   GetItemAttachmentByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3344,13 +3566,259 @@ export interface operations {
     };
   };
   /**
+   * Get all item attribute options
+   * @description Retrieves all item attribute options for the specified tenant using OData query options.
+   */
+  GetItemAttributeOptionsAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemAttributeOptionDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemAttributeOptionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new item attribute option
+   * @description Creates a new item attribute option for the specified tenant.
+   */
+  CreateItemAttributeOptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemAttributeOptionCreateDto"];
+        "application/xml": components["schemas"]["ItemAttributeOptionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["ItemAttributeOptionDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemAttributeOptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item attribute options count
+   * @description Returns the count of item attribute options for the specified tenant.
+   */
+  GetItemAttributeOptionsCountAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item attribute option by ID
+   * @description Retrieves a specific item attribute option by its ID.
+   */
+  GetItemAttributeOptionByIdAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemAttributeOptionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemAttributeOptionDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemAttributeOptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an item attribute option
+   * @description Updates an existing item attribute option for the specified tenant.
+   */
+  UpdateItemAttributeOptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemAttributeOptionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemAttributeOptionUpdateDto"];
+        "application/xml": components["schemas"]["ItemAttributeOptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemAttributeOptionDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemAttributeOptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an item attribute option
+   * @description Deletes an item attribute option for the specified tenant.
+   */
+  DeleteItemAttributeOptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemAttributeOptionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Count item attributes
    * @description Counts all item attributes for the specified tenant.
    */
   CountItemAttributesAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3387,8 +3855,8 @@ export interface operations {
    */
   GetItemAttributesAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3470,6 +3938,7 @@ export interface operations {
   GetItemAttributeByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3591,8 +4060,8 @@ export interface operations {
    */
   GetItemBrandsAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3674,6 +4143,7 @@ export interface operations {
   GetItemBrandByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3793,13 +4263,259 @@ export interface operations {
     };
   };
   /**
+   * Get all item bundles
+   * @description Retrieves all item bundles for the specified tenant using OData query options.
+   */
+  GetItemBundlesAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemBundleDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemBundleDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new item bundle
+   * @description Creates a new item bundle for the specified tenant.
+   */
+  CreateItemBundleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemBundleCreateDto"];
+        "application/xml": components["schemas"]["ItemBundleCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["ItemBundleDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemBundleDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item bundles count
+   * @description Returns the count of item bundles for the specified tenant.
+   */
+  GetItemBundlesCountAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item bundle by ID
+   * @description Retrieves a specific item bundle by its ID.
+   */
+  GetItemBundleByIdAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemBundleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemBundleDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemBundleDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an item bundle
+   * @description Updates an existing item bundle for the specified tenant.
+   */
+  UpdateItemBundleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemBundleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemBundleUpdateDto"];
+        "application/xml": components["schemas"]["ItemBundleUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemBundleDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemBundleDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an item bundle
+   * @description Deletes an item bundle for the specified tenant.
+   */
+  DeleteItemBundleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemBundleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Count item categories
    * @description Counts all item categories for the specified tenant.
    */
   CountItemCategoriesAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3837,6 +4553,7 @@ export interface operations {
   GetItemCategoryByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -3958,8 +4675,8 @@ export interface operations {
    */
   GetItemCategoriesAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4017,6 +4734,252 @@ export interface operations {
           "application/json": components["schemas"]["ItemCategoryDtoEnvelope"];
           "application/xml": components["schemas"]["ItemCategoryDtoEnvelope"];
         };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all item families
+   * @description Retrieves all item families for the specified tenant using OData query options.
+   */
+  GetItemFamiliesAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemFamilyDtoListEnvelope"];
+          "application/xml": components["schemas"]["ItemFamilyDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new item family
+   * @description Creates a new item family for the specified tenant.
+   */
+  CreateItemFamilyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemFamilyCreateDto"];
+        "application/xml": components["schemas"]["ItemFamilyCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["ItemFamilyDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemFamilyDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item families count
+   * @description Returns the count of item families for the specified tenant.
+   */
+  GetItemFamiliesCountAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get item family by ID
+   * @description Retrieves a specific item family by its ID.
+   */
+  GetItemFamilyByIdAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemFamilyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemFamilyDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemFamilyDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an item family
+   * @description Updates an existing item family for the specified tenant.
+   */
+  UpdateItemFamilyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemFamilyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemFamilyUpdateDto"];
+        "application/xml": components["schemas"]["ItemFamilyUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ItemFamilyDtoEnvelope"];
+          "application/xml": components["schemas"]["ItemFamilyDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an item family
+   * @description Deletes an item family for the specified tenant.
+   */
+  DeleteItemFamilyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemFamilyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
       /** @description Unauthorized */
       401: {
@@ -4343,8 +5306,8 @@ export interface operations {
    */
   GetItemImagesAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4426,6 +5389,7 @@ export interface operations {
   GetItemImageByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4547,8 +5511,8 @@ export interface operations {
    */
   GetItemQuestionsAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4630,6 +5594,7 @@ export interface operations {
   GetItemQuestionByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4752,6 +5717,7 @@ export interface operations {
   GetItemRefundPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -4827,6 +5793,7 @@ export interface operations {
   CountItemRefundPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -4865,6 +5832,7 @@ export interface operations {
   GetItemRefundPolicyByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -4945,6 +5913,7 @@ export interface operations {
   GetItemReturnPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -5020,6 +5989,7 @@ export interface operations {
   CountItemReturnPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -5058,6 +6028,7 @@ export interface operations {
   GetItemReturnPolicyByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -5220,6 +6191,7 @@ export interface operations {
   GetItemReviewByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -5696,7 +6668,8 @@ export interface operations {
    */
   GetStockItemTagsByItemId: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -5736,7 +6709,8 @@ export interface operations {
    */
   CountStockItemTagsByItemId: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -5776,7 +6750,8 @@ export interface operations {
    */
   GetStockItemTagById: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -5901,7 +6876,8 @@ export interface operations {
    */
   GetStockItemTypesByItemId: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -5941,7 +6917,8 @@ export interface operations {
    */
   GetStockItemTypeById: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -8479,6 +9456,7 @@ export interface operations {
   GetItemShippingPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -8554,6 +9532,7 @@ export interface operations {
   CountItemShippingPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -8592,6 +9571,7 @@ export interface operations {
   GetItemShippingPolicyByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -8671,8 +9651,8 @@ export interface operations {
    */
   GetItemTagsAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8754,6 +9734,7 @@ export interface operations {
   GetItemTagByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -8876,6 +9857,7 @@ export interface operations {
   GetItemTaxPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -8951,6 +9933,7 @@ export interface operations {
   CountItemTaxPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -8989,6 +9972,7 @@ export interface operations {
   GetItemTaxPolicyByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -9068,8 +10052,8 @@ export interface operations {
    */
   CountItemTypesAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9106,8 +10090,8 @@ export interface operations {
    */
   GetItemTypesAsync: {
     parameters: {
-      query: {
-        tenantId: string;
+      query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9189,6 +10173,7 @@ export interface operations {
   GetItemTypeByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -9314,6 +10299,7 @@ export interface operations {
   GetItemWarrantyPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -9389,6 +10375,7 @@ export interface operations {
   CountItemWarrantyPoliciesAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -9427,6 +10414,7 @@ export interface operations {
   GetItemWarrantyPolicyByIdAsync: {
     parameters: {
       query?: {
+        tenantId?: string;
         itemId?: string;
         "api-version"?: string;
       };
@@ -9597,208 +10585,6 @@ export interface operations {
           "application/json": components["schemas"]["MerchantDtoEnvelope"];
           "application/xml": components["schemas"]["MerchantDtoEnvelope"];
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get all pricing rules
-   * @description Retrieves all pricing rules for the specified tenant, with optional OData query options.
-   */
-  GetPricingRules: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["PricingRuleDtoListEnvelope"];
-          "application/xml": components["schemas"]["PricingRuleDtoListEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Create a new pricing rule
-   * @description Creates a new pricing rule for the specified tenant.
-   */
-  CreatePricingRule: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["PricingRuleCreateDto"];
-        "application/xml": components["schemas"]["PricingRuleCreateDto"];
-      };
-    };
-    responses: {
-      /** @description Created */
-      201: {
-        content: {
-          "application/json": components["schemas"]["PricingRuleDtoEnvelope"];
-          "application/xml": components["schemas"]["PricingRuleDtoEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get pricing rule by ID
-   * @description Retrieves a pricing rule by its unique identifier.
-   */
-  GetPricingRuleById: {
-    parameters: {
-      query?: {
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        pricingRuleId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["PricingRuleDtoEnvelope"];
-          "application/xml": components["schemas"]["PricingRuleDtoEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Delete a pricing rule
-   * @description Deletes a pricing rule for the specified tenant and rule ID.
-   */
-  DeletePricingRule: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        pricingRuleId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Update a pricing rule
-   * @description Updates an existing pricing rule for the specified tenant and rule ID.
-   */
-  UpdatePricingRule: {
-    parameters: {
-      query: {
-        tenantId: string;
-        pricingRuleId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["PricingRuleUpdateDto"];
-        "application/xml": components["schemas"]["PricingRuleUpdateDto"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
       };
       /** @description Unauthorized */
       401: {

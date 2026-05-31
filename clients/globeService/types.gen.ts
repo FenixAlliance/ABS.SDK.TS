@@ -141,8 +141,8 @@ export type CountryLanguageDtoListEnvelopeWritable = {
 };
 
 export type CountryStateDto = {
-    timestamp?: string | null;
     id?: string | null;
+    timestamp?: string | null;
     name?: string | null;
     code?: string | null;
     countryID?: string | null;
@@ -180,6 +180,7 @@ export type CountryStateDtoListEnvelopeWritable = {
 
 export type CountryTopLevelDomainDto = {
     id?: string | null;
+    timestamp?: string | null;
     domain?: string | null;
     countryID?: string | null;
 };
@@ -201,6 +202,7 @@ export type CountryTopLevelDomainDtoListEnvelopeWritable = {
 
 export type CurrencyDto = {
     id?: string | null;
+    timestamp?: string | null;
     code?: string | null;
     name?: string | null;
     symbol?: string | null;
@@ -235,6 +237,12 @@ export type CurrencyDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<CurrencyDto> | null;
+};
+
+export type _Error = {
+    id?: string | null;
+    description?: string | null;
+    help?: string | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -301,6 +309,20 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type PaymentResponse = {
+    test?: boolean;
+    ip?: string | null;
+    bank?: string | null;
+    status?: string | null;
+    errors?: unknown;
+    response?: string | null;
+    authCode?: string | null;
+    paymentID?: string | null;
+    franchise?: string | null;
+    signature?: string | null;
+    paymentStatus?: 'Unset' | 'Accepted' | 'Rejected' | 'OnHold' | 'Failed' | 'Reversed' | 'Retained' | 'Initialized' | 'Expired' | 'Abandoned' | 'Cancelled' | 'AcceptedRetained';
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -318,6 +340,13 @@ export type ResetPasswordRequest = {
     email: string | null;
     resetCode: string | null;
     newPassword: string | null;
+};
+
+export type ResponseStatus = {
+    success?: boolean;
+    error?: _Error;
+    correlationID?: string | null;
+    utcTimestamp?: string;
 };
 
 export type TimezoneDtoReadable = {
@@ -379,6 +408,37 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetAllCountriesData = {
@@ -556,6 +616,42 @@ export type GetCountryStatesAsyncResponses = {
 
 export type GetCountryStatesAsyncResponse = GetCountryStatesAsyncResponses[keyof GetCountryStatesAsyncResponses];
 
+export type CountCountryStatesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        countryId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/GlobeService/Countries/{countryId}/States/Count';
+};
+
+export type CountCountryStatesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountCountryStatesAsyncError = CountCountryStatesAsyncErrors[keyof CountCountryStatesAsyncErrors];
+
+export type CountCountryStatesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountCountryStatesAsyncResponse = CountCountryStatesAsyncResponses[keyof CountCountryStatesAsyncResponses];
+
 export type GetCountryStateByIdAsyncData = {
     body?: never;
     headers?: {
@@ -630,6 +726,43 @@ export type GetCitiesByCountryStateIdAsyncResponses = {
 
 export type GetCitiesByCountryStateIdAsyncResponse = GetCitiesByCountryStateIdAsyncResponses[keyof GetCitiesByCountryStateIdAsyncResponses];
 
+export type CountCitiesByStateAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        countryStateId: string;
+        countryId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}/Cities/Count';
+};
+
+export type CountCitiesByStateAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountCitiesByStateAsyncError = CountCitiesByStateAsyncErrors[keyof CountCitiesByStateAsyncErrors];
+
+export type CountCitiesByStateAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountCitiesByStateAsyncResponse = CountCitiesByStateAsyncResponses[keyof CountCitiesByStateAsyncResponses];
+
 export type GetTimeZonesByCountryIdAsyncData = {
     body?: never;
     headers?: {
@@ -665,6 +798,42 @@ export type GetTimeZonesByCountryIdAsyncResponses = {
 };
 
 export type GetTimeZonesByCountryIdAsyncResponse = GetTimeZonesByCountryIdAsyncResponses[keyof GetTimeZonesByCountryIdAsyncResponses];
+
+export type CountTimezonesByCountryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        countryId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/GlobeService/Countries/{countryId}/Timezones/Count';
+};
+
+export type CountTimezonesByCountryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountTimezonesByCountryAsyncError = CountTimezonesByCountryAsyncErrors[keyof CountTimezonesByCountryAsyncErrors];
+
+export type CountTimezonesByCountryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountTimezonesByCountryAsyncResponse = CountTimezonesByCountryAsyncResponses[keyof CountTimezonesByCountryAsyncResponses];
 
 export type GetEnabledCurrenciesByCountryIdAsyncData = {
     body?: never;
@@ -738,6 +907,42 @@ export type GetTopLevelDomainsByCountryIdAsyncResponses = {
 
 export type GetTopLevelDomainsByCountryIdAsyncResponse = GetTopLevelDomainsByCountryIdAsyncResponses[keyof GetTopLevelDomainsByCountryIdAsyncResponses];
 
+export type CountTopLevelDomainsByCountryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        countryId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/GlobeService/Countries/{countryId}/TopLevelDomains/Count';
+};
+
+export type CountTopLevelDomainsByCountryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountTopLevelDomainsByCountryAsyncError = CountTopLevelDomainsByCountryAsyncErrors[keyof CountTopLevelDomainsByCountryAsyncErrors];
+
+export type CountTopLevelDomainsByCountryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountTopLevelDomainsByCountryAsyncResponse = CountTopLevelDomainsByCountryAsyncResponses[keyof CountTopLevelDomainsByCountryAsyncResponses];
+
 export type GetCallingCodesByCountryIdAsyncData = {
     body?: never;
     headers?: {
@@ -773,6 +978,42 @@ export type GetCallingCodesByCountryIdAsyncResponses = {
 };
 
 export type GetCallingCodesByCountryIdAsyncResponse = GetCallingCodesByCountryIdAsyncResponses[keyof GetCallingCodesByCountryIdAsyncResponses];
+
+export type CountCallingCodesByCountryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        countryId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/GlobeService/Countries/{countryId}/CallingCodes/Count';
+};
+
+export type CountCallingCodesByCountryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountCallingCodesByCountryAsyncError = CountCallingCodesByCountryAsyncErrors[keyof CountCallingCodesByCountryAsyncErrors];
+
+export type CountCallingCodesByCountryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountCallingCodesByCountryAsyncResponse = CountCallingCodesByCountryAsyncResponses[keyof CountCallingCodesByCountryAsyncResponses];
 
 export type GetEnabledCurrenciesAsyncData = {
     body?: never;
@@ -1310,6 +1551,40 @@ export type GetLanguageByIdAsyncResponses = {
 
 export type GetLanguageByIdAsyncResponse = GetLanguageByIdAsyncResponses[keyof GetLanguageByIdAsyncResponses];
 
+export type PostApiV2GlobalSystemMigrateData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/Global/System/Migrate';
+};
+
+export type PostApiV2GlobalSystemMigrateErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ResponseStatus;
+    /**
+     * Internal Server Error
+     */
+    500: ResponseStatus;
+};
+
+export type PostApiV2GlobalSystemMigrateError = PostApiV2GlobalSystemMigrateErrors[keyof PostApiV2GlobalSystemMigrateErrors];
+
+export type PostApiV2GlobalSystemMigrateResponses = {
+    /**
+     * OK
+     */
+    200: PaymentResponse;
+};
+
+export type PostApiV2GlobalSystemMigrateResponse = PostApiV2GlobalSystemMigrateResponses[keyof PostApiV2GlobalSystemMigrateResponses];
+
 export type GetTimeZonesAsyncData = {
     body?: never;
     headers?: {
@@ -1415,5 +1690,5 @@ export type GetTimeZoneByIdAsyncResponses = {
 export type GetTimeZoneByIdAsyncResponse = GetTimeZoneByIdAsyncResponses[keyof GetTimeZoneByIdAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

@@ -26,7 +26,7 @@ export type AuthResult = {
     error?: string | null;
 };
 
-export type AuthorizationResultEnvelopeReadable = {
+export type AuthResultEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
@@ -35,7 +35,7 @@ export type AuthorizationResultEnvelopeReadable = {
     result?: AuthResult;
 };
 
-export type AuthorizationResultEnvelopeWritable = {
+export type AuthResultEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: AuthResult;
@@ -438,6 +438,37 @@ export type IsAuthenticatedResponses = {
 
 export type IsAuthenticatedResponse = IsAuthenticatedResponses[keyof IsAuthenticatedResponses];
 
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type GetVersionData = {
     body?: never;
     path?: never;
@@ -796,7 +827,7 @@ export type GetResponses = {
     /**
      * OK
      */
-    200: AuthorizationResultEnvelopeReadable;
+    200: AuthResultEnvelopeReadable;
 };
 
 export type GetResponse = GetResponses[keyof GetResponses];
@@ -1044,5 +1075,5 @@ export type PostConnectUserinfoResponses = {
 };
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

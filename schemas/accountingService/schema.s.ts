@@ -227,6 +227,13 @@ export interface paths {
      */
     get: operations["GetAccountCreditsCountAsync"];
   };
+  "/api/v2/AccountingService/Accounts/Aggregate/Balance": {
+    /**
+     * Aggregate accounts balance
+     * @description Returns the sum of all account balances matching OData filters, normalized to the target currency using stored USD values.
+     */
+    get: operations["AggregateAccountsBalanceAsync"];
+  };
   "/api/v2/AccountingService/Accounts/Aggregate": {
     /**
      * Get account aggregate
@@ -254,6 +261,11 @@ export interface paths {
     get: operations["GetAccountTypesCountAsync"];
   };
   "/api/v2/AccountingService/Accounts/Types/{accountTypeId}": {
+    /**
+     * Get account type by ID
+     * @description Get account type by ID.
+     */
+    get: operations["GetAccountTypeByIdAsync"];
     /**
      * Update account type
      * @description Update account type.
@@ -295,6 +307,20 @@ export interface paths {
      * @description Delete account relation.
      */
     delete: operations["DeleteAccountRelationAsync"];
+  };
+  "/api/v2/AccountingService/Accounts/ChartsOfAccounts": {
+    /**
+     * Get charts of accounts
+     * @description Get available charts of accounts.
+     */
+    get: operations["GetChartsOfAccountsAsync"];
+  };
+  "/api/v2/AccountingService/Accounts/ChartsOfAccounts/Seed": {
+    /**
+     * Seed chart of accounts
+     * @description Seed a chart of accounts from a file URL.
+     */
+    post: operations["SeedChartOfAccountsAsync"];
   };
   "/api/v2/AccountingService/Banking": {
     /**
@@ -440,6 +466,51 @@ export interface paths {
      */
     delete: operations["DeleteBankTransaction"];
   };
+  "/api/v2/AccountingService/BankProfiles": {
+    /**
+     * Get all bank profiles for a tenant
+     * @description Retrieves all bank profiles for the specified tenant using OData query options.
+     */
+    get: operations["GetBankProfiles"];
+  };
+  "/api/v2/AccountingService/BankProfiles/Count": {
+    /**
+     * Get bank profiles count
+     * @description Returns the count of bank profiles for the specified tenant.
+     */
+    get: operations["GetBankProfilesCount"];
+  };
+  "/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes": {
+    /**
+     * Get taxes for a billable line.
+     * @description Retrieves the taxes applied to the specified billable line.
+     */
+    get: operations["GetBillableLineTaxes"];
+    /**
+     * Create a new tax for a billable line.
+     * @description Creates a new tax entry for the specified billable line.
+     */
+    post: operations["CreateBillableLineTax"];
+  };
+  "/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/Count": {
+    /**
+     * Get the count of taxes for a billable line.
+     * @description Retrieves the total count of taxes applied to the specified billable line.
+     */
+    get: operations["GetBillableLineTaxesCount"];
+  };
+  "/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/{taxId}": {
+    /**
+     * Update a tax for a billable line.
+     * @description Updates the specified tax entry for the billable line.
+     */
+    put: operations["UpdateBillableLineTax"];
+    /**
+     * Delete a tax from a billable line.
+     * @description Deletes the specified tax entry from the billable line.
+     */
+    delete: operations["DeleteBillableLineTax"];
+  };
   "/api/v2/AccountingService/BillingProfiles/{billingProfileId}": {
     /**
      * Gets a billing profile by id
@@ -504,6 +575,13 @@ export interface paths {
      * @description Create a budget
      */
     post: operations["CreateBudgetAsync"];
+  };
+  "/api/v2/AccountingService/Budgets/Count": {
+    /**
+     * Get the count of budgets
+     * @description Get the count of budgets.
+     */
+    get: operations["GetBudgetsCountAsync"];
   };
   "/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries": {
     /**
@@ -606,6 +684,115 @@ export interface paths {
      */
     delete: operations["DeletePaymentCommissionAsync"];
   };
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/api/v2/AccountingService/CostCentres": {
     /**
      * Get all cost centres for a tenant
@@ -706,6 +893,78 @@ export interface paths {
      * @description Deletes a cost centre budget.
      */
     delete: operations["DeleteCostCentreBudget"];
+  };
+  "/api/v2/AccountingService/ExpenseClaims": {
+    /**
+     * Get all expense claims for a tenant
+     * @description Retrieves all expense claims for the specified tenant using OData query options.
+     */
+    get: operations["GetExpenseClaims"];
+    /**
+     * Create an expense claim
+     * @description Creates a new expense claim.
+     */
+    post: operations["CreateExpenseClaim"];
+  };
+  "/api/v2/AccountingService/ExpenseClaims/Count": {
+    /**
+     * Get the count of expense claims for a tenant
+     * @description Retrieves the count of expense claims for the specified tenant using OData query options.
+     */
+    get: operations["GetExpenseClaimsCount"];
+  };
+  "/api/v2/AccountingService/ExpenseClaims/{expenseClaimId}": {
+    /**
+     * Get an expense claim by id
+     * @description Retrieves an expense claim by its identifier.
+     */
+    get: operations["GetExpenseClaim"];
+    /**
+     * Update an expense claim
+     * @description Updates an existing expense claim.
+     */
+    put: operations["UpdateExpenseClaim"];
+    /**
+     * Delete an expense claim
+     * @description Deletes an expense claim.
+     */
+    delete: operations["DeleteExpenseClaim"];
+  };
+  "/api/v2/AccountingService/ExpenseTypes": {
+    /**
+     * Get all expense types for a tenant
+     * @description Retrieves all expense types for the specified tenant using OData query options.
+     */
+    get: operations["GetExpenseTypes"];
+    /**
+     * Create an expense type
+     * @description Creates a new expense type.
+     */
+    post: operations["CreateExpenseType"];
+  };
+  "/api/v2/AccountingService/ExpenseTypes/Count": {
+    /**
+     * Get the count of expense types for a tenant
+     * @description Retrieves the count of expense types for the specified tenant using OData query options.
+     */
+    get: operations["GetExpenseTypesCount"];
+  };
+  "/api/v2/AccountingService/ExpenseTypes/{expenseTypeId}": {
+    /**
+     * Get an expense type by id
+     * @description Retrieves an expense type by its identifier.
+     */
+    get: operations["GetExpenseType"];
+    /**
+     * Update an expense type
+     * @description Updates an existing expense type.
+     */
+    put: operations["UpdateExpenseType"];
+    /**
+     * Delete an expense type
+     * @description Deletes an expense type.
+     */
+    delete: operations["DeleteExpenseType"];
   };
   "/version": {
     get: {
@@ -1512,6 +1771,20 @@ export interface paths {
      */
     get: operations["GetJournalEntriesCountAsync"];
   };
+  "/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits": {
+    /**
+     * Aggregate journal entry debits
+     * @description Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.
+     */
+    get: operations["AggregateJournalEntryDebitsAsync"];
+  };
+  "/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits": {
+    /**
+     * Aggregate journal entry credits
+     * @description Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.
+     */
+    get: operations["AggregateJournalEntryCreditsAsync"];
+  };
   "/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}": {
     /**
      * Update journal entry
@@ -1704,6 +1977,42 @@ export interface paths {
      */
     delete: operations["DeleteLoanApplicationAsync"];
   };
+  "/api/v2/AccountingService/Loans/Types": {
+    /**
+     * Gets all loan types
+     * @description Retrieves all loan types for the current tenant with OData support.
+     */
+    get: operations["GetLoanTypesAsync"];
+    /**
+     * Creates a loan type
+     * @description Creates a new loan type for the current tenant.
+     */
+    post: operations["CreateLoanTypeAsync"];
+  };
+  "/api/v2/AccountingService/Loans/Types/Count": {
+    /**
+     * Counts loan types
+     * @description Gets the count of loan types for the current tenant.
+     */
+    get: operations["GetLoanTypesCountAsync"];
+  };
+  "/api/v2/AccountingService/Loans/Types/{loanTypeId}": {
+    /**
+     * Gets a loan type by ID
+     * @description Retrieves the details of a loan type using its unique ID.
+     */
+    get: operations["GetLoanTypeByIdAsync"];
+    /**
+     * Updates a loan type
+     * @description Updates the specified loan type.
+     */
+    put: operations["UpdateLoanTypeAsync"];
+    /**
+     * Deletes a loan type
+     * @description Deletes the specified loan type.
+     */
+    delete: operations["DeleteLoanTypeAsync"];
+  };
   "/api/v2/AccountingService/Receipts": {
     /**
      * Retrieves tenant receipts
@@ -1883,6 +2192,42 @@ export interface paths {
      * @description Deletes an existing share transfer reason.
      */
     delete: operations["DeleteShareTransferReason"];
+  };
+  "/api/v2/AccountingService/TaxClasses": {
+    /**
+     * Get all tax classes for a tenant
+     * @description Retrieves all tax classes for the specified tenant using OData query options.
+     */
+    get: operations["GetTaxClasses"];
+    /**
+     * Create a tax class
+     * @description Creates a new tax class for the specified tenant.
+     */
+    post: operations["CreateTaxClass"];
+  };
+  "/api/v2/AccountingService/TaxClasses/Count": {
+    /**
+     * Get tax classes count
+     * @description Returns the count of tax classes for the specified tenant.
+     */
+    get: operations["GetTaxClassesCount"];
+  };
+  "/api/v2/AccountingService/TaxClasses/{id}": {
+    /**
+     * Get tax class by ID
+     * @description Retrieves a specific tax class by its unique identifier.
+     */
+    get: operations["GetTaxClass"];
+    /**
+     * Update a tax class
+     * @description Updates an existing tax class identified by its unique identifier.
+     */
+    put: operations["UpdateTaxClass"];
+    /**
+     * Delete a tax class
+     * @description Deletes a tax class identified by its unique identifier.
+     */
+    delete: operations["DeleteTaxClass"];
   };
   "/api/v2/AccountingService/TaxPolicies": {
     /**
@@ -2113,6 +2458,12 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    Account: {
+      name?: string | null;
+      code?: string | null;
+      childs?: components["schemas"]["Account"][] | null;
+      type?: string | null;
+    };
     AccountCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2151,6 +2502,14 @@ export interface components {
       debitsBalance?: number;
       /** Format: double */
       creditsBalance?: number;
+      /** Format: double */
+      balanceInUsd?: number;
+      /** Format: double */
+      debitsBalanceInUsd?: number;
+      /** Format: double */
+      creditsBalanceInUsd?: number;
+      /** Format: double */
+      forexRate?: number;
       parentAccountId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
@@ -2161,6 +2520,9 @@ export interface components {
       balanceAmount?: components["schemas"]["Money"];
       creditsBalanceAmount?: components["schemas"]["Money"];
       debitsBalanceAmount?: components["schemas"]["Money"];
+      balanceAmountInUsd?: components["schemas"]["Money"];
+      debitsBalanceAmountInUsd?: components["schemas"]["Money"];
+      creditsBalanceAmountInUsd?: components["schemas"]["Money"];
     };
     AccountDtoEnvelope: {
       isSuccess?: boolean;
@@ -2265,6 +2627,15 @@ export interface components {
       description?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    AccountTypeDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AccountTypeDto"];
     };
     AccountTypeDtoListEnvelope: {
       isSuccess?: boolean;
@@ -2415,6 +2786,54 @@ export interface components {
       /** Format: date-time */
       dateEnd?: string;
     };
+    AppliedItemTaxRecordCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      taxPolicyId?: string | null;
+      invoiceId?: string | null;
+      itemId?: string | null;
+      /** Format: double */
+      taxAmountInUSD?: number;
+      /** Format: double */
+      taxBaseAmountInUSD?: number;
+      billingItemRecordId?: string | null;
+    };
+    AppliedItemTaxRecordDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      taxPolicyId?: string | null;
+      invoiceId?: string | null;
+      itemId?: string | null;
+      /** Format: double */
+      taxAmountInUSD?: number;
+      /** Format: double */
+      taxBaseAmountInUSD?: number;
+      billingItemRecordId?: string | null;
+    };
+    AppliedItemTaxRecordDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["AppliedItemTaxRecordDto"][] | null;
+    };
+    AppliedItemTaxRecordUpdateDto: {
+      taxPolicyId?: string | null;
+      invoiceId?: string | null;
+      itemId?: string | null;
+      /** Format: double */
+      taxAmountInUSD?: number;
+      /** Format: double */
+      taxBaseAmountInUSD?: number;
+      billingItemRecordId?: string | null;
+    };
     AppliedTaxPolicyRecordCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2474,17 +2893,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      group?: boolean;
-      frozen?: boolean;
-      name: string;
-      code?: string | null;
-      path?: string | null;
-      prefix?: string | null;
-      currencyId: string;
-      accountTypeId?: string | null;
-      parentAccountId?: string | null;
-      /** @enum {string} */
-      accountCategory: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      name?: string | null;
       iban?: string | null;
       swift?: string | null;
       branchCode?: string | null;
@@ -2497,32 +2906,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      group?: boolean;
-      frozen?: boolean;
       name?: string | null;
-      code?: string | null;
-      path?: string | null;
-      title?: string | null;
-      prefix?: string | null;
-      /** Format: double */
-      balance?: number;
-      currencyId?: string | null;
-      accountType?: string | null;
-      accountTypeId?: string | null;
-      /** Format: double */
-      debitsBalance?: number;
-      /** Format: double */
-      creditsBalance?: number;
-      parentAccountId?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-      /** Format: int32 */
-      childrenAccountsCount?: number;
-      /** @enum {string} */
-      accountCategory?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
-      balanceAmount?: components["schemas"]["Money"];
-      creditsBalanceAmount?: components["schemas"]["Money"];
-      debitsBalanceAmount?: components["schemas"]["Money"];
       iban?: string | null;
       swift?: string | null;
       branchCode?: string | null;
@@ -2530,6 +2914,9 @@ export interface components {
       qualifiedName?: string | null;
       bankId?: string | null;
       bankProfileId?: string | null;
+      walletId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     BankAccountDtoEnvelope: {
       isSuccess?: boolean;
@@ -2550,17 +2937,7 @@ export interface components {
       result?: components["schemas"]["BankAccountDto"][] | null;
     };
     BankAccountUpdateDto: {
-      group?: boolean;
-      frozen?: boolean;
-      name: string;
-      code?: string | null;
-      path?: string | null;
-      prefix?: string | null;
-      currencyId: string;
-      accountTypeId?: string | null;
-      parentAccountId?: string | null;
-      /** @enum {string} */
-      accountCategory?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      name?: string | null;
       iban?: string | null;
       swift?: string | null;
       branchCode?: string | null;
@@ -2706,6 +3083,54 @@ export interface components {
       bankAccountId?: string | null;
       currencyId?: string | null;
     };
+    BankProfileDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
+      enrollmentId?: string | null;
+      about?: string | null;
+      verified?: boolean;
+      submitted?: boolean;
+      avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      verificationTimestamp?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      bankId?: string | null;
+      bankName?: string | null;
+    };
+    BankProfileDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BankProfileDto"][] | null;
+    };
     BankTransactionCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2811,14 +3236,16 @@ export interface components {
     BillingProfileDto: {
       id?: string | null;
       /** Format: date-time */
-      timestamp?: string;
-      tenantId?: string | null;
+      timestamp?: string | null;
       contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
       enrollmentId?: string | null;
       about?: string | null;
       verified?: boolean;
       submitted?: boolean;
       avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
       qualifiedName?: string | null;
       /** Format: date-time */
       verificationTimestamp?: string | null;
@@ -3023,6 +3450,21 @@ export interface components {
       name?: string | null;
       fiscalYearId?: string | null;
     };
+    ChartOfAccounts: {
+      name?: string | null;
+      verified?: boolean;
+      fileUrl?: string | null;
+      childs?: components["schemas"]["Account"][] | null;
+    };
+    ChartOfAccountsListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ChartOfAccounts"][] | null;
+    };
     CommissionCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -3100,6 +3542,83 @@ export interface components {
       receiverWalletAccountId?: string | null;
       emisorContactId?: string | null;
       receiverContactId?: string | null;
+    };
+    ContactDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      qualifiedName?: string | null;
+      tenantId?: string | null;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
+      publicName?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      jobTitle?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      countryId?: string | null;
+      timezoneId?: string | null;
+      languageId?: string | null;
+      socialProfileId?: string | null;
+      /** Format: uri */
+      webUrl?: string | null;
+      /** Format: uri */
+      gitHubUrl?: string | null;
+      /** Format: uri */
+      twitchUrl?: string | null;
+      /** Format: uri */
+      redditUrl?: string | null;
+      /** Format: uri */
+      tikTokUrl?: string | null;
+      /** Format: uri */
+      websiteUrl?: string | null;
+      /** Format: uri */
+      twitterUrl?: string | null;
+      /** Format: uri */
+      facebookUrl?: string | null;
+      /** Format: uri */
+      youTubeUrl?: string | null;
+      /** Format: uri */
+      linkedInUrl?: string | null;
+      /** Format: uri */
+      instagramUrl?: string | null;
+      githubUsername?: string | null;
+      duns?: string | null;
+      taxId?: string | null;
+      about?: string | null;
+      street?: string | null;
+      cartId?: string | null;
+      cityId?: string | null;
+      zipCode?: string | null;
+      stateId?: string | null;
+      walletId?: string | null;
+      faxNumber?: string | null;
+      postalCode?: string | null;
+      currencyId?: string | null;
+      streetLine1?: string | null;
+      streetLine2?: string | null;
+      territoryId?: string | null;
+      mobilePhone?: string | null;
+      enrollmentId?: string | null;
+      annualRevenue?: string | null;
+      relatedUserId?: string | null;
+      businessPhone?: string | null;
+      ownerContactId?: string | null;
+      relatedTenantId?: string | null;
+      activityFeedId?: string | null;
+      parentContactId?: string | null;
+      identityProvider?: string | null;
+      partnerProfileId?: string | null;
+      primaryContactId?: string | null;
+      activeDirectoryId?: string | null;
+      identityProviderAccessToken?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
     };
     CostCentreBudgetCreateDto: {
       /** Format: uuid */
@@ -3272,6 +3791,81 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    ExpenseClaimCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      expenseTypeId?: string | null;
+    };
+    ExpenseClaimDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      expenseTypeId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    ExpenseClaimDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ExpenseClaimDto"];
+    };
+    ExpenseClaimDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ExpenseClaimDto"][] | null;
+    };
+    ExpenseClaimUpdateDto: {
+      expenseTypeId?: string | null;
+    };
+    ExpenseTypeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      enabled?: boolean;
+    };
+    ExpenseTypeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      enabled?: boolean;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    ExpenseTypeDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ExpenseTypeDto"];
+    };
+    ExpenseTypeDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ExpenseTypeDto"][] | null;
+    };
+    ExpenseTypeUpdateDto: {
+      name?: string | null;
+      enabled?: boolean;
     };
     FinancialBookCreateDto: {
       /** Format: uuid */
@@ -3916,6 +4510,10 @@ export interface components {
       credit?: number;
       /** Format: double */
       debit?: number;
+      /** Format: double */
+      creditInUsd?: number;
+      /** Format: double */
+      debitInUsd?: number;
       currencyId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
@@ -3930,6 +4528,8 @@ export interface components {
       parentJournalEntryId?: string | null;
       creditAmount?: components["schemas"]["Money"];
       debitAmount?: components["schemas"]["Money"];
+      creditAmountInUsd?: components["schemas"]["Money"];
+      debitAmountInUsd?: components["schemas"]["Money"];
     };
     JournalEntryDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
@@ -4159,6 +4759,45 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["LoanDto"][] | null;
     };
+    LoanTypeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      description?: string | null;
+    };
+    LoanTypeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    LoanTypeDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LoanTypeDto"];
+    };
+    LoanTypeDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LoanTypeDto"][] | null;
+    };
+    LoanTypeUpdateDto: {
+      name: string;
+      description?: string | null;
+    };
     LoanUpdateDto: {
       /** Format: date-time */
       loanTimestamp?: string;
@@ -4182,6 +4821,15 @@ export interface components {
       /** Format: double */
       amount?: number;
       currency?: components["schemas"]["CurrencyId"];
+    };
+    MoneyEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["Money"];
     };
     Operation: {
       /** @enum {string} */
@@ -4396,6 +5044,9 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    SeedChartOfAccountsRequest: {
+      fileUrl?: string | null;
+    };
     ShareClassCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -4581,6 +5232,51 @@ export interface components {
       newShareHolderId?: string | null;
       formerShareHolderId?: string | null;
       shareTransferReasonId?: string | null;
+    };
+    TaxClassCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      /** @enum {string} */
+      type?: "Tax" | "Withholding";
+      fiscalAuthorityId?: string | null;
+    };
+    TaxClassDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      tenantId?: string | null;
+      /** @enum {string} */
+      type?: "Tax" | "Withholding";
+      enrollmentId?: string | null;
+      fiscalAuthorityId?: string | null;
+    };
+    TaxClassDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TaxClassDto"];
+    };
+    TaxClassDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["TaxClassDto"][] | null;
+    };
+    TaxClassUpdateDto: {
+      name?: string | null;
+      /** @enum {string} */
+      type?: "Tax" | "Withholding";
+      fiscalAuthorityId?: string | null;
     };
     TaxPolicyCreateDto: {
       /** Format: uuid */
@@ -4813,8 +5509,6 @@ export interface components {
       currencyId?: string | null;
       taxPolicyId?: string | null;
     };
-    /** Format: uuid */
-    TenantId: string;
     TransactionCategoryCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -6554,6 +7248,45 @@ export interface operations {
     };
   };
   /**
+   * Aggregate accounts balance
+   * @description Returns the sum of all account balances matching OData filters, normalized to the target currency using stored USD values.
+   */
+  AggregateAccountsBalanceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get account aggregate
    * @description Get account aggregate.
    */
@@ -6606,7 +7339,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        accountTypeId: string;
         "api-version"?: string;
       };
       header?: {
@@ -6645,7 +7377,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        accountId: string;
         "api-version"?: string;
       };
       header?: {
@@ -6690,7 +7421,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        accountTypeId: string;
         "api-version"?: string;
       };
       header?: {
@@ -6722,6 +7452,47 @@ export interface operations {
     };
   };
   /**
+   * Get account type by ID
+   * @description Get account type by ID.
+   */
+  GetAccountTypeByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        accountTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AccountTypeDtoEnvelope"];
+          "application/xml": components["schemas"]["AccountTypeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Update account type
    * @description Update account type.
    */
@@ -6729,7 +7500,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        accountId: string;
         "api-version"?: string;
       };
       header?: {
@@ -6777,7 +7547,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        accountId: string;
         "api-version"?: string;
       };
       header?: {
@@ -6998,6 +7767,87 @@ export interface operations {
       };
       path: {
         accountRelationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get charts of accounts
+   * @description Get available charts of accounts.
+   */
+  GetChartsOfAccountsAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ChartOfAccountsListEnvelope"];
+          "application/xml": components["schemas"]["ChartOfAccountsListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Seed chart of accounts
+   * @description Seed a chart of accounts from a file URL.
+   */
+  SeedChartOfAccountsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SeedChartOfAccountsRequest"];
+        "application/xml": components["schemas"]["SeedChartOfAccountsRequest"];
       };
     };
     responses: {
@@ -8148,6 +8998,231 @@ export interface operations {
     };
   };
   /**
+   * Get all bank profiles for a tenant
+   * @description Retrieves all bank profiles for the specified tenant using OData query options.
+   */
+  GetBankProfiles: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BankProfileDtoListEnvelope"];
+          "application/xml": components["schemas"]["BankProfileDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get bank profiles count
+   * @description Returns the count of bank profiles for the specified tenant.
+   */
+  GetBankProfilesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get taxes for a billable line.
+   * @description Retrieves the taxes applied to the specified billable line.
+   */
+  GetBillableLineTaxes: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billableLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AppliedItemTaxRecordDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["AppliedItemTaxRecordDtoIReadOnlyListEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new tax for a billable line.
+   * @description Creates a new tax entry for the specified billable line.
+   */
+  CreateBillableLineTax: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billableLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppliedItemTaxRecordCreateDto"];
+        "application/xml": components["schemas"]["AppliedItemTaxRecordCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of taxes for a billable line.
+   * @description Retrieves the total count of taxes applied to the specified billable line.
+   */
+  GetBillableLineTaxesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billableLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a tax for a billable line.
+   * @description Updates the specified tax entry for the billable line.
+   */
+  UpdateBillableLineTax: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billableLineId: string;
+        taxId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppliedItemTaxRecordUpdateDto"];
+        "application/xml": components["schemas"]["AppliedItemTaxRecordUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a tax from a billable line.
+   * @description Deletes the specified tax entry from the billable line.
+   */
+  DeleteBillableLineTax: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billableLineId: string;
+        taxId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets a billing profile by id
    * @description Retrieves a specific billing profile using its unique identifier.
    */
@@ -8505,6 +9580,44 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of budgets
+   * @description Get the count of budgets.
+   */
+  GetBudgetsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
         };
       };
       /** @description Unauthorized */
@@ -9950,6 +11063,504 @@ export interface operations {
       };
     };
   };
+  /**
+   * Get all expense claims for a tenant
+   * @description Retrieves all expense claims for the specified tenant using OData query options.
+   */
+  GetExpenseClaims: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExpenseClaimDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExpenseClaimDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an expense claim
+   * @description Creates a new expense claim.
+   */
+  CreateExpenseClaim: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ExpenseClaimCreateDto"];
+        "application/xml": components["schemas"]["ExpenseClaimCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of expense claims for a tenant
+   * @description Retrieves the count of expense claims for the specified tenant using OData query options.
+   */
+  GetExpenseClaimsCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an expense claim by id
+   * @description Retrieves an expense claim by its identifier.
+   */
+  GetExpenseClaim: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        expenseClaimId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExpenseClaimDtoEnvelope"];
+          "application/xml": components["schemas"]["ExpenseClaimDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an expense claim
+   * @description Updates an existing expense claim.
+   */
+  UpdateExpenseClaim: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        expenseClaimId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ExpenseClaimUpdateDto"];
+        "application/xml": components["schemas"]["ExpenseClaimUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an expense claim
+   * @description Deletes an expense claim.
+   */
+  DeleteExpenseClaim: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        expenseClaimId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all expense types for a tenant
+   * @description Retrieves all expense types for the specified tenant using OData query options.
+   */
+  GetExpenseTypes: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExpenseTypeDtoListEnvelope"];
+          "application/xml": components["schemas"]["ExpenseTypeDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an expense type
+   * @description Creates a new expense type.
+   */
+  CreateExpenseType: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ExpenseTypeCreateDto"];
+        "application/xml": components["schemas"]["ExpenseTypeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of expense types for a tenant
+   * @description Retrieves the count of expense types for the specified tenant using OData query options.
+   */
+  GetExpenseTypesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an expense type by id
+   * @description Retrieves an expense type by its identifier.
+   */
+  GetExpenseType: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        expenseTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ExpenseTypeDtoEnvelope"];
+          "application/xml": components["schemas"]["ExpenseTypeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an expense type
+   * @description Updates an existing expense type.
+   */
+  UpdateExpenseType: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        expenseTypeId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ExpenseTypeUpdateDto"];
+        "application/xml": components["schemas"]["ExpenseTypeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an expense type
+   * @description Deletes an expense type.
+   */
+  DeleteExpenseType: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        expenseTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   "MapIdentityApi-/confirmEmail": {
     parameters: {
       query: {
@@ -10512,7 +12123,7 @@ export interface operations {
   GetFiscalYears: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         fiscalAuthorityId: string;
         "api-version"?: string;
       };
@@ -10554,7 +12165,7 @@ export interface operations {
   GetFiscalYearsCount: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10595,7 +12206,7 @@ export interface operations {
   GetFiscalYear: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10637,7 +12248,7 @@ export interface operations {
   CreateFiscalYear: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10681,7 +12292,7 @@ export interface operations {
   UpdateFiscalYear: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10728,7 +12339,7 @@ export interface operations {
   DeleteFiscalYear: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10769,6 +12380,7 @@ export interface operations {
   GetInvoiceEnumerationRanges: {
     parameters: {
       query: {
+        tenantId: string;
         fiscalAuthorityId: string;
         "api-version"?: string;
       };
@@ -10809,7 +12421,8 @@ export interface operations {
    */
   GetInvoiceEnumerationRangesCount: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10850,7 +12463,7 @@ export interface operations {
   GetInvoiceEnumerationRange: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10892,7 +12505,7 @@ export interface operations {
   CreateInvoiceEnumerationRange: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10936,7 +12549,7 @@ export interface operations {
   UpdateInvoiceEnumerationRange: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -10983,7 +12596,7 @@ export interface operations {
   DeleteInvoiceEnumerationRange: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11023,7 +12636,8 @@ export interface operations {
    */
   GetFiscalIdentificationTypes: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11063,7 +12677,8 @@ export interface operations {
    */
   GetFiscalIdentificationTypesCount: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11104,7 +12719,7 @@ export interface operations {
   GetFiscalIdentificationType: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11146,7 +12761,7 @@ export interface operations {
   CreateFiscalIdentificationType: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11190,7 +12805,7 @@ export interface operations {
   UpdateFiscalIdentificationType: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11237,7 +12852,7 @@ export interface operations {
   DeleteFiscalIdentificationType: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11278,7 +12893,7 @@ export interface operations {
   GetFiscalPeriods: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         fiscalAuthorityId: string;
         "api-version"?: string;
       };
@@ -11321,7 +12936,7 @@ export interface operations {
   GetFiscalPeriodsCount: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11363,7 +12978,7 @@ export interface operations {
   GetFiscalPeriod: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11406,7 +13021,7 @@ export interface operations {
   CreateFiscalPeriod: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11450,7 +13065,7 @@ export interface operations {
   UpdateFiscalPeriod: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11497,7 +13112,7 @@ export interface operations {
   DeleteFiscalPeriod: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11538,6 +13153,7 @@ export interface operations {
   GetFiscalRegimes: {
     parameters: {
       query: {
+        tenantId: string;
         fiscalAuthorityId: string;
         "api-version"?: string;
       };
@@ -11578,7 +13194,8 @@ export interface operations {
    */
   GetFiscalRegimesCount: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11619,7 +13236,7 @@ export interface operations {
   GetFiscalRegime: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11661,7 +13278,7 @@ export interface operations {
   CreateFiscalRegime: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11705,7 +13322,7 @@ export interface operations {
   UpdateFiscalRegime: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11752,7 +13369,7 @@ export interface operations {
   DeleteFiscalRegime: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11793,6 +13410,7 @@ export interface operations {
   GetFiscalResponsibilities: {
     parameters: {
       query: {
+        tenantId: string;
         fiscalAuthorityId: string;
         "api-version"?: string;
       };
@@ -11833,7 +13451,8 @@ export interface operations {
    */
   GetFiscalResponsibilitiesCount: {
     parameters: {
-      query?: {
+      query: {
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11874,7 +13493,7 @@ export interface operations {
   GetFiscalResponsibility: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11916,7 +13535,7 @@ export interface operations {
   CreateFiscalResponsibility: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -11960,7 +13579,7 @@ export interface operations {
   UpdateFiscalResponsibility: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -12007,7 +13626,7 @@ export interface operations {
   DeleteFiscalResponsibility: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -12048,7 +13667,7 @@ export interface operations {
   GetFiscalResponsibilityRecords: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -12090,7 +13709,7 @@ export interface operations {
   GetFiscalResponsibilityRecordsCount: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -12132,7 +13751,7 @@ export interface operations {
   GetFiscalResponsibilityRecord: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -12175,7 +13794,7 @@ export interface operations {
   CreateFiscalResponsibilityRecord: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -12219,7 +13838,7 @@ export interface operations {
   UpdateFiscalResponsibilityRecord: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -12266,7 +13885,7 @@ export interface operations {
   DeleteFiscalResponsibilityRecord: {
     parameters: {
       query: {
-        tenantId: components["schemas"]["TenantId"];
+        tenantId: string;
         "api-version"?: string;
       };
       header?: {
@@ -13236,6 +14855,90 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["Int32Envelope"];
           "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate journal entry debits
+   * @description Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.
+   */
+  AggregateJournalEntryDebitsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate journal entry credits
+   * @description Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.
+   */
+  AggregateJournalEntryCreditsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -14506,6 +16209,255 @@ export interface operations {
     };
   };
   /**
+   * Gets all loan types
+   * @description Retrieves all loan types for the current tenant with OData support.
+   */
+  GetLoanTypesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LoanTypeDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["LoanTypeDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a loan type
+   * @description Creates a new loan type for the current tenant.
+   */
+  CreateLoanTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoanTypeCreateDto"];
+        "application/xml": components["schemas"]["LoanTypeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts loan types
+   * @description Gets the count of loan types for the current tenant.
+   */
+  GetLoanTypesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Gets a loan type by ID
+   * @description Retrieves the details of a loan type using its unique ID.
+   */
+  GetLoanTypeByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        loanTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LoanTypeDtoEnvelope"];
+          "application/xml": components["schemas"]["LoanTypeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a loan type
+   * @description Updates the specified loan type.
+   */
+  UpdateLoanTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        loanTypeId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoanTypeUpdateDto"];
+        "application/xml": components["schemas"]["LoanTypeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a loan type
+   * @description Deletes the specified loan type.
+   */
+  DeleteLoanTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        loanTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves tenant receipts
    * @description Fetches all receipts for a given tenant with OData support.
    */
@@ -15747,6 +17699,255 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get all tax classes for a tenant
+   * @description Retrieves all tax classes for the specified tenant using OData query options.
+   */
+  GetTaxClasses: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TaxClassDtoListEnvelope"];
+          "application/xml": components["schemas"]["TaxClassDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a tax class
+   * @description Creates a new tax class for the specified tenant.
+   */
+  CreateTaxClass: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxClassCreateDto"];
+        "application/xml": components["schemas"]["TaxClassCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get tax classes count
+   * @description Returns the count of tax classes for the specified tenant.
+   */
+  GetTaxClassesCount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get tax class by ID
+   * @description Retrieves a specific tax class by its unique identifier.
+   */
+  GetTaxClass: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TaxClassDtoEnvelope"];
+          "application/xml": components["schemas"]["TaxClassDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a tax class
+   * @description Updates an existing tax class identified by its unique identifier.
+   */
+  UpdateTaxClass: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxClassUpdateDto"];
+        "application/xml": components["schemas"]["TaxClassUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a tax class
+   * @description Deletes a tax class identified by its unique identifier.
+   */
+  DeleteTaxClass: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

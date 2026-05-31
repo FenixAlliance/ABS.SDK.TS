@@ -13,6 +13,11 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type AdditionalAttribute = {
+    key?: string | null;
+    value?: string | null;
+};
+
 export type BooleanEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -30,6 +35,7 @@ export type BooleanEnvelopeWritable = {
 
 export type CartDto = {
     id?: string | null;
+    timestamp?: string | null;
     ip?: string | null;
     type?: string | null;
     total?: number;
@@ -40,6 +46,36 @@ export type CartDto = {
     countryId?: string | null;
     itemCartRecordsCount?: number | null;
     itemToCompareRecordsCount?: number | null;
+};
+
+export type CartDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: CartDto;
+};
+
+export type CartDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: CartDto;
+};
+
+export type CartDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<CartDto> | null;
+};
+
+export type CartDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<CartDto> | null;
 };
 
 export type EmailDispatchRequest = {
@@ -70,6 +106,21 @@ export type EmptyEnvelopeReadable = {
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+};
+
+export type EnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: string | null;
+};
+
+export type EnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: string | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -340,6 +391,44 @@ export type HttpValidationProblemDetails = {
     } | null) | undefined;
 };
 
+export type IpLookupDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    ip?: string | null;
+    ua?: string | null;
+    city?: string | null;
+};
+
+export type IpLookupDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: IpLookupDto;
+};
+
+export type IpLookupDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: IpLookupDto;
+};
+
+export type IpLookupDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<IpLookupDto> | null;
+};
+
+export type IpLookupDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<IpLookupDto> | null;
+};
+
 export type ISwaggerContact = {
     name?: string | null;
     email?: string | null;
@@ -415,6 +504,69 @@ export type Int32EnvelopeWritable = {
     result?: number;
 };
 
+export type LicenseAttributes = {
+    [key: string]: never;
+};
+
+export type LicenseAttributesListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<LicenseAttributes> | null;
+};
+
+export type LicenseAttributesListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<LicenseAttributes> | null;
+};
+
+export type LicenseFeature = {
+    key?: string | null;
+    value?: string | null;
+};
+
+export type LicenseKey = {
+    key?: string | null;
+};
+
+export type LicenseKeyRequest = {
+    userId?: string;
+    tenantId?: string | null;
+    orderId?: string | null;
+    paymentId?: string | null;
+    invoiceId?: string | null;
+    enrollmentId?: string | null;
+    entitlementId?: string | null;
+    seats?: number;
+    licenseType?: 'Trial' | 'Standard' | 'Enterprise';
+    expirationDate?: string;
+    features?: Array<LicenseFeature> | null;
+    additionalAttributes?: Array<AdditionalAttribute> | null;
+};
+
+export type LicenseValidationError = {
+    message?: string | null;
+    howToResolve?: string | null;
+};
+
+export type LicenseValidationErrorListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<LicenseValidationError> | null;
+};
+
+export type LicenseValidationErrorListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<LicenseValidationError> | null;
+};
+
 export type LicenseValidationRequest = {
     licenseKey: string;
 };
@@ -453,6 +605,7 @@ export type ModuleReadable = {
     swaggerSpecs?: Array<ISwaggerSpec> | null;
     url?: string | null;
     assemblyPaths?: Array<string> | null;
+    readonly requiredPermissions?: Array<string> | null;
     markedForDeletion?: boolean;
     version?: string | null;
 };
@@ -631,6 +784,21 @@ export type SocialProfileDto = {
     notes?: string | null;
 };
 
+export type StringEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: string | null;
+};
+
+export type StringEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: string | null;
+};
+
 export type StringListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -732,6 +900,42 @@ export type SuiteLicenseDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<SuiteLicenseDto> | null;
+};
+
+export type SystemOverviewDto = {
+    uptime?: string;
+    osDescription?: string | null;
+    machineName?: string | null;
+    processName?: string | null;
+    productVersion?: string | null;
+    privateMemoryMb?: number;
+    pagedMemoryMb?: number;
+    memoryWorkingSetMb?: number;
+    isDebugMode?: boolean;
+    isDevMode?: boolean;
+    frameworkDescription?: string | null;
+    runtimeIdentifier?: string | null;
+    osArchitecture?: string | null;
+    osPlatform?: string | null;
+    processArchitecture?: string | null;
+    usersCount?: number;
+    ordersCount?: number;
+    contactsCount?: number;
+};
+
+export type SystemOverviewDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: SystemOverviewDto;
+};
+
+export type SystemOverviewDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: SystemOverviewDto;
 };
 
 export type TenantCreateDto = {
@@ -1114,7 +1318,7 @@ export type UserUpdateDto = {
 
 export type WalletDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     balance?: number;
     cryptoBalance?: number;
     testMode?: boolean;
@@ -1128,6 +1332,75 @@ export type WalletDto = {
     ethereumPublicKey?: string | null;
     ethereumPrivateKey?: string | null;
     rollingReservePercent?: number;
+};
+
+export type WebPortalCreateDto = {
+    id?: string;
+    timestamp?: string;
+    root?: boolean;
+    title?: string | null;
+    domain?: string | null;
+    disabled?: boolean;
+    description?: string | null;
+    websiteThemeID?: string | null;
+    businessDomainID?: string | null;
+    businessPortalApplicationID?: string | null;
+};
+
+export type WebPortalDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    root?: boolean;
+    title?: string | null;
+    domain?: string | null;
+    disabled?: boolean;
+    tenantId?: string | null;
+    description?: string | null;
+    enrollmentId?: string | null;
+    websiteThemeId?: string | null;
+    businessDomainId?: string | null;
+    businessPortalApplicationId?: string | null;
+};
+
+export type WebPortalDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: WebPortalDto;
+};
+
+export type WebPortalDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: WebPortalDto;
+};
+
+export type WebPortalDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<WebPortalDto> | null;
+};
+
+export type WebPortalDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<WebPortalDto> | null;
+};
+
+export type WebPortalUpdateDto = {
+    root?: boolean;
+    title?: string | null;
+    domain?: string | null;
+    disabled?: boolean;
+    description?: string | null;
+    websiteThemeID?: string | null;
+    businessDomainID?: string | null;
+    businessPortalApplicationID?: string | null;
 };
 
 export type GetAndStoreTokensData = {
@@ -1168,6 +1441,400 @@ export type IsRequestValidAsyncResponses = {
     200: unknown;
 };
 
+export type GetSystemCartsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Carts';
+};
+
+export type GetSystemCartsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemCartsError = GetSystemCartsErrors[keyof GetSystemCartsErrors];
+
+export type GetSystemCartsResponses = {
+    /**
+     * OK
+     */
+    200: CartDtoListEnvelopeReadable;
+};
+
+export type GetSystemCartsResponse = GetSystemCartsResponses[keyof GetSystemCartsResponses];
+
+export type GetSystemCartsCountData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Carts/Count';
+};
+
+export type GetSystemCartsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemCartsCountError = GetSystemCartsCountErrors[keyof GetSystemCartsCountErrors];
+
+export type GetSystemCartsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSystemCartsCountResponse = GetSystemCartsCountResponses[keyof GetSystemCartsCountResponses];
+
+export type DeleteSystemCartData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        cartId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Carts/{cartId}';
+};
+
+export type DeleteSystemCartErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSystemCartError = DeleteSystemCartErrors[keyof DeleteSystemCartErrors];
+
+export type DeleteSystemCartResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSystemCartResponse = DeleteSystemCartResponses[keyof DeleteSystemCartResponses];
+
+export type GetSystemCartByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        cartId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Carts/{cartId}';
+};
+
+export type GetSystemCartByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemCartByIdError = GetSystemCartByIdErrors[keyof GetSystemCartByIdErrors];
+
+export type GetSystemCartByIdResponses = {
+    /**
+     * OK
+     */
+    200: CartDtoEnvelopeReadable;
+};
+
+export type GetSystemCartByIdResponse = GetSystemCartByIdResponses[keyof GetSystemCartByIdResponses];
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetSystemContactOptionsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        contactId: string;
+    };
+    query?: {
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Contacts/{contactId}/Options';
+};
+
+export type GetSystemContactOptionsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemContactOptionsError = GetSystemContactOptionsErrors[keyof GetSystemContactOptionsErrors];
+
+export type GetSystemContactOptionsResponses = {
+    /**
+     * OK
+     */
+    200: OptionDtoListEnvelopeReadable;
+};
+
+export type GetSystemContactOptionsResponse = GetSystemContactOptionsResponses[keyof GetSystemContactOptionsResponses];
+
+export type CreateSystemContactOptionData = {
+    body?: OptionCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        contactId: string;
+    };
+    query: {
+        key: string;
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Contacts/{contactId}/Options';
+};
+
+export type CreateSystemContactOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateSystemContactOptionError = CreateSystemContactOptionErrors[keyof CreateSystemContactOptionErrors];
+
+export type CreateSystemContactOptionResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateSystemContactOptionResponse = CreateSystemContactOptionResponses[keyof CreateSystemContactOptionResponses];
+
+export type GetSystemContactOptionsCountData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        contactId: string;
+    };
+    query?: {
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Contacts/{contactId}/Options/Count';
+};
+
+export type GetSystemContactOptionsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemContactOptionsCountError = GetSystemContactOptionsCountErrors[keyof GetSystemContactOptionsCountErrors];
+
+export type GetSystemContactOptionsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSystemContactOptionsCountResponse = GetSystemContactOptionsCountResponses[keyof GetSystemContactOptionsCountResponses];
+
+export type DeleteSystemContactOptionData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        contactId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}';
+};
+
+export type DeleteSystemContactOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSystemContactOptionError = DeleteSystemContactOptionErrors[keyof DeleteSystemContactOptionErrors];
+
+export type DeleteSystemContactOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSystemContactOptionResponse = DeleteSystemContactOptionResponses[keyof DeleteSystemContactOptionResponses];
+
+export type GetSystemContactOptionByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        contactId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}';
+};
+
+export type GetSystemContactOptionByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemContactOptionByIdError = GetSystemContactOptionByIdErrors[keyof GetSystemContactOptionByIdErrors];
+
+export type GetSystemContactOptionByIdResponses = {
+    /**
+     * OK
+     */
+    200: OptionDtoEnvelopeReadable;
+};
+
+export type GetSystemContactOptionByIdResponse = GetSystemContactOptionByIdResponses[keyof GetSystemContactOptionByIdResponses];
+
+export type UpdateSystemContactOptionData = {
+    body?: OptionUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        contactId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}';
+};
+
+export type UpdateSystemContactOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateSystemContactOptionError = UpdateSystemContactOptionErrors[keyof UpdateSystemContactOptionErrors];
+
+export type UpdateSystemContactOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSystemContactOptionResponse = UpdateSystemContactOptionResponses[keyof UpdateSystemContactOptionResponses];
+
 export type AdminSendBasicEmailData = {
     body?: ObjectEmailDispatchRequest;
     headers?: {
@@ -1197,7 +1864,7 @@ export type AdminSendBasicEmailResponses = {
     /**
      * OK
      */
-    200: TenantDtoListEnvelopeReadable;
+    200: EnvelopeReadable;
 };
 
 export type AdminSendBasicEmailResponse = AdminSendBasicEmailResponses[keyof AdminSendBasicEmailResponses];
@@ -1549,6 +2216,286 @@ export type PostAccountManageDownloadPersonalDataResponses = {
     200: unknown;
 };
 
+export type GetSystemIpLookupsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/IPLookups';
+};
+
+export type GetSystemIpLookupsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemIpLookupsError = GetSystemIpLookupsErrors[keyof GetSystemIpLookupsErrors];
+
+export type GetSystemIpLookupsResponses = {
+    /**
+     * OK
+     */
+    200: IpLookupDtoListEnvelopeReadable;
+};
+
+export type GetSystemIpLookupsResponse = GetSystemIpLookupsResponses[keyof GetSystemIpLookupsResponses];
+
+export type GetSystemIpLookupsCountData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/IPLookups/Count';
+};
+
+export type GetSystemIpLookupsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemIpLookupsCountError = GetSystemIpLookupsCountErrors[keyof GetSystemIpLookupsCountErrors];
+
+export type GetSystemIpLookupsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSystemIpLookupsCountResponse = GetSystemIpLookupsCountResponses[keyof GetSystemIpLookupsCountResponses];
+
+export type DeleteSystemIpLookupData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        ipLookupId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/IPLookups/{ipLookupId}';
+};
+
+export type DeleteSystemIpLookupErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSystemIpLookupError = DeleteSystemIpLookupErrors[keyof DeleteSystemIpLookupErrors];
+
+export type DeleteSystemIpLookupResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSystemIpLookupResponse = DeleteSystemIpLookupResponses[keyof DeleteSystemIpLookupResponses];
+
+export type GetSystemIpLookupByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        ipLookupId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/IPLookups/{ipLookupId}';
+};
+
+export type GetSystemIpLookupByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemIpLookupByIdError = GetSystemIpLookupByIdErrors[keyof GetSystemIpLookupByIdErrors];
+
+export type GetSystemIpLookupByIdResponses = {
+    /**
+     * OK
+     */
+    200: IpLookupDtoEnvelopeReadable;
+};
+
+export type GetSystemIpLookupByIdResponse = GetSystemIpLookupByIdResponses[keyof GetSystemIpLookupByIdResponses];
+
+export type GetApiLicensingLicensesValidateData = {
+    body?: LicenseKey;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/Licensing/Licenses/Validate';
+};
+
+export type GetApiLicensingLicensesValidateErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiLicensingLicensesValidateError = GetApiLicensingLicensesValidateErrors[keyof GetApiLicensingLicensesValidateErrors];
+
+export type GetApiLicensingLicensesValidateResponses = {
+    /**
+     * OK
+     */
+    200: BooleanEnvelopeReadable;
+};
+
+export type GetApiLicensingLicensesValidateResponse = GetApiLicensingLicensesValidateResponses[keyof GetApiLicensingLicensesValidateResponses];
+
+export type GetApiLicensingLicensesValidateErrorsData = {
+    body?: LicenseKey;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/Licensing/Licenses/Validate/Errors';
+};
+
+export type GetApiLicensingLicensesValidateErrorsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiLicensingLicensesValidateErrorsError = GetApiLicensingLicensesValidateErrorsErrors[keyof GetApiLicensingLicensesValidateErrorsErrors];
+
+export type GetApiLicensingLicensesValidateErrorsResponses = {
+    /**
+     * OK
+     */
+    200: LicenseValidationErrorListEnvelopeReadable;
+};
+
+export type GetApiLicensingLicensesValidateErrorsResponse = GetApiLicensingLicensesValidateErrorsResponses[keyof GetApiLicensingLicensesValidateErrorsResponses];
+
+export type GetApiLicensingLicensesValidateAttributesData = {
+    body?: LicenseKey;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/Licensing/Licenses/Validate/Attributes';
+};
+
+export type GetApiLicensingLicensesValidateAttributesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiLicensingLicensesValidateAttributesError = GetApiLicensingLicensesValidateAttributesErrors[keyof GetApiLicensingLicensesValidateAttributesErrors];
+
+export type GetApiLicensingLicensesValidateAttributesResponses = {
+    /**
+     * OK
+     */
+    200: LicenseAttributesListEnvelopeReadable;
+};
+
+export type GetApiLicensingLicensesValidateAttributesResponse = GetApiLicensingLicensesValidateAttributesResponses[keyof GetApiLicensingLicensesValidateAttributesResponses];
+
+export type PostApiLicensingLicensesGenerateData = {
+    body?: LicenseKeyRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/Licensing/Licenses/Generate';
+};
+
+export type PostApiLicensingLicensesGenerateErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PostApiLicensingLicensesGenerateError = PostApiLicensingLicensesGenerateErrors[keyof PostApiLicensingLicensesGenerateErrors];
+
+export type PostApiLicensingLicensesGenerateResponses = {
+    /**
+     * OK
+     */
+    200: StringEnvelopeReadable;
+};
+
+export type PostApiLicensingLicensesGenerateResponse = PostApiLicensingLicensesGenerateResponses[keyof PostApiLicensingLicensesGenerateResponses];
+
 export type GetLicensesAsyncData = {
     body?: never;
     headers?: {
@@ -1588,7 +2535,8 @@ export type GetLicenseByIdAsyncData = {
     path: {
         licenseId: string;
     };
-    query?: {
+    query: {
+        tenantId: string;
         'api-version'?: string;
     };
     url: '/api/v2/SystemService/Licensing/Licenses/{licenseId}';
@@ -2232,6 +3180,473 @@ export type UpsertSystemOptionResponses = {
 
 export type UpsertSystemOptionResponse = UpsertSystemOptionResponses[keyof UpsertSystemOptionResponses];
 
+export type GetSystemOverviewData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Overview';
+};
+
+export type GetSystemOverviewErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemOverviewError = GetSystemOverviewErrors[keyof GetSystemOverviewErrors];
+
+export type GetSystemOverviewResponses = {
+    /**
+     * OK
+     */
+    200: SystemOverviewDtoEnvelopeReadable;
+};
+
+export type GetSystemOverviewResponse = GetSystemOverviewResponses[keyof GetSystemOverviewResponses];
+
+export type GetSystemPortalsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Portals';
+};
+
+export type GetSystemPortalsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemPortalsError = GetSystemPortalsErrors[keyof GetSystemPortalsErrors];
+
+export type GetSystemPortalsResponses = {
+    /**
+     * OK
+     */
+    200: WebPortalDtoListEnvelopeReadable;
+};
+
+export type GetSystemPortalsResponse = GetSystemPortalsResponses[keyof GetSystemPortalsResponses];
+
+export type CreateSystemPortalData = {
+    body?: WebPortalCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Portals';
+};
+
+export type CreateSystemPortalErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateSystemPortalError = CreateSystemPortalErrors[keyof CreateSystemPortalErrors];
+
+export type CreateSystemPortalResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateSystemPortalResponse = CreateSystemPortalResponses[keyof CreateSystemPortalResponses];
+
+export type GetSystemPortalsCountData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Portals/Count';
+};
+
+export type GetSystemPortalsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemPortalsCountError = GetSystemPortalsCountErrors[keyof GetSystemPortalsCountErrors];
+
+export type GetSystemPortalsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSystemPortalsCountResponse = GetSystemPortalsCountResponses[keyof GetSystemPortalsCountResponses];
+
+export type DeleteSystemPortalData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        portalId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Portals/{portalId}';
+};
+
+export type DeleteSystemPortalErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSystemPortalError = DeleteSystemPortalErrors[keyof DeleteSystemPortalErrors];
+
+export type DeleteSystemPortalResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSystemPortalResponse = DeleteSystemPortalResponses[keyof DeleteSystemPortalResponses];
+
+export type GetSystemPortalByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        portalId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Portals/{portalId}';
+};
+
+export type GetSystemPortalByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemPortalByIdError = GetSystemPortalByIdErrors[keyof GetSystemPortalByIdErrors];
+
+export type GetSystemPortalByIdResponses = {
+    /**
+     * OK
+     */
+    200: WebPortalDtoEnvelopeReadable;
+};
+
+export type GetSystemPortalByIdResponse = GetSystemPortalByIdResponses[keyof GetSystemPortalByIdResponses];
+
+export type UpdateSystemPortalData = {
+    body?: WebPortalUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        portalId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Portals/{portalId}';
+};
+
+export type UpdateSystemPortalErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateSystemPortalError = UpdateSystemPortalErrors[keyof UpdateSystemPortalErrors];
+
+export type UpdateSystemPortalResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSystemPortalResponse = UpdateSystemPortalResponses[keyof UpdateSystemPortalResponses];
+
+export type GetSystemTenantOptionsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query?: {
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/Options';
+};
+
+export type GetSystemTenantOptionsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemTenantOptionsError = GetSystemTenantOptionsErrors[keyof GetSystemTenantOptionsErrors];
+
+export type GetSystemTenantOptionsResponses = {
+    /**
+     * OK
+     */
+    200: OptionDtoListEnvelopeReadable;
+};
+
+export type GetSystemTenantOptionsResponse = GetSystemTenantOptionsResponses[keyof GetSystemTenantOptionsResponses];
+
+export type CreateSystemTenantOptionData = {
+    body?: OptionCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query: {
+        key: string;
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/Options';
+};
+
+export type CreateSystemTenantOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateSystemTenantOptionError = CreateSystemTenantOptionErrors[keyof CreateSystemTenantOptionErrors];
+
+export type CreateSystemTenantOptionResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateSystemTenantOptionResponse = CreateSystemTenantOptionResponses[keyof CreateSystemTenantOptionResponses];
+
+export type GetSystemTenantOptionsCountData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query?: {
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/Options/Count';
+};
+
+export type GetSystemTenantOptionsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemTenantOptionsCountError = GetSystemTenantOptionsCountErrors[keyof GetSystemTenantOptionsCountErrors];
+
+export type GetSystemTenantOptionsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSystemTenantOptionsCountResponse = GetSystemTenantOptionsCountResponses[keyof GetSystemTenantOptionsCountResponses];
+
+export type DeleteSystemTenantOptionData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}';
+};
+
+export type DeleteSystemTenantOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSystemTenantOptionError = DeleteSystemTenantOptionErrors[keyof DeleteSystemTenantOptionErrors];
+
+export type DeleteSystemTenantOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSystemTenantOptionResponse = DeleteSystemTenantOptionResponses[keyof DeleteSystemTenantOptionResponses];
+
+export type GetSystemTenantOptionByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}';
+};
+
+export type GetSystemTenantOptionByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemTenantOptionByIdError = GetSystemTenantOptionByIdErrors[keyof GetSystemTenantOptionByIdErrors];
+
+export type GetSystemTenantOptionByIdResponses = {
+    /**
+     * OK
+     */
+    200: OptionDtoEnvelopeReadable;
+};
+
+export type GetSystemTenantOptionByIdResponse = GetSystemTenantOptionByIdResponses[keyof GetSystemTenantOptionByIdResponses];
+
+export type UpdateSystemTenantOptionData = {
+    body?: OptionUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}';
+};
+
+export type UpdateSystemTenantOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateSystemTenantOptionError = UpdateSystemTenantOptionErrors[keyof UpdateSystemTenantOptionErrors];
+
+export type UpdateSystemTenantOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSystemTenantOptionResponse = UpdateSystemTenantOptionResponses[keyof UpdateSystemTenantOptionResponses];
+
 export type GetAllTenantsData = {
     body?: never;
     headers?: {
@@ -2551,6 +3966,229 @@ export type AdminSendTenantEmailResponses = {
      */
     200: unknown;
 };
+
+export type GetSystemUserOptionsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query?: {
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Options';
+};
+
+export type GetSystemUserOptionsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemUserOptionsError = GetSystemUserOptionsErrors[keyof GetSystemUserOptionsErrors];
+
+export type GetSystemUserOptionsResponses = {
+    /**
+     * OK
+     */
+    200: OptionDtoListEnvelopeReadable;
+};
+
+export type GetSystemUserOptionsResponse = GetSystemUserOptionsResponses[keyof GetSystemUserOptionsResponses];
+
+export type CreateSystemUserOptionData = {
+    body?: OptionCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query: {
+        key: string;
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Options';
+};
+
+export type CreateSystemUserOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateSystemUserOptionError = CreateSystemUserOptionErrors[keyof CreateSystemUserOptionErrors];
+
+export type CreateSystemUserOptionResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateSystemUserOptionResponse = CreateSystemUserOptionResponses[keyof CreateSystemUserOptionResponses];
+
+export type GetSystemUserOptionsCountData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query?: {
+        portalId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Options/Count';
+};
+
+export type GetSystemUserOptionsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemUserOptionsCountError = GetSystemUserOptionsCountErrors[keyof GetSystemUserOptionsCountErrors];
+
+export type GetSystemUserOptionsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSystemUserOptionsCountResponse = GetSystemUserOptionsCountResponses[keyof GetSystemUserOptionsCountResponses];
+
+export type DeleteSystemUserOptionData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Options/{optionId}';
+};
+
+export type DeleteSystemUserOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSystemUserOptionError = DeleteSystemUserOptionErrors[keyof DeleteSystemUserOptionErrors];
+
+export type DeleteSystemUserOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSystemUserOptionResponse = DeleteSystemUserOptionResponses[keyof DeleteSystemUserOptionResponses];
+
+export type GetSystemUserOptionByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Options/{optionId}';
+};
+
+export type GetSystemUserOptionByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemUserOptionByIdError = GetSystemUserOptionByIdErrors[keyof GetSystemUserOptionByIdErrors];
+
+export type GetSystemUserOptionByIdResponses = {
+    /**
+     * OK
+     */
+    200: OptionDtoEnvelopeReadable;
+};
+
+export type GetSystemUserOptionByIdResponse = GetSystemUserOptionByIdResponses[keyof GetSystemUserOptionByIdResponses];
+
+export type UpdateSystemUserOptionData = {
+    body?: OptionUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Options/{optionId}';
+};
+
+export type UpdateSystemUserOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateSystemUserOptionError = UpdateSystemUserOptionErrors[keyof UpdateSystemUserOptionErrors];
+
+export type UpdateSystemUserOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSystemUserOptionResponse = UpdateSystemUserOptionResponses[keyof UpdateSystemUserOptionResponses];
 
 export type GetUsersAsyncData = {
     body?: never;
@@ -2930,5 +4568,5 @@ export type AdminSendUserEmailResponses = {
 export type AdminSendUserEmailResponse = AdminSendUserEmailResponses[keyof AdminSendUserEmailResponses];
 
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

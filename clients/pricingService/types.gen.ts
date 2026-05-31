@@ -456,6 +456,112 @@ export type PriceListUpdateDto = {
     unitGroupId?: string | null;
 };
 
+export type PricingRuleCreateDto = {
+    id?: string;
+    timestamp?: string;
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
+export type PricingRuleDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    businessID?: string | null;
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
+export type PricingRuleDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: PricingRuleDto;
+};
+
+export type PricingRuleDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: PricingRuleDto;
+};
+
+export type PricingRuleDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<PricingRuleDto> | null;
+};
+
+export type PricingRuleDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<PricingRuleDto> | null;
+};
+
+export type PricingRuleUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyID?: string | null;
+    countryID?: string | null;
+    countryStateID?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityID?: string | null;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -475,6 +581,114 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type RoundingPolicyCreateDto = {
+    id?: string;
+    timestamp?: string;
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityId?: string | null;
+};
+
+export type RoundingPolicyDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type RoundingPolicyDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: RoundingPolicyDto;
+};
+
+export type RoundingPolicyDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: RoundingPolicyDto;
+};
+
+export type RoundingPolicyDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<RoundingPolicyDto> | null;
+};
+
+export type RoundingPolicyDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<RoundingPolicyDto> | null;
+};
+
+export type RoundingPolicyUpdateDto = {
+    code?: string | null;
+    title?: string | null;
+    description?: string | null;
+    isFree?: boolean;
+    reduce?: boolean;
+    isEnabled?: boolean;
+    isDefault?: boolean;
+    allowInternational?: boolean;
+    hours?: number;
+    days?: number;
+    weeks?: number;
+    months?: number;
+    years?: number;
+    value?: number;
+    percentage?: number;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    customState?: string | null;
+    customCity?: string | null;
+    cityId?: string | null;
+};
+
 export type TwoFactorRequest = {
     enable?: boolean | null;
     twoFactorCode?: string | null;
@@ -489,6 +703,37 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+        conversationId?: string;
+        message?: string;
+    };
+    url: '/api/v2/AiService/Completions/Complete';
+};
+
+export type GetApiV2AiServiceCompletionsCompleteErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+
+export type GetApiV2AiServiceCompletionsCompleteResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
 };
 
 export type GetDiscountListsData = {
@@ -1712,6 +1957,429 @@ export type GetTotalSavingsInUsdResponses = {
 
 export type GetTotalSavingsInUsdResponse = GetTotalSavingsInUsdResponses[keyof GetTotalSavingsInUsdResponses];
 
+export type GetPricingRulesData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/PricingRules';
+};
+
+export type GetPricingRulesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetPricingRulesError = GetPricingRulesErrors[keyof GetPricingRulesErrors];
+
+export type GetPricingRulesResponses = {
+    /**
+     * OK
+     */
+    200: PricingRuleDtoListEnvelopeReadable;
+};
+
+export type GetPricingRulesResponse = GetPricingRulesResponses[keyof GetPricingRulesResponses];
+
+export type CreatePricingRuleData = {
+    body?: PricingRuleCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/PricingRules';
+};
+
+export type CreatePricingRuleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreatePricingRuleError = CreatePricingRuleErrors[keyof CreatePricingRuleErrors];
+
+export type CreatePricingRuleResponses = {
+    /**
+     * Created
+     */
+    201: PricingRuleDtoEnvelopeReadable;
+};
+
+export type CreatePricingRuleResponse = CreatePricingRuleResponses[keyof CreatePricingRuleResponses];
+
+export type DeletePricingRuleData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pricingRuleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/PricingRules/{pricingRuleId}';
+};
+
+export type DeletePricingRuleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeletePricingRuleError = DeletePricingRuleErrors[keyof DeletePricingRuleErrors];
+
+export type DeletePricingRuleResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetPricingRuleByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pricingRuleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/PricingRules/{pricingRuleId}';
+};
+
+export type GetPricingRuleByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetPricingRuleByIdError = GetPricingRuleByIdErrors[keyof GetPricingRuleByIdErrors];
+
+export type GetPricingRuleByIdResponses = {
+    /**
+     * OK
+     */
+    200: PricingRuleDtoEnvelopeReadable;
+};
+
+export type GetPricingRuleByIdResponse = GetPricingRuleByIdResponses[keyof GetPricingRuleByIdResponses];
+
+export type GetPricingRulesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/PricingRules/Count';
+};
+
+export type GetPricingRulesCountAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetPricingRulesCountAsyncError = GetPricingRulesCountAsyncErrors[keyof GetPricingRulesCountAsyncErrors];
+
+export type GetPricingRulesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetPricingRulesCountAsyncResponse = GetPricingRulesCountAsyncResponses[keyof GetPricingRulesCountAsyncResponses];
+
+export type UpdatePricingRuleData = {
+    body?: PricingRuleUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        pricingRuleId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/PricingRules/Update';
+};
+
+export type UpdatePricingRuleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdatePricingRuleError = UpdatePricingRuleErrors[keyof UpdatePricingRuleErrors];
+
+export type UpdatePricingRuleResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetRoundingPoliciesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/RoundingPolicies';
+};
+
+export type GetRoundingPoliciesAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRoundingPoliciesAsyncError = GetRoundingPoliciesAsyncErrors[keyof GetRoundingPoliciesAsyncErrors];
+
+export type GetRoundingPoliciesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RoundingPolicyDtoListEnvelopeReadable;
+};
+
+export type GetRoundingPoliciesAsyncResponse = GetRoundingPoliciesAsyncResponses[keyof GetRoundingPoliciesAsyncResponses];
+
+export type CreateRoundingPolicyAsyncData = {
+    body: RoundingPolicyCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/RoundingPolicies';
+};
+
+export type CreateRoundingPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateRoundingPolicyAsyncError = CreateRoundingPolicyAsyncErrors[keyof CreateRoundingPolicyAsyncErrors];
+
+export type CreateRoundingPolicyAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateRoundingPolicyAsyncResponse = CreateRoundingPolicyAsyncResponses[keyof CreateRoundingPolicyAsyncResponses];
+
+export type GetRoundingPoliciesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/RoundingPolicies/Count';
+};
+
+export type GetRoundingPoliciesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRoundingPoliciesCountAsyncError = GetRoundingPoliciesCountAsyncErrors[keyof GetRoundingPoliciesCountAsyncErrors];
+
+export type GetRoundingPoliciesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetRoundingPoliciesCountAsyncResponse = GetRoundingPoliciesCountAsyncResponses[keyof GetRoundingPoliciesCountAsyncResponses];
+
+export type DeleteRoundingPolicyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        roundingPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}';
+};
+
+export type DeleteRoundingPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteRoundingPolicyAsyncError = DeleteRoundingPolicyAsyncErrors[keyof DeleteRoundingPolicyAsyncErrors];
+
+export type DeleteRoundingPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteRoundingPolicyAsyncResponse = DeleteRoundingPolicyAsyncResponses[keyof DeleteRoundingPolicyAsyncResponses];
+
+export type GetRoundingPolicyByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        roundingPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}';
+};
+
+export type GetRoundingPolicyByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRoundingPolicyByIdAsyncError = GetRoundingPolicyByIdAsyncErrors[keyof GetRoundingPolicyByIdAsyncErrors];
+
+export type GetRoundingPolicyByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RoundingPolicyDtoEnvelopeReadable;
+};
+
+export type GetRoundingPolicyByIdAsyncResponse = GetRoundingPolicyByIdAsyncResponses[keyof GetRoundingPolicyByIdAsyncResponses];
+
+export type UpdateRoundingPolicyAsyncData = {
+    body: RoundingPolicyUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        roundingPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}';
+};
+
+export type UpdateRoundingPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateRoundingPolicyAsyncError = UpdateRoundingPolicyAsyncErrors[keyof UpdateRoundingPolicyAsyncErrors];
+
+export type UpdateRoundingPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateRoundingPolicyAsyncResponse = UpdateRoundingPolicyAsyncResponses[keyof UpdateRoundingPolicyAsyncResponses];
+
 export type ClientOptions = {
-    baseUrl: `${string}://{server}` | (string & {});
+    baseUrl: 'https://absuite.net' | (string & {});
 };

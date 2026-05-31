@@ -5,6 +5,115 @@
 
 
 export interface paths {
+  "/api/v2/AiService/Completions/Complete": {
+    get: {
+      parameters: {
+        query: {
+          tenantId: string;
+          conversationId?: string;
+          message?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
+            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+            "text/plain": components["schemas"]["ErrorEnvelope"];
+            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
+            "text/json": components["schemas"]["ErrorEnvelope"];
+            "text/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
+  };
   "/api/v2/GlobeService/Countries": {
     /**
      * Get all countries
@@ -40,6 +149,13 @@ export interface paths {
      */
     get: operations["GetCountryStatesAsync"];
   };
+  "/api/v2/GlobeService/Countries/{countryId}/States/Count": {
+    /**
+     * Count states for a country
+     * @description Returns the total number of states or provinces for the specified country, with optional OData filtering.
+     */
+    get: operations["CountCountryStatesAsync"];
+  };
   "/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}": {
     /**
      * Get state by ID
@@ -54,12 +170,26 @@ export interface paths {
      */
     get: operations["GetCitiesByCountryStateIdAsync"];
   };
+  "/api/v2/GlobeService/Countries/{countryId}/States/{countryStateId}/Cities/Count": {
+    /**
+     * Count cities for a state
+     * @description Returns the total number of cities for the specified state, with optional OData filtering.
+     */
+    get: operations["CountCitiesByStateAsync"];
+  };
   "/api/v2/GlobeService/Countries/{countryId}/Timezones": {
     /**
      * Get timezones for a country
      * @description Retrieves the list of timezones associated with the specified country.
      */
     get: operations["GetTimeZonesByCountryIdAsync"];
+  };
+  "/api/v2/GlobeService/Countries/{countryId}/Timezones/Count": {
+    /**
+     * Count timezones for a country
+     * @description Returns the total number of timezones for the specified country, with optional OData filtering.
+     */
+    get: operations["CountTimezonesByCountryAsync"];
   };
   "/api/v2/GlobeService/Countries/{countryId}/Currencies": {
     /**
@@ -75,12 +205,26 @@ export interface paths {
      */
     get: operations["GetTopLevelDomainsByCountryIdAsync"];
   };
+  "/api/v2/GlobeService/Countries/{countryId}/TopLevelDomains/Count": {
+    /**
+     * Count top-level domains for a country
+     * @description Returns the total number of top-level domains for the specified country, with optional OData filtering.
+     */
+    get: operations["CountTopLevelDomainsByCountryAsync"];
+  };
   "/api/v2/GlobeService/Countries/{countryId}/CallingCodes": {
     /**
      * Get calling codes for a country
      * @description Retrieves the list of international telephone calling codes associated with the specified country.
      */
     get: operations["GetCallingCodesByCountryIdAsync"];
+  };
+  "/api/v2/GlobeService/Countries/{countryId}/CallingCodes/Count": {
+    /**
+     * Count calling codes for a country
+     * @description Returns the total number of calling codes for the specified country, with optional OData filtering.
+     */
+    get: operations["CountCallingCodesByCountryAsync"];
   };
   "/api/v2/GlobeService/Currencies": {
     /**
@@ -421,6 +565,41 @@ export interface paths {
      */
     get: operations["GetLanguageByIdAsync"];
   };
+  "/api/v2/Global/System/Migrate": {
+    post: {
+      parameters: {
+        query?: {
+          "api-version"?: string;
+        };
+        header?: {
+          "x-api-version"?: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["PaymentResponse"];
+            "application/xml": components["schemas"]["PaymentResponse"];
+          };
+        };
+        /** @description Unauthorized */
+        401: {
+          content: {
+            "application/json": components["schemas"]["ResponseStatus"];
+            "application/xml": components["schemas"]["ResponseStatus"];
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": components["schemas"]["ResponseStatus"];
+            "application/xml": components["schemas"]["ResponseStatus"];
+          };
+        };
+      };
+    };
+  };
   "/api/v2/GlobeService/Timezones": {
     /**
      * Get all timezones
@@ -547,9 +726,9 @@ export interface components {
       result?: components["schemas"]["CountryLanguageDto"][] | null;
     };
     CountryStateDto: {
+      id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      id?: string | null;
       name?: string | null;
       code?: string | null;
       countryID?: string | null;
@@ -574,6 +753,8 @@ export interface components {
     };
     CountryTopLevelDomainDto: {
       id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
       domain?: string | null;
       countryID?: string | null;
     };
@@ -588,6 +769,8 @@ export interface components {
     };
     CurrencyDto: {
       id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
       code?: string | null;
       name?: string | null;
       symbol?: string | null;
@@ -610,6 +793,11 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["CurrencyDto"][] | null;
+    };
+    Error: {
+      id?: string | null;
+      description?: string | null;
+      help?: string | null;
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -659,6 +847,20 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    PaymentResponse: {
+      test?: boolean;
+      ip?: string | null;
+      bank?: string | null;
+      status?: string | null;
+      errors?: unknown;
+      response?: string | null;
+      authCode?: string | null;
+      paymentID?: string | null;
+      franchise?: string | null;
+      signature?: string | null;
+      /** @enum {string} */
+      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -673,6 +875,13 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    ResponseStatus: {
+      success?: boolean;
+      error?: components["schemas"]["Error"];
+      correlationID?: string | null;
+      /** Format: date-time */
+      utcTimestamp?: string;
     };
     TimezoneDto: {
       id?: string | null;
@@ -907,6 +1116,43 @@ export interface operations {
     };
   };
   /**
+   * Count states for a country
+   * @description Returns the total number of states or provinces for the specified country, with optional OData filtering.
+   */
+  CountCountryStatesAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        countryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get state by ID
    * @description Retrieves a single state or province by its unique identifier within a country.
    */
@@ -983,6 +1229,44 @@ export interface operations {
     };
   };
   /**
+   * Count cities for a state
+   * @description Returns the total number of cities for the specified state, with optional OData filtering.
+   */
+  CountCitiesByStateAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        countryStateId: string;
+        countryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get timezones for a country
    * @description Retrieves the list of timezones associated with the specified country.
    */
@@ -1003,6 +1287,43 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["TimezoneDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count timezones for a country
+   * @description Returns the total number of timezones for the specified country, with optional OData filtering.
+   */
+  CountTimezonesByCountryAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        countryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
         };
       };
       /** @description Unauthorized */
@@ -1094,6 +1415,43 @@ export interface operations {
     };
   };
   /**
+   * Count top-level domains for a country
+   * @description Returns the total number of top-level domains for the specified country, with optional OData filtering.
+   */
+  CountTopLevelDomainsByCountryAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        countryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get calling codes for a country
    * @description Retrieves the list of international telephone calling codes associated with the specified country.
    */
@@ -1114,6 +1472,43 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["CountryCallingCodeDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count calling codes for a country
+   * @description Returns the total number of calling codes for the specified country, with optional OData filtering.
+   */
+  CountCallingCodesByCountryAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        countryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
         };
       };
       /** @description Unauthorized */
