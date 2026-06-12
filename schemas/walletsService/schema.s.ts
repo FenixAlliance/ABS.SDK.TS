@@ -613,6 +613,11 @@ export interface paths {
      * @description Delete a specific bank account of a specific wallet by ID.
      */
     delete: operations["DeleteWalletBankAccountAsync"];
+    /**
+     * Patch Wallet Bank Account
+     * @description Partially update a specific bank account of a specific wallet by ID.
+     */
+    patch: operations["PatchWalletBankAccountAsync"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Withdraws": {
     /**
@@ -710,6 +715,11 @@ export interface paths {
      * @description Delete a specific payment token of a specific wallet by ID.
      */
     delete: operations["DeleteWalletTokenAsync"];
+    /**
+     * Patch Wallet Token
+     * @description Partially update a specific payment token of a specific wallet by ID.
+     */
+    patch: operations["PatchWalletTokenAsync"];
   };
 }
 
@@ -734,9 +744,9 @@ export interface components {
       swift?: string | null;
       branchCode?: string | null;
       bankAccountNumber?: string | null;
-      qualifiedName?: string | null;
       bankId?: string | null;
       bankProfileId?: string | null;
+      walletId?: string | null;
     };
     BankAccountDto: {
       id?: string | null;
@@ -778,9 +788,9 @@ export interface components {
       swift?: string | null;
       branchCode?: string | null;
       bankAccountNumber?: string | null;
-      qualifiedName?: string | null;
       bankId?: string | null;
       bankProfileId?: string | null;
+      walletId?: string | null;
     };
     ContactDto: {
       id?: string | null;
@@ -1234,6 +1244,8 @@ export interface components {
       isDefaultSenderAddress?: boolean;
       isDefaultReturnAddress?: boolean;
       isDefaultSuppingLocation?: boolean;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     LocationDtoEnvelope: {
       isSuccess?: boolean;
@@ -1283,6 +1295,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     OrderDto: {
       id?: string | null;
@@ -1586,6 +1606,8 @@ export interface components {
       enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
+      emisorWalletAccountId?: string | null;
+      receiverWalletAccountId?: string | null;
     };
     PaymentDtoListEnvelope: {
       isSuccess?: boolean;
@@ -3325,6 +3347,53 @@ export interface operations {
     };
   };
   /**
+   * Patch Wallet Bank Account
+   * @description Partially update a specific bank account of a specific wallet by ID.
+   */
+  PatchWalletBankAccountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+        bankAccountId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get Wallet Withdraws
    * @description Get withdraws of a specific wallet by ID.
    */
@@ -3924,6 +3993,53 @@ export interface operations {
     responses: {
       /** @description No Content */
       204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch Wallet Token
+   * @description Partially update a specific payment token of a specific wallet by ID.
+   */
+  PatchWalletTokenAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+        tokenId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
