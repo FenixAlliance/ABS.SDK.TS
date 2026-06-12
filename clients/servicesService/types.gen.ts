@@ -92,6 +92,14 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -1980,6 +1988,43 @@ export type GetServiceCaseByIdAsyncResponses = {
 
 export type GetServiceCaseByIdAsyncResponse = GetServiceCaseByIdAsyncResponses[keyof GetServiceCaseByIdAsyncResponses];
 
+export type PatchServiceCaseAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        serviceCaseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ServicesService/ServiceCases/{serviceCaseId}';
+};
+
+export type PatchServiceCaseAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchServiceCaseAsyncError = PatchServiceCaseAsyncErrors[keyof PatchServiceCaseAsyncErrors];
+
+export type PatchServiceCaseAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EnvelopeReadable;
+};
+
+export type PatchServiceCaseAsyncResponse = PatchServiceCaseAsyncResponses[keyof PatchServiceCaseAsyncResponses];
+
 export type UpdateServiceCaseAsyncData = {
     body?: ServiceCaseUpdateDto;
     headers?: {
@@ -2196,6 +2241,43 @@ export type GetServiceCaseTypeByIdAsyncResponses = {
 
 export type GetServiceCaseTypeByIdAsyncResponse = GetServiceCaseTypeByIdAsyncResponses[keyof GetServiceCaseTypeByIdAsyncResponses];
 
+export type PatchServiceCaseTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        serviceCaseTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ServicesService/ServiceCaseTypes/{serviceCaseTypeId}';
+};
+
+export type PatchServiceCaseTypeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchServiceCaseTypeAsyncError = PatchServiceCaseTypeAsyncErrors[keyof PatchServiceCaseTypeAsyncErrors];
+
+export type PatchServiceCaseTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EnvelopeReadable;
+};
+
+export type PatchServiceCaseTypeAsyncResponse = PatchServiceCaseTypeAsyncResponses[keyof PatchServiceCaseTypeAsyncResponses];
+
 export type UpdateServiceCaseTypeAsyncData = {
     body?: ServiceCaseTypeUpdateDto;
     headers?: {
@@ -2411,6 +2493,43 @@ export type GetServiceLevelAgreementByIdAsyncResponses = {
 };
 
 export type GetServiceLevelAgreementByIdAsyncResponse = GetServiceLevelAgreementByIdAsyncResponses[keyof GetServiceLevelAgreementByIdAsyncResponses];
+
+export type PatchServiceLevelAgreementAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        serviceLevelAgreementId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ServicesService/ServiceLevelAgreements/{serviceLevelAgreementId}';
+};
+
+export type PatchServiceLevelAgreementAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchServiceLevelAgreementAsyncError = PatchServiceLevelAgreementAsyncErrors[keyof PatchServiceLevelAgreementAsyncErrors];
+
+export type PatchServiceLevelAgreementAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EnvelopeReadable;
+};
+
+export type PatchServiceLevelAgreementAsyncResponse = PatchServiceLevelAgreementAsyncResponses[keyof PatchServiceLevelAgreementAsyncResponses];
 
 export type UpdateServiceLevelAgreementAsyncData = {
     body?: ServiceLevelAgreementUpdateDto;
@@ -2706,6 +2825,44 @@ export type GetServiceLevelByIdAsyncResponses = {
 
 export type GetServiceLevelByIdAsyncResponse = GetServiceLevelByIdAsyncResponses[keyof GetServiceLevelByIdAsyncResponses];
 
+export type PatchServiceLevelAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        serviceId: string;
+        serviceLevelId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ServicesService/Services/{serviceId}/ServiceLevels/{serviceLevelId}';
+};
+
+export type PatchServiceLevelAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchServiceLevelAsyncError = PatchServiceLevelAsyncErrors[keyof PatchServiceLevelAsyncErrors];
+
+export type PatchServiceLevelAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EnvelopeReadable;
+};
+
+export type PatchServiceLevelAsyncResponse = PatchServiceLevelAsyncResponses[keyof PatchServiceLevelAsyncResponses];
+
 export type UpdateServiceLevelAsyncData = {
     body?: ServiceLevelUpdateDto;
     headers?: {
@@ -2923,6 +3080,43 @@ export type GetServiceQueueByIdAsyncResponses = {
 
 export type GetServiceQueueByIdAsyncResponse = GetServiceQueueByIdAsyncResponses[keyof GetServiceQueueByIdAsyncResponses];
 
+export type PatchServiceQueueAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        serviceQueueId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ServicesService/ServiceQueues/{serviceQueueId}';
+};
+
+export type PatchServiceQueueAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchServiceQueueAsyncError = PatchServiceQueueAsyncErrors[keyof PatchServiceQueueAsyncErrors];
+
+export type PatchServiceQueueAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EnvelopeReadable;
+};
+
+export type PatchServiceQueueAsyncResponse = PatchServiceQueueAsyncResponses[keyof PatchServiceQueueAsyncResponses];
+
 export type UpdateServiceQueueAsyncData = {
     body?: ServiceQueueUpdateDto;
     headers?: {
@@ -3138,6 +3332,43 @@ export type GetServiceByIdAsyncResponses = {
 };
 
 export type GetServiceByIdAsyncResponse = GetServiceByIdAsyncResponses[keyof GetServiceByIdAsyncResponses];
+
+export type PatchServiceAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        serviceId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ServicesService/Services/{serviceId}';
+};
+
+export type PatchServiceAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchServiceAsyncError = PatchServiceAsyncErrors[keyof PatchServiceAsyncErrors];
+
+export type PatchServiceAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EnvelopeReadable;
+};
+
+export type PatchServiceAsyncResponse = PatchServiceAsyncResponses[keyof PatchServiceAsyncResponses];
 
 export type UpdateServiceAsyncData = {
     body?: ServiceUpdateDto;

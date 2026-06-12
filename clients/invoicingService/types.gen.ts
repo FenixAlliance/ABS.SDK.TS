@@ -325,6 +325,8 @@ export type InvoiceAdjustmentCreateDto = {
     id?: string;
     timestamp?: string;
     currencyId?: string | null;
+    priority?: number;
+    code?: string | null;
     description?: string | null;
     surchargePercent?: number;
     surchargeAmount?: number;
@@ -342,6 +344,8 @@ export type InvoiceAdjustmentDto = {
     invoiceId?: string | null;
     currencyId?: string | null;
     enrollmentId?: string | null;
+    priority?: number;
+    code?: string | null;
     description?: string | null;
     surchargePercent?: number;
     surchargeAmount?: number;
@@ -384,6 +388,8 @@ export type InvoiceAdjustmentDtoIReadOnlyListEnvelopeWritable = {
 
 export type InvoiceAdjustmentUpdateDto = {
     currencyId?: string | null;
+    priority?: number;
+    code?: string | null;
     description?: string | null;
     surchargePercent?: number;
     surchargeAmount?: number;
@@ -1051,6 +1057,14 @@ export type MoneyEnvelopeWritable = {
     result?: MoneyWritable;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type PaymentDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -1111,6 +1125,8 @@ export type PaymentDto = {
     enrollmentId?: string | null;
     bankId?: string | null;
     paymentTokenId?: string | null;
+    emisorWalletAccountId?: string | null;
+    receiverWalletAccountId?: string | null;
 };
 
 export type PaymentDtoIReadOnlyListEnvelopeReadable = {
@@ -1938,6 +1954,35 @@ export type GetInvoiceResponses = {
 
 export type GetInvoiceResponse = GetInvoiceResponses[keyof GetInvoiceResponses];
 
+export type PatchInvoiceData = {
+    body?: Array<Operation>;
+    path: {
+        invoiceId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}';
+};
+
+export type PatchInvoiceErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchInvoiceError = PatchInvoiceErrors[keyof PatchInvoiceErrors];
+
+export type PatchInvoiceResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchInvoiceResponse = PatchInvoiceResponses[keyof PatchInvoiceResponses];
+
 export type UpdateInvoiceData = {
     body?: InvoiceUpdateDto;
     path: {
@@ -2099,6 +2144,36 @@ export type GetInvoiceLineResponses = {
 
 export type GetInvoiceLineResponse = GetInvoiceLineResponses[keyof GetInvoiceLineResponses];
 
+export type PatchInvoiceLineData = {
+    body?: Array<Operation>;
+    path: {
+        invoiceId: string;
+        invoiceLineId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}';
+};
+
+export type PatchInvoiceLineErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchInvoiceLineError = PatchInvoiceLineErrors[keyof PatchInvoiceLineErrors];
+
+export type PatchInvoiceLineResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchInvoiceLineResponse = PatchInvoiceLineResponses[keyof PatchInvoiceLineResponses];
+
 export type UpdateInvoiceLineData = {
     body?: InvoiceLineUpdateDto;
     path: {
@@ -2226,6 +2301,28 @@ export type DeleteInvoiceLineTaxResponses = {
 
 export type DeleteInvoiceLineTaxResponse = DeleteInvoiceLineTaxResponses[keyof DeleteInvoiceLineTaxResponses];
 
+export type PatchInvoiceLineTaxData = {
+    body?: Array<Operation>;
+    path: {
+        invoiceId: string;
+        invoiceLineId: string;
+        invoiceLineTaxId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Taxes/{invoiceLineTaxId}';
+};
+
+export type PatchInvoiceLineTaxResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchInvoiceLineTaxResponse = PatchInvoiceLineTaxResponses[keyof PatchInvoiceLineTaxResponses];
+
 export type UpdateInvoiceLineTaxData = {
     body?: InvoiceLineAppliedTaxUpdateDto;
     path: {
@@ -2350,6 +2447,36 @@ export type GetInvoiceAdjustmentResponses = {
 
 export type GetInvoiceAdjustmentResponse = GetInvoiceAdjustmentResponses[keyof GetInvoiceAdjustmentResponses];
 
+export type PatchInvoiceAdjustmentData = {
+    body?: Array<Operation>;
+    path: {
+        invoiceId: string;
+        invoiceAdjustmentId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments/{invoiceAdjustmentId}';
+};
+
+export type PatchInvoiceAdjustmentErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchInvoiceAdjustmentError = PatchInvoiceAdjustmentErrors[keyof PatchInvoiceAdjustmentErrors];
+
+export type PatchInvoiceAdjustmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchInvoiceAdjustmentResponse = PatchInvoiceAdjustmentResponses[keyof PatchInvoiceAdjustmentResponses];
+
 export type UpdateInvoiceAdjustmentData = {
     body?: InvoiceAdjustmentUpdateDto;
     path: {
@@ -2472,6 +2599,27 @@ export type GetInvoiceReferenceResponses = {
 };
 
 export type GetInvoiceReferenceResponse = GetInvoiceReferenceResponses[keyof GetInvoiceReferenceResponses];
+
+export type PatchInvoiceReferenceData = {
+    body?: Array<Operation>;
+    path: {
+        invoiceId: string;
+        invoiceReferenceId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/{invoiceId}/References/{invoiceReferenceId}';
+};
+
+export type PatchInvoiceReferenceResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchInvoiceReferenceResponse = PatchInvoiceReferenceResponses[keyof PatchInvoiceReferenceResponses];
 
 export type UpdateInvoiceReferenceData = {
     body?: InvoiceReferenceUpdateDto;

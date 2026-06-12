@@ -169,8 +169,10 @@ export type NotificationDto = {
     read?: boolean;
     icon?: string | null;
     message?: string | null;
+    imageUrl?: string | null;
     redirectUrl?: string | null;
-    socialProfileID?: string | null;
+    type?: 'Event' | 'Alert' | 'Log';
+    socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
 };
@@ -205,6 +207,14 @@ export type NotificationDtoListEnvelopeWritable = {
     result?: Array<NotificationDto> | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type PrivateMessageCreateDto = {
     id?: string;
     timestamp?: string;
@@ -223,7 +233,7 @@ export type PrivateMessageDto = {
     message?: string | null;
     conversationId?: string | null;
     senderSocialProfileId?: string | null;
-    receiverSocialProfileID?: string | null;
+    receiverSocialProfileId?: string | null;
     sentTimestamp?: string;
     readTimestamp?: string;
     receivedTimestamp?: string;
@@ -368,7 +378,7 @@ export type SocialGroupCreateDto = {
     name?: string | null;
     title?: string | null;
     avatarURL?: string | null;
-    socialProfileID?: string | null;
+    socialProfileId?: string | null;
 };
 
 export type SocialGroupDto = {
@@ -377,9 +387,9 @@ export type SocialGroupDto = {
     name?: string | null;
     title?: string | null;
     avatarURL?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
-    socialProfileID?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    socialProfileId?: string | null;
 };
 
 export type SocialGroupDtoEnvelopeReadable = {
@@ -1400,6 +1410,44 @@ export type GetFeedPostAsyncResponses = {
 
 export type GetFeedPostAsyncResponse = GetFeedPostAsyncResponses[keyof GetFeedPostAsyncResponses];
 
+export type PatchFeedPostAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialFeedId: string;
+        feedPostId: string;
+    };
+    query: {
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialFeeds/{socialFeedId}/Posts/{feedPostId}';
+};
+
+export type PatchFeedPostAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFeedPostAsyncError = PatchFeedPostAsyncErrors[keyof PatchFeedPostAsyncErrors];
+
+export type PatchFeedPostAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFeedPostAsyncResponse = PatchFeedPostAsyncResponses[keyof PatchFeedPostAsyncResponses];
+
 export type UpdateFeedPostAsyncData = {
     body?: SocialFeedPostUpdateDto;
     headers?: {
@@ -1619,6 +1667,44 @@ export type GetSocialGroupByIdAsyncResponses = {
 
 export type GetSocialGroupByIdAsyncResponse = GetSocialGroupByIdAsyncResponses[keyof GetSocialGroupByIdAsyncResponses];
 
+export type PatchSocialGroupAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialGroupId: string;
+    };
+    query: {
+        tenantId: string;
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialGroups/{socialGroupId}';
+};
+
+export type PatchSocialGroupAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSocialGroupAsyncError = PatchSocialGroupAsyncErrors[keyof PatchSocialGroupAsyncErrors];
+
+export type PatchSocialGroupAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSocialGroupAsyncResponse = PatchSocialGroupAsyncResponses[keyof PatchSocialGroupAsyncResponses];
+
 export type UpdateSocialGroupAsyncData = {
     body?: SocialGroupUpdateDto;
     headers?: {
@@ -1835,6 +1921,43 @@ export type GetSocialPostAsyncResponses = {
 };
 
 export type GetSocialPostAsyncResponse = GetSocialPostAsyncResponses[keyof GetSocialPostAsyncResponses];
+
+export type PatchSocialPostAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialPostId: string;
+    };
+    query: {
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialPosts/{socialPostId}';
+};
+
+export type PatchSocialPostAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSocialPostAsyncError = PatchSocialPostAsyncErrors[keyof PatchSocialPostAsyncErrors];
+
+export type PatchSocialPostAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSocialPostAsyncResponse = PatchSocialPostAsyncResponses[keyof PatchSocialPostAsyncResponses];
 
 export type UpdateSocialPostAsyncData = {
     body?: SocialPostUpdateDto;

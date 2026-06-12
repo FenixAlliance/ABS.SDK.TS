@@ -68,6 +68,11 @@ export interface paths {
      * @description Deletes a blog post category for the specified tenant.
      */
     delete: operations["DeleteBlogPostCategoryAsync"];
+    /**
+     * Patch a blog post category
+     * @description Partially updates an existing blog post category for the specified tenant.
+     */
+    patch: operations["PatchBlogPostCategoryAsync"];
   };
   "/api/v2/ContentService/BlogPosts": {
     /**
@@ -104,6 +109,11 @@ export interface paths {
      * @description Deletes a blog post for the specified tenant.
      */
     delete: operations["DeleteBlogPostAsync"];
+    /**
+     * Patch a blog post
+     * @description Partially updates an existing blog post for the specified tenant.
+     */
+    patch: operations["PatchBlogPostAsync"];
   };
   "/api/v2/ContentService/BlogPosts/{blogPostId}/Tags": {
     /**
@@ -221,6 +231,11 @@ export interface paths {
      * @description Deletes a blog post tag for the specified tenant.
      */
     delete: operations["DeleteBlogPostTagAsync"];
+    /**
+     * Patch a blog post tag
+     * @description Partially updates an existing blog post tag for the specified tenant.
+     */
+    patch: operations["PatchBlogPostTagAsync"];
   };
   "/api/v2/ContentService/BusinessDomains": {
     /**
@@ -228,6 +243,11 @@ export interface paths {
      * @description Retrieves business domains for the specified tenant.
      */
     get: operations["GetBusinessDomainsAsync"];
+    /**
+     * Register a business domain
+     * @description Registers a new (unverified) business domain for the tenant and issues a DNS TXT verification token.
+     */
+    post: operations["CreateBusinessDomainAsync"];
   };
   "/api/v2/ContentService/BusinessDomains/Count": {
     /**
@@ -242,6 +262,23 @@ export interface paths {
      * @description Retrieves a specific business domain.
      */
     get: operations["GetBusinessDomainByIdAsync"];
+    /**
+     * Update a business domain
+     * @description Updates a business domain. Changing the host re-issues the verification token and clears verification.
+     */
+    put: operations["UpdateBusinessDomainAsync"];
+    /**
+     * Delete a business domain
+     * @description Removes a business domain from the tenant.
+     */
+    delete: operations["DeleteBusinessDomainAsync"];
+  };
+  "/api/v2/ContentService/BusinessDomains/{businessDomainId}/Verify": {
+    /**
+     * Verify a business domain
+     * @description Checks the domain's DNS TXT records for the verification token and marks the domain verified.
+     */
+    post: operations["VerifyBusinessDomainAsync"];
   };
   "/api/v2/AiService/Completions/Complete": {
     get: {
@@ -649,6 +686,78 @@ export interface paths {
       };
     };
   };
+  "/api/v2/ContentService/LocalizationStrings": {
+    /**
+     * Get localization strings
+     * @description Retrieves all localization strings for the specified tenant.
+     */
+    get: operations["GetLocalizationStringsAsync"];
+    /**
+     * Create a localization string
+     * @description Creates a new localization string for the specified tenant.
+     */
+    post: operations["CreateLocalizationStringAsync"];
+  };
+  "/api/v2/ContentService/LocalizationStrings/Count": {
+    /**
+     * Count localization strings
+     * @description Counts all localization strings for the specified tenant.
+     */
+    get: operations["CountLocalizationStringsAsync"];
+  };
+  "/api/v2/ContentService/LocalizationStrings/{localizationStringId}": {
+    /**
+     * Get localization string by ID
+     * @description Retrieves a specific localization string by its identifier.
+     */
+    get: operations["GetLocalizationStringByIdAsync"];
+    /**
+     * Update a localization string
+     * @description Updates an existing localization string for the specified tenant.
+     */
+    put: operations["UpdateLocalizationStringAsync"];
+    /**
+     * Delete a localization string
+     * @description Deletes a localization string for the specified tenant.
+     */
+    delete: operations["DeleteLocalizationStringAsync"];
+  };
+  "/api/v2/ContentService/MenuContexts": {
+    /**
+     * Get menu contexts
+     * @description Retrieves all menu contexts for the specified tenant.
+     */
+    get: operations["GetMenuContextsAsync"];
+    /**
+     * Create a menu context
+     * @description Creates a new menu context for the specified tenant.
+     */
+    post: operations["CreateMenuContextAsync"];
+  };
+  "/api/v2/ContentService/MenuContexts/Count": {
+    /**
+     * Count menu contexts
+     * @description Counts all menu contexts for the specified tenant.
+     */
+    get: operations["CountMenuContextsAsync"];
+  };
+  "/api/v2/ContentService/MenuContexts/{menuContextId}": {
+    /**
+     * Get menu context by ID
+     * @description Retrieves a specific menu context by its identifier.
+     */
+    get: operations["GetMenuContextByIdAsync"];
+    /**
+     * Update a menu context
+     * @description Updates an existing menu context for the specified tenant.
+     */
+    put: operations["UpdateMenuContextAsync"];
+    /**
+     * Delete a menu context
+     * @description Deletes a menu context for the specified tenant.
+     */
+    delete: operations["DeleteMenuContextAsync"];
+  };
   "/api/v2/ContentService/Portals": {
     /**
      * Get portals
@@ -731,6 +840,11 @@ export interface paths {
      * @description Get a web portal's settings by its ID
      */
     get: operations["GetWebPortalSettingsAsync"];
+    /**
+     * Update a web portal's settings
+     * @description Update a web portal's settings (Options) by its ID
+     */
+    put: operations["UpdateWebPortalSettingsAsync"];
   };
   "/api/v2/ContentService/Portals/{portalId}/Options": {
     /**
@@ -739,12 +853,67 @@ export interface paths {
      */
     get: operations["GetWebPortalOptionsAsync"];
   };
+  "/api/v2/ContentService/Portals/{portalId}/DomainBindings": {
+    /**
+     * Get a web portal's bound domains
+     * @description Get the BusinessDomains bound to a web portal
+     */
+    get: operations["GetWebPortalDomainBindingsAsync"];
+  };
+  "/api/v2/ContentService/Portals/{portalId}/DomainBindings/{businessDomainId}": {
+    /**
+     * Bind a domain to a web portal
+     * @description Bind a verified BusinessDomain to a web portal
+     */
+    post: operations["BindWebPortalDomainAsync"];
+    /**
+     * Unbind a domain from a web portal
+     * @description Unbind a BusinessDomain from a web portal
+     */
+    delete: operations["UnbindWebPortalDomainAsync"];
+  };
   "/api/v2/ContentService/Themes/Update": {
     /**
      * Update base web content themes
      * @description Triggers an update of the base web content themes.
      */
     get: operations["GetLatestCurrencyRatesModelAsync"];
+  };
+  "/api/v2/ContentService/WebComponents": {
+    /**
+     * Get web components
+     * @description Retrieves all web components for the specified tenant.
+     */
+    get: operations["GetWebComponentsAsync"];
+    /**
+     * Create a web component
+     * @description Creates a new web component for the specified tenant.
+     */
+    post: operations["CreateWebComponentAsync"];
+  };
+  "/api/v2/ContentService/WebComponents/Count": {
+    /**
+     * Count web components
+     * @description Counts all web components for the specified tenant.
+     */
+    get: operations["CountWebComponentsAsync"];
+  };
+  "/api/v2/ContentService/WebComponents/{webComponentId}": {
+    /**
+     * Get web component by ID
+     * @description Retrieves a specific web component by its identifier.
+     */
+    get: operations["GetWebComponentByIdAsync"];
+    /**
+     * Update a web component
+     * @description Updates an existing web component for the specified tenant.
+     */
+    put: operations["UpdateWebComponentAsync"];
+    /**
+     * Delete a web component
+     * @description Deletes a web component for the specified tenant.
+     */
+    delete: operations["DeleteWebComponentAsync"];
   };
   "/api/v2/ContentService/WebContents/Count": {
     /**
@@ -781,6 +950,11 @@ export interface paths {
      * @description Deletes a web content for the specified tenant.
      */
     delete: operations["DeleteWebContentAsync"];
+    /**
+     * Patch a web content
+     * @description Partially updates an existing web content for the specified tenant.
+     */
+    patch: operations["PatchWebContentAsync"];
   };
   "/api/v2/ContentService/WebPageCategories": {
     /**
@@ -817,6 +991,11 @@ export interface paths {
      * @description Deletes a web page category for the specified tenant.
      */
     delete: operations["DeleteWebPageCategoryAsync"];
+    /**
+     * Patch a web page category
+     * @description Partially updates an existing web page category for the specified tenant.
+     */
+    patch: operations["PatchWebPageCategoryAsync"];
   };
   "/api/v2/ContentService/WebPages/Count": {
     /**
@@ -853,6 +1032,11 @@ export interface paths {
      * @description Deletes a web page for the specified tenant.
      */
     delete: operations["DeleteWebPageAsync"];
+    /**
+     * Patch a web page
+     * @description Partially updates an existing web page for the specified tenant.
+     */
+    patch: operations["PatchWebPageAsync"];
   };
   "/api/v2/ContentService/WebPages/{webPageId}/Tags": {
     /**
@@ -937,6 +1121,11 @@ export interface paths {
      * @description Deletes a web page tag for the specified tenant.
      */
     delete: operations["DeleteWebPageTagAsync"];
+    /**
+     * Patch a web page tag
+     * @description Partially updates an existing web page tag for the specified tenant.
+     */
+    patch: operations["PatchWebPageTagAsync"];
   };
   "/api/v2/ContentService/WebsiteThemes": {
     /**
@@ -973,6 +1162,11 @@ export interface paths {
      * @description Deletes a website theme for the specified tenant.
      */
     delete: operations["DeleteWebsiteThemeAsync"];
+    /**
+     * Patch a website theme
+     * @description Partially updates an existing website theme for the specified tenant.
+     */
+    patch: operations["PatchWebsiteThemeAsync"];
   };
   "/api/v2/ContentService/WebTemplates": {
     /**
@@ -1009,6 +1203,11 @@ export interface paths {
      * @description Deletes a web template for the specified tenant.
      */
     delete: operations["DeleteWebTemplateAsync"];
+    /**
+     * Patch a web template
+     * @description Partially updates an existing web template for the specified tenant.
+     */
+    patch: operations["PatchWebTemplateAsync"];
   };
 }
 
@@ -1224,13 +1423,14 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
+      webPortalId?: string | null;
     };
     BlogPostCategoryDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       slug?: string | null;
+      type?: string | null;
       title?: string | null;
       description?: string | null;
       seoTitle?: string | null;
@@ -1241,9 +1441,9 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      webPortalId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     BlogPostCategoryDtoEnvelope: {
       isSuccess?: boolean;
@@ -1276,7 +1476,7 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
+      webPortalId?: string | null;
     };
     BlogPostCommentCreateDto: {
       /** Format: uuid */
@@ -1284,19 +1484,19 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       message: string;
-      ownerSocialProfileID?: string | null;
-      socialPostID?: string | null;
-      parentCommentID?: string | null;
+      ownerSocialProfileId?: string | null;
+      socialPostId?: string | null;
+      parentCommentId?: string | null;
     };
     BlogPostCommentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      blogPostID?: string | null;
+      blogPostId?: string | null;
       message?: string | null;
-      ownerSocialProfileID?: string | null;
-      socialPostID?: string | null;
-      parentCommentID?: string | null;
+      ownerSocialProfileId?: string | null;
+      socialPostId?: string | null;
+      parentCommentId?: string | null;
     };
     BlogPostCommentDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1320,6 +1520,7 @@ export interface components {
       featuredImageUrl?: string | null;
       /** @enum {string|null} */
       codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      slug?: string | null;
       blogPostCategoryId?: string | null;
       webTemplateId?: string | null;
     };
@@ -1424,13 +1625,14 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
+      webPortalId?: string | null;
     };
     BlogPostTagDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       slug?: string | null;
+      type?: string | null;
       title?: string | null;
       description?: string | null;
       seoTitle?: string | null;
@@ -1441,9 +1643,9 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      webPortalId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     BlogPostTagDtoEnvelope: {
       isSuccess?: boolean;
@@ -1476,7 +1678,7 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
+      webPortalId?: string | null;
     };
     BlogPostUpdateDto: {
       /** Format: int32 */
@@ -1565,6 +1767,13 @@ export interface components {
       breadcrumbsFontColor?: string | null;
       breadcrumbsFontColorHover?: string | null;
     };
+    BusinessDomainCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      domain: string;
+    };
     BusinessDomainDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1591,6 +1800,9 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["BusinessDomainDto"][] | null;
+    };
+    BusinessDomainUpdateDto: {
+      domain?: string | null;
     };
     ByteReadOnlyMemory: {
       /** Format: int32 */
@@ -2406,6 +2618,47 @@ export interface components {
       layout?: "Boxed" | "Wide";
     };
     LightboxOptions: Record<string, never>;
+    LocalizationStringCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      base: string;
+      comments?: string | null;
+      countryLanguageId?: string | null;
+    };
+    LocalizationStringDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      base?: string | null;
+      comments?: string | null;
+      countryLanguageId?: string | null;
+      tenantId?: string | null;
+    };
+    LocalizationStringDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LocalizationStringDto"];
+    };
+    LocalizationStringDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["LocalizationStringDto"][] | null;
+    };
+    LocalizationStringUpdateDto: {
+      base?: string | null;
+      comments?: string | null;
+      countryLanguageId?: string | null;
+    };
     LoginRequest: {
       email: string | null;
       password: string | null;
@@ -2469,6 +2722,87 @@ export interface components {
       isCollectible?: boolean;
       /** Format: int32 */
       metadataToken?: number;
+    };
+    MenuContextCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      category?: string | null;
+      component?: string | null;
+      enable?: boolean;
+      studioMenu?: boolean;
+      customCss?: string | null;
+      customJs?: string | null;
+      customHtml?: string | null;
+      loggedInOnly?: string | null;
+      backgroundImage?: string | null;
+      webPortalId?: string | null;
+    };
+    MenuContextDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      category?: string | null;
+      component?: string | null;
+      enable?: boolean;
+      studioMenu?: boolean;
+      customCss?: string | null;
+      customJs?: string | null;
+      customHtml?: string | null;
+      loggedInOnly?: string | null;
+      backgroundImage?: string | null;
+      webPortalId?: string | null;
+      tenantId?: string | null;
+      items?: components["schemas"]["MenuContextItemDto"][] | null;
+    };
+    MenuContextDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["MenuContextDto"];
+    };
+    MenuContextDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["MenuContextDto"][] | null;
+    };
+    MenuContextItemDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: int32 */
+      order?: number;
+      name?: string | null;
+      text?: string | null;
+      url?: string | null;
+      icon?: string | null;
+      target?: string | null;
+      tooltip?: string | null;
+      parentMenuContextItemId?: string | null;
+      menuContextId?: string | null;
+    };
+    MenuContextUpdateDto: {
+      name?: string | null;
+      category?: string | null;
+      component?: string | null;
+      enable?: boolean;
+      studioMenu?: boolean;
+      customCss?: string | null;
+      customJs?: string | null;
+      customHtml?: string | null;
+      loggedInOnly?: string | null;
+      backgroundImage?: string | null;
+      webPortalId?: string | null;
     };
     MenuOptions: {
       sideNavigationFontSize?: string | null;
@@ -3419,6 +3753,75 @@ export interface components {
       handle?: components["schemas"]["IntPtr"];
       safeWaitHandle?: components["schemas"]["SafeWaitHandle"];
     };
+    WebComponentCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      title?: string | null;
+      description?: string | null;
+      code?: string | null;
+      htmlContent?: string | null;
+      cssContent?: string | null;
+      jsContent?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      published?: boolean;
+      enable?: boolean;
+      featuredImageUrl?: string | null;
+    };
+    WebComponentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      title?: string | null;
+      description?: string | null;
+      code?: string | null;
+      htmlContent?: string | null;
+      cssContent?: string | null;
+      jsContent?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      published?: boolean;
+      enable?: boolean;
+      featuredImageUrl?: string | null;
+      tenantId?: string | null;
+      webPortalId?: string | null;
+    };
+    WebComponentDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WebComponentDto"];
+    };
+    WebComponentDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["WebComponentDto"][] | null;
+    };
+    WebComponentUpdateDto: {
+      name?: string | null;
+      title?: string | null;
+      description?: string | null;
+      code?: string | null;
+      htmlContent?: string | null;
+      cssContent?: string | null;
+      jsContent?: string | null;
+      /** @enum {string|null} */
+      codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
+      published?: boolean;
+      enable?: boolean;
+      featuredImageUrl?: string | null;
+    };
     WebContentCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -3594,7 +3997,7 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
+      webPortalId?: string | null;
     };
     WebPageCategoryDto: {
       id?: string | null;
@@ -3611,9 +4014,9 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      webPortalId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     WebPageCategoryDtoEnvelope: {
       isSuccess?: boolean;
@@ -3659,7 +4062,9 @@ export interface components {
       featuredImageUrl?: string | null;
       /** @enum {string|null} */
       codeType?: "Razor" | "CSharp" | "CSHtml" | "Liquid" | "Html5" | "Markdown" | "Markup" | null;
-      webTemplateID?: string | null;
+      slug?: string | null;
+      webTemplateId?: string | null;
+      parentWebContentId?: string | null;
     };
     WebPageDto: {
       id?: string | null;
@@ -3724,7 +4129,9 @@ export interface components {
       socialProfileId?: string | null;
       parentWebContentId?: string | null;
       parentWebContentVersionId?: string | null;
-      webTemplateID?: string | null;
+      webTemplateId?: string | null;
+      authorName?: string | null;
+      authorId?: string | null;
       isHomePage?: boolean;
       isStorePage?: boolean;
       isCartPage?: boolean;
@@ -3770,7 +4177,7 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
+      webPortalId?: string | null;
     };
     WebPageTagDto: {
       id?: string | null;
@@ -3787,9 +4194,9 @@ export interface components {
       canonicalUrl?: string | null;
       imageURL?: string | null;
       image?: string | null;
-      webPortalID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      webPortalId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     WebPageTagDtoEnvelope: {
       isSuccess?: boolean;
@@ -3884,6 +4291,8 @@ export interface components {
       cornerstoneContent?: boolean;
       isEssentialContent?: boolean;
       allowSearchEngineIndexing?: boolean;
+      webTemplateId?: string | null;
+      parentWebContentId?: string | null;
       isHomePage?: boolean;
       isStorePage?: boolean;
       isCartPage?: boolean;
@@ -3905,9 +4314,9 @@ export interface components {
       domain?: string | null;
       disabled?: boolean;
       description?: string | null;
-      websiteThemeID?: string | null;
-      businessDomainID?: string | null;
-      businessPortalApplicationID?: string | null;
+      websiteThemeId?: string | null;
+      businessDomainId?: string | null;
+      businessPortalApplicationId?: string | null;
     };
     WebPortalDto: {
       id?: string | null;
@@ -3948,9 +4357,9 @@ export interface components {
       domain?: string | null;
       disabled?: boolean;
       description?: string | null;
-      websiteThemeID?: string | null;
-      businessDomainID?: string | null;
-      businessPortalApplicationID?: string | null;
+      websiteThemeId?: string | null;
+      businessDomainId?: string | null;
+      businessPortalApplicationId?: string | null;
     };
     WebSocketManager: {
       isWebSocketRequest?: boolean;
@@ -3990,6 +4399,8 @@ export interface components {
       highlightImage?: string | null;
       /** Format: int32 */
       order?: number;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     WebTemplateDtoEnvelope: {
       isSuccess?: boolean;
@@ -4526,6 +4937,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a blog post category
+   * @description Partially updates an existing blog post category for the specified tenant.
+   */
+  PatchBlogPostCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        blogPostCategoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of blog posts
    * @description Retrieves all blog posts, optionally filtered by tenant using OData query options.
    */
@@ -4721,6 +5179,49 @@ export interface operations {
       };
       path: {
         blogPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a blog post
+   * @description Partially updates an existing blog post for the specified tenant.
+   */
+  PatchBlogPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        blogPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5497,6 +5998,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a blog post tag
+   * @description Partially updates an existing blog post tag for the specified tenant.
+   */
+  PatchBlogPostTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        blogPostTagId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get business domains
    * @description Retrieves business domains for the specified tenant.
    */
@@ -5516,6 +6064,57 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["BusinessDomainDtoListEnvelope"];
           "application/xml": components["schemas"]["BusinessDomainDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Register a business domain
+   * @description Registers a new (unverified) business domain for the tenant and issues a DNS TXT verification token.
+   */
+  CreateBusinessDomainAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BusinessDomainCreateDto"];
+        "application/xml": components["schemas"]["BusinessDomainCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -5613,6 +6212,142 @@ export interface operations {
       };
     };
   };
+  /**
+   * Update a business domain
+   * @description Updates a business domain. Changing the host re-issues the verification token and clears verification.
+   */
+  UpdateBusinessDomainAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        businessDomainId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BusinessDomainUpdateDto"];
+        "application/xml": components["schemas"]["BusinessDomainUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a business domain
+   * @description Removes a business domain from the tenant.
+   */
+  DeleteBusinessDomainAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        businessDomainId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Verify a business domain
+   * @description Checks the domain's DNS TXT records for the verification token and marks the domain verified.
+   */
+  VerifyBusinessDomainAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        businessDomainId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   "MapIdentityApi-/confirmEmail": {
     parameters: {
       query: {
@@ -5625,6 +6360,504 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /**
+   * Get localization strings
+   * @description Retrieves all localization strings for the specified tenant.
+   */
+  GetLocalizationStringsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LocalizationStringDtoListEnvelope"];
+          "application/xml": components["schemas"]["LocalizationStringDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a localization string
+   * @description Creates a new localization string for the specified tenant.
+   */
+  CreateLocalizationStringAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LocalizationStringCreateDto"];
+        "application/xml": components["schemas"]["LocalizationStringCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count localization strings
+   * @description Counts all localization strings for the specified tenant.
+   */
+  CountLocalizationStringsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get localization string by ID
+   * @description Retrieves a specific localization string by its identifier.
+   */
+  GetLocalizationStringByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        localizationStringId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LocalizationStringDtoEnvelope"];
+          "application/xml": components["schemas"]["LocalizationStringDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a localization string
+   * @description Updates an existing localization string for the specified tenant.
+   */
+  UpdateLocalizationStringAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        localizationStringId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LocalizationStringUpdateDto"];
+        "application/xml": components["schemas"]["LocalizationStringUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a localization string
+   * @description Deletes a localization string for the specified tenant.
+   */
+  DeleteLocalizationStringAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        localizationStringId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get menu contexts
+   * @description Retrieves all menu contexts for the specified tenant.
+   */
+  GetMenuContextsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MenuContextDtoListEnvelope"];
+          "application/xml": components["schemas"]["MenuContextDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a menu context
+   * @description Creates a new menu context for the specified tenant.
+   */
+  CreateMenuContextAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MenuContextCreateDto"];
+        "application/xml": components["schemas"]["MenuContextCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count menu contexts
+   * @description Counts all menu contexts for the specified tenant.
+   */
+  CountMenuContextsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get menu context by ID
+   * @description Retrieves a specific menu context by its identifier.
+   */
+  GetMenuContextByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        menuContextId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MenuContextDtoEnvelope"];
+          "application/xml": components["schemas"]["MenuContextDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a menu context
+   * @description Updates an existing menu context for the specified tenant.
+   */
+  UpdateMenuContextAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        menuContextId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MenuContextUpdateDto"];
+        "application/xml": components["schemas"]["MenuContextUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a menu context
+   * @description Deletes a menu context for the specified tenant.
+   */
+  DeleteMenuContextAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        menuContextId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };
@@ -6150,6 +7383,53 @@ export interface operations {
     };
   };
   /**
+   * Update a web portal's settings
+   * @description Update a web portal's settings (Options) by its ID
+   */
+  UpdateWebPortalSettingsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PortalSettings"];
+        "application/xml": components["schemas"]["PortalSettings"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get a web portal's options by its ID
    * @description Get a web portal's options by its ID
    */
@@ -6190,6 +7470,131 @@ export interface operations {
     };
   };
   /**
+   * Get a web portal's bound domains
+   * @description Get the BusinessDomains bound to a web portal
+   */
+  GetWebPortalDomainBindingsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BusinessDomainDtoListEnvelope"];
+          "application/xml": components["schemas"]["BusinessDomainDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Bind a domain to a web portal
+   * @description Bind a verified BusinessDomain to a web portal
+   */
+  BindWebPortalDomainAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+        businessDomainId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Unbind a domain from a web portal
+   * @description Unbind a BusinessDomain from a web portal
+   */
+  UnbindWebPortalDomainAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+        businessDomainId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Update base web content themes
    * @description Triggers an update of the base web content themes.
    */
@@ -6203,6 +7608,255 @@ export interface operations {
       };
     };
     responses: {
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web components
+   * @description Retrieves all web components for the specified tenant.
+   */
+  GetWebComponentsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebComponentDtoListEnvelope"];
+          "application/xml": components["schemas"]["WebComponentDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a web component
+   * @description Creates a new web component for the specified tenant.
+   */
+  CreateWebComponentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["WebComponentCreateDto"];
+        "application/xml": components["schemas"]["WebComponentCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count web components
+   * @description Counts all web components for the specified tenant.
+   */
+  CountWebComponentsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get web component by ID
+   * @description Retrieves a specific web component by its identifier.
+   */
+  GetWebComponentByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webComponentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["WebComponentDtoEnvelope"];
+          "application/xml": components["schemas"]["WebComponentDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a web component
+   * @description Updates an existing web component for the specified tenant.
+   */
+  UpdateWebComponentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webComponentId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["WebComponentUpdateDto"];
+        "application/xml": components["schemas"]["WebComponentUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a web component
+   * @description Deletes a web component for the specified tenant.
+   */
+  DeleteWebComponentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webComponentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
       /** @description Unauthorized */
       401: {
         content: {
@@ -6442,6 +8096,53 @@ export interface operations {
       };
       path: {
         webContentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a web content
+   * @description Partially updates an existing web content for the specified tenant.
+   */
+  PatchWebContentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webContentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -6718,6 +8419,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a web page category
+   * @description Partially updates an existing web page category for the specified tenant.
+   */
+  PatchWebPageCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageCategoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Count web pages
    * @description Counts all web pages for the specified tenant.
    */
@@ -6899,6 +8647,43 @@ export interface operations {
       };
       path: {
         webPageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a web page
+   * @description Partially updates an existing web page for the specified tenant.
+   */
+  PatchWebPageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -7433,6 +9218,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a web page tag
+   * @description Partially updates an existing web page tag for the specified tenant.
+   */
+  PatchWebPageTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webPageTagId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all website themes
    * @description Retrieves all website themes for the specified tenant.
    */
@@ -7637,6 +9469,50 @@ export interface operations {
       };
       path: {
         id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a website theme
+   * @description Partially updates an existing website theme for the specified tenant.
+   */
+  PatchWebsiteThemeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -7877,6 +9753,50 @@ export interface operations {
       };
       path: {
         webTemplateId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a web template
+   * @description Partially updates an existing web template for the specified tenant.
+   */
+  PatchWebTemplateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        webTemplateId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

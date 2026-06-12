@@ -422,6 +422,14 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type QuoteCreateDto = {
     id?: string;
     timestamp?: string;
@@ -1890,6 +1898,43 @@ export type GetQuoteResponses = {
 
 export type GetQuoteResponse = GetQuoteResponses[keyof GetQuoteResponses];
 
+export type PatchQuoteAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        quoteId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/QuotesService/Quotes/{quoteId}';
+};
+
+export type PatchQuoteAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchQuoteAsyncError = PatchQuoteAsyncErrors[keyof PatchQuoteAsyncErrors];
+
+export type PatchQuoteAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchQuoteAsyncResponse = PatchQuoteAsyncResponses[keyof PatchQuoteAsyncResponses];
+
 export type UpdateQuoteData = {
     body?: QuoteUpdateDto;
     path: {
@@ -2182,6 +2227,44 @@ export type GetQuoteLineResponses = {
 };
 
 export type GetQuoteLineResponse = GetQuoteLineResponses[keyof GetQuoteLineResponses];
+
+export type PatchQuoteLineAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        quoteId: string;
+        quoteLineId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}';
+};
+
+export type PatchQuoteLineAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchQuoteLineAsyncError = PatchQuoteLineAsyncErrors[keyof PatchQuoteLineAsyncErrors];
+
+export type PatchQuoteLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchQuoteLineAsyncResponse = PatchQuoteLineAsyncResponses[keyof PatchQuoteLineAsyncResponses];
 
 export type UpdateQuoteLineData = {
     body?: QuoteLineUpdateDto;

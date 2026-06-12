@@ -40,6 +40,11 @@ export interface paths {
      * @description Deletes an existing account group.
      */
     delete: operations["DeleteAccountGroup"];
+    /**
+     * Patch an account group
+     * @description Partially updates an account group.
+     */
+    patch: operations["PatchAccountGroupAsync"];
   };
   "/api/v2/AccountingService/AccountingPeriods": {
     /**
@@ -76,6 +81,11 @@ export interface paths {
      * @description Deletes an existing accounting period.
      */
     delete: operations["DeleteAccountingPeriod"];
+    /**
+     * Patch an accounting period
+     * @description Partially updates an accounting period.
+     */
+    patch: operations["PatchAccountingPeriodAsync"];
   };
   "/api/v2/AccountingService/Accounts": {
     /**
@@ -188,6 +198,11 @@ export interface paths {
      * @description Delete account entry.
      */
     delete: operations["DeleteAccountEntryAsync"];
+    /**
+     * Patch account entry
+     * @description Patch account entry.
+     */
+    patch: operations["PatchAccountEntryAsync"];
   };
   "/api/v2/AccountingService/Accounts/{accountId}/Debits": {
     /**
@@ -276,6 +291,11 @@ export interface paths {
      * @description Delete account type.
      */
     delete: operations["DeleteAccountTypeAsync"];
+    /**
+     * Patch account type
+     * @description Patch account type.
+     */
+    patch: operations["PatchAccountTypeAsync"];
   };
   "/api/v2/AccountingService/Accounts/Relations": {
     /**
@@ -307,6 +327,11 @@ export interface paths {
      * @description Delete account relation.
      */
     delete: operations["DeleteAccountRelationAsync"];
+    /**
+     * Patch account relation
+     * @description Patch account relation.
+     */
+    patch: operations["PatchAccountRelationAsync"];
   };
   "/api/v2/AccountingService/Accounts/ChartsOfAccounts": {
     /**
@@ -357,6 +382,11 @@ export interface paths {
      * @description Delete a bank.
      */
     delete: operations["DeleteBank"];
+    /**
+     * Patches a bank
+     * @description Partially update a bank using JSON Patch.
+     */
+    patch: operations["PatchBank"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Accounts": {
     /**
@@ -393,6 +423,11 @@ export interface paths {
      * @description Delete a bank account.
      */
     delete: operations["DeleteBankAccount"];
+    /**
+     * Patches a bank account
+     * @description Partially update a bank account using JSON Patch.
+     */
+    patch: operations["PatchBankAccount"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Guarantees": {
     /**
@@ -429,6 +464,11 @@ export interface paths {
      * @description Delete a bank guarantee.
      */
     delete: operations["DeleteBankGuarantee"];
+    /**
+     * Patches a bank guarantee
+     * @description Partially update a bank guarantee using JSON Patch.
+     */
+    patch: operations["PatchBankGuarantee"];
   };
   "/api/v2/AccountingService/Banking/{bankId}/Transactions": {
     /**
@@ -465,6 +505,11 @@ export interface paths {
      * @description Delete a bank transaction.
      */
     delete: operations["DeleteBankTransaction"];
+    /**
+     * Patches a bank transaction
+     * @description Partially update a bank transaction using JSON Patch.
+     */
+    patch: operations["PatchBankTransaction"];
   };
   "/api/v2/AccountingService/BankProfiles": {
     /**
@@ -510,6 +555,11 @@ export interface paths {
      * @description Deletes the specified tax entry from the billable line.
      */
     delete: operations["DeleteBillableLineTax"];
+    /**
+     * Patch a billable line tax
+     * @description Partially updates a billable line tax.
+     */
+    patch: operations["PatchBillableLineTaxAsync"];
   };
   "/api/v2/AccountingService/BillingProfiles/{billingProfileId}": {
     /**
@@ -527,6 +577,11 @@ export interface paths {
      * @description Removes a billing profile from the system using its unique identifier.
      */
     delete: operations["DeleteBillingProfileAsync"];
+    /**
+     * Patch a billing profile
+     * @description Partially updates a billing profile.
+     */
+    patch: operations["PatchBillingProfileAsync"];
   };
   "/api/v2/AccountingService/BillingProfiles": {
     /**
@@ -563,6 +618,11 @@ export interface paths {
      * @description Delete a budget
      */
     delete: operations["DeleteBudgetAsync"];
+    /**
+     * Patches a budget
+     * @description Partially update a budget using JSON Patch.
+     */
+    patch: operations["PatchBudgetAsync"];
   };
   "/api/v2/AccountingService/Budgets": {
     /**
@@ -611,6 +671,11 @@ export interface paths {
      * @description Delete a budget account entry
      */
     delete: operations["DeleteBudgetAccountEntryAsync"];
+    /**
+     * Patches a budget account entry
+     * @description Partially update a budget account entry using JSON Patch.
+     */
+    patch: operations["PatchBudgetAccountEntryAsync"];
   };
   "/api/v2/AccountingService/Commissions/Commissions": {
     /**
@@ -647,6 +712,11 @@ export interface paths {
      * @description Deletes a commission.
      */
     delete: operations["DeleteCommissionAsync"];
+    /**
+     * Patch a commission
+     * @description Partially updates an existing commission.
+     */
+    patch: operations["PatchCommissionAsync"];
   };
   "/api/v2/AccountingService/Commissions/PaymentCommissions": {
     /**
@@ -683,6 +753,11 @@ export interface paths {
      * @description Deletes a payment commission.
      */
     delete: operations["DeletePaymentCommissionAsync"];
+    /**
+     * Patch a payment commission
+     * @description Partially updates an existing payment commission.
+     */
+    patch: operations["PatchPaymentCommissionAsync"];
   };
   "/api/v2/AiService/Completions/Complete": {
     get: {
@@ -828,6 +903,11 @@ export interface paths {
      * @description Deletes a cost centre.
      */
     delete: operations["DeleteCostCentre"];
+    /**
+     * Patch a cost centre
+     * @description Partially updates an existing cost centre.
+     */
+    patch: operations["PatchCostCentre"];
   };
   "/api/v2/AccountingService/CostCentres/CostCentreGroups": {
     /**
@@ -864,6 +944,11 @@ export interface paths {
      * @description Deletes a cost centre group.
      */
     delete: operations["DeleteCostCentreGroup"];
+    /**
+     * Patch a cost centre group
+     * @description Partially updates an existing cost centre group.
+     */
+    patch: operations["PatchCostCentreGroup"];
   };
   "/api/v2/AccountingService/CostCentres/CostCentreBudgets": {
     /**
@@ -893,6 +978,11 @@ export interface paths {
      * @description Deletes a cost centre budget.
      */
     delete: operations["DeleteCostCentreBudget"];
+    /**
+     * Patch a cost centre budget
+     * @description Partially updates an existing cost centre budget.
+     */
+    patch: operations["PatchCostCentreBudget"];
   };
   "/api/v2/AccountingService/ExpenseClaims": {
     /**
@@ -929,6 +1019,11 @@ export interface paths {
      * @description Deletes an expense claim.
      */
     delete: operations["DeleteExpenseClaim"];
+    /**
+     * Patch an expense claim
+     * @description Partially updates an existing expense claim.
+     */
+    patch: operations["PatchExpenseClaim"];
   };
   "/api/v2/AccountingService/ExpenseTypes": {
     /**
@@ -965,6 +1060,11 @@ export interface paths {
      * @description Deletes an expense type.
      */
     delete: operations["DeleteExpenseType"];
+    /**
+     * Patch an expense type
+     * @description Partially updates an existing expense type.
+     */
+    patch: operations["PatchExpenseType"];
   };
   "/version": {
     get: {
@@ -1298,6 +1398,11 @@ export interface paths {
      * @description Deletes an existing financial book.
      */
     delete: operations["DeleteFinancialBookAsync"];
+    /**
+     * Patch a financial book
+     * @description Partially updates a financial book.
+     */
+    patch: operations["PatchFinancialBookAsync"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities": {
     /**
@@ -1334,6 +1439,11 @@ export interface paths {
      * @description Deletes a fiscal authority identified by its unique identifier.
      */
     delete: operations["DeleteFiscalAuthority"];
+    /**
+     * Patch a fiscal authority
+     * @description Partially updates a fiscal authority.
+     */
+    patch: operations["PatchFiscalAuthorityAsync"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalYears": {
     /**
@@ -1374,6 +1484,11 @@ export interface paths {
      * @description Deletes a fiscal year identified by its unique identifier.
      */
     delete: operations["DeleteFiscalYear"];
+    /**
+     * Patch a fiscal authority year
+     * @description Partially updates a fiscal authority year.
+     */
+    patch: operations["PatchFiscalAuthorityYearAsync"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/EnumerationRanges": {
     /**
@@ -1414,6 +1529,11 @@ export interface paths {
      * @description Deletes an invoice enumeration range identified by its unique identifier.
      */
     delete: operations["DeleteInvoiceEnumerationRange"];
+    /**
+     * Patch an invoice enumeration range
+     * @description Partially updates an invoice enumeration range.
+     */
+    patch: operations["PatchFiscalEnumerationRangeAsync"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/IdentificationTypes": {
     /**
@@ -1454,6 +1574,11 @@ export interface paths {
      * @description Deletes a fiscal identification type identified by its unique identifier.
      */
     delete: operations["DeleteFiscalIdentificationType"];
+    /**
+     * Patch a fiscal identification type
+     * @description Partially updates a fiscal identification type.
+     */
+    patch: operations["PatchFiscalIdentificationTypeAsync"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalYears/{fiscalYearId}/FiscalPeriods": {
     /**
@@ -1494,6 +1619,11 @@ export interface paths {
      * @description Deletes a fiscal period identified by its unique identifier.
      */
     delete: operations["DeleteFiscalPeriod"];
+    /**
+     * Patch a fiscal period
+     * @description Partially updates a fiscal period.
+     */
+    patch: operations["PatchFiscalPeriodAsync"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalRegimes": {
     /**
@@ -1534,6 +1664,11 @@ export interface paths {
      * @description Deletes a fiscal regime identified by its unique identifier.
      */
     delete: operations["DeleteFiscalRegime"];
+    /**
+     * Patch a fiscal regime
+     * @description Partially updates a fiscal regime.
+     */
+    patch: operations["PatchFiscalRegimeAsync"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalResponsibilities": {
     /**
@@ -1574,6 +1709,11 @@ export interface paths {
      * @description Deletes a fiscal responsibility identified by its unique identifier.
      */
     delete: operations["DeleteFiscalResponsibility"];
+    /**
+     * Patch a fiscal responsibility
+     * @description Partially updates a fiscal responsibility.
+     */
+    patch: operations["PatchFiscalResponsibilityAsync"];
   };
   "/api/v2/AccountingService/Fiscals/Authorities/{fiscalAuthorityId}/FiscalResponsibilities/{fiscalResponsibilityId}/FiscalResponsibilityRecords": {
     /**
@@ -1614,6 +1754,11 @@ export interface paths {
      * @description Deletes a fiscal responsibility record identified by its unique identifier.
      */
     delete: operations["DeleteFiscalResponsibilityRecord"];
+    /**
+     * Patch a fiscal responsibility record
+     * @description Partially updates a fiscal responsibility record.
+     */
+    patch: operations["PatchFiscalResponsibilityRecordAsync"];
   };
   "/api/v2/AccountingService/FiscalYears": {
     /**
@@ -1650,6 +1795,11 @@ export interface paths {
      * @description Deletes a fiscal year identified by its ID.
      */
     delete: operations["DeleteFiscalYearAsync"];
+    /**
+     * Patch a fiscal year
+     * @description Partially updates a fiscal year.
+     */
+    patch: operations["PatchFiscalYearAsync"];
   };
   "/api/v2/AccountingService/Grants": {
     /**
@@ -1686,6 +1836,11 @@ export interface paths {
      * @description Deletes a grant identified by its ID.
      */
     delete: operations["DeleteGrantAsync"];
+    /**
+     * Patch a grant
+     * @description Partially updates a grant.
+     */
+    patch: operations["PatchGrantAsync"];
   };
   "/api/v2/AccountingService/InvoiceEnumerationRanges": {
     /**
@@ -1715,6 +1870,11 @@ export interface paths {
      * @description Deletes an invoice enumeration range by its identifier.
      */
     delete: operations["DeleteInvoiceEnumerationRangeAsync"];
+    /**
+     * Patch an invoice enumeration range
+     * @description Partially updates an invoice enumeration range.
+     */
+    patch: operations["PatchInvoiceEnumerationRangeAsync"];
   };
   "/api/v2/AccountingService/Journals": {
     /**
@@ -1751,6 +1911,11 @@ export interface paths {
      * @description Deletes a journal by ID.
      */
     delete: operations["DeleteJournalAsync"];
+    /**
+     * Patch a journal
+     * @description Partially updates a journal.
+     */
+    patch: operations["PatchJournalAsync"];
   };
   "/api/v2/AccountingService/Journals/{journalId}/Entries": {
     /**
@@ -1796,6 +1961,11 @@ export interface paths {
      * @description Deletes a specific journal entry.
      */
     delete: operations["DeleteJournalEntryAsync"];
+    /**
+     * Patch a journal entry
+     * @description Partially updates a journal entry.
+     */
+    patch: operations["PatchJournalEntryAsync"];
   };
   "/api/v2/AccountingService/JournalTypes/{journalTypeId}": {
     /**
@@ -1813,6 +1983,11 @@ export interface paths {
      * @description Removes a journal type from the tenant's configuration.
      */
     delete: operations["DeleteJournalTypeAsync"];
+    /**
+     * Patch a journal type
+     * @description Partially updates a journal type.
+     */
+    patch: operations["PatchJournalTypeAsync"];
   };
   "/api/v2/AccountingService/JournalTypes": {
     /**
@@ -1868,6 +2043,11 @@ export interface paths {
      * @description Deletes the specified ledger.
      */
     delete: operations["DeleteLedgerAsync"];
+    /**
+     * Patches a ledger
+     * @description Patches the specified ledger.
+     */
+    patch: operations["PatchLedgerAsync"];
   };
   "/api/v2/AccountingService/LedgerTypes": {
     /**
@@ -1904,6 +2084,11 @@ export interface paths {
      * @description Deletes the specified ledger type.
      */
     delete: operations["DeleteLedgerTypeAsync"];
+    /**
+     * Patches a ledger type
+     * @description Partially updates the specified ledger type using a JSON Patch document.
+     */
+    patch: operations["PatchLedgerTypeAsync"];
   };
   "/api/v2/AccountingService/Loans/{loanId}": {
     /**
@@ -1921,6 +2106,11 @@ export interface paths {
      * @description Deletes the specified loan.
      */
     delete: operations["DeleteLoanAsync"];
+    /**
+     * Patches a loan
+     * @description Partially updates the specified loan using a JSON Patch document.
+     */
+    patch: operations["PatchLoanAsync"];
   };
   "/api/v2/AccountingService/Loans": {
     /**
@@ -1976,6 +2166,11 @@ export interface paths {
      * @description Deletes the specified loan application.
      */
     delete: operations["DeleteLoanApplicationAsync"];
+    /**
+     * Patches a loan application
+     * @description Partially updates the specified loan application using a JSON Patch document.
+     */
+    patch: operations["PatchLoanApplicationAsync"];
   };
   "/api/v2/AccountingService/Loans/Types": {
     /**
@@ -2012,6 +2207,11 @@ export interface paths {
      * @description Deletes the specified loan type.
      */
     delete: operations["DeleteLoanTypeAsync"];
+    /**
+     * Patches a loan type
+     * @description Partially updates the specified loan type using a JSON Patch document.
+     */
+    patch: operations["PatchLoanTypeAsync"];
   };
   "/api/v2/AccountingService/Receipts": {
     /**
@@ -2048,6 +2248,11 @@ export interface paths {
      * @description Removes an existing receipt from the tenant’s records.
      */
     delete: operations["DeleteReceiptAsync"];
+    /**
+     * Patches a receipt
+     * @description Partially updates the specified receipt using a JSON Patch document.
+     */
+    patch: operations["PatchReceiptAsync"];
   };
   "/api/v2/AccountingService/Shares/Classes": {
     /**
@@ -2084,6 +2289,11 @@ export interface paths {
      * @description Deletes an existing share class.
      */
     delete: operations["DeleteShareClass"];
+    /**
+     * Patches a share class
+     * @description Partially updates a share class using a JSON Patch document.
+     */
+    patch: operations["PatchShareClass"];
   };
   "/api/v2/AccountingService/Shares/Issuances": {
     /**
@@ -2120,6 +2330,11 @@ export interface paths {
      * @description Deletes an existing share issuance.
      */
     delete: operations["DeleteShareIssuance"];
+    /**
+     * Patches a share issuance
+     * @description Partially updates a share issuance using a JSON Patch document.
+     */
+    patch: operations["PatchShareIssuance"];
   };
   "/api/v2/AccountingService/Shares/Transfers": {
     /**
@@ -2156,6 +2371,11 @@ export interface paths {
      * @description Deletes an existing share transfer.
      */
     delete: operations["DeleteShareTransfer"];
+    /**
+     * Patches a share transfer
+     * @description Partially updates a share transfer using a JSON Patch document.
+     */
+    patch: operations["PatchShareTransfer"];
   };
   "/api/v2/AccountingService/Shares/TransferReasons": {
     /**
@@ -2192,6 +2412,11 @@ export interface paths {
      * @description Deletes an existing share transfer reason.
      */
     delete: operations["DeleteShareTransferReason"];
+    /**
+     * Patches a share transfer reason
+     * @description Partially updates a share transfer reason using a JSON Patch document.
+     */
+    patch: operations["PatchShareTransferReason"];
   };
   "/api/v2/AccountingService/TaxClasses": {
     /**
@@ -2228,6 +2453,11 @@ export interface paths {
      * @description Deletes a tax class identified by its unique identifier.
      */
     delete: operations["DeleteTaxClass"];
+    /**
+     * Patch a tax class
+     * @description Partially updates an existing tax class identified by its unique identifier.
+     */
+    patch: operations["PatchTaxClass"];
   };
   "/api/v2/AccountingService/TaxPolicies": {
     /**
@@ -2271,6 +2501,11 @@ export interface paths {
      * @description Deletes a tax policy identified by its unique identifier.
      */
     delete: operations["DeleteTaxPolicy"];
+    /**
+     * Patch a tax policy
+     * @description Partially updates an existing tax policy identified by its unique identifier.
+     */
+    patch: operations["PatchTaxPolicy"];
   };
   "/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords": {
     /**
@@ -2300,6 +2535,11 @@ export interface paths {
      * @description Deletes an item tax policy record identified by its unique identifier.
      */
     delete: operations["DeleteItemTaxPolicyRecord"];
+    /**
+     * Patch an item tax policy record
+     * @description Partially updates an existing item tax policy record identified by its unique identifier.
+     */
+    patch: operations["PatchItemTaxPolicyRecord"];
   };
   "/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords": {
     /**
@@ -2336,6 +2576,11 @@ export interface paths {
      * @description Deletes an applied tax policy record identified by its unique identifier.
      */
     delete: operations["DeleteAppliedTaxPolicyRecord"];
+    /**
+     * Patch an applied tax policy record
+     * @description Partially updates an existing applied tax policy record identified by its unique identifier.
+     */
+    patch: operations["PatchAppliedTaxPolicyRecord"];
   };
   "/api/v2/AccountingService/TaxRates": {
     /**
@@ -2372,6 +2617,11 @@ export interface paths {
      * @description Deletes a tax rate identified by its unique identifier.
      */
     delete: operations["DeleteTaxRate"];
+    /**
+     * Patch a tax rate
+     * @description Partially updates an existing tax rate identified by its unique identifier.
+     */
+    patch: operations["PatchTaxRate"];
   };
   "/api/v2/AccountingService/Transactions": {
     /**
@@ -2408,6 +2658,11 @@ export interface paths {
      * @description Deletes a transaction by its unique identifier.
      */
     delete: operations["DeleteTransaction"];
+    /**
+     * Patch a transaction
+     * @description Partially updates an existing transaction identified by its unique identifier.
+     */
+    patch: operations["PatchTransaction"];
   };
   "/api/v2/AccountingService/Transactions/Categories": {
     /**
@@ -2444,6 +2699,11 @@ export interface paths {
      * @description Deletes a transaction category by its unique identifier.
      */
     delete: operations["DeleteTransactionCategory"];
+    /**
+     * Patch a transaction category
+     * @description Partially updates an existing transaction category identified by its unique identifier.
+     */
+    patch: operations["PatchTransactionCategory"];
   };
 }
 
@@ -2476,6 +2736,7 @@ export interface components {
       path?: string | null;
       prefix?: string | null;
       currencyId: string;
+      contactId?: string | null;
       accountTypeId?: string | null;
       parentAccountId?: string | null;
       /** @enum {string} */
@@ -2495,6 +2756,7 @@ export interface components {
       /** Format: double */
       balance?: number;
       currencyId?: string | null;
+      contactId?: string | null;
       accountType?: string | null;
       qualifiedName?: string | null;
       accountTypeId?: string | null;
@@ -2590,12 +2852,14 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       accountId?: string | null;
+      type?: string | null;
     };
     AccountRelationDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       accountId?: string | null;
+      type?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
@@ -2610,6 +2874,7 @@ export interface components {
     };
     AccountRelationUpdateDto: {
       accountId?: string | null;
+      type?: string | null;
     };
     AccountTypeCreateDto: {
       /** Format: uuid */
@@ -2658,6 +2923,7 @@ export interface components {
       path?: string | null;
       prefix?: string | null;
       currencyId: string;
+      contactId?: string | null;
       accountTypeId?: string | null;
       parentAccountId?: string | null;
       /** @enum {string} */
@@ -2898,9 +3164,9 @@ export interface components {
       swift?: string | null;
       branchCode?: string | null;
       bankAccountNumber?: string | null;
-      qualifiedName?: string | null;
       bankId?: string | null;
       bankProfileId?: string | null;
+      walletId?: string | null;
     };
     BankAccountDto: {
       id?: string | null;
@@ -2942,9 +3208,9 @@ export interface components {
       swift?: string | null;
       branchCode?: string | null;
       bankAccountNumber?: string | null;
-      qualifiedName?: string | null;
       bankId?: string | null;
       bankProfileId?: string | null;
+      walletId?: string | null;
     };
     BankCreateDto: {
       /** Format: uuid */
@@ -3136,6 +3402,22 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      description?: string | null;
+      /** Format: double */
+      price?: number;
+      /** Format: double */
+      quantity?: number;
+      externalDescription?: string | null;
+      /** Format: double */
+      basisQuantity?: number;
+      /** Format: double */
+      basisAmount?: number;
+      /** Format: double */
+      percent?: number;
+      unitGroupId?: string | null;
+      unitId?: string | null;
+      transactionCategoryId?: string | null;
+      currencyId?: string | null;
       bankProfileId?: string | null;
       bankAccountId?: string | null;
     };
@@ -3226,6 +3508,8 @@ export interface components {
       duns?: string | null;
       isPublicCompany?: boolean;
       isFactaCustomer?: boolean;
+      /** @enum {string} */
+      taxPayerType?: "Individual" | "Business";
       countryId: string;
       stateId: string;
       cityId: string;
@@ -3327,6 +3611,8 @@ export interface components {
       duns?: string | null;
       isPublicCompany?: boolean;
       isFactaCustomer?: boolean;
+      /** @enum {string} */
+      taxPayerType?: "Individual" | "Business";
       countryId?: string | null;
       stateId?: string | null;
       cityId?: string | null;
@@ -3767,8 +4053,6 @@ export interface components {
       description?: string | null;
       /** Format: date-time */
       dateTime?: string;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       ledgerTypeId?: string | null;
     };
     CurrencyId: {
@@ -3881,7 +4165,7 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       description?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     FinancialBookDtoEnvelope: {
       isSuccess?: boolean;
@@ -4398,6 +4682,8 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       taxPolicyId?: string | null;
       itemPriceId?: string | null;
       itemId?: string | null;
@@ -4421,10 +4707,6 @@ export interface components {
       result?: components["schemas"]["ItemTaxPolicyRecordDto"][] | null;
     };
     ItemTaxPolicyRecordUpdateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
       taxPolicyId?: string | null;
       itemPriceId?: string | null;
       itemId?: string | null;
@@ -4438,9 +4720,9 @@ export interface components {
       description?: string | null;
       /** Format: date-time */
       dateTime?: string;
-      parentJournalID?: string | null;
-      journalTypeID?: string | null;
-      ledgerID?: string | null;
+      parentJournalId?: string | null;
+      journalTypeId?: string | null;
+      ledgerId?: string | null;
     };
     JournalDto: {
       id?: string | null;
@@ -4598,9 +4880,9 @@ export interface components {
       description?: string | null;
       /** Format: date-time */
       dateTime?: string;
-      parentJournalID?: string | null;
-      journalTypeID?: string | null;
-      ledgerID?: string | null;
+      parentJournalId?: string | null;
+      journalTypeId?: string | null;
+      ledgerId?: string | null;
     };
     LedgerDto: {
       id?: string | null;
@@ -4867,7 +5149,7 @@ export interface components {
       receiverWalletAccountId?: string | null;
       emisorContactId?: string | null;
       receiverContactId?: string | null;
-      paymentID?: string | null;
+      paymentId?: string | null;
     };
     PaymentCommissionDtoEnvelope: {
       isSuccess?: boolean;
@@ -4989,7 +5271,7 @@ export interface components {
       paymentId?: string | null;
       tenantId?: string | null;
       closed?: boolean;
-      accountHolderId?: string | null;
+      userId?: string | null;
       contactId?: string | null;
       enrollmentId?: string | null;
       /** @enum {string} */
@@ -5353,7 +5635,7 @@ export interface components {
       zero?: boolean;
       reduced?: boolean;
       withholding?: boolean;
-      fiscalAuthorityID?: string | null;
+      fiscalAuthorityId?: string | null;
     };
     TaxPolicyDtoEnvelope: {
       isSuccess?: boolean;
@@ -5647,8 +5929,6 @@ export interface components {
     UpdateLedgerDto: {
       name?: string | null;
       description?: string | null;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
       ledgerTypeId?: string | null;
     };
   };
@@ -5943,6 +6223,53 @@ export interface operations {
     };
   };
   /**
+   * Patch an account group
+   * @description Partially updates an account group.
+   */
+  PatchAccountGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        accountGroupId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all accounting periods for a tenant
    * @description Retrieves all accounting periods for the specified tenant using OData query options.
    */
@@ -6186,6 +6513,53 @@ export interface operations {
       };
       path: {
         accountingPeriodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an accounting period
+   * @description Partially updates an accounting period.
+   */
+  PatchAccountingPeriodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        accountingPeriodId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -6990,6 +7364,54 @@ export interface operations {
     };
   };
   /**
+   * Patch account entry
+   * @description Patch account entry.
+   */
+  PatchAccountEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        accountId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get account debits
    * @description Get account debits.
    */
@@ -7581,6 +8003,53 @@ export interface operations {
     };
   };
   /**
+   * Patch account type
+   * @description Patch account type.
+   */
+  PatchAccountTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        accountTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get account relations
    * @description Get account relations.
    */
@@ -7767,6 +8236,54 @@ export interface operations {
       };
       path: {
         accountRelationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch account relation
+   * @description Patch account relation.
+   */
+  PatchAccountRelationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        accountId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        accountRelationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -8152,6 +8669,67 @@ export interface operations {
     };
   };
   /**
+   * Patches a bank
+   * @description Partially update a bank using JSON Patch.
+   */
+  PatchBank: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bankId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets the current tenant bank accounts
    * @description Get the currently acting tenant bank accounts.
    */
@@ -8410,6 +8988,68 @@ export interface operations {
       };
     };
     responses: {
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a bank account
+   * @description Partially update a bank account using JSON Patch.
+   */
+  PatchBankAccount: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bankId: string;
+        accountId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
       /** @description Unauthorized */
       401: {
         content: {
@@ -8716,6 +9356,68 @@ export interface operations {
     };
   };
   /**
+   * Patches a bank guarantee
+   * @description Partially update a bank guarantee using JSON Patch.
+   */
+  PatchBankGuarantee: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bankId: string;
+        guaranteeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets the current tenant bank transactions
    * @description Get the currently acting tenant bank transactions.
    */
@@ -8998,6 +9700,68 @@ export interface operations {
     };
   };
   /**
+   * Patches a bank transaction
+   * @description Partially update a bank transaction using JSON Patch.
+   */
+  PatchBankTransaction: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        bankId: string;
+        transactionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all bank profiles for a tenant
    * @description Retrieves all bank profiles for the specified tenant using OData query options.
    */
@@ -9223,6 +9987,54 @@ export interface operations {
     };
   };
   /**
+   * Patch a billable line tax
+   * @description Partially updates a billable line tax.
+   */
+  PatchBillableLineTaxAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billableLineId: string;
+        taxId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets a billing profile by id
    * @description Retrieves a specific billing profile using its unique identifier.
    */
@@ -9305,6 +10117,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a billing profile
+   * @description Partially updates a billing profile.
+   */
+  PatchBillingProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billingProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };
@@ -9509,6 +10368,60 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a budget
+   * @description Partially update a budget using JSON Patch.
+   */
+  PatchBudgetAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        budgetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -9857,6 +10770,61 @@ export interface operations {
     };
   };
   /**
+   * Patches a budget account entry
+   * @description Partially update a budget account entry using JSON Patch.
+   */
+  PatchBudgetAccountEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        budgetId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all commissions for a tenant
    * @description Retrieves all commissions for the specified tenant using OData query options.
    */
@@ -10079,6 +11047,53 @@ export interface operations {
       };
       path: {
         commissionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a commission
+   * @description Partially updates an existing commission.
+   */
+  PatchCommissionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        commissionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -10355,6 +11370,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a payment commission
+   * @description Partially updates an existing payment commission.
+   */
+  PatchPaymentCommissionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentCommissionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all cost centres for a tenant
    * @description Retrieves all cost centres for the specified tenant using OData query options.
    */
@@ -10577,6 +11639,53 @@ export interface operations {
       };
       path: {
         costCentreId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a cost centre
+   * @description Partially updates an existing cost centre.
+   */
+  PatchCostCentre: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        costCentreId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -10853,6 +11962,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a cost centre group
+   * @description Partially updates an existing cost centre group.
+   */
+  PatchCostCentreGroup: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        groupId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all cost centre budgets for a tenant
    * @description Retrieves all cost centre budgets for the specified tenant using OData query options.
    */
@@ -11037,6 +12193,53 @@ export interface operations {
       };
       path: {
         budgetId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a cost centre budget
+   * @description Partially updates an existing cost centre budget.
+   */
+  PatchCostCentreBudget: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        budgetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -11313,6 +12516,53 @@ export interface operations {
     };
   };
   /**
+   * Patch an expense claim
+   * @description Partially updates an existing expense claim.
+   */
+  PatchExpenseClaim: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        expenseClaimId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all expense types for a tenant
    * @description Retrieves all expense types for the specified tenant using OData query options.
    */
@@ -11535,6 +12785,53 @@ export interface operations {
       };
       path: {
         expenseTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an expense type
+   * @description Partially updates an existing expense type.
+   */
+  PatchExpenseType: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        expenseTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -11868,6 +13165,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a financial book
+   * @description Partially updates a financial book.
+   */
+  PatchFinancialBookAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        financialBookId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get fiscal authorities
    * @description Retrieves all fiscal authorities for the specified tenant using OData query options.
    */
@@ -12095,6 +13439,53 @@ export interface operations {
     responses: {
       /** @description No Content */
       204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a fiscal authority
+   * @description Partially updates a fiscal authority.
+   */
+  PatchFiscalAuthorityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        authorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
@@ -12374,6 +13765,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a fiscal authority year
+   * @description Partially updates a fiscal authority year.
+   */
+  PatchFiscalAuthorityYearAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        fiscalYearId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get invoice enumeration ranges for an authority
    * @description Retrieves all invoice enumeration ranges for the specified fiscal authority.
    */
@@ -12631,6 +14069,53 @@ export interface operations {
     };
   };
   /**
+   * Patch an invoice enumeration range
+   * @description Partially updates an invoice enumeration range.
+   */
+  PatchFiscalEnumerationRangeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        enumerationRangeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get fiscal identification types for an authority
    * @description Retrieves all fiscal identification types for the specified fiscal authority.
    */
@@ -12865,6 +14350,53 @@ export interface operations {
     responses: {
       /** @description No Content */
       204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a fiscal identification type
+   * @description Partially updates a fiscal identification type.
+   */
+  PatchFiscalIdentificationTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        identificationTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
@@ -13147,6 +14679,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a fiscal period
+   * @description Partially updates a fiscal period.
+   */
+  PatchFiscalPeriodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        fiscalPeriodId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get fiscal regimes for an authority
    * @description Retrieves all fiscal regimes for the specified fiscal authority.
    */
@@ -13404,6 +14983,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a fiscal regime
+   * @description Partially updates a fiscal regime.
+   */
+  PatchFiscalRegimeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        regimeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get fiscal responsibilities for an authority
    * @description Retrieves all fiscal responsibilities for the specified fiscal authority.
    */
@@ -13639,6 +15265,53 @@ export interface operations {
     responses: {
       /** @description No Content */
       204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a fiscal responsibility
+   * @description Partially updates a fiscal responsibility.
+   */
+  PatchFiscalResponsibilityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        fiscalResponsibilityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
@@ -13920,6 +15593,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a fiscal responsibility record
+   * @description Partially updates a fiscal responsibility record.
+   */
+  PatchFiscalResponsibilityRecordAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        fiscalResponsibilityRecordId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all fiscal years
    * @description Retrieves a list of fiscal years for the specified tenant.
    */
@@ -14085,6 +15805,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a fiscal year
+   * @description Partially updates a fiscal year.
+   */
+  PatchFiscalYearAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        fiscalYearId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all grants
    * @description Retrieves a list of grants associated with the tenant.
    */
@@ -14245,6 +16012,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a grant
+   * @description Partially updates a grant.
+   */
+  PatchGrantAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        grantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };
@@ -14496,6 +16310,53 @@ export interface operations {
     };
   };
   /**
+   * Patch an invoice enumeration range
+   * @description Partially updates an invoice enumeration range.
+   */
+  PatchInvoiceEnumerationRangeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        rangeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all journals
    * @description Retrieves all journals for the specified tenant.
    */
@@ -14718,6 +16579,53 @@ export interface operations {
       };
       path: {
         journalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a journal
+   * @description Partially updates a journal.
+   */
+  PatchJournalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -15048,6 +16956,54 @@ export interface operations {
     };
   };
   /**
+   * Patch a journal entry
+   * @description Partially updates a journal entry.
+   */
+  PatchJournalEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves a journal type by ID
    * @description Fetches the journal type matching the specified ID.
    */
@@ -15130,6 +17086,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a journal type
+   * @description Partially updates a journal type.
+   */
+  PatchJournalTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };
@@ -15462,6 +17465,53 @@ export interface operations {
     };
   };
   /**
+   * Patches a ledger
+   * @description Patches the specified ledger.
+   */
+  PatchLedgerAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        ledgerId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves all ledger types
    * @description Gets all ledger types for the current tenant with OData support.
    */
@@ -15711,6 +17761,53 @@ export interface operations {
     };
   };
   /**
+   * Patches a ledger type
+   * @description Partially updates the specified ledger type using a JSON Patch document.
+   */
+  PatchLedgerTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        ledgerTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets a loan by ID
    * @description Retrieves the details of a loan using its unique ID.
    */
@@ -15813,6 +17910,53 @@ export interface operations {
       };
       path: {
         loanId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a loan
+   * @description Partially updates the specified loan using a JSON Patch document.
+   */
+  PatchLoanAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        loanId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -16209,6 +18353,53 @@ export interface operations {
     };
   };
   /**
+   * Patches a loan application
+   * @description Partially updates the specified loan application using a JSON Patch document.
+   */
+  PatchLoanApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        applicationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets all loan types
    * @description Retrieves all loan types for the current tenant with OData support.
    */
@@ -16458,6 +18649,53 @@ export interface operations {
     };
   };
   /**
+   * Patches a loan type
+   * @description Partially updates the specified loan type using a JSON Patch document.
+   */
+  PatchLoanTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        loanTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves tenant receipts
    * @description Fetches all receipts for a given tenant with OData support.
    */
@@ -16594,6 +18832,49 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a receipt
+   * @description Partially updates the specified receipt using a JSON Patch document.
+   */
+  PatchReceiptAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        receiptId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };
@@ -16868,6 +19149,53 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a share class
+   * @description Partially updates a share class using a JSON Patch document.
+   */
+  PatchShareClass: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shareClassId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -17153,6 +19481,53 @@ export interface operations {
     };
   };
   /**
+   * Patches a share issuance
+   * @description Partially updates a share issuance using a JSON Patch document.
+   */
+  PatchShareIssuance: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        issuanceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets the current tenant share transfers
    * @description Get the currently acting tenant share transfers.
    */
@@ -17422,6 +19797,53 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a share transfer
+   * @description Partially updates a share transfer using a JSON Patch document.
+   */
+  PatchShareTransfer: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        transferId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -17707,6 +20129,53 @@ export interface operations {
     };
   };
   /**
+   * Patches a share transfer reason
+   * @description Partially updates a share transfer reason using a JSON Patch document.
+   */
+  PatchShareTransferReason: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        reasonId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all tax classes for a tenant
    * @description Retrieves all tax classes for the specified tenant using OData query options.
    */
@@ -17934,6 +20403,53 @@ export interface operations {
     responses: {
       /** @description OK */
       200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tax class
+   * @description Partially updates an existing tax class identified by its unique identifier.
+   */
+  PatchTaxClass: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
@@ -18246,6 +20762,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tax policy
+   * @description Partially updates an existing tax policy identified by its unique identifier.
+   */
+  PatchTaxPolicy: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get item tax policy records
    * @description Retrieves all item tax policy records for the specified tax policy.
    */
@@ -18439,6 +21002,54 @@ export interface operations {
       path: {
         taxPolicyId: string;
         itemTaxPolicyRecordId: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an item tax policy record
+   * @description Partially updates an existing item tax policy record identified by its unique identifier.
+   */
+  PatchItemTaxPolicyRecord: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        taxPolicyId: string;
+        itemTaxPolicyRecordId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -18727,6 +21338,54 @@ export interface operations {
     };
   };
   /**
+   * Patch an applied tax policy record
+   * @description Partially updates an existing applied tax policy record identified by its unique identifier.
+   */
+  PatchAppliedTaxPolicyRecord: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        taxPolicyId: string;
+        appliedTaxPolicyRecordId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all tax rates for a tenant
    * @description Retrieves all tax rates for the specified tenant using OData query options.
    */
@@ -18949,6 +21608,53 @@ export interface operations {
       };
       path: {
         id: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tax rate
+   * @description Partially updates an existing tax rate identified by its unique identifier.
+   */
+  PatchTaxRate: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -19253,6 +21959,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a transaction
+   * @description Partially updates an existing transaction identified by its unique identifier.
+   */
+  PatchTransaction: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        transactionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all transaction categories
    * @description Retrieves all transaction categories for the specified tenant.
    */
@@ -19522,6 +22275,53 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a transaction category
+   * @description Partially updates an existing transaction category identified by its unique identifier.
+   */
+  PatchTransactionCategory: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        categoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

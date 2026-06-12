@@ -435,6 +435,14 @@ export type OAuthAuthorizationDtoListEnvelopeWritable = {
     result?: Array<OAuthAuthorizationDto> | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -834,6 +842,47 @@ export type GetBusinessApplicationByIdAsyncResponses = {
 };
 
 export type GetBusinessApplicationByIdAsyncResponse = GetBusinessApplicationByIdAsyncResponses[keyof GetBusinessApplicationByIdAsyncResponses];
+
+export type PatchBusinessApplicationAsyncData = {
+    body: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        applicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Applications/{applicationId}';
+};
+
+export type PatchBusinessApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchBusinessApplicationAsyncError = PatchBusinessApplicationAsyncErrors[keyof PatchBusinessApplicationAsyncErrors];
+
+export type PatchBusinessApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBusinessApplicationAsyncResponse = PatchBusinessApplicationAsyncResponses[keyof PatchBusinessApplicationAsyncResponses];
 
 export type UpdateBusinessApplicationAsyncData = {
     body: BusinessApplicationUpdateDto;
@@ -1566,6 +1615,47 @@ export type GetOAuthApplicationByIdAsyncResponses = {
 
 export type GetOAuthApplicationByIdAsyncResponse = GetOAuthApplicationByIdAsyncResponses[keyof GetOAuthApplicationByIdAsyncResponses];
 
+export type PatchOAuthApplicationAsyncData = {
+    body: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        applicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/OAuthApplications/{applicationId}';
+};
+
+export type PatchOAuthApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchOAuthApplicationAsyncError = PatchOAuthApplicationAsyncErrors[keyof PatchOAuthApplicationAsyncErrors];
+
+export type PatchOAuthApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchOAuthApplicationAsyncResponse = PatchOAuthApplicationAsyncResponses[keyof PatchOAuthApplicationAsyncResponses];
+
 export type UpdateOAuthApplicationAsyncData = {
     body: OAuthApplicationUpdateDto;
     headers?: {
@@ -1902,6 +1992,47 @@ export type GetPermissionAsyncResponses = {
 };
 
 export type GetPermissionAsyncResponse = GetPermissionAsyncResponses[keyof GetPermissionAsyncResponses];
+
+export type PatchPermissionAsyncData = {
+    body: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        securityPermissionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Permissions/{securityPermissionId}';
+};
+
+export type PatchPermissionAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchPermissionAsyncError = PatchPermissionAsyncErrors[keyof PatchPermissionAsyncErrors];
+
+export type PatchPermissionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPermissionAsyncResponse = PatchPermissionAsyncResponses[keyof PatchPermissionAsyncResponses];
 
 export type UpdatePermissionAsyncData = {
     body: SecurityPermissionUpdateDto;
@@ -2530,6 +2661,47 @@ export type GetRoleAsyncResponses = {
 };
 
 export type GetRoleAsyncResponse = GetRoleAsyncResponses[keyof GetRoleAsyncResponses];
+
+export type PatchRoleAsyncData = {
+    body: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        securityRoleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SecurityService/Roles/{securityRoleId}';
+};
+
+export type PatchRoleAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchRoleAsyncError = PatchRoleAsyncErrors[keyof PatchRoleAsyncErrors];
+
+export type PatchRoleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchRoleAsyncResponse = PatchRoleAsyncResponses[keyof PatchRoleAsyncResponses];
 
 export type UpdateRoleAsyncData = {
     body: SecurityRoleUpdateDto;

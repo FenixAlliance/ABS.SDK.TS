@@ -467,6 +467,11 @@ export interface paths {
      * @description Deletes a post from a specific social feed.
      */
     delete: operations["DeleteFeedPostAsync"];
+    /**
+     * Patch a social feed post
+     * @description Partially updates an existing post in a specific social feed using a JSON Patch document.
+     */
+    patch: operations["PatchFeedPostAsync"];
   };
   "/api/v2/SocialService/SocialGroups": {
     /**
@@ -503,6 +508,11 @@ export interface paths {
      * @description Deletes a social group for the specified tenant.
      */
     delete: operations["DeleteSocialGroupAsync"];
+    /**
+     * Patch a social group
+     * @description Partially updates an existing social group using a JSON Patch document.
+     */
+    patch: operations["PatchSocialGroupAsync"];
   };
   "/api/v2/SocialService/SocialPosts": {
     /**
@@ -539,6 +549,11 @@ export interface paths {
      * @description Deletes a social post by its ID.
      */
     delete: operations["DeleteSocialPostAsync"];
+    /**
+     * Patch a social post
+     * @description Partially updates an existing social post by its ID using a JSON Patch document.
+     */
+    patch: operations["PatchSocialPostAsync"];
   };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments": {
     /**
@@ -947,8 +962,11 @@ export interface components {
       read?: boolean;
       icon?: string | null;
       message?: string | null;
+      imageUrl?: string | null;
       redirectUrl?: string | null;
-      socialProfileID?: string | null;
+      /** @enum {string} */
+      type?: "Event" | "Alert" | "Log";
+      socialProfileId?: string | null;
       /** Format: date-time */
       readTimestamp?: string;
       /** Format: date-time */
@@ -972,6 +990,14 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["NotificationDto"][] | null;
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     PrivateMessageCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -992,7 +1018,7 @@ export interface components {
       message?: string | null;
       conversationId?: string | null;
       senderSocialProfileId?: string | null;
-      receiverSocialProfileID?: string | null;
+      receiverSocialProfileId?: string | null;
       /** Format: date-time */
       sentTimestamp?: string;
       /** Format: date-time */
@@ -1109,7 +1135,7 @@ export interface components {
       name?: string | null;
       title?: string | null;
       avatarURL?: string | null;
-      socialProfileID?: string | null;
+      socialProfileId?: string | null;
     };
     SocialGroupDto: {
       id?: string | null;
@@ -1118,9 +1144,9 @@ export interface components {
       name?: string | null;
       title?: string | null;
       avatarURL?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
-      socialProfileID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      socialProfileId?: string | null;
     };
     SocialGroupDtoEnvelope: {
       isSuccess?: boolean;
@@ -1835,6 +1861,54 @@ export interface operations {
     };
   };
   /**
+   * Patch a social feed post
+   * @description Partially updates an existing post in a specific social feed using a JSON Patch document.
+   */
+  PatchFeedPostAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialFeedId: string;
+        feedPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get social groups
    * @description Retrieves all social groups for the specified tenant.
    */
@@ -2087,6 +2161,54 @@ export interface operations {
     };
   };
   /**
+   * Patch a social group
+   * @description Partially updates an existing social group using a JSON Patch document.
+   */
+  PatchSocialGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialGroupId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get social posts
    * @description Retrieves a list of social posts for the specified social profile.
    */
@@ -2309,6 +2431,53 @@ export interface operations {
       };
       path: {
         socialPostId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a social post
+   * @description Partially updates an existing social post by its ID using a JSON Patch document.
+   */
+  PatchSocialPostAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

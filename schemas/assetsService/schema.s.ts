@@ -33,6 +33,11 @@ export interface paths {
      * @description Deletes an asset category for the authenticated tenant.
      */
     delete: operations["DeleteAssetCategory"];
+    /**
+     * Partially updates an existing asset category
+     * @description Applies a JSON Patch document to an existing asset category for the authenticated tenant.
+     */
+    patch: operations["PatchAssetCategory"];
   };
   "/api/v2/AssetsService/AssetCategories/count": {
     /**
@@ -76,6 +81,11 @@ export interface paths {
      * @description Deletes an existing asset for the authenticated tenant.
      */
     delete: operations["DeleteAsset"];
+    /**
+     * Partially updates an existing asset
+     * @description Applies a JSON Patch document to an existing asset for the authenticated tenant.
+     */
+    patch: operations["PatchAsset"];
   };
   "/api/v2/AssetsService/Assets/Categories": {
     /**
@@ -112,6 +122,11 @@ export interface paths {
      * @description Deletes an existing asset category for the authenticated tenant.
      */
     delete: operations["DeleteAssetAssetCategory"];
+    /**
+     * Partially updates an existing asset category
+     * @description Applies a JSON Patch document to an existing asset category for the authenticated tenant.
+     */
+    patch: operations["PatchAssetAssetCategory"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/Repairs": {
     /**
@@ -148,6 +163,11 @@ export interface paths {
      * @description Deletes a repair record for the specified asset.
      */
     delete: operations["DeleteAssetRepair"];
+    /**
+     * Partially updates a repair for an asset
+     * @description Applies a JSON Patch document to an existing repair record for the specified asset.
+     */
+    patch: operations["PatchAssetRepair"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/ValueAmends": {
     /**
@@ -184,6 +204,11 @@ export interface paths {
      * @description Deletes a value amendment record for the specified asset.
      */
     delete: operations["DeleteAssetValueAmend"];
+    /**
+     * Partially updates a value amendment for an asset
+     * @description Applies a JSON Patch document to an existing value amendment record for the specified asset.
+     */
+    patch: operations["PatchAssetValueAmend"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords": {
     /**
@@ -220,6 +245,11 @@ export interface paths {
      * @description Deletes a depreciation record for the specified asset.
      */
     delete: operations["DeleteAssetDepreciationRecord"];
+    /**
+     * Partially updates a depreciation record for an asset
+     * @description Applies a JSON Patch document to an existing depreciation record for the specified asset.
+     */
+    patch: operations["PatchAssetDepreciationRecord"];
   };
   "/api/v2/AssetsService/Assets/{assetId}/Transfers": {
     /**
@@ -256,6 +286,11 @@ export interface paths {
      * @description Deletes a transfer record for the specified asset.
      */
     delete: operations["DeleteAssetTransfer"];
+    /**
+     * Partially updates a transfer for an asset
+     * @description Applies a JSON Patch document to an existing transfer record for the specified asset.
+     */
+    patch: operations["PatchAssetTransfer"];
   };
   "/api/v2/AssetsService/AssetTransfers": {
     /**
@@ -292,6 +327,11 @@ export interface paths {
      * @description Deletes an asset transfer for the authenticated tenant.
      */
     delete: operations["DeleteAssetTransferAsync"];
+    /**
+     * Partially updates an existing asset transfer
+     * @description Applies a JSON Patch document to an existing asset transfer for the authenticated tenant.
+     */
+    patch: operations["PatchAssetTransferAsync"];
   };
   "/api/v2/AssetsService/AssetTypes": {
     /**
@@ -321,6 +361,11 @@ export interface paths {
      * @description Deletes an asset type for the authenticated tenant.
      */
     delete: operations["DeleteAssetType"];
+    /**
+     * Partially updates an existing asset type
+     * @description Applies a JSON Patch document to an existing asset type for the authenticated tenant.
+     */
+    patch: operations["PatchAssetType"];
   };
   "/api/v2/AssetsService/AssetTypes/count": {
     /**
@@ -812,6 +857,7 @@ export interface components {
       purchasePrice?: number;
       currencyId?: string | null;
       itemId?: string | null;
+      assetTypeId?: string | null;
       assetCategoryId?: string | null;
       purchaseInvoiceId?: string | null;
       purchaseReceiptId?: string | null;
@@ -840,15 +886,26 @@ export interface components {
       month?: number;
     };
     AssetDepreciationRecordDto: {
-      id?: components["schemas"]["AssetDepreciationRecordId"];
+      id?: string | null;
       /** Format: date-time */
       timestamp?: string;
-      businessId?: components["schemas"]["TenantId"];
-      businessProfileRecordId?: components["schemas"]["EnrollmentId"];
-      assetId?: components["schemas"]["AssetId"];
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      assetId?: string | null;
       assetName?: string | null;
       assetDepreciationPolicyId?: string | null;
       assetDepreciationPolicyName?: string | null;
+      financialBookId?: string | null;
+      /** Format: date-time */
+      startDate?: string;
+      /** Format: int32 */
+      totalDepreciations?: number;
+      /** Format: int32 */
+      depreciationFrequency?: number;
+      /** Format: double */
+      depreciationRate?: number;
+      /** Format: double */
+      expectedValueAUL?: number;
       /** Format: double */
       depreciationAmount?: number;
       /** Format: double */
@@ -881,8 +938,6 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AssetDepreciationRecordDto"][] | null;
     };
-    /** Format: uuid */
-    AssetDepreciationRecordId: string;
     AssetDepreciationRecordUpdateDto: {
       /** Format: double */
       depreciationAmount?: number | null;
@@ -903,7 +958,7 @@ export interface components {
       timestamp?: string | null;
       tenantId?: string | null;
       businessName?: string | null;
-      businessProfileRecordId?: string | null;
+      enrollmentId?: string | null;
       name?: string | null;
       description?: string | null;
       /** @enum {string} */
@@ -923,6 +978,8 @@ export interface components {
       currencyCode?: string | null;
       itemId?: string | null;
       itemName?: string | null;
+      assetTypeId?: string | null;
+      assetTypeName?: string | null;
       assetCategoryId?: string | null;
       assetCategoryName?: string | null;
       purchaseInvoiceId?: string | null;
@@ -953,8 +1010,6 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AssetDto"][] | null;
     };
-    /** Format: uuid */
-    AssetId: string;
     AssetRepairCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -979,12 +1034,12 @@ export interface components {
       assetMaintenanceTeamId?: string | null;
     };
     AssetRepairDto: {
-      id?: components["schemas"]["AssetRepairId"];
+      id?: string | null;
       /** Format: date-time */
       timestamp?: string;
-      businessId?: components["schemas"]["TenantId"];
-      businessProfileRecordId?: components["schemas"]["EnrollmentId"];
-      assetId?: components["schemas"]["AssetId"];
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      assetId?: string | null;
       assetName?: string | null;
       /** @enum {string} */
       repairStatus?: "Scheduled" | "InProgress" | "Completed" | "Cancelled";
@@ -1022,8 +1077,6 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AssetRepairDto"][] | null;
     };
-    /** Format: uuid */
-    AssetRepairId: string;
     AssetRepairUpdateDto: {
       /** @enum {string|null} */
       repairStatus?: "Scheduled" | "InProgress" | "Completed" | "Cancelled" | null;
@@ -1062,8 +1115,8 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string;
-      businessId?: string | null;
-      businessProfileRecordId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       assetId?: string | null;
       assetName?: string | null;
       isRootTransfer?: boolean;
@@ -1156,7 +1209,7 @@ export interface components {
       name?: string | null;
       description?: string | null;
       /** @enum {string|null} */
-      assetType?: "Fixed" | "Stock" | null;
+      assetClass?: "Fixed" | "Stock" | null;
       /** @enum {string|null} */
       assetOwner?: "Business" | "Organization" | "Contact" | "Supplier" | null;
       calculateDepreciation?: boolean;
@@ -1168,8 +1221,8 @@ export interface components {
       /** Format: double */
       purchasePrice?: number | null;
       currencyId?: string | null;
-      currencyCode?: string | null;
       itemId?: string | null;
+      assetTypeId?: string | null;
       assetCategoryId?: string | null;
       purchaseInvoiceId?: string | null;
       purchaseReceiptId?: string | null;
@@ -1190,17 +1243,15 @@ export interface components {
       reason?: string | null;
       /** Format: date-time */
       amendmentDate?: string;
-      approvedBy?: string | null;
-      /** Format: date-time */
-      approvalDate?: string | null;
+      currencyId?: string | null;
     };
     AssetValueAmendDto: {
-      id?: components["schemas"]["AssetValueAmendId"];
+      id?: string | null;
       /** Format: date-time */
       timestamp?: string;
-      businessId?: components["schemas"]["TenantId"];
-      businessProfileRecordId?: components["schemas"]["EnrollmentId"];
-      assetId?: components["schemas"]["AssetId"];
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      assetId?: string | null;
       assetName?: string | null;
       /** Format: double */
       previousValue?: number;
@@ -1211,9 +1262,7 @@ export interface components {
       reason?: string | null;
       /** Format: date-time */
       amendmentDate?: string;
-      approvedBy?: string | null;
-      /** Format: date-time */
-      approvalDate?: string | null;
+      currencyId?: string | null;
     };
     AssetValueAmendDtoEnvelope: {
       isSuccess?: boolean;
@@ -1233,17 +1282,12 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AssetValueAmendDto"][] | null;
     };
-    /** Format: uuid */
-    AssetValueAmendId: string;
     AssetValueAmendUpdateDto: {
       /** Format: double */
       newValue?: number | null;
       reason?: string | null;
       /** Format: date-time */
       amendmentDate?: string | null;
-      approvedBy?: string | null;
-      /** Format: date-time */
-      approvalDate?: string | null;
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -1253,8 +1297,6 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
     };
-    /** Format: uuid */
-    EnrollmentId: string;
     ErrorEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1303,6 +1345,14 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1318,8 +1368,6 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
-    /** Format: uuid */
-    TenantId: string;
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -1548,6 +1596,63 @@ export interface operations {
       /** @description No Content */
       204: {
         content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Partially updates an existing asset category
+   * @description Applies a JSON Patch document to an existing asset category for the authenticated tenant.
+   */
+  PatchAssetCategory: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        categoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
       /** @description Unauthorized */
       401: {
@@ -1864,6 +1969,63 @@ export interface operations {
     };
   };
   /**
+   * Partially updates an existing asset
+   * @description Applies a JSON Patch document to an existing asset for the authenticated tenant.
+   */
+  PatchAsset: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets all asset categories
    * @description Retrieves all asset categories for the authenticated tenant.
    */
@@ -2096,6 +2258,63 @@ export interface operations {
       /** @description No Content */
       204: {
         content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Partially updates an existing asset category
+   * @description Applies a JSON Patch document to an existing asset category for the authenticated tenant.
+   */
+  PatchAssetAssetCategory: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        categoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
       /** @description Unauthorized */
       401: {
@@ -2358,6 +2577,64 @@ export interface operations {
     };
   };
   /**
+   * Partially updates a repair for an asset
+   * @description Applies a JSON Patch document to an existing repair record for the specified asset.
+   */
+  PatchAssetRepair: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        assetId: string;
+        repairId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets value amendments for a specific asset
    * @description Retrieves all value amendment records for the specified asset.
    */
@@ -2587,6 +2864,64 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Partially updates a value amendment for an asset
+   * @description Applies a JSON Patch document to an existing value amendment record for the specified asset.
+   */
+  PatchAssetValueAmend: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        assetId: string;
+        amendId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -2832,6 +3167,64 @@ export interface operations {
     };
   };
   /**
+   * Partially updates a depreciation record for an asset
+   * @description Applies a JSON Patch document to an existing depreciation record for the specified asset.
+   */
+  PatchAssetDepreciationRecord: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        assetId: string;
+        recordId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets transfers for a specific asset
    * @description Retrieves all transfer records for the specified asset.
    */
@@ -3069,6 +3462,64 @@ export interface operations {
     };
   };
   /**
+   * Partially updates a transfer for an asset
+   * @description Applies a JSON Patch document to an existing transfer record for the specified asset.
+   */
+  PatchAssetTransfer: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        assetId: string;
+        transferId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets a list of asset transfers
    * @description Retrieves all asset transfers for the authenticated tenant.
    */
@@ -3294,6 +3745,63 @@ export interface operations {
     };
   };
   /**
+   * Partially updates an existing asset transfer
+   * @description Applies a JSON Patch document to an existing asset transfer for the authenticated tenant.
+   */
+  PatchAssetTransferAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        transferId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets all asset types for the current tenant
    * @description Retrieves all asset types for the authenticated tenant.
    */
@@ -3492,6 +4000,63 @@ export interface operations {
       /** @description No Content */
       204: {
         content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Partially updates an existing asset type
+   * @description Applies a JSON Patch document to an existing asset type for the authenticated tenant.
+   */
+  PatchAssetType: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        typeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
       /** @description Unauthorized */
       401: {

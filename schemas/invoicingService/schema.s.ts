@@ -467,6 +467,11 @@ export interface paths {
      * @description Deletes the specified invoice for the tenant.
      */
     delete: operations["DeleteInvoice"];
+    /**
+     * Patch an invoice.
+     * @description Partially updates the specified invoice for the tenant.
+     */
+    patch: operations["PatchInvoice"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Calculate": {
     /**
@@ -510,6 +515,11 @@ export interface paths {
      * @description Deletes the specified invoice line.
      */
     delete: operations["DeleteInvoiceLine"];
+    /**
+     * Patch an invoice line.
+     * @description Partially updates the specified invoice line.
+     */
+    patch: operations["PatchInvoiceLine"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Lines/{invoiceLineId}/Calculate": {
     /**
@@ -548,6 +558,11 @@ export interface paths {
      * @description Deletes the specified tax entry from the invoice line.
      */
     delete: operations["DeleteInvoiceLineTax"];
+    /**
+     * Patch a tax for an invoice line.
+     * @description Partially updates the specified tax entry for the invoice line.
+     */
+    patch: operations["PatchInvoiceLineTax"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Adjustments": {
     /**
@@ -584,6 +599,11 @@ export interface paths {
      * @description Deletes the specified adjustment from the invoice.
      */
     delete: operations["DeleteInvoiceAdjustment"];
+    /**
+     * Patch an invoice adjustment.
+     * @description Partially updates the specified adjustment for the invoice.
+     */
+    patch: operations["PatchInvoiceAdjustment"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/References": {
     /**
@@ -620,6 +640,11 @@ export interface paths {
      * @description Deletes the specified reference from the invoice.
      */
     delete: operations["DeleteInvoiceReference"];
+    /**
+     * Patch an invoice reference.
+     * @description Partially updates the specified reference for the invoice.
+     */
+    patch: operations["PatchInvoiceReference"];
   };
   "/api/v2/InvoicingService/Invoices/{invoiceId}/Payments": {
     /**
@@ -917,6 +942,9 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       currencyId?: string | null;
+      /** Format: int32 */
+      priority?: number;
+      code?: string | null;
       description?: string | null;
       /** Format: double */
       surchargePercent?: number;
@@ -941,6 +969,9 @@ export interface components {
       invoiceId?: string | null;
       currencyId?: string | null;
       enrollmentId?: string | null;
+      /** Format: int32 */
+      priority?: number;
+      code?: string | null;
       description?: string | null;
       /** Format: double */
       surchargePercent?: number;
@@ -977,6 +1008,9 @@ export interface components {
     };
     InvoiceAdjustmentUpdateDto: {
       currencyId?: string | null;
+      /** Format: int32 */
+      priority?: number;
+      code?: string | null;
       description?: string | null;
       /** Format: double */
       surchargePercent?: number;
@@ -1735,6 +1769,14 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     PaymentDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1806,6 +1848,8 @@ export interface components {
       enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
+      emisorWalletAccountId?: string | null;
+      receiverWalletAccountId?: string | null;
     };
     PaymentDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
@@ -2260,6 +2304,42 @@ export interface operations {
     };
   };
   /**
+   * Patch an invoice.
+   * @description Partially updates the specified invoice for the tenant.
+   */
+  PatchInvoice: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Calculate an invoice.
    * @description Calculates the totals and taxes for the specified invoice.
    */
@@ -2444,6 +2524,43 @@ export interface operations {
     };
   };
   /**
+   * Patch an invoice line.
+   * @description Partially updates the specified invoice line.
+   */
+  PatchInvoiceLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Calculate an invoice line.
    * @description Calculates the totals and taxes for the specified invoice line.
    */
@@ -2589,6 +2706,37 @@ export interface operations {
         invoiceId: string;
         invoiceLineId: string;
         invoiceLineTaxId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tax for an invoice line.
+   * @description Partially updates the specified tax entry for the invoice line.
+   */
+  PatchInvoiceLineTax: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceLineId: string;
+        invoiceLineTaxId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -2755,6 +2903,43 @@ export interface operations {
     };
   };
   /**
+   * Patch an invoice adjustment.
+   * @description Partially updates the specified adjustment for the invoice.
+   */
+  PatchInvoiceAdjustment: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceAdjustmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get invoice references.
    * @description Retrieves the references for the specified invoice.
    */
@@ -2895,6 +3080,36 @@ export interface operations {
       path: {
         invoiceId: string;
         invoiceReferenceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an invoice reference.
+   * @description Partially updates the specified reference for the invoice.
+   */
+  PatchInvoiceReference: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        invoiceId: string;
+        invoiceReferenceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

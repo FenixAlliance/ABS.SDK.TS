@@ -32,6 +32,7 @@ export type DiscountCreateDto = {
     endQuantity?: number;
     percent?: number;
     value?: number;
+    itemId?: string | null;
     discountListId?: string | null;
 };
 
@@ -83,6 +84,7 @@ export type DiscountListCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
+    discountListType?: 'Amount' | 'Percentage';
     currencyId?: string | null;
 };
 
@@ -90,6 +92,7 @@ export type DiscountListDto = {
     id?: string | null;
     timestamp?: string | null;
     name?: string | null;
+    discountListType?: 'Amount' | 'Percentage';
     currencyId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
@@ -127,6 +130,7 @@ export type DiscountListDtoListEnvelopeWritable = {
 
 export type DiscountListUpdateDto = {
     name?: string | null;
+    discountListType?: 'Amount' | 'Percentage';
     currencyId?: string | null;
 };
 
@@ -136,6 +140,7 @@ export type DiscountUpdateDto = {
     endQuantity?: number;
     percent?: number;
     value?: number;
+    itemId?: string | null;
     discountListId?: string | null;
 };
 
@@ -388,16 +393,27 @@ export type MoneyEnvelopeWritable = {
     result?: MoneyWritable;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type PriceListCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
     description?: string | null;
+    context?: 'Sales' | 'Purchase' | 'Cost';
     startDate?: string;
     endDate?: string;
     currencyId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
+    partnerVisible?: boolean;
+    unitOfMeasureDependant?: boolean;
 };
 
 export type PriceListDto = {
@@ -407,6 +423,7 @@ export type PriceListDto = {
     startDate?: string;
     endDate?: string;
     description?: string | null;
+    context?: 'Sales' | 'Purchase' | 'Cost';
     currencyId?: string | null;
     tenantId?: string | null;
     unitId?: string | null;
@@ -449,11 +466,14 @@ export type PriceListDtoListEnvelopeWritable = {
 export type PriceListUpdateDto = {
     name: string;
     description?: string | null;
+    context?: 'Sales' | 'Purchase' | 'Cost';
     startDate?: string;
     endDate?: string;
     currencyId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
+    partnerVisible?: boolean;
+    unitOfMeasureDependant?: boolean;
 };
 
 export type PricingRuleCreateDto = {
@@ -474,18 +494,19 @@ export type PricingRuleCreateDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type PricingRuleDto = {
     id?: string | null;
     timestamp?: string | null;
-    businessID?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     code?: string | null;
     title?: string | null;
     description?: string | null;
@@ -501,12 +522,12 @@ export type PricingRuleDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type PricingRuleDtoEnvelopeReadable = {
@@ -554,12 +575,12 @@ export type PricingRuleUpdateDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type RefreshRequest = {
@@ -915,6 +936,43 @@ export type GetDiscountListResponses = {
 
 export type GetDiscountListResponse = GetDiscountListResponses[keyof GetDiscountListResponses];
 
+export type PatchDiscountListData = {
+    body?: Array<Operation>;
+    path: {
+        discountListId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PricingService/DiscountLists/{discountListId}';
+};
+
+export type PatchDiscountListErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchDiscountListError = PatchDiscountListErrors[keyof PatchDiscountListErrors];
+
+export type PatchDiscountListResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchDiscountListResponse = PatchDiscountListResponses[keyof PatchDiscountListResponses];
+
 export type UpdateDiscountListData = {
     body?: DiscountListUpdateDto;
     path: {
@@ -1138,6 +1196,44 @@ export type GetDiscountListEntryResponses = {
 };
 
 export type GetDiscountListEntryResponse = GetDiscountListEntryResponses[keyof GetDiscountListEntryResponses];
+
+export type PatchDiscountListEntryData = {
+    body?: Array<Operation>;
+    path: {
+        discountListId: string;
+        discountListEntryId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PricingService/DiscountLists/{discountListId}/Discounts/{discountListEntryId}';
+};
+
+export type PatchDiscountListEntryErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchDiscountListEntryError = PatchDiscountListEntryErrors[keyof PatchDiscountListEntryErrors];
+
+export type PatchDiscountListEntryResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchDiscountListEntryResponse = PatchDiscountListEntryResponses[keyof PatchDiscountListEntryResponses];
 
 export type UpdateDiscountListEntryData = {
     body?: DiscountUpdateDto;
@@ -1644,6 +1740,35 @@ export type GetPriceListAsyncResponses = {
 
 export type GetPriceListAsyncResponse = GetPriceListAsyncResponses[keyof GetPriceListAsyncResponses];
 
+export type PatchPriceListAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        priceListId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PricingService/PriceLists/{priceListId}';
+};
+
+export type PatchPriceListAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchPriceListAsyncError = PatchPriceListAsyncErrors[keyof PatchPriceListAsyncErrors];
+
+export type PatchPriceListAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPriceListAsyncResponse = PatchPriceListAsyncResponses[keyof PatchPriceListAsyncResponses];
+
 export type UpdatePriceListAsyncData = {
     body?: PriceListUpdateDto;
     path: {
@@ -1791,6 +1916,36 @@ export type GetPriceListPriceAsyncResponses = {
 };
 
 export type GetPriceListPriceAsyncResponse = GetPriceListPriceAsyncResponses[keyof GetPriceListPriceAsyncResponses];
+
+export type PatchPriceListPriceAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        priceListId: string;
+        priceId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices/{priceId}';
+};
+
+export type PatchPriceListPriceAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchPriceListPriceAsyncError = PatchPriceListPriceAsyncErrors[keyof PatchPriceListPriceAsyncErrors];
+
+export type PatchPriceListPriceAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPriceListPriceAsyncResponse = PatchPriceListPriceAsyncResponses[keyof PatchPriceListPriceAsyncResponses];
 
 export type UpdatePriceListPriceAsyncData = {
     body?: ItemPriceUpdateDto;
@@ -2099,6 +2254,41 @@ export type GetPricingRuleByIdResponses = {
 
 export type GetPricingRuleByIdResponse = GetPricingRuleByIdResponses[keyof GetPricingRuleByIdResponses];
 
+export type PatchPricingRuleData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pricingRuleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/PricingRules/{pricingRuleId}';
+};
+
+export type PatchPricingRuleErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchPricingRuleError = PatchPricingRuleErrors[keyof PatchPricingRuleErrors];
+
+export type PatchPricingRuleResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type GetPricingRulesCountAsyncData = {
     body?: never;
     headers?: {
@@ -2342,6 +2532,43 @@ export type GetRoundingPolicyByIdAsyncResponses = {
 };
 
 export type GetRoundingPolicyByIdAsyncResponse = GetRoundingPolicyByIdAsyncResponses[keyof GetRoundingPolicyByIdAsyncResponses];
+
+export type PatchRoundingPolicyAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        roundingPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PricingService/RoundingPolicies/{roundingPolicyId}';
+};
+
+export type PatchRoundingPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchRoundingPolicyAsyncError = PatchRoundingPolicyAsyncErrors[keyof PatchRoundingPolicyAsyncErrors];
+
+export type PatchRoundingPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchRoundingPolicyAsyncResponse = PatchRoundingPolicyAsyncResponses[keyof PatchRoundingPolicyAsyncResponses];
 
 export type UpdateRoundingPolicyAsyncData = {
     body: RoundingPolicyUpdateDto;

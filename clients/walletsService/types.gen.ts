@@ -21,9 +21,9 @@ export type BankAccountCreateDto = {
     swift?: string | null;
     branchCode?: string | null;
     bankAccountNumber?: string | null;
-    qualifiedName?: string | null;
     bankId?: string | null;
     bankProfileId?: string | null;
+    walletId?: string | null;
 };
 
 export type BankAccountDto = {
@@ -78,9 +78,9 @@ export type BankAccountUpdateDto = {
     swift?: string | null;
     branchCode?: string | null;
     bankAccountNumber?: string | null;
-    qualifiedName?: string | null;
     bankId?: string | null;
     bankProfileId?: string | null;
+    walletId?: string | null;
 };
 
 export type ContactDtoReadable = {
@@ -630,6 +630,8 @@ export type LocationDto = {
     isDefaultSenderAddress?: boolean;
     isDefaultReturnAddress?: boolean;
     isDefaultSuppingLocation?: boolean;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type LocationDtoEnvelopeReadable = {
@@ -691,6 +693,14 @@ export type LoginRequest = {
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
+};
+
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type OrderDto = {
@@ -943,6 +953,8 @@ export type PaymentDto = {
     enrollmentId?: string | null;
     bankId?: string | null;
     paymentTokenId?: string | null;
+    emisorWalletAccountId?: string | null;
+    receiverWalletAccountId?: string | null;
 };
 
 export type PaymentDtoListEnvelopeReadable = {
@@ -2905,6 +2917,43 @@ export type GetWalletBankAccountAsyncResponses = {
 
 export type GetWalletBankAccountAsyncResponse = GetWalletBankAccountAsyncResponses[keyof GetWalletBankAccountAsyncResponses];
 
+export type PatchWalletBankAccountAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        bankAccountId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/BankAccounts/{bankAccountId}';
+};
+
+export type PatchWalletBankAccountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchWalletBankAccountAsyncError = PatchWalletBankAccountAsyncErrors[keyof PatchWalletBankAccountAsyncErrors];
+
+export type PatchWalletBankAccountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchWalletBankAccountAsyncResponse = PatchWalletBankAccountAsyncResponses[keyof PatchWalletBankAccountAsyncResponses];
+
 export type UpdateWalletBankAccountAsyncData = {
     body?: BankAccountUpdateDto;
     headers?: {
@@ -3447,6 +3496,43 @@ export type GetWalletTokenAsyncResponses = {
 };
 
 export type GetWalletTokenAsyncResponse = GetWalletTokenAsyncResponses[keyof GetWalletTokenAsyncResponses];
+
+export type PatchWalletTokenAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        tokenId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Tokens/{tokenId}';
+};
+
+export type PatchWalletTokenAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchWalletTokenAsyncError = PatchWalletTokenAsyncErrors[keyof PatchWalletTokenAsyncErrors];
+
+export type PatchWalletTokenAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchWalletTokenAsyncResponse = PatchWalletTokenAsyncResponses[keyof PatchWalletTokenAsyncResponses];
 
 export type UpdateWalletTokenAsyncData = {
     body?: PaymentTokenUpdateDto;

@@ -453,6 +453,11 @@ export interface paths {
      * @description Deletes the specified quote for the tenant.
      */
     delete: operations["DeleteQuote"];
+    /**
+     * Patch an existing quote.
+     * @description Partially updates an existing quote for the specified tenant and quote ID using a JSON Patch document.
+     */
+    patch: operations["PatchQuoteAsync"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Calculate": {
     /**
@@ -517,6 +522,11 @@ export interface paths {
      * @description Deletes the specified quote line for the quote and tenant.
      */
     delete: operations["DeleteQuoteLine"];
+    /**
+     * Patch a quote line.
+     * @description Partially updates an existing quote line for the specified quote and tenant using a JSON Patch document.
+     */
+    patch: operations["PatchQuoteLineAsync"];
   };
   "/api/v2/QuotesService/Quotes/{quoteId}/Lines/{quoteLineId}/Upsert": {
     /**
@@ -848,6 +858,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     QuoteCreateDto: {
       /** Format: uuid */
@@ -2134,6 +2152,56 @@ export interface operations {
     };
   };
   /**
+   * Patch an existing quote.
+   * @description Partially updates an existing quote for the specified tenant and quote ID using a JSON Patch document.
+   */
+  PatchQuoteAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        quoteId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Calculate a quote.
    * @description Performs calculation logic for the specified quote.
    */
@@ -2438,6 +2506,57 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a quote line.
+   * @description Partially updates an existing quote line for the specified quote and tenant using a JSON Patch document.
+   */
+  PatchQuoteLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        quoteId: string;
+        quoteLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Not Found */

@@ -149,6 +149,11 @@ export interface paths {
      * @description Deletes a course article for the specified tenant.
      */
     delete: operations["DeleteCourseArticleAsync"];
+    /**
+     * Patch a course article
+     * @description Partially updates a course article for the specified tenant.
+     */
+    patch: operations["PatchCourseArticleAsync"];
   };
   "/api/v2/LearningService/CourseAssignmentComponents": {
     /**
@@ -185,6 +190,11 @@ export interface paths {
      * @description Deletes a course assignment component by its ID.
      */
     delete: operations["DeleteCourseAssignmentComponentAsync"];
+    /**
+     * Patch a course assignment component
+     * @description Partially updates a course assignment component for the specified tenant.
+     */
+    patch: operations["PatchCourseAssignmentComponentAsync"];
   };
   "/api/v2/LearningService/CourseAssignments": {
     /**
@@ -221,6 +231,11 @@ export interface paths {
      * @description Deletes a course assignment for the specified tenant.
      */
     delete: operations["DeleteCourseAssignmentAsync"];
+    /**
+     * Patch a course assignment
+     * @description Partially updates a course assignment for the specified tenant.
+     */
+    patch: operations["PatchCourseAssignmentAsync"];
   };
   "/api/v2/LearningService/CourseAssignmentTypes": {
     /**
@@ -257,6 +272,11 @@ export interface paths {
      * @description Deletes a course assignment type by its ID.
      */
     delete: operations["DeleteCourseAssignmentTypeAsync"];
+    /**
+     * Patch a course assignment type
+     * @description Partially updates a course assignment type for the specified tenant.
+     */
+    patch: operations["PatchCourseAssignmentTypeAsync"];
   };
   "/api/v2/LearningService/CourseCategories": {
     /**
@@ -293,6 +313,11 @@ export interface paths {
      * @description Deletes a course category for the specified tenant.
      */
     delete: operations["DeleteCourseCategoryAsync"];
+    /**
+     * Patch a course category
+     * @description Partially updates a course category for the specified tenant.
+     */
+    patch: operations["PatchCourseCategoryAsync"];
   };
   "/api/v2/LearningService/CourseCertificates": {
     /**
@@ -329,6 +354,11 @@ export interface paths {
      * @description Deletes a course certificate for the specified tenant.
      */
     delete: operations["DeleteCourseCertificateAsync"];
+    /**
+     * Patch a course certificate
+     * @description Partially updates a course certificate for the specified tenant.
+     */
+    patch: operations["PatchCourseCertificateAsync"];
   };
   "/api/v2/LearningService/CourseCertificates/Template": {
     /**
@@ -358,6 +388,11 @@ export interface paths {
      * @description Deletes a course certificate template for the specified tenant.
      */
     delete: operations["DeleteCourseCertificateTemplateAsync"];
+    /**
+     * Patch a certificate template
+     * @description Partially updates a course certificate template for the specified tenant.
+     */
+    patch: operations["PatchCourseCertificateTemplateAsync"];
   };
   "/api/v2/LearningService/CourseCertificates/Template/Count": {
     /**
@@ -401,6 +436,11 @@ export interface paths {
      * @description Deletes a course cohort for the specified tenant.
      */
     delete: operations["DeleteCourseCohortAsync"];
+    /**
+     * Patch a course cohort
+     * @description Partially updates a course cohort for the specified tenant.
+     */
+    patch: operations["PatchCourseCohortAsync"];
   };
   "/api/v2/LearningService/CourseContentGroups": {
     /**
@@ -437,6 +477,11 @@ export interface paths {
      * @description Deletes a course content group for the specified tenant.
      */
     delete: operations["DeleteCourseContentGroupAsync"];
+    /**
+     * Patch a course content group
+     * @description Partially updates a course content group for the specified tenant.
+     */
+    patch: operations["PatchCourseContentGroupAsync"];
   };
   "/api/v2/LearningService/Courses/{courseId}/ContentGroups": {
     /**
@@ -487,6 +532,11 @@ export interface paths {
      * @description Deletes a course enrollment for the specified tenant.
      */
     delete: operations["DeleteCourseEnrollmentAsync"];
+    /**
+     * Patch a course enrollment
+     * @description Partially updates an existing course enrollment for the specified tenant.
+     */
+    patch: operations["PatchCourseEnrollmentAsync"];
   };
   "/api/v2/LearningService/CourseEnrollments/Student/{studentProfileId}": {
     /**
@@ -530,6 +580,11 @@ export interface paths {
      * @description Deletes a course file for the specified tenant.
      */
     delete: operations["DeleteCourseFileAsync"];
+    /**
+     * Patch a course file
+     * @description Partially updates an existing course file for the specified tenant.
+     */
+    patch: operations["PatchCourseFileAsync"];
   };
   "/api/v2/LearningService/CourseForums": {
     /**
@@ -566,6 +621,11 @@ export interface paths {
      * @description Deletes a course forum by its ID.
      */
     delete: operations["DeleteCourseForumAsync"];
+    /**
+     * Patch a course forum
+     * @description Partially updates an existing course forum.
+     */
+    patch: operations["PatchCourseForumAsync"];
   };
   "/api/v2/LearningService/CourseGradingRubrics": {
     /**
@@ -602,6 +662,11 @@ export interface paths {
      * @description Deletes a course grading rubric by its ID.
      */
     delete: operations["DeleteCourseGradingRubricAsync"];
+    /**
+     * Patch a course grading rubric
+     * @description Partially updates an existing course grading rubric.
+     */
+    patch: operations["PatchCourseGradingRubricAsync"];
   };
   "/api/v2/LearningService/CourseHandouts": {
     /**
@@ -638,6 +703,11 @@ export interface paths {
      * @description Deletes a course handout by its ID.
      */
     delete: operations["DeleteCourseHandoutAsync"];
+    /**
+     * Patch a course handout
+     * @description Partially updates an existing course handout.
+     */
+    patch: operations["PatchCourseHandoutAsync"];
   };
   "/api/v2/LearningService/CourseLibraries": {
     /**
@@ -674,6 +744,11 @@ export interface paths {
      * @description Deletes a course library by its ID.
      */
     delete: operations["DeleteCourseLibraryAsync"];
+    /**
+     * Patch a course library
+     * @description Partially updates an existing course library.
+     */
+    patch: operations["PatchCourseLibraryAsync"];
   };
   "/api/v2/LearningService/CoursePages": {
     /**
@@ -710,6 +785,11 @@ export interface paths {
      * @description Deletes a course page for the specified tenant.
      */
     delete: operations["DeleteCoursePageAsync"];
+    /**
+     * Patch a course page
+     * @description Partially updates an existing course page for the specified tenant.
+     */
+    patch: operations["PatchCoursePageAsync"];
   };
   "/api/v2/LearningService/CourseProblemSets": {
     /**
@@ -746,6 +826,11 @@ export interface paths {
      * @description Deletes a course problem set for the specified tenant.
      */
     delete: operations["DeleteCourseProblemSetAsync"];
+    /**
+     * Patch a course problem set
+     * @description Partially updates a course problem set for the specified tenant.
+     */
+    patch: operations["PatchCourseProblemSetAsync"];
   };
   "/api/v2/LearningService/Courses": {
     /**
@@ -782,6 +867,11 @@ export interface paths {
      * @description Deletes a course for the specified tenant.
      */
     delete: operations["DeleteCourseAsync"];
+    /**
+     * Patch a course
+     * @description Partially updates a course for the specified tenant.
+     */
+    patch: operations["PatchCourseAsync"];
   };
   "/api/v2/LearningService/Courses/{courseId}/Wikis": {
     /**
@@ -1063,6 +1153,11 @@ export interface paths {
      * @description Deletes a course section for the specified tenant.
      */
     delete: operations["DeleteCourseSectionAsync"];
+    /**
+     * Patch a course section
+     * @description Partially updates a course section for the specified tenant.
+     */
+    patch: operations["PatchCourseSectionAsync"];
   };
   "/api/v2/LearningService/CourseTeamMemberships": {
     /**
@@ -1099,6 +1194,11 @@ export interface paths {
      * @description Deletes a course team membership by its ID.
      */
     delete: operations["DeleteCourseTeamMembershipAsync"];
+    /**
+     * Patch a course team membership
+     * @description Partially updates a course team membership for the specified tenant.
+     */
+    patch: operations["PatchCourseTeamMembershipAsync"];
   };
   "/api/v2/LearningService/CourseUnitComponents": {
     /**
@@ -1135,6 +1235,11 @@ export interface paths {
      * @description Deletes a course unit component for the specified tenant.
      */
     delete: operations["DeleteCourseUnitComponentAsync"];
+    /**
+     * Patch a course unit component
+     * @description Partially updates a course unit component for the specified tenant.
+     */
+    patch: operations["PatchCourseUnitComponentAsync"];
   };
   "/api/v2/LearningService/CourseUnits": {
     /**
@@ -1171,6 +1276,11 @@ export interface paths {
      * @description Deletes a course unit for the specified tenant.
      */
     delete: operations["DeleteCourseUnitAsync"];
+    /**
+     * Patch a course unit
+     * @description Partially updates a course unit for the specified tenant.
+     */
+    patch: operations["PatchCourseUnitAsync"];
   };
   "/api/v2/LearningService/CourseUpdates": {
     /**
@@ -1207,6 +1317,11 @@ export interface paths {
      * @description Deletes a course update for the specified tenant.
      */
     delete: operations["DeleteCourseUpdateAsync"];
+    /**
+     * Patch a course update
+     * @description Partially updates a course update for the specified tenant.
+     */
+    patch: operations["PatchCourseUpdateAsync"];
   };
   "/api/v2/LearningService/CourseWikis": {
     /**
@@ -1243,6 +1358,11 @@ export interface paths {
      * @description Deletes a course wiki for the specified tenant.
      */
     delete: operations["DeleteCourseWikiAsync"];
+    /**
+     * Patch a course wiki
+     * @description Partially updates a course wiki for the specified tenant.
+     */
+    patch: operations["PatchCourseWikiAsync"];
   };
   "/version": {
     get: {
@@ -1720,6 +1840,42 @@ export interface paths {
         };
       };
     };
+    patch: {
+      parameters: {
+        query: {
+          tenantId: string;
+          "api-version"?: string;
+        };
+        header?: {
+          "x-api-version"?: string;
+        };
+        path: {
+          instructorProfileId: string;
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["Operation"][];
+          "application/xml": components["schemas"]["Operation"][];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["EmptyEnvelope"];
+            "application/xml": components["schemas"]["EmptyEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
   };
   "/api/v2/LearningService/Me/StudentProfiles": {
     /** Get current user's student profiles */
@@ -1960,6 +2116,42 @@ export interface paths {
         };
       };
     };
+    patch: {
+      parameters: {
+        query: {
+          tenantId: string;
+          "api-version"?: string;
+        };
+        header?: {
+          "x-api-version"?: string;
+        };
+        path: {
+          studentProfileId: string;
+        };
+      };
+      requestBody?: {
+        content: {
+          "application/json": components["schemas"]["Operation"][];
+          "application/xml": components["schemas"]["Operation"][];
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": components["schemas"]["EmptyEnvelope"];
+            "application/xml": components["schemas"]["EmptyEnvelope"];
+          };
+        };
+        /** @description Forbidden */
+        403: {
+          content: {
+            "application/json": components["schemas"]["ErrorEnvelope"];
+            "application/xml": components["schemas"]["ErrorEnvelope"];
+          };
+        };
+      };
+    };
   };
   "/api/v2/LearningService/StudentProfiles/{studentProfileId}/Average": {
     get: {
@@ -2155,8 +2347,8 @@ export interface components {
       title: string;
       description?: string | null;
       content?: string | null;
-      courseID: string;
-      courseWikiID: string;
+      courseId: string;
+      courseWikiId: string;
     };
     CourseArticleDto: {
       id?: string | null;
@@ -2165,9 +2357,10 @@ export interface components {
       title?: string | null;
       description?: string | null;
       content?: string | null;
-      courseWikiID?: string | null;
-      courseID?: string | null;
+      courseWikiId?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseArticleUpdateDto: {
       title?: string | null;
@@ -2184,8 +2377,8 @@ export interface components {
       content?: string | null;
       /** Format: int32 */
       order?: number;
-      courseAssignmentID: string;
-      courseID: string;
+      courseAssignmentId: string;
+      courseId: string;
     };
     CourseAssignmentComponentDto: {
       id?: string | null;
@@ -2196,9 +2389,10 @@ export interface components {
       content?: string | null;
       /** Format: int32 */
       order?: number;
-      courseAssignmentID?: string | null;
-      courseID?: string | null;
+      courseAssignmentId?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseAssignmentComponentUpdateDto: {
       title?: string | null;
@@ -2206,7 +2400,7 @@ export interface components {
       content?: string | null;
       /** Format: int32 */
       order?: number | null;
-      courseAssignmentID?: string | null;
+      courseAssignmentId?: string | null;
     };
     CourseAssignmentCreateDto: {
       /** Format: uuid */
@@ -2218,10 +2412,10 @@ export interface components {
       instructions?: string | null;
       /** Format: double */
       points?: number;
-      courseID: string;
-      courseUnitID?: string | null;
-      courseCohortID?: string | null;
-      courseAssignmentTypeID?: string | null;
+      courseId: string;
+      courseUnitId?: string | null;
+      courseCohortId?: string | null;
+      courseAssignmentTypeId?: string | null;
       /** Format: date-time */
       dueDateTime?: string | null;
       asignToAllCohorts?: boolean;
@@ -2238,10 +2432,15 @@ export interface components {
       points?: number;
       /** Format: date-time */
       dueDateTime?: string;
-      courseID?: string | null;
-      courseUnitID?: string | null;
-      courseSectionID?: string | null;
+      courseId?: string | null;
+      courseUnitId?: string | null;
+      courseSectionId?: string | null;
+      courseCohortId?: string | null;
+      courseAssignmentTypeId?: string | null;
+      asignToAllCohorts?: boolean;
+      resources?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseAssignmentTypeCreateDto: {
       /** Format: uuid */
@@ -2256,7 +2455,7 @@ export interface components {
       quantity?: number;
       /** Format: int32 */
       excluded?: number;
-      courseID: string;
+      courseId: string;
     };
     CourseAssignmentTypeDto: {
       id?: string | null;
@@ -2270,8 +2469,9 @@ export interface components {
       quantity?: number;
       /** Format: int32 */
       excluded?: number;
-      courseID?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseAssignmentTypeUpdateDto: {
       name?: string | null;
@@ -2289,9 +2489,9 @@ export interface components {
       instructions?: string | null;
       /** Format: double */
       points?: number;
-      courseUnitID?: string | null;
-      courseCohortID?: string | null;
-      courseAssignmentTypeID?: string | null;
+      courseUnitId?: string | null;
+      courseCohortId?: string | null;
+      courseAssignmentTypeId?: string | null;
       /** Format: date-time */
       dueDateTime?: string | null;
       asignToAllCohorts?: boolean;
@@ -2316,6 +2516,7 @@ export interface components {
       imageURL?: string | null;
       isFeatured?: boolean;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseCategoryUpdateDto: {
       title?: string | null;
@@ -2328,32 +2529,32 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      courseID: string;
-      webPortalID?: string | null;
-      websiteThemeID?: string | null;
-      socialProfileID?: string | null;
-      parentWebContentID?: string | null;
-      parentWebContentVersionID?: string | null;
+      courseId: string;
+      webPortalId?: string | null;
+      websiteThemeId?: string | null;
+      socialProfileId?: string | null;
+      parentWebContentId?: string | null;
+      parentWebContentVersionId?: string | null;
     };
     CourseCertificateTemplateDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      courseID?: string | null;
-      businessID?: string | null;
-      webPortalID?: string | null;
-      websiteThemeID?: string | null;
-      businessProfileRecordID?: string | null;
-      socialProfileID?: string | null;
-      parentWebContentID?: string | null;
-      parentWebContentVersionID?: string | null;
+      courseId?: string | null;
+      tenantId?: string | null;
+      webPortalId?: string | null;
+      websiteThemeId?: string | null;
+      enrollmentId?: string | null;
+      socialProfileId?: string | null;
+      parentWebContentId?: string | null;
+      parentWebContentVersionId?: string | null;
     };
     CourseCertificateTemplateUpdateDto: {
-      webPortalID?: string | null;
-      websiteThemeID?: string | null;
-      socialProfileID?: string | null;
-      parentWebContentID?: string | null;
-      parentWebContentVersionID?: string | null;
+      webPortalId?: string | null;
+      websiteThemeId?: string | null;
+      socialProfileId?: string | null;
+      parentWebContentId?: string | null;
+      parentWebContentVersionId?: string | null;
     };
     CourseCohortCreateDto: {
       /** Format: uuid */
@@ -2361,7 +2562,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name: string;
-      courseID: string;
+      courseId: string;
       /** Format: date-time */
       startDateTime?: string | null;
       /** Format: date-time */
@@ -2384,8 +2585,9 @@ export interface components {
       expectedStartDateTime?: string;
       /** Format: date-time */
       expectedEndDateTime?: string;
-      courseID?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseCohortUpdateDto: {
       name?: string | null;
@@ -2403,21 +2605,21 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      studentProfileID: string;
-      courseEnrollmentID: string;
-      courseCompletionCertificateTemplateID?: string | null;
-      courseID?: string | null;
+      studentProfileId: string;
+      courseEnrollmentId: string;
+      courseCompletionCertificateTemplateId?: string | null;
+      courseId?: string | null;
     };
     CourseCompletionCertificateDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      studentProfileID?: string | null;
-      courseEnrollmentID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
-      courseCompletionCertificateTemplateID?: string | null;
-      courseID?: string | null;
+      studentProfileId?: string | null;
+      courseEnrollmentId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      courseCompletionCertificateTemplateId?: string | null;
+      courseId?: string | null;
       studentName?: string | null;
       studentLastName?: string | null;
       courseTitle?: string | null;
@@ -2436,10 +2638,10 @@ export interface components {
       result?: components["schemas"]["CourseCompletionCertificateDto"][] | null;
     };
     CourseCompletionCertificateUpdateDto: {
-      studentProfileID?: string | null;
-      courseEnrollmentID?: string | null;
-      courseCompletionCertificateTemplateID?: string | null;
-      courseID?: string | null;
+      studentProfileId?: string | null;
+      courseEnrollmentId?: string | null;
+      courseCompletionCertificateTemplateId?: string | null;
+      courseId?: string | null;
     };
     CourseContentGroupCreateDto: {
       /** Format: uuid */
@@ -2447,19 +2649,20 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name: string;
-      courseID: string;
+      courseId: string;
     };
     CourseContentGroupDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       name?: string | null;
-      courseID?: string | null;
-      businessID?: string | null;
+      courseId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseContentGroupUpdateDto: {
       name?: string | null;
-      courseID?: string | null;
+      courseId?: string | null;
     };
     CourseCreateDto: {
       /** Format: uuid */
@@ -2472,9 +2675,9 @@ export interface components {
       summary?: string | null;
       code?: string | null;
       version?: string | null;
-      courseCategoryID?: string | null;
-      instructorProfileID?: string | null;
-      currencyID?: string | null;
+      courseCategoryId?: string | null;
+      instructorProfileId?: string | null;
+      currencyId?: string | null;
       /** Format: double */
       regularPrice?: number;
       /** Format: int32 */
@@ -2700,9 +2903,9 @@ export interface components {
       selectedSellingMarginPolicies?: string[] | null;
       code?: string | null;
       version?: string | null;
-      courseCategoryID?: string | null;
+      courseCategoryId?: string | null;
       courseCategoryName?: string | null;
-      instructorProfileID?: string | null;
+      instructorProfileId?: string | null;
       instructorProfileName?: string | null;
       /** Format: int32 */
       maxCourseEnrollments?: number;
@@ -2735,20 +2938,21 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      courseID?: string | null;
-      courseCohortID?: string | null;
-      studentProfileID?: string | null;
-      courseCompletionCertificateID?: string | null;
+      courseId?: string | null;
+      courseCohortId?: string | null;
+      studentProfileId?: string | null;
+      courseCompletionCertificateId?: string | null;
     };
     CourseEnrollmentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      courseID?: string | null;
-      courseCohortID?: string | null;
-      studentProfileID?: string | null;
-      businessProfileRecordID?: string | null;
-      courseCompletionCertificateID?: string | null;
+      courseId?: string | null;
+      courseCohortId?: string | null;
+      studentProfileId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      courseCompletionCertificateId?: string | null;
     };
     CourseEnrollmentDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
@@ -2760,12 +2964,8 @@ export interface components {
       result?: components["schemas"]["CourseEnrollmentDto"][] | null;
     };
     CourseEnrollmentUpdateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      courseCohortID?: string | null;
-      courseCompletionCertificateID?: string | null;
+      courseCohortId?: string | null;
+      courseCompletionCertificateId?: string | null;
     };
     CourseFileCreateDto: {
       /** Format: uuid */
@@ -2778,7 +2978,7 @@ export interface components {
       contentType?: string | null;
       /** Format: int64 */
       fileLength?: number;
-      courseID: string;
+      courseId: string;
     };
     CourseFileDto: {
       id?: string | null;
@@ -2790,8 +2990,9 @@ export interface components {
       contentType?: string | null;
       /** Format: int64 */
       fileLength?: number;
-      courseID?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseFileUpdateDto: {
       title?: string | null;
@@ -2808,7 +3009,7 @@ export interface components {
       timestamp?: string;
       title: string;
       description?: string | null;
-      courseID: string;
+      courseId: string;
     };
     CourseForumDto: {
       id?: string | null;
@@ -2816,8 +3017,9 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
-      courseID?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseForumUpdateDto: {
       title?: string | null;
@@ -2831,7 +3033,7 @@ export interface components {
       title: string;
       description?: string | null;
       enablePoints?: boolean;
-      courseID: string;
+      courseId: string;
     };
     CourseGradingRubricDto: {
       id?: string | null;
@@ -2840,8 +3042,9 @@ export interface components {
       title?: string | null;
       description?: string | null;
       enablePoints?: boolean;
-      courseID?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseGradingRubricUpdateDto: {
       title?: string | null;
@@ -2859,8 +3062,8 @@ export interface components {
       url?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
-      courseID: string;
-      courseUnitID?: string | null;
+      courseId: string;
+      courseUnitId?: string | null;
     };
     CourseHandoutDto: {
       id?: string | null;
@@ -2872,9 +3075,10 @@ export interface components {
       url?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
-      courseID?: string | null;
-      courseUnitID?: string | null;
+      courseId?: string | null;
+      courseUnitId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseHandoutUpdateDto: {
       name?: string | null;
@@ -2883,7 +3087,7 @@ export interface components {
       url?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
-      courseUnitID?: string | null;
+      courseUnitId?: string | null;
     };
     CourseLibraryCreateDto: {
       /** Format: uuid */
@@ -2892,8 +3096,8 @@ export interface components {
       timestamp?: string;
       title: string;
       description?: string | null;
-      courseID: string;
-      courseUnitID?: string | null;
+      courseId: string;
+      courseUnitId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
     };
@@ -2903,16 +3107,17 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
-      courseID?: string | null;
-      courseUnitID?: string | null;
+      courseId?: string | null;
+      courseUnitId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseLibraryUpdateDto: {
       title?: string | null;
       description?: string | null;
-      courseUnitID?: string | null;
+      courseUnitId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
     };
@@ -2924,7 +3129,7 @@ export interface components {
       title: string;
       description?: string | null;
       content?: string | null;
-      courseID: string;
+      courseId: string;
     };
     CourseNewsDto: {
       id?: string | null;
@@ -2933,8 +3138,9 @@ export interface components {
       title?: string | null;
       description?: string | null;
       content?: string | null;
-      courseID?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseNewsUpdateDto: {
       title?: string | null;
@@ -2950,7 +3156,7 @@ export interface components {
       description?: string | null;
       content?: string | null;
       slug?: string | null;
-      courseID: string;
+      courseId: string;
     };
     CoursePageDto: {
       id?: string | null;
@@ -2960,8 +3166,9 @@ export interface components {
       description?: string | null;
       content?: string | null;
       slug?: string | null;
-      courseID?: string | null;
+      courseId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CoursePageUpdateDto: {
       title?: string | null;
@@ -2978,9 +3185,9 @@ export interface components {
       description?: string | null;
       /** Format: double */
       overallScore?: number;
-      courseID: string;
-      courseUnitID?: string | null;
-      courseGradingRubricID?: string | null;
+      courseId: string;
+      courseUnitId?: string | null;
+      courseGradingRubricId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
     };
@@ -2992,19 +3199,21 @@ export interface components {
       description?: string | null;
       /** Format: double */
       overallScore?: number;
-      courseID?: string | null;
-      courseUnitID?: string | null;
+      courseId?: string | null;
+      courseUnitId?: string | null;
+      courseGradingRubricId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseProblemSetUpdateDto: {
       title?: string | null;
       description?: string | null;
       /** Format: double */
       overallScore?: number | null;
-      courseUnitID?: string | null;
-      courseGradingRubricID?: string | null;
+      courseUnitId?: string | null;
+      courseGradingRubricId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
     };
@@ -3016,7 +3225,7 @@ export interface components {
       name: string;
       icon?: string | null;
       description?: string | null;
-      courseID: string;
+      courseId: string;
       /** Format: date-time */
       releaseDateTime?: string | null;
       hideFromStudents?: boolean;
@@ -3028,11 +3237,12 @@ export interface components {
       icon?: string | null;
       name?: string | null;
       description?: string | null;
-      courseID?: string | null;
+      courseId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string;
       hideFromStudents?: boolean;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseSectionUpdateDto: {
       name?: string | null;
@@ -3047,8 +3257,8 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      courseID: string;
-      instructorProfileID: string;
+      courseId: string;
+      instructorProfileId: string;
       /** @enum {string} */
       courseTeamMembershipType?: "Admin" | "Staff";
     };
@@ -3056,14 +3266,15 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      courseID?: string | null;
-      instructorProfileID?: string | null;
+      courseId?: string | null;
+      instructorProfileId?: string | null;
       /** @enum {string} */
       courseTeamMembershipType?: "Admin" | "Staff";
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseTeamMembershipUpdateDto: {
-      instructorProfileID?: string | null;
+      instructorProfileId?: string | null;
       /** @enum {string|null} */
       courseTeamMembershipType?: "Admin" | "Staff" | null;
     };
@@ -3077,8 +3288,8 @@ export interface components {
       content?: string | null;
       /** Format: int32 */
       order?: number;
-      courseID: string;
-      courseUnitID?: string | null;
+      courseId: string;
+      courseUnitId?: string | null;
     };
     CourseUnitComponentDto: {
       id?: string | null;
@@ -3089,9 +3300,10 @@ export interface components {
       content?: string | null;
       /** Format: int32 */
       order?: number;
-      courseID?: string | null;
-      courseUnitID?: string | null;
+      courseId?: string | null;
+      courseUnitId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     CourseUnitComponentUpdateDto: {
       title?: string | null;
@@ -3099,7 +3311,7 @@ export interface components {
       content?: string | null;
       /** Format: int32 */
       order?: number | null;
-      courseUnitID?: string | null;
+      courseUnitId?: string | null;
     };
     CourseUnitCreateDto: {
       /** Format: uuid */
@@ -3109,9 +3321,9 @@ export interface components {
       title: string;
       description?: string | null;
       content?: string | null;
-      courseID: string;
-      courseSectionID: string;
-      courseContentGroupID?: string | null;
+      courseId: string;
+      courseSectionId: string;
+      courseContentGroupId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
     };
@@ -3124,9 +3336,11 @@ export interface components {
       /** Format: date-time */
       releaseDateTime?: string;
       content?: string | null;
-      courseID?: string | null;
-      courseSectionID?: string | null;
+      courseId?: string | null;
+      courseSectionId?: string | null;
+      courseContentGroupId?: string | null;
       tenantId?: string | null;
+      enrollmentId?: string | null;
       courseHandouts?: components["schemas"]["CourseHandoutDto"][] | null;
       courseAssignments?: components["schemas"]["CourseAssignmentDto"][] | null;
       courseComponents?: components["schemas"]["CourseUnitComponentDto"][] | null;
@@ -3135,7 +3349,7 @@ export interface components {
       title?: string | null;
       description?: string | null;
       content?: string | null;
-      courseContentGroupID?: string | null;
+      courseContentGroupId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
     };
@@ -3146,9 +3360,9 @@ export interface components {
       summary?: string | null;
       code?: string | null;
       version?: string | null;
-      courseCategoryID?: string | null;
-      instructorProfileID?: string | null;
-      currencyID?: string | null;
+      courseCategoryId?: string | null;
+      instructorProfileId?: string | null;
+      currencyId?: string | null;
       /** Format: double */
       regularPrice?: number | null;
       /** Format: int32 */
@@ -3176,8 +3390,8 @@ export interface components {
       timestamp?: string;
       title: string;
       description?: string | null;
-      courseID: string;
-      courseUnitID?: string | null;
+      courseId: string;
+      courseUnitId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
     };
@@ -3190,15 +3404,24 @@ export interface components {
       /** Format: date-time */
       releaseDateTime?: string;
       tenantId?: string | null;
-      courseID?: string | null;
-      courseUnitID?: string | null;
+      enrollmentId?: string | null;
+      courseId?: string | null;
+      courseUnitId?: string | null;
     };
     CourseWikiUpdateDto: {
       title?: string | null;
       description?: string | null;
-      courseUnitID?: string | null;
+      courseUnitId?: string | null;
       /** Format: date-time */
       releaseDateTime?: string | null;
+    };
+    EmptyEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -3262,7 +3485,6 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
       authorized?: boolean;
-      contactID?: string | null;
     };
     InstructorProfileDto: {
       id?: string | null;
@@ -3301,9 +3523,6 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
       authorized?: boolean;
-      businessID?: string | null;
-      contactID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     InstructorProfileDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
@@ -3346,6 +3565,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -3391,7 +3618,6 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      contactID?: string | null;
     };
     StudentProfileDto: {
       id?: string | null;
@@ -3429,9 +3655,6 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      businessID?: string | null;
-      contactID?: string | null;
-      businessProfileRecordID?: string | null;
     };
     StudentProfileDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
@@ -3467,7 +3690,6 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      contactID?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -3696,6 +3918,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a course article
+   * @description Partially updates a course article for the specified tenant.
+   */
+  PatchCourseArticleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        articleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course assignment components
    * @description Retrieves all course assignment components for the specified tenant.
    */
@@ -3882,6 +4144,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course assignment component
+   * @description Partially updates a course assignment component for the specified tenant.
+   */
+  PatchCourseAssignmentComponentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        componentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {
@@ -4090,6 +4392,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a course assignment
+   * @description Partially updates a course assignment for the specified tenant.
+   */
+  PatchCourseAssignmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        assignmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course assignment types
    * @description Retrieves all course assignment types for the specified tenant.
    */
@@ -4287,6 +4629,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a course assignment type
+   * @description Partially updates a course assignment type for the specified tenant.
+   */
+  PatchCourseAssignmentTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        assignmentTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course categories
    * @description Retrieves all course categories for the specified tenant.
    */
@@ -4473,6 +4855,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course category
+   * @description Partially updates a course category for the specified tenant.
+   */
+  PatchCourseCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        categoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {
@@ -4682,6 +5104,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a course certificate
+   * @description Partially updates a course certificate for the specified tenant.
+   */
+  PatchCourseCertificateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseCertificateId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all certificate templates
    * @description Retrieves all course certificate templates for the specified tenant.
    */
@@ -4838,6 +5300,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a certificate template
+   * @description Partially updates a course certificate template for the specified tenant.
+   */
+  PatchCourseCertificateTemplateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseCertificateTemplateId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {
@@ -5077,6 +5579,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a course cohort
+   * @description Partially updates a course cohort for the specified tenant.
+   */
+  PatchCourseCohortAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cohortId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course content groups
    * @description Retrieves all course content groups for the specified tenant.
    */
@@ -5263,6 +5805,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course content group
+   * @description Partially updates a course content group for the specified tenant.
+   */
+  PatchCourseContentGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        groupId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {
@@ -5538,6 +6120,43 @@ export interface operations {
     };
   };
   /**
+   * Patch a course enrollment
+   * @description Partially updates an existing course enrollment for the specified tenant.
+   */
+  PatchCourseEnrollmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseEnrollmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get enrollments by student
    * @description Retrieves all enrollments for a specific student.
    */
@@ -5769,6 +6388,43 @@ export interface operations {
     };
   };
   /**
+   * Patch a course file
+   * @description Partially updates an existing course file for the specified tenant.
+   */
+  PatchCourseFileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        fileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course forums
    * @description Retrieves all course forums for the specified tenant.
    */
@@ -5972,6 +6628,43 @@ export interface operations {
     };
   };
   /**
+   * Patch a course forum
+   * @description Partially updates an existing course forum.
+   */
+  PatchCourseForumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        forumId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course grading rubrics
    * @description Retrieves all course grading rubrics for the specified tenant.
    */
@@ -6152,6 +6845,43 @@ export interface operations {
       };
       path: {
         rubricId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course grading rubric
+   * @description Partially updates an existing course grading rubric.
+   */
+  PatchCourseGradingRubricAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        rubricId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -6372,6 +7102,43 @@ export interface operations {
     };
   };
   /**
+   * Patch a course handout
+   * @description Partially updates an existing course handout.
+   */
+  PatchCourseHandoutAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        handoutId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course libraries
    * @description Retrieves all course libraries for the specified tenant.
    */
@@ -6558,6 +7325,43 @@ export interface operations {
       };
       path: {
         libraryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course library
+   * @description Partially updates an existing course library.
+   */
+  PatchCourseLibraryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        libraryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -6772,6 +7576,43 @@ export interface operations {
     };
   };
   /**
+   * Patch a course page
+   * @description Partially updates an existing course page for the specified tenant.
+   */
+  PatchCoursePageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course problem sets
    * @description Retrieves all course problem sets for the specified tenant.
    */
@@ -6958,6 +7799,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course problem set
+   * @description Partially updates a course problem set for the specified tenant.
+   */
+  PatchCourseProblemSetAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        problemSetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {
@@ -7156,6 +8037,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course
+   * @description Partially updates a course for the specified tenant.
+   */
+  PatchCourseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {
@@ -8524,6 +9445,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a course section
+   * @description Partially updates a course section for the specified tenant.
+   */
+  PatchCourseSectionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        sectionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course team memberships
    * @description Retrieves all course team memberships for the specified tenant.
    */
@@ -8710,6 +9671,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course team membership
+   * @description Partially updates a course team membership for the specified tenant.
+   */
+  PatchCourseTeamMembershipAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        membershipId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {
@@ -8918,6 +9919,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a course unit component
+   * @description Partially updates a course unit component for the specified tenant.
+   */
+  PatchCourseUnitComponentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        componentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course units
    * @description Retrieves all course units for the specified tenant.
    */
@@ -9104,6 +10145,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course unit
+   * @description Partially updates a course unit for the specified tenant.
+   */
+  PatchCourseUnitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        unitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {
@@ -9312,6 +10393,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a course update
+   * @description Partially updates a course update for the specified tenant.
+   */
+  PatchCourseUpdateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        updateId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all course wikis
    * @description Retrieves all course wikis for the specified tenant.
    */
@@ -9498,6 +10619,46 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a course wiki
+   * @description Partially updates a course wiki for the specified tenant.
+   */
+  PatchCourseWikiAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        wikiId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Forbidden */
       403: {

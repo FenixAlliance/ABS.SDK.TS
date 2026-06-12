@@ -81,6 +81,7 @@ export type AssetCreateDto = {
     purchasePrice?: number;
     currencyId?: string | null;
     itemId?: string | null;
+    assetTypeId?: string | null;
     assetCategoryId?: string | null;
     purchaseInvoiceId?: string | null;
     purchaseReceiptId?: string | null;
@@ -103,14 +104,20 @@ export type AssetDepreciationRecordCreateDto = {
 };
 
 export type AssetDepreciationRecordDto = {
-    id?: AssetDepreciationRecordId;
+    id?: string | null;
     timestamp?: string;
-    businessId?: TenantId;
-    businessProfileRecordId?: EnrollmentId;
-    assetId?: AssetId;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    assetId?: string | null;
     assetName?: string | null;
     assetDepreciationPolicyId?: string | null;
     assetDepreciationPolicyName?: string | null;
+    financialBookId?: string | null;
+    startDate?: string;
+    totalDepreciations?: number;
+    depreciationFrequency?: number;
+    depreciationRate?: number;
+    expectedValueAUL?: number;
     depreciationAmount?: number;
     accumulatedDepreciation?: number;
     bookValue?: number;
@@ -150,8 +157,6 @@ export type AssetDepreciationRecordDtoListEnvelopeWritable = {
     result?: Array<AssetDepreciationRecordDto> | null;
 };
 
-export type AssetDepreciationRecordId = string;
-
 export type AssetDepreciationRecordUpdateDto = {
     depreciationAmount?: number | null;
     accumulatedDepreciation?: number | null;
@@ -166,7 +171,7 @@ export type AssetDto = {
     timestamp?: string | null;
     tenantId?: string | null;
     businessName?: string | null;
-    businessProfileRecordId?: string | null;
+    enrollmentId?: string | null;
     name?: string | null;
     description?: string | null;
     assetClass?: 'Fixed' | 'Stock';
@@ -181,6 +186,8 @@ export type AssetDto = {
     currencyCode?: string | null;
     itemId?: string | null;
     itemName?: string | null;
+    assetTypeId?: string | null;
+    assetTypeName?: string | null;
     assetCategoryId?: string | null;
     assetCategoryName?: string | null;
     purchaseInvoiceId?: string | null;
@@ -224,8 +231,6 @@ export type AssetDtoListEnvelopeWritable = {
     result?: Array<AssetDto> | null;
 };
 
-export type AssetId = string;
-
 export type AssetRepairCreateDto = {
     id?: string;
     timestamp?: string;
@@ -243,11 +248,11 @@ export type AssetRepairCreateDto = {
 };
 
 export type AssetRepairDto = {
-    id?: AssetRepairId;
+    id?: string | null;
     timestamp?: string;
-    businessId?: TenantId;
-    businessProfileRecordId?: EnrollmentId;
-    assetId?: AssetId;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    assetId?: string | null;
     assetName?: string | null;
     repairStatus?: 'Scheduled' | 'InProgress' | 'Completed' | 'Cancelled';
     scheduledDate?: string;
@@ -292,8 +297,6 @@ export type AssetRepairDtoListEnvelopeWritable = {
     result?: Array<AssetRepairDto> | null;
 };
 
-export type AssetRepairId = string;
-
 export type AssetRepairUpdateDto = {
     repairStatus?: 'Scheduled' | 'InProgress' | 'Completed' | 'Cancelled';
     scheduledDate?: string | null;
@@ -326,8 +329,8 @@ export type AssetTransferCreateDto = {
 export type AssetTransferDto = {
     id?: string | null;
     timestamp?: string;
-    businessId?: string | null;
-    businessProfileRecordId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     assetId?: string | null;
     assetName?: string | null;
     isRootTransfer?: boolean;
@@ -444,7 +447,7 @@ export type AssetTypeUpdateDto = {
 export type AssetUpdateDto = {
     name?: string | null;
     description?: string | null;
-    assetType?: 'Fixed' | 'Stock';
+    assetClass?: 'Fixed' | 'Stock';
     assetOwner?: 'Business' | 'Organization' | 'Contact' | 'Supplier';
     calculateDepreciation?: boolean;
     allowMonthlyDepreciation?: boolean;
@@ -452,8 +455,8 @@ export type AssetUpdateDto = {
     purchaseDate?: string | null;
     purchasePrice?: number | null;
     currencyId?: string | null;
-    currencyCode?: string | null;
     itemId?: string | null;
+    assetTypeId?: string | null;
     assetCategoryId?: string | null;
     purchaseInvoiceId?: string | null;
     purchaseReceiptId?: string | null;
@@ -470,24 +473,22 @@ export type AssetValueAmendCreateDto = {
     newValue?: number;
     reason?: string | null;
     amendmentDate?: string;
-    approvedBy?: string | null;
-    approvalDate?: string | null;
+    currencyId?: string | null;
 };
 
 export type AssetValueAmendDto = {
-    id?: AssetValueAmendId;
+    id?: string | null;
     timestamp?: string;
-    businessId?: TenantId;
-    businessProfileRecordId?: EnrollmentId;
-    assetId?: AssetId;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    assetId?: string | null;
     assetName?: string | null;
     previousValue?: number;
     newValue?: number;
     amendmentAmount?: number;
     reason?: string | null;
     amendmentDate?: string;
-    approvedBy?: string | null;
-    approvalDate?: string | null;
+    currencyId?: string | null;
 };
 
 export type AssetValueAmendDtoEnvelopeReadable = {
@@ -520,14 +521,10 @@ export type AssetValueAmendDtoListEnvelopeWritable = {
     result?: Array<AssetValueAmendDto> | null;
 };
 
-export type AssetValueAmendId = string;
-
 export type AssetValueAmendUpdateDto = {
     newValue?: number | null;
     reason?: string | null;
     amendmentDate?: string | null;
-    approvedBy?: string | null;
-    approvalDate?: string | null;
 };
 
 export type EmptyEnvelopeReadable = {
@@ -542,8 +539,6 @@ export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
 };
-
-export type EnrollmentId = string;
 
 export type ErrorEnvelopeReadable = {
     readonly isSuccess?: boolean;
@@ -609,6 +604,14 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -627,8 +630,6 @@ export type ResetPasswordRequest = {
     resetCode: string | null;
     newPassword: string | null;
 };
-
-export type TenantId = string;
 
 export type TwoFactorRequest = {
     enable?: boolean | null;
@@ -785,6 +786,47 @@ export type GetAssetCategoryResponses = {
 };
 
 export type GetAssetCategoryResponse = GetAssetCategoryResponses[keyof GetAssetCategoryResponses];
+
+export type PatchAssetCategoryData = {
+    body?: Array<Operation>;
+    path: {
+        categoryId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/AssetCategories/{categoryId}';
+};
+
+export type PatchAssetCategoryErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetCategoryError = PatchAssetCategoryErrors[keyof PatchAssetCategoryErrors];
+
+export type PatchAssetCategoryResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetCategoryResponse = PatchAssetCategoryResponses[keyof PatchAssetCategoryResponses];
 
 export type UpdateAssetCategoryData = {
     body?: AssetCategoryUpdateDto;
@@ -1029,6 +1071,47 @@ export type GetAssetResponses = {
 
 export type GetAssetResponse = GetAssetResponses[keyof GetAssetResponses];
 
+export type PatchAssetData = {
+    body?: Array<Operation>;
+    path: {
+        assetId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/Assets/{assetId}';
+};
+
+export type PatchAssetErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetError = PatchAssetErrors[keyof PatchAssetErrors];
+
+export type PatchAssetResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetResponse = PatchAssetResponses[keyof PatchAssetResponses];
+
 export type UpdateAssetData = {
     body?: AssetUpdateDto;
     path: {
@@ -1241,6 +1324,47 @@ export type GetAssetAssetCategoryResponses = {
 
 export type GetAssetAssetCategoryResponse = GetAssetAssetCategoryResponses[keyof GetAssetAssetCategoryResponses];
 
+export type PatchAssetAssetCategoryData = {
+    body?: Array<Operation>;
+    path: {
+        categoryId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/Assets/Categories/{categoryId}';
+};
+
+export type PatchAssetAssetCategoryErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetAssetCategoryError = PatchAssetAssetCategoryErrors[keyof PatchAssetAssetCategoryErrors];
+
+export type PatchAssetAssetCategoryResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetAssetCategoryResponse = PatchAssetAssetCategoryResponses[keyof PatchAssetAssetCategoryResponses];
+
 export type UpdateAssetAssetCategoryData = {
     body?: AssetCategoryUpdateDto;
     path: {
@@ -1449,6 +1573,48 @@ export type GetAssetRepairResponses = {
 
 export type GetAssetRepairResponse = GetAssetRepairResponses[keyof GetAssetRepairResponses];
 
+export type PatchAssetRepairData = {
+    body?: Array<Operation>;
+    path: {
+        assetId: string;
+        repairId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/Assets/{assetId}/Repairs/{repairId}';
+};
+
+export type PatchAssetRepairErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetRepairError = PatchAssetRepairErrors[keyof PatchAssetRepairErrors];
+
+export type PatchAssetRepairResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetRepairResponse = PatchAssetRepairResponses[keyof PatchAssetRepairResponses];
+
 export type UpdateAssetRepairData = {
     body?: AssetRepairUpdateDto;
     path: {
@@ -1649,6 +1815,48 @@ export type GetAssetValueAmendResponses = {
 };
 
 export type GetAssetValueAmendResponse = GetAssetValueAmendResponses[keyof GetAssetValueAmendResponses];
+
+export type PatchAssetValueAmendData = {
+    body?: Array<Operation>;
+    path: {
+        assetId: string;
+        amendId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/Assets/{assetId}/ValueAmends/{amendId}';
+};
+
+export type PatchAssetValueAmendErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetValueAmendError = PatchAssetValueAmendErrors[keyof PatchAssetValueAmendErrors];
+
+export type PatchAssetValueAmendResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetValueAmendResponse = PatchAssetValueAmendResponses[keyof PatchAssetValueAmendResponses];
 
 export type UpdateAssetValueAmendData = {
     body?: AssetValueAmendUpdateDto;
@@ -1851,6 +2059,48 @@ export type GetAssetDepreciationRecordResponses = {
 
 export type GetAssetDepreciationRecordResponse = GetAssetDepreciationRecordResponses[keyof GetAssetDepreciationRecordResponses];
 
+export type PatchAssetDepreciationRecordData = {
+    body?: Array<Operation>;
+    path: {
+        assetId: string;
+        recordId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/Assets/{assetId}/DepreciationRecords/{recordId}';
+};
+
+export type PatchAssetDepreciationRecordErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetDepreciationRecordError = PatchAssetDepreciationRecordErrors[keyof PatchAssetDepreciationRecordErrors];
+
+export type PatchAssetDepreciationRecordResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetDepreciationRecordResponse = PatchAssetDepreciationRecordResponses[keyof PatchAssetDepreciationRecordResponses];
+
 export type UpdateAssetDepreciationRecordData = {
     body?: AssetDepreciationRecordUpdateDto;
     path: {
@@ -2052,6 +2302,48 @@ export type GetAssetTransferResponses = {
 
 export type GetAssetTransferResponse = GetAssetTransferResponses[keyof GetAssetTransferResponses];
 
+export type PatchAssetTransferData = {
+    body?: Array<Operation>;
+    path: {
+        assetId: string;
+        transferId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/Assets/{assetId}/Transfers/{transferId}';
+};
+
+export type PatchAssetTransferErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetTransferError = PatchAssetTransferErrors[keyof PatchAssetTransferErrors];
+
+export type PatchAssetTransferResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetTransferResponse = PatchAssetTransferResponses[keyof PatchAssetTransferResponses];
+
 export type UpdateAssetTransferData = {
     body?: AssetTransferUpdateDto;
     path: {
@@ -2245,6 +2537,47 @@ export type GetAssetTransferAsyncResponses = {
 
 export type GetAssetTransferAsyncResponse = GetAssetTransferAsyncResponses[keyof GetAssetTransferAsyncResponses];
 
+export type PatchAssetTransferAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        transferId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/AssetTransfers/{transferId}';
+};
+
+export type PatchAssetTransferAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetTransferAsyncError = PatchAssetTransferAsyncErrors[keyof PatchAssetTransferAsyncErrors];
+
+export type PatchAssetTransferAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetTransferAsyncResponse = PatchAssetTransferAsyncResponses[keyof PatchAssetTransferAsyncResponses];
+
 export type UpdateAssetTransferAsyncData = {
     body?: AssetTransferUpdateDto;
     path: {
@@ -2417,6 +2750,47 @@ export type GetAssetTypeResponses = {
 };
 
 export type GetAssetTypeResponse = GetAssetTypeResponses[keyof GetAssetTypeResponses];
+
+export type PatchAssetTypeData = {
+    body?: Array<Operation>;
+    path: {
+        typeId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AssetsService/AssetTypes/{typeId}';
+};
+
+export type PatchAssetTypeErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchAssetTypeError = PatchAssetTypeErrors[keyof PatchAssetTypeErrors];
+
+export type PatchAssetTypeResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAssetTypeResponse = PatchAssetTypeResponses[keyof PatchAssetTypeResponses];
 
 export type UpdateAssetTypeData = {
     body?: AssetTypeUpdateDto;

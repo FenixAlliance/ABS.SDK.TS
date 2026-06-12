@@ -134,6 +134,8 @@ export type LocationDto = {
     isDefaultSenderAddress?: boolean;
     isDefaultReturnAddress?: boolean;
     isDefaultSuppingLocation?: boolean;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type LocationDtoEnvelopeReadable = {
@@ -195,6 +197,14 @@ export type LoginRequest = {
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
+};
+
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type RefreshRequest = {
@@ -750,6 +760,39 @@ export type GetLocationAsyncResponses = {
 
 export type GetLocationAsyncResponse = GetLocationAsyncResponses[keyof GetLocationAsyncResponses];
 
+export type PatchLocationAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        locationId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/LocationsService/Locations/{locationId}';
+};
+
+export type PatchLocationAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchLocationAsyncError = PatchLocationAsyncErrors[keyof PatchLocationAsyncErrors];
+
+export type PatchLocationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchLocationAsyncResponse = PatchLocationAsyncResponses[keyof PatchLocationAsyncResponses];
+
 export type UpdateLocationAsyncData = {
     body?: LocationUpdateDto;
     path: {
@@ -939,6 +982,38 @@ export type GetWalletLocationAsyncResponses = {
 };
 
 export type GetWalletLocationAsyncResponse = GetWalletLocationAsyncResponses[keyof GetWalletLocationAsyncResponses];
+
+export type PatchWalletLocationAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        walletId: string;
+        locationId: string;
+    };
+    query?: never;
+    url: '/api/v2/LocationsService/Locations/wallet/{walletId}/{locationId}';
+};
+
+export type PatchWalletLocationAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchWalletLocationAsyncError = PatchWalletLocationAsyncErrors[keyof PatchWalletLocationAsyncErrors];
+
+export type PatchWalletLocationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchWalletLocationAsyncResponse = PatchWalletLocationAsyncResponses[keyof PatchWalletLocationAsyncResponses];
 
 export type UpdateWalletLocationAsyncData = {
     body?: LocationUpdateDto;

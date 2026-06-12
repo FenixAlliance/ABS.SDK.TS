@@ -90,6 +90,14 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type PaymentCreateDto = {
     id?: string;
     timestamp?: string;
@@ -211,6 +219,8 @@ export type PaymentDto = {
     enrollmentId?: string | null;
     bankId?: string | null;
     paymentTokenId?: string | null;
+    emisorWalletAccountId?: string | null;
+    receiverWalletAccountId?: string | null;
 };
 
 export type PaymentDtoListEnvelopeReadable = {
@@ -341,7 +351,7 @@ export type PaymentTermCreateDto = {
     creditWeeks?: number;
     creditMonths?: number;
     creditYears?: number;
-    paymentModeID?: string | null;
+    paymentModeId?: string | null;
 };
 
 export type PaymentTermDto = {
@@ -355,7 +365,7 @@ export type PaymentTermDto = {
     creditWeeks?: number;
     creditMonths?: number;
     creditYears?: number;
-    paymentModeID?: string | null;
+    paymentModeId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
 };
@@ -399,7 +409,7 @@ export type PaymentTermUpdateDto = {
     creditWeeks?: number | null;
     creditMonths?: number | null;
     creditYears?: number | null;
-    paymentModeID?: string | null;
+    paymentModeId?: string | null;
 };
 
 export type PaymentUpdateDto = {
@@ -1034,6 +1044,43 @@ export type GetPaymentMethodDetailsAsyncResponses = {
 
 export type GetPaymentMethodDetailsAsyncResponse = GetPaymentMethodDetailsAsyncResponses[keyof GetPaymentMethodDetailsAsyncResponses];
 
+export type PatchPaymentMethodAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        paymentMethodId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentMethods/{paymentMethodId}';
+};
+
+export type PatchPaymentMethodAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchPaymentMethodAsyncError = PatchPaymentMethodAsyncErrors[keyof PatchPaymentMethodAsyncErrors];
+
+export type PatchPaymentMethodAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPaymentMethodAsyncResponse = PatchPaymentMethodAsyncResponses[keyof PatchPaymentMethodAsyncResponses];
+
 export type UpdatePaymentMethodAsyncData = {
     body?: PaymentMethodUpdateDto;
     headers?: {
@@ -1250,6 +1297,43 @@ export type GetPaymentModeDetailsAsyncResponses = {
 
 export type GetPaymentModeDetailsAsyncResponse = GetPaymentModeDetailsAsyncResponses[keyof GetPaymentModeDetailsAsyncResponses];
 
+export type PatchPaymentModeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        paymentModeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentModes/{paymentModeId}';
+};
+
+export type PatchPaymentModeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchPaymentModeAsyncError = PatchPaymentModeAsyncErrors[keyof PatchPaymentModeAsyncErrors];
+
+export type PatchPaymentModeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPaymentModeAsyncResponse = PatchPaymentModeAsyncResponses[keyof PatchPaymentModeAsyncResponses];
+
 export type UpdatePaymentModeAsyncData = {
     body?: PaymentModeUpdateDto;
     headers?: {
@@ -1389,6 +1473,39 @@ export type GetPaymentAsyncV2Responses = {
 };
 
 export type GetPaymentAsyncV2Response = GetPaymentAsyncV2Responses[keyof GetPaymentAsyncV2Responses];
+
+export type PatchPaymentAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        paymentId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/Payments/{paymentId}';
+};
+
+export type PatchPaymentAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchPaymentAsyncError = PatchPaymentAsyncErrors[keyof PatchPaymentAsyncErrors];
+
+export type PatchPaymentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPaymentAsyncResponse = PatchPaymentAsyncResponses[keyof PatchPaymentAsyncResponses];
 
 export type UpdatePaymentAsyncData = {
     body?: PaymentUpdateDto;
@@ -1675,6 +1792,43 @@ export type GetPaymentTermDetailsAsyncResponses = {
 };
 
 export type GetPaymentTermDetailsAsyncResponse = GetPaymentTermDetailsAsyncResponses[keyof GetPaymentTermDetailsAsyncResponses];
+
+export type PatchPaymentTermAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        paymentTermId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentTerms/{paymentTermId}';
+};
+
+export type PatchPaymentTermAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchPaymentTermAsyncError = PatchPaymentTermAsyncErrors[keyof PatchPaymentTermAsyncErrors];
+
+export type PatchPaymentTermAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPaymentTermAsyncResponse = PatchPaymentTermAsyncResponses[keyof PatchPaymentTermAsyncResponses];
 
 export type UpdatePaymentTermAsyncData = {
     body?: PaymentTermUpdateDto;

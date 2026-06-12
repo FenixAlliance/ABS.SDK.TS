@@ -446,6 +446,11 @@ export interface paths {
      * @description Deletes the specified payment method.
      */
     delete: operations["DeletePaymentMethodAsync"];
+    /**
+     * Patch a payment method
+     * @description Patch a payment method
+     */
+    patch: operations["PatchPaymentMethodAsync"];
   };
   "/api/v2/PaymentsService/PaymentModes": {
     /**
@@ -482,6 +487,11 @@ export interface paths {
      * @description Deletes the specified payment mode.
      */
     delete: operations["DeletePaymentModeAsync"];
+    /**
+     * Patch a payment mode
+     * @description Patch a payment mode
+     */
+    patch: operations["PatchPaymentModeAsync"];
   };
   "/api/v2/PaymentsService/Payments/{paymentId}/Details": {
     /**
@@ -507,6 +517,11 @@ export interface paths {
      * @description Deletes the specified payment.
      */
     delete: operations["DeletePaymentAsync"];
+    /**
+     * Patch a payment
+     * @description Patch a payment
+     */
+    patch: operations["PatchPaymentAsync"];
   };
   "/api/v2/PaymentsService/Payments": {
     /**
@@ -555,6 +570,11 @@ export interface paths {
      * @description Deletes the specified payment term.
      */
     delete: operations["DeletePaymentTermAsync"];
+    /**
+     * Patch a payment term
+     * @description Patch a payment term
+     */
+    patch: operations["PatchPaymentTermAsync"];
   };
 }
 
@@ -624,6 +644,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     PaymentCreateDto: {
       /** Format: uuid */
@@ -768,6 +796,8 @@ export interface components {
       enrollmentId?: string | null;
       bankId?: string | null;
       paymentTokenId?: string | null;
+      emisorWalletAccountId?: string | null;
+      receiverWalletAccountId?: string | null;
     };
     PaymentDtoListEnvelope: {
       isSuccess?: boolean;
@@ -874,7 +904,7 @@ export interface components {
       creditMonths?: number;
       /** Format: double */
       creditYears?: number;
-      paymentModeID?: string | null;
+      paymentModeId?: string | null;
     };
     PaymentTermDto: {
       id?: string | null;
@@ -893,7 +923,7 @@ export interface components {
       creditMonths?: number;
       /** Format: double */
       creditYears?: number;
-      paymentModeID?: string | null;
+      paymentModeId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
@@ -929,7 +959,7 @@ export interface components {
       creditMonths?: number | null;
       /** Format: double */
       creditYears?: number | null;
-      paymentModeID?: string | null;
+      paymentModeId?: string | null;
     };
     PaymentUpdateDto: {
       invoiceId?: string | null;
@@ -1308,6 +1338,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a payment method
+   * @description Patch a payment method
+   */
+  PatchPaymentMethodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentMethodId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves all payment modes
    * @description Gets all payment modes for the current tenant with OData support.
    */
@@ -1557,6 +1634,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a payment mode
+   * @description Patch a payment mode
+   */
+  PatchPaymentModeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentModeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Gets a payment by ID (deprecated)
    * @deprecated
    * @description Retrieves a payment using the deprecated /Details route. Use GET {paymentId} instead.
@@ -1707,6 +1831,49 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a payment
+   * @description Patch a payment
+   */
+  PatchPaymentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        paymentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -2036,6 +2203,53 @@ export interface operations {
       };
       path: {
         paymentTermId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a payment term
+   * @description Patch a payment term
+   */
+  PatchPaymentTermAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        paymentTermId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

@@ -428,6 +428,11 @@ export interface paths {
     put: operations["UpdateInquiryRequestAsync"];
     /** Delete an inquiry request */
     delete: operations["DeleteInquiryRequestAsync"];
+    /**
+     * Patch an inquiry request
+     * @description Partially updates an existing inquiry request by its unique identifier.
+     */
+    patch: operations["PatchInquiryRequestAsync"];
   };
   "/api/v2/SupportService/KnowledgeArticles": {
     /** Retrieve knowledge articles */
@@ -446,6 +451,11 @@ export interface paths {
     put: operations["UpdateKnowledgeArticleAsync"];
     /** Delete a knowledge article */
     delete: operations["DeleteKnowledgeArticleAsync"];
+    /**
+     * Patch a knowledge article
+     * @description Partially updates an existing knowledge article by its unique identifier.
+     */
+    patch: operations["PatchKnowledgeArticleAsync"];
   };
   "/api/v2/SupportService/MaintenanceVisits": {
     /** Retrieve maintenance visits */
@@ -464,6 +474,11 @@ export interface paths {
     put: operations["UpdateMaintenanceVisitAsync"];
     /** Delete a maintenance visit */
     delete: operations["DeleteMaintenanceVisitAsync"];
+    /**
+     * Patch a maintenance visit
+     * @description Partially updates an existing maintenance visit by its unique identifier.
+     */
+    patch: operations["PatchMaintenanceVisitAsync"];
   };
   "/api/v2/SupportService/RefundPolicies": {
     /** Retrieve a list of refund policies */
@@ -482,6 +497,11 @@ export interface paths {
     put: operations["UpdateRefundPolicyAsync"];
     /** Delete a refund policy */
     delete: operations["DeleteRefundPolicyAsync"];
+    /**
+     * Patch a refund policy
+     * @description Partially updates an existing refund policy by its unique identifier.
+     */
+    patch: operations["PatchRefundPolicyAsync"];
   };
   "/api/v2/SupportService/RefundRequests": {
     /** Retrieve refund requests */
@@ -500,6 +520,11 @@ export interface paths {
     put: operations["UpdateRefundRequestAsync"];
     /** Delete a refund request */
     delete: operations["DeleteRefundRequestAsync"];
+    /**
+     * Patch a refund request
+     * @description Partially updates an existing refund request by its unique identifier.
+     */
+    patch: operations["PatchRefundRequestAsync"];
   };
   "/api/v2/SupportService/ReturnPolicies": {
     /** Retrieve a list of return policies */
@@ -518,6 +543,11 @@ export interface paths {
     put: operations["UpdateReturnPolicyAsync"];
     /** Delete a return policy */
     delete: operations["DeleteReturnPolicyAsync"];
+    /**
+     * Patch a return policy
+     * @description Partially updates an existing return policy by its unique identifier.
+     */
+    patch: operations["PatchReturnPolicyAsync"];
   };
   "/api/v2/SupportService/ReturnRequests": {
     /** Retrieve return requests */
@@ -536,6 +566,11 @@ export interface paths {
     put: operations["UpdateReturnRequestAsync"];
     /** Delete a return request */
     delete: operations["DeleteReturnRequestAsync"];
+    /**
+     * Patch a return request
+     * @description Partially updates an existing return request by its unique identifier.
+     */
+    patch: operations["PatchReturnRequestAsync"];
   };
   "/api/v2/SupportService/SupportEntitlements": {
     /**
@@ -572,6 +607,11 @@ export interface paths {
      * @description Deletes a support entitlement by its unique identifier.
      */
     delete: operations["DeleteSupportEntitlementAsync"];
+    /**
+     * Patch a support entitlement
+     * @description Partially updates an existing support entitlement by its unique identifier.
+     */
+    patch: operations["PatchSupportEntitlementAsync"];
   };
   "/api/v2/SupportService/SupportRequestAttachments": {
     /**
@@ -608,6 +648,11 @@ export interface paths {
      * @description Deletes a support request attachment by its unique identifier.
      */
     delete: operations["DeleteSupportRequestAttachmentAsync"];
+    /**
+     * Patch a support request attachment
+     * @description Partially updates an existing support request attachment by its unique identifier.
+     */
+    patch: operations["PatchSupportRequestAttachmentAsync"];
   };
   "/api/v2/SupportService/SupportRequests": {
     /**
@@ -644,6 +689,11 @@ export interface paths {
      * @description Deletes a support request by its unique identifier.
      */
     delete: operations["DeleteSupportRequestAsync"];
+    /**
+     * Patch a support request
+     * @description Partially updates an existing support request by its unique identifier.
+     */
+    patch: operations["PatchSupportRequestAsync"];
   };
   "/api/v2/SupportService/SupportRequests/{supportRequestId}/Tickets": {
     /**
@@ -713,6 +763,11 @@ export interface paths {
      * @description Deletes a support ticket priority by its unique identifier.
      */
     delete: operations["DeleteSupportTicketPriorityAsync"];
+    /**
+     * Patch a support ticket priority
+     * @description Partially updates an existing support ticket priority by its unique identifier.
+     */
+    patch: operations["PatchSupportTicketPriorityAsync"];
   };
   "/api/v2/SupportService/SupportTickets": {
     /**
@@ -749,6 +804,11 @@ export interface paths {
      * @description Deletes a support ticket by its unique identifier.
      */
     delete: operations["DeleteSupportTicketAsync"];
+    /**
+     * Patch a support ticket
+     * @description Partially updates an existing support ticket by its unique identifier.
+     */
+    patch: operations["PatchSupportTicketAsync"];
   };
   "/api/v2/SupportService/SupportTickets/{supportTicketId}/Conversations": {
     /**
@@ -816,6 +876,11 @@ export interface paths {
      * @description Deletes a support ticket type by its unique identifier.
      */
     delete: operations["DeleteSupportTicketTypeAsync"];
+    /**
+     * Patch a support ticket type
+     * @description Partially updates an existing support ticket type by its unique identifier.
+     */
+    patch: operations["PatchSupportTicketTypeAsync"];
   };
   "/api/v2/SupportService/WarrantyPolicies": {
     /** Retrieve a list of warranty policies */
@@ -834,6 +899,11 @@ export interface paths {
     put: operations["UpdateWarrantyPolicyAsync"];
     /** Delete a warranty policy */
     delete: operations["DeleteWarrantyPolicyAsync"];
+    /**
+     * Patch a warranty policy
+     * @description Partially updates an existing warranty policy by its unique identifier.
+     */
+    patch: operations["PatchWarrantyPolicyAsync"];
   };
   "/api/v2/SupportService/WarrantyRequests": {
     /** Retrieve warranty requests */
@@ -852,6 +922,11 @@ export interface paths {
     put: operations["UpdateWarrantyRequestAsync"];
     /** Delete a warranty request */
     delete: operations["DeleteWarrantyRequestAsync"];
+    /**
+     * Patch a warranty request
+     * @description Partially updates an existing warranty request by its unique identifier.
+     */
+    patch: operations["PatchWarrantyRequestAsync"];
   };
 }
 
@@ -939,8 +1014,8 @@ export interface components {
       phone?: string | null;
       message?: string | null;
       tenantId?: string | null;
-      businessProfileRecordId?: string | null;
-      accountHolderId?: string | null;
+      enrollmentId?: string | null;
+      userId?: string | null;
       socialProfileId?: string | null;
     };
     InquiryRequestDtoEnvelope: {
@@ -1010,18 +1085,18 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     ItemRefundPolicyDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      shippingCourierID?: string | null;
+      shippingCourierId?: string | null;
       type?: string | null;
       code?: string | null;
       title?: string | null;
@@ -1045,14 +1120,14 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ItemRefundPolicyDtoEnvelope: {
       isSuccess?: boolean;
@@ -1094,12 +1169,12 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     ItemReturnPolicyCreateDto: {
       /** Format: uuid */
@@ -1108,7 +1183,7 @@ export interface components {
       timestamp?: string;
       title: string;
       description?: string | null;
-      shippingCourierID?: string | null;
+      shippingCourierId?: string | null;
       isFree?: boolean;
       reduce?: boolean;
       isEnabled?: boolean;
@@ -1128,18 +1203,18 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     ItemReturnPolicyDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      shippingCourierID?: string | null;
+      shippingCourierId?: string | null;
       type?: string | null;
       code?: string | null;
       title?: string | null;
@@ -1163,14 +1238,14 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ItemReturnPolicyDtoEnvelope: {
       isSuccess?: boolean;
@@ -1193,7 +1268,7 @@ export interface components {
     ItemReturnPolicyUpdateDto: {
       title?: string | null;
       description?: string | null;
-      shippingCourierID?: string | null;
+      shippingCourierId?: string | null;
       isFree?: boolean;
       reduce?: boolean;
       isEnabled?: boolean;
@@ -1213,12 +1288,12 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     ItemWarrantyPolicyCreateDto: {
       /** Format: uuid */
@@ -1247,12 +1322,12 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     ItemWarrantyPolicyDto: {
       id?: string | null;
@@ -1281,14 +1356,14 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
-      businessID: string;
-      businessProfileRecordID?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ItemWarrantyPolicyDtoEnvelope: {
       isSuccess?: boolean;
@@ -1331,12 +1406,12 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     KnowledgeArticleCreateDto: {
       /** Format: uuid */
@@ -1375,7 +1450,7 @@ export interface components {
       /** Format: date-time */
       lastModification?: string;
       tenantId?: string | null;
-      businessProfileRecordId?: string | null;
+      enrollmentId?: string | null;
     };
     KnowledgeArticleDtoEnvelope: {
       isSuccess?: boolean;
@@ -1425,7 +1500,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       tenantId?: string | null;
-      businessProfileRecordId?: string | null;
+      enrollmentId?: string | null;
     };
     MaintenanceVisitDtoEnvelope: {
       isSuccess?: boolean;
@@ -1446,6 +1521,14 @@ export interface components {
       result?: components["schemas"]["MaintenanceVisitDto"][] | null;
     };
     MaintenanceVisitUpdateDto: Record<string, never>;
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     PrivateMessageDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1455,7 +1538,7 @@ export interface components {
       message?: string | null;
       conversationId?: string | null;
       senderSocialProfileId?: string | null;
-      receiverSocialProfileID?: string | null;
+      receiverSocialProfileId?: string | null;
       /** Format: date-time */
       sentTimestamp?: string;
       /** Format: date-time */
@@ -1500,10 +1583,10 @@ export interface components {
       /** Format: date-time */
       approvedTimestamp?: string;
       tenantId?: string | null;
-      businessProfileRecordId?: string | null;
+      enrollmentId?: string | null;
       supportEntitlementId?: string | null;
       contactId?: string | null;
-      accountHolderId?: string | null;
+      userId?: string | null;
       refundPolicyId?: string | null;
       paymentId?: string | null;
     };
@@ -1571,10 +1654,10 @@ export interface components {
       /** Format: date-time */
       approvedTimestamp?: string;
       tenantId?: string | null;
-      businessProfileRecordId?: string | null;
+      enrollmentId?: string | null;
       supportEntitlementId?: string | null;
       contactId?: string | null;
-      accountHolderId?: string | null;
+      userId?: string | null;
       returnPolicyId?: string | null;
     };
     ReturnRequestDtoEnvelope: {
@@ -1658,12 +1741,12 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      individualID?: string | null;
-      organizationID?: string | null;
-      receiverBusinessID?: string | null;
-      paymentTokenID?: string | null;
-      walletAccountID?: string | null;
-      securityCertificateID?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      paymentTokenId?: string | null;
+      walletAccountId?: string | null;
+      securityCertificateId?: string | null;
     };
     SupportEntitlementDto: {
       id?: string | null;
@@ -1671,6 +1754,8 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
+      /** @enum {string} */
+      status?: "Active" | "GracePeriod" | "Disabled" | "Deleted";
       /** Format: date-time */
       startDateTime?: string;
       /** Format: date-time */
@@ -1718,15 +1803,15 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      accountHolderID?: string | null;
-      individualID?: string | null;
-      organizationID?: string | null;
-      receiverBusinessID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
-      paymentTokenID?: string | null;
-      walletAccountID?: string | null;
-      securityCertificateID?: string | null;
+      userId?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      paymentTokenId?: string | null;
+      walletAccountId?: string | null;
+      securityCertificateId?: string | null;
     };
     SupportEntitlementDtoEnvelope: {
       isSuccess?: boolean;
@@ -1794,12 +1879,12 @@ export interface components {
       data8Label?: string | null;
       data9?: string | null;
       data9Label?: string | null;
-      individualID?: string | null;
-      organizationID?: string | null;
-      receiverBusinessID?: string | null;
-      paymentTokenID?: string | null;
-      walletAccountID?: string | null;
-      securityCertificateID?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
+      receiverTenantId?: string | null;
+      paymentTokenId?: string | null;
+      walletAccountId?: string | null;
+      securityCertificateId?: string | null;
     };
     SupportRequestAttachmentCreateDto: {
       /** Format: uuid */
@@ -1817,7 +1902,7 @@ export interface components {
       parentFileUploadId?: string | null;
       filePath?: string | null;
       metadata?: string | null;
-      supportRequestID?: string | null;
+      supportRequestId?: string | null;
     };
     SupportRequestAttachmentDto: {
       id?: string | null;
@@ -1844,7 +1929,7 @@ export interface components {
       enrollmentId?: string | null;
       socialProfileId?: string | null;
       folderPath?: string | null;
-      supportRequestID?: string | null;
+      supportRequestId?: string | null;
     };
     SupportRequestAttachmentDtoEnvelope: {
       isSuccess?: boolean;
@@ -1890,8 +1975,8 @@ export interface components {
       approved?: boolean;
       /** Format: date-time */
       approvedTimestamp?: string;
-      supportEntitlementID?: string | null;
-      contactID?: string | null;
+      supportEntitlementId?: string | null;
+      contactId?: string | null;
     };
     SupportRequestDto: {
       id?: string | null;
@@ -1902,11 +1987,11 @@ export interface components {
       approved?: boolean;
       /** Format: date-time */
       approvedTimestamp?: string;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
-      supportEntitlementID?: string | null;
-      contactID?: string | null;
-      accountHolderID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      supportEntitlementId?: string | null;
+      contactId?: string | null;
+      userId?: string | null;
     };
     SupportRequestDtoEnvelope: {
       isSuccess?: boolean;
@@ -1932,7 +2017,7 @@ export interface components {
       approved?: boolean;
       /** Format: date-time */
       approvedTimestamp?: string;
-      supportEntitlementID?: string | null;
+      supportEntitlementId?: string | null;
     };
     SupportTicketConversationCreateDto: {
       /** Format: uuid */
@@ -1943,18 +2028,18 @@ export interface components {
       closed?: boolean;
       /** Format: date-time */
       closedTimestamp?: string;
-      socialProfileID?: string | null;
+      socialProfileId?: string | null;
     };
     SupportTicketConversationDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      supportTicketID?: string | null;
+      supportTicketId?: string | null;
       topic?: string | null;
       closed?: boolean;
       /** Format: date-time */
       closedTimestamp?: string;
-      socialProfileID?: string | null;
+      socialProfileId?: string | null;
     };
     SupportTicketConversationDtoEnvelope: {
       isSuccess?: boolean;
@@ -1979,24 +2064,30 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      title?: string | null;
       description?: string | null;
-      contactID?: string | null;
-      supportTicketTypeID?: string | null;
-      supportEntitlementID?: string | null;
-      supportPriorityID?: string | null;
+      /** @enum {string} */
+      supportTicketStatus?: "New" | "OpenAndWaitingForAgent" | "OpenAndWaitingForCustomer" | "Closed";
+      contactId?: string | null;
+      supportTicketTypeId?: string | null;
+      supportEntitlementId?: string | null;
+      supportPriorityId?: string | null;
     };
     SupportTicketDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      title?: string | null;
       description?: string | null;
-      accountHolderID?: string | null;
-      contactID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
-      supportTicketTypeID?: string | null;
-      supportEntitlementID?: string | null;
-      supportPriorityID?: string | null;
+      /** @enum {string} */
+      supportTicketStatus?: "New" | "OpenAndWaitingForAgent" | "OpenAndWaitingForCustomer" | "Closed";
+      userId?: string | null;
+      contactId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      supportTicketTypeId?: string | null;
+      supportEntitlementId?: string | null;
+      supportPriorityId?: string | null;
     };
     SupportTicketDtoEnvelope: {
       isSuccess?: boolean;
@@ -2023,7 +2114,7 @@ export interface components {
       timestamp?: string;
       title?: string | null;
       description?: string | null;
-      supportEntitlementID?: string | null;
+      supportEntitlementId?: string | null;
     };
     SupportTicketPriorityDto: {
       id?: string | null;
@@ -2031,8 +2122,8 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
-      businessID?: string | null;
-      supportEntitlementID?: string | null;
+      tenantId?: string | null;
+      supportEntitlementId?: string | null;
     };
     SupportTicketPriorityDtoEnvelope: {
       isSuccess?: boolean;
@@ -2055,6 +2146,7 @@ export interface components {
     SupportTicketPriorityUpdateDto: {
       title?: string | null;
       description?: string | null;
+      supportEntitlementId?: string | null;
     };
     SupportTicketTypeCreateDto: {
       /** Format: uuid */
@@ -2070,7 +2162,7 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     SupportTicketTypeDtoEnvelope: {
       isSuccess?: boolean;
@@ -2098,11 +2190,14 @@ export interface components {
       description?: string | null;
     };
     SupportTicketUpdateDto: {
+      title?: string | null;
       description?: string | null;
-      contactID?: string | null;
-      supportTicketTypeID?: string | null;
-      supportEntitlementID?: string | null;
-      supportPriorityID?: string | null;
+      /** @enum {string} */
+      supportTicketStatus?: "New" | "OpenAndWaitingForAgent" | "OpenAndWaitingForCustomer" | "Closed";
+      contactId?: string | null;
+      supportTicketTypeId?: string | null;
+      supportEntitlementId?: string | null;
+      supportPriorityId?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -2143,10 +2238,10 @@ export interface components {
       /** Format: date-time */
       approvedTimestamp?: string;
       tenantId?: string | null;
-      businessProfileRecordId?: string | null;
+      enrollmentId?: string | null;
       supportEntitlementId?: string | null;
       contactId?: string | null;
-      accountHolderId?: string | null;
+      userId?: string | null;
       warrantyPolicyId?: string | null;
     };
     WarrantyRequestDtoEnvelope: {
@@ -2352,6 +2447,53 @@ export interface operations {
       };
     };
   };
+  /**
+   * Patch an inquiry request
+   * @description Partially updates an existing inquiry request by its unique identifier.
+   */
+  PatchInquiryRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        inquiryRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Retrieve knowledge articles */
   GetKnowledgeArticlesAsync: {
     parameters: {
@@ -2499,6 +2641,53 @@ export interface operations {
       };
     };
   };
+  /**
+   * Patch a knowledge article
+   * @description Partially updates an existing knowledge article by its unique identifier.
+   */
+  PatchKnowledgeArticleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        knowledgeArticleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Retrieve maintenance visits */
   GetMaintenanceVisitsAsync: {
     parameters: {
@@ -2642,6 +2831,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a maintenance visit
+   * @description Partially updates an existing maintenance visit by its unique identifier.
+   */
+  PatchMaintenanceVisitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        maintenanceVisitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };
@@ -2877,6 +3113,53 @@ export interface operations {
       };
     };
   };
+  /**
+   * Patch a refund policy
+   * @description Partially updates an existing refund policy by its unique identifier.
+   */
+  PatchRefundPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        refundPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Retrieve refund requests */
   GetRefundRequestsAsync: {
     parameters: {
@@ -3020,6 +3303,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a refund request
+   * @description Partially updates an existing refund request by its unique identifier.
+   */
+  PatchRefundRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        refundRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };
@@ -3255,6 +3585,53 @@ export interface operations {
       };
     };
   };
+  /**
+   * Patch a return policy
+   * @description Partially updates an existing return policy by its unique identifier.
+   */
+  PatchReturnPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        returnPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Retrieve return requests */
   GetReturnRequestsAsync: {
     parameters: {
@@ -3398,6 +3775,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a return request
+   * @description Partially updates an existing return request by its unique identifier.
+   */
+  PatchReturnRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        returnRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };
@@ -3625,6 +4049,53 @@ export interface operations {
       };
       path: {
         supportEntitlementId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a support entitlement
+   * @description Partially updates an existing support entitlement by its unique identifier.
+   */
+  PatchSupportEntitlementAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportEntitlementId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -3901,6 +4372,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a support request attachment
+   * @description Partially updates an existing support request attachment by its unique identifier.
+   */
+  PatchSupportRequestAttachmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestAttachmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of support requests
    * @description Retrieves a list of support requests for the specified tenant with OData query support.
    */
@@ -4123,6 +4641,53 @@ export interface operations {
       };
       path: {
         supportRequestId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a support request
+   * @description Partially updates an existing support request by its unique identifier.
+   */
+  PatchSupportRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -4611,6 +5176,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a support ticket priority
+   * @description Partially updates an existing support ticket priority by its unique identifier.
+   */
+  PatchSupportTicketPriorityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketPriorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of support tickets
    * @description Retrieves a list of support tickets for the specified tenant with OData query support.
    */
@@ -4833,6 +5445,53 @@ export interface operations {
       };
       path: {
         supportTicketId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a support ticket
+   * @description Partially updates an existing support ticket by its unique identifier.
+   */
+  PatchSupportTicketAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5324,6 +5983,53 @@ export interface operations {
       };
     };
   };
+  /**
+   * Patch a support ticket type
+   * @description Partially updates an existing support ticket type by its unique identifier.
+   */
+  PatchSupportTicketTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supportTicketTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Retrieve a list of warranty policies */
   GetWarrantyPoliciesAsync: {
     parameters: {
@@ -5555,6 +6261,53 @@ export interface operations {
       };
     };
   };
+  /**
+   * Patch a warranty policy
+   * @description Partially updates an existing warranty policy by its unique identifier.
+   */
+  PatchWarrantyPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warrantyPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /** Retrieve warranty requests */
   GetWarrantyRequestsAsync: {
     parameters: {
@@ -5698,6 +6451,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a warranty request
+   * @description Partially updates an existing warranty request by its unique identifier.
+   */
+  PatchWarrantyRequestAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warrantyRequestId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };

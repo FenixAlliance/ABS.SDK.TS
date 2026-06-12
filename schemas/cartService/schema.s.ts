@@ -16,6 +16,11 @@ export interface paths {
      * @description Update a cart
      */
     put: operations["UpdateCartAsync"];
+    /**
+     * Patch a cart
+     * @description Partially updates a cart using a JSON Patch document.
+     */
+    patch: operations["PatchCartAsync"];
   };
   "/api/v2/CartService/Carts/{cartId}/Currency": {
     /**
@@ -759,6 +764,11 @@ export interface paths {
      * @description Removes a specific item record from the cart by its record ID.
      */
     delete: operations["RemoveProductFromCartByRecordId"];
+    /**
+     * Patch a cart record
+     * @description Partially updates the specified item cart record using a JSON Patch document.
+     */
+    patch: operations["PatchItemCartRecord"];
   };
   "/api/v2/CartService/Records/{recordId}/Increase": {
     /**
@@ -811,6 +821,11 @@ export interface paths {
      * @description Deletes the specified wish list.
      */
     delete: operations["DeleteWishList"];
+    /**
+     * Patch a wish list
+     * @description Partially updates the specified wish list using a JSON Patch document.
+     */
+    patch: operations["PatchWishList"];
   };
   "/api/v2/CartService/WishLists/{cartId}": {
     /**
@@ -1151,8 +1166,6 @@ export interface components {
       businessProfileRecordId?: string | null;
       parentBillingItemRecordId?: string | null;
       cartId?: string | null;
-      itemID?: string | null;
-      shippingAddressID?: string | null;
     };
     ItemCartRecordDtoEnvelope: {
       isSuccess?: boolean;
@@ -1228,6 +1241,14 @@ export interface components {
       /** Format: uuid */
       cartID?: string;
       public?: boolean;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     ProductToWishListRequest: {
       wishListId?: string | null;
@@ -1367,6 +1388,52 @@ export interface operations {
       content: {
         "application/json": components["schemas"]["CartUpdateRequest"];
         "application/xml": components["schemas"]["CartUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a cart
+   * @description Partially updates a cart using a JSON Patch document.
+   */
+  PatchCartAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        cartId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -3592,6 +3659,52 @@ export interface operations {
     };
   };
   /**
+   * Patch a cart record
+   * @description Partially updates the specified item cart record using a JSON Patch document.
+   */
+  PatchItemCartRecord: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        recordId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Increase cart record quantity
    * @description Increases the quantity of the specified item cart record by the given amount.
    */
@@ -3821,6 +3934,38 @@ export interface operations {
       };
       path: {
         wishListId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a wish list
+   * @description Partially updates the specified wish list using a JSON Patch document.
+   */
+  PatchWishList: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        wishListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

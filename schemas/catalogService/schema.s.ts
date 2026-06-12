@@ -439,6 +439,11 @@ export interface paths {
      * @description Deletes an item attachment for the specified tenant.
      */
     delete: operations["DeleteItemAttachmentAsync"];
+    /**
+     * Patch an item attachment
+     * @description Partially updates an existing item attachment for the specified tenant using a JSON Patch document.
+     */
+    patch: operations["PatchItemAttachmentAsync"];
   };
   "/api/v2/CatalogService/ItemAttributeOptions": {
     /**
@@ -475,6 +480,11 @@ export interface paths {
      * @description Deletes an item attribute option for the specified tenant.
      */
     delete: operations["DeleteItemAttributeOptionAsync"];
+    /**
+     * Patch an item attribute option
+     * @description Partially updates an existing item attribute option for the specified tenant using a JSON Patch document.
+     */
+    patch: operations["PatchItemAttributeOptionAsync"];
   };
   "/api/v2/CatalogService/ItemAttributes/Count": {
     /**
@@ -511,6 +521,11 @@ export interface paths {
      * @description Deletes an item attribute for the specified tenant.
      */
     delete: operations["DeleteItemAttributeAsync"];
+    /**
+     * Patch an item attribute
+     * @description Partially updates an existing item attribute for the specified tenant.
+     */
+    patch: operations["PatchItemAttributeAsync"];
   };
   "/api/v2/CatalogService/ItemBrands": {
     /**
@@ -540,6 +555,11 @@ export interface paths {
      * @description Deletes an item brand for the specified tenant.
      */
     delete: operations["DeleteItemBrandAsync"];
+    /**
+     * Patch an item brand
+     * @description Partially updates an existing item brand for the specified tenant.
+     */
+    patch: operations["PatchItemBrandAsync"];
   };
   "/api/v2/CatalogService/ItemBundles": {
     /**
@@ -576,6 +596,11 @@ export interface paths {
      * @description Deletes an item bundle for the specified tenant.
      */
     delete: operations["DeleteItemBundleAsync"];
+    /**
+     * Patch an item bundle
+     * @description Partially updates an existing item bundle for the specified tenant using a JSON Patch document.
+     */
+    patch: operations["PatchItemBundleAsync"];
   };
   "/api/v2/CatalogService/ItemCategories/Count": {
     /**
@@ -600,6 +625,11 @@ export interface paths {
      * @description Deletes an item category for the specified tenant.
      */
     delete: operations["DeleteItemCategoryAsync"];
+    /**
+     * Patch an item category
+     * @description Partially updates an existing item category for the specified tenant.
+     */
+    patch: operations["PatchItemCategoryAsync"];
   };
   "/api/v2/CatalogService/ItemCategories": {
     /**
@@ -648,6 +678,11 @@ export interface paths {
      * @description Deletes an item family for the specified tenant.
      */
     delete: operations["DeleteItemFamilyAsync"];
+    /**
+     * Patch an item family
+     * @description Partially updates an existing item family for the specified tenant using a JSON Patch document.
+     */
+    patch: operations["PatchItemFamilyAsync"];
   };
   "/api/v2/CatalogService/ItemGoogleCategories": {
     /**
@@ -731,6 +766,11 @@ export interface paths {
      * @description Deletes an item image for the specified tenant.
      */
     delete: operations["DeleteItemImageAsync"];
+    /**
+     * Patch an item image
+     * @description Partially updates an existing item image for the specified tenant using a JSON Patch document.
+     */
+    patch: operations["PatchItemImageAsync"];
   };
   "/api/v2/CatalogService/ItemQuestions": {
     /**
@@ -760,6 +800,11 @@ export interface paths {
      * @description Deletes an item question for the specified tenant.
      */
     delete: operations["DeleteItemQuestionAsync"];
+    /**
+     * Patch an item question
+     * @description Partially updates an existing item question for the specified tenant using a JSON Patch document.
+     */
+    patch: operations["PatchItemQuestionAsync"];
   };
   "/api/v2/CatalogService/ItemRefundPolicies": {
     /**
@@ -851,6 +896,11 @@ export interface paths {
      * @description Deletes an item review for the specified tenant.
      */
     delete: operations["DeleteItemReviewAsync"];
+    /**
+     * Patch an item review
+     * @description Partially updates an existing item review for the specified tenant.
+     */
+    patch: operations["PatchItemReviewAsync"];
   };
   "/api/v2/CatalogService/Items": {
     /**
@@ -901,6 +951,11 @@ export interface paths {
      * @description Deletes a stock item for the specified tenant and item ID.
      */
     delete: operations["DeleteStockItem"];
+    /**
+     * Patch a stock item
+     * @description Partially updates an existing stock item for the specified tenant and item ID.
+     */
+    patch: operations["PatchStockItem"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Extended": {
     /**
@@ -908,6 +963,27 @@ export interface paths {
      * @description Retrieves extended information for a stock item by its unique identifier.
      */
     get: operations["GetExtendedStockItemById"];
+  };
+  "/api/v2/CatalogService/Items/Batch": {
+    /**
+     * Bulk-update stock items
+     * @description Applies a targeted bulk operation (set flags, add/remove tax policies) to many items atomically.
+     */
+    post: operations["BatchUpdateStockItems"];
+  };
+  "/api/v2/CatalogService/Items/BulkUpsert": {
+    /**
+     * Bulk upsert stock items from rows
+     * @description Updates scalar fields of matching tenant-owned items or creates new ones, all in one transaction.
+     */
+    post: operations["BulkUpsertStockItems"];
+  };
+  "/api/v2/CatalogService/Items/RecalculatePrices": {
+    /**
+     * Recalculate stock item prices
+     * @description Recomputes derived prices for the given tenant-owned items via the pricing service, atomically.
+     */
+    post: operations["RecalculateStockItemPrices"];
   };
   "/api/v2/CatalogService/Items/{itemId}/Tags": {
     /**
@@ -1371,6 +1447,11 @@ export interface paths {
      * @description Deletes an item tag for the specified tenant.
      */
     delete: operations["DeleteItemTagAsync"];
+    /**
+     * Patch an item tag
+     * @description Partially updates an existing item tag for the specified tenant.
+     */
+    patch: operations["PatchItemTagAsync"];
   };
   "/api/v2/CatalogService/ItemTaxPolicies": {
     /**
@@ -1438,6 +1519,11 @@ export interface paths {
      * @description Deletes an item type for the specified tenant.
      */
     delete: operations["DeleteItemTypeAsync"];
+    /**
+     * Patch an item type
+     * @description Partially updates an existing item type for the specified tenant.
+     */
+    patch: operations["PatchItemTypeAsync"];
   };
   "/api/v2/CatalogService/ItemWarrantyPolicies": {
     /**
@@ -1503,6 +1589,46 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    BatchStockItemUpdateRequest: {
+      itemIds?: string[] | null;
+      published?: boolean | null;
+      taxable?: boolean | null;
+      addTaxPolicyIds?: string[] | null;
+      removeTaxPolicyIds?: string[] | null;
+    };
+    BulkProduct: {
+      id?: string | null;
+      sku?: string | null;
+      title?: string | null;
+      type?: string | null;
+      image?: string | null;
+      brand?: string | null;
+      currency?: string | null;
+      supplier?: string | null;
+      taxPolicies?: string | null;
+      supplierCode?: string | null;
+      googleCategory?: string | null;
+      shippingCountry?: string | null;
+      /** Format: double */
+      regularPrice?: number | null;
+      /** Format: double */
+      discountPercentage?: number | null;
+      /** Format: double */
+      discountAmount?: number | null;
+      /** Format: double */
+      currentStock?: number | null;
+      taxable?: boolean | null;
+      inStock?: boolean | null;
+      onDiscount?: boolean | null;
+      byRequest?: boolean | null;
+      isFixedDiscount?: boolean | null;
+      manageInventory?: boolean | null;
+      isDeadlineDiscount?: boolean | null;
+      /** Format: date-time */
+      deadlineDiscountFromDate?: string | null;
+      /** Format: date-time */
+      deadlineDiscountDueDate?: string | null;
     };
     CatalogItemCreateDto: {
       /** Format: uuid */
@@ -2219,7 +2345,7 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadId?: string | null;
       filePath?: string | null;
-      itemID?: string | null;
+      itemId?: string | null;
     };
     ItemAttachmentDto: {
       id?: string | null;
@@ -2246,7 +2372,7 @@ export interface components {
       enrollmentId?: string | null;
       socialProfileId?: string | null;
       folderPath?: string | null;
-      itemID?: string | null;
+      itemId?: string | null;
     };
     ItemAttachmentDtoEnvelope: {
       isSuccess?: boolean;
@@ -2293,7 +2419,7 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       description?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ItemAttributeDtoEnvelope: {
       isSuccess?: boolean;
@@ -2329,7 +2455,7 @@ export interface components {
       name?: string | null;
       description?: string | null;
       itemAttributeId?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ItemAttributeOptionDtoEnvelope: {
       isSuccess?: boolean;
@@ -2381,7 +2507,7 @@ export interface components {
       logoURL?: string | null;
       featured?: boolean;
       trending?: boolean;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ItemBrandDtoEnvelope: {
       isSuccess?: boolean;
@@ -2429,7 +2555,7 @@ export interface components {
       code?: string | null;
       description?: string | null;
       disabled?: boolean;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ItemBundleDtoEnvelope: {
       isSuccess?: boolean;
@@ -2464,7 +2590,7 @@ export interface components {
       description?: string | null;
       /** Format: uri */
       imageURL?: string | null;
-      parentItemCategoryID?: string | null;
+      parentItemCategoryId?: string | null;
     };
     ItemCategoryDto: {
       id?: string | null;
@@ -2479,9 +2605,9 @@ export interface components {
       enableForLicenses?: boolean;
       enableForServices?: boolean;
       enableForSubscriptions?: boolean;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
-      parentItemCategoryID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      parentItemCategoryId?: string | null;
     };
     ItemCategoryDtoEnvelope: {
       isSuccess?: boolean;
@@ -2529,7 +2655,7 @@ export interface components {
       name?: string | null;
       code?: string | null;
       description?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ItemFamilyDtoEnvelope: {
       isSuccess?: boolean;
@@ -2551,6 +2677,7 @@ export interface components {
     };
     ItemFamilyUpdateDto: {
       name: string;
+      code?: string | null;
       description?: string | null;
     };
     ItemGoogleCategoryDto: {
@@ -2599,7 +2726,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      itemID?: string | null;
+      itemId?: string | null;
       isItemMozaicBG?: boolean;
       mD5Hash?: string | null;
       metadata?: string | null;
@@ -2615,16 +2742,16 @@ export interface components {
       /** Format: int64 */
       fileLength?: number;
       validResponse?: boolean;
-      socialProfileID?: string | null;
-      parentFileUploadID?: string | null;
+      socialProfileId?: string | null;
+      parentFileUploadId?: string | null;
     };
     ItemImageDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
-      itemID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      itemId?: string | null;
       isItemMozaicBG?: boolean;
       mD5Hash?: string | null;
       metadata?: string | null;
@@ -2639,9 +2766,9 @@ export interface components {
       /** Format: int64 */
       fileLength?: number;
       validResponse?: boolean;
-      socialProfileID?: string | null;
-      parentFileUploadID?: string | null;
-      accountHolderID?: string | null;
+      socialProfileId?: string | null;
+      parentFileUploadId?: string | null;
+      userId?: string | null;
     };
     ItemImageDtoEnvelope: {
       isSuccess?: boolean;
@@ -2662,7 +2789,7 @@ export interface components {
       result?: components["schemas"]["ItemImageDto"][] | null;
     };
     ItemImageUpdateDto: {
-      itemID: string;
+      itemId: string;
       isItemMozaicBG?: boolean;
       mD5Hash: string;
       metadata?: string | null;
@@ -2678,7 +2805,7 @@ export interface components {
       /** Format: int64 */
       fileLength?: number;
       validResponse?: boolean;
-      parentFileUploadID?: string | null;
+      parentFileUploadId?: string | null;
     };
     ItemQuestionCreateDto: {
       /** Format: uuid */
@@ -2688,8 +2815,8 @@ export interface components {
       title: string;
       needsRevision: boolean;
       question: string;
-      socialProfileID?: string | null;
-      itemID: string;
+      socialProfileId?: string | null;
+      itemId: string;
     };
     ItemQuestionDto: {
       id?: string | null;
@@ -2698,9 +2825,9 @@ export interface components {
       title?: string | null;
       needsRevision?: boolean;
       question?: string | null;
-      socialProfileID?: string | null;
-      businessID?: string | null;
-      itemID?: string | null;
+      socialProfileId?: string | null;
+      tenantId?: string | null;
+      itemId?: string | null;
     };
     ItemQuestionDtoEnvelope: {
       isSuccess?: boolean;
@@ -2728,7 +2855,7 @@ export interface components {
       title: string;
       needsRevision: boolean;
       question: string;
-      socialProfileID?: string | null;
+      socialProfileId?: string | null;
     };
     ItemQuestionUpdateDto: {
       title?: string | null;
@@ -2739,7 +2866,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      shippingCourierID?: string | null;
+      shippingCourierId?: string | null;
       type?: string | null;
       code?: string | null;
       title?: string | null;
@@ -2763,14 +2890,14 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ItemRefundPolicyDtoEnvelope: {
       isSuccess?: boolean;
@@ -2794,7 +2921,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      shippingCourierID?: string | null;
+      shippingCourierId?: string | null;
       type?: string | null;
       code?: string | null;
       title?: string | null;
@@ -2818,14 +2945,14 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ItemReturnPolicyDtoEnvelope: {
       isSuccess?: boolean;
@@ -2850,21 +2977,21 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      itemID?: string | null;
+      itemId?: string | null;
       /** Format: double */
       reviewScore?: number;
       reviewMessage?: string | null;
-      socialProfileID?: string | null;
+      socialProfileId?: string | null;
     };
     ItemReviewDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      itemID?: string | null;
+      itemId?: string | null;
       /** Format: double */
       reviewScore?: number;
       reviewMessage?: string | null;
-      socialProfileID?: string | null;
+      socialProfileId?: string | null;
     };
     ItemReviewDtoEnvelope: {
       isSuccess?: boolean;
@@ -2892,7 +3019,7 @@ export interface components {
       /** Format: double */
       reviewScore?: number;
       reviewMessage?: string | null;
-      socialProfileID?: string | null;
+      socialProfileId?: string | null;
     };
     ItemReviewUpdateDto: {
       /** Format: double */
@@ -2969,7 +3096,7 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ItemTagDtoEnvelope: {
       isSuccess?: boolean;
@@ -3062,8 +3189,8 @@ export interface components {
       /** Format: uri */
       imageURL?: string | null;
       googleCategoryTaxonomy?: string | null;
-      itemCategoryID: string;
-      itemGoogleCategoryID?: string | null;
+      itemCategoryId: string;
+      itemGoogleCategoryId?: string | null;
     };
     ItemTypeDto: {
       id?: string | null;
@@ -3075,9 +3202,9 @@ export interface components {
       /** Format: uri */
       imageURL?: string | null;
       googleCategoryTaxonomy?: string | null;
-      businessID: string;
-      itemCategoryID: string;
-      itemGoogleCategoryID?: string | null;
+      tenantId: string;
+      itemCategoryId: string;
+      itemGoogleCategoryId?: string | null;
     };
     ItemTypeDtoEnvelope: {
       isSuccess?: boolean;
@@ -3133,14 +3260,14 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
-      businessID: string;
-      businessProfileRecordID?: string | null;
+      cityId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ItemWarrantyPolicyDtoEnvelope: {
       isSuccess?: boolean;
@@ -3243,11 +3370,20 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     PricingRuleDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       code?: string | null;
       title?: string | null;
       description?: string | null;
@@ -3270,12 +3406,12 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     PricingRuleDtoEnvelope: {
       isSuccess?: boolean;
@@ -3566,6 +3702,53 @@ export interface operations {
     };
   };
   /**
+   * Patch an item attachment
+   * @description Partially updates an existing item attachment for the specified tenant using a JSON Patch document.
+   */
+  PatchItemAttachmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemAttachmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all item attribute options
    * @description Retrieves all item attribute options for the specified tenant using OData query options.
    */
@@ -3794,6 +3977,53 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an item attribute option
+   * @description Partially updates an existing item attribute option for the specified tenant using a JSON Patch document.
+   */
+  PatchItemAttributeOptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemAttributeOptionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Unauthorized */
       401: {
@@ -4055,6 +4285,50 @@ export interface operations {
     };
   };
   /**
+   * Patch an item attribute
+   * @description Partially updates an existing item attribute for the specified tenant.
+   */
+  PatchItemAttributeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemAttributeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all item brands
    * @description Retrieves all item brands for the specified tenant using OData query options.
    */
@@ -4239,6 +4513,50 @@ export interface operations {
       };
       path: {
         itemBrandId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an item brand
+   * @description Partially updates an existing item brand for the specified tenant.
+   */
+  PatchItemBrandAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemBrandId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -4509,6 +4827,53 @@ export interface operations {
     };
   };
   /**
+   * Patch an item bundle
+   * @description Partially updates an existing item bundle for the specified tenant using a JSON Patch document.
+   */
+  PatchItemBundleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemBundleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Count item categories
    * @description Counts all item categories for the specified tenant.
    */
@@ -4646,6 +5011,50 @@ export interface operations {
       };
       path: {
         itemCategoryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an item category
+   * @description Partially updates an existing item category for the specified tenant.
+   */
+  PatchItemCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemCategoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -4980,6 +5389,53 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an item family
+   * @description Partially updates an existing item family for the specified tenant using a JSON Patch document.
+   */
+  PatchItemFamilyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemFamilyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
       };
       /** @description Unauthorized */
       401: {
@@ -5506,6 +5962,50 @@ export interface operations {
     };
   };
   /**
+   * Patch an item image
+   * @description Partially updates an existing item image for the specified tenant using a JSON Patch document.
+   */
+  PatchItemImageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemImageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all item questions
    * @description Retrieves all item questions for the specified tenant using OData query options.
    */
@@ -5687,6 +6187,50 @@ export interface operations {
       };
       path: {
         itemQuestionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an item question
+   * @description Partially updates an existing item question for the specified tenant using a JSON Patch document.
+   */
+  PatchItemQuestionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemQuestionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -6308,6 +6852,50 @@ export interface operations {
     };
   };
   /**
+   * Patch an item review
+   * @description Partially updates an existing item review for the specified tenant.
+   */
+  PatchItemReviewAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemReviewId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all stock items
    * @description Retrieves all stock items, optionally filtered by tenant and OData query options.
    */
@@ -6623,6 +7211,50 @@ export interface operations {
     };
   };
   /**
+   * Patch a stock item
+   * @description Partially updates an existing stock item for the specified tenant and item ID.
+   */
+  PatchStockItem: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get extended stock item by ID
    * @description Retrieves extended information for a stock item by its unique identifier.
    */
@@ -6645,6 +7277,129 @@ export interface operations {
           "application/json": components["schemas"]["CatalogItemDtoEnvelope"];
           "application/xml": components["schemas"]["CatalogItemDtoEnvelope"];
         };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Bulk-update stock items
+   * @description Applies a targeted bulk operation (set flags, add/remove tax policies) to many items atomically.
+   */
+  BatchUpdateStockItems: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BatchStockItemUpdateRequest"];
+        "application/xml": components["schemas"]["BatchStockItemUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Bulk upsert stock items from rows
+   * @description Updates scalar fields of matching tenant-owned items or creates new ones, all in one transaction.
+   */
+  BulkUpsertStockItems: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BulkProduct"][];
+        "application/xml": components["schemas"]["BulkProduct"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Recalculate stock item prices
+   * @description Recomputes derived prices for the given tenant-owned items via the pricing service, atomically.
+   */
+  RecalculateStockItemPrices: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": string[];
+        "application/xml": string[];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
       /** @description Unauthorized */
       401: {
@@ -9851,6 +10606,50 @@ export interface operations {
     };
   };
   /**
+   * Patch an item tag
+   * @description Partially updates an existing item tag for the specified tenant.
+   */
+  PatchItemTagAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemTagId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get item tax policies
    * @description Retrieves all tax policies for a specific item.
    */
@@ -10275,6 +11074,50 @@ export interface operations {
           "application/json": components["schemas"]["ItemTypeDtoEnvelope"];
           "application/xml": components["schemas"]["ItemTypeDtoEnvelope"];
         };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an item type
+   * @description Partially updates an existing item type for the specified tenant.
+   */
+  PatchItemTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        itemTypeID: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
       /** @description Unauthorized */
       401: {

@@ -40,6 +40,11 @@ export interface paths {
      * @description Deletes a bill of lading.
      */
     delete: operations["DeleteBillOfLadingAsync"];
+    /**
+     * Patch a bill of lading
+     * @description Partially updates an existing bill of lading using JSON Patch.
+     */
+    patch: operations["PatchBillOfLadingAsync"];
   };
   "/api/v2/ShipmentsService/BillsOfLading/{billOfLadingId}/Lines": {
     /**
@@ -76,6 +81,11 @@ export interface paths {
      * @description Deletes a line from a bill of lading.
      */
     delete: operations["DeleteBillOfLadingLineAsync"];
+    /**
+     * Patch a bill of lading line
+     * @description Partially updates an existing line on a bill of lading using JSON Patch.
+     */
+    patch: operations["PatchBillOfLadingLineAsync"];
   };
   "/api/v2/AiService/Completions/Complete": {
     get: {
@@ -518,6 +528,11 @@ export interface paths {
      * @description Deletes an item shipping policy.
      */
     delete: operations["DeleteItemShippingPolicyAsync"];
+    /**
+     * Patch an item shipping policy
+     * @description Partially updates an existing item shipping policy using JSON Patch.
+     */
+    patch: operations["PatchItemShippingPolicyAsync"];
   };
   "/api/v2/ShipmentsService/Shipments": {
     /**
@@ -554,6 +569,11 @@ export interface paths {
      * @description Deletes a shipment.
      */
     delete: operations["DeleteShipmentAsync"];
+    /**
+     * Patch a shipment
+     * @description Partially updates an existing shipment using JSON Patch.
+     */
+    patch: operations["PatchShipmentAsync"];
   };
   "/api/v2/ShipmentsService/ShippingClasses": {
     /**
@@ -590,6 +610,11 @@ export interface paths {
      * @description Deletes a shipping class.
      */
     delete: operations["DeleteShippingClassAsync"];
+    /**
+     * Patch a shipping class
+     * @description Partially updates an existing shipping class using JSON Patch.
+     */
+    patch: operations["PatchShippingClassAsync"];
   };
   "/api/v2/ShipmentsService/ShippingCouriers": {
     /**
@@ -626,6 +651,11 @@ export interface paths {
      * @description Deletes a shipping courier.
      */
     delete: operations["DeleteShippingCourierAsync"];
+    /**
+     * Patch a shipping courier
+     * @description Partially updates an existing shipping courier using JSON Patch.
+     */
+    patch: operations["PatchShippingCourierAsync"];
   };
   "/api/v2/ShipmentsService/ShippingLabels": {
     /**
@@ -662,6 +692,11 @@ export interface paths {
      * @description Deletes a shipping label.
      */
     delete: operations["DeleteShippingLabelAsync"];
+    /**
+     * Patch a shipping label
+     * @description Partially updates an existing shipping label using JSON Patch.
+     */
+    patch: operations["PatchShippingLabelAsync"];
   };
   "/api/v2/ShipmentsService/ShippingMethods": {
     /**
@@ -698,6 +733,11 @@ export interface paths {
      * @description Deletes a shipping method.
      */
     delete: operations["DeleteShippingMethodAsync"];
+    /**
+     * Patch a shipping method
+     * @description Partially updates an existing shipping method using JSON Patch.
+     */
+    patch: operations["PatchShippingMethodAsync"];
   };
   "/api/v2/ShipmentsService/ShippingRegions": {
     /**
@@ -734,6 +774,11 @@ export interface paths {
      * @description Deletes a shipping region.
      */
     delete: operations["DeleteShippingRegionAsync"];
+    /**
+     * Patch a shipping region
+     * @description Partially updates an existing shipping region using JSON Patch.
+     */
+    patch: operations["PatchShippingRegionAsync"];
   };
   "/api/v2/ShipmentsService/ShippingZones": {
     /**
@@ -770,6 +815,11 @@ export interface paths {
      * @description Deletes a shipping zone.
      */
     delete: operations["DeleteShippingZoneAsync"];
+    /**
+     * Patch a shipping zone
+     * @description Partially updates an existing shipping zone using JSON Patch.
+     */
+    patch: operations["PatchShippingZoneAsync"];
   };
 }
 
@@ -1176,6 +1226,14 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1204,7 +1262,7 @@ export interface components {
       expectedDeliveryDate?: string;
       /** @enum {string} */
       shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
-      orderID?: string | null;
+      orderId?: string | null;
     };
     ShipmentDto: {
       id?: string | null;
@@ -1224,8 +1282,8 @@ export interface components {
       expectedDeliveryDate?: string;
       /** @enum {string} */
       shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
-      orderID?: string | null;
-      businessID?: string | null;
+      orderId?: string | null;
+      tenantId?: string | null;
     };
     ShipmentDtoEnvelope: {
       isSuccess?: boolean;
@@ -1260,7 +1318,7 @@ export interface components {
       expectedDeliveryDate?: string;
       /** @enum {string} */
       shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
-      orderID?: string | null;
+      orderId?: string | null;
     };
     ShippingClassCreateDto: {
       /** Format: uuid */
@@ -1276,7 +1334,7 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       slug?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ShippingClassDtoEnvelope: {
       isSuccess?: boolean;
@@ -1307,8 +1365,7 @@ export interface components {
       timestamp?: string;
       name: string;
       logoURL?: string | null;
-      countryID?: string | null;
-      businessProfileRecordID?: string | null;
+      countryId?: string | null;
     };
     ShippingCourierDto: {
       id?: string | null;
@@ -1316,9 +1373,9 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       logoURL?: string | null;
-      countryID?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      countryId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ShippingCourierDtoEnvelope: {
       isSuccess?: boolean;
@@ -1341,8 +1398,7 @@ export interface components {
     ShippingCourierUpdateDto: {
       name?: string | null;
       logoURL?: string | null;
-      countryID?: string | null;
-      businessProfileRecordID?: string | null;
+      countryId?: string | null;
     };
     ShippingLabelCreateDto: {
       /** Format: uuid */
@@ -1352,9 +1408,9 @@ export interface components {
       trackingCode: string;
       /** Format: date-time */
       expectedDelivery?: string;
-      locationID?: string | null;
-      shipmentID?: string | null;
-      shippingCourierID?: string | null;
+      locationId?: string | null;
+      shipmentId?: string | null;
+      shippingCourierId?: string | null;
     };
     ShippingLabelDto: {
       id?: string | null;
@@ -1363,10 +1419,10 @@ export interface components {
       trackingCode?: string | null;
       /** Format: date-time */
       expectedDelivery?: string;
-      locationID?: string | null;
-      businessID?: string | null;
-      shipmentID?: string | null;
-      shippingCourierID?: string | null;
+      locationId?: string | null;
+      tenantId?: string | null;
+      shipmentId?: string | null;
+      shippingCourierId?: string | null;
     };
     ShippingLabelDtoEnvelope: {
       isSuccess?: boolean;
@@ -1390,9 +1446,9 @@ export interface components {
       trackingCode?: string | null;
       /** Format: date-time */
       expectedDelivery?: string;
-      locationID?: string | null;
-      shipmentID?: string | null;
-      shippingCourierID?: string | null;
+      locationId?: string | null;
+      shipmentId?: string | null;
+      shippingCourierId?: string | null;
     };
     ShippingMethodCreateDto: {
       /** Format: uuid */
@@ -1405,7 +1461,7 @@ export interface components {
       cost?: number;
       taxable?: boolean;
       taxIncluded?: boolean;
-      currencyID?: string | null;
+      currencyId?: string | null;
       /** @enum {string} */
       shippingClassCalculationType?: "PerClass" | "PerOrder";
     };
@@ -1419,8 +1475,8 @@ export interface components {
       cost?: number;
       taxable?: boolean;
       taxIncluded?: boolean;
-      currencyID?: string | null;
-      businessID?: string | null;
+      currencyId?: string | null;
+      tenantId?: string | null;
       /** @enum {string} */
       shippingClassCalculationType?: "PerClass" | "PerOrder";
     };
@@ -1449,7 +1505,7 @@ export interface components {
       cost?: number;
       taxable?: boolean;
       taxIncluded?: boolean;
-      currencyID?: string | null;
+      currencyId?: string | null;
       /** @enum {string} */
       shippingClassCalculationType?: "PerClass" | "PerOrder";
     };
@@ -1467,7 +1523,7 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       postalCodes?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ShippingRegionDtoEnvelope: {
       isSuccess?: boolean;
@@ -1511,7 +1567,7 @@ export interface components {
       everywhere?: boolean;
       postalCodes?: string | null;
       countryCodes?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ShippingZoneDtoEnvelope: {
       isSuccess?: boolean;
@@ -1782,6 +1838,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a bill of lading
+   * @description Partially updates an existing bill of lading using JSON Patch.
+   */
+  PatchBillOfLadingAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get bill of lading lines
    * @description Retrieves all lines for a specific bill of lading.
    */
@@ -1986,6 +2096,61 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a bill of lading line
+   * @description Partially updates an existing line on a bill of lading using JSON Patch.
+   */
+  PatchBillOfLadingLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billOfLadingId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -2207,6 +2372,60 @@ export interface operations {
     };
   };
   /**
+   * Patch an item shipping policy
+   * @description Partially updates an existing item shipping policy using JSON Patch.
+   */
+  PatchItemShippingPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        policyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all shipments
    * @description Retrieves all shipments for the specified tenant.
    */
@@ -2412,6 +2631,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a shipment
+   * @description Partially updates an existing shipment using JSON Patch.
+   */
+  PatchShipmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shipmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all shipping classes
    * @description Retrieves all shipping classes for the specified tenant.
    */
@@ -2602,6 +2875,60 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a shipping class
+   * @description Partially updates an existing shipping class using JSON Patch.
+   */
+  PatchShippingClassAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        classId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -2815,6 +3142,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a shipping courier
+   * @description Partially updates an existing shipping courier using JSON Patch.
+   */
+  PatchShippingCourierAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courierId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all shipping labels
    * @description Retrieves all shipping labels for the specified tenant.
    */
@@ -3005,6 +3386,60 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a shipping label
+   * @description Partially updates an existing shipping label using JSON Patch.
+   */
+  PatchShippingLabelAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        labelId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -3211,6 +3646,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a shipping method
+   * @description Partially updates an existing shipping method using JSON Patch.
+   */
+  PatchShippingMethodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        methodId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all shipping regions
    * @description Retrieves all shipping regions for the specified tenant.
    */
@@ -3409,6 +3898,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a shipping region
+   * @description Partially updates an existing shipping region using JSON Patch.
+   */
+  PatchShippingRegionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        regionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all shipping zones
    * @description Retrieves all shipping zones for the specified tenant.
    */
@@ -3599,6 +4142,60 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a shipping zone
+   * @description Partially updates an existing shipping zone using JSON Patch.
+   */
+  PatchShippingZoneAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        zoneId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

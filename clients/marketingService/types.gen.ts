@@ -784,6 +784,14 @@ export type NewsletterUpdateDto = {
     name?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type OrderDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -1254,6 +1262,43 @@ export type GetEmailGroupDetailsAsyncResponses = {
 
 export type GetEmailGroupDetailsAsyncResponse = GetEmailGroupDetailsAsyncResponses[keyof GetEmailGroupDetailsAsyncResponses];
 
+export type PatchEmailGroupAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        emailgroupId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/EmailGroups/{emailgroupId}';
+};
+
+export type PatchEmailGroupAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchEmailGroupAsyncError = PatchEmailGroupAsyncErrors[keyof PatchEmailGroupAsyncErrors];
+
+export type PatchEmailGroupAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchEmailGroupAsyncResponse = PatchEmailGroupAsyncResponses[keyof PatchEmailGroupAsyncResponses];
+
 export type UpdateEmailGroupAsyncData = {
     body: EmailGroupUpdateDto;
     headers?: {
@@ -1490,6 +1535,43 @@ export type GetEmailSignatureDetailsAsyncResponses = {
 
 export type GetEmailSignatureDetailsAsyncResponse = GetEmailSignatureDetailsAsyncResponses[keyof GetEmailSignatureDetailsAsyncResponses];
 
+export type PatchEmailSignatureAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        emailsignatureId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/EmailSignatures/{emailsignatureId}';
+};
+
+export type PatchEmailSignatureAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchEmailSignatureAsyncError = PatchEmailSignatureAsyncErrors[keyof PatchEmailSignatureAsyncErrors];
+
+export type PatchEmailSignatureAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchEmailSignatureAsyncResponse = PatchEmailSignatureAsyncResponses[keyof PatchEmailSignatureAsyncResponses];
+
 export type UpdateEmailSignatureAsyncData = {
     body: EmailSignatureUpdateDto;
     headers?: {
@@ -1725,6 +1807,43 @@ export type GetEmailTemplateDetailsAsyncResponses = {
 };
 
 export type GetEmailTemplateDetailsAsyncResponse = GetEmailTemplateDetailsAsyncResponses[keyof GetEmailTemplateDetailsAsyncResponses];
+
+export type PatchEmailTemplateAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        emailTemplateId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/EmailTemplates/{emailTemplateId}';
+};
+
+export type PatchEmailTemplateAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchEmailTemplateAsyncError = PatchEmailTemplateAsyncErrors[keyof PatchEmailTemplateAsyncErrors];
+
+export type PatchEmailTemplateAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchEmailTemplateAsyncResponse = PatchEmailTemplateAsyncResponses[keyof PatchEmailTemplateAsyncResponses];
 
 export type UpdateEmailTemplateAsyncData = {
     body: EmailTemplateUpdateDto;
@@ -2282,6 +2401,43 @@ export type GetMarketingAreaByIdAsyncResponses = {
 
 export type GetMarketingAreaByIdAsyncResponse = GetMarketingAreaByIdAsyncResponses[keyof GetMarketingAreaByIdAsyncResponses];
 
+export type PatchMarketingAreaAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingAreaId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingAreas/{marketingAreaId}';
+};
+
+export type PatchMarketingAreaAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchMarketingAreaAsyncError = PatchMarketingAreaAsyncErrors[keyof PatchMarketingAreaAsyncErrors];
+
+export type PatchMarketingAreaAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchMarketingAreaAsyncResponse = PatchMarketingAreaAsyncResponses[keyof PatchMarketingAreaAsyncResponses];
+
 export type UpdateMarketingAreaAsyncData = {
     body?: MarketingAreaUpdateDto;
     headers?: {
@@ -2513,6 +2669,43 @@ export type GetMarketingCampaignDetailsAsyncResponses = {
 
 export type GetMarketingCampaignDetailsAsyncResponse = GetMarketingCampaignDetailsAsyncResponses[keyof GetMarketingCampaignDetailsAsyncResponses];
 
+export type PatchMarketingCampaignAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingcampaignId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingCampaigns/{marketingcampaignId}';
+};
+
+export type PatchMarketingCampaignAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchMarketingCampaignAsyncError = PatchMarketingCampaignAsyncErrors[keyof PatchMarketingCampaignAsyncErrors];
+
+export type PatchMarketingCampaignAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchMarketingCampaignAsyncResponse = PatchMarketingCampaignAsyncResponses[keyof PatchMarketingCampaignAsyncResponses];
+
 export type UpdateMarketingCampaignAsyncData = {
     body: MarketingCampaignUpdateDto;
     headers?: {
@@ -2667,6 +2860,43 @@ export type GetMarketingLeadDetailsAsyncResponses = {
 };
 
 export type GetMarketingLeadDetailsAsyncResponse = GetMarketingLeadDetailsAsyncResponses[keyof GetMarketingLeadDetailsAsyncResponses];
+
+export type PatchMarketingLeadAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketingLeadId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingLeads/{marketingLeadId}';
+};
+
+export type PatchMarketingLeadAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchMarketingLeadAsyncError = PatchMarketingLeadAsyncErrors[keyof PatchMarketingLeadAsyncErrors];
+
+export type PatchMarketingLeadAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchMarketingLeadAsyncResponse = PatchMarketingLeadAsyncResponses[keyof PatchMarketingLeadAsyncResponses];
 
 export type UpdateMarketingLeadAsyncData = {
     body: MarketingLeadUpdateDto;
@@ -2886,6 +3116,43 @@ export type GetMarketingListDetailsAsyncResponses = {
 };
 
 export type GetMarketingListDetailsAsyncResponse = GetMarketingListDetailsAsyncResponses[keyof GetMarketingListDetailsAsyncResponses];
+
+export type PatchMarketingListAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        marketinglistId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/MarketingLists/{marketinglistId}';
+};
+
+export type PatchMarketingListAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchMarketingListAsyncError = PatchMarketingListAsyncErrors[keyof PatchMarketingListAsyncErrors];
+
+export type PatchMarketingListAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchMarketingListAsyncResponse = PatchMarketingListAsyncResponses[keyof PatchMarketingListAsyncResponses];
 
 export type UpdateMarketingListAsyncData = {
     body: MarketingListUpdateDto;
@@ -3117,6 +3384,43 @@ export type GetNewsletterDetailsAsyncResponses = {
 };
 
 export type GetNewsletterDetailsAsyncResponse = GetNewsletterDetailsAsyncResponses[keyof GetNewsletterDetailsAsyncResponses];
+
+export type PatchNewsletterAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        newsletterId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/Newsletters/{newsletterId}';
+};
+
+export type PatchNewsletterAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchNewsletterAsyncError = PatchNewsletterAsyncErrors[keyof PatchNewsletterAsyncErrors];
+
+export type PatchNewsletterAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchNewsletterAsyncResponse = PatchNewsletterAsyncResponses[keyof PatchNewsletterAsyncResponses];
 
 export type UpdateNewsletterAsyncData = {
     body: NewsletterUpdateDto;
@@ -3354,6 +3658,43 @@ export type GetSocialMediaPostDetailsAsyncResponses = {
 
 export type GetSocialMediaPostDetailsAsyncResponse = GetSocialMediaPostDetailsAsyncResponses[keyof GetSocialMediaPostDetailsAsyncResponses];
 
+export type PatchSocialMediaPostAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialmediapostId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/SocialMediaPosts/{socialmediapostId}';
+};
+
+export type PatchSocialMediaPostAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSocialMediaPostAsyncError = PatchSocialMediaPostAsyncErrors[keyof PatchSocialMediaPostAsyncErrors];
+
+export type PatchSocialMediaPostAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSocialMediaPostAsyncResponse = PatchSocialMediaPostAsyncResponses[keyof PatchSocialMediaPostAsyncResponses];
+
 export type UpdateSocialMediaPostAsyncData = {
     body: SocialMediaPostUpdateDto;
     headers?: {
@@ -3589,6 +3930,43 @@ export type GetSocialPostBucketDetailsAsyncResponses = {
 };
 
 export type GetSocialPostBucketDetailsAsyncResponse = GetSocialPostBucketDetailsAsyncResponses[keyof GetSocialPostBucketDetailsAsyncResponses];
+
+export type PatchSocialPostBucketAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialpostbucketId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/SocialPostBuckets/{socialpostbucketId}';
+};
+
+export type PatchSocialPostBucketAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSocialPostBucketAsyncError = PatchSocialPostBucketAsyncErrors[keyof PatchSocialPostBucketAsyncErrors];
+
+export type PatchSocialPostBucketAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSocialPostBucketAsyncResponse = PatchSocialPostBucketAsyncResponses[keyof PatchSocialPostBucketAsyncResponses];
 
 export type UpdateSocialPostBucketAsyncData = {
     body: SocialPostBucketUpdateDto;

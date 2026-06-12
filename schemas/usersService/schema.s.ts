@@ -446,6 +446,11 @@ export interface paths {
      * @description Delete a user option
      */
     delete: operations["DeleteUserOption"];
+    /**
+     * Patch a user option
+     * @description Partially updates a user option using a JSON Patch document
+     */
+    patch: operations["PatchUserOption"];
   };
   "/api/v2/Me/Options/Key/{key}": {
     /**
@@ -669,6 +674,8 @@ export interface components {
       isDefaultSenderAddress?: boolean;
       isDefaultReturnAddress?: boolean;
       isDefaultSuppingLocation?: boolean;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     AddressDtoListEnvelope: {
       isSuccess?: boolean;
@@ -934,8 +941,11 @@ export interface components {
       read?: boolean;
       icon?: string | null;
       message?: string | null;
+      imageUrl?: string | null;
       redirectUrl?: string | null;
-      socialProfileID?: string | null;
+      /** @enum {string} */
+      type?: "Event" | "Alert" | "Log";
+      socialProfileId?: string | null;
       /** Format: date-time */
       readTimestamp?: string;
       /** Format: date-time */
@@ -1598,6 +1608,52 @@ export interface operations {
       };
       path: {
         optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a user option
+   * @description Partially updates a user option using a JSON Patch document
+   */
+  PatchUserOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

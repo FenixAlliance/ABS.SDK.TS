@@ -149,6 +149,11 @@ export interface paths {
      * @description Delete a tenant department
      */
     delete: operations["DeleteTenantDepartment"];
+    /**
+     * Patch a tenant department
+     * @description Patch a tenant department
+     */
+    patch: operations["PatchTenantDepartmentAsync"];
   };
   "/api/v2/TenantsService/EmployeeEnrollments": {
     /**
@@ -185,6 +190,11 @@ export interface paths {
      * @description Delete a tenant employee enrollment
      */
     delete: operations["DeleteTenantEmployeeEnrollment"];
+    /**
+     * Patch a tenant employee enrollment
+     * @description Patch a tenant employee enrollment
+     */
+    patch: operations["PatchTenantEmployeeEnrollmentAsync"];
   };
   "/api/v2/TenantsService/Enrollments": {
     /**
@@ -235,6 +245,11 @@ export interface paths {
      * @description Delete a tenant enrollment
      */
     delete: operations["DeleteTenantEnrollment"];
+    /**
+     * Patch a tenant enrollment
+     * @description Patch a tenant enrollment
+     */
+    patch: operations["PatchTenantEnrollmentAsync"];
   };
   "/version": {
     get: {
@@ -568,6 +583,11 @@ export interface paths {
      * @description Delete a tenant industry
      */
     delete: operations["DeleteTenantIndustry"];
+    /**
+     * Patch a tenant industry
+     * @description Patch a tenant industry
+     */
+    patch: operations["PatchTenantIndustryAsync"];
   };
   "/api/v2/TenantsService/Invitations": {
     /**
@@ -649,6 +669,11 @@ export interface paths {
      * @description Delete a tenant option
      */
     delete: operations["DeleteTenantOption"];
+    /**
+     * Patch a tenant option
+     * @description Patch a tenant option
+     */
+    patch: operations["PatchTenantOption"];
   };
   "/api/v2/TenantsService/Options/Key/{key}": {
     /**
@@ -699,6 +724,11 @@ export interface paths {
      * @description Delete a tenant position
      */
     delete: operations["DeleteTenantPosition"];
+    /**
+     * Patch a tenant position
+     * @description Patch a tenant position
+     */
+    patch: operations["PatchTenantPosition"];
   };
   "/api/v2/TenantsService/Segments": {
     /**
@@ -735,6 +765,11 @@ export interface paths {
      * @description Delete a tenant segment
      */
     delete: operations["DeleteTenantSegment"];
+    /**
+     * Patch a tenant segment
+     * @description Patch a tenant segment
+     */
+    patch: operations["PatchTenantSegment"];
   };
   "/api/v2/TenantsService/Sizes": {
     /**
@@ -771,6 +806,11 @@ export interface paths {
      * @description Delete a tenant size
      */
     delete: operations["DeleteTenantSize"];
+    /**
+     * Patch a tenant size
+     * @description Patch a tenant size
+     */
+    patch: operations["PatchTenantSize"];
   };
   "/api/v2/TenantsService/TeamContactEnrollments": {
     /**
@@ -807,6 +847,11 @@ export interface paths {
      * @description Delete a tenant team contact enrollment
      */
     delete: operations["DeleteTenantTeamContactEnrollment"];
+    /**
+     * Patch a tenant team contact enrollment
+     * @description Patch a tenant team contact enrollment
+     */
+    patch: operations["PatchTenantTeamContactEnrollment"];
   };
   "/api/v2/TenantsService/TeamProjectEnrollments": {
     /**
@@ -843,6 +888,11 @@ export interface paths {
      * @description Delete a tenant team project enrollment
      */
     delete: operations["DeleteTenantTeamProjectEnrollment"];
+    /**
+     * Patch a tenant team project enrollment
+     * @description Patch a tenant team project enrollment
+     */
+    patch: operations["PatchTenantTeamProjectEnrollment"];
   };
   "/api/v2/TenantsService/TeamRecords": {
     /**
@@ -879,6 +929,11 @@ export interface paths {
      * @description Delete a tenant team record
      */
     delete: operations["DeleteTenantTeamRecord"];
+    /**
+     * Patch a tenant team record
+     * @description Patch a tenant team record
+     */
+    patch: operations["PatchTenantTeamRecord"];
   };
   "/api/v2/TenantsService/Teams": {
     /**
@@ -915,6 +970,11 @@ export interface paths {
      * @description Delete a tenant team
      */
     delete: operations["DeleteTenantTeam"];
+    /**
+     * Patch a tenant team
+     * @description Patch a tenant team
+     */
+    patch: operations["PatchTenantTeam"];
   };
   "/api/v2/TenantsService/Tenants/Root": {
     /**
@@ -1184,6 +1244,11 @@ export interface paths {
      * @description Delete a tenant territory
      */
     delete: operations["DeleteTenantTerritory"];
+    /**
+     * Patch a tenant territory
+     * @description Patch a tenant territory
+     */
+    patch: operations["PatchTenantTerritory"];
   };
   "/api/v2/TenantsService/Types": {
     /**
@@ -1220,6 +1285,11 @@ export interface paths {
      * @description Delete a tenant type
      */
     delete: operations["DeleteTenantType"];
+    /**
+     * Patch a tenant type
+     * @description Patch a tenant type
+     */
+    patch: operations["PatchTenantType"];
   };
   "/api/v2/TenantsService/UnitGroups": {
     /**
@@ -1256,6 +1326,11 @@ export interface paths {
      * @description Deletes a unit group by its unique identifier.
      */
     delete: operations["DeleteUnitGroupAsync"];
+    /**
+     * Patch a unit group
+     * @description Partially updates an existing unit group by its unique identifier.
+     */
+    patch: operations["PatchUnitGroupAsync"];
   };
   "/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units": {
     /**
@@ -1292,6 +1367,11 @@ export interface paths {
      * @description Deletes a unit from a specific unit group.
      */
     delete: operations["DeleteUnitAsync"];
+    /**
+     * Patch a unit within a unit group
+     * @description Partially updates an existing unit within a specific unit group.
+     */
+    patch: operations["PatchUnitAsync"];
   };
   "/api/v2/TenantsService/Units": {
     /**
@@ -1328,6 +1408,11 @@ export interface paths {
      * @description Delete a tenant unit
      */
     delete: operations["DeleteTenantUnit"];
+    /**
+     * Patch a tenant unit
+     * @description Patch a tenant unit
+     */
+    patch: operations["PatchTenantUnit"];
   };
 }
 
@@ -1519,8 +1604,11 @@ export interface components {
       read?: boolean;
       icon?: string | null;
       message?: string | null;
+      imageUrl?: string | null;
       redirectUrl?: string | null;
-      socialProfileID?: string | null;
+      /** @enum {string} */
+      type?: "Event" | "Alert" | "Log";
+      socialProfileId?: string | null;
       /** Format: date-time */
       readTimestamp?: string;
       /** Format: date-time */
@@ -1766,20 +1854,20 @@ export interface components {
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
-      organizationProfileID?: string | null;
-      parentDepartmentID?: string | null;
+      organizationProfileId?: string | null;
+      parentDepartmentId?: string | null;
     };
     TenantDepartmentDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
-      organizationProfileID?: string | null;
-      parentDepartmentID?: string | null;
+      organizationProfileId?: string | null;
+      parentDepartmentId?: string | null;
     };
     TenantDepartmentDtoEnvelope: {
       isSuccess?: boolean;
@@ -1803,8 +1891,8 @@ export interface components {
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
-      organizationProfileID?: string | null;
-      parentDepartmentID?: string | null;
+      organizationProfileId?: string | null;
+      parentDepartmentId?: string | null;
     };
     TenantDto: {
       id?: string | null;
@@ -1902,15 +1990,16 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
-      parentBusinessIndustryID?: string | null;
+      parentBusinessIndustryId?: string | null;
     };
     TenantIndustryDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       name?: string | null;
-      parentBusinessIndustryID?: string | null;
-      businessProfileRecordID?: string | null;
+      parentBusinessIndustryId?: string | null;
     };
     TenantIndustryDtoEnvelope: {
       isSuccess?: boolean;
@@ -1932,7 +2021,7 @@ export interface components {
     };
     TenantIndustryUpdateDto: {
       name?: string | null;
-      parentBusinessIndustryID?: string | null;
+      parentBusinessIndustryId?: string | null;
     };
     TenantInvitationCreateDto: {
       /** Format: uuid */
@@ -1980,13 +2069,14 @@ export interface components {
       timestamp?: string;
       title?: string | null;
       description?: string | null;
+      type?: string | null;
     };
     TenantPositionDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       title?: string | null;
       description?: string | null;
       type?: string | null;
@@ -2019,7 +2109,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      revenue?: string | null;
       /** Format: double */
       minEmployees?: number;
       /** Format: double */
@@ -2029,6 +2118,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      tenantId?: string | null;
       revenue?: string | null;
       /** Format: double */
       minEmployees?: number;
@@ -2054,7 +2144,6 @@ export interface components {
       result?: components["schemas"]["TenantSegmentDto"][] | null;
     };
     TenantSegmentUpdateDto: {
-      revenue?: string | null;
       /** Format: double */
       minEmployees?: number;
       /** Format: double */
@@ -2065,7 +2154,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      name?: string | null;
       /** Format: int32 */
       employeeLowRangeValue?: number;
       /** Format: int32 */
@@ -2075,6 +2163,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      tenantId?: string | null;
       name?: string | null;
       /** Format: int32 */
       employeeLowRangeValue?: number;
@@ -2100,7 +2189,6 @@ export interface components {
       result?: components["schemas"]["TenantSizeDto"][] | null;
     };
     TenantSizeUpdateDto: {
-      name?: string | null;
       /** Format: int32 */
       employeeLowRangeValue?: number;
       /** Format: int32 */
@@ -2111,8 +2199,8 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessTeamID: string;
-      contactID: string;
+      businessTeamId: string;
+      contactId: string;
     };
     TenantTeamContactEnrollmentDto: {
       id?: string | null;
@@ -2121,7 +2209,7 @@ export interface components {
       teamId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
-      contactID?: string | null;
+      contactId?: string | null;
     };
     TenantTeamContactEnrollmentDtoEnvelope: {
       isSuccess?: boolean;
@@ -2142,8 +2230,8 @@ export interface components {
       result?: components["schemas"]["TenantTeamContactEnrollmentDto"][] | null;
     };
     TenantTeamContactEnrollmentUpdateDto: {
-      businessTeamID?: string | null;
-      contactID?: string | null;
+      businessTeamId?: string | null;
+      contactId?: string | null;
     };
     TenantTeamCreateDto: {
       /** Format: uuid */
@@ -2153,23 +2241,23 @@ export interface components {
       name?: string | null;
       description?: string | null;
       /** Format: uri */
-      avatarURL?: string | null;
+      avatarUrl?: string | null;
       isPublic?: boolean;
-      businessUnitID?: string | null;
-      organizationProfileID?: string | null;
+      businessUnitId?: string | null;
+      organizationProfileId?: string | null;
     };
     TenantTeamDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       name?: string | null;
       description?: string | null;
-      avatarURL?: string | null;
+      avatarUrl?: string | null;
       isPublic?: boolean;
-      businessUnitID?: string | null;
-      organizationProfileID?: string | null;
+      businessUnitId?: string | null;
+      organizationProfileId?: string | null;
     };
     TenantTeamDtoEnvelope: {
       isSuccess?: boolean;
@@ -2194,8 +2282,8 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessTeamID: string;
-      employeeProfileID: string;
+      businessTeamId: string;
+      employeeProfileId: string;
     };
     TenantTeamEmployeeEnrollmentDto: {
       id?: string | null;
@@ -2225,16 +2313,16 @@ export interface components {
       result?: components["schemas"]["TenantTeamEmployeeEnrollmentDto"][] | null;
     };
     TenantTeamEmployeeEnrollmentUpdateDto: {
-      businessTeamID?: string | null;
-      employeeProfileID?: string | null;
+      businessTeamId?: string | null;
+      employeeProfileId?: string | null;
     };
     TenantTeamProjectEnrollmentCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessTeamID: string;
-      projectID: string;
+      businessTeamId: string;
+      projectId: string;
     };
     TenantTeamProjectEnrollmentDto: {
       id?: string | null;
@@ -2243,7 +2331,7 @@ export interface components {
       teamId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
-      projectID?: string | null;
+      projectId?: string | null;
     };
     TenantTeamProjectEnrollmentDtoEnvelope: {
       isSuccess?: boolean;
@@ -2264,15 +2352,15 @@ export interface components {
       result?: components["schemas"]["TenantTeamProjectEnrollmentDto"][] | null;
     };
     TenantTeamProjectEnrollmentUpdateDto: {
-      businessTeamID?: string | null;
-      projectID?: string | null;
+      businessTeamId?: string | null;
+      projectId?: string | null;
     };
     TenantTeamRecordCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      businessTeamID: string;
+      businessTeamId: string;
     };
     TenantTeamRecordDto: {
       id?: string | null;
@@ -2301,18 +2389,15 @@ export interface components {
       result?: components["schemas"]["TenantTeamRecordDto"][] | null;
     };
     TenantTeamRecordUpdateDto: {
-      businessTeamID?: string | null;
+      businessTeamId?: string | null;
     };
     TenantTeamUpdateDto: {
-      id?: string | null;
-      /** Format: date-time */
-      timestamp?: string | null;
       name?: string | null;
       description?: string | null;
-      avatarURL?: string | null;
+      avatarUrl?: string | null;
       isPublic?: boolean;
-      businessUnitID?: string | null;
-      organizationProfileID?: string | null;
+      businessUnitId?: string | null;
+      organizationProfileId?: string | null;
     };
     TenantTerritoryCreateDto: {
       /** Format: uuid */
@@ -2321,17 +2406,17 @@ export interface components {
       timestamp?: string;
       name?: string | null;
       description?: string | null;
-      parentTerritoryID?: string | null;
+      parentTerritoryId?: string | null;
     };
     TenantTerritoryDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       name?: string | null;
       description?: string | null;
-      parentTerritoryID?: string | null;
+      parentTerritoryId?: string | null;
     };
     TenantTerritoryDtoEnvelope: {
       isSuccess?: boolean;
@@ -2354,6 +2439,7 @@ export interface components {
     TenantTerritoryUpdateDto: {
       name?: string | null;
       description?: string | null;
+      parentTerritoryId?: string | null;
     };
     TenantTypeCreateDto: {
       /** Format: uuid */
@@ -2367,6 +2453,7 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      tenantId?: string | null;
       name?: string | null;
       description?: string | null;
     };
@@ -2400,24 +2487,23 @@ export interface components {
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
-      businessUnitQualifiedName?: string | null;
-      countryID?: string | null;
-      organizationProfileID?: string | null;
-      parentBusinessUnitID?: string | null;
+      countryId?: string | null;
+      organizationProfileId?: string | null;
+      parentBusinessUnitId?: string | null;
     };
     TenantUnitDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
       businessUnitQualifiedName?: string | null;
-      countryID?: string | null;
-      organizationProfileID?: string | null;
-      parentBusinessUnitID?: string | null;
+      countryId?: string | null;
+      organizationProfileId?: string | null;
+      parentBusinessUnitId?: string | null;
     };
     TenantUnitDtoEnvelope: {
       isSuccess?: boolean;
@@ -2441,10 +2527,9 @@ export interface components {
       name?: string | null;
       description?: string | null;
       disabled?: boolean;
-      businessUnitQualifiedName?: string | null;
-      countryID?: string | null;
-      organizationProfileID?: string | null;
-      parentBusinessUnitID?: string | null;
+      countryId?: string | null;
+      organizationProfileId?: string | null;
+      parentBusinessUnitId?: string | null;
     };
     TenantUpdateDto: {
       name: string;
@@ -2966,6 +3051,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tenant department
+   * @description Patch a tenant department
+   */
+  PatchTenantDepartmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantDepartmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant employee enrollments
    * @description Retrieve a list of tenant employee enrollments
    */
@@ -3188,6 +3320,53 @@ export interface operations {
       };
       path: {
         tenantEmployeeEnrollmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tenant employee enrollment
+   * @description Patch a tenant employee enrollment
+   */
+  PatchTenantEmployeeEnrollmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantEmployeeEnrollmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -3540,6 +3719,53 @@ export interface operations {
       };
     };
   };
+  /**
+   * Patch a tenant enrollment
+   * @description Patch a tenant enrollment
+   */
+  PatchTenantEnrollmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        enrollmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   "MapIdentityApi-/confirmEmail": {
     parameters: {
       query: {
@@ -3778,6 +4004,53 @@ export interface operations {
       };
       path: {
         tenantIndustryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tenant industry
+   * @description Patch a tenant industry
+   */
+  PatchTenantIndustryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantIndustryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -4340,6 +4613,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tenant option
+   * @description Patch a tenant option
+   */
+  PatchTenantOption: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a single tenant option by its key
    * @description Retrieve a single tenant option by its key
    */
@@ -4679,6 +4999,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tenant position
+   * @description Patch a tenant position
+   */
+  PatchTenantPosition: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantPositionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant segments
    * @description Retrieve a list of tenant segments
    */
@@ -4901,6 +5268,53 @@ export interface operations {
       };
       path: {
         tenantSegmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tenant segment
+   * @description Patch a tenant segment
+   */
+  PatchTenantSegment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantSegmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5177,6 +5591,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tenant size
+   * @description Patch a tenant size
+   */
+  PatchTenantSize: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantSizeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant team contact enrollments
    * @description Retrieve a list of tenant team contact enrollments
    */
@@ -5399,6 +5860,53 @@ export interface operations {
       };
       path: {
         tenantTeamContactEnrollmentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tenant team contact enrollment
+   * @description Patch a tenant team contact enrollment
+   */
+  PatchTenantTeamContactEnrollment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamContactEnrollmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5675,6 +6183,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tenant team project enrollment
+   * @description Patch a tenant team project enrollment
+   */
+  PatchTenantTeamProjectEnrollment: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamProjectEnrollmentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant team records
    * @description Retrieve a list of tenant team records
    */
@@ -5924,6 +6479,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tenant team record
+   * @description Patch a tenant team record
+   */
+  PatchTenantTeamRecord: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamRecordId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant teams
    * @description Retrieve a list of tenant teams
    */
@@ -6146,6 +6748,53 @@ export interface operations {
       };
       path: {
         tenantTeamId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tenant team
+   * @description Patch a tenant team
+   */
+  PatchTenantTeam: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTeamId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -7848,6 +8497,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tenant territory
+   * @description Patch a tenant territory
+   */
+  PatchTenantTerritory: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTerritoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant types
    * @description Retrieve a list of tenant types
    */
@@ -8097,6 +8793,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a tenant type
+   * @description Patch a tenant type
+   */
+  PatchTenantType: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of unit groups
    * @description Retrieves a list of unit groups for the specified tenant with OData query support.
    */
@@ -8319,6 +9062,53 @@ export interface operations {
       };
       path: {
         unitGroupId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a unit group
+   * @description Partially updates an existing unit group by its unique identifier.
+   */
+  PatchUnitGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        unitGroupId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -8607,6 +9397,54 @@ export interface operations {
     };
   };
   /**
+   * Patch a unit within a unit group
+   * @description Partially updates an existing unit within a specific unit group.
+   */
+  PatchUnitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        unitGroupId: string;
+        unitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant units
    * @description Retrieve a list of tenant units
    */
@@ -8829,6 +9667,53 @@ export interface operations {
       };
       path: {
         tenantUnitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a tenant unit
+   * @description Patch a tenant unit
+   */
+  PatchTenantUnit: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantUnitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

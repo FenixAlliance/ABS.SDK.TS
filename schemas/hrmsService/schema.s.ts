@@ -221,6 +221,11 @@ export interface paths {
      * @description Deletes an employee appraisal session for the specified tenant.
      */
     delete: operations["DeleteEmployeeAppraisalSessionAsync"];
+    /**
+     * Patch an employee appraisal session
+     * @description Partially updates an existing employee appraisal session for the specified tenant.
+     */
+    patch: operations["PatchEmployeeAppraisalSessionAsync"];
   };
   "/api/v2/HrmsService/Employees": {
     /**
@@ -257,6 +262,11 @@ export interface paths {
      * @description Deletes an employee for the specified tenant.
      */
     delete: operations["DeleteEmployeeAsync"];
+    /**
+     * Patch an employee
+     * @description Partially updates an existing employee for the specified tenant.
+     */
+    patch: operations["PatchEmployeeAsync"];
   };
   "/api/v2/HrmsService/EmployeeTypes": {
     /**
@@ -293,6 +303,11 @@ export interface paths {
      * @description Deletes an employee type for the specified tenant.
      */
     delete: operations["DeleteEmployeeTypeAsync"];
+    /**
+     * Patch an employee type
+     * @description Partially updates an existing employee type for the specified tenant.
+     */
+    patch: operations["PatchEmployeeTypeAsync"];
   };
   "/api/v2/HrmsService/Employers": {
     /**
@@ -329,6 +344,11 @@ export interface paths {
      * @description Deletes an employer for the specified tenant.
      */
     delete: operations["DeleteEmployerAsync"];
+    /**
+     * Patch an employer
+     * @description Partially updates an existing employer for the specified tenant.
+     */
+    patch: operations["PatchEmployerAsync"];
   };
   "/version": {
     get: {
@@ -662,6 +682,11 @@ export interface paths {
      * @description Deletes a gig for the specified tenant.
      */
     delete: operations["DeleteGigAsync"];
+    /**
+     * Patch a gig
+     * @description Partially updates an existing gig for the specified tenant.
+     */
+    patch: operations["PatchGigAsync"];
   };
   "/api/v2/HrmsService/JobOffers": {
     /**
@@ -698,6 +723,11 @@ export interface paths {
      * @description Deletes a job offer for the specified tenant.
      */
     delete: operations["DeleteJobOfferAsync"];
+    /**
+     * Patch a job offer
+     * @description Partially updates an existing job offer for the specified tenant.
+     */
+    patch: operations["PatchJobOfferAsync"];
   };
   "/api/v2/HrmsService/JobTitles": {
     /**
@@ -734,6 +764,11 @@ export interface paths {
      * @description Deletes a job title for the specified tenant.
      */
     delete: operations["DeleteJobTitleAsync"];
+    /**
+     * Patch a job title
+     * @description Partially updates an existing job title for the specified tenant.
+     */
+    patch: operations["PatchJobTitleAsync"];
   };
   "/api/v2/HrmsService/LeaveApplications": {
     /**
@@ -770,6 +805,11 @@ export interface paths {
      * @description Deletes a leave application for the specified tenant.
      */
     delete: operations["DeleteLeaveApplicationAsync"];
+    /**
+     * Patch a leave application
+     * @description Partially updates an existing leave application for the specified tenant.
+     */
+    patch: operations["PatchLeaveApplicationAsync"];
   };
   "/api/v2/HrmsService/LeaveTypes": {
     /**
@@ -878,6 +918,11 @@ export interface paths {
      * @description Deletes a payroll for the specified tenant.
      */
     delete: operations["DeletePayrollAsync"];
+    /**
+     * Patch a payroll
+     * @description Partially updates an existing payroll for the specified tenant.
+     */
+    patch: operations["PatchPayrollAsync"];
   };
   "/api/v2/HrmsService/Salaries": {
     /**
@@ -914,6 +959,11 @@ export interface paths {
      * @description Deletes a salary for the specified tenant.
      */
     delete: operations["DeleteSalaryAsync"];
+    /**
+     * Patch a salary
+     * @description Partially updates an existing salary for the specified tenant.
+     */
+    patch: operations["PatchSalaryAsync"];
   };
   "/api/v2/HrmsService/Schedules": {
     /**
@@ -950,6 +1000,11 @@ export interface paths {
      * @description Deletes a schedule for the specified tenant.
      */
     delete: operations["DeleteScheduleAsync"];
+    /**
+     * Patch a schedule
+     * @description Partially updates an existing schedule for the specified tenant.
+     */
+    patch: operations["PatchScheduleAsync"];
   };
   "/api/v2/HrmsService/Shifts": {
     /**
@@ -986,6 +1041,11 @@ export interface paths {
      * @description Deletes a shift for the specified tenant.
      */
     delete: operations["DeleteShiftAsync"];
+    /**
+     * Patch a shift
+     * @description Partially updates an existing shift for the specified tenant.
+     */
+    patch: operations["PatchShiftAsync"];
   };
   "/api/v2/HrmsService/TimeIntervals": {
     /**
@@ -1022,6 +1082,11 @@ export interface paths {
      * @description Deletes a time interval for the specified tenant.
      */
     delete: operations["DeleteTimeIntervalAsync"];
+    /**
+     * Patch a time interval
+     * @description Partially updates an existing time interval for the specified tenant.
+     */
+    patch: operations["PatchTimeIntervalAsync"];
   };
   "/api/v2/HrmsService/TrainingProgramCourses": {
     /**
@@ -1058,6 +1123,11 @@ export interface paths {
      * @description Deletes a training program course for the specified tenant.
      */
     delete: operations["DeleteTrainingProgramCourseAsync"];
+    /**
+     * Patch a training program course
+     * @description Partially updates an existing training program course for the specified tenant.
+     */
+    patch: operations["PatchTrainingProgramCourseAsync"];
   };
   "/api/v2/HrmsService/TrainingProgramEvents": {
     /**
@@ -1094,6 +1164,11 @@ export interface paths {
      * @description Deletes a training program event for the specified tenant.
      */
     delete: operations["DeleteTrainingProgramEventAsync"];
+    /**
+     * Patch a training program event
+     * @description Partially updates an existing training program event for the specified tenant.
+     */
+    patch: operations["PatchTrainingProgramEventAsync"];
   };
   "/api/v2/HrmsService/TrainingPrograms": {
     /**
@@ -1660,16 +1735,43 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      remote?: boolean;
+      type?: string | null;
       title?: string | null;
       description?: string | null;
       /** Format: date-time */
-      startDate?: string;
-      /** Format: date-time */
-      endDate?: string;
+      expectedDeliveryDate?: string;
+      employerProfileId?: string | null;
       /** Format: double */
-      budget?: number;
+      minBudget?: number;
+      /** Format: double */
+      maxBudget?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
       location?: string | null;
-      skillsRequired?: string | null;
+      externalUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
     };
     GigDto: {
       id?: string | null;
@@ -1736,18 +1838,43 @@ export interface components {
       result?: components["schemas"]["GigDto"][] | null;
     };
     GigUpdateDto: {
+      remote?: boolean;
+      type?: string | null;
       title?: string | null;
       description?: string | null;
+      /** Format: date-time */
+      expectedDeliveryDate?: string;
+      employerProfileId?: string | null;
       /** Format: double */
-      price?: number | null;
-      currency?: string | null;
+      minBudget?: number;
+      /** Format: double */
+      maxBudget?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
       location?: string | null;
-      /** Format: date-time */
-      startDate?: string | null;
-      /** Format: date-time */
-      endDate?: string | null;
-      category?: string | null;
-      tags?: string | null;
+      externalUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
     };
     HttpValidationProblemDetails: {
       type?: string | null;
@@ -1785,6 +1912,58 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      remote?: boolean;
+      /** Format: date-time */
+      expectedHireDate?: string;
+      title?: string | null;
+      description?: string | null;
+      technicalSkills?: string | null;
+      nonTechnicalSkills?: string | null;
+      certifications?: string | null;
+      projectExperience?: string | null;
+      technologies?: string | null;
+      benefits?: string | null;
+      isOfficialJobOffer?: boolean;
+      isRemoteJobOffer?: boolean;
+      isMidTimeJobOffer?: boolean;
+      isUndergraduateOption?: boolean;
+      /** Format: int32 */
+      minOverallExperienceYears?: number;
+      /** Format: int32 */
+      availiablePositionsCount?: number;
+      /** Format: double */
+      minSalaryAmount?: number;
+      /** Format: double */
+      maxSalaryAmount?: number;
+      currencyId?: string | null;
+      jobFieldId?: string | null;
+      employerProfileId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+      imageUrl?: string | null;
+      location?: string | null;
+      externalUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
     };
     JobOfferDto: {
       id?: string | null;
@@ -1865,7 +2044,60 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["JobOfferDto"][] | null;
     };
-    JobOfferUpdateDto: Record<string, never>;
+    JobOfferUpdateDto: {
+      remote?: boolean;
+      /** Format: date-time */
+      expectedHireDate?: string;
+      title?: string | null;
+      description?: string | null;
+      technicalSkills?: string | null;
+      nonTechnicalSkills?: string | null;
+      certifications?: string | null;
+      projectExperience?: string | null;
+      technologies?: string | null;
+      benefits?: string | null;
+      isOfficialJobOffer?: boolean;
+      isRemoteJobOffer?: boolean;
+      isMidTimeJobOffer?: boolean;
+      isUndergraduateOption?: boolean;
+      /** Format: int32 */
+      minOverallExperienceYears?: number;
+      /** Format: int32 */
+      availiablePositionsCount?: number;
+      /** Format: double */
+      minSalaryAmount?: number;
+      /** Format: double */
+      maxSalaryAmount?: number;
+      currencyId?: string | null;
+      jobFieldId?: string | null;
+      employerProfileId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
+      cityId?: string | null;
+      imageUrl?: string | null;
+      location?: string | null;
+      externalUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+    };
     JobTitleCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1972,8 +2204,8 @@ export interface components {
     };
     LeaveApplicationUpdateDto: {
       justification?: string | null;
-      approved?: boolean | null;
-      onReview?: boolean | null;
+      approved?: boolean;
+      onReview?: boolean;
       leaveTypeId?: string | null;
       employeeProfileId?: string | null;
     };
@@ -2020,6 +2252,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     PayrollCreateDto: {
       /** Format: uuid */
@@ -2162,7 +2402,7 @@ export interface components {
     };
     SalaryUpdateDto: {
       /** Format: double */
-      amount?: number | null;
+      amount?: number;
       currencyId?: string | null;
       employeeProfileId?: string | null;
     };
@@ -3483,6 +3723,60 @@ export interface operations {
     };
   };
   /**
+   * Patch an employee appraisal session
+   * @description Partially updates an existing employee appraisal session for the specified tenant.
+   */
+  PatchEmployeeAppraisalSessionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        sessionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get employees
    * @description Retrieves employees for the specified tenant.
    */
@@ -3719,6 +4013,60 @@ export interface operations {
       };
       path: {
         employeeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an employee
+   * @description Partially updates an existing employee for the specified tenant.
+   */
+  PatchEmployeeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        employeeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -4023,6 +4371,60 @@ export interface operations {
     };
   };
   /**
+   * Patch an employee type
+   * @description Partially updates an existing employee type for the specified tenant.
+   */
+  PatchEmployeeTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        employeeTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get employers
    * @description Retrieves employers for the specified tenant.
    */
@@ -4259,6 +4661,60 @@ export interface operations {
       };
       path: {
         employerId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an employer
+   * @description Partially updates an existing employer for the specified tenant.
+   */
+  PatchEmployerAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        employerId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -4578,6 +5034,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a gig
+   * @description Partially updates an existing gig for the specified tenant.
+   */
+  PatchGigAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get job offers
    * @description Retrieves job offers for the specified tenant.
    */
@@ -4814,6 +5324,60 @@ export interface operations {
       };
       path: {
         jobOfferId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a job offer
+   * @description Partially updates an existing job offer for the specified tenant.
+   */
+  PatchJobOfferAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5118,6 +5682,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a job title
+   * @description Partially updates an existing job title for the specified tenant.
+   */
+  PatchJobTitleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobTitleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get leave applications
    * @description Retrieves leave applications for the specified tenant.
    */
@@ -5354,6 +5972,60 @@ export interface operations {
       };
       path: {
         leaveApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a leave application
+   * @description Partially updates an existing leave application for the specified tenant.
+   */
+  PatchLeaveApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        leaveApplicationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -6198,6 +6870,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a payroll
+   * @description Partially updates an existing payroll for the specified tenant.
+   */
+  PatchPayrollAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        payrollId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get salaries
    * @description Retrieves salaries for the specified tenant.
    */
@@ -6434,6 +7160,60 @@ export interface operations {
       };
       path: {
         salaryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a salary
+   * @description Partially updates an existing salary for the specified tenant.
+   */
+  PatchSalaryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        salaryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -6738,6 +7518,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a schedule
+   * @description Partially updates an existing schedule for the specified tenant.
+   */
+  PatchScheduleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        scheduleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get shifts
    * @description Retrieves shifts for the specified tenant.
    */
@@ -6974,6 +7808,60 @@ export interface operations {
       };
       path: {
         shiftId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a shift
+   * @description Partially updates an existing shift for the specified tenant.
+   */
+  PatchShiftAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        shiftId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -7278,6 +8166,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a time interval
+   * @description Partially updates an existing time interval for the specified tenant.
+   */
+  PatchTimeIntervalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        timeIntervalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get training program courses
    * @description Retrieves training program courses for the specified tenant.
    */
@@ -7548,6 +8490,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a training program course
+   * @description Partially updates an existing training program course for the specified tenant.
+   */
+  PatchTrainingProgramCourseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get training program events
    * @description Retrieves training program events for the specified tenant.
    */
@@ -7784,6 +8780,60 @@ export interface operations {
       };
       path: {
         eventId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a training program event
+   * @description Partially updates an existing training program event for the specified tenant.
+   */
+  PatchTrainingProgramEventAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        eventId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

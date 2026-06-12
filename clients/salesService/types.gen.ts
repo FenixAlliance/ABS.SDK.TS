@@ -189,6 +189,14 @@ export type LoyaltyProgramUpdateDto = {
     priceListId?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type PointOfSaleCreateDto = {
     id?: string;
     timestamp?: string;
@@ -986,6 +994,35 @@ export type GetLoyaltyProgramAsyncResponses = {
 
 export type GetLoyaltyProgramAsyncResponse = GetLoyaltyProgramAsyncResponses[keyof GetLoyaltyProgramAsyncResponses];
 
+export type PatchLoyaltyProgramAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        loyaltyProgramId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/LoyaltyPrograms/{loyaltyProgramId}';
+};
+
+export type PatchLoyaltyProgramAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchLoyaltyProgramAsyncError = PatchLoyaltyProgramAsyncErrors[keyof PatchLoyaltyProgramAsyncErrors];
+
+export type PatchLoyaltyProgramAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchLoyaltyProgramAsyncResponse = PatchLoyaltyProgramAsyncResponses[keyof PatchLoyaltyProgramAsyncResponses];
+
 export type UpdateLoyaltyProgramAsyncData = {
     body?: LoyaltyProgramUpdateDto;
     path: {
@@ -1174,6 +1211,35 @@ export type GetPointOfSaleAsyncResponses = {
 };
 
 export type GetPointOfSaleAsyncResponse = GetPointOfSaleAsyncResponses[keyof GetPointOfSaleAsyncResponses];
+
+export type PatchPointOfSaleAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        pointOfSaleId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/PointOfSales/{pointOfSaleId}';
+};
+
+export type PatchPointOfSaleAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchPointOfSaleAsyncError = PatchPointOfSaleAsyncErrors[keyof PatchPointOfSaleAsyncErrors];
+
+export type PatchPointOfSaleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPointOfSaleAsyncResponse = PatchPointOfSaleAsyncResponses[keyof PatchPointOfSaleAsyncResponses];
 
 export type UpdatePointOfSaleAsyncData = {
     body?: PointOfSaleUpdateDto;
@@ -1370,6 +1436,35 @@ export type GetSalesLiteratureAsyncResponses = {
 
 export type GetSalesLiteratureAsyncResponse = GetSalesLiteratureAsyncResponses[keyof GetSalesLiteratureAsyncResponses];
 
+export type PatchSalesLiteratureAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        salesLiteratureId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/SalesLiteratures/{salesLiteratureId}';
+};
+
+export type PatchSalesLiteratureAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchSalesLiteratureAsyncError = PatchSalesLiteratureAsyncErrors[keyof PatchSalesLiteratureAsyncErrors];
+
+export type PatchSalesLiteratureAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSalesLiteratureAsyncResponse = PatchSalesLiteratureAsyncResponses[keyof PatchSalesLiteratureAsyncResponses];
+
 export type UpdateSalesLiteratureAsyncData = {
     body?: SalesLiteratureUpdateDto;
     path: {
@@ -1537,6 +1632,35 @@ export type GetStoreAsyncResponses = {
 };
 
 export type GetStoreAsyncResponse = GetStoreAsyncResponses[keyof GetStoreAsyncResponses];
+
+export type PatchStoreAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        storeId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/SalesService/Stores/{storeId}';
+};
+
+export type PatchStoreAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchStoreAsyncError = PatchStoreAsyncErrors[keyof PatchStoreAsyncErrors];
+
+export type PatchStoreAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchStoreAsyncResponse = PatchStoreAsyncResponses[keyof PatchStoreAsyncResponses];
 
 export type UpdateStoreAsyncData = {
     body?: StoreUpdateDto;

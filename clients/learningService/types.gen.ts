@@ -184,8 +184,8 @@ export type CourseArticleCreateDto = {
     title: string;
     description?: string | null;
     content?: string | null;
-    courseID: string;
-    courseWikiID: string;
+    courseId: string;
+    courseWikiId: string;
 };
 
 export type CourseArticleDto = {
@@ -194,9 +194,10 @@ export type CourseArticleDto = {
     title?: string | null;
     description?: string | null;
     content?: string | null;
-    courseWikiID?: string | null;
-    courseID?: string | null;
+    courseWikiId?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseArticleUpdateDto = {
@@ -212,8 +213,8 @@ export type CourseAssignmentComponentCreateDto = {
     description?: string | null;
     content?: string | null;
     order?: number;
-    courseAssignmentID: string;
-    courseID: string;
+    courseAssignmentId: string;
+    courseId: string;
 };
 
 export type CourseAssignmentComponentDto = {
@@ -223,9 +224,10 @@ export type CourseAssignmentComponentDto = {
     description?: string | null;
     content?: string | null;
     order?: number;
-    courseAssignmentID?: string | null;
-    courseID?: string | null;
+    courseAssignmentId?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseAssignmentComponentUpdateDto = {
@@ -233,7 +235,7 @@ export type CourseAssignmentComponentUpdateDto = {
     description?: string | null;
     content?: string | null;
     order?: number | null;
-    courseAssignmentID?: string | null;
+    courseAssignmentId?: string | null;
 };
 
 export type CourseAssignmentCreateDto = {
@@ -243,10 +245,10 @@ export type CourseAssignmentCreateDto = {
     description?: string | null;
     instructions?: string | null;
     points?: number;
-    courseID: string;
-    courseUnitID?: string | null;
-    courseCohortID?: string | null;
-    courseAssignmentTypeID?: string | null;
+    courseId: string;
+    courseUnitId?: string | null;
+    courseCohortId?: string | null;
+    courseAssignmentTypeId?: string | null;
     dueDateTime?: string | null;
     asignToAllCohorts?: boolean;
     resources?: string | null;
@@ -260,10 +262,15 @@ export type CourseAssignmentDto = {
     instructions?: string | null;
     points?: number;
     dueDateTime?: string;
-    courseID?: string | null;
-    courseUnitID?: string | null;
-    courseSectionID?: string | null;
+    courseId?: string | null;
+    courseUnitId?: string | null;
+    courseSectionId?: string | null;
+    courseCohortId?: string | null;
+    courseAssignmentTypeId?: string | null;
+    asignToAllCohorts?: boolean;
+    resources?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseAssignmentTypeCreateDto = {
@@ -274,7 +281,7 @@ export type CourseAssignmentTypeCreateDto = {
     weight?: number;
     quantity?: number;
     excluded?: number;
-    courseID: string;
+    courseId: string;
 };
 
 export type CourseAssignmentTypeDto = {
@@ -285,8 +292,9 @@ export type CourseAssignmentTypeDto = {
     weight?: number;
     quantity?: number;
     excluded?: number;
-    courseID?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseAssignmentTypeUpdateDto = {
@@ -302,9 +310,9 @@ export type CourseAssignmentUpdateDto = {
     description?: string | null;
     instructions?: string | null;
     points?: number;
-    courseUnitID?: string | null;
-    courseCohortID?: string | null;
-    courseAssignmentTypeID?: string | null;
+    courseUnitId?: string | null;
+    courseCohortId?: string | null;
+    courseAssignmentTypeId?: string | null;
     dueDateTime?: string | null;
     asignToAllCohorts?: boolean;
     resources?: string | null;
@@ -327,6 +335,7 @@ export type CourseCategoryDto = {
     imageURL?: string | null;
     isFeatured?: boolean;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseCategoryUpdateDto = {
@@ -339,40 +348,40 @@ export type CourseCategoryUpdateDto = {
 export type CourseCertificateTemplateCreateDto = {
     id?: string;
     timestamp?: string;
-    courseID: string;
-    webPortalID?: string | null;
-    websiteThemeID?: string | null;
-    socialProfileID?: string | null;
-    parentWebContentID?: string | null;
-    parentWebContentVersionID?: string | null;
+    courseId: string;
+    webPortalId?: string | null;
+    websiteThemeId?: string | null;
+    socialProfileId?: string | null;
+    parentWebContentId?: string | null;
+    parentWebContentVersionId?: string | null;
 };
 
 export type CourseCertificateTemplateDto = {
     id?: string | null;
     timestamp?: string | null;
-    courseID?: string | null;
-    businessID?: string | null;
-    webPortalID?: string | null;
-    websiteThemeID?: string | null;
-    businessProfileRecordID?: string | null;
-    socialProfileID?: string | null;
-    parentWebContentID?: string | null;
-    parentWebContentVersionID?: string | null;
+    courseId?: string | null;
+    tenantId?: string | null;
+    webPortalId?: string | null;
+    websiteThemeId?: string | null;
+    enrollmentId?: string | null;
+    socialProfileId?: string | null;
+    parentWebContentId?: string | null;
+    parentWebContentVersionId?: string | null;
 };
 
 export type CourseCertificateTemplateUpdateDto = {
-    webPortalID?: string | null;
-    websiteThemeID?: string | null;
-    socialProfileID?: string | null;
-    parentWebContentID?: string | null;
-    parentWebContentVersionID?: string | null;
+    webPortalId?: string | null;
+    websiteThemeId?: string | null;
+    socialProfileId?: string | null;
+    parentWebContentId?: string | null;
+    parentWebContentVersionId?: string | null;
 };
 
 export type CourseCohortCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
-    courseID: string;
+    courseId: string;
     startDateTime?: string | null;
     endDateTime?: string | null;
     expectedStartDateTime?: string | null;
@@ -387,8 +396,9 @@ export type CourseCohortDto = {
     endDateTime?: string;
     expectedStartDateTime?: string;
     expectedEndDateTime?: string;
-    courseID?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseCohortUpdateDto = {
@@ -402,21 +412,21 @@ export type CourseCohortUpdateDto = {
 export type CourseCompletionCertificateCreateDto = {
     id?: string;
     timestamp?: string;
-    studentProfileID: string;
-    courseEnrollmentID: string;
-    courseCompletionCertificateTemplateID?: string | null;
-    courseID?: string | null;
+    studentProfileId: string;
+    courseEnrollmentId: string;
+    courseCompletionCertificateTemplateId?: string | null;
+    courseId?: string | null;
 };
 
 export type CourseCompletionCertificateDto = {
     id?: string | null;
     timestamp?: string | null;
-    studentProfileID?: string | null;
-    courseEnrollmentID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
-    courseCompletionCertificateTemplateID?: string | null;
-    courseID?: string | null;
+    studentProfileId?: string | null;
+    courseEnrollmentId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    courseCompletionCertificateTemplateId?: string | null;
+    courseId?: string | null;
     studentName?: string | null;
     studentLastName?: string | null;
     courseTitle?: string | null;
@@ -441,30 +451,31 @@ export type CourseCompletionCertificateDtoIReadOnlyListEnvelopeWritable = {
 };
 
 export type CourseCompletionCertificateUpdateDto = {
-    studentProfileID?: string | null;
-    courseEnrollmentID?: string | null;
-    courseCompletionCertificateTemplateID?: string | null;
-    courseID?: string | null;
+    studentProfileId?: string | null;
+    courseEnrollmentId?: string | null;
+    courseCompletionCertificateTemplateId?: string | null;
+    courseId?: string | null;
 };
 
 export type CourseContentGroupCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
-    courseID: string;
+    courseId: string;
 };
 
 export type CourseContentGroupDto = {
     id?: string | null;
     timestamp?: string | null;
     name?: string | null;
-    courseID?: string | null;
-    businessID?: string | null;
+    courseId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseContentGroupUpdateDto = {
     name?: string | null;
-    courseID?: string | null;
+    courseId?: string | null;
 };
 
 export type CourseCreateDto = {
@@ -476,9 +487,9 @@ export type CourseCreateDto = {
     summary?: string | null;
     code?: string | null;
     version?: string | null;
-    courseCategoryID?: string | null;
-    instructorProfileID?: string | null;
-    currencyID?: string | null;
+    courseCategoryId?: string | null;
+    instructorProfileId?: string | null;
+    currencyId?: string | null;
     regularPrice?: number;
     maxCourseEnrollments?: number;
     totalEffortInWeeks?: number;
@@ -656,9 +667,9 @@ export type CourseDto = {
     selectedSellingMarginPolicies?: Array<string> | null;
     code?: string | null;
     version?: string | null;
-    courseCategoryID?: string | null;
+    courseCategoryId?: string | null;
     courseCategoryName?: string | null;
-    instructorProfileID?: string | null;
+    instructorProfileId?: string | null;
     instructorProfileName?: string | null;
     maxCourseEnrollments?: number;
     totalEffortInWeeks?: number;
@@ -688,20 +699,21 @@ export type CourseDtoIReadOnlyListEnvelopeWritable = {
 export type CourseEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
-    courseID?: string | null;
-    courseCohortID?: string | null;
-    studentProfileID?: string | null;
-    courseCompletionCertificateID?: string | null;
+    courseId?: string | null;
+    courseCohortId?: string | null;
+    studentProfileId?: string | null;
+    courseCompletionCertificateId?: string | null;
 };
 
 export type CourseEnrollmentDto = {
     id?: string | null;
     timestamp?: string | null;
-    courseID?: string | null;
-    courseCohortID?: string | null;
-    studentProfileID?: string | null;
-    businessProfileRecordID?: string | null;
-    courseCompletionCertificateID?: string | null;
+    courseId?: string | null;
+    courseCohortId?: string | null;
+    studentProfileId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    courseCompletionCertificateId?: string | null;
 };
 
 export type CourseEnrollmentDtoIReadOnlyListEnvelopeReadable = {
@@ -720,10 +732,8 @@ export type CourseEnrollmentDtoIReadOnlyListEnvelopeWritable = {
 };
 
 export type CourseEnrollmentUpdateDto = {
-    id?: string;
-    timestamp?: string;
-    courseCohortID?: string | null;
-    courseCompletionCertificateID?: string | null;
+    courseCohortId?: string | null;
+    courseCompletionCertificateId?: string | null;
 };
 
 export type CourseFileCreateDto = {
@@ -734,7 +744,7 @@ export type CourseFileCreateDto = {
     fileUploadURL: string;
     contentType?: string | null;
     fileLength?: number;
-    courseID: string;
+    courseId: string;
 };
 
 export type CourseFileDto = {
@@ -745,8 +755,9 @@ export type CourseFileDto = {
     fileUploadURL?: string | null;
     contentType?: string | null;
     fileLength?: number;
-    courseID?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseFileUpdateDto = {
@@ -762,7 +773,7 @@ export type CourseForumCreateDto = {
     timestamp?: string;
     title: string;
     description?: string | null;
-    courseID: string;
+    courseId: string;
 };
 
 export type CourseForumDto = {
@@ -770,8 +781,9 @@ export type CourseForumDto = {
     timestamp?: string | null;
     title?: string | null;
     description?: string | null;
-    courseID?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseForumUpdateDto = {
@@ -785,7 +797,7 @@ export type CourseGradingRubricCreateDto = {
     title: string;
     description?: string | null;
     enablePoints?: boolean;
-    courseID: string;
+    courseId: string;
 };
 
 export type CourseGradingRubricDto = {
@@ -794,8 +806,9 @@ export type CourseGradingRubricDto = {
     title?: string | null;
     description?: string | null;
     enablePoints?: boolean;
-    courseID?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseGradingRubricUpdateDto = {
@@ -812,8 +825,8 @@ export type CourseHandoutCreateDto = {
     content?: string | null;
     url?: string | null;
     releaseDateTime?: string | null;
-    courseID: string;
-    courseUnitID?: string | null;
+    courseId: string;
+    courseUnitId?: string | null;
 };
 
 export type CourseHandoutDto = {
@@ -824,9 +837,10 @@ export type CourseHandoutDto = {
     content?: string | null;
     url?: string | null;
     releaseDateTime?: string | null;
-    courseID?: string | null;
-    courseUnitID?: string | null;
+    courseId?: string | null;
+    courseUnitId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseHandoutUpdateDto = {
@@ -835,7 +849,7 @@ export type CourseHandoutUpdateDto = {
     content?: string | null;
     url?: string | null;
     releaseDateTime?: string | null;
-    courseUnitID?: string | null;
+    courseUnitId?: string | null;
 };
 
 export type CourseLibraryCreateDto = {
@@ -843,8 +857,8 @@ export type CourseLibraryCreateDto = {
     timestamp?: string;
     title: string;
     description?: string | null;
-    courseID: string;
-    courseUnitID?: string | null;
+    courseId: string;
+    courseUnitId?: string | null;
     releaseDateTime?: string | null;
 };
 
@@ -853,16 +867,17 @@ export type CourseLibraryDto = {
     timestamp?: string | null;
     title?: string | null;
     description?: string | null;
-    courseID?: string | null;
-    courseUnitID?: string | null;
+    courseId?: string | null;
+    courseUnitId?: string | null;
     releaseDateTime?: string;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseLibraryUpdateDto = {
     title?: string | null;
     description?: string | null;
-    courseUnitID?: string | null;
+    courseUnitId?: string | null;
     releaseDateTime?: string | null;
 };
 
@@ -872,7 +887,7 @@ export type CourseNewsCreateDto = {
     title: string;
     description?: string | null;
     content?: string | null;
-    courseID: string;
+    courseId: string;
 };
 
 export type CourseNewsDto = {
@@ -881,8 +896,9 @@ export type CourseNewsDto = {
     title?: string | null;
     description?: string | null;
     content?: string | null;
-    courseID?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseNewsUpdateDto = {
@@ -898,7 +914,7 @@ export type CoursePageCreateDto = {
     description?: string | null;
     content?: string | null;
     slug?: string | null;
-    courseID: string;
+    courseId: string;
 };
 
 export type CoursePageDto = {
@@ -908,8 +924,9 @@ export type CoursePageDto = {
     description?: string | null;
     content?: string | null;
     slug?: string | null;
-    courseID?: string | null;
+    courseId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CoursePageUpdateDto = {
@@ -925,9 +942,9 @@ export type CourseProblemSetCreateDto = {
     title: string;
     description?: string | null;
     overallScore?: number;
-    courseID: string;
-    courseUnitID?: string | null;
-    courseGradingRubricID?: string | null;
+    courseId: string;
+    courseUnitId?: string | null;
+    courseGradingRubricId?: string | null;
     releaseDateTime?: string | null;
 };
 
@@ -937,18 +954,20 @@ export type CourseProblemSetDto = {
     title?: string | null;
     description?: string | null;
     overallScore?: number;
-    courseID?: string | null;
-    courseUnitID?: string | null;
+    courseId?: string | null;
+    courseUnitId?: string | null;
+    courseGradingRubricId?: string | null;
     releaseDateTime?: string;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseProblemSetUpdateDto = {
     title?: string | null;
     description?: string | null;
     overallScore?: number | null;
-    courseUnitID?: string | null;
-    courseGradingRubricID?: string | null;
+    courseUnitId?: string | null;
+    courseGradingRubricId?: string | null;
     releaseDateTime?: string | null;
 };
 
@@ -958,7 +977,7 @@ export type CourseSectionCreateDto = {
     name: string;
     icon?: string | null;
     description?: string | null;
-    courseID: string;
+    courseId: string;
     releaseDateTime?: string | null;
     hideFromStudents?: boolean;
 };
@@ -969,10 +988,11 @@ export type CourseSectionDto = {
     icon?: string | null;
     name?: string | null;
     description?: string | null;
-    courseID?: string | null;
+    courseId?: string | null;
     releaseDateTime?: string;
     hideFromStudents?: boolean;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseSectionUpdateDto = {
@@ -986,22 +1006,23 @@ export type CourseSectionUpdateDto = {
 export type CourseTeamMembershipCreateDto = {
     id?: string;
     timestamp?: string;
-    courseID: string;
-    instructorProfileID: string;
+    courseId: string;
+    instructorProfileId: string;
     courseTeamMembershipType?: 'Admin' | 'Staff';
 };
 
 export type CourseTeamMembershipDto = {
     id?: string | null;
     timestamp?: string | null;
-    courseID?: string | null;
-    instructorProfileID?: string | null;
+    courseId?: string | null;
+    instructorProfileId?: string | null;
     courseTeamMembershipType?: 'Admin' | 'Staff';
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseTeamMembershipUpdateDto = {
-    instructorProfileID?: string | null;
+    instructorProfileId?: string | null;
     courseTeamMembershipType?: 'Admin' | 'Staff';
 };
 
@@ -1012,8 +1033,8 @@ export type CourseUnitComponentCreateDto = {
     description?: string | null;
     content?: string | null;
     order?: number;
-    courseID: string;
-    courseUnitID?: string | null;
+    courseId: string;
+    courseUnitId?: string | null;
 };
 
 export type CourseUnitComponentDto = {
@@ -1023,9 +1044,10 @@ export type CourseUnitComponentDto = {
     description?: string | null;
     content?: string | null;
     order?: number;
-    courseID?: string | null;
-    courseUnitID?: string | null;
+    courseId?: string | null;
+    courseUnitId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type CourseUnitComponentUpdateDto = {
@@ -1033,7 +1055,7 @@ export type CourseUnitComponentUpdateDto = {
     description?: string | null;
     content?: string | null;
     order?: number | null;
-    courseUnitID?: string | null;
+    courseUnitId?: string | null;
 };
 
 export type CourseUnitCreateDto = {
@@ -1042,9 +1064,9 @@ export type CourseUnitCreateDto = {
     title: string;
     description?: string | null;
     content?: string | null;
-    courseID: string;
-    courseSectionID: string;
-    courseContentGroupID?: string | null;
+    courseId: string;
+    courseSectionId: string;
+    courseContentGroupId?: string | null;
     releaseDateTime?: string | null;
 };
 
@@ -1055,9 +1077,11 @@ export type CourseUnitDto = {
     description?: string | null;
     releaseDateTime?: string;
     content?: string | null;
-    courseID?: string | null;
-    courseSectionID?: string | null;
+    courseId?: string | null;
+    courseSectionId?: string | null;
+    courseContentGroupId?: string | null;
     tenantId?: string | null;
+    enrollmentId?: string | null;
     courseHandouts?: Array<CourseHandoutDto> | null;
     courseAssignments?: Array<CourseAssignmentDto> | null;
     courseComponents?: Array<CourseUnitComponentDto> | null;
@@ -1067,7 +1091,7 @@ export type CourseUnitUpdateDto = {
     title?: string | null;
     description?: string | null;
     content?: string | null;
-    courseContentGroupID?: string | null;
+    courseContentGroupId?: string | null;
     releaseDateTime?: string | null;
 };
 
@@ -1078,9 +1102,9 @@ export type CourseUpdateDto = {
     summary?: string | null;
     code?: string | null;
     version?: string | null;
-    courseCategoryID?: string | null;
-    instructorProfileID?: string | null;
-    currencyID?: string | null;
+    courseCategoryId?: string | null;
+    instructorProfileId?: string | null;
+    currencyId?: string | null;
     regularPrice?: number | null;
     maxCourseEnrollments?: number | null;
     totalEffortInWeeks?: number | null;
@@ -1098,8 +1122,8 @@ export type CourseWikiCreateDto = {
     timestamp?: string;
     title: string;
     description?: string | null;
-    courseID: string;
-    courseUnitID?: string | null;
+    courseId: string;
+    courseUnitId?: string | null;
     releaseDateTime?: string | null;
 };
 
@@ -1110,15 +1134,29 @@ export type CourseWikiDto = {
     description?: string | null;
     releaseDateTime?: string;
     tenantId?: string | null;
-    courseID?: string | null;
-    courseUnitID?: string | null;
+    enrollmentId?: string | null;
+    courseId?: string | null;
+    courseUnitId?: string | null;
 };
 
 export type CourseWikiUpdateDto = {
     title?: string | null;
     description?: string | null;
-    courseUnitID?: string | null;
+    courseUnitId?: string | null;
     releaseDateTime?: string | null;
+};
+
+export type EmptyEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+};
+
+export type EmptyEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -1191,7 +1229,6 @@ export type InstructorProfileCreateDto = {
     data9?: string | null;
     data9Label?: string | null;
     authorized?: boolean;
-    contactID?: string | null;
 };
 
 export type InstructorProfileDtoReadable = {
@@ -1229,9 +1266,6 @@ export type InstructorProfileDtoReadable = {
     data9?: string | null;
     data9Label?: string | null;
     authorized?: boolean;
-    businessID?: string | null;
-    contactID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type InstructorProfileDtoWritable = {
@@ -1268,9 +1302,6 @@ export type InstructorProfileDtoWritable = {
     data9?: string | null;
     data9Label?: string | null;
     authorized?: boolean;
-    businessID?: string | null;
-    contactID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type InstructorProfileDtoIReadOnlyListEnvelopeReadable = {
@@ -1323,6 +1354,14 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -1369,7 +1408,6 @@ export type StudentProfileCreateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    contactID?: string | null;
 };
 
 export type StudentProfileDtoReadable = {
@@ -1406,9 +1444,6 @@ export type StudentProfileDtoReadable = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    businessID?: string | null;
-    contactID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type StudentProfileDtoWritable = {
@@ -1444,9 +1479,6 @@ export type StudentProfileDtoWritable = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    businessID?: string | null;
-    contactID?: string | null;
-    businessProfileRecordID?: string | null;
 };
 
 export type StudentProfileDtoIReadOnlyListEnvelopeReadable = {
@@ -1489,7 +1521,6 @@ export type StudentProfileUpdateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    contactID?: string | null;
 };
 
 export type TwoFactorRequest = {
@@ -1693,6 +1724,39 @@ export type GetCourseArticleByIdAsyncResponses = {
 
 export type GetCourseArticleByIdAsyncResponse = GetCourseArticleByIdAsyncResponses[keyof GetCourseArticleByIdAsyncResponses];
 
+export type PatchCourseArticleAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        articleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseArticles/{articleId}';
+};
+
+export type PatchCourseArticleAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseArticleAsyncError = PatchCourseArticleAsyncErrors[keyof PatchCourseArticleAsyncErrors];
+
+export type PatchCourseArticleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseArticleAsyncResponse = PatchCourseArticleAsyncResponses[keyof PatchCourseArticleAsyncResponses];
+
 export type UpdateCourseArticleAsyncData = {
     body?: CourseArticleUpdateDto;
     headers?: {
@@ -1877,6 +1941,39 @@ export type GetCourseAssignmentComponentByIdAsyncResponses = {
 };
 
 export type GetCourseAssignmentComponentByIdAsyncResponse = GetCourseAssignmentComponentByIdAsyncResponses[keyof GetCourseAssignmentComponentByIdAsyncResponses];
+
+export type PatchCourseAssignmentComponentAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        componentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseAssignmentComponents/{componentId}';
+};
+
+export type PatchCourseAssignmentComponentAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseAssignmentComponentAsyncError = PatchCourseAssignmentComponentAsyncErrors[keyof PatchCourseAssignmentComponentAsyncErrors];
+
+export type PatchCourseAssignmentComponentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseAssignmentComponentAsyncResponse = PatchCourseAssignmentComponentAsyncResponses[keyof PatchCourseAssignmentComponentAsyncResponses];
 
 export type UpdateCourseAssignmentComponentAsyncData = {
     body?: CourseAssignmentComponentUpdateDto;
@@ -2063,6 +2160,39 @@ export type GetCourseAssignmentByIdAsyncResponses = {
 
 export type GetCourseAssignmentByIdAsyncResponse = GetCourseAssignmentByIdAsyncResponses[keyof GetCourseAssignmentByIdAsyncResponses];
 
+export type PatchCourseAssignmentAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        assignmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseAssignments/{assignmentId}';
+};
+
+export type PatchCourseAssignmentAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseAssignmentAsyncError = PatchCourseAssignmentAsyncErrors[keyof PatchCourseAssignmentAsyncErrors];
+
+export type PatchCourseAssignmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseAssignmentAsyncResponse = PatchCourseAssignmentAsyncResponses[keyof PatchCourseAssignmentAsyncResponses];
+
 export type UpdateCourseAssignmentAsyncData = {
     body?: CourseAssignmentUpdateDto;
     headers?: {
@@ -2248,6 +2378,39 @@ export type GetCourseAssignmentTypeByIdAsyncResponses = {
 
 export type GetCourseAssignmentTypeByIdAsyncResponse = GetCourseAssignmentTypeByIdAsyncResponses[keyof GetCourseAssignmentTypeByIdAsyncResponses];
 
+export type PatchCourseAssignmentTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        assignmentTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseAssignmentTypes/{assignmentTypeId}';
+};
+
+export type PatchCourseAssignmentTypeAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseAssignmentTypeAsyncError = PatchCourseAssignmentTypeAsyncErrors[keyof PatchCourseAssignmentTypeAsyncErrors];
+
+export type PatchCourseAssignmentTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseAssignmentTypeAsyncResponse = PatchCourseAssignmentTypeAsyncResponses[keyof PatchCourseAssignmentTypeAsyncResponses];
+
 export type UpdateCourseAssignmentTypeAsyncData = {
     body?: CourseAssignmentTypeUpdateDto;
     headers?: {
@@ -2432,6 +2595,39 @@ export type GetCourseCategoryByIdAsyncResponses = {
 };
 
 export type GetCourseCategoryByIdAsyncResponse = GetCourseCategoryByIdAsyncResponses[keyof GetCourseCategoryByIdAsyncResponses];
+
+export type PatchCourseCategoryAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        categoryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCategories/{categoryId}';
+};
+
+export type PatchCourseCategoryAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseCategoryAsyncError = PatchCourseCategoryAsyncErrors[keyof PatchCourseCategoryAsyncErrors];
+
+export type PatchCourseCategoryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseCategoryAsyncResponse = PatchCourseCategoryAsyncResponses[keyof PatchCourseCategoryAsyncResponses];
 
 export type UpdateCourseCategoryAsyncData = {
     body?: CourseCategoryUpdateDto;
@@ -2619,6 +2815,39 @@ export type GetCourseCertificateAsyncResponses = {
 
 export type GetCourseCertificateAsyncResponse = GetCourseCertificateAsyncResponses[keyof GetCourseCertificateAsyncResponses];
 
+export type PatchCourseCertificateAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseCertificateId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCertificates/{courseCertificateId}';
+};
+
+export type PatchCourseCertificateAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseCertificateAsyncError = PatchCourseCertificateAsyncErrors[keyof PatchCourseCertificateAsyncErrors];
+
+export type PatchCourseCertificateAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseCertificateAsyncResponse = PatchCourseCertificateAsyncResponses[keyof PatchCourseCertificateAsyncResponses];
+
 export type UpdateCourseCertificateAsyncData = {
     body?: CourseCompletionCertificateUpdateDto;
     headers?: {
@@ -2773,6 +3002,39 @@ export type GetCourseCertificateTemplateAsyncResponses = {
 };
 
 export type GetCourseCertificateTemplateAsyncResponse = GetCourseCertificateTemplateAsyncResponses[keyof GetCourseCertificateTemplateAsyncResponses];
+
+export type PatchCourseCertificateTemplateAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseCertificateTemplateId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCertificates/Template/{courseCertificateTemplateId}';
+};
+
+export type PatchCourseCertificateTemplateAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseCertificateTemplateAsyncError = PatchCourseCertificateTemplateAsyncErrors[keyof PatchCourseCertificateTemplateAsyncErrors];
+
+export type PatchCourseCertificateTemplateAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseCertificateTemplateAsyncResponse = PatchCourseCertificateTemplateAsyncResponses[keyof PatchCourseCertificateTemplateAsyncResponses];
 
 export type UpdateCourseCertificateTemplateAsyncData = {
     body?: CourseCertificateTemplateUpdateDto;
@@ -2990,6 +3252,39 @@ export type GetCourseCohortByIdAsyncResponses = {
 
 export type GetCourseCohortByIdAsyncResponse = GetCourseCohortByIdAsyncResponses[keyof GetCourseCohortByIdAsyncResponses];
 
+export type PatchCourseCohortAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        cohortId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseCohorts/{cohortId}';
+};
+
+export type PatchCourseCohortAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseCohortAsyncError = PatchCourseCohortAsyncErrors[keyof PatchCourseCohortAsyncErrors];
+
+export type PatchCourseCohortAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseCohortAsyncResponse = PatchCourseCohortAsyncResponses[keyof PatchCourseCohortAsyncResponses];
+
 export type UpdateCourseCohortAsyncData = {
     body?: CourseCohortUpdateDto;
     headers?: {
@@ -3174,6 +3469,39 @@ export type GetCourseContentGroupByIdAsyncResponses = {
 };
 
 export type GetCourseContentGroupByIdAsyncResponse = GetCourseContentGroupByIdAsyncResponses[keyof GetCourseContentGroupByIdAsyncResponses];
+
+export type PatchCourseContentGroupAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        groupId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseContentGroups/{groupId}';
+};
+
+export type PatchCourseContentGroupAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseContentGroupAsyncError = PatchCourseContentGroupAsyncErrors[keyof PatchCourseContentGroupAsyncErrors];
+
+export type PatchCourseContentGroupAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseContentGroupAsyncResponse = PatchCourseContentGroupAsyncResponses[keyof PatchCourseContentGroupAsyncResponses];
 
 export type UpdateCourseContentGroupAsyncData = {
     body?: CourseContentGroupUpdateDto;
@@ -3425,6 +3753,37 @@ export type GetCourseEnrollmentAsyncResponses = {
 
 export type GetCourseEnrollmentAsyncResponse = GetCourseEnrollmentAsyncResponses[keyof GetCourseEnrollmentAsyncResponses];
 
+export type PatchCourseEnrollmentAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseEnrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseEnrollments/{courseEnrollmentId}';
+};
+
+export type PatchCourseEnrollmentAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseEnrollmentAsyncError = PatchCourseEnrollmentAsyncErrors[keyof PatchCourseEnrollmentAsyncErrors];
+
+export type PatchCourseEnrollmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type UpdateCourseEnrollmentAsyncData = {
     body?: CourseEnrollmentUpdateDto;
     headers?: {
@@ -3643,6 +4002,37 @@ export type GetCourseFileByIdAsyncResponses = {
 
 export type GetCourseFileByIdAsyncResponse = GetCourseFileByIdAsyncResponses[keyof GetCourseFileByIdAsyncResponses];
 
+export type PatchCourseFileAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fileId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseFiles/{fileId}';
+};
+
+export type PatchCourseFileAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseFileAsyncError = PatchCourseFileAsyncErrors[keyof PatchCourseFileAsyncErrors];
+
+export type PatchCourseFileAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type UpdateCourseFileAsyncData = {
     body?: CourseFileUpdateDto;
     headers?: {
@@ -3829,6 +4219,37 @@ export type GetCourseForumByIdAsyncResponses = {
 };
 
 export type GetCourseForumByIdAsyncResponse = GetCourseForumByIdAsyncResponses[keyof GetCourseForumByIdAsyncResponses];
+
+export type PatchCourseForumAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        forumId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseForums/{forumId}';
+};
+
+export type PatchCourseForumAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseForumAsyncError = PatchCourseForumAsyncErrors[keyof PatchCourseForumAsyncErrors];
+
+export type PatchCourseForumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
 
 export type UpdateCourseForumAsyncData = {
     body?: CourseForumUpdateDto;
@@ -4017,6 +4438,37 @@ export type GetCourseGradingRubricByIdAsyncResponses = {
 
 export type GetCourseGradingRubricByIdAsyncResponse = GetCourseGradingRubricByIdAsyncResponses[keyof GetCourseGradingRubricByIdAsyncResponses];
 
+export type PatchCourseGradingRubricAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        rubricId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseGradingRubrics/{rubricId}';
+};
+
+export type PatchCourseGradingRubricAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseGradingRubricAsyncError = PatchCourseGradingRubricAsyncErrors[keyof PatchCourseGradingRubricAsyncErrors];
+
+export type PatchCourseGradingRubricAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type UpdateCourseGradingRubricAsyncData = {
     body?: CourseGradingRubricUpdateDto;
     headers?: {
@@ -4203,6 +4655,37 @@ export type GetCourseHandoutByIdAsyncResponses = {
 };
 
 export type GetCourseHandoutByIdAsyncResponse = GetCourseHandoutByIdAsyncResponses[keyof GetCourseHandoutByIdAsyncResponses];
+
+export type PatchCourseHandoutAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        handoutId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseHandouts/{handoutId}';
+};
+
+export type PatchCourseHandoutAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseHandoutAsyncError = PatchCourseHandoutAsyncErrors[keyof PatchCourseHandoutAsyncErrors];
+
+export type PatchCourseHandoutAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
 
 export type UpdateCourseHandoutAsyncData = {
     body?: CourseHandoutUpdateDto;
@@ -4393,6 +4876,37 @@ export type GetCourseLibraryByIdAsyncResponses = {
 
 export type GetCourseLibraryByIdAsyncResponse = GetCourseLibraryByIdAsyncResponses[keyof GetCourseLibraryByIdAsyncResponses];
 
+export type PatchCourseLibraryAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        libraryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseLibraries/{libraryId}';
+};
+
+export type PatchCourseLibraryAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseLibraryAsyncError = PatchCourseLibraryAsyncErrors[keyof PatchCourseLibraryAsyncErrors];
+
+export type PatchCourseLibraryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type UpdateCourseLibraryAsyncData = {
     body?: CourseLibraryUpdateDto;
     headers?: {
@@ -4580,6 +5094,37 @@ export type GetCoursePageByIdAsyncResponses = {
 
 export type GetCoursePageByIdAsyncResponse = GetCoursePageByIdAsyncResponses[keyof GetCoursePageByIdAsyncResponses];
 
+export type PatchCoursePageAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        pageId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CoursePages/{pageId}';
+};
+
+export type PatchCoursePageAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCoursePageAsyncError = PatchCoursePageAsyncErrors[keyof PatchCoursePageAsyncErrors];
+
+export type PatchCoursePageAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type UpdateCoursePageAsyncData = {
     body?: CoursePageUpdateDto;
     headers?: {
@@ -4764,6 +5309,39 @@ export type GetCourseProblemSetByIdAsyncResponses = {
 };
 
 export type GetCourseProblemSetByIdAsyncResponse = GetCourseProblemSetByIdAsyncResponses[keyof GetCourseProblemSetByIdAsyncResponses];
+
+export type PatchCourseProblemSetAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        problemSetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseProblemSets/{problemSetId}';
+};
+
+export type PatchCourseProblemSetAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseProblemSetAsyncError = PatchCourseProblemSetAsyncErrors[keyof PatchCourseProblemSetAsyncErrors];
+
+export type PatchCourseProblemSetAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseProblemSetAsyncResponse = PatchCourseProblemSetAsyncResponses[keyof PatchCourseProblemSetAsyncResponses];
 
 export type UpdateCourseProblemSetAsyncData = {
     body?: CourseProblemSetUpdateDto;
@@ -4950,6 +5528,39 @@ export type GetCourseByIdAsyncResponses = {
 };
 
 export type GetCourseByIdAsyncResponse = GetCourseByIdAsyncResponses[keyof GetCourseByIdAsyncResponses];
+
+export type PatchCourseAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/Courses/{courseId}';
+};
+
+export type PatchCourseAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseAsyncError = PatchCourseAsyncErrors[keyof PatchCourseAsyncErrors];
+
+export type PatchCourseAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseAsyncResponse = PatchCourseAsyncResponses[keyof PatchCourseAsyncResponses];
 
 export type UpdateCourseAsyncData = {
     body?: CourseUpdateDto;
@@ -6261,6 +6872,39 @@ export type GetCourseSectionByIdAsyncResponses = {
 
 export type GetCourseSectionByIdAsyncResponse = GetCourseSectionByIdAsyncResponses[keyof GetCourseSectionByIdAsyncResponses];
 
+export type PatchCourseSectionAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        sectionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseSections/{sectionId}';
+};
+
+export type PatchCourseSectionAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseSectionAsyncError = PatchCourseSectionAsyncErrors[keyof PatchCourseSectionAsyncErrors];
+
+export type PatchCourseSectionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseSectionAsyncResponse = PatchCourseSectionAsyncResponses[keyof PatchCourseSectionAsyncResponses];
+
 export type UpdateCourseSectionAsyncData = {
     body?: CourseSectionUpdateDto;
     headers?: {
@@ -6445,6 +7089,39 @@ export type GetCourseTeamMembershipByIdAsyncResponses = {
 };
 
 export type GetCourseTeamMembershipByIdAsyncResponse = GetCourseTeamMembershipByIdAsyncResponses[keyof GetCourseTeamMembershipByIdAsyncResponses];
+
+export type PatchCourseTeamMembershipAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        membershipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseTeamMemberships/{membershipId}';
+};
+
+export type PatchCourseTeamMembershipAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseTeamMembershipAsyncError = PatchCourseTeamMembershipAsyncErrors[keyof PatchCourseTeamMembershipAsyncErrors];
+
+export type PatchCourseTeamMembershipAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseTeamMembershipAsyncResponse = PatchCourseTeamMembershipAsyncResponses[keyof PatchCourseTeamMembershipAsyncResponses];
 
 export type UpdateCourseTeamMembershipAsyncData = {
     body?: CourseTeamMembershipUpdateDto;
@@ -6631,6 +7308,39 @@ export type GetCourseUnitComponentByIdAsyncResponses = {
 
 export type GetCourseUnitComponentByIdAsyncResponse = GetCourseUnitComponentByIdAsyncResponses[keyof GetCourseUnitComponentByIdAsyncResponses];
 
+export type PatchCourseUnitComponentAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        componentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseUnitComponents/{componentId}';
+};
+
+export type PatchCourseUnitComponentAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseUnitComponentAsyncError = PatchCourseUnitComponentAsyncErrors[keyof PatchCourseUnitComponentAsyncErrors];
+
+export type PatchCourseUnitComponentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseUnitComponentAsyncResponse = PatchCourseUnitComponentAsyncResponses[keyof PatchCourseUnitComponentAsyncResponses];
+
 export type UpdateCourseUnitComponentAsyncData = {
     body?: CourseUnitComponentUpdateDto;
     headers?: {
@@ -6815,6 +7525,39 @@ export type GetCourseUnitByIdAsyncResponses = {
 };
 
 export type GetCourseUnitByIdAsyncResponse = GetCourseUnitByIdAsyncResponses[keyof GetCourseUnitByIdAsyncResponses];
+
+export type PatchCourseUnitAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        unitId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseUnits/{unitId}';
+};
+
+export type PatchCourseUnitAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseUnitAsyncError = PatchCourseUnitAsyncErrors[keyof PatchCourseUnitAsyncErrors];
+
+export type PatchCourseUnitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseUnitAsyncResponse = PatchCourseUnitAsyncResponses[keyof PatchCourseUnitAsyncResponses];
 
 export type UpdateCourseUnitAsyncData = {
     body?: CourseUnitUpdateDto;
@@ -7001,6 +7744,39 @@ export type GetCourseUpdateByIdAsyncResponses = {
 
 export type GetCourseUpdateByIdAsyncResponse = GetCourseUpdateByIdAsyncResponses[keyof GetCourseUpdateByIdAsyncResponses];
 
+export type PatchCourseUpdateAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        updateId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseUpdates/{updateId}';
+};
+
+export type PatchCourseUpdateAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseUpdateAsyncError = PatchCourseUpdateAsyncErrors[keyof PatchCourseUpdateAsyncErrors];
+
+export type PatchCourseUpdateAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseUpdateAsyncResponse = PatchCourseUpdateAsyncResponses[keyof PatchCourseUpdateAsyncResponses];
+
 export type UpdateCourseUpdateAsyncData = {
     body?: CourseNewsUpdateDto;
     headers?: {
@@ -7185,6 +7961,39 @@ export type GetCourseWikiByIdAsyncResponses = {
 };
 
 export type GetCourseWikiByIdAsyncResponse = GetCourseWikiByIdAsyncResponses[keyof GetCourseWikiByIdAsyncResponses];
+
+export type PatchCourseWikiAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        wikiId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/CourseWikis/{wikiId}';
+};
+
+export type PatchCourseWikiAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCourseWikiAsyncError = PatchCourseWikiAsyncErrors[keyof PatchCourseWikiAsyncErrors];
+
+export type PatchCourseWikiAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCourseWikiAsyncResponse = PatchCourseWikiAsyncResponses[keyof PatchCourseWikiAsyncResponses];
 
 export type UpdateCourseWikiAsyncData = {
     body?: CourseWikiUpdateDto;
@@ -7699,6 +8508,39 @@ export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdRespon
 };
 
 export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponse = GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses[keyof GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses];
+
+export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        instructorProfileId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/InstructorProfiles/{instructorProfileId}';
+};
+
+export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdError = PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors[keyof PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdErrors];
+
+export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponse = PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses[keyof PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses];
 
 export type PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdData = {
     body?: InstructorProfileUpdateDto;
@@ -8335,6 +9177,39 @@ export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses = 
 };
 
 export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponse = GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses];
+
+export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        studentProfileId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LearningService/StudentProfiles/{studentProfileId}';
+};
+
+export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdError = PatchApiV2LearningServiceStudentProfilesByStudentProfileIdErrors[keyof PatchApiV2LearningServiceStudentProfilesByStudentProfileIdErrors];
+
+export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdResponse = PatchApiV2LearningServiceStudentProfilesByStudentProfileIdResponses[keyof PatchApiV2LearningServiceStudentProfilesByStudentProfileIdResponses];
 
 export type PutApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
     body?: StudentProfileUpdateDto;

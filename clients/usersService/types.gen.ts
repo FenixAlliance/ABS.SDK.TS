@@ -38,6 +38,8 @@ export type AddressDto = {
     isDefaultSenderAddress?: boolean;
     isDefaultReturnAddress?: boolean;
     isDefaultSuppingLocation?: boolean;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type AddressDtoListEnvelopeReadable = {
@@ -455,8 +457,10 @@ export type NotificationDto = {
     read?: boolean;
     icon?: string | null;
     message?: string | null;
+    imageUrl?: string | null;
     redirectUrl?: string | null;
-    socialProfileID?: string | null;
+    type?: 'Event' | 'Alert' | 'Log';
+    socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
 };
@@ -1534,6 +1538,42 @@ export type GetUserOptionByIdResponses = {
 };
 
 export type GetUserOptionByIdResponse = GetUserOptionByIdResponses[keyof GetUserOptionByIdResponses];
+
+export type PatchUserOptionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/Me/Options/{optionId}';
+};
+
+export type PatchUserOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchUserOptionError = PatchUserOptionErrors[keyof PatchUserOptionErrors];
+
+export type PatchUserOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchUserOptionResponse = PatchUserOptionResponses[keyof PatchUserOptionResponses];
 
 export type UpdateUserOptionData = {
     body?: OptionUpdateDto;

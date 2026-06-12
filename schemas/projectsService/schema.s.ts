@@ -446,6 +446,11 @@ export interface paths {
      * @description Deletes the specified project.
      */
     delete: operations["DeleteProjectAsync"];
+    /**
+     * Patches a project
+     * @description Partially updates the specified project.
+     */
+    patch: operations["PatchProjectAsync"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/Periods": {
     /**
@@ -470,6 +475,11 @@ export interface paths {
      * @description Deletes the specified period from a project.
      */
     delete: operations["DeleteProjectPeriodAsync"];
+    /**
+     * Patches a project period
+     * @description Partially updates the specified period for a project.
+     */
+    patch: operations["PatchProjectPeriodAsync"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/TimeLogs": {
     /**
@@ -515,6 +525,11 @@ export interface paths {
      * @description Deletes the specified task from a project.
      */
     delete: operations["DeleteProjectTaskAsync"];
+    /**
+     * Patches a project task
+     * @description Partially updates the specified task in a project.
+     */
+    patch: operations["PatchProjectTaskAsync"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/TaskCategories": {
     /**
@@ -565,6 +580,11 @@ export interface paths {
      * @description Deletes a project task.
      */
     delete: operations["DeleteProjectTaskAsync"];
+    /**
+     * Patch a project task
+     * @description Partially updates an existing project task.
+     */
+    patch: operations["PatchProjectTaskAsync"];
   };
   "/api/v2/ProjectsService/TaskCategories": {
     /**
@@ -601,6 +621,11 @@ export interface paths {
      * @description Deletes the specified task category.
      */
     delete: operations["DeleteTaskCategoryAsync"];
+    /**
+     * Patches a task category
+     * @description Partially updates the specified task category.
+     */
+    patch: operations["PatchTaskCategoryAsync"];
   };
   "/api/v2/ProjectsService/TaskCategories/{taskCategoryId}/Types": {
     /**
@@ -625,6 +650,11 @@ export interface paths {
      * @description Deletes the specified task type.
      */
     delete: operations["DeleteTaskTypeAsync"];
+    /**
+     * Patches a task type
+     * @description Partially updates the specified task type.
+     */
+    patch: operations["PatchTaskTypeAsync"];
   };
   "/api/v2/ProjectsService/TaskTypes": {
     /**
@@ -710,6 +740,11 @@ export interface paths {
      * @description Deletes a project time log entry.
      */
     delete: operations["DeleteProjectTimeLogAsync"];
+    /**
+     * Patch a project time log
+     * @description Partially updates an existing project time log entry.
+     */
+    patch: operations["PatchProjectTimeLogAsync"];
   };
 }
 
@@ -780,6 +815,14 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     ProjectCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -787,6 +830,8 @@ export interface components {
       timestamp?: string;
       title?: string | null;
       description?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
       /** Format: date-time */
       projectStartDate?: string;
       /** Format: date-time */
@@ -798,6 +843,10 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       /** Format: date-time */
       projectStartDate?: string;
       /** Format: date-time */
@@ -822,16 +871,16 @@ export interface components {
       result?: components["schemas"]["ProjectDto"][] | null;
     };
     ProjectHoursApprovalApproverUpdateDto: {
-      approverContactID?: string | null;
+      approverContactId?: string | null;
     };
     ProjectHoursApprovalCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      requesterContactID?: string | null;
-      approverContactID?: string | null;
-      projectPeriodID?: string | null;
+      requesterContactId?: string | null;
+      approverContactId?: string | null;
+      projectPeriodId?: string | null;
       comments?: string | null;
     };
     ProjectHoursApprovalStatusUpdateDto: {
@@ -848,7 +897,7 @@ export interface components {
       periodStartDate?: string;
       /** Format: date-time */
       periodEndDate?: string;
-      projectID?: string | null;
+      projectId?: string | null;
     };
     ProjectPeriodDto: {
       id?: string | null;
@@ -858,7 +907,9 @@ export interface components {
       periodStartDate?: string;
       /** Format: date-time */
       periodEndDate?: string;
-      projectID?: string | null;
+      projectId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ProjectPeriodDtoListEnvelope: {
       isSuccess?: boolean;
@@ -886,7 +937,7 @@ export interface components {
       startDate?: string;
       /** Format: date-time */
       dueLine?: string;
-      projectID?: string | null;
+      projectId?: string | null;
     };
     ProjectTaskDto: {
       id?: string | null;
@@ -898,8 +949,10 @@ export interface components {
       startDate?: string;
       /** Format: date-time */
       dueLine?: string;
-      projectID?: string | null;
-      projectTaskBucketID?: string | null;
+      projectId?: string | null;
+      projectTaskBucketId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ProjectTaskDtoEnvelope: {
       isSuccess?: boolean;
@@ -937,11 +990,11 @@ export interface components {
       /** Format: date-time */
       logDate?: string;
       comments?: string | null;
-      projectTaskID: string;
-      projectPeriodID: string;
+      projectTaskId: string;
+      projectPeriodId: string;
       /** @enum {string} */
       projectTimeLogRecordType?: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
-      projectID?: string | null;
+      projectId?: string | null;
     };
     ProjectTimeLogDto: {
       id?: string | null;
@@ -986,14 +1039,16 @@ export interface components {
       /** Format: date-span */
       timeSpan?: string;
       comments?: string | null;
-      projectTaskID?: string | null;
-      projectPeriodID?: string | null;
+      projectTaskId?: string | null;
+      projectPeriodId?: string | null;
       /** @enum {string} */
       projectTimeLogRecordType?: "RegularHours" | "OvertimeToPay" | "OvertimeToCompensate";
     };
     ProjectUpdateDto: {
       title?: string | null;
       description?: string | null;
+      individualId?: string | null;
+      organizationId?: string | null;
       /** Format: date-time */
       projectStartDate?: string;
       /** Format: date-time */
@@ -1020,12 +1075,16 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       title?: string | null;
+      projectId?: string | null;
     };
     TaskCategoryDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
       title?: string | null;
+      projectId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     TaskCategoryDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1038,6 +1097,7 @@ export interface components {
     };
     TaskCategoryUpdateDto: {
       title?: string | null;
+      projectId?: string | null;
     };
     TaskTypeCreateDto: {
       /** Format: uuid */
@@ -1045,7 +1105,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       title?: string | null;
-      taskCategoryID?: string | null;
+      taskCategoryId?: string | null;
       displayInTimeTracker?: boolean;
       requiresDescription?: boolean;
     };
@@ -1054,12 +1114,15 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       title?: string | null;
-      taskCategoryID?: string | null;
+      taskCategoryId?: string | null;
       displayInTimeTracker?: boolean;
       requiresDescription?: boolean;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     TaskTypeUpdateDto: {
       title?: string | null;
+      taskCategoryId?: string | null;
       displayInTimeTracker?: boolean;
       requiresDescription?: boolean;
     };
@@ -1333,6 +1396,49 @@ export interface operations {
     };
   };
   /**
+   * Patches a project
+   * @description Partially updates the specified project.
+   */
+  PatchProjectAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves project periods
    * @description Gets all periods for a specific project.
    */
@@ -1468,6 +1574,50 @@ export interface operations {
       path: {
         projectId: string;
         projectPeriodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a project period
+   * @description Partially updates the specified period for a project.
+   */
+  PatchProjectPeriodAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+        projectPeriodId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -1726,6 +1876,46 @@ export interface operations {
       };
       path: {
         projectTaskId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a project task
+   * @description Partially updates an existing project task.
+   */
+  PatchProjectTaskAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        projectTaskId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -2079,6 +2269,49 @@ export interface operations {
     };
   };
   /**
+   * Patches a task category
+   * @description Partially updates the specified task category.
+   */
+  PatchTaskCategoryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        taskCategoryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves task types for a category
    * @description Gets all task types belonging to the specified task category.
    */
@@ -2214,6 +2447,49 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["TaskTypeDto"];
           "application/xml": components["schemas"]["TaskTypeDto"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a task type
+   * @description Partially updates the specified task type.
+   */
+  PatchTaskTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        taskTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -2698,6 +2974,50 @@ export interface operations {
       };
       path: {
         timeLogId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a project time log
+   * @description Partially updates an existing project time log entry.
+   */
+  PatchProjectTimeLogAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        timeLogId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

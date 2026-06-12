@@ -718,13 +718,40 @@ export type ForgotPasswordRequest = {
 export type GigCreateDto = {
     id?: string;
     timestamp?: string;
+    remote?: boolean;
+    type?: string | null;
     title?: string | null;
     description?: string | null;
-    startDate?: string;
-    endDate?: string;
-    budget?: number;
+    expectedDeliveryDate?: string;
+    employerProfileId?: string | null;
+    minBudget?: number;
+    maxBudget?: number;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    cityId?: string | null;
     location?: string | null;
-    skillsRequired?: string | null;
+    externalUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
 };
 
 export type GigDto = {
@@ -800,15 +827,40 @@ export type GigDtoListEnvelopeWritable = {
 };
 
 export type GigUpdateDto = {
+    remote?: boolean;
+    type?: string | null;
     title?: string | null;
     description?: string | null;
-    price?: number | null;
-    currency?: string | null;
+    expectedDeliveryDate?: string;
+    employerProfileId?: string | null;
+    minBudget?: number;
+    maxBudget?: number;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    cityId?: string | null;
     location?: string | null;
-    startDate?: string | null;
-    endDate?: string | null;
-    category?: string | null;
-    tags?: string | null;
+    externalUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
 };
 
 export type HttpValidationProblemDetails = {
@@ -854,6 +906,53 @@ export type Int32EnvelopeWritable = {
 export type JobOfferCreateDto = {
     id?: string;
     timestamp?: string;
+    remote?: boolean;
+    expectedHireDate?: string;
+    title?: string | null;
+    description?: string | null;
+    technicalSkills?: string | null;
+    nonTechnicalSkills?: string | null;
+    certifications?: string | null;
+    projectExperience?: string | null;
+    technologies?: string | null;
+    benefits?: string | null;
+    isOfficialJobOffer?: boolean;
+    isRemoteJobOffer?: boolean;
+    isMidTimeJobOffer?: boolean;
+    isUndergraduateOption?: boolean;
+    minOverallExperienceYears?: number;
+    availiablePositionsCount?: number;
+    minSalaryAmount?: number;
+    maxSalaryAmount?: number;
+    currencyId?: string | null;
+    jobFieldId?: string | null;
+    employerProfileId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    cityId?: string | null;
+    imageUrl?: string | null;
+    location?: string | null;
+    externalUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
 };
 
 export type JobOfferDto = {
@@ -942,7 +1041,53 @@ export type JobOfferDtoListEnvelopeWritable = {
 };
 
 export type JobOfferUpdateDto = {
-    [key: string]: never;
+    remote?: boolean;
+    expectedHireDate?: string;
+    title?: string | null;
+    description?: string | null;
+    technicalSkills?: string | null;
+    nonTechnicalSkills?: string | null;
+    certifications?: string | null;
+    projectExperience?: string | null;
+    technologies?: string | null;
+    benefits?: string | null;
+    isOfficialJobOffer?: boolean;
+    isRemoteJobOffer?: boolean;
+    isMidTimeJobOffer?: boolean;
+    isUndergraduateOption?: boolean;
+    minOverallExperienceYears?: number;
+    availiablePositionsCount?: number;
+    minSalaryAmount?: number;
+    maxSalaryAmount?: number;
+    currencyId?: string | null;
+    jobFieldId?: string | null;
+    employerProfileId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
+    cityId?: string | null;
+    imageUrl?: string | null;
+    location?: string | null;
+    externalUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
 };
 
 export type JobTitleCreateDto = {
@@ -1068,8 +1213,8 @@ export type LeaveApplicationDtoListEnvelopeWritable = {
 
 export type LeaveApplicationUpdateDto = {
     justification?: string | null;
-    approved?: boolean | null;
-    onReview?: boolean | null;
+    approved?: boolean;
+    onReview?: boolean;
     leaveTypeId?: string | null;
     employeeProfileId?: string | null;
 };
@@ -1129,6 +1274,14 @@ export type LoginRequest = {
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
+};
+
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type PayrollCreateDto = {
@@ -1302,7 +1455,7 @@ export type SalaryDtoListEnvelopeWritable = {
 };
 
 export type SalaryUpdateDto = {
-    amount?: number | null;
+    amount?: number;
     currencyId?: string | null;
     employeeProfileId?: string | null;
 };
@@ -2489,6 +2642,47 @@ export type GetEmployeeAppraisalSessionByIdAsyncResponses = {
 
 export type GetEmployeeAppraisalSessionByIdAsyncResponse = GetEmployeeAppraisalSessionByIdAsyncResponses[keyof GetEmployeeAppraisalSessionByIdAsyncResponses];
 
+export type PatchEmployeeAppraisalSessionAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        sessionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/EmployeeAppraisalSessions/{sessionId}';
+};
+
+export type PatchEmployeeAppraisalSessionAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchEmployeeAppraisalSessionAsyncError = PatchEmployeeAppraisalSessionAsyncErrors[keyof PatchEmployeeAppraisalSessionAsyncErrors];
+
+export type PatchEmployeeAppraisalSessionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchEmployeeAppraisalSessionAsyncResponse = PatchEmployeeAppraisalSessionAsyncResponses[keyof PatchEmployeeAppraisalSessionAsyncResponses];
+
 export type UpdateEmployeeAppraisalSessionAsyncData = {
     body?: EmployeeAppraisalSessionUpdateDto;
     headers?: {
@@ -2716,6 +2910,47 @@ export type GetEmployeeByIdAsyncResponses = {
 };
 
 export type GetEmployeeByIdAsyncResponse = GetEmployeeByIdAsyncResponses[keyof GetEmployeeByIdAsyncResponses];
+
+export type PatchEmployeeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        employeeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Employees/{employeeId}';
+};
+
+export type PatchEmployeeAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchEmployeeAsyncError = PatchEmployeeAsyncErrors[keyof PatchEmployeeAsyncErrors];
+
+export type PatchEmployeeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchEmployeeAsyncResponse = PatchEmployeeAsyncResponses[keyof PatchEmployeeAsyncResponses];
 
 export type UpdateEmployeeAsyncData = {
     body?: EmployeeProfileUpdateDto;
@@ -2945,6 +3180,47 @@ export type GetEmployeeTypeByIdAsyncResponses = {
 
 export type GetEmployeeTypeByIdAsyncResponse = GetEmployeeTypeByIdAsyncResponses[keyof GetEmployeeTypeByIdAsyncResponses];
 
+export type PatchEmployeeTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        employeeTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/EmployeeTypes/{employeeTypeId}';
+};
+
+export type PatchEmployeeTypeAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchEmployeeTypeAsyncError = PatchEmployeeTypeAsyncErrors[keyof PatchEmployeeTypeAsyncErrors];
+
+export type PatchEmployeeTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchEmployeeTypeAsyncResponse = PatchEmployeeTypeAsyncResponses[keyof PatchEmployeeTypeAsyncResponses];
+
 export type UpdateEmployeeTypeAsyncData = {
     body?: EmployeeTypeUpdateDto;
     headers?: {
@@ -3172,6 +3448,47 @@ export type GetEmployerByIdAsyncResponses = {
 };
 
 export type GetEmployerByIdAsyncResponse = GetEmployerByIdAsyncResponses[keyof GetEmployerByIdAsyncResponses];
+
+export type PatchEmployerAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        employerId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Employers/{employerId}';
+};
+
+export type PatchEmployerAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchEmployerAsyncError = PatchEmployerAsyncErrors[keyof PatchEmployerAsyncErrors];
+
+export type PatchEmployerAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchEmployerAsyncResponse = PatchEmployerAsyncResponses[keyof PatchEmployerAsyncResponses];
 
 export type UpdateEmployerAsyncData = {
     body?: EmployerProfileUpdateDto;
@@ -3729,6 +4046,47 @@ export type GetGigByIdAsyncResponses = {
 
 export type GetGigByIdAsyncResponse = GetGigByIdAsyncResponses[keyof GetGigByIdAsyncResponses];
 
+export type PatchGigAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Gigs/{gigId}';
+};
+
+export type PatchGigAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchGigAsyncError = PatchGigAsyncErrors[keyof PatchGigAsyncErrors];
+
+export type PatchGigAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchGigAsyncResponse = PatchGigAsyncResponses[keyof PatchGigAsyncResponses];
+
 export type UpdateGigAsyncData = {
     body?: GigUpdateDto;
     headers?: {
@@ -3956,6 +4314,47 @@ export type GetJobOfferByIdAsyncResponses = {
 };
 
 export type GetJobOfferByIdAsyncResponse = GetJobOfferByIdAsyncResponses[keyof GetJobOfferByIdAsyncResponses];
+
+export type PatchJobOfferAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOffers/{jobOfferId}';
+};
+
+export type PatchJobOfferAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJobOfferAsyncError = PatchJobOfferAsyncErrors[keyof PatchJobOfferAsyncErrors];
+
+export type PatchJobOfferAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJobOfferAsyncResponse = PatchJobOfferAsyncResponses[keyof PatchJobOfferAsyncResponses];
 
 export type UpdateJobOfferAsyncData = {
     body?: JobOfferUpdateDto;
@@ -4185,6 +4584,47 @@ export type GetJobTitleByIdAsyncResponses = {
 
 export type GetJobTitleByIdAsyncResponse = GetJobTitleByIdAsyncResponses[keyof GetJobTitleByIdAsyncResponses];
 
+export type PatchJobTitleAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobTitleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobTitles/{jobTitleId}';
+};
+
+export type PatchJobTitleAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJobTitleAsyncError = PatchJobTitleAsyncErrors[keyof PatchJobTitleAsyncErrors];
+
+export type PatchJobTitleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJobTitleAsyncResponse = PatchJobTitleAsyncResponses[keyof PatchJobTitleAsyncResponses];
+
 export type UpdateJobTitleAsyncData = {
     body?: JobTitleUpdateDto;
     headers?: {
@@ -4412,6 +4852,47 @@ export type GetLeaveApplicationByIdAsyncResponses = {
 };
 
 export type GetLeaveApplicationByIdAsyncResponse = GetLeaveApplicationByIdAsyncResponses[keyof GetLeaveApplicationByIdAsyncResponses];
+
+export type PatchLeaveApplicationAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        leaveApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/LeaveApplications/{leaveApplicationId}';
+};
+
+export type PatchLeaveApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchLeaveApplicationAsyncError = PatchLeaveApplicationAsyncErrors[keyof PatchLeaveApplicationAsyncErrors];
+
+export type PatchLeaveApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchLeaveApplicationAsyncResponse = PatchLeaveApplicationAsyncResponses[keyof PatchLeaveApplicationAsyncResponses];
 
 export type UpdateLeaveApplicationAsyncData = {
     body?: LeaveApplicationUpdateDto;
@@ -5097,6 +5578,47 @@ export type GetPayrollByIdAsyncResponses = {
 
 export type GetPayrollByIdAsyncResponse = GetPayrollByIdAsyncResponses[keyof GetPayrollByIdAsyncResponses];
 
+export type PatchPayrollAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        payrollId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Payrolls/{payrollId}';
+};
+
+export type PatchPayrollAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchPayrollAsyncError = PatchPayrollAsyncErrors[keyof PatchPayrollAsyncErrors];
+
+export type PatchPayrollAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPayrollAsyncResponse = PatchPayrollAsyncResponses[keyof PatchPayrollAsyncResponses];
+
 export type UpdatePayrollAsyncData = {
     body?: PayrollUpdateDto;
     headers?: {
@@ -5324,6 +5846,47 @@ export type GetSalaryByIdAsyncResponses = {
 };
 
 export type GetSalaryByIdAsyncResponse = GetSalaryByIdAsyncResponses[keyof GetSalaryByIdAsyncResponses];
+
+export type PatchSalaryAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        salaryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Salaries/{salaryId}';
+};
+
+export type PatchSalaryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSalaryAsyncError = PatchSalaryAsyncErrors[keyof PatchSalaryAsyncErrors];
+
+export type PatchSalaryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSalaryAsyncResponse = PatchSalaryAsyncResponses[keyof PatchSalaryAsyncResponses];
 
 export type UpdateSalaryAsyncData = {
     body?: SalaryUpdateDto;
@@ -5553,6 +6116,47 @@ export type GetScheduleByIdAsyncResponses = {
 
 export type GetScheduleByIdAsyncResponse = GetScheduleByIdAsyncResponses[keyof GetScheduleByIdAsyncResponses];
 
+export type PatchScheduleAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        scheduleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Schedules/{scheduleId}';
+};
+
+export type PatchScheduleAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchScheduleAsyncError = PatchScheduleAsyncErrors[keyof PatchScheduleAsyncErrors];
+
+export type PatchScheduleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchScheduleAsyncResponse = PatchScheduleAsyncResponses[keyof PatchScheduleAsyncResponses];
+
 export type UpdateScheduleAsyncData = {
     body?: ScheduleUpdateDto;
     headers?: {
@@ -5780,6 +6384,47 @@ export type GetShiftByIdAsyncResponses = {
 };
 
 export type GetShiftByIdAsyncResponse = GetShiftByIdAsyncResponses[keyof GetShiftByIdAsyncResponses];
+
+export type PatchShiftAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        shiftId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/Shifts/{shiftId}';
+};
+
+export type PatchShiftAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchShiftAsyncError = PatchShiftAsyncErrors[keyof PatchShiftAsyncErrors];
+
+export type PatchShiftAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchShiftAsyncResponse = PatchShiftAsyncResponses[keyof PatchShiftAsyncResponses];
 
 export type UpdateShiftAsyncData = {
     body?: ShiftUpdateDto;
@@ -6009,6 +6654,47 @@ export type GetTimeIntervalByIdAsyncResponses = {
 
 export type GetTimeIntervalByIdAsyncResponse = GetTimeIntervalByIdAsyncResponses[keyof GetTimeIntervalByIdAsyncResponses];
 
+export type PatchTimeIntervalAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        timeIntervalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/TimeIntervals/{timeIntervalId}';
+};
+
+export type PatchTimeIntervalAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTimeIntervalAsyncError = PatchTimeIntervalAsyncErrors[keyof PatchTimeIntervalAsyncErrors];
+
+export type PatchTimeIntervalAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTimeIntervalAsyncResponse = PatchTimeIntervalAsyncResponses[keyof PatchTimeIntervalAsyncResponses];
+
 export type UpdateTimeIntervalAsyncData = {
     body?: TimeIntervalUpdateDto;
     headers?: {
@@ -6237,6 +6923,47 @@ export type GetTrainingProgramCourseByIdAsyncResponses = {
 
 export type GetTrainingProgramCourseByIdAsyncResponse = GetTrainingProgramCourseByIdAsyncResponses[keyof GetTrainingProgramCourseByIdAsyncResponses];
 
+export type PatchTrainingProgramCourseAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        courseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/TrainingProgramCourses/{courseId}';
+};
+
+export type PatchTrainingProgramCourseAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTrainingProgramCourseAsyncError = PatchTrainingProgramCourseAsyncErrors[keyof PatchTrainingProgramCourseAsyncErrors];
+
+export type PatchTrainingProgramCourseAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTrainingProgramCourseAsyncResponse = PatchTrainingProgramCourseAsyncResponses[keyof PatchTrainingProgramCourseAsyncResponses];
+
 export type UpdateTrainingProgramCourseAsyncData = {
     body?: TrainingProgramCourseUpdateDto;
     headers?: {
@@ -6464,6 +7191,47 @@ export type GetTrainingProgramEventByIdAsyncResponses = {
 };
 
 export type GetTrainingProgramEventByIdAsyncResponse = GetTrainingProgramEventByIdAsyncResponses[keyof GetTrainingProgramEventByIdAsyncResponses];
+
+export type PatchTrainingProgramEventAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        eventId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/TrainingProgramEvents/{eventId}';
+};
+
+export type PatchTrainingProgramEventAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTrainingProgramEventAsyncError = PatchTrainingProgramEventAsyncErrors[keyof PatchTrainingProgramEventAsyncErrors];
+
+export type PatchTrainingProgramEventAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTrainingProgramEventAsyncResponse = PatchTrainingProgramEventAsyncResponses[keyof PatchTrainingProgramEventAsyncResponses];
 
 export type UpdateTrainingProgramEventAsyncData = {
     body?: TrainingProgramEventUpdateDto;

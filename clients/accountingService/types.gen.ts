@@ -30,6 +30,7 @@ export type AccountCreateDto = {
     path?: string | null;
     prefix?: string | null;
     currencyId: string;
+    contactId?: string | null;
     accountTypeId?: string | null;
     parentAccountId?: string | null;
     accountCategory: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
@@ -47,6 +48,7 @@ export type AccountDtoReadable = {
     prefix?: string | null;
     balance?: number;
     currencyId?: string | null;
+    contactId?: string | null;
     accountType?: string | null;
     qualifiedName?: string | null;
     accountTypeId?: string | null;
@@ -81,6 +83,7 @@ export type AccountDtoWritable = {
     prefix?: string | null;
     balance?: number;
     currencyId?: string | null;
+    contactId?: string | null;
     accountType?: string | null;
     qualifiedName?: string | null;
     accountTypeId?: string | null;
@@ -191,12 +194,14 @@ export type AccountRelationCreateDto = {
     id?: string;
     timestamp?: string;
     accountId?: string | null;
+    type?: string | null;
 };
 
 export type AccountRelationDto = {
     id?: string | null;
     timestamp?: string | null;
     accountId?: string | null;
+    type?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
 };
@@ -218,6 +223,7 @@ export type AccountRelationDtoListEnvelopeWritable = {
 
 export type AccountRelationUpdateDto = {
     accountId?: string | null;
+    type?: string | null;
 };
 
 export type AccountTypeCreateDto = {
@@ -279,6 +285,7 @@ export type AccountUpdateDto = {
     path?: string | null;
     prefix?: string | null;
     currencyId: string;
+    contactId?: string | null;
     accountTypeId?: string | null;
     parentAccountId?: string | null;
     accountCategory?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
@@ -552,9 +559,9 @@ export type BankAccountCreateDto = {
     swift?: string | null;
     branchCode?: string | null;
     bankAccountNumber?: string | null;
-    qualifiedName?: string | null;
     bankId?: string | null;
     bankProfileId?: string | null;
+    walletId?: string | null;
 };
 
 export type BankAccountDto = {
@@ -609,9 +616,9 @@ export type BankAccountUpdateDto = {
     swift?: string | null;
     branchCode?: string | null;
     bankAccountNumber?: string | null;
-    qualifiedName?: string | null;
     bankId?: string | null;
     bankProfileId?: string | null;
+    walletId?: string | null;
 };
 
 export type BankCreateDto = {
@@ -846,6 +853,17 @@ export type BankProfileDtoListEnvelopeWritable = {
 export type BankTransactionCreateDto = {
     id?: string;
     timestamp?: string;
+    description?: string | null;
+    price?: number;
+    quantity?: number;
+    externalDescription?: string | null;
+    basisQuantity?: number;
+    basisAmount?: number;
+    percent?: number;
+    unitGroupId?: string | null;
+    unitId?: string | null;
+    transactionCategoryId?: string | null;
+    currencyId?: string | null;
     bankProfileId?: string | null;
     bankAccountId?: string | null;
 };
@@ -939,6 +957,7 @@ export type BillingProfileCreateDto = {
     duns?: string | null;
     isPublicCompany?: boolean;
     isFactaCustomer?: boolean;
+    taxPayerType?: 'Individual' | 'Business';
     countryId: string;
     stateId: string;
     cityId: string;
@@ -1109,6 +1128,7 @@ export type BillingProfileUpdateDto = {
     duns?: string | null;
     isPublicCompany?: boolean;
     isFactaCustomer?: boolean;
+    taxPayerType?: 'Individual' | 'Business';
     countryId?: string | null;
     stateId?: string | null;
     cityId?: string | null;
@@ -1669,8 +1689,6 @@ export type CreateLedgerDto = {
     name?: string | null;
     description?: string | null;
     dateTime?: string;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     ledgerTypeId?: string | null;
 };
 
@@ -1822,7 +1840,7 @@ export type FinancialBookDto = {
     timestamp?: string | null;
     name?: string | null;
     description?: string | null;
-    businessID?: string | null;
+    tenantId?: string | null;
 };
 
 export type FinancialBookDtoEnvelopeReadable = {
@@ -2447,6 +2465,8 @@ export type ItemTaxPolicyRecordCreateDto = {
 export type ItemTaxPolicyRecordDto = {
     id?: string | null;
     timestamp?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     taxPolicyId?: string | null;
     itemPriceId?: string | null;
     itemId?: string | null;
@@ -2483,8 +2503,6 @@ export type ItemTaxPolicyRecordDtoListEnvelopeWritable = {
 };
 
 export type ItemTaxPolicyRecordUpdateDto = {
-    id?: string;
-    timestamp?: string;
     taxPolicyId?: string | null;
     itemPriceId?: string | null;
     itemId?: string | null;
@@ -2496,9 +2514,9 @@ export type JournalCreateDto = {
     name: string;
     description?: string | null;
     dateTime?: string;
-    parentJournalID?: string | null;
-    journalTypeID?: string | null;
-    ledgerID?: string | null;
+    parentJournalId?: string | null;
+    journalTypeId?: string | null;
+    ledgerId?: string | null;
 };
 
 export type JournalDto = {
@@ -2705,9 +2723,9 @@ export type JournalUpdateDto = {
     name?: string | null;
     description?: string | null;
     dateTime?: string;
-    parentJournalID?: string | null;
-    journalTypeID?: string | null;
-    ledgerID?: string | null;
+    parentJournalId?: string | null;
+    journalTypeId?: string | null;
+    ledgerId?: string | null;
 };
 
 export type LedgerDto = {
@@ -3027,7 +3045,7 @@ export type PaymentCommissionDto = {
     receiverWalletAccountId?: string | null;
     emisorContactId?: string | null;
     receiverContactId?: string | null;
-    paymentID?: string | null;
+    paymentId?: string | null;
 };
 
 export type PaymentCommissionDtoEnvelopeReadable = {
@@ -3139,7 +3157,7 @@ export type ReceiptDto = {
     paymentId?: string | null;
     tenantId?: string | null;
     closed?: boolean;
-    accountHolderId?: string | null;
+    userId?: string | null;
     contactId?: string | null;
     enrollmentId?: string | null;
     receiptType?: 'PaymentReceipt' | 'PurchaseReceipt';
@@ -3550,7 +3568,7 @@ export type TaxPolicyDto = {
     zero?: boolean;
     reduced?: boolean;
     withholding?: boolean;
-    fiscalAuthorityID?: string | null;
+    fiscalAuthorityId?: string | null;
 };
 
 export type TaxPolicyDtoEnvelopeReadable = {
@@ -3858,8 +3876,6 @@ export type TwoFactorResponse = {
 export type UpdateLedgerDto = {
     name?: string | null;
     description?: string | null;
-    tenantId?: string | null;
-    enrollmentId?: string | null;
     ledgerTypeId?: string | null;
 };
 
@@ -4044,6 +4060,43 @@ export type GetAccountGroupResponses = {
 };
 
 export type GetAccountGroupResponse = GetAccountGroupResponses[keyof GetAccountGroupResponses];
+
+export type PatchAccountGroupAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        accountGroupId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/AccountGroups/{accountGroupId}';
+};
+
+export type PatchAccountGroupAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchAccountGroupAsyncError = PatchAccountGroupAsyncErrors[keyof PatchAccountGroupAsyncErrors];
+
+export type PatchAccountGroupAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAccountGroupAsyncResponse = PatchAccountGroupAsyncResponses[keyof PatchAccountGroupAsyncResponses];
 
 export type UpdateAccountGroupData = {
     body?: AccountGroupUpdateDto;
@@ -4276,6 +4329,43 @@ export type GetAccountingPeriodResponses = {
 };
 
 export type GetAccountingPeriodResponse = GetAccountingPeriodResponses[keyof GetAccountingPeriodResponses];
+
+export type PatchAccountingPeriodAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        accountingPeriodId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/AccountingPeriods/{accountingPeriodId}';
+};
+
+export type PatchAccountingPeriodAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchAccountingPeriodAsyncError = PatchAccountingPeriodAsyncErrors[keyof PatchAccountingPeriodAsyncErrors];
+
+export type PatchAccountingPeriodAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAccountingPeriodAsyncResponse = PatchAccountingPeriodAsyncResponses[keyof PatchAccountingPeriodAsyncResponses];
 
 export type UpdateAccountingPeriodData = {
     body?: AccountingPeriodUpdateDto;
@@ -4947,6 +5037,44 @@ export type GetAccountEntryAsyncResponses = {
 
 export type GetAccountEntryAsyncResponse = GetAccountEntryAsyncResponses[keyof GetAccountEntryAsyncResponses];
 
+export type PatchAccountEntryAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        accountId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Accounts/{accountId}/Entries/{entryId}';
+};
+
+export type PatchAccountEntryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchAccountEntryAsyncError = PatchAccountEntryAsyncErrors[keyof PatchAccountEntryAsyncErrors];
+
+export type PatchAccountEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAccountEntryAsyncResponse = PatchAccountEntryAsyncResponses[keyof PatchAccountEntryAsyncResponses];
+
 export type UpdateAccountEntryAsyncData = {
     body?: AccountingEntryUpdateDto;
     headers?: {
@@ -5462,6 +5590,43 @@ export type GetAccountTypeByIdAsyncResponses = {
 
 export type GetAccountTypeByIdAsyncResponse = GetAccountTypeByIdAsyncResponses[keyof GetAccountTypeByIdAsyncResponses];
 
+export type PatchAccountTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        accountTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Accounts/Types/{accountTypeId}';
+};
+
+export type PatchAccountTypeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchAccountTypeAsyncError = PatchAccountTypeAsyncErrors[keyof PatchAccountTypeAsyncErrors];
+
+export type PatchAccountTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAccountTypeAsyncResponse = PatchAccountTypeAsyncResponses[keyof PatchAccountTypeAsyncResponses];
+
 export type UpdateAccountTypeAsyncData = {
     body?: AccountTypeUpdateDto;
     headers?: {
@@ -5644,6 +5809,44 @@ export type DeleteAccountRelationAsyncResponses = {
 };
 
 export type DeleteAccountRelationAsyncResponse = DeleteAccountRelationAsyncResponses[keyof DeleteAccountRelationAsyncResponses];
+
+export type PatchAccountRelationAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        accountRelationId: string;
+    };
+    query: {
+        tenantId: string;
+        accountId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Accounts/Relations/{accountRelationId}';
+};
+
+export type PatchAccountRelationAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchAccountRelationAsyncError = PatchAccountRelationAsyncErrors[keyof PatchAccountRelationAsyncErrors];
+
+export type PatchAccountRelationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAccountRelationAsyncResponse = PatchAccountRelationAsyncResponses[keyof PatchAccountRelationAsyncResponses];
 
 export type UpdateAccountRelationAsyncData = {
     body?: AccountRelationUpdateDto;
@@ -5934,6 +6137,51 @@ export type GetBankResponses = {
 
 export type GetBankResponse = GetBankResponses[keyof GetBankResponses];
 
+export type PatchBankData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bankId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Banking/{bankId}';
+};
+
+export type PatchBankErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchBankError = PatchBankErrors[keyof PatchBankErrors];
+
+export type PatchBankResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBankResponse = PatchBankResponses[keyof PatchBankResponses];
+
 export type UpdateBankData = {
     body?: BankUpdateDto;
     headers?: {
@@ -6169,6 +6417,52 @@ export type GetBankAccountResponses = {
 
 export type GetBankAccountResponse = GetBankAccountResponses[keyof GetBankAccountResponses];
 
+export type PatchBankAccountData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bankId: string;
+        accountId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Banking/{bankId}/Accounts/{accountId}';
+};
+
+export type PatchBankAccountErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchBankAccountError = PatchBankAccountErrors[keyof PatchBankAccountErrors];
+
+export type PatchBankAccountResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBankAccountResponse = PatchBankAccountResponses[keyof PatchBankAccountResponses];
+
 export type UpdateBankAccountData = {
     body?: BankAccountUpdateDto;
     headers?: {
@@ -6400,6 +6694,52 @@ export type GetBankGuaranteeResponses = {
 };
 
 export type GetBankGuaranteeResponse = GetBankGuaranteeResponses[keyof GetBankGuaranteeResponses];
+
+export type PatchBankGuaranteeData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bankId: string;
+        guaranteeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Banking/{bankId}/Guarantees/{guaranteeId}';
+};
+
+export type PatchBankGuaranteeErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchBankGuaranteeError = PatchBankGuaranteeErrors[keyof PatchBankGuaranteeErrors];
+
+export type PatchBankGuaranteeResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBankGuaranteeResponse = PatchBankGuaranteeResponses[keyof PatchBankGuaranteeResponses];
 
 export type UpdateBankGuaranteeData = {
     body?: BankGuaranteeUpdateDto;
@@ -6633,6 +6973,52 @@ export type GetBankTransactionResponses = {
 
 export type GetBankTransactionResponse = GetBankTransactionResponses[keyof GetBankTransactionResponses];
 
+export type PatchBankTransactionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        bankId: string;
+        transactionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Banking/{bankId}/Transactions/{transactionId}';
+};
+
+export type PatchBankTransactionErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchBankTransactionError = PatchBankTransactionErrors[keyof PatchBankTransactionErrors];
+
+export type PatchBankTransactionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBankTransactionResponse = PatchBankTransactionResponses[keyof PatchBankTransactionResponses];
+
 export type UpdateBankTransactionData = {
     body?: BankTransactionUpdateDto;
     headers?: {
@@ -6842,6 +7228,44 @@ export type DeleteBillableLineTaxResponses = {
 
 export type DeleteBillableLineTaxResponse = DeleteBillableLineTaxResponses[keyof DeleteBillableLineTaxResponses];
 
+export type PatchBillableLineTaxAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billableLineId: string;
+        taxId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/BillableLines/{billableLineId}/Taxes/{taxId}';
+};
+
+export type PatchBillableLineTaxAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchBillableLineTaxAsyncError = PatchBillableLineTaxAsyncErrors[keyof PatchBillableLineTaxAsyncErrors];
+
+export type PatchBillableLineTaxAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBillableLineTaxAsyncResponse = PatchBillableLineTaxAsyncResponses[keyof PatchBillableLineTaxAsyncResponses];
+
 export type UpdateBillableLineTaxData = {
     body?: AppliedItemTaxRecordUpdateDto;
     headers?: {
@@ -6914,6 +7338,43 @@ export type GetBillingProfileByIdAsyncResponses = {
 };
 
 export type GetBillingProfileByIdAsyncResponse = GetBillingProfileByIdAsyncResponses[keyof GetBillingProfileByIdAsyncResponses];
+
+export type PatchBillingProfileAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        billingProfileId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/BillingProfiles/{billingProfileId}';
+};
+
+export type PatchBillingProfileAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchBillingProfileAsyncError = PatchBillingProfileAsyncErrors[keyof PatchBillingProfileAsyncErrors];
+
+export type PatchBillingProfileAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBillingProfileAsyncResponse = PatchBillingProfileAsyncResponses[keyof PatchBillingProfileAsyncResponses];
 
 export type UpdateBillingProfileAsyncData = {
     body: BillingProfileUpdateDto;
@@ -7078,6 +7539,47 @@ export type GetBudgetDetailsAsyncResponses = {
 };
 
 export type GetBudgetDetailsAsyncResponse = GetBudgetDetailsAsyncResponses[keyof GetBudgetDetailsAsyncResponses];
+
+export type PatchBudgetAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        budgetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Budgets/{budgetId}';
+};
+
+export type PatchBudgetAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchBudgetAsyncError = PatchBudgetAsyncErrors[keyof PatchBudgetAsyncErrors];
+
+export type PatchBudgetAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBudgetAsyncResponse = PatchBudgetAsyncResponses[keyof PatchBudgetAsyncResponses];
 
 export type UpdateBudgetAsyncData = {
     body: BudgetUpdateDto;
@@ -7371,6 +7873,48 @@ export type GetBudgetAccountEntryAsyncResponses = {
 
 export type GetBudgetAccountEntryAsyncResponse = GetBudgetAccountEntryAsyncResponses[keyof GetBudgetAccountEntryAsyncResponses];
 
+export type PatchBudgetAccountEntryAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        budgetId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Budgets/{budgetId}/AccountEntries/{entryId}';
+};
+
+export type PatchBudgetAccountEntryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchBudgetAccountEntryAsyncError = PatchBudgetAccountEntryAsyncErrors[keyof PatchBudgetAccountEntryAsyncErrors];
+
+export type PatchBudgetAccountEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchBudgetAccountEntryAsyncResponse = PatchBudgetAccountEntryAsyncResponses[keyof PatchBudgetAccountEntryAsyncResponses];
+
 export type UpdateBudgetAccountEntryAsyncData = {
     body: BudgetAccountEntryUpdateDto;
     headers?: {
@@ -7588,6 +8132,43 @@ export type GetCommissionAsyncResponses = {
 
 export type GetCommissionAsyncResponse = GetCommissionAsyncResponses[keyof GetCommissionAsyncResponses];
 
+export type PatchCommissionAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        commissionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Commissions/Commissions/{commissionId}';
+};
+
+export type PatchCommissionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCommissionAsyncError = PatchCommissionAsyncErrors[keyof PatchCommissionAsyncErrors];
+
+export type PatchCommissionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCommissionAsyncResponse = PatchCommissionAsyncResponses[keyof PatchCommissionAsyncResponses];
+
 export type UpdateCommissionAsyncData = {
     body: CommissionUpdateDto;
     headers?: {
@@ -7803,6 +8384,43 @@ export type GetPaymentCommissionAsyncResponses = {
 };
 
 export type GetPaymentCommissionAsyncResponse = GetPaymentCommissionAsyncResponses[keyof GetPaymentCommissionAsyncResponses];
+
+export type PatchPaymentCommissionAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        paymentCommissionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Commissions/PaymentCommissions/{paymentCommissionId}';
+};
+
+export type PatchPaymentCommissionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchPaymentCommissionAsyncError = PatchPaymentCommissionAsyncErrors[keyof PatchPaymentCommissionAsyncErrors];
+
+export type PatchPaymentCommissionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchPaymentCommissionAsyncResponse = PatchPaymentCommissionAsyncResponses[keyof PatchPaymentCommissionAsyncResponses];
 
 export type UpdatePaymentCommissionAsyncData = {
     body: PaymentCommissionUpdateDto;
@@ -8051,6 +8669,43 @@ export type GetCostCentreResponses = {
 
 export type GetCostCentreResponse = GetCostCentreResponses[keyof GetCostCentreResponses];
 
+export type PatchCostCentreData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        costCentreId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/CostCentres/{costCentreId}';
+};
+
+export type PatchCostCentreErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCostCentreError = PatchCostCentreErrors[keyof PatchCostCentreErrors];
+
+export type PatchCostCentreResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCostCentreResponse = PatchCostCentreResponses[keyof PatchCostCentreResponses];
+
 export type UpdateCostCentreData = {
     body: CostCentreUpdateDto;
     headers?: {
@@ -8267,6 +8922,43 @@ export type GetCostCentreGroupResponses = {
 
 export type GetCostCentreGroupResponse = GetCostCentreGroupResponses[keyof GetCostCentreGroupResponses];
 
+export type PatchCostCentreGroupData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        groupId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/CostCentres/CostCentreGroups/{groupId}';
+};
+
+export type PatchCostCentreGroupErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCostCentreGroupError = PatchCostCentreGroupErrors[keyof PatchCostCentreGroupErrors];
+
+export type PatchCostCentreGroupResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCostCentreGroupResponse = PatchCostCentreGroupResponses[keyof PatchCostCentreGroupResponses];
+
 export type UpdateCostCentreGroupData = {
     body: CostCentreGroupUpdateDto;
     headers?: {
@@ -8447,6 +9139,43 @@ export type GetCostCentreBudgetResponses = {
 };
 
 export type GetCostCentreBudgetResponse = GetCostCentreBudgetResponses[keyof GetCostCentreBudgetResponses];
+
+export type PatchCostCentreBudgetData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        budgetId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/CostCentres/CostCentreBudgets/{budgetId}';
+};
+
+export type PatchCostCentreBudgetErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCostCentreBudgetError = PatchCostCentreBudgetErrors[keyof PatchCostCentreBudgetErrors];
+
+export type PatchCostCentreBudgetResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCostCentreBudgetResponse = PatchCostCentreBudgetResponses[keyof PatchCostCentreBudgetResponses];
 
 export type UpdateCostCentreBudgetData = {
     body: CostCentreBudgetUpdateDto;
@@ -8664,6 +9393,43 @@ export type GetExpenseClaimResponses = {
 
 export type GetExpenseClaimResponse = GetExpenseClaimResponses[keyof GetExpenseClaimResponses];
 
+export type PatchExpenseClaimData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        expenseClaimId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/ExpenseClaims/{expenseClaimId}';
+};
+
+export type PatchExpenseClaimErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchExpenseClaimError = PatchExpenseClaimErrors[keyof PatchExpenseClaimErrors];
+
+export type PatchExpenseClaimResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchExpenseClaimResponse = PatchExpenseClaimResponses[keyof PatchExpenseClaimResponses];
+
 export type UpdateExpenseClaimData = {
     body: ExpenseClaimUpdateDto;
     headers?: {
@@ -8879,6 +9645,43 @@ export type GetExpenseTypeResponses = {
 };
 
 export type GetExpenseTypeResponse = GetExpenseTypeResponses[keyof GetExpenseTypeResponses];
+
+export type PatchExpenseTypeData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        expenseTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/ExpenseTypes/{expenseTypeId}';
+};
+
+export type PatchExpenseTypeErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchExpenseTypeError = PatchExpenseTypeErrors[keyof PatchExpenseTypeErrors];
+
+export type PatchExpenseTypeResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchExpenseTypeResponse = PatchExpenseTypeResponses[keyof PatchExpenseTypeResponses];
 
 export type UpdateExpenseTypeData = {
     body: ExpenseTypeUpdateDto;
@@ -9444,6 +10247,43 @@ export type GetFinancialBookDetailsAsyncResponses = {
 
 export type GetFinancialBookDetailsAsyncResponse = GetFinancialBookDetailsAsyncResponses[keyof GetFinancialBookDetailsAsyncResponses];
 
+export type PatchFinancialBookAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        financialBookId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/FinancialBooks/{financialBookId}';
+};
+
+export type PatchFinancialBookAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFinancialBookAsyncError = PatchFinancialBookAsyncErrors[keyof PatchFinancialBookAsyncErrors];
+
+export type PatchFinancialBookAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFinancialBookAsyncResponse = PatchFinancialBookAsyncResponses[keyof PatchFinancialBookAsyncResponses];
+
 export type UpdateFinancialBookAsyncData = {
     body: FinancialBookUpdateDto;
     headers?: {
@@ -9663,6 +10503,43 @@ export type GetFiscalAuthorityResponses = {
 };
 
 export type GetFiscalAuthorityResponse = GetFiscalAuthorityResponses[keyof GetFiscalAuthorityResponses];
+
+export type PatchFiscalAuthorityAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        authorityId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/{authorityId}';
+};
+
+export type PatchFiscalAuthorityAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalAuthorityAsyncError = PatchFiscalAuthorityAsyncErrors[keyof PatchFiscalAuthorityAsyncErrors];
+
+export type PatchFiscalAuthorityAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalAuthorityAsyncResponse = PatchFiscalAuthorityAsyncResponses[keyof PatchFiscalAuthorityAsyncResponses];
 
 export type UpdateFiscalAuthorityData = {
     body?: FiscalAuthorityUpdateDto;
@@ -9886,6 +10763,43 @@ export type DeleteFiscalYearResponses = {
 
 export type DeleteFiscalYearResponse = DeleteFiscalYearResponses[keyof DeleteFiscalYearResponses];
 
+export type PatchFiscalAuthorityYearAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fiscalYearId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalYears/{fiscalYearId}';
+};
+
+export type PatchFiscalAuthorityYearAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalAuthorityYearAsyncError = PatchFiscalAuthorityYearAsyncErrors[keyof PatchFiscalAuthorityYearAsyncErrors];
+
+export type PatchFiscalAuthorityYearAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalAuthorityYearAsyncResponse = PatchFiscalAuthorityYearAsyncResponses[keyof PatchFiscalAuthorityYearAsyncResponses];
+
 export type UpdateFiscalYearData = {
     body?: FiscalYearUpdateDto;
     headers?: {
@@ -10108,6 +11022,43 @@ export type DeleteInvoiceEnumerationRangeResponses = {
 
 export type DeleteInvoiceEnumerationRangeResponse = DeleteInvoiceEnumerationRangeResponses[keyof DeleteInvoiceEnumerationRangeResponses];
 
+export type PatchFiscalEnumerationRangeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        enumerationRangeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/EnumerationRanges/{enumerationRangeId}';
+};
+
+export type PatchFiscalEnumerationRangeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalEnumerationRangeAsyncError = PatchFiscalEnumerationRangeAsyncErrors[keyof PatchFiscalEnumerationRangeAsyncErrors];
+
+export type PatchFiscalEnumerationRangeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalEnumerationRangeAsyncResponse = PatchFiscalEnumerationRangeAsyncResponses[keyof PatchFiscalEnumerationRangeAsyncResponses];
+
 export type UpdateInvoiceEnumerationRangeData = {
     body?: InvoiceEnumerationRangeUpdateDto;
     headers?: {
@@ -10328,6 +11279,43 @@ export type DeleteFiscalIdentificationTypeResponses = {
 };
 
 export type DeleteFiscalIdentificationTypeResponse = DeleteFiscalIdentificationTypeResponses[keyof DeleteFiscalIdentificationTypeResponses];
+
+export type PatchFiscalIdentificationTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        identificationTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/IdentificationTypes/{identificationTypeId}';
+};
+
+export type PatchFiscalIdentificationTypeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalIdentificationTypeAsyncError = PatchFiscalIdentificationTypeAsyncErrors[keyof PatchFiscalIdentificationTypeAsyncErrors];
+
+export type PatchFiscalIdentificationTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalIdentificationTypeAsyncResponse = PatchFiscalIdentificationTypeAsyncResponses[keyof PatchFiscalIdentificationTypeAsyncResponses];
 
 export type UpdateFiscalIdentificationTypeData = {
     body?: FiscalIdentificationTypeUpdateDto;
@@ -10554,6 +11542,43 @@ export type DeleteFiscalPeriodResponses = {
 
 export type DeleteFiscalPeriodResponse = DeleteFiscalPeriodResponses[keyof DeleteFiscalPeriodResponses];
 
+export type PatchFiscalPeriodAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fiscalPeriodId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}';
+};
+
+export type PatchFiscalPeriodAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalPeriodAsyncError = PatchFiscalPeriodAsyncErrors[keyof PatchFiscalPeriodAsyncErrors];
+
+export type PatchFiscalPeriodAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalPeriodAsyncResponse = PatchFiscalPeriodAsyncResponses[keyof PatchFiscalPeriodAsyncResponses];
+
 export type UpdateFiscalPeriodData = {
     body?: FiscalPeriodUpdateDto;
     headers?: {
@@ -10776,6 +11801,43 @@ export type DeleteFiscalRegimeResponses = {
 
 export type DeleteFiscalRegimeResponse = DeleteFiscalRegimeResponses[keyof DeleteFiscalRegimeResponses];
 
+export type PatchFiscalRegimeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        regimeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalRegimes/{regimeId}';
+};
+
+export type PatchFiscalRegimeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalRegimeAsyncError = PatchFiscalRegimeAsyncErrors[keyof PatchFiscalRegimeAsyncErrors];
+
+export type PatchFiscalRegimeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalRegimeAsyncResponse = PatchFiscalRegimeAsyncResponses[keyof PatchFiscalRegimeAsyncResponses];
+
 export type UpdateFiscalRegimeData = {
     body?: FiscalRegimeUpdateDto;
     headers?: {
@@ -10997,6 +12059,43 @@ export type DeleteFiscalResponsibilityResponses = {
 };
 
 export type DeleteFiscalResponsibilityResponse = DeleteFiscalResponsibilityResponses[keyof DeleteFiscalResponsibilityResponses];
+
+export type PatchFiscalResponsibilityAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fiscalResponsibilityId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilities/{fiscalResponsibilityId}';
+};
+
+export type PatchFiscalResponsibilityAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalResponsibilityAsyncError = PatchFiscalResponsibilityAsyncErrors[keyof PatchFiscalResponsibilityAsyncErrors];
+
+export type PatchFiscalResponsibilityAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalResponsibilityAsyncResponse = PatchFiscalResponsibilityAsyncResponses[keyof PatchFiscalResponsibilityAsyncResponses];
 
 export type UpdateFiscalResponsibilityData = {
     body?: FiscalResponsibilityUpdateDto;
@@ -11222,6 +12321,43 @@ export type DeleteFiscalResponsibilityRecordResponses = {
 
 export type DeleteFiscalResponsibilityRecordResponse = DeleteFiscalResponsibilityRecordResponses[keyof DeleteFiscalResponsibilityRecordResponses];
 
+export type PatchFiscalResponsibilityRecordAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fiscalResponsibilityRecordId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalResponsibilityRecords/{fiscalResponsibilityRecordId}';
+};
+
+export type PatchFiscalResponsibilityRecordAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalResponsibilityRecordAsyncError = PatchFiscalResponsibilityRecordAsyncErrors[keyof PatchFiscalResponsibilityRecordAsyncErrors];
+
+export type PatchFiscalResponsibilityRecordAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalResponsibilityRecordAsyncResponse = PatchFiscalResponsibilityRecordAsyncResponses[keyof PatchFiscalResponsibilityRecordAsyncResponses];
+
 export type UpdateFiscalResponsibilityRecordData = {
     body?: FiscalResponsibilityRecordUpdateDto;
     headers?: {
@@ -11373,6 +12509,43 @@ export type GetFiscalYearDetailsAsyncResponses = {
 
 export type GetFiscalYearDetailsAsyncResponse = GetFiscalYearDetailsAsyncResponses[keyof GetFiscalYearDetailsAsyncResponses];
 
+export type PatchFiscalYearAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fiscalYearId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/FiscalYears/{fiscalYearId}';
+};
+
+export type PatchFiscalYearAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchFiscalYearAsyncError = PatchFiscalYearAsyncErrors[keyof PatchFiscalYearAsyncErrors];
+
+export type PatchFiscalYearAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchFiscalYearAsyncResponse = PatchFiscalYearAsyncResponses[keyof PatchFiscalYearAsyncResponses];
+
 export type UpdateFiscalYearAsyncData = {
     body?: FiscalYearUpdateDto;
     headers?: {
@@ -11510,6 +12683,43 @@ export type GetGrantDetailsAsyncResponses = {
 };
 
 export type GetGrantDetailsAsyncResponse = GetGrantDetailsAsyncResponses[keyof GetGrantDetailsAsyncResponses];
+
+export type PatchGrantAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        grantId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Grants/{grantId}';
+};
+
+export type PatchGrantAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchGrantAsyncError = PatchGrantAsyncErrors[keyof PatchGrantAsyncErrors];
+
+export type PatchGrantAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchGrantAsyncResponse = PatchGrantAsyncResponses[keyof PatchGrantAsyncResponses];
 
 export type UpdateGrantAsyncData = {
     body?: GrantUpdateDto;
@@ -11694,6 +12904,43 @@ export type GetInvoiceEnumerationRangeDetailsAsyncResponses = {
 };
 
 export type GetInvoiceEnumerationRangeDetailsAsyncResponse = GetInvoiceEnumerationRangeDetailsAsyncResponses[keyof GetInvoiceEnumerationRangeDetailsAsyncResponses];
+
+export type PatchInvoiceEnumerationRangeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        rangeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/InvoiceEnumerationRanges/{rangeId}';
+};
+
+export type PatchInvoiceEnumerationRangeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchInvoiceEnumerationRangeAsyncError = PatchInvoiceEnumerationRangeAsyncErrors[keyof PatchInvoiceEnumerationRangeAsyncErrors];
+
+export type PatchInvoiceEnumerationRangeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchInvoiceEnumerationRangeAsyncResponse = PatchInvoiceEnumerationRangeAsyncResponses[keyof PatchInvoiceEnumerationRangeAsyncResponses];
 
 export type UpdateInvoiceEnumerationRangeAsyncData = {
     body?: InvoiceEnumerationRangeUpdateDto;
@@ -11914,6 +13161,43 @@ export type GetJournalDetailsAsyncResponses = {
 };
 
 export type GetJournalDetailsAsyncResponse = GetJournalDetailsAsyncResponses[keyof GetJournalDetailsAsyncResponses];
+
+export type PatchJournalAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Journals/{journalId}';
+};
+
+export type PatchJournalAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJournalAsyncError = PatchJournalAsyncErrors[keyof PatchJournalAsyncErrors];
+
+export type PatchJournalAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJournalAsyncResponse = PatchJournalAsyncResponses[keyof PatchJournalAsyncResponses];
 
 export type UpdateJournalAsyncData = {
     body?: JournalUpdateDto;
@@ -12177,6 +13461,44 @@ export type DeleteJournalEntryAsyncResponses = {
 
 export type DeleteJournalEntryAsyncResponse = DeleteJournalEntryAsyncResponses[keyof DeleteJournalEntryAsyncResponses];
 
+export type PatchJournalEntryAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}';
+};
+
+export type PatchJournalEntryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJournalEntryAsyncError = PatchJournalEntryAsyncErrors[keyof PatchJournalEntryAsyncErrors];
+
+export type PatchJournalEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJournalEntryAsyncResponse = PatchJournalEntryAsyncResponses[keyof PatchJournalEntryAsyncResponses];
+
 export type UpdateJournalEntryAsyncData = {
     body?: JournalEntryUpdateDto;
     headers?: {
@@ -12262,6 +13584,43 @@ export type GetJournalTypeDetailsAsyncResponses = {
 };
 
 export type GetJournalTypeDetailsAsyncResponse = GetJournalTypeDetailsAsyncResponses[keyof GetJournalTypeDetailsAsyncResponses];
+
+export type PatchJournalTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/JournalTypes/{journalTypeId}';
+};
+
+export type PatchJournalTypeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJournalTypeAsyncError = PatchJournalTypeAsyncErrors[keyof PatchJournalTypeAsyncErrors];
+
+export type PatchJournalTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJournalTypeAsyncResponse = PatchJournalTypeAsyncResponses[keyof PatchJournalTypeAsyncResponses];
 
 export type UpdateJournalTypeAsyncData = {
     body?: JournalTypeUpdateDto;
@@ -12532,6 +13891,43 @@ export type GetLedgerDetailsAsyncResponses = {
 
 export type GetLedgerDetailsAsyncResponse = GetLedgerDetailsAsyncResponses[keyof GetLedgerDetailsAsyncResponses];
 
+export type PatchLedgerAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        ledgerId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Ledgers/{ledgerId}';
+};
+
+export type PatchLedgerAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchLedgerAsyncError = PatchLedgerAsyncErrors[keyof PatchLedgerAsyncErrors];
+
+export type PatchLedgerAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchLedgerAsyncResponse = PatchLedgerAsyncResponses[keyof PatchLedgerAsyncResponses];
+
 export type UpdateLedgerAsyncData = {
     body?: UpdateLedgerDto;
     headers?: {
@@ -12748,6 +14144,43 @@ export type GetLedgerTypeDetailsAsyncResponses = {
 
 export type GetLedgerTypeDetailsAsyncResponse = GetLedgerTypeDetailsAsyncResponses[keyof GetLedgerTypeDetailsAsyncResponses];
 
+export type PatchLedgerTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        ledgerTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/LedgerTypes/{ledgerTypeId}';
+};
+
+export type PatchLedgerTypeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchLedgerTypeAsyncError = PatchLedgerTypeAsyncErrors[keyof PatchLedgerTypeAsyncErrors];
+
+export type PatchLedgerTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchLedgerTypeAsyncResponse = PatchLedgerTypeAsyncResponses[keyof PatchLedgerTypeAsyncResponses];
+
 export type UpdateLedgerTypeAsyncData = {
     body?: LedgerTypeUpdateDto;
     headers?: {
@@ -12858,6 +14291,43 @@ export type GetLoanDetailsAsyncResponses = {
 };
 
 export type GetLoanDetailsAsyncResponse = GetLoanDetailsAsyncResponses[keyof GetLoanDetailsAsyncResponses];
+
+export type PatchLoanAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        loanId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Loans/{loanId}';
+};
+
+export type PatchLoanAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchLoanAsyncError = PatchLoanAsyncErrors[keyof PatchLoanAsyncErrors];
+
+export type PatchLoanAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchLoanAsyncResponse = PatchLoanAsyncResponses[keyof PatchLoanAsyncResponses];
 
 export type UpdateLoanAsyncData = {
     body: LoanUpdateDto;
@@ -13180,6 +14650,43 @@ export type GetLoanApplicationDetailsAsyncResponses = {
 
 export type GetLoanApplicationDetailsAsyncResponse = GetLoanApplicationDetailsAsyncResponses[keyof GetLoanApplicationDetailsAsyncResponses];
 
+export type PatchLoanApplicationAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        applicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Loans/Applications/{applicationId}';
+};
+
+export type PatchLoanApplicationAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchLoanApplicationAsyncError = PatchLoanApplicationAsyncErrors[keyof PatchLoanApplicationAsyncErrors];
+
+export type PatchLoanApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchLoanApplicationAsyncResponse = PatchLoanApplicationAsyncResponses[keyof PatchLoanApplicationAsyncResponses];
+
 export type UpdateLoanApplicationAsyncData = {
     body: LoanApplicationUpdateDto;
     headers?: {
@@ -13396,6 +14903,43 @@ export type GetLoanTypeByIdAsyncResponses = {
 
 export type GetLoanTypeByIdAsyncResponse = GetLoanTypeByIdAsyncResponses[keyof GetLoanTypeByIdAsyncResponses];
 
+export type PatchLoanTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        loanTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Loans/Types/{loanTypeId}';
+};
+
+export type PatchLoanTypeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchLoanTypeAsyncError = PatchLoanTypeAsyncErrors[keyof PatchLoanTypeAsyncErrors];
+
+export type PatchLoanTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchLoanTypeAsyncResponse = PatchLoanTypeAsyncResponses[keyof PatchLoanTypeAsyncResponses];
+
 export type UpdateLoanTypeAsyncData = {
     body: LoanTypeUpdateDto;
     headers?: {
@@ -13526,6 +15070,39 @@ export type GetReceiptDetailsAsyncResponses = {
 };
 
 export type GetReceiptDetailsAsyncResponse = GetReceiptDetailsAsyncResponses[keyof GetReceiptDetailsAsyncResponses];
+
+export type PatchReceiptAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        receiptId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/AccountingService/Receipts/{receiptId}';
+};
+
+export type PatchReceiptAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchReceiptAsyncError = PatchReceiptAsyncErrors[keyof PatchReceiptAsyncErrors];
+
+export type PatchReceiptAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchReceiptAsyncResponse = PatchReceiptAsyncResponses[keyof PatchReceiptAsyncResponses];
 
 export type UpdateReceiptAsyncData = {
     body: ReceiptUpdateDto;
@@ -13728,6 +15305,43 @@ export type GetShareClassResponses = {
 };
 
 export type GetShareClassResponse = GetShareClassResponses[keyof GetShareClassResponses];
+
+export type PatchShareClassData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        shareClassId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Shares/Classes/{shareClassId}';
+};
+
+export type PatchShareClassErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchShareClassError = PatchShareClassErrors[keyof PatchShareClassErrors];
+
+export type PatchShareClassResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchShareClassResponse = PatchShareClassResponses[keyof PatchShareClassResponses];
 
 export type UpdateShareClassData = {
     body?: ShareClassUpdateDto;
@@ -13956,6 +15570,43 @@ export type GetShareIssuanceResponses = {
 
 export type GetShareIssuanceResponse = GetShareIssuanceResponses[keyof GetShareIssuanceResponses];
 
+export type PatchShareIssuanceData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        issuanceId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Shares/Issuances/{issuanceId}';
+};
+
+export type PatchShareIssuanceErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchShareIssuanceError = PatchShareIssuanceErrors[keyof PatchShareIssuanceErrors];
+
+export type PatchShareIssuanceResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchShareIssuanceResponse = PatchShareIssuanceResponses[keyof PatchShareIssuanceResponses];
+
 export type UpdateShareIssuanceData = {
     body?: ShareIssuanceUpdateDto;
     headers?: {
@@ -14182,6 +15833,43 @@ export type GetShareTransferResponses = {
 };
 
 export type GetShareTransferResponse = GetShareTransferResponses[keyof GetShareTransferResponses];
+
+export type PatchShareTransferData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        transferId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Shares/Transfers/{transferId}';
+};
+
+export type PatchShareTransferErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchShareTransferError = PatchShareTransferErrors[keyof PatchShareTransferErrors];
+
+export type PatchShareTransferResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchShareTransferResponse = PatchShareTransferResponses[keyof PatchShareTransferResponses];
 
 export type UpdateShareTransferData = {
     body?: ShareTransferUpdateDto;
@@ -14410,6 +16098,43 @@ export type GetShareTransferReasonResponses = {
 
 export type GetShareTransferReasonResponse = GetShareTransferReasonResponses[keyof GetShareTransferReasonResponses];
 
+export type PatchShareTransferReasonData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        reasonId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Shares/TransferReasons/{reasonId}';
+};
+
+export type PatchShareTransferReasonErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchShareTransferReasonError = PatchShareTransferReasonErrors[keyof PatchShareTransferReasonErrors];
+
+export type PatchShareTransferReasonResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchShareTransferReasonResponse = PatchShareTransferReasonResponses[keyof PatchShareTransferReasonResponses];
+
 export type UpdateShareTransferReasonData = {
     body?: ShareTransferReasonUpdateDto;
     headers?: {
@@ -14633,6 +16358,43 @@ export type GetTaxClassResponses = {
 };
 
 export type GetTaxClassResponse = GetTaxClassResponses[keyof GetTaxClassResponses];
+
+export type PatchTaxClassData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/TaxClasses/{id}';
+};
+
+export type PatchTaxClassErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTaxClassError = PatchTaxClassErrors[keyof PatchTaxClassErrors];
+
+export type PatchTaxClassResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type PatchTaxClassResponse = PatchTaxClassResponses[keyof PatchTaxClassResponses];
 
 export type UpdateTaxClassData = {
     body?: TaxClassUpdateDto;
@@ -14887,6 +16649,43 @@ export type GetTaxPolicyResponses = {
 
 export type GetTaxPolicyResponse = GetTaxPolicyResponses[keyof GetTaxPolicyResponses];
 
+export type PatchTaxPolicyData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/TaxPolicies/{id}';
+};
+
+export type PatchTaxPolicyErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTaxPolicyError = PatchTaxPolicyErrors[keyof PatchTaxPolicyErrors];
+
+export type PatchTaxPolicyResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type PatchTaxPolicyResponse = PatchTaxPolicyResponses[keyof PatchTaxPolicyResponses];
+
 export type UpdateTaxPolicyData = {
     body?: TaxPolicyUpdateDto;
     headers?: {
@@ -15073,6 +16872,44 @@ export type GetItemTaxPolicyRecordResponses = {
 };
 
 export type GetItemTaxPolicyRecordResponse = GetItemTaxPolicyRecordResponses[keyof GetItemTaxPolicyRecordResponses];
+
+export type PatchItemTaxPolicyRecordData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        taxPolicyId: string;
+        itemTaxPolicyRecordId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/ItemTaxPolicyRecords/{itemTaxPolicyRecordId}';
+};
+
+export type PatchItemTaxPolicyRecordErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchItemTaxPolicyRecordError = PatchItemTaxPolicyRecordErrors[keyof PatchItemTaxPolicyRecordErrors];
+
+export type PatchItemTaxPolicyRecordResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type PatchItemTaxPolicyRecordResponse = PatchItemTaxPolicyRecordResponses[keyof PatchItemTaxPolicyRecordResponses];
 
 export type UpdateItemTaxPolicyRecordData = {
     body?: ItemTaxPolicyRecordUpdateDto;
@@ -15299,6 +17136,44 @@ export type GetAppliedTaxPolicyRecordResponses = {
 
 export type GetAppliedTaxPolicyRecordResponse = GetAppliedTaxPolicyRecordResponses[keyof GetAppliedTaxPolicyRecordResponses];
 
+export type PatchAppliedTaxPolicyRecordData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        taxPolicyId: string;
+        appliedTaxPolicyRecordId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/TaxPolicies/{taxPolicyId}/AppliedTaxPolicyRecords/{appliedTaxPolicyRecordId}';
+};
+
+export type PatchAppliedTaxPolicyRecordErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchAppliedTaxPolicyRecordError = PatchAppliedTaxPolicyRecordErrors[keyof PatchAppliedTaxPolicyRecordErrors];
+
+export type PatchAppliedTaxPolicyRecordResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type PatchAppliedTaxPolicyRecordResponse = PatchAppliedTaxPolicyRecordResponses[keyof PatchAppliedTaxPolicyRecordResponses];
+
 export type UpdateAppliedTaxPolicyRecordData = {
     body?: AppliedTaxPolicyRecordUpdateDto;
     headers?: {
@@ -15515,6 +17390,43 @@ export type GetTaxRateResponses = {
 };
 
 export type GetTaxRateResponse = GetTaxRateResponses[keyof GetTaxRateResponses];
+
+export type PatchTaxRateData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/TaxRates/{id}';
+};
+
+export type PatchTaxRateErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTaxRateError = PatchTaxRateErrors[keyof PatchTaxRateErrors];
+
+export type PatchTaxRateResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type PatchTaxRateResponse = PatchTaxRateResponses[keyof PatchTaxRateResponses];
 
 export type UpdateTaxRateData = {
     body?: TaxRateUpdateDto;
@@ -15743,6 +17655,43 @@ export type GetTransactionResponses = {
 };
 
 export type GetTransactionResponse = GetTransactionResponses[keyof GetTransactionResponses];
+
+export type PatchTransactionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        transactionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Transactions/{transactionId}';
+};
+
+export type PatchTransactionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTransactionError = PatchTransactionErrors[keyof PatchTransactionErrors];
+
+export type PatchTransactionResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type PatchTransactionResponse = PatchTransactionResponses[keyof PatchTransactionResponses];
 
 export type UpdateTransactionData = {
     body?: TransactionUpdateDto;
@@ -15975,6 +17924,43 @@ export type GetTransactionCategoryResponses = {
 };
 
 export type GetTransactionCategoryResponse = GetTransactionCategoryResponses[keyof GetTransactionCategoryResponses];
+
+export type PatchTransactionCategoryData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        categoryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Transactions/Categories/{categoryId}';
+};
+
+export type PatchTransactionCategoryErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTransactionCategoryError = PatchTransactionCategoryErrors[keyof PatchTransactionCategoryErrors];
+
+export type PatchTransactionCategoryResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type PatchTransactionCategoryResponse = PatchTransactionCategoryResponses[keyof PatchTransactionCategoryResponses];
 
 export type UpdateTransactionCategoryData = {
     body?: TransactionCategoryUpdateDto;

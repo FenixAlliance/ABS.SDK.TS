@@ -19,6 +19,39 @@ export interface paths {
      */
     get: operations["IsRequestValidAsync"];
   };
+  "/api/v2/SystemService/BusinessDomains": {
+    /**
+     * Retrieve all business domains in the system
+     * @description Retrieve all registered business domains across every tenant (global administrators only).
+     */
+    get: operations["GetSystemBusinessDomains"];
+  };
+  "/api/v2/SystemService/BusinessDomains/Count": {
+    /**
+     * Get the count of all business domains in the system
+     * @description Get the count of all registered business domains across every tenant.
+     */
+    get: operations["GetSystemBusinessDomainsCount"];
+  };
+  "/api/v2/SystemService/BusinessDomains/{businessDomainId}": {
+    /**
+     * Retrieve a business domain by its ID
+     * @description Retrieve any business domain by its ID, regardless of owning tenant.
+     */
+    get: operations["GetSystemBusinessDomainById"];
+    /**
+     * Delete a business domain
+     * @description Removes any business domain from the system, regardless of owning tenant.
+     */
+    delete: operations["DeleteSystemBusinessDomain"];
+  };
+  "/api/v2/SystemService/BusinessDomains/{businessDomainId}/Verify": {
+    /**
+     * Verify a business domain
+     * @description Checks the domain's DNS TXT records for the verification token and marks it verified.
+     */
+    post: operations["VerifySystemBusinessDomain"];
+  };
   "/api/v2/SystemService/Carts": {
     /**
      * Retrieve a list of system carts
@@ -189,6 +222,11 @@ export interface paths {
      * @description Admin endpoint to delete an option for any contact
      */
     delete: operations["DeleteSystemContactOption"];
+    /**
+     * Partially update a contact option (admin)
+     * @description Admin endpoint to partially update an option for any contact using a JSON Patch document
+     */
+    patch: operations["PatchSystemContactOption"];
   };
   "/api/v2/SystemService/Emails/SendBasic": {
     /**
@@ -808,6 +846,11 @@ export interface paths {
      * @description Delete a system option
      */
     delete: operations["DeleteSystemOption"];
+    /**
+     * Partially update a system option
+     * @description Partially update a system option using a JSON Patch document
+     */
+    patch: operations["PatchSystemOption"];
   };
   "/api/v2/SystemService/Options/Key/{key}": {
     /**
@@ -865,6 +908,11 @@ export interface paths {
      * @description Delete a web portal from the system
      */
     delete: operations["DeleteSystemPortal"];
+    /**
+     * Partially update a system portal
+     * @description Partially update an existing web portal in the system using a JSON Patch document
+     */
+    patch: operations["PatchSystemPortal"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Options": {
     /**
@@ -901,6 +949,11 @@ export interface paths {
      * @description Admin endpoint to delete an option for any tenant
      */
     delete: operations["DeleteSystemTenantOption"];
+    /**
+     * Partially update a tenant option (admin)
+     * @description Admin endpoint to partially update an option for any tenant using a JSON Patch document
+     */
+    patch: operations["PatchSystemTenantOption"];
   };
   "/api/v2/SystemService/Tenants": {
     /**
@@ -951,6 +1004,11 @@ export interface paths {
      * @description This action is only available for global administrators.
      */
     delete: operations["DeleteTenant"];
+    /**
+     * Partially update a specific tenant by ID.
+     * @description This action is only available for global administrators.
+     */
+    patch: operations["PatchTenant"];
   };
   "/api/v2/SystemService/Tenants/{tenantId}/Emails/Preview": {
     /**
@@ -1001,6 +1059,11 @@ export interface paths {
      * @description Admin endpoint to delete an option for any user
      */
     delete: operations["DeleteSystemUserOption"];
+    /**
+     * Partially update a user option (admin)
+     * @description Admin endpoint to partially update an option for any user using a JSON Patch document
+     */
+    patch: operations["PatchSystemUserOption"];
   };
   "/api/v2/SystemService/Users": {
     /**
@@ -1051,6 +1114,11 @@ export interface paths {
      * @description This action is only available for global administrators.
      */
     delete: operations["DeleteAccountHolderAsync"];
+    /**
+     * Partially update a user
+     * @description This action is only available for global administrators.
+     */
+    patch: operations["PatchAccountHolderAsync"];
   };
   "/api/v2/SystemService/Users/{userId}/Extended": {
     /**
@@ -1098,6 +1166,33 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: boolean;
+    };
+    BusinessDomainDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      domain?: string | null;
+      txtRecord?: string | null;
+      verified?: boolean;
+      businessID?: string | null;
+    };
+    BusinessDomainDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BusinessDomainDto"];
+    };
+    BusinessDomainDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["BusinessDomainDto"][] | null;
     };
     CartDto: {
       id?: string | null;
@@ -1535,6 +1630,14 @@ export interface components {
       templateUrl?: string | null;
       emailTemplateId?: string | null;
       payload?: unknown;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     OptionCreateDto: {
       /** Format: uuid */
@@ -2086,9 +2189,9 @@ export interface components {
       domain?: string | null;
       disabled?: boolean;
       description?: string | null;
-      websiteThemeID?: string | null;
-      businessDomainID?: string | null;
-      businessPortalApplicationID?: string | null;
+      websiteThemeId?: string | null;
+      businessDomainId?: string | null;
+      businessPortalApplicationId?: string | null;
     };
     WebPortalDto: {
       id?: string | null;
@@ -2129,9 +2232,9 @@ export interface components {
       domain?: string | null;
       disabled?: boolean;
       description?: string | null;
-      websiteThemeID?: string | null;
-      businessDomainID?: string | null;
-      businessPortalApplicationID?: string | null;
+      websiteThemeId?: string | null;
+      businessDomainId?: string | null;
+      businessPortalApplicationId?: string | null;
     };
   };
   responses: never;
@@ -2184,6 +2287,207 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /**
+   * Retrieve all business domains in the system
+   * @description Retrieve all registered business domains across every tenant (global administrators only).
+   */
+  GetSystemBusinessDomains: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BusinessDomainDtoListEnvelope"];
+          "application/xml": components["schemas"]["BusinessDomainDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get the count of all business domains in the system
+   * @description Get the count of all registered business domains across every tenant.
+   */
+  GetSystemBusinessDomainsCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve a business domain by its ID
+   * @description Retrieve any business domain by its ID, regardless of owning tenant.
+   */
+  GetSystemBusinessDomainById: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        businessDomainId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BusinessDomainDtoEnvelope"];
+          "application/xml": components["schemas"]["BusinessDomainDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a business domain
+   * @description Removes any business domain from the system, regardless of owning tenant.
+   */
+  DeleteSystemBusinessDomain: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        businessDomainId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Verify a business domain
+   * @description Checks the domain's DNS TXT records for the verification token and marks it verified.
+   */
+  VerifySystemBusinessDomain: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        businessDomainId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };
@@ -2574,6 +2878,53 @@ export interface operations {
       path: {
         contactId: string;
         optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Partially update a contact option (admin)
+   * @description Admin endpoint to partially update an option for any contact using a JSON Patch document
+   */
+  PatchSystemContactOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -4210,6 +4561,52 @@ export interface operations {
     };
   };
   /**
+   * Partially update a system option
+   * @description Partially update a system option using a JSON Patch document
+   */
+  PatchSystemOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a single system option by its key
    * @description Retrieve a single system option by its key
    */
@@ -4578,6 +4975,52 @@ export interface operations {
     };
   };
   /**
+   * Partially update a system portal
+   * @description Partially update an existing web portal in the system using a JSON Patch document
+   */
+  PatchSystemPortal: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of tenant options (admin)
    * @description Admin endpoint to retrieve options for any tenant
    */
@@ -4810,6 +5253,53 @@ export interface operations {
       path: {
         tenantId: string;
         optionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Partially update a tenant option (admin)
+   * @description Admin endpoint to partially update an option for any tenant using a JSON Patch document
+   */
+  PatchSystemTenantOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5154,6 +5644,52 @@ export interface operations {
     };
   };
   /**
+   * Partially update a specific tenant by ID.
+   * @description This action is only available for global administrators.
+   */
+  PatchTenant: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Preview the rendered email for a tenant.
    * @description This action is only available for global administrators.
    */
@@ -5471,6 +6007,53 @@ export interface operations {
     };
   };
   /**
+   * Partially update a user option (admin)
+   * @description Admin endpoint to partially update an option for any user using a JSON Patch document
+   */
+  PatchSystemUserOption: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of users
    * @description This action is only available for global administrators.
    */
@@ -5761,6 +6344,52 @@ export interface operations {
       };
       path: {
         userId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Partially update a user
+   * @description This action is only available for global administrators.
+   */
+  PatchAccountHolderAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

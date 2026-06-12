@@ -98,8 +98,8 @@ export type InquiryRequestDto = {
     phone?: string | null;
     message?: string | null;
     tenantId?: string | null;
-    businessProfileRecordId?: string | null;
-    accountHolderId?: string | null;
+    enrollmentId?: string | null;
+    userId?: string | null;
     socialProfileId?: string | null;
 };
 
@@ -179,18 +179,18 @@ export type ItemRefundPolicyCreateDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type ItemRefundPolicyDto = {
     id?: string | null;
     timestamp?: string | null;
-    shippingCourierID?: string | null;
+    shippingCourierId?: string | null;
     type?: string | null;
     code?: string | null;
     title?: string | null;
@@ -207,14 +207,14 @@ export type ItemRefundPolicyDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
+    cityId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type ItemRefundPolicyDtoEnvelopeReadable = {
@@ -262,12 +262,12 @@ export type ItemRefundPolicyUpdateDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type ItemReturnPolicyCreateDto = {
@@ -275,7 +275,7 @@ export type ItemReturnPolicyCreateDto = {
     timestamp?: string;
     title: string;
     description?: string | null;
-    shippingCourierID?: string | null;
+    shippingCourierId?: string | null;
     isFree?: boolean;
     reduce?: boolean;
     isEnabled?: boolean;
@@ -288,18 +288,18 @@ export type ItemReturnPolicyCreateDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type ItemReturnPolicyDto = {
     id?: string | null;
     timestamp?: string | null;
-    shippingCourierID?: string | null;
+    shippingCourierId?: string | null;
     type?: string | null;
     code?: string | null;
     title?: string | null;
@@ -316,14 +316,14 @@ export type ItemReturnPolicyDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
+    cityId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type ItemReturnPolicyDtoEnvelopeReadable = {
@@ -359,7 +359,7 @@ export type ItemReturnPolicyDtoListEnvelopeWritable = {
 export type ItemReturnPolicyUpdateDto = {
     title?: string | null;
     description?: string | null;
-    shippingCourierID?: string | null;
+    shippingCourierId?: string | null;
     isFree?: boolean;
     reduce?: boolean;
     isEnabled?: boolean;
@@ -372,12 +372,12 @@ export type ItemReturnPolicyUpdateDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type ItemWarrantyPolicyCreateDto = {
@@ -398,12 +398,12 @@ export type ItemWarrantyPolicyCreateDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type ItemWarrantyPolicyDto = {
@@ -425,14 +425,14 @@ export type ItemWarrantyPolicyDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
-    businessID: string;
-    businessProfileRecordID?: string | null;
+    cityId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type ItemWarrantyPolicyDtoEnvelopeReadable = {
@@ -481,12 +481,12 @@ export type ItemWarrantyPolicyUpdateDto = {
     years?: number;
     value?: number;
     percentage?: number;
-    currencyID?: string | null;
-    countryID?: string | null;
-    countryStateID?: string | null;
+    currencyId?: string | null;
+    countryId?: string | null;
+    countryStateId?: string | null;
     customState?: string | null;
     customCity?: string | null;
-    cityID?: string | null;
+    cityId?: string | null;
 };
 
 export type KnowledgeArticleCreateDto = {
@@ -522,7 +522,7 @@ export type KnowledgeArticleDto = {
     releaseDateTime?: string;
     lastModification?: string;
     tenantId?: string | null;
-    businessProfileRecordId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type KnowledgeArticleDtoEnvelopeReadable = {
@@ -585,7 +585,7 @@ export type MaintenanceVisitDto = {
     id?: string | null;
     timestamp?: string | null;
     tenantId?: string | null;
-    businessProfileRecordId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type MaintenanceVisitDtoEnvelopeReadable = {
@@ -622,6 +622,14 @@ export type MaintenanceVisitUpdateDto = {
     [key: string]: never;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type PrivateMessageDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -630,7 +638,7 @@ export type PrivateMessageDto = {
     message?: string | null;
     conversationId?: string | null;
     senderSocialProfileId?: string | null;
-    receiverSocialProfileID?: string | null;
+    receiverSocialProfileId?: string | null;
     sentTimestamp?: string;
     readTimestamp?: string;
     receivedTimestamp?: string;
@@ -676,10 +684,10 @@ export type RefundRequestDto = {
     approved?: boolean;
     approvedTimestamp?: string;
     tenantId?: string | null;
-    businessProfileRecordId?: string | null;
+    enrollmentId?: string | null;
     supportEntitlementId?: string | null;
     contactId?: string | null;
-    accountHolderId?: string | null;
+    userId?: string | null;
     refundPolicyId?: string | null;
     paymentId?: string | null;
 };
@@ -759,10 +767,10 @@ export type ReturnRequestDto = {
     approved?: boolean;
     approvedTimestamp?: string;
     tenantId?: string | null;
-    businessProfileRecordId?: string | null;
+    enrollmentId?: string | null;
     supportEntitlementId?: string | null;
     contactId?: string | null;
-    accountHolderId?: string | null;
+    userId?: string | null;
     returnPolicyId?: string | null;
 };
 
@@ -847,12 +855,12 @@ export type SupportEntitlementCreateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    individualID?: string | null;
-    organizationID?: string | null;
-    receiverBusinessID?: string | null;
-    paymentTokenID?: string | null;
-    walletAccountID?: string | null;
-    securityCertificateID?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    paymentTokenId?: string | null;
+    walletAccountId?: string | null;
+    securityCertificateId?: string | null;
 };
 
 export type SupportEntitlementDto = {
@@ -860,6 +868,7 @@ export type SupportEntitlementDto = {
     timestamp?: string | null;
     title?: string | null;
     description?: string | null;
+    status?: 'Active' | 'GracePeriod' | 'Disabled' | 'Deleted';
     startDateTime?: string;
     endDateTime?: string;
     nextInvoiceDateTime?: string;
@@ -897,15 +906,15 @@ export type SupportEntitlementDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    accountHolderID?: string | null;
-    individualID?: string | null;
-    organizationID?: string | null;
-    receiverBusinessID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
-    paymentTokenID?: string | null;
-    walletAccountID?: string | null;
-    securityCertificateID?: string | null;
+    userId?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    paymentTokenId?: string | null;
+    walletAccountId?: string | null;
+    securityCertificateId?: string | null;
 };
 
 export type SupportEntitlementDtoEnvelopeReadable = {
@@ -977,12 +986,12 @@ export type SupportEntitlementUpdateDto = {
     data8Label?: string | null;
     data9?: string | null;
     data9Label?: string | null;
-    individualID?: string | null;
-    organizationID?: string | null;
-    receiverBusinessID?: string | null;
-    paymentTokenID?: string | null;
-    walletAccountID?: string | null;
-    securityCertificateID?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    receiverTenantId?: string | null;
+    paymentTokenId?: string | null;
+    walletAccountId?: string | null;
+    securityCertificateId?: string | null;
 };
 
 export type SupportRequestAttachmentCreateDto = {
@@ -999,7 +1008,7 @@ export type SupportRequestAttachmentCreateDto = {
     parentFileUploadId?: string | null;
     filePath?: string | null;
     metadata?: string | null;
-    supportRequestID?: string | null;
+    supportRequestId?: string | null;
 };
 
 export type SupportRequestAttachmentDto = {
@@ -1025,7 +1034,7 @@ export type SupportRequestAttachmentDto = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
-    supportRequestID?: string | null;
+    supportRequestId?: string | null;
 };
 
 export type SupportRequestAttachmentDtoEnvelopeReadable = {
@@ -1081,8 +1090,8 @@ export type SupportRequestCreateDto = {
     description?: string | null;
     approved?: boolean;
     approvedTimestamp?: string;
-    supportEntitlementID?: string | null;
-    contactID?: string | null;
+    supportEntitlementId?: string | null;
+    contactId?: string | null;
 };
 
 export type SupportRequestDto = {
@@ -1092,11 +1101,11 @@ export type SupportRequestDto = {
     description?: string | null;
     approved?: boolean;
     approvedTimestamp?: string;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
-    supportEntitlementID?: string | null;
-    contactID?: string | null;
-    accountHolderID?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    supportEntitlementId?: string | null;
+    contactId?: string | null;
+    userId?: string | null;
 };
 
 export type SupportRequestDtoEnvelopeReadable = {
@@ -1134,7 +1143,7 @@ export type SupportRequestUpdateDto = {
     description?: string | null;
     approved?: boolean;
     approvedTimestamp?: string;
-    supportEntitlementID?: string | null;
+    supportEntitlementId?: string | null;
 };
 
 export type SupportTicketConversationCreateDto = {
@@ -1143,17 +1152,17 @@ export type SupportTicketConversationCreateDto = {
     topic?: string | null;
     closed?: boolean;
     closedTimestamp?: string;
-    socialProfileID?: string | null;
+    socialProfileId?: string | null;
 };
 
 export type SupportTicketConversationDto = {
     id?: string | null;
     timestamp?: string | null;
-    supportTicketID?: string | null;
+    supportTicketId?: string | null;
     topic?: string | null;
     closed?: boolean;
     closedTimestamp?: string;
-    socialProfileID?: string | null;
+    socialProfileId?: string | null;
 };
 
 export type SupportTicketConversationDtoEnvelopeReadable = {
@@ -1189,24 +1198,28 @@ export type SupportTicketConversationDtoListEnvelopeWritable = {
 export type SupportTicketCreateDto = {
     id?: string;
     timestamp?: string;
+    title?: string | null;
     description?: string | null;
-    contactID?: string | null;
-    supportTicketTypeID?: string | null;
-    supportEntitlementID?: string | null;
-    supportPriorityID?: string | null;
+    supportTicketStatus?: 'New' | 'OpenAndWaitingForAgent' | 'OpenAndWaitingForCustomer' | 'Closed';
+    contactId?: string | null;
+    supportTicketTypeId?: string | null;
+    supportEntitlementId?: string | null;
+    supportPriorityId?: string | null;
 };
 
 export type SupportTicketDto = {
     id?: string | null;
     timestamp?: string | null;
+    title?: string | null;
     description?: string | null;
-    accountHolderID?: string | null;
-    contactID?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
-    supportTicketTypeID?: string | null;
-    supportEntitlementID?: string | null;
-    supportPriorityID?: string | null;
+    supportTicketStatus?: 'New' | 'OpenAndWaitingForAgent' | 'OpenAndWaitingForCustomer' | 'Closed';
+    userId?: string | null;
+    contactId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    supportTicketTypeId?: string | null;
+    supportEntitlementId?: string | null;
+    supportPriorityId?: string | null;
 };
 
 export type SupportTicketDtoEnvelopeReadable = {
@@ -1244,7 +1257,7 @@ export type SupportTicketPriorityCreateDto = {
     timestamp?: string;
     title?: string | null;
     description?: string | null;
-    supportEntitlementID?: string | null;
+    supportEntitlementId?: string | null;
 };
 
 export type SupportTicketPriorityDto = {
@@ -1252,8 +1265,8 @@ export type SupportTicketPriorityDto = {
     timestamp?: string | null;
     title?: string | null;
     description?: string | null;
-    businessID?: string | null;
-    supportEntitlementID?: string | null;
+    tenantId?: string | null;
+    supportEntitlementId?: string | null;
 };
 
 export type SupportTicketPriorityDtoEnvelopeReadable = {
@@ -1289,6 +1302,7 @@ export type SupportTicketPriorityDtoListEnvelopeWritable = {
 export type SupportTicketPriorityUpdateDto = {
     title?: string | null;
     description?: string | null;
+    supportEntitlementId?: string | null;
 };
 
 export type SupportTicketTypeCreateDto = {
@@ -1303,7 +1317,7 @@ export type SupportTicketTypeDto = {
     timestamp?: string | null;
     title?: string | null;
     description?: string | null;
-    businessID?: string | null;
+    tenantId?: string | null;
 };
 
 export type SupportTicketTypeDtoEnvelopeReadable = {
@@ -1344,11 +1358,13 @@ export type SupportTicketTypeUpdateDto = {
 };
 
 export type SupportTicketUpdateDto = {
+    title?: string | null;
     description?: string | null;
-    contactID?: string | null;
-    supportTicketTypeID?: string | null;
-    supportEntitlementID?: string | null;
-    supportPriorityID?: string | null;
+    supportTicketStatus?: 'New' | 'OpenAndWaitingForAgent' | 'OpenAndWaitingForCustomer' | 'Closed';
+    contactId?: string | null;
+    supportTicketTypeId?: string | null;
+    supportEntitlementId?: string | null;
+    supportPriorityId?: string | null;
 };
 
 export type TwoFactorRequest = {
@@ -1387,10 +1403,10 @@ export type WarrantyRequestDto = {
     approved?: boolean;
     approvedTimestamp?: string;
     tenantId?: string | null;
-    businessProfileRecordId?: string | null;
+    enrollmentId?: string | null;
     supportEntitlementId?: string | null;
     contactId?: string | null;
-    accountHolderId?: string | null;
+    userId?: string | null;
     warrantyPolicyId?: string | null;
 };
 
@@ -1906,6 +1922,43 @@ export type GetInquiryRequestAsyncResponses = {
 
 export type GetInquiryRequestAsyncResponse = GetInquiryRequestAsyncResponses[keyof GetInquiryRequestAsyncResponses];
 
+export type PatchInquiryRequestAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        inquiryRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/InquiryRequests/{inquiryRequestId}';
+};
+
+export type PatchInquiryRequestAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchInquiryRequestAsyncError = PatchInquiryRequestAsyncErrors[keyof PatchInquiryRequestAsyncErrors];
+
+export type PatchInquiryRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchInquiryRequestAsyncResponse = PatchInquiryRequestAsyncResponses[keyof PatchInquiryRequestAsyncResponses];
+
 export type UpdateInquiryRequestAsyncData = {
     body?: InquiryRequestUpdateDto;
     headers?: {
@@ -2044,6 +2097,43 @@ export type GetKnowledgeArticleAsyncResponses = {
 
 export type GetKnowledgeArticleAsyncResponse = GetKnowledgeArticleAsyncResponses[keyof GetKnowledgeArticleAsyncResponses];
 
+export type PatchKnowledgeArticleAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        knowledgeArticleId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/KnowledgeArticles/{knowledgeArticleId}';
+};
+
+export type PatchKnowledgeArticleAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchKnowledgeArticleAsyncError = PatchKnowledgeArticleAsyncErrors[keyof PatchKnowledgeArticleAsyncErrors];
+
+export type PatchKnowledgeArticleAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchKnowledgeArticleAsyncResponse = PatchKnowledgeArticleAsyncResponses[keyof PatchKnowledgeArticleAsyncResponses];
+
 export type UpdateKnowledgeArticleAsyncData = {
     body?: KnowledgeArticleUpdateDto;
     headers?: {
@@ -2181,6 +2271,43 @@ export type GetMaintenanceVisitAsyncResponses = {
 };
 
 export type GetMaintenanceVisitAsyncResponse = GetMaintenanceVisitAsyncResponses[keyof GetMaintenanceVisitAsyncResponses];
+
+export type PatchMaintenanceVisitAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        maintenanceVisitId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/MaintenanceVisits/{maintenanceVisitId}';
+};
+
+export type PatchMaintenanceVisitAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchMaintenanceVisitAsyncError = PatchMaintenanceVisitAsyncErrors[keyof PatchMaintenanceVisitAsyncErrors];
+
+export type PatchMaintenanceVisitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchMaintenanceVisitAsyncResponse = PatchMaintenanceVisitAsyncResponses[keyof PatchMaintenanceVisitAsyncResponses];
 
 export type UpdateMaintenanceVisitAsyncData = {
     body?: MaintenanceVisitUpdateDto;
@@ -2385,6 +2512,43 @@ export type GetRefundPolicyAsyncResponses = {
 
 export type GetRefundPolicyAsyncResponse = GetRefundPolicyAsyncResponses[keyof GetRefundPolicyAsyncResponses];
 
+export type PatchRefundPolicyAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        refundPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundPolicies/{refundPolicyId}';
+};
+
+export type PatchRefundPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchRefundPolicyAsyncError = PatchRefundPolicyAsyncErrors[keyof PatchRefundPolicyAsyncErrors];
+
+export type PatchRefundPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchRefundPolicyAsyncResponse = PatchRefundPolicyAsyncResponses[keyof PatchRefundPolicyAsyncResponses];
+
 export type UpdateRefundPolicyAsyncData = {
     body?: ItemRefundPolicyUpdateDto;
     headers?: {
@@ -2535,6 +2699,43 @@ export type GetRefundRequestAsyncResponses = {
 };
 
 export type GetRefundRequestAsyncResponse = GetRefundRequestAsyncResponses[keyof GetRefundRequestAsyncResponses];
+
+export type PatchRefundRequestAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        refundRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/RefundRequests/{refundRequestId}';
+};
+
+export type PatchRefundRequestAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchRefundRequestAsyncError = PatchRefundRequestAsyncErrors[keyof PatchRefundRequestAsyncErrors];
+
+export type PatchRefundRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchRefundRequestAsyncResponse = PatchRefundRequestAsyncResponses[keyof PatchRefundRequestAsyncResponses];
 
 export type UpdateRefundRequestAsyncData = {
     body?: RefundRequestUpdateDto;
@@ -2739,6 +2940,43 @@ export type GetReturnPolicyAsyncResponses = {
 
 export type GetReturnPolicyAsyncResponse = GetReturnPolicyAsyncResponses[keyof GetReturnPolicyAsyncResponses];
 
+export type PatchReturnPolicyAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        returnPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnPolicies/{returnPolicyId}';
+};
+
+export type PatchReturnPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchReturnPolicyAsyncError = PatchReturnPolicyAsyncErrors[keyof PatchReturnPolicyAsyncErrors];
+
+export type PatchReturnPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchReturnPolicyAsyncResponse = PatchReturnPolicyAsyncResponses[keyof PatchReturnPolicyAsyncResponses];
+
 export type UpdateReturnPolicyAsyncData = {
     body?: ItemReturnPolicyUpdateDto;
     headers?: {
@@ -2889,6 +3127,43 @@ export type GetReturnRequestAsyncResponses = {
 };
 
 export type GetReturnRequestAsyncResponse = GetReturnRequestAsyncResponses[keyof GetReturnRequestAsyncResponses];
+
+export type PatchReturnRequestAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        returnRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/ReturnRequests/{returnRequestId}';
+};
+
+export type PatchReturnRequestAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchReturnRequestAsyncError = PatchReturnRequestAsyncErrors[keyof PatchReturnRequestAsyncErrors];
+
+export type PatchReturnRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchReturnRequestAsyncResponse = PatchReturnRequestAsyncResponses[keyof PatchReturnRequestAsyncResponses];
 
 export type UpdateReturnRequestAsyncData = {
     body?: ReturnRequestUpdateDto;
@@ -3092,6 +3367,43 @@ export type GetSupportEntitlementAsyncResponses = {
 };
 
 export type GetSupportEntitlementAsyncResponse = GetSupportEntitlementAsyncResponses[keyof GetSupportEntitlementAsyncResponses];
+
+export type PatchSupportEntitlementAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supportEntitlementId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/SupportEntitlements/{supportEntitlementId}';
+};
+
+export type PatchSupportEntitlementAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSupportEntitlementAsyncError = PatchSupportEntitlementAsyncErrors[keyof PatchSupportEntitlementAsyncErrors];
+
+export type PatchSupportEntitlementAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSupportEntitlementAsyncResponse = PatchSupportEntitlementAsyncResponses[keyof PatchSupportEntitlementAsyncResponses];
 
 export type UpdateSupportEntitlementAsyncData = {
     body?: SupportEntitlementUpdateDto;
@@ -3309,6 +3621,43 @@ export type GetSupportRequestAttachmentAsyncResponses = {
 
 export type GetSupportRequestAttachmentAsyncResponse = GetSupportRequestAttachmentAsyncResponses[keyof GetSupportRequestAttachmentAsyncResponses];
 
+export type PatchSupportRequestAttachmentAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supportRequestAttachmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/SupportRequestAttachments/{supportRequestAttachmentId}';
+};
+
+export type PatchSupportRequestAttachmentAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSupportRequestAttachmentAsyncError = PatchSupportRequestAttachmentAsyncErrors[keyof PatchSupportRequestAttachmentAsyncErrors];
+
+export type PatchSupportRequestAttachmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSupportRequestAttachmentAsyncResponse = PatchSupportRequestAttachmentAsyncResponses[keyof PatchSupportRequestAttachmentAsyncResponses];
+
 export type UpdateSupportRequestAttachmentAsyncData = {
     body?: SupportRequestAttachmentUpdateDto;
     headers?: {
@@ -3524,6 +3873,43 @@ export type GetSupportRequestAsyncResponses = {
 };
 
 export type GetSupportRequestAsyncResponse = GetSupportRequestAsyncResponses[keyof GetSupportRequestAsyncResponses];
+
+export type PatchSupportRequestAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supportRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/SupportRequests/{supportRequestId}';
+};
+
+export type PatchSupportRequestAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSupportRequestAsyncError = PatchSupportRequestAsyncErrors[keyof PatchSupportRequestAsyncErrors];
+
+export type PatchSupportRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSupportRequestAsyncResponse = PatchSupportRequestAsyncResponses[keyof PatchSupportRequestAsyncResponses];
 
 export type UpdateSupportRequestAsyncData = {
     body?: SupportRequestUpdateDto;
@@ -3927,6 +4313,43 @@ export type GetSupportTicketPriorityAsyncResponses = {
 
 export type GetSupportTicketPriorityAsyncResponse = GetSupportTicketPriorityAsyncResponses[keyof GetSupportTicketPriorityAsyncResponses];
 
+export type PatchSupportTicketPriorityAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supportTicketPriorityId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/SupportTicketPriorities/{supportTicketPriorityId}';
+};
+
+export type PatchSupportTicketPriorityAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSupportTicketPriorityAsyncError = PatchSupportTicketPriorityAsyncErrors[keyof PatchSupportTicketPriorityAsyncErrors];
+
+export type PatchSupportTicketPriorityAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSupportTicketPriorityAsyncResponse = PatchSupportTicketPriorityAsyncResponses[keyof PatchSupportTicketPriorityAsyncResponses];
+
 export type UpdateSupportTicketPriorityAsyncData = {
     body?: SupportTicketPriorityUpdateDto;
     headers?: {
@@ -4142,6 +4565,43 @@ export type GetSupportTicketAsyncResponses = {
 };
 
 export type GetSupportTicketAsyncResponse = GetSupportTicketAsyncResponses[keyof GetSupportTicketAsyncResponses];
+
+export type PatchSupportTicketAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supportTicketId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/SupportTickets/{supportTicketId}';
+};
+
+export type PatchSupportTicketAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSupportTicketAsyncError = PatchSupportTicketAsyncErrors[keyof PatchSupportTicketAsyncErrors];
+
+export type PatchSupportTicketAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSupportTicketAsyncResponse = PatchSupportTicketAsyncResponses[keyof PatchSupportTicketAsyncResponses];
 
 export type UpdateSupportTicketAsyncData = {
     body?: SupportTicketUpdateDto;
@@ -4549,6 +5009,43 @@ export type GetSupportTicketTypeAsyncResponses = {
 
 export type GetSupportTicketTypeAsyncResponse = GetSupportTicketTypeAsyncResponses[keyof GetSupportTicketTypeAsyncResponses];
 
+export type PatchSupportTicketTypeAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        supportTicketTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/SupportTicketTypes/{supportTicketTypeId}';
+};
+
+export type PatchSupportTicketTypeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSupportTicketTypeAsyncError = PatchSupportTicketTypeAsyncErrors[keyof PatchSupportTicketTypeAsyncErrors];
+
+export type PatchSupportTicketTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSupportTicketTypeAsyncResponse = PatchSupportTicketTypeAsyncResponses[keyof PatchSupportTicketTypeAsyncResponses];
+
 export type UpdateSupportTicketTypeAsyncData = {
     body?: SupportTicketTypeUpdateDto;
     headers?: {
@@ -4765,6 +5262,43 @@ export type GetWarrantyPolicyAsyncResponses = {
 
 export type GetWarrantyPolicyAsyncResponse = GetWarrantyPolicyAsyncResponses[keyof GetWarrantyPolicyAsyncResponses];
 
+export type PatchWarrantyPolicyAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warrantyPolicyId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyPolicies/{warrantyPolicyId}';
+};
+
+export type PatchWarrantyPolicyAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchWarrantyPolicyAsyncError = PatchWarrantyPolicyAsyncErrors[keyof PatchWarrantyPolicyAsyncErrors];
+
+export type PatchWarrantyPolicyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchWarrantyPolicyAsyncResponse = PatchWarrantyPolicyAsyncResponses[keyof PatchWarrantyPolicyAsyncResponses];
+
 export type UpdateWarrantyPolicyAsyncData = {
     body?: ItemWarrantyPolicyUpdateDto;
     headers?: {
@@ -4915,6 +5449,43 @@ export type GetWarrantyRequestAsyncResponses = {
 };
 
 export type GetWarrantyRequestAsyncResponse = GetWarrantyRequestAsyncResponses[keyof GetWarrantyRequestAsyncResponses];
+
+export type PatchWarrantyRequestAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        warrantyRequestId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SupportService/WarrantyRequests/{warrantyRequestId}';
+};
+
+export type PatchWarrantyRequestAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchWarrantyRequestAsyncError = PatchWarrantyRequestAsyncErrors[keyof PatchWarrantyRequestAsyncErrors];
+
+export type PatchWarrantyRequestAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchWarrantyRequestAsyncResponse = PatchWarrantyRequestAsyncResponses[keyof PatchWarrantyRequestAsyncResponses];
 
 export type UpdateWarrantyRequestAsyncData = {
     body?: WarrantyRequestUpdateDto;

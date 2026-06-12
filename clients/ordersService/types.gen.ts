@@ -435,6 +435,14 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type OrderCreateDto = {
     id?: string;
     timestamp?: string;
@@ -1835,6 +1843,35 @@ export type GetOrderResponses = {
 
 export type GetOrderResponse = GetOrderResponses[keyof GetOrderResponses];
 
+export type PatchOrderData = {
+    body?: Array<Operation>;
+    path: {
+        orderId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/OrdersService/Orders/{orderId}';
+};
+
+export type PatchOrderErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchOrderError = PatchOrderErrors[keyof PatchOrderErrors];
+
+export type PatchOrderResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchOrderResponse = PatchOrderResponses[keyof PatchOrderResponses];
+
 export type UpdateOrderData = {
     body?: OrderUpdateDto;
     path: {
@@ -2040,6 +2077,36 @@ export type GetOrderLineResponses = {
 };
 
 export type GetOrderLineResponse = GetOrderLineResponses[keyof GetOrderLineResponses];
+
+export type PatchOrderLineData = {
+    body?: Array<Operation>;
+    path: {
+        orderId: string;
+        orderLineId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}';
+};
+
+export type PatchOrderLineErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchOrderLineError = PatchOrderLineErrors[keyof PatchOrderLineErrors];
+
+export type PatchOrderLineResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchOrderLineResponse = PatchOrderLineResponses[keyof PatchOrderLineResponses];
 
 export type UpdateOrderLineData = {
     body?: OrderLineUpdateDto;

@@ -90,11 +90,21 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type ProjectCreateDto = {
     id?: string;
     timestamp?: string;
     title?: string | null;
     description?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
     projectStartDate?: string;
     projectEndDate?: string;
 };
@@ -104,6 +114,10 @@ export type ProjectDto = {
     timestamp?: string | null;
     title?: string | null;
     description?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     projectStartDate?: string;
     projectEndDate?: string;
 };
@@ -139,15 +153,15 @@ export type ProjectDtoListEnvelopeWritable = {
 };
 
 export type ProjectHoursApprovalApproverUpdateDto = {
-    approverContactID?: string | null;
+    approverContactId?: string | null;
 };
 
 export type ProjectHoursApprovalCreateDto = {
     id?: string;
     timestamp?: string;
-    requesterContactID?: string | null;
-    approverContactID?: string | null;
-    projectPeriodID?: string | null;
+    requesterContactId?: string | null;
+    approverContactId?: string | null;
+    projectPeriodId?: string | null;
     comments?: string | null;
 };
 
@@ -161,7 +175,7 @@ export type ProjectPeriodCreateDto = {
     timestamp?: string;
     periodStartDate?: string;
     periodEndDate?: string;
-    projectID?: string | null;
+    projectId?: string | null;
 };
 
 export type ProjectPeriodDto = {
@@ -169,7 +183,9 @@ export type ProjectPeriodDto = {
     timestamp?: string | null;
     periodStartDate?: string;
     periodEndDate?: string;
-    projectID?: string | null;
+    projectId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type ProjectPeriodDtoListEnvelopeReadable = {
@@ -199,7 +215,7 @@ export type ProjectTaskCreateDto = {
     description?: string | null;
     startDate?: string;
     dueLine?: string;
-    projectID?: string | null;
+    projectId?: string | null;
 };
 
 export type ProjectTaskDto = {
@@ -209,8 +225,10 @@ export type ProjectTaskDto = {
     description?: string | null;
     startDate?: string;
     dueLine?: string;
-    projectID?: string | null;
-    projectTaskBucketID?: string | null;
+    projectId?: string | null;
+    projectTaskBucketId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type ProjectTaskDtoEnvelopeReadable = {
@@ -256,10 +274,10 @@ export type ProjectTimeLogCreateDto = {
     timeSpan?: string;
     logDate?: string;
     comments?: string | null;
-    projectTaskID: string;
-    projectPeriodID: string;
+    projectTaskId: string;
+    projectPeriodId: string;
     projectTimeLogRecordType?: 'RegularHours' | 'OvertimeToPay' | 'OvertimeToCompensate';
-    projectID?: string | null;
+    projectId?: string | null;
 };
 
 export type ProjectTimeLogDto = {
@@ -312,14 +330,16 @@ export type ProjectTimeLogUpdateDto = {
     logDate?: string;
     timeSpan?: string;
     comments?: string | null;
-    projectTaskID?: string | null;
-    projectPeriodID?: string | null;
+    projectTaskId?: string | null;
+    projectPeriodId?: string | null;
     projectTimeLogRecordType?: 'RegularHours' | 'OvertimeToPay' | 'OvertimeToCompensate';
 };
 
 export type ProjectUpdateDto = {
     title?: string | null;
     description?: string | null;
+    individualId?: string | null;
+    organizationId?: string | null;
     projectStartDate?: string;
     projectEndDate?: string;
 };
@@ -347,12 +367,16 @@ export type TaskCategoryCreateDto = {
     id?: string;
     timestamp?: string;
     title?: string | null;
+    projectId?: string | null;
 };
 
 export type TaskCategoryDto = {
     id?: string | null;
     timestamp?: string | null;
     title?: string | null;
+    projectId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type TaskCategoryDtoListEnvelopeReadable = {
@@ -372,13 +396,14 @@ export type TaskCategoryDtoListEnvelopeWritable = {
 
 export type TaskCategoryUpdateDto = {
     title?: string | null;
+    projectId?: string | null;
 };
 
 export type TaskTypeCreateDto = {
     id?: string;
     timestamp?: string;
     title?: string | null;
-    taskCategoryID?: string | null;
+    taskCategoryId?: string | null;
     displayInTimeTracker?: boolean;
     requiresDescription?: boolean;
 };
@@ -387,13 +412,16 @@ export type TaskTypeDto = {
     id?: string | null;
     timestamp?: string | null;
     title?: string | null;
-    taskCategoryID?: string | null;
+    taskCategoryId?: string | null;
     displayInTimeTracker?: boolean;
     requiresDescription?: boolean;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type TaskTypeUpdateDto = {
     title?: string | null;
+    taskCategoryId?: string | null;
     displayInTimeTracker?: boolean;
     requiresDescription?: boolean;
 };
@@ -932,6 +960,39 @@ export type GetProjectByIdAsyncResponses = {
 
 export type GetProjectByIdAsyncResponse = GetProjectByIdAsyncResponses[keyof GetProjectByIdAsyncResponses];
 
+export type PatchProjectAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        projectId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/ProjectsService/Projects/{projectId}';
+};
+
+export type PatchProjectAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchProjectAsyncError = PatchProjectAsyncErrors[keyof PatchProjectAsyncErrors];
+
+export type PatchProjectAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchProjectAsyncResponse = PatchProjectAsyncResponses[keyof PatchProjectAsyncResponses];
+
 export type UpdateProjectAsyncData = {
     body?: ProjectUpdateDto;
     path: {
@@ -1064,6 +1125,40 @@ export type DeleteProjectPeriodAsyncResponses = {
 };
 
 export type DeleteProjectPeriodAsyncResponse = DeleteProjectPeriodAsyncResponses[keyof DeleteProjectPeriodAsyncResponses];
+
+export type PatchProjectPeriodAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        projectId: string;
+        projectPeriodId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/ProjectsService/Projects/{projectId}/Periods/{projectPeriodId}';
+};
+
+export type PatchProjectPeriodAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchProjectPeriodAsyncError = PatchProjectPeriodAsyncErrors[keyof PatchProjectPeriodAsyncErrors];
+
+export type PatchProjectPeriodAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchProjectPeriodAsyncResponse = PatchProjectPeriodAsyncResponses[keyof PatchProjectPeriodAsyncResponses];
 
 export type UpdateProjectPeriodAsyncData = {
     body?: ProjectPeriodUpdateDto;
@@ -1297,6 +1392,40 @@ export type DeleteProjectTaskAsyncResponses = {
 };
 
 export type DeleteProjectTaskAsyncResponse = DeleteProjectTaskAsyncResponses[keyof DeleteProjectTaskAsyncResponses];
+
+export type PatchProjectTaskAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        projectId: string;
+        projectTaskId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/ProjectsService/Projects/{projectId}/Tasks/{projectTaskId}';
+};
+
+export type PatchProjectTaskAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchProjectTaskAsyncError = PatchProjectTaskAsyncErrors[keyof PatchProjectTaskAsyncErrors];
+
+export type PatchProjectTaskAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchProjectTaskAsyncResponse = PatchProjectTaskAsyncResponses[keyof PatchProjectTaskAsyncResponses];
 
 export type UpdateProjectTaskAsyncData = {
     body?: ProjectTaskUpdateDto;
@@ -1552,6 +1681,39 @@ export type GetProjectTaskByIdAsyncResponses = {
 
 export type GetProjectTaskByIdAsyncResponse = GetProjectTaskByIdAsyncResponses[keyof GetProjectTaskByIdAsyncResponses];
 
+export type PatchProjectTaskAsync2Data = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        projectTaskId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/ProjectTasks/{projectTaskId}';
+};
+
+export type PatchProjectTaskAsync2Errors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type PatchProjectTaskAsync2Error = PatchProjectTaskAsync2Errors[keyof PatchProjectTaskAsync2Errors];
+
+export type PatchProjectTaskAsync2Responses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchProjectTaskAsync2Response = PatchProjectTaskAsync2Responses[keyof PatchProjectTaskAsync2Responses];
+
 export type UpdateProjectTaskAsync2Data = {
     body?: ProjectTaskUpdateDto;
     headers?: {
@@ -1744,6 +1906,39 @@ export type GetTaskCategoryByIdAsyncResponses = {
 
 export type GetTaskCategoryByIdAsyncResponse = GetTaskCategoryByIdAsyncResponses[keyof GetTaskCategoryByIdAsyncResponses];
 
+export type PatchTaskCategoryAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        taskCategoryId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/ProjectsService/TaskCategories/{taskCategoryId}';
+};
+
+export type PatchTaskCategoryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTaskCategoryAsyncError = PatchTaskCategoryAsyncErrors[keyof PatchTaskCategoryAsyncErrors];
+
+export type PatchTaskCategoryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTaskCategoryAsyncResponse = PatchTaskCategoryAsyncResponses[keyof PatchTaskCategoryAsyncResponses];
+
 export type UpdateTaskCategoryAsyncData = {
     body?: TaskCategoryUpdateDto;
     path: {
@@ -1875,6 +2070,39 @@ export type GetTaskTypeByIdAsyncResponses = {
 };
 
 export type GetTaskTypeByIdAsyncResponse = GetTaskTypeByIdAsyncResponses[keyof GetTaskTypeByIdAsyncResponses];
+
+export type PatchTaskTypeAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        taskTypeId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/ProjectsService/TaskTypes/{taskTypeId}';
+};
+
+export type PatchTaskTypeAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTaskTypeAsyncError = PatchTaskTypeAsyncErrors[keyof PatchTaskTypeAsyncErrors];
+
+export type PatchTaskTypeAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTaskTypeAsyncResponse = PatchTaskTypeAsyncResponses[keyof PatchTaskTypeAsyncResponses];
 
 export type UpdateTaskTypeAsyncData = {
     body?: TaskTypeUpdateDto;
@@ -2328,6 +2556,41 @@ export type GetProjectTimeLogByIdAsyncResponses = {
 };
 
 export type GetProjectTimeLogByIdAsyncResponse = GetProjectTimeLogByIdAsyncResponses[keyof GetProjectTimeLogByIdAsyncResponses];
+
+export type PatchProjectTimeLogAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        timeLogId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/ProjectsService/TimeLogs/{timeLogId}';
+};
+
+export type PatchProjectTimeLogAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchProjectTimeLogAsyncError = PatchProjectTimeLogAsyncErrors[keyof PatchProjectTimeLogAsyncErrors];
+
+export type PatchProjectTimeLogAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
 
 export type UpdateProjectTimeLogAsyncData = {
     body?: ProjectTimeLogUpdateDto;

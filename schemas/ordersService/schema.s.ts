@@ -460,6 +460,11 @@ export interface paths {
      * @description Deletes the specified order.
      */
     delete: operations["DeleteOrder"];
+    /**
+     * Partially updates an existing order.
+     * @description Applies a JSON Patch document to partially update an existing order.
+     */
+    patch: operations["PatchOrder"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Calculate": {
     /**
@@ -503,6 +508,11 @@ export interface paths {
      * @description Deletes the specified order line.
      */
     delete: operations["DeleteOrderLine"];
+    /**
+     * Partially updates an order line.
+     * @description Applies a JSON Patch document to partially update a specific order line.
+     */
+    patch: operations["PatchOrderLine"];
   };
   "/api/v2/OrdersService/Orders/{orderId}/Lines/{orderLineId}/Calculate": {
     /**
@@ -833,6 +843,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     OrderCreateDto: {
       /** Format: uuid */
@@ -2025,6 +2043,42 @@ export interface operations {
     };
   };
   /**
+   * Partially updates an existing order.
+   * @description Applies a JSON Patch document to partially update an existing order.
+   */
+  PatchOrder: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Calculates totals for an order.
    * @description Performs calculation of totals and taxes for the specified order.
    */
@@ -2231,6 +2285,43 @@ export interface operations {
       path: {
         orderId: string;
         orderLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Partially updates an order line.
+   * @description Applies a JSON Patch document to partially update a specific order line.
+   */
+  PatchOrderLine: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        orderId: string;
+        orderLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

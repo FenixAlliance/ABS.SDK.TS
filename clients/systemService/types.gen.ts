@@ -33,6 +33,45 @@ export type BooleanEnvelopeWritable = {
     result?: boolean;
 };
 
+export type BusinessDomainDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    domain?: string | null;
+    txtRecord?: string | null;
+    verified?: boolean;
+    businessID?: string | null;
+};
+
+export type BusinessDomainDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: BusinessDomainDto;
+};
+
+export type BusinessDomainDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: BusinessDomainDto;
+};
+
+export type BusinessDomainDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<BusinessDomainDto> | null;
+};
+
+export type BusinessDomainDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<BusinessDomainDto> | null;
+};
+
 export type CartDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -670,6 +709,14 @@ export type ObjectEmailDispatchRequest = {
     templateUrl?: string | null;
     emailTemplateId?: string | null;
     payload?: unknown;
+};
+
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type OptionCreateDto = {
@@ -1342,9 +1389,9 @@ export type WebPortalCreateDto = {
     domain?: string | null;
     disabled?: boolean;
     description?: string | null;
-    websiteThemeID?: string | null;
-    businessDomainID?: string | null;
-    businessPortalApplicationID?: string | null;
+    websiteThemeId?: string | null;
+    businessDomainId?: string | null;
+    businessPortalApplicationId?: string | null;
 };
 
 export type WebPortalDto = {
@@ -1398,9 +1445,9 @@ export type WebPortalUpdateDto = {
     domain?: string | null;
     disabled?: boolean;
     description?: string | null;
-    websiteThemeID?: string | null;
-    businessDomainID?: string | null;
-    businessPortalApplicationID?: string | null;
+    websiteThemeId?: string | null;
+    businessDomainId?: string | null;
+    businessPortalApplicationId?: string | null;
 };
 
 export type GetAndStoreTokensData = {
@@ -1440,6 +1487,186 @@ export type IsRequestValidAsyncResponses = {
      */
     200: unknown;
 };
+
+export type GetSystemBusinessDomainsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/BusinessDomains';
+};
+
+export type GetSystemBusinessDomainsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemBusinessDomainsError = GetSystemBusinessDomainsErrors[keyof GetSystemBusinessDomainsErrors];
+
+export type GetSystemBusinessDomainsResponses = {
+    /**
+     * OK
+     */
+    200: BusinessDomainDtoListEnvelopeReadable;
+};
+
+export type GetSystemBusinessDomainsResponse = GetSystemBusinessDomainsResponses[keyof GetSystemBusinessDomainsResponses];
+
+export type GetSystemBusinessDomainsCountData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/BusinessDomains/Count';
+};
+
+export type GetSystemBusinessDomainsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemBusinessDomainsCountError = GetSystemBusinessDomainsCountErrors[keyof GetSystemBusinessDomainsCountErrors];
+
+export type GetSystemBusinessDomainsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSystemBusinessDomainsCountResponse = GetSystemBusinessDomainsCountResponses[keyof GetSystemBusinessDomainsCountResponses];
+
+export type DeleteSystemBusinessDomainData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        businessDomainId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/BusinessDomains/{businessDomainId}';
+};
+
+export type DeleteSystemBusinessDomainErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSystemBusinessDomainError = DeleteSystemBusinessDomainErrors[keyof DeleteSystemBusinessDomainErrors];
+
+export type DeleteSystemBusinessDomainResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSystemBusinessDomainResponse = DeleteSystemBusinessDomainResponses[keyof DeleteSystemBusinessDomainResponses];
+
+export type GetSystemBusinessDomainByIdData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        businessDomainId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/BusinessDomains/{businessDomainId}';
+};
+
+export type GetSystemBusinessDomainByIdErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSystemBusinessDomainByIdError = GetSystemBusinessDomainByIdErrors[keyof GetSystemBusinessDomainByIdErrors];
+
+export type GetSystemBusinessDomainByIdResponses = {
+    /**
+     * OK
+     */
+    200: BusinessDomainDtoEnvelopeReadable;
+};
+
+export type GetSystemBusinessDomainByIdResponse = GetSystemBusinessDomainByIdResponses[keyof GetSystemBusinessDomainByIdResponses];
+
+export type VerifySystemBusinessDomainData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        businessDomainId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/BusinessDomains/{businessDomainId}/Verify';
+};
+
+export type VerifySystemBusinessDomainErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type VerifySystemBusinessDomainError = VerifySystemBusinessDomainErrors[keyof VerifySystemBusinessDomainErrors];
+
+export type VerifySystemBusinessDomainResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type VerifySystemBusinessDomainResponse = VerifySystemBusinessDomainResponses[keyof VerifySystemBusinessDomainResponses];
 
 export type GetSystemCartsData = {
     body?: never;
@@ -1797,6 +2024,43 @@ export type GetSystemContactOptionByIdResponses = {
 };
 
 export type GetSystemContactOptionByIdResponse = GetSystemContactOptionByIdResponses[keyof GetSystemContactOptionByIdResponses];
+
+export type PatchSystemContactOptionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        contactId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Contacts/{contactId}/Options/{optionId}';
+};
+
+export type PatchSystemContactOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSystemContactOptionError = PatchSystemContactOptionErrors[keyof PatchSystemContactOptionErrors];
+
+export type PatchSystemContactOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSystemContactOptionResponse = PatchSystemContactOptionResponses[keyof PatchSystemContactOptionResponses];
 
 export type UpdateSystemContactOptionData = {
     body?: OptionUpdateDto;
@@ -3070,6 +3334,42 @@ export type GetSystemOptionByIdResponses = {
 
 export type GetSystemOptionByIdResponse = GetSystemOptionByIdResponses[keyof GetSystemOptionByIdResponses];
 
+export type PatchSystemOptionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Options/{optionId}';
+};
+
+export type PatchSystemOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSystemOptionError = PatchSystemOptionErrors[keyof PatchSystemOptionErrors];
+
+export type PatchSystemOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSystemOptionResponse = PatchSystemOptionResponses[keyof PatchSystemOptionResponses];
+
 export type UpdateSystemOptionData = {
     body?: OptionUpdateDto;
     headers?: {
@@ -3388,6 +3688,42 @@ export type GetSystemPortalByIdResponses = {
 
 export type GetSystemPortalByIdResponse = GetSystemPortalByIdResponses[keyof GetSystemPortalByIdResponses];
 
+export type PatchSystemPortalData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        portalId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Portals/{portalId}';
+};
+
+export type PatchSystemPortalErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSystemPortalError = PatchSystemPortalErrors[keyof PatchSystemPortalErrors];
+
+export type PatchSystemPortalResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSystemPortalResponse = PatchSystemPortalResponses[keyof PatchSystemPortalResponses];
+
 export type UpdateSystemPortalData = {
     body?: WebPortalUpdateDto;
     headers?: {
@@ -3609,6 +3945,43 @@ export type GetSystemTenantOptionByIdResponses = {
 };
 
 export type GetSystemTenantOptionByIdResponse = GetSystemTenantOptionByIdResponses[keyof GetSystemTenantOptionByIdResponses];
+
+export type PatchSystemTenantOptionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/Options/{optionId}';
+};
+
+export type PatchSystemTenantOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSystemTenantOptionError = PatchSystemTenantOptionErrors[keyof PatchSystemTenantOptionErrors];
+
+export type PatchSystemTenantOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSystemTenantOptionResponse = PatchSystemTenantOptionResponses[keyof PatchSystemTenantOptionResponses];
 
 export type UpdateSystemTenantOptionData = {
     body?: OptionUpdateDto;
@@ -3889,6 +4262,42 @@ export type GetTenantResponses = {
 
 export type GetTenantResponse = GetTenantResponses[keyof GetTenantResponses];
 
+export type PatchTenantData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}';
+};
+
+export type PatchTenantErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantError = PatchTenantErrors[keyof PatchTenantErrors];
+
+export type PatchTenantResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantResponse = PatchTenantResponses[keyof PatchTenantResponses];
+
 export type UpdateTenantData = {
     body?: TenantUpdateDto;
     headers?: {
@@ -4152,6 +4561,43 @@ export type GetSystemUserOptionByIdResponses = {
 };
 
 export type GetSystemUserOptionByIdResponse = GetSystemUserOptionByIdResponses[keyof GetSystemUserOptionByIdResponses];
+
+export type PatchSystemUserOptionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+        optionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Options/{optionId}';
+};
+
+export type PatchSystemUserOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSystemUserOptionError = PatchSystemUserOptionErrors[keyof PatchSystemUserOptionErrors];
+
+export type PatchSystemUserOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSystemUserOptionResponse = PatchSystemUserOptionResponses[keyof PatchSystemUserOptionResponses];
 
 export type UpdateSystemUserOptionData = {
     body?: OptionUpdateDto;
@@ -4431,6 +4877,42 @@ export type GetUserAsyncResponses = {
 };
 
 export type GetUserAsyncResponse = GetUserAsyncResponses[keyof GetUserAsyncResponses];
+
+export type PatchAccountHolderAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}';
+};
+
+export type PatchAccountHolderAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchAccountHolderAsyncError = PatchAccountHolderAsyncErrors[keyof PatchAccountHolderAsyncErrors];
+
+export type PatchAccountHolderAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchAccountHolderAsyncResponse = PatchAccountHolderAsyncResponses[keyof PatchAccountHolderAsyncResponses];
 
 export type UpdateAccountHolderAsyncData = {
     body?: UserUpdateDto;

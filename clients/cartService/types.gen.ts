@@ -310,8 +310,6 @@ export type ItemCartRecordDto = {
     businessProfileRecordId?: string | null;
     parentBillingItemRecordId?: string | null;
     cartId?: string | null;
-    itemID?: string | null;
-    shippingAddressID?: string | null;
 };
 
 export type ItemCartRecordDtoEnvelopeReadable = {
@@ -410,6 +408,14 @@ export type NewWishListRequest = {
     description?: string | null;
     cartID?: string;
     public?: boolean;
+};
+
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type ProductToWishListRequest = {
@@ -524,6 +530,42 @@ export type GetCartByIdAsyncResponses = {
 };
 
 export type GetCartByIdAsyncResponse = GetCartByIdAsyncResponses[keyof GetCartByIdAsyncResponses];
+
+export type PatchCartAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        cartId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/CartService/Carts/{cartId}';
+};
+
+export type PatchCartAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCartAsyncError = PatchCartAsyncErrors[keyof PatchCartAsyncErrors];
+
+export type PatchCartAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCartAsyncResponse = PatchCartAsyncResponses[keyof PatchCartAsyncResponses];
 
 export type UpdateCartAsyncData = {
     body?: CartUpdateRequest;
@@ -2801,6 +2843,42 @@ export type RemoveProductFromCartByRecordIdResponses = {
 
 export type RemoveProductFromCartByRecordIdResponse = RemoveProductFromCartByRecordIdResponses[keyof RemoveProductFromCartByRecordIdResponses];
 
+export type PatchItemCartRecordData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        recordId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/CartService/Records/{recordId}';
+};
+
+export type PatchItemCartRecordErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchItemCartRecordError = PatchItemCartRecordErrors[keyof PatchItemCartRecordErrors];
+
+export type PatchItemCartRecordResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchItemCartRecordResponse = PatchItemCartRecordResponses[keyof PatchItemCartRecordResponses];
+
 export type UpdateItemCartRecordData = {
     body?: ItemCartRecordUpdateDto;
     headers?: {
@@ -3021,6 +3099,29 @@ export type DeleteWishListResponses = {
 };
 
 export type DeleteWishListResponse = DeleteWishListResponses[keyof DeleteWishListResponses];
+
+export type PatchWishListData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        wishListId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/CartService/WishLists/{wishListId}';
+};
+
+export type PatchWishListResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchWishListResponse = PatchWishListResponses[keyof PatchWishListResponses];
 
 export type UpdateProductToWishListData = {
     body?: WishListUpdateDto;

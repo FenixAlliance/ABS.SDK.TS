@@ -149,6 +149,11 @@ export interface paths {
      * @description Deletes the specified discount list.
      */
     delete: operations["DeleteDiscountList"];
+    /**
+     * Patches a discount list
+     * @description Partially updates the specified discount list using a JSON Patch document.
+     */
+    patch: operations["PatchDiscountList"];
   };
   "/api/v2/PricingService/DiscountLists/{discountListId}/Discounts": {
     /**
@@ -185,6 +190,11 @@ export interface paths {
      * @description Deletes the specified discount entry from a discount list.
      */
     delete: operations["DeleteDiscountListEntry"];
+    /**
+     * Patches a discount list entry
+     * @description Partially updates the specified discount entry using a JSON Patch document.
+     */
+    patch: operations["PatchDiscountListEntry"];
   };
   "/version": {
     get: {
@@ -518,6 +528,11 @@ export interface paths {
      * @description Deletes the specified price list.
      */
     delete: operations["DeletePriceListAsync"];
+    /**
+     * Patches a price list
+     * @description Partially updates the specified price list using a JSON Patch document.
+     */
+    patch: operations["PatchPriceListAsync"];
   };
   "/api/v2/PricingService/PriceLists/{priceListId}/Prices": {
     /**
@@ -547,6 +562,11 @@ export interface paths {
      * @description Deletes the specified price entry from a price list.
      */
     delete: operations["DeletePriceListPriceAsync"];
+    /**
+     * Patches a price list entry
+     * @description Partially updates the specified price entry in a price list using a JSON Patch document.
+     */
+    patch: operations["PatchPriceListPriceAsync"];
   };
   "/api/v2/PricingService/Prices/{itemId}/Price": {
     /**
@@ -599,6 +619,11 @@ export interface paths {
      * @description Deletes a pricing rule for the specified tenant and rule ID.
      */
     delete: operations["DeletePricingRule"];
+    /**
+     * Patch a pricing rule
+     * @description Partially updates a pricing rule using a JSON Patch document.
+     */
+    patch: operations["PatchPricingRule"];
   };
   "/api/v2/PricingService/PricingRules/Count": {
     /**
@@ -649,6 +674,11 @@ export interface paths {
      * @description Deletes the specified rounding policy.
      */
     delete: operations["DeleteRoundingPolicyAsync"];
+    /**
+     * Patches a rounding policy
+     * @description Partially updates the specified rounding policy using a JSON Patch document.
+     */
+    patch: operations["PatchRoundingPolicyAsync"];
   };
 }
 
@@ -682,6 +712,7 @@ export interface components {
       percent?: number;
       /** Format: double */
       value?: number;
+      itemId?: string | null;
       discountListId?: string | null;
     };
     DiscountDto: {
@@ -726,6 +757,8 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       name?: string | null;
+      /** @enum {string} */
+      discountListType?: "Amount" | "Percentage";
       currencyId?: string | null;
     };
     DiscountListDto: {
@@ -733,6 +766,8 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       name?: string | null;
+      /** @enum {string} */
+      discountListType?: "Amount" | "Percentage";
       currencyId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
@@ -757,6 +792,8 @@ export interface components {
     };
     DiscountListUpdateDto: {
       name?: string | null;
+      /** @enum {string} */
+      discountListType?: "Amount" | "Percentage";
       currencyId?: string | null;
     };
     DiscountUpdateDto: {
@@ -769,6 +806,7 @@ export interface components {
       percent?: number;
       /** Format: double */
       value?: number;
+      itemId?: string | null;
       discountListId?: string | null;
     };
     EmptyEnvelope: {
@@ -950,6 +988,14 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     PriceListCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -957,6 +1003,8 @@ export interface components {
       timestamp?: string;
       name: string;
       description?: string | null;
+      /** @enum {string} */
+      context?: "Sales" | "Purchase" | "Cost";
       /** Format: date-time */
       startDate?: string;
       /** Format: date-time */
@@ -964,6 +1012,8 @@ export interface components {
       currencyId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
+      partnerVisible?: boolean;
+      unitOfMeasureDependant?: boolean;
     };
     PriceListDto: {
       id?: string | null;
@@ -975,6 +1025,8 @@ export interface components {
       /** Format: date-time */
       endDate?: string;
       description?: string | null;
+      /** @enum {string} */
+      context?: "Sales" | "Purchase" | "Cost";
       currencyId?: string | null;
       tenantId?: string | null;
       unitId?: string | null;
@@ -1004,6 +1056,8 @@ export interface components {
     PriceListUpdateDto: {
       name: string;
       description?: string | null;
+      /** @enum {string} */
+      context?: "Sales" | "Purchase" | "Cost";
       /** Format: date-time */
       startDate?: string;
       /** Format: date-time */
@@ -1011,6 +1065,8 @@ export interface components {
       currencyId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
+      partnerVisible?: boolean;
+      unitOfMeasureDependant?: boolean;
     };
     PricingRuleCreateDto: {
       /** Format: uuid */
@@ -1039,18 +1095,19 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     PricingRuleDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       code?: string | null;
       title?: string | null;
       description?: string | null;
@@ -1073,12 +1130,12 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     PricingRuleDtoEnvelope: {
       isSuccess?: boolean;
@@ -1120,12 +1177,12 @@ export interface components {
       value?: number;
       /** Format: double */
       percentage?: number;
-      currencyID?: string | null;
-      countryID?: string | null;
-      countryStateID?: string | null;
+      currencyId?: string | null;
+      countryId?: string | null;
+      countryStateId?: string | null;
       customState?: string | null;
       customCity?: string | null;
-      cityID?: string | null;
+      cityId?: string | null;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1556,6 +1613,56 @@ export interface operations {
     };
   };
   /**
+   * Patches a discount list
+   * @description Partially updates the specified discount list using a JSON Patch document.
+   */
+  PatchDiscountList: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves discounts in a discount list
    * @description Gets all discount entries for a specific discount list with OData support.
    */
@@ -1834,6 +1941,57 @@ export interface operations {
       };
     };
   };
+  /**
+   * Patches a discount list entry
+   * @description Partially updates the specified discount entry using a JSON Patch document.
+   */
+  PatchDiscountListEntry: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        discountListId: string;
+        discountListEntryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   "MapIdentityApi-/confirmEmail": {
     parameters: {
       query: {
@@ -2033,6 +2191,42 @@ export interface operations {
     };
   };
   /**
+   * Patches a price list
+   * @description Partially updates the specified price list using a JSON Patch document.
+   */
+  PatchPriceListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        priceListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves prices in a price list
    * @description Gets all price entries for a specific price list with OData support.
    */
@@ -2179,6 +2373,43 @@ export interface operations {
       path: {
         priceListId: string;
         priceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a price list entry
+   * @description Partially updates the specified price entry in a price list using a JSON Patch document.
+   */
+  PatchPriceListPriceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        priceListId: string;
+        priceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -2499,6 +2730,50 @@ export interface operations {
     };
   };
   /**
+   * Patch a pricing rule
+   * @description Partially updates a pricing rule using a JSON Patch document.
+   */
+  PatchPricingRule: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pricingRuleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Counts pricing rules
    * @description Gets the count of pricing rules for the current tenant.
    */
@@ -2794,6 +3069,53 @@ export interface operations {
       };
       path: {
         roundingPolicyId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a rounding policy
+   * @description Partially updates the specified rounding policy using a JSON Patch document.
+   */
+  PatchRoundingPolicyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        roundingPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

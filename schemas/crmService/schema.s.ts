@@ -149,6 +149,11 @@ export interface paths {
      * @description Deletes a contact group for the specified tenant.
      */
     delete: operations["DeleteContactGroupAsync"];
+    /**
+     * Patch a contact group
+     * @description Patch a contact group
+     */
+    patch: operations["PatchContactGroupAsync"];
   };
   "/api/v2/CrmService/ContactProfiles": {
     /**
@@ -185,6 +190,11 @@ export interface paths {
      * @description Deletes a contact profile for the specified tenant.
      */
     delete: operations["DeleteContactProfileAsync"];
+    /**
+     * Patch a contact profile
+     * @description Patch a contact profile
+     */
+    patch: operations["PatchContactProfileAsync"];
   };
   "/api/v2/CrmService/ContactRelations": {
     /**
@@ -221,6 +231,11 @@ export interface paths {
      * @description Deletes a contact relation for the specified tenant.
      */
     delete: operations["DeleteContactRelationAsync"];
+    /**
+     * Patch a contact relation
+     * @description Patch a contact relation
+     */
+    patch: operations["PatchContactRelationAsync"];
   };
   "/api/v2/CrmService/ContactRelationTypes": {
     /**
@@ -257,6 +272,11 @@ export interface paths {
      * @description Deletes a contact relation type for the specified tenant.
      */
     delete: operations["DeleteContactRelationTypeAsync"];
+    /**
+     * Patch a contact relation type
+     * @description Patch a contact relation type
+     */
+    patch: operations["PatchContactRelationTypeAsync"];
   };
   "/api/v2/CrmService/Contacts": {
     /**
@@ -489,6 +509,51 @@ export interface paths {
      */
     post: operations["SendContactEmail"];
   };
+  "/api/v2/CrmService/Contacts/{contactId}/Emails": {
+    /**
+     * Get a contact's email addresses
+     * @description Get all email addresses for the specified contact.
+     */
+    get: operations["GetContactEmailsAsync"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Emails/Count": {
+    /**
+     * Get contact email addresses count
+     * @description Returns the count of email addresses for the specified contact.
+     */
+    get: operations["GetContactEmailsCountAsync"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Emails/Addresses": {
+    /**
+     * Add an email address to a contact
+     * @description Creates a new email address for the specified contact.
+     */
+    post: operations["CreateContactEmailAsync"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Emails/{emailId}": {
+    /**
+     * Update a contact email address
+     * @description Updates an existing email address for the specified contact.
+     */
+    put: operations["UpdateContactEmailAsync"];
+    /**
+     * Delete a contact email address
+     * @description Deletes an email address from the specified contact.
+     */
+    delete: operations["DeleteContactEmailAsync"];
+    /**
+     * Patch a contact email address
+     * @description Partially updates an existing email address for the specified contact.
+     */
+    patch: operations["PatchContactEmailAsync"];
+  };
+  "/api/v2/CrmService/Contacts/{contactId}/Emails/{emailId}/Verify": {
+    /**
+     * Verify a contact email address
+     * @description Marks an email address as verified on the specified contact.
+     */
+    post: operations["VerifyContactEmailAsync"];
+  };
   "/api/v2/CrmService/ContactSources": {
     /**
      * Get all contact sources
@@ -524,6 +589,11 @@ export interface paths {
      * @description Deletes a contact source for the specified tenant.
      */
     delete: operations["DeleteContactSourceAsync"];
+    /**
+     * Patch a contact source
+     * @description Patch a contact source
+     */
+    patch: operations["PatchContactSourceAsync"];
   };
   "/version": {
     get: {
@@ -857,6 +927,11 @@ export interface paths {
      * @description Delete a contact option
      */
     delete: operations["DeleteContactOption"];
+    /**
+     * Patch a contact option
+     * @description Patch a contact option
+     */
+    patch: operations["PatchContactOptionAsync"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Options/Key/{key}": {
     /**
@@ -864,6 +939,11 @@ export interface paths {
      * @description Retrieve a single contact option by its key
      */
     get: operations["GetContactOptionByKey"];
+    /**
+     * Patch a contact option by key
+     * @description Patch a contact option by key
+     */
+    patch: operations["PatchContactOptionByKeyAsync"];
   };
   "/api/v2/CrmService/Contacts/{contactId}/Options/Upsert/{key}": {
     /**
@@ -1242,6 +1322,45 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ContactDto"][] | null;
     };
+    ContactEmailCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      contactId?: string | null;
+      address?: string | null;
+      label?: string | null;
+      isPrimary?: boolean;
+    };
+    ContactEmailDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      contactId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      address?: string | null;
+      label?: string | null;
+      isPrimary?: boolean;
+      isVerified?: boolean;
+      /** Format: date-time */
+      verifiedTimestamp?: string | null;
+      contact?: components["schemas"]["ContactDto"];
+    };
+    ContactEmailDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ContactEmailDto"][] | null;
+    };
+    ContactEmailUpdateDto: {
+      address?: string | null;
+      label?: string | null;
+      isPrimary?: boolean | null;
+    };
     ContactProfileCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1439,7 +1558,7 @@ export interface components {
       name?: string | null;
       backName?: string | null;
       description?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ContactRelationTypeDtoETag: {
       isWellFormed?: boolean;
@@ -1498,7 +1617,7 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       description?: string | null;
-      businessID?: string | null;
+      tenantId?: string | null;
     };
     ContactSourceDtoETag: {
       isWellFormed?: boolean;
@@ -1558,8 +1677,6 @@ export interface components {
       jobTitle?: string | null;
       countryId?: string | null;
       parentContactId?: string | null;
-      addressLine1?: string | null;
-      addressLine2?: string | null;
       postalCode?: string | null;
       stateId?: string | null;
       cityId?: string | null;
@@ -1600,8 +1717,8 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       description?: string | null;
-      businessID?: string | null;
-      businessProfileRecordID?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
     };
     ContactsGroupDtoETag: {
       isWellFormed?: boolean;
@@ -3162,6 +3279,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a contact group
+   * @description Patch a contact group
+   */
+  PatchContactGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get a contact's social profiles
    * @description Get a contact's social profiles
    */
@@ -3414,6 +3578,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a contact profile
+   * @description Patch a contact profile
+   */
+  PatchContactProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all contact relations
    * @description Retrieves all contact relations for the specified tenant.
    */
@@ -3642,6 +3853,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a contact relation
+   * @description Patch a contact relation
+   */
+  PatchContactRelationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all contact relation types
    * @description Retrieves all contact relation types for the specified tenant.
    */
@@ -3862,6 +4120,53 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a contact relation type
+   * @description Patch a contact relation type
+   */
+  PatchContactRelationTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -5111,6 +5416,300 @@ export interface operations {
     };
   };
   /**
+   * Get a contact's email addresses
+   * @description Get all email addresses for the specified contact.
+   */
+  GetContactEmailsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ContactEmailDtoListEnvelope"];
+          "application/xml": components["schemas"]["ContactEmailDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get contact email addresses count
+   * @description Returns the count of email addresses for the specified contact.
+   */
+  GetContactEmailsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Add an email address to a contact
+   * @description Creates a new email address for the specified contact.
+   */
+  CreateContactEmailAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactEmailCreateDto"];
+        "application/xml": components["schemas"]["ContactEmailCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a contact email address
+   * @description Updates an existing email address for the specified contact.
+   */
+  UpdateContactEmailAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        emailId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactEmailUpdateDto"];
+        "application/xml": components["schemas"]["ContactEmailUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a contact email address
+   * @description Deletes an email address from the specified contact.
+   */
+  DeleteContactEmailAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        emailId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a contact email address
+   * @description Partially updates an existing email address for the specified contact.
+   */
+  PatchContactEmailAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        emailId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Verify a contact email address
+   * @description Marks an email address as verified on the specified contact.
+   */
+  VerifyContactEmailAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        emailId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all contact sources
    * @description Retrieves all contact sources for the specified tenant.
    */
@@ -5331,6 +5930,53 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a contact source
+   * @description Patch a contact source
+   */
+  PatchContactSourceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -5619,6 +6265,54 @@ export interface operations {
     };
   };
   /**
+   * Patch a contact option
+   * @description Patch a contact option
+   */
+  PatchContactOptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        optionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a single contact option by its key
    * @description Retrieve a single contact option by its key
    */
@@ -5643,6 +6337,54 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["OptionDtoEnvelope"];
           "application/xml": components["schemas"]["OptionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a contact option by key
+   * @description Patch a contact option by key
+   */
+  PatchContactOptionByKeyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        contactId: string;
+        key: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */

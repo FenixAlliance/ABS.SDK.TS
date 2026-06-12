@@ -40,6 +40,11 @@ export interface paths {
      * @description Deletes an airway bill.
      */
     delete: operations["DeleteAirwayBillAsync"];
+    /**
+     * Patch an airway bill
+     * @description Partially updates an existing airway bill using a JSON Patch document.
+     */
+    patch: operations["PatchAirwayBillAsync"];
   };
   "/api/v2/LogisticsService/AirwayBills/{billId}/Issue": {
     /**
@@ -106,6 +111,11 @@ export interface paths {
      * @description Removes a line from an airway bill.
      */
     delete: operations["RemoveAirwayBillLineAsync"];
+    /**
+     * Patch an airway bill line
+     * @description Partially updates a line on an airway bill using a JSON Patch document.
+     */
+    patch: operations["PatchAirwayBillLineAsync"];
   };
   "/api/v2/AiService/Completions/Complete": {
     get: {
@@ -584,6 +594,11 @@ export interface paths {
      * @description Deletes an item packing slip.
      */
     delete: operations["DeleteItemPackingSlipAsync"];
+    /**
+     * Patch an item packing slip
+     * @description Applies a JSON Patch document to an item packing slip.
+     */
+    patch: operations["PatchItemPackingSlipAsync"];
   };
   "/api/v2/LogisticsService/ItemPackingSlips/{packingSlipId}/Entries": {
     /**
@@ -620,6 +635,11 @@ export interface paths {
      * @description Deletes a packing slip entry.
      */
     delete: operations["DeleteItemPackingSlipEntryAsync"];
+    /**
+     * Patch a packing slip entry
+     * @description Applies a JSON Patch document to a packing slip entry.
+     */
+    patch: operations["PatchItemPackingSlipEntryAsync"];
   };
   "/api/v2/LogisticsService/ItemPickLists": {
     /**
@@ -656,6 +676,11 @@ export interface paths {
      * @description Deletes an item pick list.
      */
     delete: operations["DeleteItemPickListAsync"];
+    /**
+     * Patch an item pick list
+     * @description Applies a JSON Patch document to an item pick list.
+     */
+    patch: operations["PatchItemPickListAsync"];
   };
   "/api/v2/LogisticsService/ItemPickLists/{pickListId}/Entries": {
     /**
@@ -692,6 +717,11 @@ export interface paths {
      * @description Deletes a pick list entry.
      */
     delete: operations["DeleteItemPickListEntryAsync"];
+    /**
+     * Patch a pick list entry
+     * @description Applies a JSON Patch document to a pick list entry.
+     */
+    patch: operations["PatchItemPickListEntryAsync"];
   };
   "/api/v2/LogisticsService/ItemRestocks": {
     /**
@@ -728,6 +758,11 @@ export interface paths {
      * @description Deletes an item restock.
      */
     delete: operations["DeleteItemRestockAsync"];
+    /**
+     * Patch an item restock
+     * @description Applies a JSON Patch document to an item restock.
+     */
+    patch: operations["PatchItemRestockAsync"];
   };
   "/api/v2/LogisticsService/ItemRestocks/{restockId}/Entries": {
     /**
@@ -764,6 +799,11 @@ export interface paths {
      * @description Deletes a restock entry.
      */
     delete: operations["DeleteItemRestockEntryAsync"];
+    /**
+     * Patch a restock entry
+     * @description Applies a JSON Patch document to a restock entry.
+     */
+    patch: operations["PatchItemRestockEntryAsync"];
   };
   "/api/v2/LogisticsService/ItemRetainSamples": {
     /**
@@ -800,6 +840,11 @@ export interface paths {
      * @description Deletes an item retain sample.
      */
     delete: operations["DeleteItemRetainSampleAsync"];
+    /**
+     * Patch an item retain sample
+     * @description Applies a JSON Patch document to an item retain sample.
+     */
+    patch: operations["PatchItemRetainSampleAsync"];
   };
   "/api/v2/LogisticsService/Ports": {
     /**
@@ -836,6 +881,11 @@ export interface paths {
      * @description Deletes a port.
      */
     delete: operations["DeletePortAsync"];
+    /**
+     * Patch a port
+     * @description Partially updates an existing port using JSON Patch.
+     */
+    patch: operations["PatchPortAsync"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery": {
     /**
@@ -872,6 +922,11 @@ export interface paths {
      * @description Deletes a proof of delivery.
      */
     delete: operations["DeleteProofOfDeliveryAsync"];
+    /**
+     * Patch a proof of delivery
+     * @description Partially updates an existing proof of delivery using JSON Patch.
+     */
+    patch: operations["PatchProofOfDeliveryAsync"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/Sign": {
     /**
@@ -924,6 +979,11 @@ export interface paths {
      * @description Removes a line from a proof of delivery.
      */
     delete: operations["RemoveProofOfDeliveryLineAsync"];
+    /**
+     * Patch a proof of delivery line
+     * @description Partially updates an existing proof of delivery line using JSON Patch.
+     */
+    patch: operations["PatchProofOfDeliveryLineAsync"];
   };
   "/api/v2/LogisticsService/ProofsOfDelivery/{podId}/DeliveryNotes": {
     /**
@@ -986,6 +1046,11 @@ export interface paths {
      * @description Deletes a rail waybill.
      */
     delete: operations["DeleteRailWaybillAsync"];
+    /**
+     * Patch a rail waybill
+     * @description Partially updates an existing rail waybill using a JSON Patch document.
+     */
+    patch: operations["PatchRailWaybillAsync"];
   };
   "/api/v2/LogisticsService/RailWaybills/{waybillId}/Issue": {
     /**
@@ -1045,6 +1110,11 @@ export interface paths {
      * @description Removes a line from a rail waybill.
      */
     delete: operations["RemoveRailWaybillLineAsync"];
+    /**
+     * Patch a rail waybill line
+     * @description Partially updates a line on a rail waybill using a JSON Patch document.
+     */
+    patch: operations["PatchRailWaybillLineAsync"];
   };
   "/api/v2/LogisticsService/RoadWaybills": {
     /**
@@ -1081,6 +1151,11 @@ export interface paths {
      * @description Deletes a road waybill.
      */
     delete: operations["DeleteRoadWaybillAsync"];
+    /**
+     * Patch a road waybill
+     * @description Partially updates an existing road waybill using a JSON Patch document.
+     */
+    patch: operations["PatchRoadWaybillAsync"];
   };
   "/api/v2/LogisticsService/RoadWaybills/{waybillId}/Issue": {
     /**
@@ -1147,6 +1222,11 @@ export interface paths {
      * @description Removes a line from a road waybill.
      */
     delete: operations["RemoveRoadWaybillLineAsync"];
+    /**
+     * Patch a road waybill line
+     * @description Partially updates a line on a road waybill using a JSON Patch document.
+     */
+    patch: operations["PatchRoadWaybillLineAsync"];
   };
   "/api/v2/LogisticsService/SeawayBills": {
     /**
@@ -1183,6 +1263,11 @@ export interface paths {
      * @description Deletes a seaway bill.
      */
     delete: operations["DeleteSeawayBillAsync"];
+    /**
+     * Patch a seaway bill
+     * @description Partially updates an existing seaway bill using a JSON Patch document.
+     */
+    patch: operations["PatchSeawayBillAsync"];
   };
   "/api/v2/LogisticsService/SeawayBills/{billId}/Issue": {
     /**
@@ -1249,6 +1334,11 @@ export interface paths {
      * @description Removes a line from a seaway bill.
      */
     delete: operations["RemoveSeawayBillLineAsync"];
+    /**
+     * Patch a seaway bill line
+     * @description Partially updates a line on a seaway bill using a JSON Patch document.
+     */
+    patch: operations["PatchSeawayBillLineAsync"];
   };
   "/api/v2/LogisticsService/SupplierProfiles": {
     /**
@@ -1285,6 +1375,11 @@ export interface paths {
      * @description Deletes a supplier profile.
      */
     delete: operations["DeleteSupplierProfileAsync"];
+    /**
+     * Patch a supplier profile
+     * @description Applies a JSON Patch document to a supplier profile.
+     */
+    patch: operations["PatchSupplierProfileAsync"];
   };
   "/api/v2/LogisticsService/TruckDrivers": {
     /**
@@ -1321,6 +1416,11 @@ export interface paths {
      * @description Deletes a truck driver.
      */
     delete: operations["DeleteTruckDriverAsync"];
+    /**
+     * Patch a truck driver
+     * @description Partially updates an existing truck driver using JSON Patch.
+     */
+    patch: operations["PatchTruckDriverAsync"];
   };
   "/api/v2/LogisticsService/TruckDrivers/{driverId}/Activate": {
     /**
@@ -1371,6 +1471,11 @@ export interface paths {
      * @description Deletes a truck.
      */
     delete: operations["DeleteTruckAsync"];
+    /**
+     * Patch a truck
+     * @description Partially updates an existing truck using JSON Patch.
+     */
+    patch: operations["PatchTruckAsync"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips": {
     /**
@@ -1402,6 +1507,11 @@ export interface paths {
      * @description Deletes a truck trip.
      */
     delete: operations["DeleteTruckTripAsync"];
+    /**
+     * Patch a truck trip
+     * @description Partially updates an existing truck trip using JSON Patch.
+     */
+    patch: operations["PatchTruckTripAsync"];
   };
   "/api/v2/LogisticsService/Trucks/{truckId}/Trips/{tripId}/Dispatch": {
     /**
@@ -1473,6 +1583,11 @@ export interface paths {
      * @description Deletes a vessel.
      */
     delete: operations["DeleteVesselAsync"];
+    /**
+     * Patch a vessel
+     * @description Partially updates an existing vessel using JSON Patch.
+     */
+    patch: operations["PatchVesselAsync"];
   };
   "/api/v2/LogisticsService/Voyages": {
     /**
@@ -1509,6 +1624,11 @@ export interface paths {
      * @description Deletes a voyage.
      */
     delete: operations["DeleteVoyageAsync"];
+    /**
+     * Patch a voyage
+     * @description Partially updates an existing voyage using JSON Patch.
+     */
+    patch: operations["PatchVoyageAsync"];
   };
   "/api/v2/LogisticsService/Voyages/{voyageId}/Start": {
     /**
@@ -1561,6 +1681,11 @@ export interface paths {
      * @description Deletes a port call.
      */
     delete: operations["DeleteVoyagePortCallAsync"];
+    /**
+     * Patch a voyage port call
+     * @description Partially updates an existing voyage port call using JSON Patch.
+     */
+    patch: operations["PatchVoyagePortCallAsync"];
   };
   "/api/v2/LogisticsService/Warehouses": {
     /**
@@ -1597,6 +1722,11 @@ export interface paths {
      * @description Deletes a warehouse.
      */
     delete: operations["DeleteWarehouseAsync"];
+    /**
+     * Patch a warehouse
+     * @description Partially updates an existing warehouse using JSON Patch.
+     */
+    patch: operations["PatchWarehouseAsync"];
   };
 }
 
@@ -1849,8 +1979,8 @@ export interface components {
       timestamp?: string;
       title?: string | null;
       description?: string | null;
-      shipmentID?: string | null;
-      proofOfDeliveryID?: string | null;
+      shipmentId?: string | null;
+      proofOfDeliveryId?: string | null;
     };
     DeliveryNoteDto: {
       id?: string | null;
@@ -1858,6 +1988,9 @@ export interface components {
       timestamp?: string | null;
       title?: string | null;
       description?: string | null;
+      shipmentId?: string | null;
+      proofOfDeliveryId?: string | null;
+      tenantId?: string | null;
     };
     DeliveryNoteDtoEnvelope: {
       isSuccess?: boolean;
@@ -1880,8 +2013,8 @@ export interface components {
     DeliveryNoteUpdateDto: {
       title?: string | null;
       description?: string | null;
-      shipmentID?: string | null;
-      proofOfDeliveryID?: string | null;
+      shipmentId?: string | null;
+      proofOfDeliveryId?: string | null;
     };
     DisputeProofOfDeliveryRequest: {
       reason?: string | null;
@@ -2239,6 +2372,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     PortCreateDto: {
       /** Format: uuid */
@@ -3899,6 +4040,46 @@ export interface operations {
     };
   };
   /**
+   * Patch an airway bill
+   * @description Partially updates an existing airway bill using a JSON Patch document.
+   */
+  PatchAirwayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Issue an airway bill
    * @description Issues an airway bill.
    */
@@ -4245,6 +4426,47 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an airway bill line
+   * @description Partially updates a line on an airway bill using a JSON Patch document.
+   */
+  PatchAirwayBillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -4682,6 +4904,46 @@ export interface operations {
     };
   };
   /**
+   * Patch an item packing slip
+   * @description Applies a JSON Patch document to an item packing slip.
+   */
+  PatchItemPackingSlipAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get packing slip entries
    * @description Retrieves all entries for the specified packing slip.
    */
@@ -4867,6 +5129,47 @@ export interface operations {
       path: {
         packingSlipId: string;
         entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a packing slip entry
+   * @description Applies a JSON Patch document to a packing slip entry.
+   */
+  PatchItemPackingSlipEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        packingSlipId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5094,6 +5397,46 @@ export interface operations {
     };
   };
   /**
+   * Patch an item pick list
+   * @description Applies a JSON Patch document to an item pick list.
+   */
+  PatchItemPickListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get pick list entries
    * @description Retrieves all entries for the specified pick list.
    */
@@ -5279,6 +5622,47 @@ export interface operations {
       path: {
         pickListId: string;
         entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a pick list entry
+   * @description Applies a JSON Patch document to a pick list entry.
+   */
+  PatchItemPickListEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        pickListId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5506,6 +5890,46 @@ export interface operations {
     };
   };
   /**
+   * Patch an item restock
+   * @description Applies a JSON Patch document to an item restock.
+   */
+  PatchItemRestockAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get restock entries
    * @description Retrieves all entries for the specified restock.
    */
@@ -5691,6 +6115,47 @@ export interface operations {
       path: {
         restockId: string;
         entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a restock entry
+   * @description Applies a JSON Patch document to a restock entry.
+   */
+  PatchItemRestockEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        restockId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -5898,6 +6363,46 @@ export interface operations {
       };
       path: {
         retainSampleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an item retain sample
+   * @description Applies a JSON Patch document to an item retain sample.
+   */
+  PatchItemRetainSampleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        retainSampleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -6132,6 +6637,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a port
+   * @description Partially updates an existing port using JSON Patch.
+   */
+  PatchPortAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        portId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all proofs of delivery
    * @description Retrieves all proofs of delivery for the specified tenant.
    */
@@ -6338,6 +6897,60 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a proof of delivery
+   * @description Partially updates an existing proof of delivery using JSON Patch.
+   */
+  PatchProofOfDeliveryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -6642,6 +7255,61 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a proof of delivery line
+   * @description Partially updates an existing proof of delivery line using JSON Patch.
+   */
+  PatchProofOfDeliveryLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        podId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -7002,6 +7670,46 @@ export interface operations {
     };
   };
   /**
+   * Patch a rail waybill
+   * @description Partially updates an existing rail waybill using a JSON Patch document.
+   */
+  PatchRailWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Issue a rail waybill
    * @description Issues a rail waybill.
    */
@@ -7322,6 +8030,47 @@ export interface operations {
     };
   };
   /**
+   * Patch a rail waybill line
+   * @description Partially updates a line on a rail waybill using a JSON Patch document.
+   */
+  PatchRailWaybillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all road waybills
    * @description Retrieves all road waybills for the specified tenant.
    */
@@ -7528,6 +8277,46 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a road waybill
+   * @description Partially updates an existing road waybill using a JSON Patch document.
+   */
+  PatchRoadWaybillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -7890,6 +8679,47 @@ export interface operations {
     };
   };
   /**
+   * Patch a road waybill line
+   * @description Partially updates a line on a road waybill using a JSON Patch document.
+   */
+  PatchRoadWaybillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        waybillId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all seaway bills
    * @description Retrieves all seaway bills for the specified tenant.
    */
@@ -8096,6 +8926,46 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a seaway bill
+   * @description Partially updates an existing seaway bill using a JSON Patch document.
+   */
+  PatchSeawayBillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -8458,6 +9328,47 @@ export interface operations {
     };
   };
   /**
+   * Patch a seaway bill line
+   * @description Partially updates a line on a seaway bill using a JSON Patch document.
+   */
+  PatchSeawayBillLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        billId: string;
+        lineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all supplier profiles
    * @description Retrieves all supplier profiles for the specified tenant.
    */
@@ -8652,6 +9563,46 @@ export interface operations {
       };
       path: {
         supplierProfileId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a supplier profile
+   * @description Applies a JSON Patch document to a supplier profile.
+   */
+  PatchSupplierProfileAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        supplierProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -8878,6 +9829,60 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a truck driver
+   * @description Partially updates an existing truck driver using JSON Patch.
+   */
+  PatchTruckDriverAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        driverId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -9168,6 +10173,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a truck
+   * @description Partially updates an existing truck using JSON Patch.
+   */
+  PatchTruckAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get truck trips
    * @description Retrieves all trips for a specific truck.
    */
@@ -9344,6 +10403,61 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a truck trip
+   * @description Partially updates an existing truck trip using JSON Patch.
+   */
+  PatchTruckTripAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        truckId: string;
+        tripId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -9741,6 +10855,60 @@ export interface operations {
     };
   };
   /**
+   * Patch a vessel
+   * @description Partially updates an existing vessel using JSON Patch.
+   */
+  PatchVesselAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        vesselId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all voyages
    * @description Retrieves all voyages for the specified tenant.
    */
@@ -9947,6 +11115,60 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a voyage
+   * @description Partially updates an existing voyage using JSON Patch.
+   */
+  PatchVoyageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -10241,6 +11463,61 @@ export interface operations {
     };
   };
   /**
+   * Patch a voyage port call
+   * @description Partially updates an existing voyage port call using JSON Patch.
+   */
+  PatchVoyagePortCallAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        voyageId: string;
+        portCallId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all warehouses
    * @description Retrieves all warehouses for the specified tenant.
    */
@@ -10440,6 +11717,60 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a warehouse
+   * @description Partially updates an existing warehouse using JSON Patch.
+   */
+  PatchWarehouseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        warehouseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

@@ -5,6 +5,109 @@
 
 
 export interface paths {
+  "/api/v2/ActivitiesService/ActivityFeeds": {
+    /**
+     * Get activity feeds
+     * @description Retrieves a list of activity feeds for the specified tenant.
+     */
+    get: operations["GetActivityFeedsAsync"];
+  };
+  "/api/v2/ActivitiesService/ActivityFeeds/Count": {
+    /**
+     * Count activity feeds
+     * @description Returns the count of activity feeds for the specified tenant.
+     */
+    get: operations["GetActivityFeedsCountAsync"];
+  };
+  "/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}": {
+    /**
+     * Get activity feed by ID
+     * @description Retrieves a specific activity feed by its ID.
+     */
+    get: operations["GetActivityFeedAsync"];
+  };
+  "/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities": {
+    /**
+     * Get activities
+     * @description Retrieves activities for a specific activity feed.
+     */
+    get: operations["GetActivitiesAsync"];
+    /**
+     * Create an activity
+     * @description Creates a new activity in a specific activity feed.
+     */
+    post: operations["CreateActivityAsync"];
+  };
+  "/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/Count": {
+    /**
+     * Count activities
+     * @description Returns the count of activities for a specific activity feed.
+     */
+    get: operations["GetActivitiesCountAsync"];
+  };
+  "/api/v2/ActivitiesService/ActivityFeeds/{activityFeedId}/Activities/{activityId}": {
+    /**
+     * Get activity by ID
+     * @description Retrieves a specific activity by its ID.
+     */
+    get: operations["GetActivityAsync"];
+    /**
+     * Update an activity
+     * @description Updates an existing activity.
+     */
+    put: operations["UpdateActivityAsync"];
+    /**
+     * Delete an activity
+     * @description Deletes an activity from an activity feed.
+     */
+    delete: operations["DeleteActivityAsync"];
+    /**
+     * Patch an activity
+     * @description Patch an activity
+     */
+    patch: operations["PatchActivityAsync"];
+  };
+  "/api/v2/ActivitiesService/ActivityTypes": {
+    /**
+     * Get Activity Types
+     * @description Get a list of activity types for the current tenant.
+     */
+    get: operations["GetActivityTypesAsync"];
+    /**
+     * Create Activity Type
+     * @description Create a new activity type.
+     */
+    post: operations["CreateActivityTypeAsync"];
+  };
+  "/api/v2/ActivitiesService/ActivityTypes/Count": {
+    /**
+     * Count Activity Types
+     * @description Count activity types for the current tenant.
+     */
+    get: operations["CountActivityTypesAsync"];
+  };
+  "/api/v2/ActivitiesService/ActivityTypes/{activityTypeId}": {
+    /**
+     * Get Activity Type
+     * @description Get an activity type by ID.
+     */
+    get: operations["GetActivityTypeByIdAsync"];
+    /**
+     * Update Activity Type
+     * @description Update an existing activity type.
+     */
+    put: operations["UpdateActivityTypeAsync"];
+    /**
+     * Delete Activity Type
+     * @description Delete an activity type.
+     */
+    delete: operations["DeleteActivityTypeAsync"];
+    /**
+     * Patch Activity Type
+     * @description Patch an activity type
+     */
+    patch: operations["PatchActivityTypeAsync"];
+  };
   "/api/v2/AiService/Completions/Complete": {
     get: {
       parameters: {
@@ -411,88 +514,6 @@ export interface paths {
       };
     };
   };
-  "/api/v2/LocationsService/Locations": {
-    /**
-     * Get Locations
-     * @description Get all locations with OData query support.
-     */
-    get: operations["GetLocationsAsync"];
-    /**
-     * Create Location
-     * @description Create a new location.
-     */
-    post: operations["CreateLocationAsync"];
-  };
-  "/api/v2/LocationsService/Locations/count": {
-    /**
-     * Get Locations Count
-     * @description Get the count of locations with OData query support.
-     */
-    get: operations["GetLocationsCountAsync"];
-  };
-  "/api/v2/LocationsService/Locations/{locationId}": {
-    /**
-     * Get Location
-     * @description Get details of a specific location by ID.
-     */
-    get: operations["GetLocationAsync"];
-    /**
-     * Update Location
-     * @description Update a specific location by ID.
-     */
-    put: operations["UpdateLocationAsync"];
-    /**
-     * Delete Location
-     * @description Delete a specific location by ID.
-     */
-    delete: operations["DeleteLocationAsync"];
-    /**
-     * Patch a location
-     * @description Patch a location
-     */
-    patch: operations["PatchLocationAsync"];
-  };
-  "/api/v2/LocationsService/Locations/wallet/{walletId}": {
-    /**
-     * Get Wallet Locations
-     * @description Get locations for a specific wallet by ID.
-     */
-    get: operations["GetWalletLocationsAsync"];
-    /**
-     * Create Wallet Location
-     * @description Create a new location for a specific wallet.
-     */
-    post: operations["CreateWalletLocationAsync"];
-  };
-  "/api/v2/LocationsService/Locations/wallet/{walletId}/count": {
-    /**
-     * Get Wallet Locations Count
-     * @description Get the count of locations for a specific wallet by ID.
-     */
-    get: operations["GetWalletLocationsCountAsync"];
-  };
-  "/api/v2/LocationsService/Locations/wallet/{walletId}/{locationId}": {
-    /**
-     * Get Wallet Location
-     * @description Get a specific location of a wallet by ID.
-     */
-    get: operations["GetWalletLocationAsync"];
-    /**
-     * Update Wallet Location
-     * @description Update a specific location of a wallet.
-     */
-    put: operations["UpdateWalletLocationAsync"];
-    /**
-     * Delete Wallet Location
-     * @description Delete a specific location of a wallet.
-     */
-    delete: operations["DeleteWalletLocationAsync"];
-    /**
-     * Patch a wallet location
-     * @description Patch a wallet location
-     */
-    patch: operations["PatchWalletLocationAsync"];
-  };
 }
 
 export type webhooks = Record<string, never>;
@@ -506,6 +527,132 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    ActivityFeedDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: int32 */
+      activitiesCount?: number;
+      tenantId?: string | null;
+    };
+    ActivityFeedDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ActivityFeedDto"];
+    };
+    ActivityFeedDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ActivityFeedDto"][] | null;
+    };
+    ActivityRecordCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      type?: string | null;
+      title?: string | null;
+      description?: string | null;
+      /** Format: date-time */
+      dueDate?: string | null;
+      activityFeedId?: string | null;
+      activityTypeId?: string | null;
+      parentActivityId?: string | null;
+      inChargeEnrollmentId?: string | null;
+    };
+    ActivityRecordDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      type?: string | null;
+      title?: string | null;
+      description?: string | null;
+      completed?: boolean;
+      /** Format: date-time */
+      dueDate?: string;
+      activityFeedId?: string | null;
+      activityTypeId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      socialProfileId?: string | null;
+      parentActivityId?: string | null;
+      inChargeEnrollmentId?: string | null;
+    };
+    ActivityRecordDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ActivityRecordDto"];
+    };
+    ActivityRecordDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ActivityRecordDto"][] | null;
+    };
+    ActivityRecordUpdateDto: {
+      type?: string | null;
+      title?: string | null;
+      description?: string | null;
+      completed?: boolean | null;
+      /** Format: date-time */
+      dueDate?: string | null;
+      activityTypeId?: string | null;
+      parentActivityId?: string | null;
+      inChargeEnrollmentId?: string | null;
+    };
+    ActivityTypeCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+    };
+    ActivityTypeDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      /** Format: int32 */
+      activityRecordsCount?: number;
+    };
+    ActivityTypeDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ActivityTypeDto"];
+    };
+    ActivityTypeDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["ActivityTypeDto"][] | null;
+    };
+    ActivityTypeUpdateDto: {
+      name?: string | null;
+    };
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -513,6 +660,15 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       activityId?: string | null;
+    };
+    Envelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: string | null;
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -555,109 +711,6 @@ export interface components {
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
-    };
-    LocationCreateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      title?: string | null;
-      email?: string | null;
-      phone?: string | null;
-      fax?: string | null;
-      address1?: string | null;
-      address2?: string | null;
-      address3?: string | null;
-      unit?: string | null;
-      cityId?: string | null;
-      stateId?: string | null;
-      postalCode?: string | null;
-      countryId?: string | null;
-      /** Format: double */
-      longitude?: number;
-      /** Format: double */
-      latitude?: number;
-      isRoutable?: boolean;
-      isGlobalPrimary?: boolean;
-      isCountryPrimary?: boolean;
-      canGenerateLabels?: boolean;
-      isDefaultSenderAddress?: boolean;
-      isDefaultReturnAddress?: boolean;
-      isDefaultSuppingLocation?: boolean;
-    };
-    LocationDto: {
-      id?: string | null;
-      /** Format: date-time */
-      timestamp?: string | null;
-      title?: string | null;
-      business?: string | null;
-      email?: string | null;
-      phone?: string | null;
-      fax?: string | null;
-      address1?: string | null;
-      address2?: string | null;
-      address3?: string | null;
-      unit?: string | null;
-      cityId?: string | null;
-      stateId?: string | null;
-      postalCode?: string | null;
-      countryId?: string | null;
-      /** Format: double */
-      longitude?: number;
-      /** Format: double */
-      latitude?: number;
-      isRoutable?: boolean;
-      isGlobalPrimary?: boolean;
-      isCountryPrimary?: boolean;
-      canGenerateLabels?: boolean;
-      isDefaultSenderAddress?: boolean;
-      isDefaultReturnAddress?: boolean;
-      isDefaultSuppingLocation?: boolean;
-      tenantId?: string | null;
-      enrollmentId?: string | null;
-    };
-    LocationDtoEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["LocationDto"];
-    };
-    LocationDtoIReadOnlyListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["LocationDto"][] | null;
-    };
-    LocationUpdateDto: {
-      title?: string | null;
-      email?: string | null;
-      phone?: string | null;
-      fax?: string | null;
-      address1?: string | null;
-      address2?: string | null;
-      address3?: string | null;
-      unit?: string | null;
-      cityId?: string | null;
-      stateId?: string | null;
-      postalCode?: string | null;
-      countryId?: string | null;
-      /** Format: double */
-      longitude?: number;
-      /** Format: double */
-      latitude?: number;
-      isRoutable?: boolean;
-      isGlobalPrimary?: boolean;
-      isCountryPrimary?: boolean;
-      canGenerateLabels?: boolean;
-      isDefaultSenderAddress?: boolean;
-      isDefaultReturnAddress?: boolean;
-      isDefaultSuppingLocation?: boolean;
     };
     LoginRequest: {
       email: string | null;
@@ -717,6 +770,728 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get activity feeds
+   * @description Retrieves a list of activity feeds for the specified tenant.
+   */
+  GetActivityFeedsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ActivityFeedDtoListEnvelope"];
+          "application/xml": components["schemas"]["ActivityFeedDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count activity feeds
+   * @description Returns the count of activity feeds for the specified tenant.
+   */
+  GetActivityFeedsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get activity feed by ID
+   * @description Retrieves a specific activity feed by its ID.
+   */
+  GetActivityFeedAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityFeedId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ActivityFeedDtoEnvelope"];
+          "application/xml": components["schemas"]["ActivityFeedDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get activities
+   * @description Retrieves activities for a specific activity feed.
+   */
+  GetActivitiesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityFeedId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ActivityRecordDtoListEnvelope"];
+          "application/xml": components["schemas"]["ActivityRecordDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create an activity
+   * @description Creates a new activity in a specific activity feed.
+   */
+  CreateActivityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityFeedId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ActivityRecordCreateDto"];
+        "application/xml": components["schemas"]["ActivityRecordCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["ActivityRecordDtoEnvelope"];
+          "application/xml": components["schemas"]["ActivityRecordDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count activities
+   * @description Returns the count of activities for a specific activity feed.
+   */
+  GetActivitiesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityFeedId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get activity by ID
+   * @description Retrieves a specific activity by its ID.
+   */
+  GetActivityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityFeedId: string;
+        activityId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ActivityRecordDtoEnvelope"];
+          "application/xml": components["schemas"]["ActivityRecordDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update an activity
+   * @description Updates an existing activity.
+   */
+  UpdateActivityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityFeedId: string;
+        activityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ActivityRecordUpdateDto"];
+        "application/xml": components["schemas"]["ActivityRecordUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ActivityRecordDtoEnvelope"];
+          "application/xml": components["schemas"]["ActivityRecordDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete an activity
+   * @description Deletes an activity from an activity feed.
+   */
+  DeleteActivityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityFeedId: string;
+        activityId: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an activity
+   * @description Patch an activity
+   */
+  PatchActivityAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityFeedId: string;
+        activityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Activity Types
+   * @description Get a list of activity types for the current tenant.
+   */
+  GetActivityTypesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ActivityTypeDtoListEnvelope"];
+          "application/xml": components["schemas"]["ActivityTypeDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create Activity Type
+   * @description Create a new activity type.
+   */
+  CreateActivityTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ActivityTypeCreateDto"];
+        "application/xml": components["schemas"]["ActivityTypeCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count Activity Types
+   * @description Count activity types for the current tenant.
+   */
+  CountActivityTypesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Activity Type
+   * @description Get an activity type by ID.
+   */
+  GetActivityTypeByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ActivityTypeDtoEnvelope"];
+          "application/xml": components["schemas"]["ActivityTypeDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update Activity Type
+   * @description Update an existing activity type.
+   */
+  UpdateActivityTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ActivityTypeUpdateDto"];
+        "application/xml": components["schemas"]["ActivityTypeUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete Activity Type
+   * @description Delete an activity type.
+   */
+  DeleteActivityTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityTypeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch Activity Type
+   * @description Patch an activity type
+   */
+  PatchActivityTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        activityTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   "MapIdentityApi-/confirmEmail": {
     parameters: {
       query: {
@@ -729,534 +1504,6 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
-      };
-    };
-  };
-  /**
-   * Get Locations
-   * @description Get all locations with OData query support.
-   */
-  GetLocationsAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["LocationDtoIReadOnlyListEnvelope"];
-          "application/xml": components["schemas"]["LocationDtoIReadOnlyListEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Create Location
-   * @description Create a new location.
-   */
-  CreateLocationAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["LocationCreateDto"];
-        "application/xml": components["schemas"]["LocationCreateDto"];
-      };
-    };
-    responses: {
-      /** @description Created */
-      201: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get Locations Count
-   * @description Get the count of locations with OData query support.
-   */
-  GetLocationsCountAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["Int32Envelope"];
-          "application/xml": components["schemas"]["Int32Envelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get Location
-   * @description Get details of a specific location by ID.
-   */
-  GetLocationAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        locationId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["LocationDtoEnvelope"];
-          "application/xml": components["schemas"]["LocationDtoEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Update Location
-   * @description Update a specific location by ID.
-   */
-  UpdateLocationAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        locationId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["LocationUpdateDto"];
-        "application/xml": components["schemas"]["LocationUpdateDto"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Delete Location
-   * @description Delete a specific location by ID.
-   */
-  DeleteLocationAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        locationId: string;
-      };
-    };
-    responses: {
-      /** @description No Content */
-      204: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Patch a location
-   * @description Patch a location
-   */
-  PatchLocationAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        locationId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get Wallet Locations
-   * @description Get locations for a specific wallet by ID.
-   */
-  GetWalletLocationsAsync: {
-    parameters: {
-      path: {
-        walletId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["LocationDtoIReadOnlyListEnvelope"];
-          "application/xml": components["schemas"]["LocationDtoIReadOnlyListEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Create Wallet Location
-   * @description Create a new location for a specific wallet.
-   */
-  CreateWalletLocationAsync: {
-    parameters: {
-      path: {
-        walletId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["LocationCreateDto"];
-        "application/xml": components["schemas"]["LocationCreateDto"];
-      };
-    };
-    responses: {
-      /** @description Created */
-      201: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get Wallet Locations Count
-   * @description Get the count of locations for a specific wallet by ID.
-   */
-  GetWalletLocationsCountAsync: {
-    parameters: {
-      path: {
-        walletId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["Int32Envelope"];
-          "application/xml": components["schemas"]["Int32Envelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get Wallet Location
-   * @description Get a specific location of a wallet by ID.
-   */
-  GetWalletLocationAsync: {
-    parameters: {
-      path: {
-        walletId: string;
-        locationId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["LocationDtoEnvelope"];
-          "application/xml": components["schemas"]["LocationDtoEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Update Wallet Location
-   * @description Update a specific location of a wallet.
-   */
-  UpdateWalletLocationAsync: {
-    parameters: {
-      path: {
-        walletId: string;
-        locationId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["LocationUpdateDto"];
-        "application/xml": components["schemas"]["LocationUpdateDto"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Delete Wallet Location
-   * @description Delete a specific location of a wallet.
-   */
-  DeleteWalletLocationAsync: {
-    parameters: {
-      path: {
-        walletId: string;
-        locationId: string;
-      };
-    };
-    responses: {
-      /** @description No Content */
-      204: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Patch a wallet location
-   * @description Patch a wallet location
-   */
-  PatchWalletLocationAsync: {
-    parameters: {
-      path: {
-        walletId: string;
-        locationId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
       };
     };
   };

@@ -446,6 +446,11 @@ export interface paths {
      * @description Deletes an existing loyalty program by its unique identifier.
      */
     delete: operations["DeleteLoyaltyProgramAsync"];
+    /**
+     * Patch a loyalty program
+     * @description Partially updates an existing loyalty program using a JSON Patch document.
+     */
+    patch: operations["PatchLoyaltyProgramAsync"];
   };
   "/api/v2/SalesService/Margins/{marginId}/Details": {
     /**
@@ -489,6 +494,11 @@ export interface paths {
      * @description Deletes an existing point of sale by its unique identifier.
      */
     delete: operations["DeletePointOfSaleAsync"];
+    /**
+     * Patch a point of sale
+     * @description Partially updates an existing point of sale using a JSON Patch document.
+     */
+    patch: operations["PatchPointOfSaleAsync"];
   };
   "/api/v2/SalesService/SalesLiteratures/Count": {
     /**
@@ -532,6 +542,11 @@ export interface paths {
      * @description Deletes an existing sales literature by its unique identifier.
      */
     delete: operations["DeleteSalesLiteratureAsync"];
+    /**
+     * Patch a sales literature
+     * @description Partially updates an existing sales literature using a JSON Patch document.
+     */
+    patch: operations["PatchSalesLiteratureAsync"];
   };
   "/api/v2/SalesService/Stores/Count": {
     /**
@@ -568,6 +583,11 @@ export interface paths {
      * @description Deletes an existing store by its unique identifier.
      */
     delete: operations["DeleteStoreAsync"];
+    /**
+     * Patch a store
+     * @description Partially updates an existing store using a JSON Patch document.
+     */
+    patch: operations["PatchStoreAsync"];
   };
 }
 
@@ -705,6 +725,14 @@ export interface components {
       title?: string | null;
       description?: string | null;
       priceListId?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     PointOfSaleCreateDto: {
       /** Format: uuid */
@@ -1145,6 +1173,42 @@ export interface operations {
     };
   };
   /**
+   * Patch a loyalty program
+   * @description Partially updates an existing loyalty program using a JSON Patch document.
+   */
+  PatchLoyaltyProgramAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        loyaltyProgramId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get margin details by ID
    * @description Retrieves the details of a specific sales margin by its ID.
    */
@@ -1331,6 +1395,42 @@ export interface operations {
       };
       path: {
         pointOfSaleId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a point of sale
+   * @description Partially updates an existing point of sale using a JSON Patch document.
+   */
+  PatchPointOfSaleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        pointOfSaleId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -1561,6 +1661,42 @@ export interface operations {
     };
   };
   /**
+   * Patch a sales literature
+   * @description Partially updates an existing sales literature using a JSON Patch document.
+   */
+  PatchSalesLiteratureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        salesLiteratureId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get stores count
    * @description Returns the total count of stores for the specified tenant with OData filter support.
    */
@@ -1724,6 +1860,42 @@ export interface operations {
       };
       path: {
         storeId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a store
+   * @description Partially updates an existing store using a JSON Patch document.
+   */
+  PatchStoreAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        storeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

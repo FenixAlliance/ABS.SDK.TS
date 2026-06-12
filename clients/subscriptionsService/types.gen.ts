@@ -13,6 +13,19 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type EmptyEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+};
+
+export type EmptyEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+};
+
 export type EnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -90,6 +103,14 @@ export type LoginRequest = {
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
+};
+
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type RefreshRequest = {
@@ -1268,6 +1289,43 @@ export type GetSubscriptionPlanByIdAsyncResponses = {
 
 export type GetSubscriptionPlanByIdAsyncResponse = GetSubscriptionPlanByIdAsyncResponses[keyof GetSubscriptionPlanByIdAsyncResponses];
 
+export type PatchSubscriptionPlanAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        planId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SubscriptionsService/SubscriptionPlans/{planId}';
+};
+
+export type PatchSubscriptionPlanAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSubscriptionPlanAsyncError = PatchSubscriptionPlanAsyncErrors[keyof PatchSubscriptionPlanAsyncErrors];
+
+export type PatchSubscriptionPlanAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSubscriptionPlanAsyncResponse = PatchSubscriptionPlanAsyncResponses[keyof PatchSubscriptionPlanAsyncResponses];
+
 export type UpdateSubscriptionPlanAsyncData = {
     body?: SubscriptionPlanUpdateDto;
     headers?: {
@@ -1483,6 +1541,43 @@ export type GetSubscriptionByIdAsyncResponses = {
 };
 
 export type GetSubscriptionByIdAsyncResponse = GetSubscriptionByIdAsyncResponses[keyof GetSubscriptionByIdAsyncResponses];
+
+export type PatchSubscriptionAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        subscriptionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SubscriptionsService/Subscriptions/{subscriptionId}';
+};
+
+export type PatchSubscriptionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSubscriptionAsyncError = PatchSubscriptionAsyncErrors[keyof PatchSubscriptionAsyncErrors];
+
+export type PatchSubscriptionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSubscriptionAsyncResponse = PatchSubscriptionAsyncResponses[keyof PatchSubscriptionAsyncResponses];
 
 export type UpdateSubscriptionAsyncData = {
     body?: SubscriptionUpdateDto;

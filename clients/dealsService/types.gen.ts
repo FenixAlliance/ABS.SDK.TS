@@ -348,7 +348,7 @@ export type DealUnitFlowDto = {
     description?: string | null;
     parentBusinessProcessId?: string | null;
     tenantId?: string | null;
-    tenantEnrollmentId?: string | null;
+    enrollmentId?: string | null;
 };
 
 export type DealUnitFlowDtoEnvelopeReadable = {
@@ -445,7 +445,6 @@ export type DealUnitFlowUpdateDto = {
     name?: string | null;
     description?: string | null;
     parentBusinessProcessId?: string | null;
-    tenantEnrollmentId?: string | null;
 };
 
 export type DealUnitLineCreateDto = {
@@ -1210,6 +1209,14 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type Operation = {
+    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
+    path?: string | null;
+    op?: string | null;
+    from?: string | null;
+    value?: unknown;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -1604,6 +1611,35 @@ export type GetDealUnitFlowAsyncResponses = {
 
 export type GetDealUnitFlowAsyncResponse = GetDealUnitFlowAsyncResponses[keyof GetDealUnitFlowAsyncResponses];
 
+export type PatchDealUnitFlowAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        dealUnitFlowId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}';
+};
+
+export type PatchDealUnitFlowAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchDealUnitFlowAsyncError = PatchDealUnitFlowAsyncErrors[keyof PatchDealUnitFlowAsyncErrors];
+
+export type PatchDealUnitFlowAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchDealUnitFlowAsyncResponse = PatchDealUnitFlowAsyncResponses[keyof PatchDealUnitFlowAsyncResponses];
+
 export type UpdateDealUnitFlowAsyncData = {
     body?: DealUnitFlowUpdateDto;
     path: {
@@ -1779,6 +1815,36 @@ export type GetDealUnitFlowStageAsyncResponses = {
 };
 
 export type GetDealUnitFlowStageAsyncResponse = GetDealUnitFlowStageAsyncResponses[keyof GetDealUnitFlowStageAsyncResponses];
+
+export type PatchDealUnitFlowStageAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        dealUnitFlowId: string;
+        dealUnitFlowStageId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages/{dealUnitFlowStageId}';
+};
+
+export type PatchDealUnitFlowStageAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchDealUnitFlowStageAsyncError = PatchDealUnitFlowStageAsyncErrors[keyof PatchDealUnitFlowStageAsyncErrors];
+
+export type PatchDealUnitFlowStageAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchDealUnitFlowStageAsyncResponse = PatchDealUnitFlowStageAsyncResponses[keyof PatchDealUnitFlowStageAsyncResponses];
 
 export type UpdateDealUnitFlowStageAsyncData = {
     body?: DealUnitFlowStageUpdateDto;
@@ -1975,6 +2041,35 @@ export type GetDealUnitAsyncResponses = {
 };
 
 export type GetDealUnitAsyncResponse = GetDealUnitAsyncResponses[keyof GetDealUnitAsyncResponses];
+
+export type PatchDealUnitAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        dealUnitId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/DealsService/DealUnits/{dealUnitId}';
+};
+
+export type PatchDealUnitAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchDealUnitAsyncError = PatchDealUnitAsyncErrors[keyof PatchDealUnitAsyncErrors];
+
+export type PatchDealUnitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchDealUnitAsyncResponse = PatchDealUnitAsyncResponses[keyof PatchDealUnitAsyncResponses];
 
 export type UpdateDealUnitAsyncData = {
     body?: DealUnitUpdateDto;
@@ -2210,6 +2305,36 @@ export type GetDealUnitPriceAsyncResponses = {
 };
 
 export type GetDealUnitPriceAsyncResponse = GetDealUnitPriceAsyncResponses[keyof GetDealUnitPriceAsyncResponses];
+
+export type PatchDealUnitLineAsyncData = {
+    body?: Array<Operation>;
+    path: {
+        dealUnitId: string;
+        dealUnitLineId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}';
+};
+
+export type PatchDealUnitLineAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type PatchDealUnitLineAsyncError = PatchDealUnitLineAsyncErrors[keyof PatchDealUnitLineAsyncErrors];
+
+export type PatchDealUnitLineAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchDealUnitLineAsyncResponse = PatchDealUnitLineAsyncResponses[keyof PatchDealUnitLineAsyncResponses];
 
 export type UpdateDealUnitPriceAsyncData = {
     body?: DealUnitLineUpdateDto;

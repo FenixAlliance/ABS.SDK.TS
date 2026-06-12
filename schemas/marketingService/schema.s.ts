@@ -149,6 +149,11 @@ export interface paths {
      * @description Deletes an email group by its ID.
      */
     delete: operations["DeleteEmailGroupAsync"];
+    /**
+     * Patch an email group
+     * @description Partially updates an email group by its ID using JSON Patch.
+     */
+    patch: operations["PatchEmailGroupAsync"];
   };
   "/api/v2/MarketingService/EmailSignatures": {
     /**
@@ -185,6 +190,11 @@ export interface paths {
      * @description Deletes an email signature by its ID.
      */
     delete: operations["DeleteEmailSignatureAsync"];
+    /**
+     * Patch an email signature
+     * @description Partially updates an email signature by its ID using JSON Patch.
+     */
+    patch: operations["PatchEmailSignatureAsync"];
   };
   "/api/v2/MarketingService/EmailTemplates": {
     /**
@@ -221,6 +231,11 @@ export interface paths {
      * @description Deletes an email template by its ID.
      */
     delete: operations["DeleteEmailTemplateAsync"];
+    /**
+     * Patch an email template
+     * @description Partially updates an email template by its ID using JSON Patch.
+     */
+    patch: operations["PatchEmailTemplateAsync"];
   };
   "/version": {
     get: {
@@ -554,6 +569,11 @@ export interface paths {
      * @description Deletes a marketing area for the specified tenant.
      */
     delete: operations["DeleteMarketingAreaAsync"];
+    /**
+     * Patch a marketing area
+     * @description Partially updates a marketing area by its ID using JSON Patch.
+     */
+    patch: operations["PatchMarketingAreaAsync"];
   };
   "/api/v2/MarketingService/MarketingCampaigns": {
     /**
@@ -590,6 +610,11 @@ export interface paths {
      * @description Deletes a marketing campaign by its ID.
      */
     delete: operations["DeleteMarketingCampaignAsync"];
+    /**
+     * Patch a marketing campaign
+     * @description Partially updates a marketing campaign by its ID using JSON Patch.
+     */
+    patch: operations["PatchMarketingCampaignAsync"];
   };
   "/api/v2/MarketingService/MarketingLeads": {
     /**
@@ -611,6 +636,11 @@ export interface paths {
     put: operations["UpdateMarketingLeadAsync"];
     /** Delete a marketing lead */
     delete: operations["DeleteMarketingLeadAsync"];
+    /**
+     * Patch a marketing lead
+     * @description Partially updates a marketing lead by its ID using JSON Patch.
+     */
+    patch: operations["PatchMarketingLeadAsync"];
   };
   "/api/v2/MarketingService/MarketingLists": {
     /**
@@ -647,6 +677,11 @@ export interface paths {
      * @description Deletes a marketing list by its ID.
      */
     delete: operations["DeleteMarketingListAsync"];
+    /**
+     * Patch a marketing list
+     * @description Partially updates a marketing list by its ID using JSON Patch.
+     */
+    patch: operations["PatchMarketingListAsync"];
   };
   "/api/v2/MarketingService/Newsletters": {
     /**
@@ -683,6 +718,11 @@ export interface paths {
      * @description Deletes a newsletter by its ID.
      */
     delete: operations["DeleteNewsletterAsync"];
+    /**
+     * Patch a newsletter
+     * @description Partially updates a newsletter by its ID using JSON Patch.
+     */
+    patch: operations["PatchNewsletterAsync"];
   };
   "/api/v2/MarketingService/SocialMediaPosts": {
     /**
@@ -719,6 +759,11 @@ export interface paths {
      * @description Deletes a social media post by its ID.
      */
     delete: operations["DeleteSocialMediaPostAsync"];
+    /**
+     * Patch a social media post
+     * @description Partially updates a social media post by its ID using JSON Patch.
+     */
+    patch: operations["PatchSocialMediaPostAsync"];
   };
   "/api/v2/MarketingService/SocialPostBuckets": {
     /**
@@ -755,6 +800,11 @@ export interface paths {
      * @description Deletes a social post bucket by its ID.
      */
     delete: operations["DeleteSocialPostBucketAsync"];
+    /**
+     * Patch a social post bucket
+     * @description Partially updates a social post bucket by its ID using JSON Patch.
+     */
+    patch: operations["PatchSocialPostBucketAsync"];
   };
   "/api/v2/MarketingService/TrackingPixels/{pixelId}": {
     /**
@@ -1504,6 +1554,14 @@ export interface components {
       title?: string | null;
       name?: string | null;
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     OrderDto: {
       id?: string | null;
       /** Format: date-time */
@@ -2054,6 +2112,53 @@ export interface operations {
     };
   };
   /**
+   * Patch an email group
+   * @description Partially updates an email group by its ID using JSON Patch.
+   */
+  PatchEmailGroupAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        emailgroupId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get email signatures
    * @description Retrieves a collection of email signatures for the specified tenant using OData query options.
    */
@@ -2338,6 +2443,53 @@ export interface operations {
     };
   };
   /**
+   * Patch an email signature
+   * @description Partially updates an email signature by its ID using JSON Patch.
+   */
+  PatchEmailSignatureAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        emailsignatureId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get email templates
    * @description Retrieves a collection of email templates for the specified tenant using OData query options.
    */
@@ -2603,6 +2755,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an email template
+   * @description Partially updates an email template by its ID using JSON Patch.
+   */
+  PatchEmailTemplateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        emailTemplateId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -2907,6 +3106,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a marketing area
+   * @description Partially updates a marketing area by its ID using JSON Patch.
+   */
+  PatchMarketingAreaAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingAreaId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get marketing campaigns
    * @description Retrieves a collection of marketing campaigns for the specified tenant using OData query options.
    */
@@ -3191,6 +3437,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a marketing campaign
+   * @description Partially updates a marketing campaign by its ID using JSON Patch.
+   */
+  PatchMarketingCampaignAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingcampaignId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get marketing leads
    * @description Retrieves a collection of marketing leads for the specified tenant using OData query options.
    */
@@ -3336,6 +3629,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a marketing lead
+   * @description Partially updates a marketing lead by its ID using JSON Patch.
+   */
+  PatchMarketingLeadAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketingLeadId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
     };
@@ -3606,6 +3946,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a marketing list
+   * @description Partially updates a marketing list by its ID using JSON Patch.
+   */
+  PatchMarketingListAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        marketinglistId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -3909,6 +4296,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a newsletter
+   * @description Partially updates a newsletter by its ID using JSON Patch.
+   */
+  PatchNewsletterAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        newsletterId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get social media posts
    * @description Retrieves a collection of social media posts for the specified tenant using OData query options.
    */
@@ -4193,6 +4627,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a social media post
+   * @description Partially updates a social media post by its ID using JSON Patch.
+   */
+  PatchSocialMediaPostAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialmediapostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get social post buckets
    * @description Retrieves a collection of social post buckets for the specified tenant using OData query options.
    */
@@ -4458,6 +4939,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a social post bucket
+   * @description Partially updates a social post bucket by its ID using JSON Patch.
+   */
+  PatchSocialPostBucketAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialpostbucketId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */

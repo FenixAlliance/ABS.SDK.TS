@@ -149,6 +149,11 @@ export interface paths {
      * @description Deletes an existing deal unit flow by its unique identifier.
      */
     delete: operations["DeleteDealUnitFlowAsync"];
+    /**
+     * Patch a deal unit flow
+     * @description Partially updates an existing deal unit flow by its unique identifier using a JSON Patch document.
+     */
+    patch: operations["PatchDealUnitFlowAsync"];
   };
   "/api/v2/DealsService/DealUnitFlows/{dealUnitFlowId}/Stages": {
     /**
@@ -185,6 +190,11 @@ export interface paths {
      * @description Deletes an existing stage from a specific deal unit flow.
      */
     delete: operations["DeleteDealUnitFlowStageAsync"];
+    /**
+     * Patch a deal unit flow stage
+     * @description Partially updates an existing stage within a specific deal unit flow using a JSON Patch document.
+     */
+    patch: operations["PatchDealUnitFlowStageAsync"];
   };
   "/api/v2/DealsService/DealUnits": {
     /**
@@ -228,6 +238,11 @@ export interface paths {
      * @description Deletes an existing deal unit by its unique identifier.
      */
     delete: operations["DeleteDealUnitAsync"];
+    /**
+     * Patch a deal unit
+     * @description Partially updates an existing deal unit by its unique identifier using a JSON Patch document.
+     */
+    patch: operations["PatchDealUnitAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Extended": {
     /**
@@ -278,6 +293,11 @@ export interface paths {
      * @description Deletes an existing line from a specific deal unit.
      */
     delete: operations["DeleteDealUnitPriceAsync"];
+    /**
+     * Patch a deal unit line
+     * @description Partially updates an existing line within a specific deal unit using a JSON Patch document.
+     */
+    patch: operations["PatchDealUnitLineAsync"];
   };
   "/api/v2/DealsService/DealUnits/{dealUnitId}/Lines/{dealUnitLineId}/Calculate": {
     /**
@@ -947,7 +967,7 @@ export interface components {
       description?: string | null;
       parentBusinessProcessId?: string | null;
       tenantId?: string | null;
-      tenantEnrollmentId?: string | null;
+      enrollmentId?: string | null;
     };
     DealUnitFlowDtoEnvelope: {
       isSuccess?: boolean;
@@ -1022,7 +1042,6 @@ export interface components {
       name?: string | null;
       description?: string | null;
       parentBusinessProcessId?: string | null;
-      tenantEnrollmentId?: string | null;
     };
     DealUnitLineCreateDto: {
       /** Format: uuid */
@@ -1808,6 +1827,14 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -2144,6 +2171,42 @@ export interface operations {
     };
   };
   /**
+   * Patch a deal unit flow
+   * @description Partially updates an existing deal unit flow by its unique identifier using a JSON Patch document.
+   */
+  PatchDealUnitFlowAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get stages for a deal unit flow
    * @description Retrieves a list of stages for a specific deal unit flow with OData query support.
    */
@@ -2319,6 +2382,43 @@ export interface operations {
       path: {
         dealUnitFlowId: string;
         dealUnitFlowStageId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a deal unit flow stage
+   * @description Partially updates an existing stage within a specific deal unit flow using a JSON Patch document.
+   */
+  PatchDealUnitFlowStageAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitFlowId: string;
+        dealUnitFlowStageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -2529,6 +2629,42 @@ export interface operations {
       };
       path: {
         dealUnitId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a deal unit
+   * @description Partially updates an existing deal unit by its unique identifier using a JSON Patch document.
+   */
+  PatchDealUnitAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -2785,6 +2921,43 @@ export interface operations {
       path: {
         dealUnitId: string;
         dealUnitLineId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a deal unit line
+   * @description Partially updates an existing line within a specific deal unit using a JSON Patch document.
+   */
+  PatchDealUnitLineAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        dealUnitId: string;
+        dealUnitLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

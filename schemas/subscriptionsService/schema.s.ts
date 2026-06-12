@@ -446,6 +446,11 @@ export interface paths {
      * @description Deletes a subscription plan by its identifier.
      */
     delete: operations["DeleteSubscriptionPlanAsync"];
+    /**
+     * Patch a subscription plan
+     * @description Patch a subscription plan
+     */
+    patch: operations["PatchSubscriptionPlanAsync"];
   };
   "/api/v2/SubscriptionsService/Subscriptions": {
     /**
@@ -482,6 +487,11 @@ export interface paths {
      * @description Deletes a subscription by its identifier.
      */
     delete: operations["DeleteSubscriptionAsync"];
+    /**
+     * Patch a subscription
+     * @description Patch a subscription
+     */
+    patch: operations["PatchSubscriptionAsync"];
   };
 }
 
@@ -495,6 +505,14 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    EmptyEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
     };
     Envelope: {
       isSuccess?: boolean;
@@ -552,6 +570,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1578,6 +1604,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a subscription plan
+   * @description Patch a subscription plan
+   */
+  PatchSubscriptionPlanAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        planId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all subscriptions
    * @description Retrieves all subscriptions for the specified tenant.
    */
@@ -1808,6 +1881,53 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["Envelope"];
           "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a subscription
+   * @description Patch a subscription
+   */
+  PatchSubscriptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        subscriptionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */

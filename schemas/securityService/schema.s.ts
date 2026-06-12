@@ -40,6 +40,11 @@ export interface paths {
      * @description Deletes an existing business application for the specified tenant.
      */
     delete: operations["DeleteBusinessApplicationAsync"];
+    /**
+     * Patch an existing business application
+     * @description Partially updates an existing business application using a JSON Patch document.
+     */
+    patch: operations["PatchBusinessApplicationAsync"];
   };
   "/api/v2/SecurityService/Applications/{applicationId}/Permissions": {
     /**
@@ -510,6 +515,11 @@ export interface paths {
      * @description Deletes an existing OAuth application.
      */
     delete: operations["DeleteOAuthApplicationAsync"];
+    /**
+     * Patch an existing OAuth application
+     * @description Partially updates an existing OAuth application using a JSON Patch document.
+     */
+    patch: operations["PatchOAuthApplicationAsync"];
   };
   "/api/v2/SecurityService/OAuthApplications/Authorizations": {
     /**
@@ -567,6 +577,11 @@ export interface paths {
      * @description Deletes an existing security permission for the specified tenant.
      */
     delete: operations["DeletePermissionAsync"];
+    /**
+     * Patch an existing permission
+     * @description Partially updates an existing security permission using a JSON Patch document.
+     */
+    patch: operations["PatchPermissionAsync"];
   };
   "/api/v2/SecurityService/Permissions/{securityPermissionId}/Roles/{securityRoleId}": {
     /**
@@ -667,6 +682,11 @@ export interface paths {
      * @description Deletes an existing security role for the specified tenant.
      */
     delete: operations["DeleteRoleAsync"];
+    /**
+     * Patch an existing role
+     * @description Partially updates an existing security role using a JSON Patch document.
+     */
+    patch: operations["PatchRoleAsync"];
   };
   "/api/v2/SecurityService/Roles/{securityRoleId}/Permissions": {
     /**
@@ -1139,6 +1159,14 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["OAuthAuthorizationDto"][] | null;
     };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -1561,6 +1589,60 @@ export interface operations {
     responses: {
       /** @description No Content */
       204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an existing business application
+   * @description Partially updates an existing business application using a JSON Patch document.
+   */
+  PatchBusinessApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        applicationId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
@@ -2033,6 +2115,60 @@ export interface operations {
     };
   };
   /**
+   * Patch an existing OAuth application
+   * @description Partially updates an existing OAuth application using a JSON Patch document.
+   */
+  PatchOAuthApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        applicationId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all OAuth authorizations
    * @description Retrieves all OAuth authorizations for the specified user.
    */
@@ -2393,6 +2529,60 @@ export interface operations {
     responses: {
       /** @description No Content */
       204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an existing permission
+   * @description Partially updates an existing security permission using a JSON Patch document.
+   */
+  PatchPermissionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        securityPermissionId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
@@ -3121,6 +3311,60 @@ export interface operations {
     responses: {
       /** @description No Content */
       204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch an existing role
+   * @description Partially updates an existing security role using a JSON Patch document.
+   */
+  PatchRoleAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        securityRoleId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];

@@ -446,6 +446,11 @@ export interface paths {
      * @description Deletes a service case by its identifier.
      */
     delete: operations["DeleteServiceCaseAsync"];
+    /**
+     * Patch a service case
+     * @description Partially updates an existing service case using a JSON Patch document.
+     */
+    patch: operations["PatchServiceCaseAsync"];
   };
   "/api/v2/ServicesService/ServiceCaseTypes": {
     /**
@@ -482,6 +487,11 @@ export interface paths {
      * @description Deletes a service case type by its identifier.
      */
     delete: operations["DeleteServiceCaseTypeAsync"];
+    /**
+     * Patch a service case type
+     * @description Partially updates an existing service case type using a JSON Patch document.
+     */
+    patch: operations["PatchServiceCaseTypeAsync"];
   };
   "/api/v2/ServicesService/ServiceLevelAgreements": {
     /**
@@ -518,6 +528,11 @@ export interface paths {
      * @description Deletes a service level agreement by its identifier.
      */
     delete: operations["DeleteServiceLevelAgreementAsync"];
+    /**
+     * Patch a service level agreement
+     * @description Partially updates an existing service level agreement using a JSON Patch document.
+     */
+    patch: operations["PatchServiceLevelAgreementAsync"];
   };
   "/api/v2/ServicesService/ServiceLevels": {
     /**
@@ -568,6 +583,11 @@ export interface paths {
      * @description Deletes a service level by its identifier.
      */
     delete: operations["DeleteServiceLevelAsync"];
+    /**
+     * Patch a service level
+     * @description Partially updates an existing service level using a JSON Patch document.
+     */
+    patch: operations["PatchServiceLevelAsync"];
   };
   "/api/v2/ServicesService/ServiceQueues": {
     /**
@@ -604,6 +624,11 @@ export interface paths {
      * @description Deletes a service queue by its identifier.
      */
     delete: operations["DeleteServiceQueueAsync"];
+    /**
+     * Patch a service queue
+     * @description Partially updates an existing service queue using a JSON Patch document.
+     */
+    patch: operations["PatchServiceQueueAsync"];
   };
   "/api/v2/ServicesService/Services": {
     /**
@@ -640,6 +665,11 @@ export interface paths {
      * @description Deletes a service by its identifier.
      */
     delete: operations["DeleteServiceAsync"];
+    /**
+     * Patch a service
+     * @description Partially updates an existing service using a JSON Patch document.
+     */
+    patch: operations["PatchServiceAsync"];
   };
 }
 
@@ -710,6 +740,14 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
+    };
+    Operation: {
+      /** @enum {string} */
+      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
+      path?: string | null;
+      op?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -2521,6 +2559,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a service case
+   * @description Partially updates an existing service case using a JSON Patch document.
+   */
+  PatchServiceCaseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        serviceCaseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all service case types
    * @description Retrieves all service case types for the specified tenant.
    */
@@ -2770,6 +2855,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a service case type
+   * @description Partially updates an existing service case type using a JSON Patch document.
+   */
+  PatchServiceCaseTypeAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        serviceCaseTypeId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all service level agreements
    * @description Retrieves all service level agreements for the specified tenant.
    */
@@ -2992,6 +3124,53 @@ export interface operations {
       };
       path: {
         serviceLevelAgreementId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a service level agreement
+   * @description Partially updates an existing service level agreement using a JSON Patch document.
+   */
+  PatchServiceLevelAgreementAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        serviceLevelAgreementId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {
@@ -3356,6 +3535,54 @@ export interface operations {
     };
   };
   /**
+   * Patch a service level
+   * @description Partially updates an existing service level using a JSON Patch document.
+   */
+  PatchServiceLevelAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        serviceId: string;
+        serviceLevelId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all service queues
    * @description Retrieves all service queues for the specified tenant.
    */
@@ -3605,6 +3832,53 @@ export interface operations {
     };
   };
   /**
+   * Patch a service queue
+   * @description Partially updates an existing service queue using a JSON Patch document.
+   */
+  PatchServiceQueueAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        serviceQueueId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all services
    * @description Retrieves all services for the specified tenant.
    */
@@ -3827,6 +4101,53 @@ export interface operations {
       };
       path: {
         serviceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Envelope"];
+          "application/xml": components["schemas"]["Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a service
+   * @description Partially updates an existing service using a JSON Patch document.
+   */
+  PatchServiceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        serviceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
       };
     };
     responses: {

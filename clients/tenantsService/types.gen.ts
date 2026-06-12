@@ -282,8 +282,10 @@ export type NotificationDto = {
     read?: boolean;
     icon?: string | null;
     message?: string | null;
+    imageUrl?: string | null;
     redirectUrl?: string | null;
-    socialProfileID?: string | null;
+    type?: 'Event' | 'Alert' | 'Log';
+    socialProfileId?: string | null;
     readTimestamp?: string;
     issuedTimestamp?: string;
 };
@@ -558,20 +560,20 @@ export type TenantDepartmentCreateDto = {
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
-    organizationProfileID?: string | null;
-    parentDepartmentID?: string | null;
+    organizationProfileId?: string | null;
+    parentDepartmentId?: string | null;
 };
 
 export type TenantDepartmentDto = {
     id?: string | null;
     timestamp?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
-    organizationProfileID?: string | null;
-    parentDepartmentID?: string | null;
+    organizationProfileId?: string | null;
+    parentDepartmentId?: string | null;
 };
 
 export type TenantDepartmentDtoEnvelopeReadable = {
@@ -608,8 +610,8 @@ export type TenantDepartmentUpdateDto = {
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
-    organizationProfileID?: string | null;
-    parentDepartmentID?: string | null;
+    organizationProfileId?: string | null;
+    parentDepartmentId?: string | null;
 };
 
 export type TenantDtoReadable = {
@@ -762,15 +764,16 @@ export type TenantIndustryCreateDto = {
     id?: string;
     timestamp?: string;
     name?: string | null;
-    parentBusinessIndustryID?: string | null;
+    parentBusinessIndustryId?: string | null;
 };
 
 export type TenantIndustryDto = {
     id?: string | null;
     timestamp?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     name?: string | null;
-    parentBusinessIndustryID?: string | null;
-    businessProfileRecordID?: string | null;
+    parentBusinessIndustryId?: string | null;
 };
 
 export type TenantIndustryDtoEnvelopeReadable = {
@@ -805,7 +808,7 @@ export type TenantIndustryDtoListEnvelopeWritable = {
 
 export type TenantIndustryUpdateDto = {
     name?: string | null;
-    parentBusinessIndustryID?: string | null;
+    parentBusinessIndustryId?: string | null;
 };
 
 export type TenantInvitationCreateDto = {
@@ -861,13 +864,14 @@ export type TenantPositionCreateDto = {
     timestamp?: string;
     title?: string | null;
     description?: string | null;
+    type?: string | null;
 };
 
 export type TenantPositionDto = {
     id?: string | null;
     timestamp?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     title?: string | null;
     description?: string | null;
     type?: string | null;
@@ -912,7 +916,6 @@ export type TenantPositionUpdateDto = {
 export type TenantSegmentCreateDto = {
     id?: string;
     timestamp?: string;
-    revenue?: string | null;
     minEmployees?: number;
     maxEmployees?: number;
 };
@@ -920,6 +923,7 @@ export type TenantSegmentCreateDto = {
 export type TenantSegmentDto = {
     id?: string | null;
     timestamp?: string | null;
+    tenantId?: string | null;
     revenue?: string | null;
     minEmployees?: number;
     maxEmployees?: number;
@@ -956,7 +960,6 @@ export type TenantSegmentDtoListEnvelopeWritable = {
 };
 
 export type TenantSegmentUpdateDto = {
-    revenue?: string | null;
     minEmployees?: number;
     maxEmployees?: number;
 };
@@ -964,7 +967,6 @@ export type TenantSegmentUpdateDto = {
 export type TenantSizeCreateDto = {
     id?: string;
     timestamp?: string;
-    name?: string | null;
     employeeLowRangeValue?: number;
     employeeHighRangeValue?: number;
 };
@@ -972,6 +974,7 @@ export type TenantSizeCreateDto = {
 export type TenantSizeDto = {
     id?: string | null;
     timestamp?: string | null;
+    tenantId?: string | null;
     name?: string | null;
     employeeLowRangeValue?: number;
     employeeHighRangeValue?: number;
@@ -1008,7 +1011,6 @@ export type TenantSizeDtoListEnvelopeWritable = {
 };
 
 export type TenantSizeUpdateDto = {
-    name?: string | null;
     employeeLowRangeValue?: number;
     employeeHighRangeValue?: number;
 };
@@ -1016,8 +1018,8 @@ export type TenantSizeUpdateDto = {
 export type TenantTeamContactEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
-    businessTeamID: string;
-    contactID: string;
+    businessTeamId: string;
+    contactId: string;
 };
 
 export type TenantTeamContactEnrollmentDto = {
@@ -1026,7 +1028,7 @@ export type TenantTeamContactEnrollmentDto = {
     teamId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
-    contactID?: string | null;
+    contactId?: string | null;
 };
 
 export type TenantTeamContactEnrollmentDtoEnvelopeReadable = {
@@ -1060,8 +1062,8 @@ export type TenantTeamContactEnrollmentDtoListEnvelopeWritable = {
 };
 
 export type TenantTeamContactEnrollmentUpdateDto = {
-    businessTeamID?: string | null;
-    contactID?: string | null;
+    businessTeamId?: string | null;
+    contactId?: string | null;
 };
 
 export type TenantTeamCreateDto = {
@@ -1069,23 +1071,23 @@ export type TenantTeamCreateDto = {
     timestamp?: string;
     name?: string | null;
     description?: string | null;
-    avatarURL?: string | null;
+    avatarUrl?: string | null;
     isPublic?: boolean;
-    businessUnitID?: string | null;
-    organizationProfileID?: string | null;
+    businessUnitId?: string | null;
+    organizationProfileId?: string | null;
 };
 
 export type TenantTeamDto = {
     id?: string | null;
     timestamp?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     name?: string | null;
     description?: string | null;
-    avatarURL?: string | null;
+    avatarUrl?: string | null;
     isPublic?: boolean;
-    businessUnitID?: string | null;
-    organizationProfileID?: string | null;
+    businessUnitId?: string | null;
+    organizationProfileId?: string | null;
 };
 
 export type TenantTeamDtoEnvelopeReadable = {
@@ -1121,8 +1123,8 @@ export type TenantTeamDtoListEnvelopeWritable = {
 export type TenantTeamEmployeeEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
-    businessTeamID: string;
-    employeeProfileID: string;
+    businessTeamId: string;
+    employeeProfileId: string;
 };
 
 export type TenantTeamEmployeeEnrollmentDto = {
@@ -1165,15 +1167,15 @@ export type TenantTeamEmployeeEnrollmentDtoListEnvelopeWritable = {
 };
 
 export type TenantTeamEmployeeEnrollmentUpdateDto = {
-    businessTeamID?: string | null;
-    employeeProfileID?: string | null;
+    businessTeamId?: string | null;
+    employeeProfileId?: string | null;
 };
 
 export type TenantTeamProjectEnrollmentCreateDto = {
     id?: string;
     timestamp?: string;
-    businessTeamID: string;
-    projectID: string;
+    businessTeamId: string;
+    projectId: string;
 };
 
 export type TenantTeamProjectEnrollmentDto = {
@@ -1182,7 +1184,7 @@ export type TenantTeamProjectEnrollmentDto = {
     teamId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
-    projectID?: string | null;
+    projectId?: string | null;
 };
 
 export type TenantTeamProjectEnrollmentDtoEnvelopeReadable = {
@@ -1216,14 +1218,14 @@ export type TenantTeamProjectEnrollmentDtoListEnvelopeWritable = {
 };
 
 export type TenantTeamProjectEnrollmentUpdateDto = {
-    businessTeamID?: string | null;
-    projectID?: string | null;
+    businessTeamId?: string | null;
+    projectId?: string | null;
 };
 
 export type TenantTeamRecordCreateDto = {
     id?: string;
     timestamp?: string;
-    businessTeamID: string;
+    businessTeamId: string;
 };
 
 export type TenantTeamRecordDto = {
@@ -1265,18 +1267,16 @@ export type TenantTeamRecordDtoListEnvelopeWritable = {
 };
 
 export type TenantTeamRecordUpdateDto = {
-    businessTeamID?: string | null;
+    businessTeamId?: string | null;
 };
 
 export type TenantTeamUpdateDto = {
-    id?: string | null;
-    timestamp?: string | null;
     name?: string | null;
     description?: string | null;
-    avatarURL?: string | null;
+    avatarUrl?: string | null;
     isPublic?: boolean;
-    businessUnitID?: string | null;
-    organizationProfileID?: string | null;
+    businessUnitId?: string | null;
+    organizationProfileId?: string | null;
 };
 
 export type TenantTerritoryCreateDto = {
@@ -1284,17 +1284,17 @@ export type TenantTerritoryCreateDto = {
     timestamp?: string;
     name?: string | null;
     description?: string | null;
-    parentTerritoryID?: string | null;
+    parentTerritoryId?: string | null;
 };
 
 export type TenantTerritoryDto = {
     id?: string | null;
     timestamp?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     name?: string | null;
     description?: string | null;
-    parentTerritoryID?: string | null;
+    parentTerritoryId?: string | null;
 };
 
 export type TenantTerritoryDtoEnvelopeReadable = {
@@ -1330,6 +1330,7 @@ export type TenantTerritoryDtoListEnvelopeWritable = {
 export type TenantTerritoryUpdateDto = {
     name?: string | null;
     description?: string | null;
+    parentTerritoryId?: string | null;
 };
 
 export type TenantTypeCreateDto = {
@@ -1342,6 +1343,7 @@ export type TenantTypeCreateDto = {
 export type TenantTypeDto = {
     id?: string | null;
     timestamp?: string | null;
+    tenantId?: string | null;
     name?: string | null;
     description?: string | null;
 };
@@ -1387,24 +1389,23 @@ export type TenantUnitCreateDto = {
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
-    businessUnitQualifiedName?: string | null;
-    countryID?: string | null;
-    organizationProfileID?: string | null;
-    parentBusinessUnitID?: string | null;
+    countryId?: string | null;
+    organizationProfileId?: string | null;
+    parentBusinessUnitId?: string | null;
 };
 
 export type TenantUnitDto = {
     id?: string | null;
     timestamp?: string | null;
-    businessID?: string | null;
-    businessProfileRecordID?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
     businessUnitQualifiedName?: string | null;
-    countryID?: string | null;
-    organizationProfileID?: string | null;
-    parentBusinessUnitID?: string | null;
+    countryId?: string | null;
+    organizationProfileId?: string | null;
+    parentBusinessUnitId?: string | null;
 };
 
 export type TenantUnitDtoEnvelopeReadable = {
@@ -1441,10 +1442,9 @@ export type TenantUnitUpdateDto = {
     name?: string | null;
     description?: string | null;
     disabled?: boolean;
-    businessUnitQualifiedName?: string | null;
-    countryID?: string | null;
-    organizationProfileID?: string | null;
-    parentBusinessUnitID?: string | null;
+    countryId?: string | null;
+    organizationProfileId?: string | null;
+    parentBusinessUnitId?: string | null;
 };
 
 export type TenantUpdateDto = {
@@ -1986,6 +1986,43 @@ export type GetTenantDepartmentByIdResponses = {
 
 export type GetTenantDepartmentByIdResponse = GetTenantDepartmentByIdResponses[keyof GetTenantDepartmentByIdResponses];
 
+export type PatchTenantDepartmentAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantDepartmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Departments/{tenantDepartmentId}';
+};
+
+export type PatchTenantDepartmentAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantDepartmentAsyncError = PatchTenantDepartmentAsyncErrors[keyof PatchTenantDepartmentAsyncErrors];
+
+export type PatchTenantDepartmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantDepartmentAsyncResponse = PatchTenantDepartmentAsyncResponses[keyof PatchTenantDepartmentAsyncResponses];
+
 export type UpdateTenantDepartmentData = {
     body?: TenantDepartmentUpdateDto;
     headers?: {
@@ -2201,6 +2238,43 @@ export type GetTenantEmployeeEnrollmentByIdResponses = {
 };
 
 export type GetTenantEmployeeEnrollmentByIdResponse = GetTenantEmployeeEnrollmentByIdResponses[keyof GetTenantEmployeeEnrollmentByIdResponses];
+
+export type PatchTenantEmployeeEnrollmentAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantEmployeeEnrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/EmployeeEnrollments/{tenantEmployeeEnrollmentId}';
+};
+
+export type PatchTenantEmployeeEnrollmentAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantEmployeeEnrollmentAsyncError = PatchTenantEmployeeEnrollmentAsyncErrors[keyof PatchTenantEmployeeEnrollmentAsyncErrors];
+
+export type PatchTenantEmployeeEnrollmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantEmployeeEnrollmentAsyncResponse = PatchTenantEmployeeEnrollmentAsyncResponses[keyof PatchTenantEmployeeEnrollmentAsyncResponses];
 
 export type UpdateTenantEmployeeEnrollmentData = {
     body?: TenantTeamEmployeeEnrollmentUpdateDto;
@@ -2488,6 +2562,43 @@ export type GetTenantEnrollmentByIdResponses = {
 };
 
 export type GetTenantEnrollmentByIdResponse = GetTenantEnrollmentByIdResponses[keyof GetTenantEnrollmentByIdResponses];
+
+export type PatchTenantEnrollmentAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        enrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Enrollments/{enrollmentId}';
+};
+
+export type PatchTenantEnrollmentAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantEnrollmentAsyncError = PatchTenantEnrollmentAsyncErrors[keyof PatchTenantEnrollmentAsyncErrors];
+
+export type PatchTenantEnrollmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantEnrollmentAsyncResponse = PatchTenantEnrollmentAsyncResponses[keyof PatchTenantEnrollmentAsyncResponses];
 
 export type UpdateTenantEnrollmentData = {
     body?: TenantEnrollmentUpdateDto;
@@ -3033,6 +3144,43 @@ export type GetTenantIndustryByIdResponses = {
 
 export type GetTenantIndustryByIdResponse = GetTenantIndustryByIdResponses[keyof GetTenantIndustryByIdResponses];
 
+export type PatchTenantIndustryAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantIndustryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Industries/{tenantIndustryId}';
+};
+
+export type PatchTenantIndustryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantIndustryAsyncError = PatchTenantIndustryAsyncErrors[keyof PatchTenantIndustryAsyncErrors];
+
+export type PatchTenantIndustryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantIndustryAsyncResponse = PatchTenantIndustryAsyncResponses[keyof PatchTenantIndustryAsyncResponses];
+
 export type UpdateTenantIndustryData = {
     body?: TenantIndustryUpdateDto;
     headers?: {
@@ -3504,6 +3652,43 @@ export type GetTenantOptionByIdResponses = {
 
 export type GetTenantOptionByIdResponse = GetTenantOptionByIdResponses[keyof GetTenantOptionByIdResponses];
 
+export type PatchTenantOptionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        optionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Options/{optionId}';
+};
+
+export type PatchTenantOptionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantOptionError = PatchTenantOptionErrors[keyof PatchTenantOptionErrors];
+
+export type PatchTenantOptionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantOptionResponse = PatchTenantOptionResponses[keyof PatchTenantOptionResponses];
+
 export type UpdateTenantOptionData = {
     body?: OptionUpdateDto;
     headers?: {
@@ -3796,6 +3981,43 @@ export type GetTenantPositionByIdResponses = {
 
 export type GetTenantPositionByIdResponse = GetTenantPositionByIdResponses[keyof GetTenantPositionByIdResponses];
 
+export type PatchTenantPositionData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantPositionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Positions/{tenantPositionId}';
+};
+
+export type PatchTenantPositionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantPositionError = PatchTenantPositionErrors[keyof PatchTenantPositionErrors];
+
+export type PatchTenantPositionResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantPositionResponse = PatchTenantPositionResponses[keyof PatchTenantPositionResponses];
+
 export type UpdateTenantPositionData = {
     body?: TenantPositionUpdateDto;
     headers?: {
@@ -4011,6 +4233,43 @@ export type GetTenantSegmentByIdResponses = {
 };
 
 export type GetTenantSegmentByIdResponse = GetTenantSegmentByIdResponses[keyof GetTenantSegmentByIdResponses];
+
+export type PatchTenantSegmentData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantSegmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Segments/{tenantSegmentId}';
+};
+
+export type PatchTenantSegmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantSegmentError = PatchTenantSegmentErrors[keyof PatchTenantSegmentErrors];
+
+export type PatchTenantSegmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantSegmentResponse = PatchTenantSegmentResponses[keyof PatchTenantSegmentResponses];
 
 export type UpdateTenantSegmentData = {
     body?: TenantSegmentUpdateDto;
@@ -4228,6 +4487,43 @@ export type GetTenantSizeByIdResponses = {
 
 export type GetTenantSizeByIdResponse = GetTenantSizeByIdResponses[keyof GetTenantSizeByIdResponses];
 
+export type PatchTenantSizeData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantSizeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Sizes/{tenantSizeId}';
+};
+
+export type PatchTenantSizeErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantSizeError = PatchTenantSizeErrors[keyof PatchTenantSizeErrors];
+
+export type PatchTenantSizeResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantSizeResponse = PatchTenantSizeResponses[keyof PatchTenantSizeResponses];
+
 export type UpdateTenantSizeData = {
     body?: TenantSizeUpdateDto;
     headers?: {
@@ -4443,6 +4739,43 @@ export type GetTenantTeamContactEnrollmentByIdResponses = {
 };
 
 export type GetTenantTeamContactEnrollmentByIdResponse = GetTenantTeamContactEnrollmentByIdResponses[keyof GetTenantTeamContactEnrollmentByIdResponses];
+
+export type PatchTenantTeamContactEnrollmentData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamContactEnrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/TeamContactEnrollments/{tenantTeamContactEnrollmentId}';
+};
+
+export type PatchTenantTeamContactEnrollmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantTeamContactEnrollmentError = PatchTenantTeamContactEnrollmentErrors[keyof PatchTenantTeamContactEnrollmentErrors];
+
+export type PatchTenantTeamContactEnrollmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantTeamContactEnrollmentResponse = PatchTenantTeamContactEnrollmentResponses[keyof PatchTenantTeamContactEnrollmentResponses];
 
 export type UpdateTenantTeamContactEnrollmentData = {
     body?: TenantTeamContactEnrollmentUpdateDto;
@@ -4660,6 +4993,43 @@ export type GetTenantTeamProjectEnrollmentByIdResponses = {
 
 export type GetTenantTeamProjectEnrollmentByIdResponse = GetTenantTeamProjectEnrollmentByIdResponses[keyof GetTenantTeamProjectEnrollmentByIdResponses];
 
+export type PatchTenantTeamProjectEnrollmentData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamProjectEnrollmentId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/TeamProjectEnrollments/{tenantTeamProjectEnrollmentId}';
+};
+
+export type PatchTenantTeamProjectEnrollmentErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantTeamProjectEnrollmentError = PatchTenantTeamProjectEnrollmentErrors[keyof PatchTenantTeamProjectEnrollmentErrors];
+
+export type PatchTenantTeamProjectEnrollmentResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantTeamProjectEnrollmentResponse = PatchTenantTeamProjectEnrollmentResponses[keyof PatchTenantTeamProjectEnrollmentResponses];
+
 export type UpdateTenantTeamProjectEnrollmentData = {
     body?: TenantTeamProjectEnrollmentUpdateDto;
     headers?: {
@@ -4876,6 +5246,43 @@ export type GetTenantTeamRecordByIdResponses = {
 
 export type GetTenantTeamRecordByIdResponse = GetTenantTeamRecordByIdResponses[keyof GetTenantTeamRecordByIdResponses];
 
+export type PatchTenantTeamRecordData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamRecordId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/TeamRecords/{tenantTeamRecordId}';
+};
+
+export type PatchTenantTeamRecordErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantTeamRecordError = PatchTenantTeamRecordErrors[keyof PatchTenantTeamRecordErrors];
+
+export type PatchTenantTeamRecordResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantTeamRecordResponse = PatchTenantTeamRecordResponses[keyof PatchTenantTeamRecordResponses];
+
 export type UpdateTenantTeamRecordData = {
     body?: TenantTeamRecordUpdateDto;
     headers?: {
@@ -5091,6 +5498,43 @@ export type GetTenantTeamByIdResponses = {
 };
 
 export type GetTenantTeamByIdResponse = GetTenantTeamByIdResponses[keyof GetTenantTeamByIdResponses];
+
+export type PatchTenantTeamData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTeamId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Teams/{tenantTeamId}';
+};
+
+export type PatchTenantTeamErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantTeamError = PatchTenantTeamErrors[keyof PatchTenantTeamErrors];
+
+export type PatchTenantTeamResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantTeamResponse = PatchTenantTeamResponses[keyof PatchTenantTeamResponses];
 
 export type UpdateTenantTeamData = {
     body?: TenantTeamUpdateDto;
@@ -6570,6 +7014,43 @@ export type GetTenantTerritoryByIdResponses = {
 
 export type GetTenantTerritoryByIdResponse = GetTenantTerritoryByIdResponses[keyof GetTenantTerritoryByIdResponses];
 
+export type PatchTenantTerritoryData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTerritoryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Territories/{tenantTerritoryId}';
+};
+
+export type PatchTenantTerritoryErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantTerritoryError = PatchTenantTerritoryErrors[keyof PatchTenantTerritoryErrors];
+
+export type PatchTenantTerritoryResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantTerritoryResponse = PatchTenantTerritoryResponses[keyof PatchTenantTerritoryResponses];
+
 export type UpdateTenantTerritoryData = {
     body?: TenantTerritoryUpdateDto;
     headers?: {
@@ -6786,6 +7267,43 @@ export type GetTenantTypeByIdResponses = {
 
 export type GetTenantTypeByIdResponse = GetTenantTypeByIdResponses[keyof GetTenantTypeByIdResponses];
 
+export type PatchTenantTypeData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantTypeId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Types/{tenantTypeId}';
+};
+
+export type PatchTenantTypeErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantTypeError = PatchTenantTypeErrors[keyof PatchTenantTypeErrors];
+
+export type PatchTenantTypeResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantTypeResponse = PatchTenantTypeResponses[keyof PatchTenantTypeResponses];
+
 export type UpdateTenantTypeData = {
     body?: TenantTypeUpdateDto;
     headers?: {
@@ -7001,6 +7519,43 @@ export type GetUnitGroupAsyncResponses = {
 };
 
 export type GetUnitGroupAsyncResponse = GetUnitGroupAsyncResponses[keyof GetUnitGroupAsyncResponses];
+
+export type PatchUnitGroupAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        unitGroupId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}';
+};
+
+export type PatchUnitGroupAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchUnitGroupAsyncError = PatchUnitGroupAsyncErrors[keyof PatchUnitGroupAsyncErrors];
+
+export type PatchUnitGroupAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchUnitGroupAsyncResponse = PatchUnitGroupAsyncResponses[keyof PatchUnitGroupAsyncResponses];
 
 export type UpdateUnitGroupAsyncData = {
     body?: UnitGroupUpdateDto;
@@ -7226,6 +7781,44 @@ export type GetUnitAsyncResponses = {
 
 export type GetUnitAsyncResponse = GetUnitAsyncResponses[keyof GetUnitAsyncResponses];
 
+export type PatchUnitAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        unitGroupId: string;
+        unitId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/UnitGroups/{unitGroupId}/Units/{unitId}';
+};
+
+export type PatchUnitAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchUnitAsyncError = PatchUnitAsyncErrors[keyof PatchUnitAsyncErrors];
+
+export type PatchUnitAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchUnitAsyncResponse = PatchUnitAsyncResponses[keyof PatchUnitAsyncResponses];
+
 export type UpdateUnitAsyncData = {
     body?: UnitUpdateDto;
     headers?: {
@@ -7442,6 +8035,43 @@ export type GetTenantUnitByIdResponses = {
 };
 
 export type GetTenantUnitByIdResponse = GetTenantUnitByIdResponses[keyof GetTenantUnitByIdResponses];
+
+export type PatchTenantUnitData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantUnitId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/Units/{tenantUnitId}';
+};
+
+export type PatchTenantUnitErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchTenantUnitError = PatchTenantUnitErrors[keyof PatchTenantUnitErrors];
+
+export type PatchTenantUnitResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchTenantUnitResponse = PatchTenantUnitResponses[keyof PatchTenantUnitResponses];
 
 export type UpdateTenantUnitData = {
     body?: TenantUnitUpdateDto;
