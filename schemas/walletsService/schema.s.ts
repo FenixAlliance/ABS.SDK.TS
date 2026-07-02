@@ -363,18 +363,6 @@ export interface paths {
      */
     get: operations["GetWalletPaymentsCountAsync"];
   };
-  "/api/v2/WalletsService/Wallets/{walletId}/Locations": {
-    /**
-     * Get Wallet Locations
-     * @description Get locations of a specific wallet by ID.
-     */
-    get: operations["GetWalletLocationsAsync"];
-    /**
-     * Create Wallet Location
-     * @description Create a new location for a specific wallet by ID.
-     */
-    post: operations["CreateWalletLocationAsync"];
-  };
   "/api/v2/WalletsService/Wallets/{walletId}/Locations/Count": {
     /**
      * Get Wallet Locations Count
@@ -398,6 +386,18 @@ export interface paths {
      * @description Delete a specific location of a specific wallet by ID.
      */
     delete: operations["DeleteWalletLocationAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Locations": {
+    /**
+     * Get Wallet Locations
+     * @description Get locations of a specific wallet by ID.
+     */
+    get: operations["GetLocationsForWalletAsync"];
+    /**
+     * Create Wallet Location
+     * @description Create a new location for a specific wallet by ID.
+     */
+    post: operations["CreateWalletLocationAsync"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Invoices/Incoming": {
     /**
@@ -2334,92 +2334,6 @@ export interface operations {
     };
   };
   /**
-   * Get Wallet Locations
-   * @description Get locations of a specific wallet by ID.
-   */
-  GetWalletLocationsAsync: {
-    parameters: {
-      query?: {
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        walletId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["LocationDtoListEnvelope"];
-          "application/xml": components["schemas"]["LocationDtoListEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Create Wallet Location
-   * @description Create a new location for a specific wallet by ID.
-   */
-  CreateWalletLocationAsync: {
-    parameters: {
-      query?: {
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        walletId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["LocationCreateDto"];
-        "application/xml": components["schemas"]["LocationCreateDto"];
-      };
-    };
-    responses: {
-      /** @description Created */
-      201: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
    * Get Wallet Locations Count
    * @description Get locations count of a specific wallet by ID.
    */
@@ -2567,6 +2481,92 @@ export interface operations {
     responses: {
       /** @description No Content */
       204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Locations
+   * @description Get locations of a specific wallet by ID.
+   */
+  GetLocationsForWalletAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LocationDtoListEnvelope"];
+          "application/xml": components["schemas"]["LocationDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create Wallet Location
+   * @description Create a new location for a specific wallet by ID.
+   */
+  CreateWalletLocationAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LocationCreateDto"];
+        "application/xml": components["schemas"]["LocationCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];

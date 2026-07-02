@@ -2133,78 +2133,6 @@ export type GetWalletPaymentsCountAsyncResponses = {
 
 export type GetWalletPaymentsCountAsyncResponse = GetWalletPaymentsCountAsyncResponses[keyof GetWalletPaymentsCountAsyncResponses];
 
-export type GetWalletLocationsAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        walletId: string;
-    };
-    query?: {
-        'api-version'?: string;
-    };
-    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations';
-};
-
-export type GetWalletLocationsAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetWalletLocationsAsyncError = GetWalletLocationsAsyncErrors[keyof GetWalletLocationsAsyncErrors];
-
-export type GetWalletLocationsAsyncResponses = {
-    /**
-     * OK
-     */
-    200: LocationDtoListEnvelopeReadable;
-};
-
-export type GetWalletLocationsAsyncResponse = GetWalletLocationsAsyncResponses[keyof GetWalletLocationsAsyncResponses];
-
-export type CreateWalletLocationAsyncData = {
-    body?: LocationCreateDto;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        walletId: string;
-    };
-    query?: {
-        'api-version'?: string;
-    };
-    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations';
-};
-
-export type CreateWalletLocationAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type CreateWalletLocationAsyncError = CreateWalletLocationAsyncErrors[keyof CreateWalletLocationAsyncErrors];
-
-export type CreateWalletLocationAsyncResponses = {
-    /**
-     * Created
-     */
-    201: EmptyEnvelopeReadable;
-};
-
-export type CreateWalletLocationAsyncResponse = CreateWalletLocationAsyncResponses[keyof CreateWalletLocationAsyncResponses];
-
 export type GetWalletLocationsCountAsyncData = {
     body?: never;
     headers?: {
@@ -2351,6 +2279,78 @@ export type UpdateWalletLocationAsyncResponses = {
 };
 
 export type UpdateWalletLocationAsyncResponse = UpdateWalletLocationAsyncResponses[keyof UpdateWalletLocationAsyncResponses];
+
+export type GetLocationsForWalletAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations';
+};
+
+export type GetLocationsForWalletAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetLocationsForWalletAsyncError = GetLocationsForWalletAsyncErrors[keyof GetLocationsForWalletAsyncErrors];
+
+export type GetLocationsForWalletAsyncResponses = {
+    /**
+     * OK
+     */
+    200: LocationDtoListEnvelopeReadable;
+};
+
+export type GetLocationsForWalletAsyncResponse = GetLocationsForWalletAsyncResponses[keyof GetLocationsForWalletAsyncResponses];
+
+export type CreateWalletLocationAsyncData = {
+    body?: LocationCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations';
+};
+
+export type CreateWalletLocationAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateWalletLocationAsyncError = CreateWalletLocationAsyncErrors[keyof CreateWalletLocationAsyncErrors];
+
+export type CreateWalletLocationAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateWalletLocationAsyncResponse = CreateWalletLocationAsyncResponses[keyof CreateWalletLocationAsyncResponses];
 
 export type GetIncomingWalletInvoicesAsyncData = {
     body?: never;
