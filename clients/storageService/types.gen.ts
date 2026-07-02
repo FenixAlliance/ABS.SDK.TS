@@ -1462,7 +1462,7 @@ export type RadzenUploadStreamResponses = {
     200: unknown;
 };
 
-export type RadzenUploadStream2Data = {
+export type RadzenUploadStreamScopedData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -1478,7 +1478,7 @@ export type RadzenUploadStream2Data = {
     url: '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/stream';
 };
 
-export type RadzenUploadStream2Responses = {
+export type RadzenUploadStreamScopedResponses = {
     /**
      * OK
      */

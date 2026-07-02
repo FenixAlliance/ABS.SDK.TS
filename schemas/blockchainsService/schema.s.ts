@@ -420,52 +420,6 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
-    ApplyClause: {
-      transformations?: components["schemas"]["TransformationNode"][] | null;
-    };
-    ApplyQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      resultClrType?: components["schemas"]["Type"];
-      applyClause?: components["schemas"]["ApplyClause"];
-      rawValue?: string | null;
-    };
-    AsnEncodedData: {
-      oid?: components["schemas"]["Oid"];
-      /** Format: byte */
-      rawData?: string | null;
-    };
-    Assembly: {
-      definedTypes?: (readonly components["schemas"]["TypeInfo"][]) | null;
-      exportedTypes?: (readonly components["schemas"]["Type"][]) | null;
-      /** @deprecated */
-      codeBase?: string | null;
-      entryPoint?: components["schemas"]["MethodInfo"];
-      fullName?: string | null;
-      imageRuntimeVersion?: string | null;
-      isDynamic?: boolean;
-      location?: string | null;
-      reflectionOnly?: boolean;
-      isCollectible?: boolean;
-      isFullyTrusted?: boolean;
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      /** @deprecated */
-      escapedCodeBase?: string | null;
-      manifestModule?: components["schemas"]["Module"];
-      modules?: (readonly components["schemas"]["Module"][]) | null;
-      /** @deprecated */
-      globalAssemblyCache?: boolean;
-      /** Format: int64 */
-      hostContext?: number;
-      /** @enum {string} */
-      securityRuleSet?: "None" | "Level1" | "Level2";
-    };
-    AsymmetricAlgorithm: {
-      /** Format: int32 */
-      keySize?: number;
-      legalKeySizes?: (readonly components["schemas"]["KeySizes"][]) | null;
-      signatureAlgorithm?: string | null;
-      keyExchangeAlgorithm?: string | null;
-    };
     BlockchainBlockCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -494,12 +448,6 @@ export interface components {
       walletAccountId?: string | null;
       tenantId?: string | null;
     };
-    BlockchainBlockDtoETag: {
-      isWellFormed?: boolean;
-      entityType?: components["schemas"]["Type"];
-      isAny?: boolean;
-      isIfNoneMatch?: boolean;
-    };
     BlockchainBlockDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -508,24 +456,6 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["BlockchainBlockDto"][] | null;
-    };
-    BlockchainBlockDtoODataQueryOptions: {
-      request?: components["schemas"]["HttpRequest"];
-      context?: components["schemas"]["ODataQueryContext"];
-      rawValues?: components["schemas"]["ODataRawQueryOptions"];
-      selectExpand?: components["schemas"]["SelectExpandQueryOption"];
-      apply?: components["schemas"]["ApplyQueryOption"];
-      compute?: components["schemas"]["ComputeQueryOption"];
-      filter?: components["schemas"]["FilterQueryOption"];
-      search?: components["schemas"]["SearchQueryOption"];
-      orderBy?: components["schemas"]["OrderByQueryOption"];
-      skip?: components["schemas"]["SkipQueryOption"];
-      skipToken?: components["schemas"]["SkipTokenQueryOption"];
-      top?: components["schemas"]["TopQueryOption"];
-      count?: components["schemas"]["CountQueryOption"];
-      validator?: components["schemas"]["IODataQueryValidator"];
-      ifMatch?: components["schemas"]["BlockchainBlockDtoETag"];
-      ifNoneMatch?: components["schemas"]["BlockchainBlockDtoETag"];
     };
     BlockchainBlockUpdateDto: {
       data?: string | null;
@@ -555,12 +485,6 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
-    BlockchainDtoETag: {
-      isWellFormed?: boolean;
-      entityType?: components["schemas"]["Type"];
-      isAny?: boolean;
-      isIfNoneMatch?: boolean;
-    };
     BlockchainDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -570,179 +494,12 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["BlockchainDto"][] | null;
     };
-    BlockchainDtoODataQueryOptions: {
-      request?: components["schemas"]["HttpRequest"];
-      context?: components["schemas"]["ODataQueryContext"];
-      rawValues?: components["schemas"]["ODataRawQueryOptions"];
-      selectExpand?: components["schemas"]["SelectExpandQueryOption"];
-      apply?: components["schemas"]["ApplyQueryOption"];
-      compute?: components["schemas"]["ComputeQueryOption"];
-      filter?: components["schemas"]["FilterQueryOption"];
-      search?: components["schemas"]["SearchQueryOption"];
-      orderBy?: components["schemas"]["OrderByQueryOption"];
-      skip?: components["schemas"]["SkipQueryOption"];
-      skipToken?: components["schemas"]["SkipTokenQueryOption"];
-      top?: components["schemas"]["TopQueryOption"];
-      count?: components["schemas"]["CountQueryOption"];
-      validator?: components["schemas"]["IODataQueryValidator"];
-      ifMatch?: components["schemas"]["BlockchainDtoETag"];
-      ifNoneMatch?: components["schemas"]["BlockchainDtoETag"];
-    };
     BlockchainUpdateDto: {
       name?: string | null;
       logoUrl?: string | null;
       description?: string | null;
       /** Format: int32 */
       difficulty?: number | null;
-    };
-    ByteReadOnlyMemory: {
-      /** Format: int32 */
-      length?: number;
-      isEmpty?: boolean;
-      span?: components["schemas"]["ByteReadOnlySpan"];
-    };
-    ByteReadOnlySpan: {
-      /** Format: int32 */
-      length?: number;
-      isEmpty?: boolean;
-    };
-    CancellationToken: {
-      isCancellationRequested?: boolean;
-      canBeCanceled?: boolean;
-      waitHandle?: components["schemas"]["WaitHandle"];
-    };
-    Claim: {
-      issuer?: string | null;
-      originalIssuer?: string | null;
-      properties?: {
-        [key: string]: string;
-      } | null;
-      subject?: components["schemas"]["ClaimsIdentity"];
-      type?: string | null;
-      value?: string | null;
-      valueType?: string | null;
-    };
-    ClaimsIdentity: {
-      authenticationType?: string | null;
-      isAuthenticated?: boolean;
-      actor?: components["schemas"]["ClaimsIdentity"];
-      bootstrapContext?: unknown;
-      claims?: (readonly components["schemas"]["Claim"][]) | null;
-      label?: string | null;
-      name?: string | null;
-      nameClaimType?: string | null;
-      roleClaimType?: string | null;
-    };
-    ClaimsPrincipal: {
-      claims?: (readonly components["schemas"]["Claim"][]) | null;
-      identities?: (readonly components["schemas"]["ClaimsIdentity"][]) | null;
-      identity?: components["schemas"]["IIdentity"];
-    };
-    ComputeClause: {
-      computedItems?: components["schemas"]["ComputeExpression"][] | null;
-    };
-    ComputeExpression: {
-      expression?: components["schemas"]["SingleValueNode"];
-      alias?: string | null;
-      typeReference?: components["schemas"]["IEdmTypeReference"];
-    };
-    ComputeQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      resultClrType?: components["schemas"]["Type"];
-      computeClause?: components["schemas"]["ComputeClause"];
-      rawValue?: string | null;
-      validator?: components["schemas"]["IComputeQueryValidator"];
-    };
-    ConnectionInfo: {
-      id?: string | null;
-      remoteIpAddress?: components["schemas"]["IPAddress"];
-      /** Format: int32 */
-      remotePort?: number;
-      localIpAddress?: components["schemas"]["IPAddress"];
-      /** Format: int32 */
-      localPort?: number;
-      clientCertificate?: components["schemas"]["X509Certificate2"];
-    };
-    ConstructorInfo: {
-      name?: string | null;
-      declaringType?: components["schemas"]["Type"];
-      reflectedType?: components["schemas"]["Type"];
-      module?: components["schemas"]["Module"];
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-      /** @enum {string} */
-      attributes?: "PrivateScope" | "Private" | "FamANDAssem" | "Assembly" | "Family" | "FamORAssem" | "Public" | "MemberAccessMask" | "UnmanagedExport" | "Static" | "Final" | "Virtual" | "HideBySig" | "NewSlot" | "CheckAccessOnOverride" | "Abstract" | "SpecialName" | "RTSpecialName" | "PinvokeImpl" | "HasSecurity" | "RequireSecObject" | "ReservedMask";
-      /** @enum {string} */
-      methodImplementationFlags?: "IL" | "Native" | "OPTIL" | "CodeTypeMask" | "ManagedMask" | "NoInlining" | "ForwardRef" | "Synchronized" | "NoOptimization" | "PreserveSig" | "AggressiveInlining" | "AggressiveOptimization" | "InternalCall" | "Async" | "MaxMethodImplVal";
-      /** @enum {string} */
-      callingConvention?: "Standard" | "VarArgs" | "Any" | "HasThis" | "ExplicitThis";
-      isAbstract?: boolean;
-      isConstructor?: boolean;
-      isFinal?: boolean;
-      isHideBySig?: boolean;
-      isSpecialName?: boolean;
-      isStatic?: boolean;
-      isVirtual?: boolean;
-      isAssembly?: boolean;
-      isFamily?: boolean;
-      isFamilyAndAssembly?: boolean;
-      isFamilyOrAssembly?: boolean;
-      isPrivate?: boolean;
-      isPublic?: boolean;
-      isConstructedGenericMethod?: boolean;
-      isGenericMethod?: boolean;
-      isGenericMethodDefinition?: boolean;
-      containsGenericParameters?: boolean;
-      methodHandle?: components["schemas"]["RuntimeMethodHandle"];
-      isSecurityCritical?: boolean;
-      isSecuritySafeCritical?: boolean;
-      isSecurityTransparent?: boolean;
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-    };
-    CountQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      rawValue?: string | null;
-      value?: boolean;
-      validator?: components["schemas"]["ICountQueryValidator"];
-    };
-    CustomAttributeData: {
-      attributeType?: components["schemas"]["Type"];
-      constructor?: components["schemas"]["ConstructorInfo"];
-      constructorArguments?: (readonly components["schemas"]["CustomAttributeTypedArgument"][]) | null;
-      namedArguments?: (readonly components["schemas"]["CustomAttributeNamedArgument"][]) | null;
-    };
-    CustomAttributeNamedArgument: {
-      memberInfo?: components["schemas"]["MemberInfo"];
-      typedValue?: components["schemas"]["CustomAttributeTypedArgument"];
-      memberName?: string | null;
-      isField?: boolean;
-    };
-    CustomAttributeTypedArgument: {
-      argumentType?: components["schemas"]["Type"];
-      value?: unknown;
-    };
-    DefaultQueryConfigurations: {
-      enableExpand?: boolean;
-      enableSelect?: boolean;
-      enableCount?: boolean;
-      enableOrderBy?: boolean;
-      enableFilter?: boolean;
-      /** Format: int32 */
-      maxTop?: number | null;
-      enableSkipToken?: boolean;
-    };
-    ETag: {
-      isWellFormed?: boolean;
-      entityType?: components["schemas"]["Type"];
-      isAny?: boolean;
-      isIfNoneMatch?: boolean;
-    };
-    EdmReferentialConstraintPropertyPair: {
-      dependentProperty?: components["schemas"]["IEdmStructuralProperty"];
-      principalProperty?: components["schemas"]["IEdmStructuralProperty"];
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -760,138 +517,8 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
     };
-    EventInfo: {
-      name?: string | null;
-      declaringType?: components["schemas"]["Type"];
-      reflectedType?: components["schemas"]["Type"];
-      module?: components["schemas"]["Module"];
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-      /** @enum {string} */
-      attributes?: "None" | "SpecialName" | "RTSpecialName";
-      isSpecialName?: boolean;
-      addMethod?: components["schemas"]["MethodInfo"];
-      removeMethod?: components["schemas"]["MethodInfo"];
-      raiseMethod?: components["schemas"]["MethodInfo"];
-      isMulticast?: boolean;
-      eventHandlerType?: components["schemas"]["Type"];
-    };
-    FieldInfo: {
-      name?: string | null;
-      declaringType?: components["schemas"]["Type"];
-      reflectedType?: components["schemas"]["Type"];
-      module?: components["schemas"]["Module"];
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-      /** @enum {string} */
-      attributes?: "PrivateScope" | "Private" | "FamANDAssem" | "Assembly" | "Family" | "FamORAssem" | "Public" | "FieldAccessMask" | "Static" | "InitOnly" | "Literal" | "NotSerialized" | "HasFieldRVA" | "SpecialName" | "RTSpecialName" | "HasFieldMarshal" | "PinvokeImpl" | "HasDefault" | "ReservedMask";
-      fieldType?: components["schemas"]["Type"];
-      isInitOnly?: boolean;
-      isLiteral?: boolean;
-      /** @deprecated */
-      isNotSerialized?: boolean;
-      isPinvokeImpl?: boolean;
-      isSpecialName?: boolean;
-      isStatic?: boolean;
-      isAssembly?: boolean;
-      isFamily?: boolean;
-      isFamilyAndAssembly?: boolean;
-      isFamilyOrAssembly?: boolean;
-      isPrivate?: boolean;
-      isPublic?: boolean;
-      isSecurityCritical?: boolean;
-      isSecuritySafeCritical?: boolean;
-      isSecurityTransparent?: boolean;
-      fieldHandle?: components["schemas"]["RuntimeFieldHandle"];
-    };
-    FilterClause: {
-      expression?: components["schemas"]["SingleValueNode"];
-      rangeVariable?: components["schemas"]["RangeVariable"];
-      itemType?: components["schemas"]["IEdmTypeReference"];
-    };
-    FilterQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      validator?: components["schemas"]["IFilterQueryValidator"];
-      compute?: components["schemas"]["ComputeQueryOption"];
-      filterClause?: components["schemas"]["FilterClause"];
-      rawValue?: string | null;
-    };
     ForgotPasswordRequest: {
       email: string | null;
-    };
-    HostString: {
-      value?: string | null;
-      hasValue?: boolean;
-      host?: string | null;
-      /** Format: int32 */
-      port?: number | null;
-    };
-    HttpContext: {
-      features?: (readonly components["schemas"]["TypeObjectKeyValuePair"][]) | null;
-      request?: components["schemas"]["HttpRequest"];
-      response?: components["schemas"]["HttpResponse"];
-      connection?: components["schemas"]["ConnectionInfo"];
-      webSockets?: components["schemas"]["WebSocketManager"];
-      user?: components["schemas"]["ClaimsPrincipal"];
-      items?: {
-        [key: string]: unknown;
-      } | null;
-      requestServices?: components["schemas"]["IServiceProvider"];
-      requestAborted?: components["schemas"]["CancellationToken"];
-      traceIdentifier?: string | null;
-      session?: components["schemas"]["ISession"];
-    };
-    HttpRequest: {
-      httpContext?: components["schemas"]["HttpContext"];
-      method?: string | null;
-      scheme?: string | null;
-      isHttps?: boolean;
-      host?: components["schemas"]["HostString"];
-      pathBase?: components["schemas"]["PathString"];
-      path?: components["schemas"]["PathString"];
-      queryString?: components["schemas"]["QueryString"];
-      query?: components["schemas"]["StringStringValuesKeyValuePair"][] | null;
-      protocol?: string | null;
-      headers?: {
-        [key: string]: string[];
-      } | null;
-      cookies?: components["schemas"]["StringStringKeyValuePair"][] | null;
-      /** Format: int64 */
-      contentLength?: number | null;
-      contentType?: string | null;
-      /** Format: binary */
-      body?: string | null;
-      /** Format: binary */
-      bodyReader?: string | null;
-      hasFormContentType?: boolean;
-      form?: components["schemas"]["StringStringValuesKeyValuePair"][] | null;
-      routeValues?: {
-        [key: string]: unknown;
-      } | null;
-    };
-    HttpResponse: {
-      httpContext?: components["schemas"]["HttpContext"];
-      /** Format: int32 */
-      statusCode?: number;
-      headers?: {
-        [key: string]: string[];
-      } | null;
-      /** Format: binary */
-      body?: string | null;
-      bodyWriter?: components["schemas"]["PipeWriter"];
-      /** Format: int64 */
-      contentLength?: number | null;
-      contentType?: string | null;
-      cookies?: components["schemas"]["IResponseCookies"];
-      hasStarted?: boolean;
     };
     HttpValidationProblemDetails: {
       type?: string | null;
@@ -905,172 +532,6 @@ export interface components {
       } | null;
       [key: string]: unknown;
     };
-    IComputeQueryValidator: Record<string, never>;
-    ICountQueryValidator: Record<string, never>;
-    ICustomAttributeProvider: Record<string, never>;
-    IEdmDirectValueAnnotationsManager: Record<string, never>;
-    IEdmEntityContainer: {
-      name?: string | null;
-      /** @enum {string} */
-      schemaElementKind?: "None" | "TypeDefinition" | "Term" | "Action" | "EntityContainer" | "Function";
-      namespace?: string | null;
-      elements?: (readonly components["schemas"]["IEdmEntityContainerElement"][]) | null;
-    };
-    IEdmEntityContainerElement: {
-      name?: string | null;
-      /** @enum {string} */
-      containerElementKind?: "None" | "EntitySet" | "ActionImport" | "FunctionImport" | "Singleton";
-      container?: components["schemas"]["IEdmEntityContainer"];
-    };
-    IEdmEntityType: {
-      /** @enum {string} */
-      typeKind?: "None" | "Primitive" | "Entity" | "Complex" | "Collection" | "EntityReference" | "Enum" | "TypeDefinition" | "Untyped" | "Path";
-      name?: string | null;
-      isAbstract?: boolean;
-      isOpen?: boolean;
-      baseType?: components["schemas"]["IEdmStructuredType"];
-      declaredProperties?: (readonly components["schemas"]["IEdmProperty"][]) | null;
-      /** @enum {string} */
-      schemaElementKind?: "None" | "TypeDefinition" | "Term" | "Action" | "EntityContainer" | "Function";
-      namespace?: string | null;
-      declaredKey?: (readonly components["schemas"]["IEdmStructuralProperty"][]) | null;
-      hasStream?: boolean;
-    };
-    IEdmExpression: {
-      /** @enum {string} */
-      expressionKind?: "None" | "BinaryConstant" | "BooleanConstant" | "DateTimeOffsetConstant" | "DecimalConstant" | "FloatingConstant" | "GuidConstant" | "IntegerConstant" | "StringConstant" | "DurationConstant" | null | "Record" | "Collection" | "Path" | "If" | "Cast" | "IsOf" | "FunctionApplication" | "LabeledExpressionReference" | "Labeled" | "PropertyPath" | "NavigationPropertyPath" | "DateConstant" | "TimeOfDayConstant" | "EnumMember" | "AnnotationPath";
-    };
-    IEdmModel: {
-      schemaElements?: (readonly components["schemas"]["IEdmSchemaElement"][]) | null;
-      vocabularyAnnotations?: (readonly components["schemas"]["IEdmVocabularyAnnotation"][]) | null;
-      referencedModels?: (readonly components["schemas"]["IEdmModel"][]) | null;
-      declaredNamespaces?: (readonly string[]) | null;
-      directValueAnnotationsManager?: components["schemas"]["IEdmDirectValueAnnotationsManager"];
-      entityContainer?: components["schemas"]["IEdmEntityContainer"];
-    };
-    IEdmNavigationProperty: {
-      name?: string | null;
-      /** @enum {string} */
-      propertyKind?: "None" | "Structural" | "Navigation";
-      type?: components["schemas"]["IEdmTypeReference"];
-      declaringType?: components["schemas"]["IEdmStructuredType"];
-      partner?: components["schemas"]["IEdmNavigationProperty"];
-      /** @enum {string} */
-      onDelete?: "None" | "Cascade";
-      containsTarget?: boolean;
-      referentialConstraint?: components["schemas"]["IEdmReferentialConstraint"];
-    };
-    IEdmNavigationPropertyBinding: {
-      navigationProperty?: components["schemas"]["IEdmNavigationProperty"];
-      target?: components["schemas"]["IEdmNavigationSource"];
-      path?: components["schemas"]["IEdmPathExpression"];
-    };
-    IEdmNavigationSource: {
-      name?: string | null;
-      navigationPropertyBindings?: (readonly components["schemas"]["IEdmNavigationPropertyBinding"][]) | null;
-      path?: components["schemas"]["IEdmPathExpression"];
-      type?: components["schemas"]["IEdmType"];
-      entityType?: components["schemas"]["IEdmEntityType"];
-    };
-    IEdmPathExpression: {
-      /** @enum {string} */
-      expressionKind?: "None" | "BinaryConstant" | "BooleanConstant" | "DateTimeOffsetConstant" | "DecimalConstant" | "FloatingConstant" | "GuidConstant" | "IntegerConstant" | "StringConstant" | "DurationConstant" | null | "Record" | "Collection" | "Path" | "If" | "Cast" | "IsOf" | "FunctionApplication" | "LabeledExpressionReference" | "Labeled" | "PropertyPath" | "NavigationPropertyPath" | "DateConstant" | "TimeOfDayConstant" | "EnumMember" | "AnnotationPath";
-      pathSegments?: (readonly string[]) | null;
-      path?: string | null;
-    };
-    IEdmProperty: {
-      name?: string | null;
-      /** @enum {string} */
-      propertyKind?: "None" | "Structural" | "Navigation";
-      type?: components["schemas"]["IEdmTypeReference"];
-      declaringType?: components["schemas"]["IEdmStructuredType"];
-    };
-    IEdmReferentialConstraint: {
-      propertyPairs?: (readonly components["schemas"]["EdmReferentialConstraintPropertyPair"][]) | null;
-    };
-    IEdmSchemaElement: {
-      name?: string | null;
-      /** @enum {string} */
-      schemaElementKind?: "None" | "TypeDefinition" | "Term" | "Action" | "EntityContainer" | "Function";
-      namespace?: string | null;
-    };
-    IEdmStructuralProperty: {
-      name?: string | null;
-      /** @enum {string} */
-      propertyKind?: "None" | "Structural" | "Navigation";
-      type?: components["schemas"]["IEdmTypeReference"];
-      declaringType?: components["schemas"]["IEdmStructuredType"];
-      defaultValueString?: string | null;
-    };
-    IEdmStructuredType: {
-      /** @enum {string} */
-      typeKind?: "None" | "Primitive" | "Entity" | "Complex" | "Collection" | "EntityReference" | "Enum" | "TypeDefinition" | "Untyped" | "Path";
-      isAbstract?: boolean;
-      isOpen?: boolean;
-      baseType?: components["schemas"]["IEdmStructuredType"];
-      declaredProperties?: (readonly components["schemas"]["IEdmProperty"][]) | null;
-    };
-    IEdmTerm: {
-      name?: string | null;
-      /** @enum {string} */
-      schemaElementKind?: "None" | "TypeDefinition" | "Term" | "Action" | "EntityContainer" | "Function";
-      namespace?: string | null;
-      type?: components["schemas"]["IEdmTypeReference"];
-      appliesTo?: string | null;
-      defaultValue?: string | null;
-    };
-    IEdmType: {
-      /** @enum {string} */
-      typeKind?: "None" | "Primitive" | "Entity" | "Complex" | "Collection" | "EntityReference" | "Enum" | "TypeDefinition" | "Untyped" | "Path";
-    };
-    IEdmTypeReference: {
-      isNullable?: boolean;
-      definition?: components["schemas"]["IEdmType"];
-    };
-    IEdmVocabularyAnnotatable: Record<string, never>;
-    IEdmVocabularyAnnotation: {
-      qualifier?: string | null;
-      term?: components["schemas"]["IEdmTerm"];
-      target?: components["schemas"]["IEdmVocabularyAnnotatable"];
-      value?: components["schemas"]["IEdmExpression"];
-      usesDefault?: boolean;
-    };
-    IFilterQueryValidator: Record<string, never>;
-    IIdentity: {
-      name?: string | null;
-      authenticationType?: string | null;
-      isAuthenticated?: boolean;
-    };
-    IODataQueryValidator: Record<string, never>;
-    IOrderByQueryValidator: Record<string, never>;
-    IPAddress: {
-      /** @enum {string} */
-      addressFamily?: "Unspecified" | "Unix" | "InterNetwork" | "ImpLink" | "Pup" | "Chaos" | "NS" | "Iso" | "Ecma" | "DataKit" | "Ccitt" | "Sna" | "DecNet" | "DataLink" | "Lat" | "HyperChannel" | "AppleTalk" | "NetBios" | "VoiceView" | "FireFox" | "Banyan" | "Atm" | "InterNetworkV6" | "Cluster" | "Ieee12844" | "Irda" | "NetworkDesigners" | "Max" | "Packet" | "ControllerAreaNetwork" | "Unknown";
-      /** Format: int64 */
-      scopeId?: number;
-      isIPv6Multicast?: boolean;
-      isIPv6LinkLocal?: boolean;
-      isIPv6SiteLocal?: boolean;
-      isIPv6Teredo?: boolean;
-      isIPv6UniqueLocal?: boolean;
-      isIPv4MappedToIPv6?: boolean;
-      /**
-       * Format: int64
-       * @deprecated
-       */
-      address?: number;
-    };
-    IResponseCookies: Record<string, never>;
-    ISelectExpandQueryValidator: Record<string, never>;
-    IServiceProvider: Record<string, never>;
-    ISession: {
-      isAvailable?: boolean;
-      id?: string | null;
-      keys?: (readonly string[]) | null;
-    };
-    ISkipQueryValidator: Record<string, never>;
-    ISkipTokenQueryValidator: Record<string, never>;
-    ITopQueryValidator: Record<string, never>;
     InfoRequest: {
       newEmail?: string | null;
       newPassword?: string | null;
@@ -1090,131 +551,11 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
-    IntPtr: Record<string, never>;
-    KeySizes: {
-      /** Format: int32 */
-      minSize?: number;
-      /** Format: int32 */
-      maxSize?: number;
-      /** Format: int32 */
-      skipSize?: number;
-    };
     LoginRequest: {
       email: string | null;
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
-    };
-    MemberInfo: {
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-      name?: string | null;
-      declaringType?: components["schemas"]["Type"];
-      reflectedType?: components["schemas"]["Type"];
-      module?: components["schemas"]["Module"];
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-    };
-    MethodBase: {
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-      name?: string | null;
-      declaringType?: components["schemas"]["Type"];
-      reflectedType?: components["schemas"]["Type"];
-      module?: components["schemas"]["Module"];
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-      /** @enum {string} */
-      attributes?: "PrivateScope" | "Private" | "FamANDAssem" | "Assembly" | "Family" | "FamORAssem" | "Public" | "MemberAccessMask" | "UnmanagedExport" | "Static" | "Final" | "Virtual" | "HideBySig" | "NewSlot" | "CheckAccessOnOverride" | "Abstract" | "SpecialName" | "RTSpecialName" | "PinvokeImpl" | "HasSecurity" | "RequireSecObject" | "ReservedMask";
-      /** @enum {string} */
-      methodImplementationFlags?: "IL" | "Native" | "OPTIL" | "CodeTypeMask" | "ManagedMask" | "NoInlining" | "ForwardRef" | "Synchronized" | "NoOptimization" | "PreserveSig" | "AggressiveInlining" | "AggressiveOptimization" | "InternalCall" | "Async" | "MaxMethodImplVal";
-      /** @enum {string} */
-      callingConvention?: "Standard" | "VarArgs" | "Any" | "HasThis" | "ExplicitThis";
-      isAbstract?: boolean;
-      isConstructor?: boolean;
-      isFinal?: boolean;
-      isHideBySig?: boolean;
-      isSpecialName?: boolean;
-      isStatic?: boolean;
-      isVirtual?: boolean;
-      isAssembly?: boolean;
-      isFamily?: boolean;
-      isFamilyAndAssembly?: boolean;
-      isFamilyOrAssembly?: boolean;
-      isPrivate?: boolean;
-      isPublic?: boolean;
-      isConstructedGenericMethod?: boolean;
-      isGenericMethod?: boolean;
-      isGenericMethodDefinition?: boolean;
-      containsGenericParameters?: boolean;
-      methodHandle?: components["schemas"]["RuntimeMethodHandle"];
-      isSecurityCritical?: boolean;
-      isSecuritySafeCritical?: boolean;
-      isSecurityTransparent?: boolean;
-    };
-    MethodInfo: {
-      name?: string | null;
-      declaringType?: components["schemas"]["Type"];
-      reflectedType?: components["schemas"]["Type"];
-      module?: components["schemas"]["Module"];
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-      /** @enum {string} */
-      attributes?: "PrivateScope" | "Private" | "FamANDAssem" | "Assembly" | "Family" | "FamORAssem" | "Public" | "MemberAccessMask" | "UnmanagedExport" | "Static" | "Final" | "Virtual" | "HideBySig" | "NewSlot" | "CheckAccessOnOverride" | "Abstract" | "SpecialName" | "RTSpecialName" | "PinvokeImpl" | "HasSecurity" | "RequireSecObject" | "ReservedMask";
-      /** @enum {string} */
-      methodImplementationFlags?: "IL" | "Native" | "OPTIL" | "CodeTypeMask" | "ManagedMask" | "NoInlining" | "ForwardRef" | "Synchronized" | "NoOptimization" | "PreserveSig" | "AggressiveInlining" | "AggressiveOptimization" | "InternalCall" | "Async" | "MaxMethodImplVal";
-      /** @enum {string} */
-      callingConvention?: "Standard" | "VarArgs" | "Any" | "HasThis" | "ExplicitThis";
-      isAbstract?: boolean;
-      isConstructor?: boolean;
-      isFinal?: boolean;
-      isHideBySig?: boolean;
-      isSpecialName?: boolean;
-      isStatic?: boolean;
-      isVirtual?: boolean;
-      isAssembly?: boolean;
-      isFamily?: boolean;
-      isFamilyAndAssembly?: boolean;
-      isFamilyOrAssembly?: boolean;
-      isPrivate?: boolean;
-      isPublic?: boolean;
-      isConstructedGenericMethod?: boolean;
-      isGenericMethod?: boolean;
-      isGenericMethodDefinition?: boolean;
-      containsGenericParameters?: boolean;
-      methodHandle?: components["schemas"]["RuntimeMethodHandle"];
-      isSecurityCritical?: boolean;
-      isSecuritySafeCritical?: boolean;
-      isSecurityTransparent?: boolean;
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-      returnParameter?: components["schemas"]["ParameterInfo"];
-      returnType?: components["schemas"]["Type"];
-      returnTypeCustomAttributes?: components["schemas"]["ICustomAttributeProvider"];
-    };
-    Module: {
-      assembly?: components["schemas"]["Assembly"];
-      fullyQualifiedName?: string | null;
-      name?: string | null;
-      /** Format: int32 */
-      mdStreamVersion?: number;
-      /** Format: uuid */
-      moduleVersionId?: string;
-      scopeName?: string | null;
-      moduleHandle?: components["schemas"]["ModuleHandle"];
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      /** Format: int32 */
-      metadataToken?: number;
-    };
-    ModuleHandle: {
-      /** Format: int32 */
-      mdStreamVersion?: number;
     };
     NonFungibleTokenCreateDto: {
       /** Format: uuid */
@@ -1252,12 +593,6 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
-    NonFungibleTokenDtoETag: {
-      isWellFormed?: boolean;
-      entityType?: components["schemas"]["Type"];
-      isAny?: boolean;
-      isIfNoneMatch?: boolean;
-    };
     NonFungibleTokenDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1266,24 +601,6 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["NonFungibleTokenDto"][] | null;
-    };
-    NonFungibleTokenDtoODataQueryOptions: {
-      request?: components["schemas"]["HttpRequest"];
-      context?: components["schemas"]["ODataQueryContext"];
-      rawValues?: components["schemas"]["ODataRawQueryOptions"];
-      selectExpand?: components["schemas"]["SelectExpandQueryOption"];
-      apply?: components["schemas"]["ApplyQueryOption"];
-      compute?: components["schemas"]["ComputeQueryOption"];
-      filter?: components["schemas"]["FilterQueryOption"];
-      search?: components["schemas"]["SearchQueryOption"];
-      orderBy?: components["schemas"]["OrderByQueryOption"];
-      skip?: components["schemas"]["SkipQueryOption"];
-      skipToken?: components["schemas"]["SkipTokenQueryOption"];
-      top?: components["schemas"]["TopQueryOption"];
-      count?: components["schemas"]["CountQueryOption"];
-      validator?: components["schemas"]["IODataQueryValidator"];
-      ifMatch?: components["schemas"]["NonFungibleTokenDtoETag"];
-      ifNoneMatch?: components["schemas"]["NonFungibleTokenDtoETag"];
     };
     NonFungibleTokenUpdateDto: {
       title?: string | null;
@@ -1297,38 +614,6 @@ export interface components {
       mintTransactionHash?: string | null;
       blockchainBlockId?: string | null;
     };
-    ODataPathSegment: {
-      edmType?: components["schemas"]["IEdmType"];
-      identifier?: string | null;
-    };
-    ODataQueryContext: {
-      defaultQueryConfigurations?: components["schemas"]["DefaultQueryConfigurations"];
-      model?: components["schemas"]["IEdmModel"];
-      elementType?: components["schemas"]["IEdmType"];
-      navigationSource?: components["schemas"]["IEdmNavigationSource"];
-      elementClrType?: components["schemas"]["Type"];
-      path?: components["schemas"]["ODataPathSegment"][] | null;
-      requestContainer?: components["schemas"]["IServiceProvider"];
-    };
-    ODataRawQueryOptions: {
-      filter?: string | null;
-      apply?: string | null;
-      compute?: string | null;
-      search?: string | null;
-      orderBy?: string | null;
-      top?: string | null;
-      skip?: string | null;
-      select?: string | null;
-      expand?: string | null;
-      count?: string | null;
-      format?: string | null;
-      skipToken?: string | null;
-      deltaToken?: string | null;
-    };
-    Oid: {
-      value?: string | null;
-      friendlyName?: string | null;
-    };
     Operation: {
       /** @enum {string} */
       operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
@@ -1336,91 +621,6 @@ export interface components {
       op?: string | null;
       from?: string | null;
       value?: unknown;
-    };
-    OrderByClause: {
-      thenBy?: components["schemas"]["OrderByClause"];
-      expression?: components["schemas"]["SingleValueNode"];
-      /** @enum {string} */
-      direction?: "Ascending" | "Descending";
-      rangeVariable?: components["schemas"]["RangeVariable"];
-      itemType?: components["schemas"]["IEdmTypeReference"];
-    };
-    OrderByNode: {
-      /** @enum {string} */
-      direction?: "Ascending" | "Descending";
-    };
-    OrderByQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      orderByNodes?: (readonly components["schemas"]["OrderByNode"][]) | null;
-      rawValue?: string | null;
-      validator?: components["schemas"]["IOrderByQueryValidator"];
-      compute?: components["schemas"]["ComputeQueryOption"];
-      orderByClause?: components["schemas"]["OrderByClause"];
-    };
-    ParameterInfo: {
-      /** @enum {string} */
-      attributes?: "None" | "In" | "Out" | "Lcid" | "Retval" | "Optional" | "HasDefault" | "HasFieldMarshal" | "Reserved3" | "Reserved4" | "ReservedMask";
-      member?: components["schemas"]["MemberInfo"];
-      name?: string | null;
-      parameterType?: components["schemas"]["Type"];
-      /** Format: int32 */
-      position?: number;
-      isIn?: boolean;
-      isLcid?: boolean;
-      isOptional?: boolean;
-      isOut?: boolean;
-      isRetval?: boolean;
-      defaultValue?: unknown;
-      rawDefaultValue?: unknown;
-      hasDefaultValue?: boolean;
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      /** Format: int32 */
-      metadataToken?: number;
-    };
-    PathString: {
-      value?: string | null;
-      hasValue?: boolean;
-    };
-    PipeWriter: {
-      canGetUnflushedBytes?: boolean;
-      /** Format: int64 */
-      unflushedBytes?: number;
-    };
-    PropertyInfo: {
-      name?: string | null;
-      declaringType?: components["schemas"]["Type"];
-      reflectedType?: components["schemas"]["Type"];
-      module?: components["schemas"]["Module"];
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-      propertyType?: components["schemas"]["Type"];
-      /** @enum {string} */
-      attributes?: "None" | "SpecialName" | "RTSpecialName" | "HasDefault" | "Reserved2" | "Reserved3" | "Reserved4" | "ReservedMask";
-      isSpecialName?: boolean;
-      canRead?: boolean;
-      canWrite?: boolean;
-      getMethod?: components["schemas"]["MethodInfo"];
-      setMethod?: components["schemas"]["MethodInfo"];
-    };
-    PublicKey: {
-      encodedKeyValue?: components["schemas"]["AsnEncodedData"];
-      encodedParameters?: components["schemas"]["AsnEncodedData"];
-      key?: components["schemas"]["AsymmetricAlgorithm"];
-      oid?: components["schemas"]["Oid"];
-    };
-    QueryString: {
-      value?: string | null;
-      hasValue?: boolean;
-    };
-    RangeVariable: {
-      name?: string | null;
-      typeReference?: components["schemas"]["IEdmTypeReference"];
-      /** Format: int32 */
-      kind?: number;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1437,86 +637,6 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
-    RuntimeFieldHandle: {
-      value?: components["schemas"]["IntPtr"];
-    };
-    RuntimeMethodHandle: {
-      value?: components["schemas"]["IntPtr"];
-    };
-    RuntimeTypeHandle: {
-      value?: components["schemas"]["IntPtr"];
-    };
-    SafeWaitHandle: {
-      isClosed?: boolean;
-      isInvalid?: boolean;
-    };
-    SearchClause: {
-      expression?: components["schemas"]["SingleValueNode"];
-    };
-    SearchQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      resultClrType?: components["schemas"]["Type"];
-      searchClause?: components["schemas"]["SearchClause"];
-      rawValue?: string | null;
-    };
-    SelectExpandClause: {
-      selectedItems?: components["schemas"]["SelectItem"][] | null;
-      allSelected?: boolean;
-    };
-    SelectExpandQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      rawSelect?: string | null;
-      rawExpand?: string | null;
-      compute?: components["schemas"]["ComputeQueryOption"];
-      validator?: components["schemas"]["ISelectExpandQueryValidator"];
-      selectExpandClause?: components["schemas"]["SelectExpandClause"];
-      /** Format: int32 */
-      levelsMaxLiteralExpansionDepth?: number;
-    };
-    SelectItem: Record<string, never>;
-    SingleValueNode: {
-      typeReference?: components["schemas"]["IEdmTypeReference"];
-      /** @enum {string} */
-      kind?: "None" | "Constant" | "Convert" | "NonResourceRangeVariableReference" | "BinaryOperator" | "UnaryOperator" | "SingleValuePropertyAccess" | "CollectionPropertyAccess" | "SingleValueFunctionCall" | "Any" | "CollectionNavigationNode" | "SingleNavigationNode" | "SingleValueOpenPropertyAccess" | "SingleResourceCast" | "All" | "CollectionResourceCast" | "ResourceRangeVariableReference" | "SingleResourceFunctionCall" | "CollectionFunctionCall" | "CollectionResourceFunctionCall" | "NamedFunctionParameter" | "ParameterAlias" | "EntitySet" | "KeyLookup" | "SearchTerm" | "CollectionOpenPropertyAccess" | "CollectionComplexNode" | "SingleComplexNode" | "Count" | "SingleValueCast" | "CollectionPropertyNode" | "AggregatedCollectionPropertyNode" | "In" | "CollectionConstant" | "RootPath" | "CustomQueryOption";
-    };
-    SkipQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      rawValue?: string | null;
-      /** Format: int32 */
-      value?: number;
-      validator?: components["schemas"]["ISkipQueryValidator"];
-    };
-    SkipTokenHandler: Record<string, never>;
-    SkipTokenQueryOption: {
-      rawValue?: string | null;
-      context?: components["schemas"]["ODataQueryContext"];
-      validator?: components["schemas"]["ISkipTokenQueryValidator"];
-      handler?: components["schemas"]["SkipTokenHandler"];
-    };
-    StringStringKeyValuePair: {
-      key?: string | null;
-      value?: string | null;
-    };
-    StringStringValuesKeyValuePair: {
-      key?: string | null;
-      value?: string[];
-    };
-    StructLayoutAttribute: {
-      typeId?: unknown;
-      /** @enum {string} */
-      value?: "Sequential" | "Explicit" | "Auto";
-    };
-    TopQueryOption: {
-      context?: components["schemas"]["ODataQueryContext"];
-      rawValue?: string | null;
-      /** Format: int32 */
-      value?: number;
-      validator?: components["schemas"]["ITopQueryValidator"];
-    };
-    TransformationNode: {
-      /** @enum {string} */
-      kind?: "Aggregate" | "GroupBy" | "Filter" | "Compute" | "Expand";
-    };
     TwoFactorRequest: {
       enable?: boolean | null;
       twoFactorCode?: string | null;
@@ -1531,229 +651,6 @@ export interface components {
       recoveryCodes?: string[] | null;
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
-    };
-    Type: {
-      name?: string | null;
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-      namespace?: string | null;
-      assemblyQualifiedName?: string | null;
-      fullName?: string | null;
-      assembly?: components["schemas"]["Assembly"];
-      module?: components["schemas"]["Module"];
-      isInterface?: boolean;
-      isNested?: boolean;
-      declaringType?: components["schemas"]["Type"];
-      declaringMethod?: components["schemas"]["MethodBase"];
-      reflectedType?: components["schemas"]["Type"];
-      underlyingSystemType?: components["schemas"]["Type"];
-      isTypeDefinition?: boolean;
-      isArray?: boolean;
-      isByRef?: boolean;
-      isPointer?: boolean;
-      isConstructedGenericType?: boolean;
-      isGenericParameter?: boolean;
-      isGenericTypeParameter?: boolean;
-      isGenericMethodParameter?: boolean;
-      isGenericType?: boolean;
-      isGenericTypeDefinition?: boolean;
-      isSZArray?: boolean;
-      isVariableBoundArray?: boolean;
-      isByRefLike?: boolean;
-      isFunctionPointer?: boolean;
-      isUnmanagedFunctionPointer?: boolean;
-      hasElementType?: boolean;
-      genericTypeArguments?: (readonly components["schemas"]["Type"][]) | null;
-      /** Format: int32 */
-      genericParameterPosition?: number;
-      /** @enum {string} */
-      genericParameterAttributes?: "None" | "Covariant" | "Contravariant" | "VarianceMask" | "ReferenceTypeConstraint" | "NotNullableValueTypeConstraint" | "DefaultConstructorConstraint" | "SpecialConstraintMask" | "AllowByRefLike";
-      /** @enum {string} */
-      attributes?: "NotPublic" | "Public" | "NestedPublic" | "NestedPrivate" | "NestedFamily" | "NestedAssembly" | "NestedFamANDAssem" | "VisibilityMask" | "SequentialLayout" | "ExplicitLayout" | "LayoutMask" | "Interface" | "Abstract" | "Sealed" | "SpecialName" | "RTSpecialName" | "Import" | "Serializable" | "WindowsRuntime" | "UnicodeClass" | "AutoClass" | "StringFormatMask" | "HasSecurity" | "ReservedMask" | "BeforeFieldInit" | "CustomFormatMask";
-      isAbstract?: boolean;
-      isImport?: boolean;
-      isSealed?: boolean;
-      isSpecialName?: boolean;
-      isClass?: boolean;
-      isNestedAssembly?: boolean;
-      isNestedFamANDAssem?: boolean;
-      isNestedFamily?: boolean;
-      isNestedFamORAssem?: boolean;
-      isNestedPrivate?: boolean;
-      isNestedPublic?: boolean;
-      isNotPublic?: boolean;
-      isPublic?: boolean;
-      isAutoLayout?: boolean;
-      isExplicitLayout?: boolean;
-      isLayoutSequential?: boolean;
-      isAnsiClass?: boolean;
-      isAutoClass?: boolean;
-      isUnicodeClass?: boolean;
-      isCOMObject?: boolean;
-      isContextful?: boolean;
-      isEnum?: boolean;
-      isMarshalByRef?: boolean;
-      isPrimitive?: boolean;
-      isValueType?: boolean;
-      isSignatureType?: boolean;
-      isSecurityCritical?: boolean;
-      isSecuritySafeCritical?: boolean;
-      isSecurityTransparent?: boolean;
-      structLayoutAttribute?: components["schemas"]["StructLayoutAttribute"];
-      typeInitializer?: components["schemas"]["ConstructorInfo"];
-      typeHandle?: components["schemas"]["RuntimeTypeHandle"];
-      /** Format: uuid */
-      guid?: string;
-      baseType?: components["schemas"]["Type"];
-      /** @deprecated */
-      isSerializable?: boolean;
-      containsGenericParameters?: boolean;
-      isVisible?: boolean;
-    };
-    TypeInfo: {
-      name?: string | null;
-      customAttributes?: (readonly components["schemas"]["CustomAttributeData"][]) | null;
-      isCollectible?: boolean;
-      /** Format: int32 */
-      metadataToken?: number;
-      /** @enum {string} */
-      memberType?: "Constructor" | "Event" | "Field" | "Method" | "Property" | "TypeInfo" | "Custom" | "NestedType" | "All";
-      namespace?: string | null;
-      assemblyQualifiedName?: string | null;
-      fullName?: string | null;
-      assembly?: components["schemas"]["Assembly"];
-      module?: components["schemas"]["Module"];
-      isInterface?: boolean;
-      isNested?: boolean;
-      declaringType?: components["schemas"]["Type"];
-      declaringMethod?: components["schemas"]["MethodBase"];
-      reflectedType?: components["schemas"]["Type"];
-      underlyingSystemType?: components["schemas"]["Type"];
-      isTypeDefinition?: boolean;
-      isArray?: boolean;
-      isByRef?: boolean;
-      isPointer?: boolean;
-      isConstructedGenericType?: boolean;
-      isGenericParameter?: boolean;
-      isGenericTypeParameter?: boolean;
-      isGenericMethodParameter?: boolean;
-      isGenericType?: boolean;
-      isGenericTypeDefinition?: boolean;
-      isSZArray?: boolean;
-      isVariableBoundArray?: boolean;
-      isByRefLike?: boolean;
-      isFunctionPointer?: boolean;
-      isUnmanagedFunctionPointer?: boolean;
-      hasElementType?: boolean;
-      genericTypeArguments?: (readonly components["schemas"]["Type"][]) | null;
-      /** Format: int32 */
-      genericParameterPosition?: number;
-      /** @enum {string} */
-      genericParameterAttributes?: "None" | "Covariant" | "Contravariant" | "VarianceMask" | "ReferenceTypeConstraint" | "NotNullableValueTypeConstraint" | "DefaultConstructorConstraint" | "SpecialConstraintMask" | "AllowByRefLike";
-      /** @enum {string} */
-      attributes?: "NotPublic" | "Public" | "NestedPublic" | "NestedPrivate" | "NestedFamily" | "NestedAssembly" | "NestedFamANDAssem" | "VisibilityMask" | "SequentialLayout" | "ExplicitLayout" | "LayoutMask" | "Interface" | "Abstract" | "Sealed" | "SpecialName" | "RTSpecialName" | "Import" | "Serializable" | "WindowsRuntime" | "UnicodeClass" | "AutoClass" | "StringFormatMask" | "HasSecurity" | "ReservedMask" | "BeforeFieldInit" | "CustomFormatMask";
-      isAbstract?: boolean;
-      isImport?: boolean;
-      isSealed?: boolean;
-      isSpecialName?: boolean;
-      isClass?: boolean;
-      isNestedAssembly?: boolean;
-      isNestedFamANDAssem?: boolean;
-      isNestedFamily?: boolean;
-      isNestedFamORAssem?: boolean;
-      isNestedPrivate?: boolean;
-      isNestedPublic?: boolean;
-      isNotPublic?: boolean;
-      isPublic?: boolean;
-      isAutoLayout?: boolean;
-      isExplicitLayout?: boolean;
-      isLayoutSequential?: boolean;
-      isAnsiClass?: boolean;
-      isAutoClass?: boolean;
-      isUnicodeClass?: boolean;
-      isCOMObject?: boolean;
-      isContextful?: boolean;
-      isEnum?: boolean;
-      isMarshalByRef?: boolean;
-      isPrimitive?: boolean;
-      isValueType?: boolean;
-      isSignatureType?: boolean;
-      isSecurityCritical?: boolean;
-      isSecuritySafeCritical?: boolean;
-      isSecurityTransparent?: boolean;
-      structLayoutAttribute?: components["schemas"]["StructLayoutAttribute"];
-      typeInitializer?: components["schemas"]["ConstructorInfo"];
-      typeHandle?: components["schemas"]["RuntimeTypeHandle"];
-      /** Format: uuid */
-      guid?: string;
-      baseType?: components["schemas"]["Type"];
-      /** @deprecated */
-      isSerializable?: boolean;
-      containsGenericParameters?: boolean;
-      isVisible?: boolean;
-      genericTypeParameters?: (readonly components["schemas"]["Type"][]) | null;
-      declaredConstructors?: (readonly components["schemas"]["ConstructorInfo"][]) | null;
-      declaredEvents?: (readonly components["schemas"]["EventInfo"][]) | null;
-      declaredFields?: (readonly components["schemas"]["FieldInfo"][]) | null;
-      declaredMembers?: (readonly components["schemas"]["MemberInfo"][]) | null;
-      declaredMethods?: (readonly components["schemas"]["MethodInfo"][]) | null;
-      declaredNestedTypes?: (readonly components["schemas"]["TypeInfo"][]) | null;
-      declaredProperties?: (readonly components["schemas"]["PropertyInfo"][]) | null;
-      implementedInterfaces?: (readonly components["schemas"]["Type"][]) | null;
-    };
-    TypeObjectKeyValuePair: {
-      key?: components["schemas"]["Type"];
-      value?: unknown;
-    };
-    WaitHandle: {
-      handle?: components["schemas"]["IntPtr"];
-      safeWaitHandle?: components["schemas"]["SafeWaitHandle"];
-    };
-    WebSocketManager: {
-      isWebSocketRequest?: boolean;
-      webSocketRequestedProtocols?: (readonly string[]) | null;
-    };
-    X500DistinguishedName: {
-      oid?: components["schemas"]["Oid"];
-      /** Format: byte */
-      rawData?: string | null;
-      name?: string | null;
-    };
-    X509Certificate2: {
-      handle?: components["schemas"]["IntPtr"];
-      issuer?: string | null;
-      subject?: string | null;
-      serialNumberBytes?: components["schemas"]["ByteReadOnlyMemory"];
-      archived?: boolean;
-      extensions?: (readonly components["schemas"]["X509Extension"][]) | null;
-      friendlyName?: string | null;
-      hasPrivateKey?: boolean;
-      privateKey?: components["schemas"]["AsymmetricAlgorithm"];
-      issuerName?: components["schemas"]["X500DistinguishedName"];
-      /** Format: date-time */
-      notAfter?: string;
-      /** Format: date-time */
-      notBefore?: string;
-      publicKey?: components["schemas"]["PublicKey"];
-      /** Format: byte */
-      rawData?: string | null;
-      rawDataMemory?: components["schemas"]["ByteReadOnlyMemory"];
-      serialNumber?: string | null;
-      signatureAlgorithm?: components["schemas"]["Oid"];
-      subjectName?: components["schemas"]["X500DistinguishedName"];
-      thumbprint?: string | null;
-      /** Format: int32 */
-      version?: number;
-    };
-    X509Extension: {
-      oid?: components["schemas"]["Oid"];
-      /** Format: byte */
-      rawData?: string | null;
-      critical?: boolean;
     };
   };
   responses: never;
@@ -1777,7 +674,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        oDataQueryOptions?: components["schemas"]["BlockchainDtoODataQueryOptions"];
         "api-version"?: string;
       };
       header?: {
@@ -1850,7 +746,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        oDataQueryOptions?: components["schemas"]["BlockchainDtoODataQueryOptions"];
         "api-version"?: string;
       };
       header?: {
@@ -2049,7 +944,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        oDataQueryOptions?: components["schemas"]["BlockchainBlockDtoODataQueryOptions"];
         "api-version"?: string;
       };
       header?: {
@@ -2101,7 +995,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        oDataQueryOptions?: components["schemas"]["BlockchainBlockDtoODataQueryOptions"];
         "api-version"?: string;
       };
       header?: {
@@ -2267,7 +1160,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        oDataQueryOptions?: components["schemas"]["NonFungibleTokenDtoODataQueryOptions"];
         "api-version"?: string;
       };
       header?: {
@@ -2340,7 +1232,6 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
-        oDataQueryOptions?: components["schemas"]["NonFungibleTokenDtoODataQueryOptions"];
         "api-version"?: string;
       };
       header?: {

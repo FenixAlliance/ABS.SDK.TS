@@ -386,8 +386,8 @@ export interface paths {
     put: operations["RadzenUploadStream"];
   };
   "/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/stream": {
-    /** Chunked editor upload (not implemented). */
-    put: operations["RadzenUploadStream"];
+    /** Chunked editor upload scoped to a record (not implemented). */
+    put: operations["RadzenUploadStreamScoped"];
   };
   "/api/v2/StorageService/Uploads": {
     /**
@@ -1642,6 +1642,26 @@ export interface operations {
   };
   /** Chunked editor upload (not implemented). */
   RadzenUploadStream: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /** Chunked editor upload scoped to a record (not implemented). */
+  RadzenUploadStreamScoped: {
     parameters: {
       query?: {
         "api-version"?: string;

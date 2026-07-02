@@ -377,7 +377,7 @@ export interface paths {
      * Retrieves project time logs
      * @description Gets all time log entries for a specific project with OData support.
      */
-    get: operations["GetProjectTimeLogsAsync"];
+    get: operations["GetTimeLogsForProjectAsync"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/TimeLogs/Count": {
     /**
@@ -391,36 +391,36 @@ export interface paths {
      * Retrieves project tasks
      * @description Gets all tasks for a specific project with OData support.
      */
-    get: operations["GetProjectTasksAsync"];
+    get: operations["GetTasksForProjectAsync"];
     /**
      * Creates a project task
      * @description Creates a new task for the specified project.
      */
-    post: operations["CreateProjectTaskAsync"];
+    post: operations["CreateTaskForProjectAsync"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/Tasks/Count": {
     /**
      * Counts project tasks
      * @description Gets the count of tasks for a specific project.
      */
-    get: operations["GetProjectTasksCountAsync"];
+    get: operations["GetTasksForProjectCountAsync"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/Tasks/{projectTaskId}": {
     /**
      * Updates a project task
      * @description Updates the specified task in a project.
      */
-    put: operations["UpdateProjectTaskAsync"];
+    put: operations["UpdateTaskForProjectAsync"];
     /**
      * Deletes a project task
      * @description Deletes the specified task from a project.
      */
-    delete: operations["DeleteProjectTaskAsync"];
+    delete: operations["DeleteTaskForProjectAsync"];
     /**
      * Patches a project task
      * @description Partially updates the specified task in a project.
      */
-    patch: operations["PatchProjectTaskAsync"];
+    patch: operations["PatchTaskForProjectAsync"];
   };
   "/api/v2/ProjectsService/Projects/{projectId}/TaskCategories": {
     /**
@@ -1536,17 +1536,13 @@ export interface operations {
     };
   };
   /**
-   * Retrieve time logs for a project
-   * @description Retrieves all time logs associated with the specified project.
+   * Retrieves project time logs
+   * @description Gets all time log entries for a specific project with OData support.
    */
-  GetProjectTimeLogsAsync: {
+  GetTimeLogsForProjectAsync: {
     parameters: {
       query: {
         tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
       };
       path: {
         projectId: string;
@@ -1581,6 +1577,323 @@ export interface operations {
    * @description Gets the count of time log entries for a specific project.
    */
   GetProjectTimeLogsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieves project tasks
+   * @description Gets all tasks for a specific project with OData support.
+   */
+  GetTasksForProjectAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProjectTaskDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProjectTaskDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Creates a project task
+   * @description Creates a new task for the specified project.
+   */
+  CreateTaskForProjectAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTaskCreateDto"];
+        "application/xml": components["schemas"]["ProjectTaskCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts project tasks
+   * @description Gets the count of tasks for a specific project.
+   */
+  GetTasksForProjectCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Updates a project task
+   * @description Updates the specified task in a project.
+   */
+  UpdateTaskForProjectAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+        projectTaskId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTaskUpdateDto"];
+        "application/xml": components["schemas"]["ProjectTaskUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Deletes a project task
+   * @description Deletes the specified task from a project.
+   */
+  DeleteTaskForProjectAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+        projectTaskId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patches a project task
+   * @description Partially updates the specified task in a project.
+   */
+  PatchTaskForProjectAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+        projectTaskId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieves project task categories
+   * @description Gets all task categories for a specific project with OData support.
+   */
+  GetProjectTaskCategoriesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        projectId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TaskCategoryDtoListEnvelope"];
+          "application/xml": components["schemas"]["TaskCategoryDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts project task categories
+   * @description Gets the count of task categories for a specific project.
+   */
+  GetProjectTaskCategoriesCountAsync: {
     parameters: {
       query: {
         tenantId: string;
@@ -1713,6 +2026,40 @@ export interface operations {
     };
   };
   /**
+   * Get project task by ID
+   * @description Retrieves a specific project task.
+   */
+  GetProjectTaskByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        projectTaskId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProjectTaskDtoEnvelope"];
+          "application/xml": components["schemas"]["ProjectTaskDtoEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Update a project task
    * @description Updates an existing project task.
    */
@@ -1819,114 +2166,6 @@ export interface operations {
       };
       /** @description Bad Request */
       400: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Retrieves project task categories
-   * @description Gets all task categories for a specific project with OData support.
-   */
-  GetProjectTaskCategoriesAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        projectId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["TaskCategoryDtoListEnvelope"];
-          "application/xml": components["schemas"]["TaskCategoryDtoListEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Counts project task categories
-   * @description Gets the count of task categories for a specific project.
-   */
-  GetProjectTaskCategoriesCountAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-      };
-      path: {
-        projectId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["Int32Envelope"];
-          "application/xml": components["schemas"]["Int32Envelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Get project task by ID
-   * @description Retrieves a specific project task.
-   */
-  GetProjectTaskByIdAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        projectTaskId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["ProjectTaskDtoEnvelope"];
-          "application/xml": components["schemas"]["ProjectTaskDtoEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -2739,6 +2978,47 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+          "application/xml": components["schemas"]["ProjectTimeLogDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve time logs for a project
+   * @description Retrieves all time logs associated with the specified project.
+   */
+  GetProjectTimeLogsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        projectId: string;
       };
     };
     responses: {
