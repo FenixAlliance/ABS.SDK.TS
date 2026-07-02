@@ -34,6 +34,95 @@ export type AverageDtoEnvelopeWritable = {
     result?: AverageDto;
 };
 
+export type ContactCreateDtoReadable = {
+    id?: string;
+    timestamp?: string;
+    type: 'Individual' | 'Organization';
+    firstName: string;
+    lastName?: string | null;
+    email: string;
+    taxId?: string | null;
+    primaryContactId?: string | null;
+    readonly qualifiedName?: string | null;
+    about?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    mobilePhone?: string | null;
+    businessPhone?: string | null;
+    postalCode?: string | null;
+    duns?: string | null;
+    jobTitle?: string | null;
+    webUrl?: string | null;
+    currencyId?: string | null;
+    languageId?: string | null;
+    timezoneId?: string | null;
+    birthday?: string | null;
+    streetLine1?: string | null;
+    streetLine2?: string | null;
+    gitHubUrl?: string | null;
+    twitchUrl?: string | null;
+    redditUrl?: string | null;
+    tikTokUrl?: string | null;
+    websiteUrl?: string | null;
+    twitterUrl?: string | null;
+    facebookUrl?: string | null;
+    youTubeUrl?: string | null;
+    linkedInUrl?: string | null;
+    instagramUrl?: string | null;
+    githubUsername?: string | null;
+    instagramUsername?: string | null;
+    tikTokUsername?: string | null;
+    stackExchangeUrl?: string | null;
+    stackOverflowUrl?: string | null;
+    parentContactId?: string | null;
+    faxNumber?: string | null;
+};
+
+export type ContactCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type: 'Individual' | 'Organization';
+    firstName: string;
+    lastName?: string | null;
+    email: string;
+    taxId?: string | null;
+    primaryContactId?: string | null;
+    about?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    mobilePhone?: string | null;
+    businessPhone?: string | null;
+    postalCode?: string | null;
+    duns?: string | null;
+    jobTitle?: string | null;
+    webUrl?: string | null;
+    currencyId?: string | null;
+    languageId?: string | null;
+    timezoneId?: string | null;
+    birthday?: string | null;
+    streetLine1?: string | null;
+    streetLine2?: string | null;
+    gitHubUrl?: string | null;
+    twitchUrl?: string | null;
+    redditUrl?: string | null;
+    tikTokUrl?: string | null;
+    websiteUrl?: string | null;
+    twitterUrl?: string | null;
+    facebookUrl?: string | null;
+    youTubeUrl?: string | null;
+    linkedInUrl?: string | null;
+    instagramUrl?: string | null;
+    githubUsername?: string | null;
+    instagramUsername?: string | null;
+    tikTokUsername?: string | null;
+    stackExchangeUrl?: string | null;
+    stackOverflowUrl?: string | null;
+    parentContactId?: string | null;
+    faxNumber?: string | null;
+};
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -1201,11 +1290,43 @@ export type InfoResponse = {
     isEmailConfirmed: boolean;
 };
 
-export type InstructorProfileCreateDto = {
+export type InstructorProfileCreateDtoReadable = {
     id?: string;
     timestamp?: string;
     type?: string | null;
     contactId?: string | null;
+    contact?: ContactCreateDtoReadable;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    authorized?: boolean;
+};
+
+export type InstructorProfileCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    contactId?: string | null;
+    contact?: ContactCreateDtoWritable;
     about?: string | null;
     avatarUrl?: string | null;
     data?: string | null;
@@ -1381,11 +1502,42 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
-export type StudentProfileCreateDto = {
+export type StudentProfileCreateDtoReadable = {
     id?: string;
     timestamp?: string;
     type?: string | null;
     contactId?: string | null;
+    contact?: ContactCreateDtoReadable;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+};
+
+export type StudentProfileCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    contactId?: string | null;
+    contact?: ContactCreateDtoWritable;
     about?: string | null;
     avatarUrl?: string | null;
     data?: string | null;
@@ -1537,37 +1689,6 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
 };
 
 export type GetCourseArticlesAsyncData = {
@@ -8386,7 +8507,7 @@ export type GetApiV2LearningServiceInstructorProfilesResponses = {
 export type GetApiV2LearningServiceInstructorProfilesResponse = GetApiV2LearningServiceInstructorProfilesResponses[keyof GetApiV2LearningServiceInstructorProfilesResponses];
 
 export type PostApiV2LearningServiceInstructorProfilesData = {
-    body?: InstructorProfileCreateDto;
+    body?: InstructorProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9055,7 +9176,7 @@ export type GetApiV2LearningServiceStudentProfilesResponses = {
 export type GetApiV2LearningServiceStudentProfilesResponse = GetApiV2LearningServiceStudentProfilesResponses[keyof GetApiV2LearningServiceStudentProfilesResponses];
 
 export type PostApiV2LearningServiceStudentProfilesData = {
-    body?: StudentProfileCreateDto;
+    body?: StudentProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9309,5 +9430,5 @@ export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursComplet
 export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedResponse = GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedResponses[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdHoursCompletedResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

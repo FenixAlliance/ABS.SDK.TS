@@ -62,6 +62,219 @@ export type ConversationDtoListEnvelopeWritable = {
     result?: Array<ConversationDto> | null;
 };
 
+export type CurriculumCreateDto = {
+    id?: string;
+    timestamp?: string;
+    socialProfileId?: string | null;
+    jobApplicantProfileId?: string | null;
+    undergraduate?: boolean;
+    certifiedProfessional?: boolean;
+    sales?: boolean;
+    others?: boolean;
+    finance?: boolean;
+    research?: boolean;
+    advocate?: boolean;
+    marketing?: boolean;
+    education?: boolean;
+    executive?: boolean;
+    commercial?: boolean;
+    graphicDesign?: boolean;
+    sustainability?: boolean;
+    administrative?: boolean;
+    humanResources?: boolean;
+    soundEngineering?: boolean;
+    cloudEngineering?: boolean;
+    firstLevelSupport?: boolean;
+    secondLevelSupport?: boolean;
+    softwareEngineering?: boolean;
+    partnerAccountRepresentative?: boolean;
+    startupSuccessRepresentative?: boolean;
+    customerSuccessRepresentative?: boolean;
+};
+
+export type CurriculumDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    socialProfileId?: string | null;
+    jobApplicantProfileId?: string | null;
+    undergraduate?: boolean;
+    certifiedProfessional?: boolean;
+    sales?: boolean;
+    others?: boolean;
+    finance?: boolean;
+    research?: boolean;
+    advocate?: boolean;
+    marketing?: boolean;
+    education?: boolean;
+    executive?: boolean;
+    commercial?: boolean;
+    graphicDesign?: boolean;
+    sustainability?: boolean;
+    administrative?: boolean;
+    humanResources?: boolean;
+    soundEngineering?: boolean;
+    cloudEngineering?: boolean;
+    firstLevelSupport?: boolean;
+    secondLevelSupport?: boolean;
+    softwareEngineering?: boolean;
+    partnerAccountRepresentative?: boolean;
+    startupSuccessRepresentative?: boolean;
+    customerSuccessRepresentative?: boolean;
+};
+
+export type CurriculumDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: CurriculumDto;
+};
+
+export type CurriculumDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: CurriculumDto;
+};
+
+export type CurriculumDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<CurriculumDto> | null;
+};
+
+export type CurriculumDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<CurriculumDto> | null;
+};
+
+export type CurriculumExperienceCreateDto = {
+    id?: string;
+    timestamp?: string;
+    curriculumId?: string | null;
+    title?: string | null;
+    description?: string | null;
+    priority?: number;
+    organization?: string | null;
+    featured?: boolean;
+    current?: boolean;
+    validated?: boolean;
+    imageUrl?: string | null;
+    dateFrom?: string;
+    dateTo?: string;
+    date?: string;
+    countryLanguageId?: string | null;
+    proficiencyRatingValueId?: string | null;
+    proficiencyRatingModelId?: string | null;
+    achievements?: string | null;
+    responsibilities?: string | null;
+    employerProfileId?: string | null;
+};
+
+export type CurriculumExperienceDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    curriculumId?: string | null;
+    title?: string | null;
+    description?: string | null;
+    priority?: number;
+    organization?: string | null;
+    featured?: boolean;
+    current?: boolean;
+    validated?: boolean;
+    imageUrl?: string | null;
+    dateFrom?: string;
+    dateTo?: string;
+    date?: string;
+    countryLanguageId?: string | null;
+    proficiencyRatingValueId?: string | null;
+    proficiencyRatingModelId?: string | null;
+    achievements?: string | null;
+    responsibilities?: string | null;
+    employerProfileId?: string | null;
+};
+
+export type CurriculumExperienceDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: CurriculumExperienceDto;
+};
+
+export type CurriculumExperienceDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: CurriculumExperienceDto;
+};
+
+export type CurriculumExperienceDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<CurriculumExperienceDto> | null;
+};
+
+export type CurriculumExperienceDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<CurriculumExperienceDto> | null;
+};
+
+export type CurriculumExperienceUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    priority?: number;
+    organization?: string | null;
+    featured?: boolean;
+    current?: boolean;
+    validated?: boolean;
+    imageUrl?: string | null;
+    dateFrom?: string;
+    dateTo?: string;
+    date?: string;
+    countryLanguageId?: string | null;
+    proficiencyRatingValueId?: string | null;
+    proficiencyRatingModelId?: string | null;
+    achievements?: string | null;
+    responsibilities?: string | null;
+    employerProfileId?: string | null;
+};
+
+export type CurriculumUpdateDto = {
+    jobApplicantProfileId?: string | null;
+    undergraduate?: boolean;
+    certifiedProfessional?: boolean;
+    sales?: boolean;
+    others?: boolean;
+    finance?: boolean;
+    research?: boolean;
+    advocate?: boolean;
+    marketing?: boolean;
+    education?: boolean;
+    executive?: boolean;
+    commercial?: boolean;
+    graphicDesign?: boolean;
+    sustainability?: boolean;
+    administrative?: boolean;
+    humanResources?: boolean;
+    soundEngineering?: boolean;
+    cloudEngineering?: boolean;
+    firstLevelSupport?: boolean;
+    secondLevelSupport?: boolean;
+    softwareEngineering?: boolean;
+    partnerAccountRepresentative?: boolean;
+    startupSuccessRepresentative?: boolean;
+    customerSuccessRepresentative?: boolean;
+};
+
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -278,6 +491,69 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type SkillCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    url?: string | null;
+    type?: string | null;
+    iconUrl?: string | null;
+    description?: string | null;
+    skillType?: 'Skill' | 'Certification';
+};
+
+export type SkillDto = {
+    id?: string | null;
+    timestamp?: string;
+    name?: string | null;
+    url?: string | null;
+    type?: string | null;
+    iconUrl?: string | null;
+    description?: string | null;
+    skillType?: 'Skill' | 'Certification';
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type SkillDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: SkillDto;
+};
+
+export type SkillDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: SkillDto;
+};
+
+export type SkillDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<SkillDto> | null;
+};
+
+export type SkillDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<SkillDto> | null;
+};
+
+export type SkillUpdateDto = {
+    name?: string | null;
+    url?: string | null;
+    type?: string | null;
+    iconUrl?: string | null;
+    description?: string | null;
+    skillType?: 'Skill' | 'Certification';
+};
+
 export type SocialFeedDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -441,10 +717,11 @@ export type SocialPostAttachmentCreateDto = {
     validResponse?: boolean;
     parentFileUploadId?: string | null;
     filePath?: string | null;
+    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
     socialPostId?: string | null;
 };
 
-export type SocialPostAttachmentDto = {
+export type SocialPostAttachmentDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     notes?: string | null;
@@ -454,6 +731,8 @@ export type SocialPostAttachmentDto = {
     hash?: string | null;
     fileUrl?: string | null;
     filePath?: string | null;
+    storageKey?: string | null;
+    storageProviderKey?: string | null;
     fileName?: string | null;
     abstract?: string | null;
     keyWords?: string | null;
@@ -467,6 +746,49 @@ export type SocialPostAttachmentDto = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
+    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    readonly hasThumbnail?: boolean;
+    thumbnailStorageKey?: string | null;
+    thumbnailContentType?: string | null;
+    thumbnailWidth?: number;
+    thumbnailHeight?: number;
+    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    socialPostId?: string | null;
+};
+
+export type SocialPostAttachmentDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    notes?: string | null;
+    title?: string | null;
+    author?: string | null;
+    isFolder?: boolean;
+    hash?: string | null;
+    fileUrl?: string | null;
+    filePath?: string | null;
+    storageKey?: string | null;
+    storageProviderKey?: string | null;
+    fileName?: string | null;
+    abstract?: string | null;
+    keyWords?: string | null;
+    metadata?: string | null;
+    fileLength?: number;
+    contentType?: string | null;
+    parentFileId?: string | null;
+    validResponse?: boolean;
+    userId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    socialProfileId?: string | null;
+    folderPath?: string | null;
+    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    thumbnailStorageKey?: string | null;
+    thumbnailContentType?: string | null;
+    thumbnailWidth?: number;
+    thumbnailHeight?: number;
+    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
     socialPostId?: string | null;
 };
 
@@ -476,13 +798,13 @@ export type SocialPostAttachmentDtoEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: SocialPostAttachmentDto;
+    result?: SocialPostAttachmentDtoReadable;
 };
 
 export type SocialPostAttachmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: SocialPostAttachmentDto;
+    result?: SocialPostAttachmentDtoWritable;
 };
 
 export type SocialPostAttachmentDtoListEnvelopeReadable = {
@@ -491,13 +813,13 @@ export type SocialPostAttachmentDtoListEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: Array<SocialPostAttachmentDto> | null;
+    result?: Array<SocialPostAttachmentDtoReadable> | null;
 };
 
 export type SocialPostAttachmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: Array<SocialPostAttachmentDto> | null;
+    result?: Array<SocialPostAttachmentDtoWritable> | null;
 };
 
 export type SocialPostAttachmentUpdateDto = {
@@ -518,6 +840,8 @@ export type SocialPostCommentCreateDto = {
     id?: string;
     timestamp?: string;
     message: string;
+    bodyHtml?: string | null;
+    bodyFormat?: 'PlainText' | 'Html';
     parentCommentId?: string | null;
     socialProfileId?: string | null;
     socialFeedPostId?: string | null;
@@ -533,6 +857,8 @@ export type SocialPostCommentDto = {
     socialFeedPostId?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
+    bodyHtml?: string | null;
+    bodyFormat?: 'PlainText' | 'Html';
     socialPostId?: string | null;
 };
 
@@ -757,18 +1083,23 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetApiV2AiServiceCompletionsCompleteData = {
+export type GetCurriculumExperiencesAsyncData = {
     body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
+    headers?: {
+        'x-api-version'?: string;
     };
-    url: '/api/v2/AiService/Completions/Complete';
+    path: {
+        curriculumId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences';
 };
 
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
+export type GetCurriculumExperiencesAsyncErrors = {
     /**
      * Unauthorized
      */
@@ -779,14 +1110,540 @@ export type GetApiV2AiServiceCompletionsCompleteErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+export type GetCurriculumExperiencesAsyncError = GetCurriculumExperiencesAsyncErrors[keyof GetCurriculumExperiencesAsyncErrors];
 
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
+export type GetCurriculumExperiencesAsyncResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: CurriculumExperienceDtoListEnvelopeReadable;
 };
+
+export type GetCurriculumExperiencesAsyncResponse = GetCurriculumExperiencesAsyncResponses[keyof GetCurriculumExperiencesAsyncResponses];
+
+export type CreateCurriculumExperienceAsyncData = {
+    body?: CurriculumExperienceCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences';
+};
+
+export type CreateCurriculumExperienceAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateCurriculumExperienceAsyncError = CreateCurriculumExperienceAsyncErrors[keyof CreateCurriculumExperienceAsyncErrors];
+
+export type CreateCurriculumExperienceAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateCurriculumExperienceAsyncResponse = CreateCurriculumExperienceAsyncResponses[keyof CreateCurriculumExperienceAsyncResponses];
+
+export type GetCurriculumExperiencesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/Count';
+};
+
+export type GetCurriculumExperiencesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCurriculumExperiencesCountAsyncError = GetCurriculumExperiencesCountAsyncErrors[keyof GetCurriculumExperiencesCountAsyncErrors];
+
+export type GetCurriculumExperiencesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetCurriculumExperiencesCountAsyncResponse = GetCurriculumExperiencesCountAsyncResponses[keyof GetCurriculumExperiencesCountAsyncResponses];
+
+export type DeleteCurriculumExperienceAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+        experienceId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}';
+};
+
+export type DeleteCurriculumExperienceAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteCurriculumExperienceAsyncError = DeleteCurriculumExperienceAsyncErrors[keyof DeleteCurriculumExperienceAsyncErrors];
+
+export type DeleteCurriculumExperienceAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteCurriculumExperienceAsyncResponse = DeleteCurriculumExperienceAsyncResponses[keyof DeleteCurriculumExperienceAsyncResponses];
+
+export type GetCurriculumExperienceAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+        experienceId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}';
+};
+
+export type GetCurriculumExperienceAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCurriculumExperienceAsyncError = GetCurriculumExperienceAsyncErrors[keyof GetCurriculumExperienceAsyncErrors];
+
+export type GetCurriculumExperienceAsyncResponses = {
+    /**
+     * OK
+     */
+    200: CurriculumExperienceDtoEnvelopeReadable;
+};
+
+export type GetCurriculumExperienceAsyncResponse = GetCurriculumExperienceAsyncResponses[keyof GetCurriculumExperienceAsyncResponses];
+
+export type PatchCurriculumExperienceAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+        experienceId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}';
+};
+
+export type PatchCurriculumExperienceAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCurriculumExperienceAsyncError = PatchCurriculumExperienceAsyncErrors[keyof PatchCurriculumExperienceAsyncErrors];
+
+export type PatchCurriculumExperienceAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCurriculumExperienceAsyncResponse = PatchCurriculumExperienceAsyncResponses[keyof PatchCurriculumExperienceAsyncResponses];
+
+export type UpdateCurriculumExperienceAsyncData = {
+    body?: CurriculumExperienceUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+        experienceId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}';
+};
+
+export type UpdateCurriculumExperienceAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateCurriculumExperienceAsyncError = UpdateCurriculumExperienceAsyncErrors[keyof UpdateCurriculumExperienceAsyncErrors];
+
+export type UpdateCurriculumExperienceAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateCurriculumExperienceAsyncResponse = UpdateCurriculumExperienceAsyncResponses[keyof UpdateCurriculumExperienceAsyncResponses];
+
+export type GetCurriculumsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums';
+};
+
+export type GetCurriculumsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCurriculumsAsyncError = GetCurriculumsAsyncErrors[keyof GetCurriculumsAsyncErrors];
+
+export type GetCurriculumsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: CurriculumDtoListEnvelopeReadable;
+};
+
+export type GetCurriculumsAsyncResponse = GetCurriculumsAsyncResponses[keyof GetCurriculumsAsyncResponses];
+
+export type CreateCurriculumAsyncData = {
+    body?: CurriculumCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums';
+};
+
+export type CreateCurriculumAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateCurriculumAsyncError = CreateCurriculumAsyncErrors[keyof CreateCurriculumAsyncErrors];
+
+export type CreateCurriculumAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateCurriculumAsyncResponse = CreateCurriculumAsyncResponses[keyof CreateCurriculumAsyncResponses];
+
+export type GetCurriculumsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/Count';
+};
+
+export type GetCurriculumsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCurriculumsCountAsyncError = GetCurriculumsCountAsyncErrors[keyof GetCurriculumsCountAsyncErrors];
+
+export type GetCurriculumsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetCurriculumsCountAsyncResponse = GetCurriculumsCountAsyncResponses[keyof GetCurriculumsCountAsyncResponses];
+
+export type DeleteCurriculumAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}';
+};
+
+export type DeleteCurriculumAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteCurriculumAsyncError = DeleteCurriculumAsyncErrors[keyof DeleteCurriculumAsyncErrors];
+
+export type DeleteCurriculumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteCurriculumAsyncResponse = DeleteCurriculumAsyncResponses[keyof DeleteCurriculumAsyncResponses];
+
+export type GetCurriculumAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}';
+};
+
+export type GetCurriculumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCurriculumAsyncError = GetCurriculumAsyncErrors[keyof GetCurriculumAsyncErrors];
+
+export type GetCurriculumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: CurriculumDtoEnvelopeReadable;
+};
+
+export type GetCurriculumAsyncResponse = GetCurriculumAsyncResponses[keyof GetCurriculumAsyncResponses];
+
+export type PatchCurriculumAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}';
+};
+
+export type PatchCurriculumAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchCurriculumAsyncError = PatchCurriculumAsyncErrors[keyof PatchCurriculumAsyncErrors];
+
+export type PatchCurriculumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchCurriculumAsyncResponse = PatchCurriculumAsyncResponses[keyof PatchCurriculumAsyncResponses];
+
+export type UpdateCurriculumAsyncData = {
+    body?: CurriculumUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        curriculumId: string;
+    };
+    query: {
+        socialProfileId: string;
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Curriculums/{curriculumId}';
+};
+
+export type UpdateCurriculumAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateCurriculumAsyncError = UpdateCurriculumAsyncErrors[keyof UpdateCurriculumAsyncErrors];
+
+export type UpdateCurriculumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateCurriculumAsyncResponse = UpdateCurriculumAsyncResponses[keyof UpdateCurriculumAsyncResponses];
 
 export type GetVersionData = {
     body?: never;
@@ -1115,6 +1972,275 @@ export type PostAccountManageDownloadPersonalDataResponses = {
      */
     200: unknown;
 };
+
+export type GetSkillsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Skills';
+};
+
+export type GetSkillsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSkillsAsyncError = GetSkillsAsyncErrors[keyof GetSkillsAsyncErrors];
+
+export type GetSkillsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SkillDtoListEnvelopeReadable;
+};
+
+export type GetSkillsAsyncResponse = GetSkillsAsyncResponses[keyof GetSkillsAsyncResponses];
+
+export type CreateSkillAsyncData = {
+    body?: SkillCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Skills';
+};
+
+export type CreateSkillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateSkillAsyncError = CreateSkillAsyncErrors[keyof CreateSkillAsyncErrors];
+
+export type CreateSkillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateSkillAsyncResponse = CreateSkillAsyncResponses[keyof CreateSkillAsyncResponses];
+
+export type GetSkillsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Skills/Count';
+};
+
+export type GetSkillsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSkillsCountAsyncError = GetSkillsCountAsyncErrors[keyof GetSkillsCountAsyncErrors];
+
+export type GetSkillsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSkillsCountAsyncResponse = GetSkillsCountAsyncResponses[keyof GetSkillsCountAsyncResponses];
+
+export type DeleteSkillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        skillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Skills/{skillId}';
+};
+
+export type DeleteSkillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSkillAsyncError = DeleteSkillAsyncErrors[keyof DeleteSkillAsyncErrors];
+
+export type DeleteSkillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSkillAsyncResponse = DeleteSkillAsyncResponses[keyof DeleteSkillAsyncResponses];
+
+export type GetSkillByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        skillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Skills/{skillId}';
+};
+
+export type GetSkillByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSkillByIdAsyncError = GetSkillByIdAsyncErrors[keyof GetSkillByIdAsyncErrors];
+
+export type GetSkillByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SkillDtoEnvelopeReadable;
+};
+
+export type GetSkillByIdAsyncResponse = GetSkillByIdAsyncResponses[keyof GetSkillByIdAsyncResponses];
+
+export type PatchSkillAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        skillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Skills/{skillId}';
+};
+
+export type PatchSkillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchSkillAsyncError = PatchSkillAsyncErrors[keyof PatchSkillAsyncErrors];
+
+export type PatchSkillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchSkillAsyncResponse = PatchSkillAsyncResponses[keyof PatchSkillAsyncResponses];
+
+export type UpdateSkillAsyncData = {
+    body?: SkillUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        skillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/Skills/{skillId}';
+};
+
+export type UpdateSkillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateSkillAsyncError = UpdateSkillAsyncErrors[keyof UpdateSkillAsyncErrors];
+
+export type UpdateSkillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateSkillAsyncResponse = UpdateSkillAsyncResponses[keyof UpdateSkillAsyncResponses];
 
 export type GetFeedNotificationsData = {
     body?: never;
@@ -3575,5 +4701,5 @@ export type UpdateMessageAsyncResponses = {
 export type UpdateMessageAsyncResponse = UpdateMessageAsyncResponses[keyof UpdateMessageAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

@@ -117,6 +117,7 @@ export type ExtendedTenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -160,6 +161,7 @@ export type ExtendedTenantDtoReadable = {
 export type ExtendedTenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -619,6 +621,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -659,6 +662,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1000,37 +1004,6 @@ export type WalletDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: WalletDto;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
 };
 
 export type GetVersionData = {
@@ -2460,5 +2433,5 @@ export type GetCurrentUserInvitationAsyncResponses = {
 export type GetCurrentUserInvitationAsyncResponse = GetCurrentUserInvitationAsyncResponses[keyof GetCurrentUserInvitationAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

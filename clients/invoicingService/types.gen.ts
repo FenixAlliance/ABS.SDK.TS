@@ -24,6 +24,21 @@ export type CurrencyIdWritable = {
     country?: string | null;
 };
 
+export type DecimalEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: number;
+};
+
+export type DecimalEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: number;
+};
+
 export type EmailDispatchRequest = {
     title: string;
     message: string;
@@ -1282,6 +1297,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1322,6 +1338,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1371,37 +1388,6 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
 };
 
 export type GetVersionData = {
@@ -2777,6 +2763,68 @@ export type AggregateInvoiceGlobalSurchargesResponses = {
 
 export type AggregateInvoiceGlobalSurchargesResponse = AggregateInvoiceGlobalSurchargesResponses[keyof AggregateInvoiceGlobalSurchargesResponses];
 
+export type GetSalesInvoicesSumData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/SalesInvoices/Sum';
+};
+
+export type GetSalesInvoicesSumErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSalesInvoicesSumError = GetSalesInvoicesSumErrors[keyof GetSalesInvoicesSumErrors];
+
+export type GetSalesInvoicesSumResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetSalesInvoicesSumResponse = GetSalesInvoicesSumResponses[keyof GetSalesInvoicesSumResponses];
+
+export type GetPurchaseInvoicesSumData = {
+    body?: never;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/InvoicingService/Invoices/PurchaseInvoices/Sum';
+};
+
+export type GetPurchaseInvoicesSumErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetPurchaseInvoicesSumError = GetPurchaseInvoicesSumErrors[keyof GetPurchaseInvoicesSumErrors];
+
+export type GetPurchaseInvoicesSumResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetPurchaseInvoicesSumResponse = GetPurchaseInvoicesSumResponses[keyof GetPurchaseInvoicesSumResponses];
+
 export type SendInvoiceEmailData = {
     body?: EmailDispatchRequest;
     path: {
@@ -2816,5 +2864,5 @@ export type PreviewInvoiceEmailResponses = {
 };
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

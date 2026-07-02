@@ -5,115 +5,6 @@
 
 
 export interface paths {
-  "/api/v2/AiService/Completions/Complete": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          conversationId?: string;
-          message?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
   "/api/v2/GlobeService/Countries": {
     /**
      * Get all countries
@@ -565,41 +456,6 @@ export interface paths {
      */
     get: operations["GetLanguageByIdAsync"];
   };
-  "/api/v2/Global/System/Migrate": {
-    post: {
-      parameters: {
-        query?: {
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["PaymentResponse"];
-            "application/xml": components["schemas"]["PaymentResponse"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ResponseStatus"];
-            "application/xml": components["schemas"]["ResponseStatus"];
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          content: {
-            "application/json": components["schemas"]["ResponseStatus"];
-            "application/xml": components["schemas"]["ResponseStatus"];
-          };
-        };
-      };
-    };
-  };
   "/api/v2/GlobeService/Timezones": {
     /**
      * Get all timezones
@@ -794,11 +650,6 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["CurrencyDto"][] | null;
     };
-    Error: {
-      id?: string | null;
-      description?: string | null;
-      help?: string | null;
-    };
     ErrorEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -847,20 +698,6 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    PaymentResponse: {
-      test?: boolean;
-      ip?: string | null;
-      bank?: string | null;
-      status?: string | null;
-      errors?: unknown;
-      response?: string | null;
-      authCode?: string | null;
-      paymentID?: string | null;
-      franchise?: string | null;
-      signature?: string | null;
-      /** @enum {string} */
-      paymentStatus?: "Unset" | "Accepted" | "Rejected" | "OnHold" | "Failed" | "Reversed" | "Retained" | "Initialized" | "Expired" | "Abandoned" | "Cancelled" | "AcceptedRetained";
-    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -875,13 +712,6 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
-    };
-    ResponseStatus: {
-      success?: boolean;
-      error?: components["schemas"]["Error"];
-      correlationID?: string | null;
-      /** Format: date-time */
-      utcTimestamp?: string;
     };
     TimezoneDto: {
       id?: string | null;

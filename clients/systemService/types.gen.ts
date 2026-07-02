@@ -13,11 +13,6 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
-export type AdditionalAttribute = {
-    key?: string | null;
-    value?: string | null;
-};
-
 export type BooleanEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -179,6 +174,7 @@ export type ExtendedTenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -222,6 +218,7 @@ export type ExtendedTenantDtoReadable = {
 export type ExtendedTenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -543,69 +540,6 @@ export type Int32EnvelopeWritable = {
     result?: number;
 };
 
-export type LicenseAttributes = {
-    [key: string]: never;
-};
-
-export type LicenseAttributesListEnvelopeReadable = {
-    readonly isSuccess?: boolean;
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    readonly timestamp?: string;
-    readonly activityId?: string | null;
-    result?: Array<LicenseAttributes> | null;
-};
-
-export type LicenseAttributesListEnvelopeWritable = {
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    result?: Array<LicenseAttributes> | null;
-};
-
-export type LicenseFeature = {
-    key?: string | null;
-    value?: string | null;
-};
-
-export type LicenseKey = {
-    key?: string | null;
-};
-
-export type LicenseKeyRequest = {
-    userId?: string;
-    tenantId?: string | null;
-    orderId?: string | null;
-    paymentId?: string | null;
-    invoiceId?: string | null;
-    enrollmentId?: string | null;
-    entitlementId?: string | null;
-    seats?: number;
-    licenseType?: 'Trial' | 'Standard' | 'Enterprise';
-    expirationDate?: string;
-    features?: Array<LicenseFeature> | null;
-    additionalAttributes?: Array<AdditionalAttribute> | null;
-};
-
-export type LicenseValidationError = {
-    message?: string | null;
-    howToResolve?: string | null;
-};
-
-export type LicenseValidationErrorListEnvelopeReadable = {
-    readonly isSuccess?: boolean;
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    readonly timestamp?: string;
-    readonly activityId?: string | null;
-    result?: Array<LicenseValidationError> | null;
-};
-
-export type LicenseValidationErrorListEnvelopeWritable = {
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    result?: Array<LicenseValidationError> | null;
-};
-
 export type LicenseValidationRequest = {
     licenseKey: string;
 };
@@ -831,21 +765,6 @@ export type SocialProfileDto = {
     notes?: string | null;
 };
 
-export type StringEnvelopeReadable = {
-    readonly isSuccess?: boolean;
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    readonly timestamp?: string;
-    readonly activityId?: string | null;
-    result?: string | null;
-};
-
-export type StringEnvelopeWritable = {
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    result?: string | null;
-};
-
 export type StringListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -988,6 +907,7 @@ export type SystemOverviewDtoEnvelopeWritable = {
 export type TenantCreateDto = {
     id?: string;
     timestamp?: string;
+    kind?: 'Organization' | 'Individual';
     name: string;
     legalName?: string | null;
     email: string;
@@ -1015,6 +935,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1055,6 +976,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1121,6 +1043,7 @@ export type TenantDtoListEnvelopeWritable = {
 };
 
 export type TenantUpdateDto = {
+    kind?: 'Organization' | 'Individual';
     name: string;
     legalName?: string | null;
     email: string;
@@ -1807,37 +1730,6 @@ export type GetSystemCartByIdResponses = {
 };
 
 export type GetSystemCartByIdResponse = GetSystemCartByIdResponses[keyof GetSystemCartByIdResponses];
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
 
 export type GetSystemContactOptionsData = {
     body?: never;
@@ -2619,146 +2511,6 @@ export type GetSystemIpLookupByIdResponses = {
 };
 
 export type GetSystemIpLookupByIdResponse = GetSystemIpLookupByIdResponses[keyof GetSystemIpLookupByIdResponses];
-
-export type GetApiLicensingLicensesValidateData = {
-    body?: LicenseKey;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/Licensing/Licenses/Validate';
-};
-
-export type GetApiLicensingLicensesValidateErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiLicensingLicensesValidateError = GetApiLicensingLicensesValidateErrors[keyof GetApiLicensingLicensesValidateErrors];
-
-export type GetApiLicensingLicensesValidateResponses = {
-    /**
-     * OK
-     */
-    200: BooleanEnvelopeReadable;
-};
-
-export type GetApiLicensingLicensesValidateResponse = GetApiLicensingLicensesValidateResponses[keyof GetApiLicensingLicensesValidateResponses];
-
-export type GetApiLicensingLicensesValidateErrorsData = {
-    body?: LicenseKey;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/Licensing/Licenses/Validate/Errors';
-};
-
-export type GetApiLicensingLicensesValidateErrorsErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiLicensingLicensesValidateErrorsError = GetApiLicensingLicensesValidateErrorsErrors[keyof GetApiLicensingLicensesValidateErrorsErrors];
-
-export type GetApiLicensingLicensesValidateErrorsResponses = {
-    /**
-     * OK
-     */
-    200: LicenseValidationErrorListEnvelopeReadable;
-};
-
-export type GetApiLicensingLicensesValidateErrorsResponse = GetApiLicensingLicensesValidateErrorsResponses[keyof GetApiLicensingLicensesValidateErrorsResponses];
-
-export type GetApiLicensingLicensesValidateAttributesData = {
-    body?: LicenseKey;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/Licensing/Licenses/Validate/Attributes';
-};
-
-export type GetApiLicensingLicensesValidateAttributesErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiLicensingLicensesValidateAttributesError = GetApiLicensingLicensesValidateAttributesErrors[keyof GetApiLicensingLicensesValidateAttributesErrors];
-
-export type GetApiLicensingLicensesValidateAttributesResponses = {
-    /**
-     * OK
-     */
-    200: LicenseAttributesListEnvelopeReadable;
-};
-
-export type GetApiLicensingLicensesValidateAttributesResponse = GetApiLicensingLicensesValidateAttributesResponses[keyof GetApiLicensingLicensesValidateAttributesResponses];
-
-export type PostApiLicensingLicensesGenerateData = {
-    body?: LicenseKeyRequest;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/Licensing/Licenses/Generate';
-};
-
-export type PostApiLicensingLicensesGenerateErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type PostApiLicensingLicensesGenerateError = PostApiLicensingLicensesGenerateErrors[keyof PostApiLicensingLicensesGenerateErrors];
-
-export type PostApiLicensingLicensesGenerateResponses = {
-    /**
-     * OK
-     */
-    200: StringEnvelopeReadable;
-};
-
-export type PostApiLicensingLicensesGenerateResponse = PostApiLicensingLicensesGenerateResponses[keyof PostApiLicensingLicensesGenerateResponses];
 
 export type GetLicensesAsyncData = {
     body?: never;
@@ -5050,5 +4802,5 @@ export type AdminSendUserEmailResponses = {
 export type AdminSendUserEmailResponse = AdminSendUserEmailResponses[keyof AdminSendUserEmailResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

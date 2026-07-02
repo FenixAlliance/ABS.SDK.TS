@@ -253,6 +253,8 @@ export type ExtendedOrderDtoReadable = {
     billingLocationId?: string | null;
     shippingLocationId?: string | null;
     qualifiedIdentifier?: string | null;
+    sellerBillingProfileId?: string | null;
+    buyerBillingProfileId?: string | null;
     costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
@@ -348,6 +350,8 @@ export type ExtendedOrderDtoWritable = {
     billingLocationId?: string | null;
     shippingLocationId?: string | null;
     qualifiedIdentifier?: string | null;
+    sellerBillingProfileId?: string | null;
+    buyerBillingProfileId?: string | null;
     costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
@@ -589,6 +593,8 @@ export type OrderDto = {
     billingLocationId?: string | null;
     shippingLocationId?: string | null;
     qualifiedIdentifier?: string | null;
+    sellerBillingProfileId?: string | null;
+    buyerBillingProfileId?: string | null;
     costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
@@ -1090,6 +1096,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1130,6 +1137,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1289,37 +1297,6 @@ export type UserDtoWritable = {
     lockoutEnd?: string | null;
     enrollmentsCount?: number | null;
     siteTheme?: 'System' | 'Light' | 'Dark';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
 };
 
 export type GetVersionData = {
@@ -2220,5 +2197,5 @@ export type PreviewOrderEmailTemplateResponses = {
 };
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

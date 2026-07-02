@@ -726,37 +726,6 @@ export type TwoFactorResponse = {
     isMachineRemembered: boolean;
 };
 
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
 export type GetDiscountListsData = {
     body?: never;
     path?: never;
@@ -1857,6 +1826,35 @@ export type CreatePriceListPricesAsyncResponses = {
 
 export type CreatePriceListPricesAsyncResponse = CreatePriceListPricesAsyncResponses[keyof CreatePriceListPricesAsyncResponses];
 
+export type GetPriceListPricesCountAsyncData = {
+    body?: never;
+    path: {
+        priceListId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PricingService/PriceLists/{priceListId}/Prices/Count';
+};
+
+export type GetPriceListPricesCountAsyncErrors = {
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetPriceListPricesCountAsyncError = GetPriceListPricesCountAsyncErrors[keyof GetPriceListPricesCountAsyncErrors];
+
+export type GetPriceListPricesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetPriceListPricesCountAsyncResponse = GetPriceListPricesCountAsyncResponses[keyof GetPriceListPricesCountAsyncResponses];
+
 export type DeletePriceListPriceAsyncData = {
     body?: never;
     path: {
@@ -2608,5 +2606,5 @@ export type UpdateRoundingPolicyAsyncResponses = {
 export type UpdateRoundingPolicyAsyncResponse = UpdateRoundingPolicyAsyncResponses[keyof UpdateRoundingPolicyAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

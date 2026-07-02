@@ -119,6 +119,95 @@ export type AppraisalWorkflowUpdateDto = {
     description?: string | null;
 };
 
+export type ContactCreateDtoReadable = {
+    id?: string;
+    timestamp?: string;
+    type: 'Individual' | 'Organization';
+    firstName: string;
+    lastName?: string | null;
+    email: string;
+    taxId?: string | null;
+    primaryContactId?: string | null;
+    readonly qualifiedName?: string | null;
+    about?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    mobilePhone?: string | null;
+    businessPhone?: string | null;
+    postalCode?: string | null;
+    duns?: string | null;
+    jobTitle?: string | null;
+    webUrl?: string | null;
+    currencyId?: string | null;
+    languageId?: string | null;
+    timezoneId?: string | null;
+    birthday?: string | null;
+    streetLine1?: string | null;
+    streetLine2?: string | null;
+    gitHubUrl?: string | null;
+    twitchUrl?: string | null;
+    redditUrl?: string | null;
+    tikTokUrl?: string | null;
+    websiteUrl?: string | null;
+    twitterUrl?: string | null;
+    facebookUrl?: string | null;
+    youTubeUrl?: string | null;
+    linkedInUrl?: string | null;
+    instagramUrl?: string | null;
+    githubUsername?: string | null;
+    instagramUsername?: string | null;
+    tikTokUsername?: string | null;
+    stackExchangeUrl?: string | null;
+    stackOverflowUrl?: string | null;
+    parentContactId?: string | null;
+    faxNumber?: string | null;
+};
+
+export type ContactCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type: 'Individual' | 'Organization';
+    firstName: string;
+    lastName?: string | null;
+    email: string;
+    taxId?: string | null;
+    primaryContactId?: string | null;
+    about?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    mobilePhone?: string | null;
+    businessPhone?: string | null;
+    postalCode?: string | null;
+    duns?: string | null;
+    jobTitle?: string | null;
+    webUrl?: string | null;
+    currencyId?: string | null;
+    languageId?: string | null;
+    timezoneId?: string | null;
+    birthday?: string | null;
+    streetLine1?: string | null;
+    streetLine2?: string | null;
+    gitHubUrl?: string | null;
+    twitchUrl?: string | null;
+    redditUrl?: string | null;
+    tikTokUrl?: string | null;
+    websiteUrl?: string | null;
+    twitterUrl?: string | null;
+    facebookUrl?: string | null;
+    youTubeUrl?: string | null;
+    linkedInUrl?: string | null;
+    instagramUrl?: string | null;
+    githubUsername?: string | null;
+    instagramUsername?: string | null;
+    tikTokUsername?: string | null;
+    stackExchangeUrl?: string | null;
+    stackOverflowUrl?: string | null;
+    parentContactId?: string | null;
+    faxNumber?: string | null;
+};
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -296,11 +385,48 @@ export type EmployeeAppraisalSessionUpdateDto = {
     appraisalStageId?: string | null;
 };
 
-export type EmployeeProfileCreateDto = {
+export type EmployeeProfileCreateDtoReadable = {
     id?: string;
     timestamp?: string;
     type?: string | null;
     contactId?: string | null;
+    contact?: ContactCreateDtoReadable;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    grossPay?: number;
+    netSalary?: number;
+    payrollCurrency?: string | null;
+    maxWorkHoursPerDay?: number;
+    jobTitleId?: string | null;
+    employeeTypeId?: string | null;
+};
+
+export type EmployeeProfileCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    contactId?: string | null;
+    contact?: ContactCreateDtoWritable;
     about?: string | null;
     avatarUrl?: string | null;
     data?: string | null;
@@ -528,11 +654,42 @@ export type EmployeeTypeUpdateDto = {
     description?: string | null;
 };
 
-export type EmployerProfileCreateDto = {
+export type EmployerProfileCreateDtoReadable = {
     id?: string;
     timestamp?: string;
     type?: string | null;
     contactId?: string | null;
+    contact?: ContactCreateDtoReadable;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+};
+
+export type EmployerProfileCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    contactId?: string | null;
+    contact?: ContactCreateDtoWritable;
     about?: string | null;
     avatarUrl?: string | null;
     data?: string | null;
@@ -713,6 +870,70 @@ export type ErrorEnvelopeWritable = {
 
 export type ForgotPasswordRequest = {
     email: string | null;
+};
+
+export type GigApplicationCreateDto = {
+    id?: string;
+    timestamp?: string;
+    proposal?: string | null;
+    cost?: number;
+    gigId?: string | null;
+    currencyId?: string | null;
+    curriculumId?: string | null;
+    curriculumCoverId?: string | null;
+    jobApplicantProfileId?: string | null;
+};
+
+export type GigApplicationDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    acceptedTimestamp?: string | null;
+    accepted?: boolean;
+    proposal?: string | null;
+    cost?: number;
+    gigId?: string | null;
+    currencyId?: string | null;
+    curriculumId?: string | null;
+    curriculumCoverId?: string | null;
+    jobApplicantProfileId?: string | null;
+};
+
+export type GigApplicationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: GigApplicationDto;
+};
+
+export type GigApplicationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: GigApplicationDto;
+};
+
+export type GigApplicationDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<GigApplicationDto> | null;
+};
+
+export type GigApplicationDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<GigApplicationDto> | null;
+};
+
+export type GigApplicationUpdateDto = {
+    proposal?: string | null;
+    cost?: number;
+    currencyId?: string | null;
+    curriculumId?: string | null;
+    curriculumCoverId?: string | null;
 };
 
 export type GigCreateDto = {
@@ -903,6 +1124,352 @@ export type Int32EnvelopeWritable = {
     result?: number;
 };
 
+export type JobApplicantProfileCreateDtoReadable = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    contactId?: string | null;
+    contact?: ContactCreateDtoReadable;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    availableForHire?: boolean;
+    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    experienceInYears?: number;
+    currentSalary?: number;
+    minSalaryExpectation?: number;
+    maxSalaryExpectation?: number;
+    currencyId?: string | null;
+};
+
+export type JobApplicantProfileCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    contactId?: string | null;
+    contact?: ContactCreateDtoWritable;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    availableForHire?: boolean;
+    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    experienceInYears?: number;
+    currentSalary?: number;
+    minSalaryExpectation?: number;
+    maxSalaryExpectation?: number;
+    currencyId?: string | null;
+};
+
+export type JobApplicantProfileDtoReadable = {
+    id?: string | null;
+    timestamp?: string | null;
+    contactId?: string | null;
+    tenantId?: string | null;
+    type?: string | null;
+    enrollmentId?: string | null;
+    about?: string | null;
+    verified?: boolean;
+    submitted?: boolean;
+    avatarUrl?: string | null;
+    contact?: ContactDtoReadable;
+    readonly qualifiedName?: string | null;
+    verificationTimestamp?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    availableForHire?: boolean;
+    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    experienceInYears?: number;
+    currentSalary?: number;
+    minSalaryExpectation?: number;
+    maxSalaryExpectation?: number;
+    currencyId?: string | null;
+};
+
+export type JobApplicantProfileDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    contactId?: string | null;
+    tenantId?: string | null;
+    type?: string | null;
+    enrollmentId?: string | null;
+    about?: string | null;
+    verified?: boolean;
+    submitted?: boolean;
+    avatarUrl?: string | null;
+    contact?: ContactDtoWritable;
+    verificationTimestamp?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    availableForHire?: boolean;
+    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    experienceInYears?: number;
+    currentSalary?: number;
+    minSalaryExpectation?: number;
+    maxSalaryExpectation?: number;
+    currencyId?: string | null;
+};
+
+export type JobApplicantProfileDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: JobApplicantProfileDtoReadable;
+};
+
+export type JobApplicantProfileDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: JobApplicantProfileDtoWritable;
+};
+
+export type JobApplicantProfileDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<JobApplicantProfileDtoReadable> | null;
+};
+
+export type JobApplicantProfileDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<JobApplicantProfileDtoWritable> | null;
+};
+
+export type JobApplicantProfileUpdateDto = {
+    type?: string | null;
+    contactId?: string | null;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+    availableForHire?: boolean;
+    careerLevel?: 'Junior' | 'Intermediate' | 'MidLevel' | 'Executive' | 'Senior';
+    experienceInYears?: number;
+    currentSalary?: number;
+    minSalaryExpectation?: number;
+    maxSalaryExpectation?: number;
+    currencyId?: string | null;
+};
+
+export type JobFieldCreateDto = {
+    id?: string;
+    timestamp?: string;
+    name: string;
+    imageUrl?: string | null;
+    description?: string | null;
+};
+
+export type JobFieldDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    imageUrl?: string | null;
+    description?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type JobFieldDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: JobFieldDto;
+};
+
+export type JobFieldDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: JobFieldDto;
+};
+
+export type JobFieldDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<JobFieldDto> | null;
+};
+
+export type JobFieldDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<JobFieldDto> | null;
+};
+
+export type JobFieldUpdateDto = {
+    name?: string | null;
+    imageUrl?: string | null;
+    description?: string | null;
+};
+
+export type JobOfferApplicationCreateDto = {
+    id?: string;
+    timestamp?: string;
+    start?: string;
+    end?: string;
+    salaryExpectation?: number;
+    currencyId?: string | null;
+    curriculumId?: string | null;
+    curriculumCoverId?: string | null;
+    jobOfferId?: string | null;
+    partnerProfileId?: string | null;
+    jobApplicantProfileId?: string | null;
+};
+
+export type JobOfferApplicationDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    status?: 'Submitted' | 'UnderReview' | 'Interviewing' | 'Offered' | 'Hired' | 'Rejected' | 'Withdrawn';
+    start?: string;
+    end?: string;
+    salaryExpectation?: number;
+    currencyId?: string | null;
+    curriculumId?: string | null;
+    curriculumCoverId?: string | null;
+    jobOfferId?: string | null;
+    partnerProfileId?: string | null;
+    jobApplicantProfileId?: string | null;
+};
+
+export type JobOfferApplicationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: JobOfferApplicationDto;
+};
+
+export type JobOfferApplicationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: JobOfferApplicationDto;
+};
+
+export type JobOfferApplicationDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<JobOfferApplicationDto> | null;
+};
+
+export type JobOfferApplicationDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<JobOfferApplicationDto> | null;
+};
+
+export type JobOfferApplicationUpdateDto = {
+    start?: string;
+    end?: string;
+    salaryExpectation?: number;
+    currencyId?: string | null;
+    curriculumId?: string | null;
+    curriculumCoverId?: string | null;
+    partnerProfileId?: string | null;
+};
+
 export type JobOfferCreateDto = {
     id?: string;
     timestamp?: string;
@@ -958,6 +1525,7 @@ export type JobOfferCreateDto = {
 export type JobOfferDto = {
     id?: string | null;
     timestamp?: string | null;
+    status?: 'Draft' | 'Published' | 'Closed' | 'Filled';
     remote?: boolean;
     expectedHireDate?: string;
     title?: string | null;
@@ -1038,6 +1606,57 @@ export type JobOfferDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     result?: Array<JobOfferDto> | null;
+};
+
+export type JobOfferFieldRecordCreateDto = {
+    id?: string;
+    timestamp?: string;
+    jobFieldId: string;
+    jobOfferId?: string | null;
+};
+
+export type JobOfferFieldRecordDto = {
+    id?: string | null;
+    timestamp?: string;
+    jobFieldId?: string | null;
+    jobOfferId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type JobOfferFieldRecordDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: JobOfferFieldRecordDto;
+};
+
+export type JobOfferFieldRecordDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: JobOfferFieldRecordDto;
+};
+
+export type JobOfferFieldRecordDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<JobOfferFieldRecordDto> | null;
+};
+
+export type JobOfferFieldRecordDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<JobOfferFieldRecordDto> | null;
+};
+
+export type JobOfferFieldRecordUpdateDto = {
+    jobFieldId?: string | null;
+    jobOfferId?: string | null;
 };
 
 export type JobOfferUpdateDto = {
@@ -1394,6 +2013,69 @@ export type RefreshRequest = {
 export type RegisterRequest = {
     email: string | null;
     password: string | null;
+};
+
+export type RequiredSkillRecordCreateDto = {
+    id?: string;
+    timestamp?: string;
+    skillId: string;
+    jobOfferId?: string | null;
+    employerProfileId?: string | null;
+    experienceInYears?: number;
+    priority?: number;
+    requiredSkillRecordType?: 'MustHave' | 'Optional';
+};
+
+export type RequiredSkillRecordDto = {
+    id?: string | null;
+    timestamp?: string;
+    experienceInYears?: number;
+    priority?: number;
+    requiredSkillRecordType?: 'MustHave' | 'Optional';
+    skillId?: string | null;
+    jobOfferId?: string | null;
+    employerProfileId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type RequiredSkillRecordDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: RequiredSkillRecordDto;
+};
+
+export type RequiredSkillRecordDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: RequiredSkillRecordDto;
+};
+
+export type RequiredSkillRecordDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: Array<RequiredSkillRecordDto> | null;
+};
+
+export type RequiredSkillRecordDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: Array<RequiredSkillRecordDto> | null;
+};
+
+export type RequiredSkillRecordUpdateDto = {
+    skillId?: string | null;
+    jobOfferId?: string | null;
+    employerProfileId?: string | null;
+    experienceInYears?: number;
+    priority?: number;
+    requiredSkillRecordType?: 'MustHave' | 'Optional';
 };
 
 export type ResendConfirmationEmailRequest = {
@@ -2424,37 +3106,6 @@ export type UpdateAppraisalWorkflowAsyncResponses = {
 
 export type UpdateAppraisalWorkflowAsyncResponse = UpdateAppraisalWorkflowAsyncResponses[keyof UpdateAppraisalWorkflowAsyncResponses];
 
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
 export type GetEmployeeAppraisalSessionsAsyncData = {
     body?: never;
     headers?: {
@@ -2760,7 +3411,7 @@ export type GetEmployeesAsyncResponses = {
 export type GetEmployeesAsyncResponse = GetEmployeesAsyncResponses[keyof GetEmployeesAsyncResponses];
 
 export type CreateEmployeeAsyncData = {
-    body?: EmployeeProfileCreateDto;
+    body?: EmployeeProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3298,7 +3949,7 @@ export type GetEmployersAsyncResponses = {
 export type GetEmployersAsyncResponse = GetEmployersAsyncResponses[keyof GetEmployersAsyncResponses];
 
 export type CreateEmployerAsyncData = {
-    body?: EmployerProfileCreateDto;
+    body?: EmployerProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3859,6 +4510,312 @@ export type PostAccountManageDownloadPersonalDataResponses = {
     200: unknown;
 };
 
+export type GetGigApplicationsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/GigApplications';
+};
+
+export type GetGigApplicationsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetGigApplicationsAsyncError = GetGigApplicationsAsyncErrors[keyof GetGigApplicationsAsyncErrors];
+
+export type GetGigApplicationsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: GigApplicationDtoListEnvelopeReadable;
+};
+
+export type GetGigApplicationsAsyncResponse = GetGigApplicationsAsyncResponses[keyof GetGigApplicationsAsyncResponses];
+
+export type CreateGigApplicationAsyncData = {
+    body?: GigApplicationCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/GigApplications';
+};
+
+export type CreateGigApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateGigApplicationAsyncError = CreateGigApplicationAsyncErrors[keyof CreateGigApplicationAsyncErrors];
+
+export type CreateGigApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateGigApplicationAsyncResponse = CreateGigApplicationAsyncResponses[keyof CreateGigApplicationAsyncResponses];
+
+export type GetGigApplicationsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/GigApplications/Count';
+};
+
+export type GetGigApplicationsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetGigApplicationsCountAsyncError = GetGigApplicationsCountAsyncErrors[keyof GetGigApplicationsCountAsyncErrors];
+
+export type GetGigApplicationsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetGigApplicationsCountAsyncResponse = GetGigApplicationsCountAsyncResponses[keyof GetGigApplicationsCountAsyncResponses];
+
+export type DeleteGigApplicationAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}';
+};
+
+export type DeleteGigApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteGigApplicationAsyncError = DeleteGigApplicationAsyncErrors[keyof DeleteGigApplicationAsyncErrors];
+
+export type DeleteGigApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteGigApplicationAsyncResponse = DeleteGigApplicationAsyncResponses[keyof DeleteGigApplicationAsyncResponses];
+
+export type GetGigApplicationByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}';
+};
+
+export type GetGigApplicationByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetGigApplicationByIdAsyncError = GetGigApplicationByIdAsyncErrors[keyof GetGigApplicationByIdAsyncErrors];
+
+export type GetGigApplicationByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: GigApplicationDtoEnvelopeReadable;
+};
+
+export type GetGigApplicationByIdAsyncResponse = GetGigApplicationByIdAsyncResponses[keyof GetGigApplicationByIdAsyncResponses];
+
+export type PatchGigApplicationAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}';
+};
+
+export type PatchGigApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchGigApplicationAsyncError = PatchGigApplicationAsyncErrors[keyof PatchGigApplicationAsyncErrors];
+
+export type PatchGigApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchGigApplicationAsyncResponse = PatchGigApplicationAsyncResponses[keyof PatchGigApplicationAsyncResponses];
+
+export type UpdateGigApplicationAsyncData = {
+    body?: GigApplicationUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}';
+};
+
+export type UpdateGigApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateGigApplicationAsyncError = UpdateGigApplicationAsyncErrors[keyof UpdateGigApplicationAsyncErrors];
+
+export type UpdateGigApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateGigApplicationAsyncResponse = UpdateGigApplicationAsyncResponses[keyof UpdateGigApplicationAsyncResponses];
+
+export type AcceptGigApplicationAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        gigApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/GigApplications/{gigApplicationId}/Accept';
+};
+
+export type AcceptGigApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AcceptGigApplicationAsyncError = AcceptGigApplicationAsyncErrors[keyof AcceptGigApplicationAsyncErrors];
+
+export type AcceptGigApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AcceptGigApplicationAsyncResponse = AcceptGigApplicationAsyncResponses[keyof AcceptGigApplicationAsyncResponses];
+
 export type GetGigsAsyncData = {
     body?: never;
     headers?: {
@@ -4128,6 +5085,1120 @@ export type UpdateGigAsyncResponses = {
 
 export type UpdateGigAsyncResponse = UpdateGigAsyncResponses[keyof UpdateGigAsyncResponses];
 
+export type GetJobApplicantsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplicants';
+};
+
+export type GetJobApplicantsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobApplicantsAsyncError = GetJobApplicantsAsyncErrors[keyof GetJobApplicantsAsyncErrors];
+
+export type GetJobApplicantsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobApplicantProfileDtoListEnvelopeReadable;
+};
+
+export type GetJobApplicantsAsyncResponse = GetJobApplicantsAsyncResponses[keyof GetJobApplicantsAsyncResponses];
+
+export type CreateJobApplicantAsyncData = {
+    body?: JobApplicantProfileCreateDtoWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplicants';
+};
+
+export type CreateJobApplicantAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateJobApplicantAsyncError = CreateJobApplicantAsyncErrors[keyof CreateJobApplicantAsyncErrors];
+
+export type CreateJobApplicantAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateJobApplicantAsyncResponse = CreateJobApplicantAsyncResponses[keyof CreateJobApplicantAsyncResponses];
+
+export type GetJobApplicantsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplicants/Count';
+};
+
+export type GetJobApplicantsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobApplicantsCountAsyncError = GetJobApplicantsCountAsyncErrors[keyof GetJobApplicantsCountAsyncErrors];
+
+export type GetJobApplicantsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetJobApplicantsCountAsyncResponse = GetJobApplicantsCountAsyncResponses[keyof GetJobApplicantsCountAsyncResponses];
+
+export type DeleteJobApplicantAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicantId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplicants/{jobApplicantId}';
+};
+
+export type DeleteJobApplicantAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteJobApplicantAsyncError = DeleteJobApplicantAsyncErrors[keyof DeleteJobApplicantAsyncErrors];
+
+export type DeleteJobApplicantAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteJobApplicantAsyncResponse = DeleteJobApplicantAsyncResponses[keyof DeleteJobApplicantAsyncResponses];
+
+export type GetJobApplicantByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicantId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplicants/{jobApplicantId}';
+};
+
+export type GetJobApplicantByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobApplicantByIdAsyncError = GetJobApplicantByIdAsyncErrors[keyof GetJobApplicantByIdAsyncErrors];
+
+export type GetJobApplicantByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobApplicantProfileDtoEnvelopeReadable;
+};
+
+export type GetJobApplicantByIdAsyncResponse = GetJobApplicantByIdAsyncResponses[keyof GetJobApplicantByIdAsyncResponses];
+
+export type PatchJobApplicantAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicantId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplicants/{jobApplicantId}';
+};
+
+export type PatchJobApplicantAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJobApplicantAsyncError = PatchJobApplicantAsyncErrors[keyof PatchJobApplicantAsyncErrors];
+
+export type PatchJobApplicantAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJobApplicantAsyncResponse = PatchJobApplicantAsyncResponses[keyof PatchJobApplicantAsyncResponses];
+
+export type UpdateJobApplicantAsyncData = {
+    body?: JobApplicantProfileUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicantId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplicants/{jobApplicantId}';
+};
+
+export type UpdateJobApplicantAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateJobApplicantAsyncError = UpdateJobApplicantAsyncErrors[keyof UpdateJobApplicantAsyncErrors];
+
+export type UpdateJobApplicantAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateJobApplicantAsyncResponse = UpdateJobApplicantAsyncResponses[keyof UpdateJobApplicantAsyncResponses];
+
+export type GetJobApplicationsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplications';
+};
+
+export type GetJobApplicationsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobApplicationsAsyncError = GetJobApplicationsAsyncErrors[keyof GetJobApplicationsAsyncErrors];
+
+export type GetJobApplicationsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobOfferApplicationDtoListEnvelopeReadable;
+};
+
+export type GetJobApplicationsAsyncResponse = GetJobApplicationsAsyncResponses[keyof GetJobApplicationsAsyncResponses];
+
+export type CreateJobApplicationAsyncData = {
+    body?: JobOfferApplicationCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplications';
+};
+
+export type CreateJobApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateJobApplicationAsyncError = CreateJobApplicationAsyncErrors[keyof CreateJobApplicationAsyncErrors];
+
+export type CreateJobApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateJobApplicationAsyncResponse = CreateJobApplicationAsyncResponses[keyof CreateJobApplicationAsyncResponses];
+
+export type GetJobApplicationsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplications/Count';
+};
+
+export type GetJobApplicationsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobApplicationsCountAsyncError = GetJobApplicationsCountAsyncErrors[keyof GetJobApplicationsCountAsyncErrors];
+
+export type GetJobApplicationsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetJobApplicationsCountAsyncResponse = GetJobApplicationsCountAsyncResponses[keyof GetJobApplicationsCountAsyncResponses];
+
+export type DeleteJobApplicationAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}';
+};
+
+export type DeleteJobApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteJobApplicationAsyncError = DeleteJobApplicationAsyncErrors[keyof DeleteJobApplicationAsyncErrors];
+
+export type DeleteJobApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteJobApplicationAsyncResponse = DeleteJobApplicationAsyncResponses[keyof DeleteJobApplicationAsyncResponses];
+
+export type GetJobApplicationByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}';
+};
+
+export type GetJobApplicationByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobApplicationByIdAsyncError = GetJobApplicationByIdAsyncErrors[keyof GetJobApplicationByIdAsyncErrors];
+
+export type GetJobApplicationByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobOfferApplicationDtoEnvelopeReadable;
+};
+
+export type GetJobApplicationByIdAsyncResponse = GetJobApplicationByIdAsyncResponses[keyof GetJobApplicationByIdAsyncResponses];
+
+export type PatchJobApplicationAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}';
+};
+
+export type PatchJobApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJobApplicationAsyncError = PatchJobApplicationAsyncErrors[keyof PatchJobApplicationAsyncErrors];
+
+export type PatchJobApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJobApplicationAsyncResponse = PatchJobApplicationAsyncResponses[keyof PatchJobApplicationAsyncResponses];
+
+export type UpdateJobApplicationAsyncData = {
+    body?: JobOfferApplicationUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}';
+};
+
+export type UpdateJobApplicationAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateJobApplicationAsyncError = UpdateJobApplicationAsyncErrors[keyof UpdateJobApplicationAsyncErrors];
+
+export type UpdateJobApplicationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateJobApplicationAsyncResponse = UpdateJobApplicationAsyncResponses[keyof UpdateJobApplicationAsyncResponses];
+
+export type ChangeJobApplicationStatusAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobApplicationId: string;
+    };
+    query: {
+        tenantId: string;
+        status: 'Submitted' | 'UnderReview' | 'Interviewing' | 'Offered' | 'Hired' | 'Rejected' | 'Withdrawn';
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobApplications/{jobApplicationId}/Status';
+};
+
+export type ChangeJobApplicationStatusAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type ChangeJobApplicationStatusAsyncError = ChangeJobApplicationStatusAsyncErrors[keyof ChangeJobApplicationStatusAsyncErrors];
+
+export type ChangeJobApplicationStatusAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ChangeJobApplicationStatusAsyncResponse = ChangeJobApplicationStatusAsyncResponses[keyof ChangeJobApplicationStatusAsyncResponses];
+
+export type GetJobFieldsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobFields';
+};
+
+export type GetJobFieldsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobFieldsAsyncError = GetJobFieldsAsyncErrors[keyof GetJobFieldsAsyncErrors];
+
+export type GetJobFieldsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobFieldDtoListEnvelopeReadable;
+};
+
+export type GetJobFieldsAsyncResponse = GetJobFieldsAsyncResponses[keyof GetJobFieldsAsyncResponses];
+
+export type CreateJobFieldAsyncData = {
+    body?: JobFieldCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobFields';
+};
+
+export type CreateJobFieldAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateJobFieldAsyncError = CreateJobFieldAsyncErrors[keyof CreateJobFieldAsyncErrors];
+
+export type CreateJobFieldAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateJobFieldAsyncResponse = CreateJobFieldAsyncResponses[keyof CreateJobFieldAsyncResponses];
+
+export type GetJobFieldsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobFields/Count';
+};
+
+export type GetJobFieldsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobFieldsCountAsyncError = GetJobFieldsCountAsyncErrors[keyof GetJobFieldsCountAsyncErrors];
+
+export type GetJobFieldsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetJobFieldsCountAsyncResponse = GetJobFieldsCountAsyncResponses[keyof GetJobFieldsCountAsyncResponses];
+
+export type DeleteJobFieldAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobFieldId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobFields/{jobFieldId}';
+};
+
+export type DeleteJobFieldAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteJobFieldAsyncError = DeleteJobFieldAsyncErrors[keyof DeleteJobFieldAsyncErrors];
+
+export type DeleteJobFieldAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteJobFieldAsyncResponse = DeleteJobFieldAsyncResponses[keyof DeleteJobFieldAsyncResponses];
+
+export type GetJobFieldByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobFieldId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobFields/{jobFieldId}';
+};
+
+export type GetJobFieldByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobFieldByIdAsyncError = GetJobFieldByIdAsyncErrors[keyof GetJobFieldByIdAsyncErrors];
+
+export type GetJobFieldByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobFieldDtoEnvelopeReadable;
+};
+
+export type GetJobFieldByIdAsyncResponse = GetJobFieldByIdAsyncResponses[keyof GetJobFieldByIdAsyncResponses];
+
+export type PatchJobFieldAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobFieldId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobFields/{jobFieldId}';
+};
+
+export type PatchJobFieldAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJobFieldAsyncError = PatchJobFieldAsyncErrors[keyof PatchJobFieldAsyncErrors];
+
+export type PatchJobFieldAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJobFieldAsyncResponse = PatchJobFieldAsyncResponses[keyof PatchJobFieldAsyncResponses];
+
+export type UpdateJobFieldAsyncData = {
+    body?: JobFieldUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobFieldId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobFields/{jobFieldId}';
+};
+
+export type UpdateJobFieldAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateJobFieldAsyncError = UpdateJobFieldAsyncErrors[keyof UpdateJobFieldAsyncErrors];
+
+export type UpdateJobFieldAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateJobFieldAsyncResponse = UpdateJobFieldAsyncResponses[keyof UpdateJobFieldAsyncResponses];
+
+export type GetJobOfferFieldsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOfferFields';
+};
+
+export type GetJobOfferFieldsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobOfferFieldsAsyncError = GetJobOfferFieldsAsyncErrors[keyof GetJobOfferFieldsAsyncErrors];
+
+export type GetJobOfferFieldsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobOfferFieldRecordDtoListEnvelopeReadable;
+};
+
+export type GetJobOfferFieldsAsyncResponse = GetJobOfferFieldsAsyncResponses[keyof GetJobOfferFieldsAsyncResponses];
+
+export type CreateJobOfferFieldAsyncData = {
+    body?: JobOfferFieldRecordCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOfferFields';
+};
+
+export type CreateJobOfferFieldAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateJobOfferFieldAsyncError = CreateJobOfferFieldAsyncErrors[keyof CreateJobOfferFieldAsyncErrors];
+
+export type CreateJobOfferFieldAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateJobOfferFieldAsyncResponse = CreateJobOfferFieldAsyncResponses[keyof CreateJobOfferFieldAsyncResponses];
+
+export type GetJobOfferFieldsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOfferFields/Count';
+};
+
+export type GetJobOfferFieldsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobOfferFieldsCountAsyncError = GetJobOfferFieldsCountAsyncErrors[keyof GetJobOfferFieldsCountAsyncErrors];
+
+export type GetJobOfferFieldsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetJobOfferFieldsCountAsyncResponse = GetJobOfferFieldsCountAsyncResponses[keyof GetJobOfferFieldsCountAsyncResponses];
+
+export type DeleteJobOfferFieldAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferFieldId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}';
+};
+
+export type DeleteJobOfferFieldAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteJobOfferFieldAsyncError = DeleteJobOfferFieldAsyncErrors[keyof DeleteJobOfferFieldAsyncErrors];
+
+export type DeleteJobOfferFieldAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteJobOfferFieldAsyncResponse = DeleteJobOfferFieldAsyncResponses[keyof DeleteJobOfferFieldAsyncResponses];
+
+export type GetJobOfferFieldByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferFieldId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}';
+};
+
+export type GetJobOfferFieldByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJobOfferFieldByIdAsyncError = GetJobOfferFieldByIdAsyncErrors[keyof GetJobOfferFieldByIdAsyncErrors];
+
+export type GetJobOfferFieldByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobOfferFieldRecordDtoEnvelopeReadable;
+};
+
+export type GetJobOfferFieldByIdAsyncResponse = GetJobOfferFieldByIdAsyncResponses[keyof GetJobOfferFieldByIdAsyncResponses];
+
+export type PatchJobOfferFieldAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferFieldId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}';
+};
+
+export type PatchJobOfferFieldAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchJobOfferFieldAsyncError = PatchJobOfferFieldAsyncErrors[keyof PatchJobOfferFieldAsyncErrors];
+
+export type PatchJobOfferFieldAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchJobOfferFieldAsyncResponse = PatchJobOfferFieldAsyncResponses[keyof PatchJobOfferFieldAsyncResponses];
+
+export type UpdateJobOfferFieldAsyncData = {
+    body?: JobOfferFieldRecordUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferFieldId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}';
+};
+
+export type UpdateJobOfferFieldAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateJobOfferFieldAsyncError = UpdateJobOfferFieldAsyncErrors[keyof UpdateJobOfferFieldAsyncErrors];
+
+export type UpdateJobOfferFieldAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateJobOfferFieldAsyncResponse = UpdateJobOfferFieldAsyncResponses[keyof UpdateJobOfferFieldAsyncResponses];
+
 export type GetJobOffersAsyncData = {
     body?: never;
     headers?: {
@@ -4396,6 +6467,212 @@ export type UpdateJobOfferAsyncResponses = {
 };
 
 export type UpdateJobOfferAsyncResponse = UpdateJobOfferAsyncResponses[keyof UpdateJobOfferAsyncResponses];
+
+export type GetPublicJobOffersAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOffers/Public';
+};
+
+export type GetPublicJobOffersAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type GetPublicJobOffersAsyncError = GetPublicJobOffersAsyncErrors[keyof GetPublicJobOffersAsyncErrors];
+
+export type GetPublicJobOffersAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobOfferDtoListEnvelopeReadable;
+};
+
+export type GetPublicJobOffersAsyncResponse = GetPublicJobOffersAsyncResponses[keyof GetPublicJobOffersAsyncResponses];
+
+export type GetPublicJobOffersCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOffers/Public/Count';
+};
+
+export type GetPublicJobOffersCountAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type GetPublicJobOffersCountAsyncError = GetPublicJobOffersCountAsyncErrors[keyof GetPublicJobOffersCountAsyncErrors];
+
+export type GetPublicJobOffersCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetPublicJobOffersCountAsyncResponse = GetPublicJobOffersCountAsyncResponses[keyof GetPublicJobOffersCountAsyncResponses];
+
+export type GetPublicJobOfferByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOffers/Public/{jobOfferId}';
+};
+
+export type GetPublicJobOfferByIdAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+};
+
+export type GetPublicJobOfferByIdAsyncError = GetPublicJobOfferByIdAsyncErrors[keyof GetPublicJobOfferByIdAsyncErrors];
+
+export type GetPublicJobOfferByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JobOfferDtoEnvelopeReadable;
+};
+
+export type GetPublicJobOfferByIdAsyncResponse = GetPublicJobOfferByIdAsyncResponses[keyof GetPublicJobOfferByIdAsyncResponses];
+
+export type PublishJobOfferAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOffers/{jobOfferId}/Publish';
+};
+
+export type PublishJobOfferAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PublishJobOfferAsyncError = PublishJobOfferAsyncErrors[keyof PublishJobOfferAsyncErrors];
+
+export type PublishJobOfferAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PublishJobOfferAsyncResponse = PublishJobOfferAsyncResponses[keyof PublishJobOfferAsyncResponses];
+
+export type CloseJobOfferAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOffers/{jobOfferId}/Close';
+};
+
+export type CloseJobOfferAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CloseJobOfferAsyncError = CloseJobOfferAsyncErrors[keyof CloseJobOfferAsyncErrors];
+
+export type CloseJobOfferAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CloseJobOfferAsyncResponse = CloseJobOfferAsyncResponses[keyof CloseJobOfferAsyncResponses];
+
+export type FillJobOfferAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        jobOfferId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/JobOffers/{jobOfferId}/Fill';
+};
+
+export type FillJobOfferAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type FillJobOfferAsyncError = FillJobOfferAsyncErrors[keyof FillJobOfferAsyncErrors];
+
+export type FillJobOfferAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type FillJobOfferAsyncResponse = FillJobOfferAsyncResponses[keyof FillJobOfferAsyncResponses];
 
 export type GetJobTitlesAsyncData = {
     body?: never;
@@ -5659,6 +7936,275 @@ export type UpdatePayrollAsyncResponses = {
 };
 
 export type UpdatePayrollAsyncResponse = UpdatePayrollAsyncResponses[keyof UpdatePayrollAsyncResponses];
+
+export type GetRequiredSkillsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/RequiredSkills';
+};
+
+export type GetRequiredSkillsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRequiredSkillsAsyncError = GetRequiredSkillsAsyncErrors[keyof GetRequiredSkillsAsyncErrors];
+
+export type GetRequiredSkillsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RequiredSkillRecordDtoListEnvelopeReadable;
+};
+
+export type GetRequiredSkillsAsyncResponse = GetRequiredSkillsAsyncResponses[keyof GetRequiredSkillsAsyncResponses];
+
+export type CreateRequiredSkillAsyncData = {
+    body?: RequiredSkillRecordCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/RequiredSkills';
+};
+
+export type CreateRequiredSkillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateRequiredSkillAsyncError = CreateRequiredSkillAsyncErrors[keyof CreateRequiredSkillAsyncErrors];
+
+export type CreateRequiredSkillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CreateRequiredSkillAsyncResponse = CreateRequiredSkillAsyncResponses[keyof CreateRequiredSkillAsyncResponses];
+
+export type GetRequiredSkillsCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/RequiredSkills/Count';
+};
+
+export type GetRequiredSkillsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRequiredSkillsCountAsyncError = GetRequiredSkillsCountAsyncErrors[keyof GetRequiredSkillsCountAsyncErrors];
+
+export type GetRequiredSkillsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetRequiredSkillsCountAsyncResponse = GetRequiredSkillsCountAsyncResponses[keyof GetRequiredSkillsCountAsyncResponses];
+
+export type DeleteRequiredSkillAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        requiredSkillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/RequiredSkills/{requiredSkillId}';
+};
+
+export type DeleteRequiredSkillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteRequiredSkillAsyncError = DeleteRequiredSkillAsyncErrors[keyof DeleteRequiredSkillAsyncErrors];
+
+export type DeleteRequiredSkillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteRequiredSkillAsyncResponse = DeleteRequiredSkillAsyncResponses[keyof DeleteRequiredSkillAsyncResponses];
+
+export type GetRequiredSkillByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        requiredSkillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/RequiredSkills/{requiredSkillId}';
+};
+
+export type GetRequiredSkillByIdAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetRequiredSkillByIdAsyncError = GetRequiredSkillByIdAsyncErrors[keyof GetRequiredSkillByIdAsyncErrors];
+
+export type GetRequiredSkillByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: RequiredSkillRecordDtoEnvelopeReadable;
+};
+
+export type GetRequiredSkillByIdAsyncResponse = GetRequiredSkillByIdAsyncResponses[keyof GetRequiredSkillByIdAsyncResponses];
+
+export type PatchRequiredSkillAsyncData = {
+    body?: Array<Operation>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        requiredSkillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/RequiredSkills/{requiredSkillId}';
+};
+
+export type PatchRequiredSkillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PatchRequiredSkillAsyncError = PatchRequiredSkillAsyncErrors[keyof PatchRequiredSkillAsyncErrors];
+
+export type PatchRequiredSkillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PatchRequiredSkillAsyncResponse = PatchRequiredSkillAsyncResponses[keyof PatchRequiredSkillAsyncResponses];
+
+export type UpdateRequiredSkillAsyncData = {
+    body?: RequiredSkillRecordUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        requiredSkillId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/HrmsService/RequiredSkills/{requiredSkillId}';
+};
+
+export type UpdateRequiredSkillAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateRequiredSkillAsyncError = UpdateRequiredSkillAsyncErrors[keyof UpdateRequiredSkillAsyncErrors];
+
+export type UpdateRequiredSkillAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateRequiredSkillAsyncResponse = UpdateRequiredSkillAsyncResponses[keyof UpdateRequiredSkillAsyncResponses];
 
 export type GetSalariesAsyncData = {
     body?: never;
@@ -7503,5 +10049,5 @@ export type UpdateTrainingProgramAsyncResponses = {
 export type UpdateTrainingProgramAsyncResponse = UpdateTrainingProgramAsyncResponses[keyof UpdateTrainingProgramAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

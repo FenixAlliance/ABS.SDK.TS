@@ -465,6 +465,8 @@ export type ShipmentDto = {
     shippingTerms?: 'NC' | 'EXW' | 'FCA' | 'FOB' | 'FAS' | 'CFR' | 'CIF' | 'CPT' | 'CIP' | 'DDP' | 'DAP' | 'DPU';
     orderId?: string | null;
     tenantId?: string | null;
+    sellerBillingProfileId?: string | null;
+    buyerBillingProfileId?: string | null;
 };
 
 export type ShipmentDtoEnvelopeReadable = {
@@ -1333,37 +1335,6 @@ export type UpdateBillOfLadingLineAsyncResponses = {
 };
 
 export type UpdateBillOfLadingLineAsyncResponse = UpdateBillOfLadingLineAsyncResponses[keyof UpdateBillOfLadingLineAsyncResponses];
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
 
 export type GetVersionData = {
     body?: never;
@@ -3488,5 +3459,5 @@ export type UpdateShippingZoneAsyncResponses = {
 };
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

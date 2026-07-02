@@ -5,115 +5,6 @@
 
 
 export interface paths {
-  "/api/v2/AiService/Completions/Complete": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          conversationId?: string;
-          message?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
   "/api/v2/LearningService/CourseArticles": {
     /**
      * Get all course articles
@@ -2246,6 +2137,57 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["AverageDto"];
     };
+    ContactCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      /** @enum {string} */
+      type: "Individual" | "Organization";
+      firstName: string;
+      lastName?: string | null;
+      /** Format: email */
+      email: string;
+      taxId?: string | null;
+      primaryContactId?: string | null;
+      qualifiedName?: string | null;
+      about?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      /** Format: tel */
+      mobilePhone?: string | null;
+      /** Format: tel */
+      businessPhone?: string | null;
+      postalCode?: string | null;
+      duns?: string | null;
+      jobTitle?: string | null;
+      webUrl?: string | null;
+      currencyId?: string | null;
+      languageId?: string | null;
+      timezoneId?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
+      streetLine1?: string | null;
+      streetLine2?: string | null;
+      gitHubUrl?: string | null;
+      twitchUrl?: string | null;
+      redditUrl?: string | null;
+      tikTokUrl?: string | null;
+      websiteUrl?: string | null;
+      twitterUrl?: string | null;
+      facebookUrl?: string | null;
+      youTubeUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      githubUsername?: string | null;
+      instagramUsername?: string | null;
+      tikTokUsername?: string | null;
+      stackExchangeUrl?: string | null;
+      stackOverflowUrl?: string | null;
+      parentContactId?: string | null;
+      faxNumber?: string | null;
+    };
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
@@ -3462,6 +3404,7 @@ export interface components {
       timestamp?: string;
       type?: string | null;
       contactId?: string | null;
+      contact?: components["schemas"]["ContactCreateDto"];
       about?: string | null;
       avatarUrl?: string | null;
       data?: string | null;
@@ -3596,6 +3539,7 @@ export interface components {
       timestamp?: string;
       type?: string | null;
       contactId?: string | null;
+      contact?: components["schemas"]["ContactCreateDto"];
       about?: string | null;
       avatarUrl?: string | null;
       data?: string | null;

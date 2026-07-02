@@ -46,6 +46,20 @@ export interface paths {
      */
     patch: operations["PatchAccountGroupAsync"];
   };
+  "/api/v2/AccountingService/AccountingEntries/Debits/Sum": {
+    /**
+     * Sum tenant accounting-entry debits
+     * @description Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetDebitsSumAsync"];
+  };
+  "/api/v2/AccountingService/AccountingEntries/Credits/Sum": {
+    /**
+     * Sum tenant accounting-entry credits
+     * @description Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetCreditsSumAsync"];
+  };
   "/api/v2/AccountingService/AccountingPeriods": {
     /**
      * Get all accounting periods for a tenant
@@ -758,115 +772,6 @@ export interface paths {
      * @description Partially updates an existing payment commission.
      */
     patch: operations["PatchPaymentCommissionAsync"];
-  };
-  "/api/v2/AiService/Completions/Complete": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          conversationId?: string;
-          message?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
   };
   "/api/v2/AccountingService/CostCentres": {
     /**
@@ -1876,6 +1781,20 @@ export interface paths {
      */
     patch: operations["PatchInvoiceEnumerationRangeAsync"];
   };
+  "/api/v2/AccountingService/JournalEntries/Incomes/Sum": {
+    /**
+     * Sum tenant incomes
+     * @description Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetIncomesSumAsync"];
+  };
+  "/api/v2/AccountingService/JournalEntries/Expenses/Sum": {
+    /**
+     * Sum tenant expenses
+     * @description Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetExpensesSumAsync"];
+  };
   "/api/v2/AccountingService/Journals": {
     /**
      * Get all journals
@@ -2313,6 +2232,13 @@ export interface paths {
      * @description Get the currently acting tenant share issuances count.
      */
     get: operations["GetShareIssuancesCount"];
+  };
+  "/api/v2/AccountingService/Shares/Issuances/Sum": {
+    /**
+     * Sum tenant share issuance quantities
+     * @description Returns SUM(ShareIssuance.Quantity) for the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetShareIssuancesSum"];
   };
   "/api/v2/AccountingService/Shares/Issuances/{issuanceId}": {
     /**
@@ -3504,6 +3430,11 @@ export interface components {
       postalCode: string;
       businessName: string;
       commercialName: string;
+      verificationDigit?: string | null;
+      economicActivityCode?: string | null;
+      economicActivityScheme?: string | null;
+      isPrimary?: boolean | null;
+      establishmentCode?: string | null;
       ticker?: string | null;
       duns?: string | null;
       isPublicCompany?: boolean;
@@ -3562,6 +3493,11 @@ export interface components {
       postalCode?: string | null;
       businessName?: string | null;
       commercialName?: string | null;
+      verificationDigit?: string | null;
+      economicActivityCode?: string | null;
+      economicActivityScheme?: string | null;
+      isPrimary?: boolean | null;
+      establishmentCode?: string | null;
       ticker?: string | null;
       duns?: string | null;
       isPublicCompany?: boolean;
@@ -3607,6 +3543,11 @@ export interface components {
       postalCode?: string | null;
       businessName?: string | null;
       commercialName?: string | null;
+      verificationDigit?: string | null;
+      economicActivityCode?: string | null;
+      economicActivityScheme?: string | null;
+      isPrimary?: boolean | null;
+      establishmentCode?: string | null;
       ticker?: string | null;
       duns?: string | null;
       isPublicCompany?: boolean;
@@ -4059,6 +4000,16 @@ export interface components {
       value?: string | null;
       code?: string | null;
       country?: string | null;
+    };
+    DecimalEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      /** Format: double */
+      result?: number;
     };
     EmptyEnvelope: {
       isSuccess?: boolean;
@@ -5596,6 +5547,8 @@ export interface components {
       zero?: boolean;
       reduced?: boolean;
       withholding?: boolean;
+      taxSchemeCode?: string | null;
+      taxCategoryCode?: string | null;
       fiscalAuthorityId?: string | null;
     };
     TaxPolicyDto: {
@@ -5635,6 +5588,8 @@ export interface components {
       zero?: boolean;
       reduced?: boolean;
       withholding?: boolean;
+      taxSchemeCode?: string | null;
+      taxCategoryCode?: string | null;
       fiscalAuthorityId?: string | null;
     };
     TaxPolicyDtoEnvelope: {
@@ -5687,6 +5642,8 @@ export interface components {
       zero?: boolean;
       reduced?: boolean;
       withholding?: boolean;
+      taxSchemeCode?: string | null;
+      taxCategoryCode?: string | null;
       fiscalAuthorityId?: string | null;
     };
     TaxRateCreateDto: {
@@ -6251,6 +6208,82 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sum tenant accounting-entry debits
+   * @description Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.
+   */
+  GetDebitsSumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DecimalEnvelope"];
+          "application/xml": components["schemas"]["DecimalEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sum tenant accounting-entry credits
+   * @description Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.
+   */
+  GetCreditsSumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DecimalEnvelope"];
+          "application/xml": components["schemas"]["DecimalEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -16357,6 +16390,82 @@ export interface operations {
     };
   };
   /**
+   * Sum tenant incomes
+   * @description Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.
+   */
+  GetIncomesSumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DecimalEnvelope"];
+          "application/xml": components["schemas"]["DecimalEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sum tenant expenses
+   * @description Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.
+   */
+  GetExpensesSumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DecimalEnvelope"];
+          "application/xml": components["schemas"]["DecimalEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all journals
    * @description Retrieves all journals for the specified tenant.
    */
@@ -19312,6 +19421,44 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["Int32Envelope"];
           "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sum tenant share issuance quantities
+   * @description Returns SUM(ShareIssuance.Quantity) for the tenant, filtered by the supplied OData date range.
+   */
+  GetShareIssuancesSum: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DecimalEnvelope"];
+          "application/xml": components["schemas"]["DecimalEnvelope"];
         };
       };
       /** @description Unauthorized */

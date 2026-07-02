@@ -87,115 +87,6 @@ export interface paths {
      */
     patch: operations["PatchBillOfLadingLineAsync"];
   };
-  "/api/v2/AiService/Completions/Complete": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          conversationId?: string;
-          message?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
   "/version": {
     get: {
       responses: {
@@ -1284,6 +1175,8 @@ export interface components {
       shippingTerms?: "NC" | "EXW" | "FCA" | "FOB" | "FAS" | "CFR" | "CIF" | "CPT" | "CIP" | "DDP" | "DAP" | "DPU";
       orderId?: string | null;
       tenantId?: string | null;
+      sellerBillingProfileId?: string | null;
+      buyerBillingProfileId?: string | null;
     };
     ShipmentDtoEnvelope: {
       isSuccess?: boolean;

@@ -78,115 +78,6 @@ export interface paths {
      */
     delete: operations["DeleteSystemCart"];
   };
-  "/api/v2/AiService/Completions/Complete": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          conversationId?: string;
-          message?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
   "/api/v2/SystemService/Contacts/{contactId}/Options": {
     /**
      * Retrieve a list of contact options (admin)
@@ -564,174 +455,6 @@ export interface paths {
      * @description Delete a system IP lookup by its ID
      */
     delete: operations["DeleteSystemIPLookup"];
-  };
-  "/api/Licensing/Licenses/Validate": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["LicenseKey"];
-          "application/xml": components["schemas"]["LicenseKey"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["BooleanEnvelope"];
-            "application/xml": components["schemas"]["BooleanEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/Licensing/Licenses/Validate/Errors": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["LicenseKey"];
-          "application/xml": components["schemas"]["LicenseKey"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["LicenseValidationErrorListEnvelope"];
-            "application/xml": components["schemas"]["LicenseValidationErrorListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/Licensing/Licenses/Validate/Attributes": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["LicenseKey"];
-          "application/xml": components["schemas"]["LicenseKey"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["LicenseAttributesListEnvelope"];
-            "application/xml": components["schemas"]["LicenseAttributesListEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
-  "/api/Licensing/Licenses/Generate": {
-    post: {
-      parameters: {
-        query: {
-          tenantId: string;
-          "api-version"?: string;
-        };
-        header?: {
-          "x-api-version"?: string;
-        };
-      };
-      requestBody?: {
-        content: {
-          "application/json": components["schemas"]["LicenseKeyRequest"];
-          "application/xml": components["schemas"]["LicenseKeyRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": components["schemas"]["StringEnvelope"];
-            "application/xml": components["schemas"]["StringEnvelope"];
-          };
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
   };
   "/api/v2/SystemService/Licensing/Licenses": {
     /**
@@ -1154,10 +877,6 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
-    AdditionalAttribute: {
-      key?: string | null;
-      value?: string | null;
-    };
     BooleanEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1282,6 +1001,8 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
+      /** @enum {string} */
+      kind?: "Organization" | "Individual";
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -1506,60 +1227,6 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
-    LicenseAttributes: Record<string, never>;
-    LicenseAttributesListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["LicenseAttributes"][] | null;
-    };
-    LicenseFeature: {
-      key?: string | null;
-      value?: string | null;
-    };
-    LicenseKey: {
-      key?: string | null;
-    };
-    LicenseKeyRequest: {
-      /** Format: uuid */
-      userId?: string;
-      /** Format: uuid */
-      tenantId?: string | null;
-      /** Format: uuid */
-      orderId?: string | null;
-      /** Format: uuid */
-      paymentId?: string | null;
-      /** Format: uuid */
-      invoiceId?: string | null;
-      /** Format: uuid */
-      enrollmentId?: string | null;
-      /** Format: uuid */
-      entitlementId?: string | null;
-      /** Format: int32 */
-      seats?: number;
-      /** @enum {string} */
-      licenseType?: "Trial" | "Standard" | "Enterprise";
-      /** Format: date-time */
-      expirationDate?: string;
-      features?: components["schemas"]["LicenseFeature"][] | null;
-      additionalAttributes?: components["schemas"]["AdditionalAttribute"][] | null;
-    };
-    LicenseValidationError: {
-      message?: string | null;
-      howToResolve?: string | null;
-    };
-    LicenseValidationErrorListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["LicenseValidationError"][] | null;
-    };
     LicenseValidationRequest: {
       licenseKey: string;
     };
@@ -1745,15 +1412,6 @@ export interface components {
       domain?: string | null;
       notes?: string | null;
     };
-    StringEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: string | null;
-    };
     StringListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1873,6 +1531,8 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      /** @enum {string} */
+      kind?: "Organization" | "Individual";
       name: string;
       legalName?: string | null;
       /** Format: email */
@@ -1904,6 +1564,8 @@ export interface components {
       /** Format: date-time */
       timestamp?: string | null;
       qualifiedName?: string | null;
+      /** @enum {string} */
+      kind?: "Organization" | "Individual";
       taxId?: string | null;
       about?: string | null;
       walletId?: string | null;
@@ -1959,6 +1621,8 @@ export interface components {
       result?: components["schemas"]["TenantDto"][] | null;
     };
     TenantUpdateDto: {
+      /** @enum {string|null} */
+      kind?: "Organization" | "Individual" | null;
       name: string;
       legalName?: string | null;
       /** Format: email */

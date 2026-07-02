@@ -145,6 +145,95 @@ export type AirwayBillUpdateDto = {
     shipmentId?: string | null;
 };
 
+export type ContactCreateDtoReadable = {
+    id?: string;
+    timestamp?: string;
+    type: 'Individual' | 'Organization';
+    firstName: string;
+    lastName?: string | null;
+    email: string;
+    taxId?: string | null;
+    primaryContactId?: string | null;
+    readonly qualifiedName?: string | null;
+    about?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    mobilePhone?: string | null;
+    businessPhone?: string | null;
+    postalCode?: string | null;
+    duns?: string | null;
+    jobTitle?: string | null;
+    webUrl?: string | null;
+    currencyId?: string | null;
+    languageId?: string | null;
+    timezoneId?: string | null;
+    birthday?: string | null;
+    streetLine1?: string | null;
+    streetLine2?: string | null;
+    gitHubUrl?: string | null;
+    twitchUrl?: string | null;
+    redditUrl?: string | null;
+    tikTokUrl?: string | null;
+    websiteUrl?: string | null;
+    twitterUrl?: string | null;
+    facebookUrl?: string | null;
+    youTubeUrl?: string | null;
+    linkedInUrl?: string | null;
+    instagramUrl?: string | null;
+    githubUsername?: string | null;
+    instagramUsername?: string | null;
+    tikTokUsername?: string | null;
+    stackExchangeUrl?: string | null;
+    stackOverflowUrl?: string | null;
+    parentContactId?: string | null;
+    faxNumber?: string | null;
+};
+
+export type ContactCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type: 'Individual' | 'Organization';
+    firstName: string;
+    lastName?: string | null;
+    email: string;
+    taxId?: string | null;
+    primaryContactId?: string | null;
+    about?: string | null;
+    countryId?: string | null;
+    stateId?: string | null;
+    cityId?: string | null;
+    mobilePhone?: string | null;
+    businessPhone?: string | null;
+    postalCode?: string | null;
+    duns?: string | null;
+    jobTitle?: string | null;
+    webUrl?: string | null;
+    currencyId?: string | null;
+    languageId?: string | null;
+    timezoneId?: string | null;
+    birthday?: string | null;
+    streetLine1?: string | null;
+    streetLine2?: string | null;
+    gitHubUrl?: string | null;
+    twitchUrl?: string | null;
+    redditUrl?: string | null;
+    tikTokUrl?: string | null;
+    websiteUrl?: string | null;
+    twitterUrl?: string | null;
+    facebookUrl?: string | null;
+    youTubeUrl?: string | null;
+    linkedInUrl?: string | null;
+    instagramUrl?: string | null;
+    githubUsername?: string | null;
+    instagramUsername?: string | null;
+    tikTokUsername?: string | null;
+    stackExchangeUrl?: string | null;
+    stackOverflowUrl?: string | null;
+    parentContactId?: string | null;
+    faxNumber?: string | null;
+};
+
 export type ContactDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
@@ -628,6 +717,8 @@ export type ItemRestockDto = {
     description?: string | null;
     tenantId?: string | null;
     entryCount?: number;
+    sellerBillingProfileId?: string | null;
+    buyerBillingProfileId?: string | null;
 };
 
 export type ItemRestockDtoEnvelopeReadable = {
@@ -1449,11 +1540,42 @@ export type SignProofOfDeliveryRequest = {
     signerId?: string | null;
 };
 
-export type SupplierProfileCreateDto = {
+export type SupplierProfileCreateDtoReadable = {
     id?: string;
     timestamp?: string;
     type?: string | null;
     contactId?: string | null;
+    contact?: ContactCreateDtoReadable;
+    about?: string | null;
+    avatarUrl?: string | null;
+    data?: string | null;
+    dataLabel?: string | null;
+    data1?: string | null;
+    data1Label?: string | null;
+    data2?: string | null;
+    data2Label?: string | null;
+    data3?: string | null;
+    data3Label?: string | null;
+    data4?: string | null;
+    data4Label?: string | null;
+    data5?: string | null;
+    data5Label?: string | null;
+    data6?: string | null;
+    data6Label?: string | null;
+    data7?: string | null;
+    data7Label?: string | null;
+    data8?: string | null;
+    data8Label?: string | null;
+    data9?: string | null;
+    data9Label?: string | null;
+};
+
+export type SupplierProfileCreateDtoWritable = {
+    id?: string;
+    timestamp?: string;
+    type?: string | null;
+    contactId?: string | null;
+    contact?: ContactCreateDtoWritable;
     about?: string | null;
     avatarUrl?: string | null;
     data?: string | null;
@@ -2836,37 +2958,6 @@ export type UpdateAirwayBillLineAsyncResponses = {
 };
 
 export type UpdateAirwayBillLineAsyncResponse = UpdateAirwayBillLineAsyncResponses[keyof UpdateAirwayBillLineAsyncResponses];
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
 
 export type GetDeliveryNotesAsyncData = {
     body?: never;
@@ -7618,7 +7709,7 @@ export type GetSupplierProfilesAsyncResponses = {
 export type GetSupplierProfilesAsyncResponse = GetSupplierProfilesAsyncResponses[keyof GetSupplierProfilesAsyncResponses];
 
 export type CreateSupplierProfileAsyncData = {
-    body?: SupplierProfileCreateDto;
+    body?: SupplierProfileCreateDtoWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9741,5 +9832,5 @@ export type UpdateWarehouseAsyncResponses = {
 export type UpdateWarehouseAsyncResponse = UpdateWarehouseAsyncResponses[keyof UpdateWarehouseAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

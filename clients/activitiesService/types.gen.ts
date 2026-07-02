@@ -928,18 +928,20 @@ export type UpdateActivityTypeAsyncResponses = {
 
 export type UpdateActivityTypeAsyncResponse = UpdateActivityTypeAsyncResponses[keyof UpdateActivityTypeAsyncResponses];
 
-export type GetApiV2AiServiceCompletionsCompleteData = {
+export type GetActivityRecordsCountAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
     path?: never;
     query: {
         tenantId: string;
-        conversationId?: string;
-        message?: string;
+        'api-version'?: string;
     };
-    url: '/api/v2/AiService/Completions/Complete';
+    url: '/api/v2/ActivitiesService/ActivityRecords/Count';
 };
 
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
+export type GetActivityRecordsCountAsyncErrors = {
     /**
      * Unauthorized
      */
@@ -950,14 +952,16 @@ export type GetApiV2AiServiceCompletionsCompleteErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+export type GetActivityRecordsCountAsyncError = GetActivityRecordsCountAsyncErrors[keyof GetActivityRecordsCountAsyncErrors];
 
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
+export type GetActivityRecordsCountAsyncResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: Int32EnvelopeReadable;
 };
+
+export type GetActivityRecordsCountAsyncResponse = GetActivityRecordsCountAsyncResponses[keyof GetActivityRecordsCountAsyncResponses];
 
 export type GetVersionData = {
     body?: never;
@@ -1288,5 +1292,5 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

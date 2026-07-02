@@ -88,6 +88,7 @@ export type ExtendedTenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -131,6 +132,7 @@ export type ExtendedTenantDtoReadable = {
 export type ExtendedTenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -531,6 +533,7 @@ export type SuiteLicenseFeatureDtoListEnvelopeWritable = {
 export type TenantCreateDto = {
     id?: string;
     timestamp?: string;
+    kind?: 'Organization' | 'Individual';
     name: string;
     legalName?: string | null;
     email: string;
@@ -618,6 +621,7 @@ export type TenantDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     readonly qualifiedName?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -658,6 +662,7 @@ export type TenantDtoReadable = {
 export type TenantDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
+    kind?: 'Organization' | 'Individual';
     taxId?: string | null;
     about?: string | null;
     walletId?: string | null;
@@ -1448,6 +1453,7 @@ export type TenantUnitUpdateDto = {
 };
 
 export type TenantUpdateDto = {
+    kind?: 'Organization' | 'Individual';
     name: string;
     legalName?: string | null;
     email: string;
@@ -1498,12 +1504,14 @@ export type UnitCreateDto = {
     name: string;
     baseUnitAmount?: number;
     baseUnitId?: string | null;
+    unECECode?: string | null;
 };
 
 export type UnitDto = {
     id?: string | null;
     timestamp?: string | null;
     name?: string | null;
+    unECECode?: string | null;
     unitGroupId?: string | null;
     baseUnitAmount?: number;
     baseUnitId?: string | null;
@@ -1597,6 +1605,7 @@ export type UnitUpdateDto = {
     name?: string | null;
     baseUnitAmount?: number | null;
     baseUnitId?: string | null;
+    unECECode?: string | null;
 };
 
 export type UserDtoReadable = {
@@ -1776,18 +1785,20 @@ export type WebPortalDtoListEnvelopeWritable = {
     result?: Array<WebPortalDto> | null;
 };
 
-export type GetApiV2AiServiceCompletionsCompleteData = {
+export type GetBusinessRelationshipsCountAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
     path?: never;
     query: {
         tenantId: string;
-        conversationId?: string;
-        message?: string;
+        'api-version'?: string;
     };
-    url: '/api/v2/AiService/Completions/Complete';
+    url: '/api/v2/TenantsService/BusinessRelationships/Count';
 };
 
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
+export type GetBusinessRelationshipsCountAsyncErrors = {
     /**
      * Unauthorized
      */
@@ -1798,14 +1809,16 @@ export type GetApiV2AiServiceCompletionsCompleteErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+export type GetBusinessRelationshipsCountAsyncError = GetBusinessRelationshipsCountAsyncErrors[keyof GetBusinessRelationshipsCountAsyncErrors];
 
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
+export type GetBusinessRelationshipsCountAsyncResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: Int32EnvelopeReadable;
 };
+
+export type GetBusinessRelationshipsCountAsyncResponse = GetBusinessRelationshipsCountAsyncResponses[keyof GetBusinessRelationshipsCountAsyncResponses];
 
 export type GetTenantDepartmentsData = {
     body?: never;
@@ -8111,5 +8124,5 @@ export type UpdateTenantUnitResponses = {
 export type UpdateTenantUnitResponse = UpdateTenantUnitResponses[keyof UpdateTenantUnitResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

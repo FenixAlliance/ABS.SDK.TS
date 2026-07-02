@@ -77,115 +77,6 @@ export interface paths {
      */
     delete: operations["DeleteAppraisalWorkflowAsync"];
   };
-  "/api/v2/AiService/Completions/Complete": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          conversationId?: string;
-          message?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
-  };
   "/api/v2/HrmsService/EmployeeAppraisalSessions": {
     /**
      * Get employee appraisal sessions
@@ -647,6 +538,54 @@ export interface paths {
       };
     };
   };
+  "/api/v2/HrmsService/GigApplications": {
+    /**
+     * Get gig applications
+     * @description Retrieves proposals submitted against the tenant's gigs. Filter with `$filter=GigId eq '...'` or `JobApplicantProfileId eq '...'`.
+     */
+    get: operations["GetGigApplicationsAsync"];
+    /**
+     * Create a gig application
+     * @description Records a candidate's proposal against one of the tenant's gigs. The targeted gig must belong to the tenant.
+     */
+    post: operations["CreateGigApplicationAsync"];
+  };
+  "/api/v2/HrmsService/GigApplications/Count": {
+    /**
+     * Count gig applications
+     * @description Counts proposals submitted against the tenant's gigs.
+     */
+    get: operations["GetGigApplicationsCountAsync"];
+  };
+  "/api/v2/HrmsService/GigApplications/{gigApplicationId}": {
+    /**
+     * Get gig application by ID
+     * @description Retrieves a specific proposal submitted against one of the tenant's gigs.
+     */
+    get: operations["GetGigApplicationByIdAsync"];
+    /**
+     * Update a gig application
+     * @description Updates an existing proposal submitted against one of the tenant's gigs (e.g. accept it).
+     */
+    put: operations["UpdateGigApplicationAsync"];
+    /**
+     * Delete a gig application
+     * @description Removes a proposal submitted against one of the tenant's gigs.
+     */
+    delete: operations["DeleteGigApplicationAsync"];
+    /**
+     * Patch a gig application
+     * @description Partially updates an existing proposal submitted against one of the tenant's gigs.
+     */
+    patch: operations["PatchGigApplicationAsync"];
+  };
+  "/api/v2/HrmsService/GigApplications/{gigApplicationId}/Accept": {
+    /**
+     * Accept a gig application
+     * @description Accepts the candidate's gig proposal, forming an engagement (raises GigApplicationAccepted). A proposal cannot be accepted twice.
+     */
+    post: operations["AcceptGigApplicationAsync"];
+  };
   "/api/v2/HrmsService/Gigs": {
     /**
      * Get gigs
@@ -688,6 +627,177 @@ export interface paths {
      */
     patch: operations["PatchGigAsync"];
   };
+  "/api/v2/HrmsService/JobApplicants": {
+    /**
+     * Get job applicants
+     * @description Retrieves job applicant (candidate) profiles for the specified tenant.
+     */
+    get: operations["GetJobApplicantsAsync"];
+    /**
+     * Create a job applicant
+     * @description Creates a new job applicant (candidate) profile for the specified tenant.
+     */
+    post: operations["CreateJobApplicantAsync"];
+  };
+  "/api/v2/HrmsService/JobApplicants/Count": {
+    /**
+     * Count job applicants
+     * @description Counts job applicant profiles for the specified tenant.
+     */
+    get: operations["GetJobApplicantsCountAsync"];
+  };
+  "/api/v2/HrmsService/JobApplicants/{jobApplicantId}": {
+    /**
+     * Get job applicant by ID
+     * @description Retrieves a specific job applicant (candidate) profile by its identifier.
+     */
+    get: operations["GetJobApplicantByIdAsync"];
+    /**
+     * Update a job applicant
+     * @description Updates an existing job applicant (candidate) profile for the specified tenant.
+     */
+    put: operations["UpdateJobApplicantAsync"];
+    /**
+     * Delete a job applicant
+     * @description Deletes a job applicant (candidate) profile for the specified tenant.
+     */
+    delete: operations["DeleteJobApplicantAsync"];
+    /**
+     * Patch a job applicant
+     * @description Partially updates an existing job applicant (candidate) profile for the specified tenant.
+     */
+    patch: operations["PatchJobApplicantAsync"];
+  };
+  "/api/v2/HrmsService/JobApplications": {
+    /**
+     * Get job applications
+     * @description Retrieves applications submitted against the tenant's job offers. Filter with `$filter=JobOfferId eq '...'` or `JobApplicantProfileId eq '...'`.
+     */
+    get: operations["GetJobApplicationsAsync"];
+    /**
+     * Create a job application
+     * @description Records a candidate's application against one of the tenant's job offers. The targeted job offer must belong to the tenant.
+     */
+    post: operations["CreateJobApplicationAsync"];
+  };
+  "/api/v2/HrmsService/JobApplications/Count": {
+    /**
+     * Count job applications
+     * @description Counts applications submitted against the tenant's job offers.
+     */
+    get: operations["GetJobApplicationsCountAsync"];
+  };
+  "/api/v2/HrmsService/JobApplications/{jobApplicationId}": {
+    /**
+     * Get job application by ID
+     * @description Retrieves a specific application submitted against one of the tenant's job offers.
+     */
+    get: operations["GetJobApplicationByIdAsync"];
+    /**
+     * Update a job application
+     * @description Updates an existing application submitted against one of the tenant's job offers.
+     */
+    put: operations["UpdateJobApplicationAsync"];
+    /**
+     * Delete a job application
+     * @description Removes an application submitted against one of the tenant's job offers.
+     */
+    delete: operations["DeleteJobApplicationAsync"];
+    /**
+     * Patch a job application
+     * @description Partially updates an existing application submitted against one of the tenant's job offers.
+     */
+    patch: operations["PatchJobApplicationAsync"];
+  };
+  "/api/v2/HrmsService/JobApplications/{jobApplicationId}/Status": {
+    /**
+     * Change job application status
+     * @description Transitions the application to a new funnel status (e.g. UnderReview, Interviewing, Offered, Hired, Rejected). Raises JobApplicationStatusChanged; terminal statuses are immutable.
+     */
+    post: operations["ChangeJobApplicationStatusAsync"];
+  };
+  "/api/v2/HrmsService/JobFields": {
+    /**
+     * Get job fields
+     * @description Retrieves job field (role domain) taxonomy entries for the specified tenant.
+     */
+    get: operations["GetJobFieldsAsync"];
+    /**
+     * Create a job field
+     * @description Creates a new job field (role domain) for the specified tenant.
+     */
+    post: operations["CreateJobFieldAsync"];
+  };
+  "/api/v2/HrmsService/JobFields/Count": {
+    /**
+     * Count job fields
+     * @description Counts job field taxonomy entries for the specified tenant.
+     */
+    get: operations["GetJobFieldsCountAsync"];
+  };
+  "/api/v2/HrmsService/JobFields/{jobFieldId}": {
+    /**
+     * Get job field by ID
+     * @description Retrieves a specific job field by its identifier.
+     */
+    get: operations["GetJobFieldByIdAsync"];
+    /**
+     * Update a job field
+     * @description Updates an existing job field for the specified tenant.
+     */
+    put: operations["UpdateJobFieldAsync"];
+    /**
+     * Delete a job field
+     * @description Deletes a job field for the specified tenant.
+     */
+    delete: operations["DeleteJobFieldAsync"];
+    /**
+     * Patch a job field
+     * @description Partially updates an existing job field for the specified tenant.
+     */
+    patch: operations["PatchJobFieldAsync"];
+  };
+  "/api/v2/HrmsService/JobOfferFields": {
+    /**
+     * Get job offer fields
+     * @description Retrieves job-offer field link records for the tenant. Filter with `$filter=JobOfferId eq '...'` or `JobFieldId eq '...'`.
+     */
+    get: operations["GetJobOfferFieldsAsync"];
+    /**
+     * Create a job offer field
+     * @description Links a job field to a job offer for the specified tenant.
+     */
+    post: operations["CreateJobOfferFieldAsync"];
+  };
+  "/api/v2/HrmsService/JobOfferFields/Count": {
+    /**
+     * Count job offer fields
+     * @description Counts job-offer field link records for the specified tenant.
+     */
+    get: operations["GetJobOfferFieldsCountAsync"];
+  };
+  "/api/v2/HrmsService/JobOfferFields/{jobOfferFieldId}": {
+    /**
+     * Get job offer field by ID
+     * @description Retrieves a specific job-offer field link record by its identifier.
+     */
+    get: operations["GetJobOfferFieldByIdAsync"];
+    /**
+     * Update a job offer field
+     * @description Updates an existing job-offer field link record for the specified tenant.
+     */
+    put: operations["UpdateJobOfferFieldAsync"];
+    /**
+     * Delete a job offer field
+     * @description Removes a job-offer field link record for the specified tenant.
+     */
+    delete: operations["DeleteJobOfferFieldAsync"];
+    /**
+     * Patch a job offer field
+     * @description Partially updates an existing job-offer field link record for the specified tenant.
+     */
+    patch: operations["PatchJobOfferFieldAsync"];
+  };
   "/api/v2/HrmsService/JobOffers": {
     /**
      * Get job offers
@@ -728,6 +838,48 @@ export interface paths {
      * @description Partially updates an existing job offer for the specified tenant.
      */
     patch: operations["PatchJobOfferAsync"];
+  };
+  "/api/v2/HrmsService/JobOffers/Public": {
+    /**
+     * Get public job offers
+     * @description Retrieves published job offers for the Talent Portal. Anonymous; optionally scoped to a single tenant.
+     */
+    get: operations["GetPublicJobOffersAsync"];
+  };
+  "/api/v2/HrmsService/JobOffers/Public/Count": {
+    /**
+     * Count public job offers
+     * @description Counts published job offers for the Talent Portal. Anonymous; optionally scoped to a single tenant.
+     */
+    get: operations["GetPublicJobOffersCountAsync"];
+  };
+  "/api/v2/HrmsService/JobOffers/Public/{jobOfferId}": {
+    /**
+     * Get public job offer by ID
+     * @description Retrieves a published job offer by its identifier for the Talent Portal. Anonymous; optionally scoped to a tenant.
+     */
+    get: operations["GetPublicJobOfferByIdAsync"];
+  };
+  "/api/v2/HrmsService/JobOffers/{jobOfferId}/Publish": {
+    /**
+     * Publish a job offer
+     * @description Publishes the job offer to the public Talent Portal (raises JobOfferPublished).
+     */
+    post: operations["PublishJobOfferAsync"];
+  };
+  "/api/v2/HrmsService/JobOffers/{jobOfferId}/Close": {
+    /**
+     * Close a job offer
+     * @description Closes the job offer without a hire and removes it from the public board (raises JobOfferClosed).
+     */
+    post: operations["CloseJobOfferAsync"];
+  };
+  "/api/v2/HrmsService/JobOffers/{jobOfferId}/Fill": {
+    /**
+     * Mark a job offer filled
+     * @description Marks the offer filled — converted to a hire — and removes it from the public board (raises JobOfferFilled).
+     */
+    post: operations["FillJobOfferAsync"];
   };
   "/api/v2/HrmsService/JobTitles": {
     /**
@@ -923,6 +1075,47 @@ export interface paths {
      * @description Partially updates an existing payroll for the specified tenant.
      */
     patch: operations["PatchPayrollAsync"];
+  };
+  "/api/v2/HrmsService/RequiredSkills": {
+    /**
+     * Get required skills
+     * @description Retrieves required-skill records for the specified tenant. Filter by `$filter=JobOfferId eq '...'` or `EmployerProfileId eq '...'`.
+     */
+    get: operations["GetRequiredSkillsAsync"];
+    /**
+     * Create a required skill
+     * @description Creates a new required-skill record for the specified tenant.
+     */
+    post: operations["CreateRequiredSkillAsync"];
+  };
+  "/api/v2/HrmsService/RequiredSkills/Count": {
+    /**
+     * Count required skills
+     * @description Counts required-skill records for the specified tenant.
+     */
+    get: operations["GetRequiredSkillsCountAsync"];
+  };
+  "/api/v2/HrmsService/RequiredSkills/{requiredSkillId}": {
+    /**
+     * Get required skill by ID
+     * @description Retrieves a specific required-skill record by its identifier.
+     */
+    get: operations["GetRequiredSkillByIdAsync"];
+    /**
+     * Update a required skill
+     * @description Updates an existing required-skill record for the specified tenant.
+     */
+    put: operations["UpdateRequiredSkillAsync"];
+    /**
+     * Delete a required skill
+     * @description Deletes a required-skill record for the specified tenant.
+     */
+    delete: operations["DeleteRequiredSkillAsync"];
+    /**
+     * Patch a required skill
+     * @description Partially updates an existing required-skill record for the specified tenant.
+     */
+    patch: operations["PatchRequiredSkillAsync"];
   };
   "/api/v2/HrmsService/Salaries": {
     /**
@@ -1304,6 +1497,57 @@ export interface components {
       name?: string | null;
       description?: string | null;
     };
+    ContactCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      /** @enum {string} */
+      type: "Individual" | "Organization";
+      firstName: string;
+      lastName?: string | null;
+      /** Format: email */
+      email: string;
+      taxId?: string | null;
+      primaryContactId?: string | null;
+      qualifiedName?: string | null;
+      about?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      /** Format: tel */
+      mobilePhone?: string | null;
+      /** Format: tel */
+      businessPhone?: string | null;
+      postalCode?: string | null;
+      duns?: string | null;
+      jobTitle?: string | null;
+      webUrl?: string | null;
+      currencyId?: string | null;
+      languageId?: string | null;
+      timezoneId?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
+      streetLine1?: string | null;
+      streetLine2?: string | null;
+      gitHubUrl?: string | null;
+      twitchUrl?: string | null;
+      redditUrl?: string | null;
+      tikTokUrl?: string | null;
+      websiteUrl?: string | null;
+      twitterUrl?: string | null;
+      facebookUrl?: string | null;
+      youTubeUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      githubUsername?: string | null;
+      instagramUsername?: string | null;
+      tikTokUsername?: string | null;
+      stackExchangeUrl?: string | null;
+      stackOverflowUrl?: string | null;
+      parentContactId?: string | null;
+      faxNumber?: string | null;
+    };
     ContactDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1430,6 +1674,7 @@ export interface components {
       timestamp?: string;
       type?: string | null;
       contactId?: string | null;
+      contact?: components["schemas"]["ContactCreateDto"];
       about?: string | null;
       avatarUrl?: string | null;
       data?: string | null;
@@ -1607,6 +1852,7 @@ export interface components {
       timestamp?: string;
       type?: string | null;
       contactId?: string | null;
+      contact?: components["schemas"]["ContactCreateDto"];
       about?: string | null;
       avatarUrl?: string | null;
       data?: string | null;
@@ -1729,6 +1975,62 @@ export interface components {
     };
     ForgotPasswordRequest: {
       email: string | null;
+    };
+    GigApplicationCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      proposal?: string | null;
+      /** Format: double */
+      cost?: number;
+      gigId?: string | null;
+      currencyId?: string | null;
+      curriculumId?: string | null;
+      curriculumCoverId?: string | null;
+      jobApplicantProfileId?: string | null;
+    };
+    GigApplicationDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: date-time */
+      acceptedTimestamp?: string | null;
+      accepted?: boolean;
+      proposal?: string | null;
+      /** Format: double */
+      cost?: number;
+      gigId?: string | null;
+      currencyId?: string | null;
+      curriculumId?: string | null;
+      curriculumCoverId?: string | null;
+      jobApplicantProfileId?: string | null;
+    };
+    GigApplicationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["GigApplicationDto"];
+    };
+    GigApplicationDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["GigApplicationDto"][] | null;
+    };
+    GigApplicationUpdateDto: {
+      proposal?: string | null;
+      /** Format: double */
+      cost?: number;
+      currencyId?: string | null;
+      curriculumId?: string | null;
+      curriculumCoverId?: string | null;
     };
     GigCreateDto: {
       /** Format: uuid */
@@ -1907,6 +2209,263 @@ export interface components {
       /** Format: int32 */
       result?: number;
     };
+    JobApplicantProfileCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      type?: string | null;
+      contactId?: string | null;
+      contact?: components["schemas"]["ContactCreateDto"];
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      availableForHire?: boolean;
+      /** @enum {string} */
+      careerLevel?: "Junior" | "Intermediate" | "MidLevel" | "Executive" | "Senior";
+      /** Format: int32 */
+      experienceInYears?: number;
+      /** Format: double */
+      currentSalary?: number;
+      /** Format: double */
+      minSalaryExpectation?: number;
+      /** Format: double */
+      maxSalaryExpectation?: number;
+      currencyId?: string | null;
+    };
+    JobApplicantProfileDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      contactId?: string | null;
+      tenantId?: string | null;
+      type?: string | null;
+      enrollmentId?: string | null;
+      about?: string | null;
+      verified?: boolean;
+      submitted?: boolean;
+      avatarUrl?: string | null;
+      contact?: components["schemas"]["ContactDto"];
+      qualifiedName?: string | null;
+      /** Format: date-time */
+      verificationTimestamp?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      availableForHire?: boolean;
+      /** @enum {string} */
+      careerLevel?: "Junior" | "Intermediate" | "MidLevel" | "Executive" | "Senior";
+      /** Format: int32 */
+      experienceInYears?: number;
+      /** Format: double */
+      currentSalary?: number;
+      /** Format: double */
+      minSalaryExpectation?: number;
+      /** Format: double */
+      maxSalaryExpectation?: number;
+      currencyId?: string | null;
+    };
+    JobApplicantProfileDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobApplicantProfileDto"];
+    };
+    JobApplicantProfileDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobApplicantProfileDto"][] | null;
+    };
+    JobApplicantProfileUpdateDto: {
+      type?: string | null;
+      contactId?: string | null;
+      about?: string | null;
+      avatarUrl?: string | null;
+      data?: string | null;
+      dataLabel?: string | null;
+      data1?: string | null;
+      data1Label?: string | null;
+      data2?: string | null;
+      data2Label?: string | null;
+      data3?: string | null;
+      data3Label?: string | null;
+      data4?: string | null;
+      data4Label?: string | null;
+      data5?: string | null;
+      data5Label?: string | null;
+      data6?: string | null;
+      data6Label?: string | null;
+      data7?: string | null;
+      data7Label?: string | null;
+      data8?: string | null;
+      data8Label?: string | null;
+      data9?: string | null;
+      data9Label?: string | null;
+      availableForHire?: boolean;
+      /** @enum {string} */
+      careerLevel?: "Junior" | "Intermediate" | "MidLevel" | "Executive" | "Senior";
+      /** Format: int32 */
+      experienceInYears?: number;
+      /** Format: double */
+      currentSalary?: number;
+      /** Format: double */
+      minSalaryExpectation?: number;
+      /** Format: double */
+      maxSalaryExpectation?: number;
+      currencyId?: string | null;
+    };
+    JobFieldCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      imageUrl?: string | null;
+      description?: string | null;
+    };
+    JobFieldDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      imageUrl?: string | null;
+      description?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    JobFieldDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobFieldDto"];
+    };
+    JobFieldDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobFieldDto"][] | null;
+    };
+    JobFieldUpdateDto: {
+      name?: string | null;
+      imageUrl?: string | null;
+      description?: string | null;
+    };
+    JobOfferApplicationCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: date-time */
+      start?: string;
+      /** Format: date-time */
+      end?: string;
+      /** Format: double */
+      salaryExpectation?: number;
+      currencyId?: string | null;
+      curriculumId?: string | null;
+      curriculumCoverId?: string | null;
+      jobOfferId?: string | null;
+      partnerProfileId?: string | null;
+      jobApplicantProfileId?: string | null;
+    };
+    JobOfferApplicationDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** @enum {string} */
+      status?: "Submitted" | "UnderReview" | "Interviewing" | "Offered" | "Hired" | "Rejected" | "Withdrawn";
+      /** Format: date-time */
+      start?: string;
+      /** Format: date-time */
+      end?: string;
+      /** Format: double */
+      salaryExpectation?: number;
+      currencyId?: string | null;
+      curriculumId?: string | null;
+      curriculumCoverId?: string | null;
+      jobOfferId?: string | null;
+      partnerProfileId?: string | null;
+      jobApplicantProfileId?: string | null;
+    };
+    JobOfferApplicationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobOfferApplicationDto"];
+    };
+    JobOfferApplicationDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobOfferApplicationDto"][] | null;
+    };
+    JobOfferApplicationUpdateDto: {
+      /** Format: date-time */
+      start?: string;
+      /** Format: date-time */
+      end?: string;
+      /** Format: double */
+      salaryExpectation?: number;
+      currencyId?: string | null;
+      curriculumId?: string | null;
+      curriculumCoverId?: string | null;
+      partnerProfileId?: string | null;
+    };
     JobOfferCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -1969,6 +2528,8 @@ export interface components {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      /** @enum {string} */
+      status?: "Draft" | "Published" | "Closed" | "Filled";
       remote?: boolean;
       /** Format: date-time */
       expectedHireDate?: string;
@@ -2043,6 +2604,45 @@ export interface components {
       timestamp?: string;
       activityId?: string | null;
       result?: components["schemas"]["JobOfferDto"][] | null;
+    };
+    JobOfferFieldRecordCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      jobFieldId: string;
+      jobOfferId?: string | null;
+    };
+    JobOfferFieldRecordDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      jobFieldId?: string | null;
+      jobOfferId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    JobOfferFieldRecordDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobOfferFieldRecordDto"];
+    };
+    JobOfferFieldRecordDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["JobOfferFieldRecordDto"][] | null;
+    };
+    JobOfferFieldRecordUpdateDto: {
+      jobFieldId?: string | null;
+      jobOfferId?: string | null;
     };
     JobOfferUpdateDto: {
       remote?: boolean;
@@ -2352,6 +2952,66 @@ export interface components {
     RegisterRequest: {
       email: string | null;
       password: string | null;
+    };
+    RequiredSkillRecordCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      skillId: string;
+      jobOfferId?: string | null;
+      employerProfileId?: string | null;
+      /** Format: int32 */
+      experienceInYears?: number;
+      /** Format: double */
+      priority?: number;
+      /** @enum {string} */
+      requiredSkillRecordType?: "MustHave" | "Optional";
+    };
+    RequiredSkillRecordDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      experienceInYears?: number;
+      /** Format: double */
+      priority?: number;
+      /** @enum {string} */
+      requiredSkillRecordType?: "MustHave" | "Optional";
+      skillId?: string | null;
+      jobOfferId?: string | null;
+      employerProfileId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    RequiredSkillRecordDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RequiredSkillRecordDto"];
+    };
+    RequiredSkillRecordDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["RequiredSkillRecordDto"][] | null;
+    };
+    RequiredSkillRecordUpdateDto: {
+      skillId?: string | null;
+      jobOfferId?: string | null;
+      employerProfileId?: string | null;
+      /** Format: int32 */
+      experienceInYears?: number;
+      /** Format: double */
+      priority?: number;
+      /** @enum {string} */
+      requiredSkillRecordType?: "MustHave" | "Optional";
     };
     ResendConfirmationEmailRequest: {
       email: string | null;
@@ -4764,6 +5424,371 @@ export interface operations {
     };
   };
   /**
+   * Get gig applications
+   * @description Retrieves proposals submitted against the tenant's gigs. Filter with `$filter=GigId eq '...'` or `JobApplicantProfileId eq '...'`.
+   */
+  GetGigApplicationsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["GigApplicationDtoListEnvelope"];
+          "application/xml": components["schemas"]["GigApplicationDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a gig application
+   * @description Records a candidate's proposal against one of the tenant's gigs. The targeted gig must belong to the tenant.
+   */
+  CreateGigApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["GigApplicationCreateDto"];
+        "application/xml": components["schemas"]["GigApplicationCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count gig applications
+   * @description Counts proposals submitted against the tenant's gigs.
+   */
+  GetGigApplicationsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get gig application by ID
+   * @description Retrieves a specific proposal submitted against one of the tenant's gigs.
+   */
+  GetGigApplicationByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["GigApplicationDtoEnvelope"];
+          "application/xml": components["schemas"]["GigApplicationDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a gig application
+   * @description Updates an existing proposal submitted against one of the tenant's gigs (e.g. accept it).
+   */
+  UpdateGigApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigApplicationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["GigApplicationUpdateDto"];
+        "application/xml": components["schemas"]["GigApplicationUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a gig application
+   * @description Removes a proposal submitted against one of the tenant's gigs.
+   */
+  DeleteGigApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a gig application
+   * @description Partially updates an existing proposal submitted against one of the tenant's gigs.
+   */
+  PatchGigApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigApplicationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Accept a gig application
+   * @description Accepts the candidate's gig proposal, forming an engagement (raises GigApplicationAccepted). A proposal cannot be accepted twice.
+   */
+  AcceptGigApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        gigApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get gigs
    * @description Retrieves gigs for the specified tenant.
    */
@@ -5048,6 +6073,1344 @@ export interface operations {
       };
       path: {
         gigId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job applicants
+   * @description Retrieves job applicant (candidate) profiles for the specified tenant.
+   */
+  GetJobApplicantsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobApplicantProfileDtoListEnvelope"];
+          "application/xml": components["schemas"]["JobApplicantProfileDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a job applicant
+   * @description Creates a new job applicant (candidate) profile for the specified tenant.
+   */
+  CreateJobApplicantAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobApplicantProfileCreateDto"];
+        "application/xml": components["schemas"]["JobApplicantProfileCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count job applicants
+   * @description Counts job applicant profiles for the specified tenant.
+   */
+  GetJobApplicantsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job applicant by ID
+   * @description Retrieves a specific job applicant (candidate) profile by its identifier.
+   */
+  GetJobApplicantByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobApplicantProfileDtoEnvelope"];
+          "application/xml": components["schemas"]["JobApplicantProfileDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a job applicant
+   * @description Updates an existing job applicant (candidate) profile for the specified tenant.
+   */
+  UpdateJobApplicantAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobApplicantProfileUpdateDto"];
+        "application/xml": components["schemas"]["JobApplicantProfileUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a job applicant
+   * @description Deletes a job applicant (candidate) profile for the specified tenant.
+   */
+  DeleteJobApplicantAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a job applicant
+   * @description Partially updates an existing job applicant (candidate) profile for the specified tenant.
+   */
+  PatchJobApplicantAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job applications
+   * @description Retrieves applications submitted against the tenant's job offers. Filter with `$filter=JobOfferId eq '...'` or `JobApplicantProfileId eq '...'`.
+   */
+  GetJobApplicationsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobOfferApplicationDtoListEnvelope"];
+          "application/xml": components["schemas"]["JobOfferApplicationDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a job application
+   * @description Records a candidate's application against one of the tenant's job offers. The targeted job offer must belong to the tenant.
+   */
+  CreateJobApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobOfferApplicationCreateDto"];
+        "application/xml": components["schemas"]["JobOfferApplicationCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count job applications
+   * @description Counts applications submitted against the tenant's job offers.
+   */
+  GetJobApplicationsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job application by ID
+   * @description Retrieves a specific application submitted against one of the tenant's job offers.
+   */
+  GetJobApplicationByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobOfferApplicationDtoEnvelope"];
+          "application/xml": components["schemas"]["JobOfferApplicationDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a job application
+   * @description Updates an existing application submitted against one of the tenant's job offers.
+   */
+  UpdateJobApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobOfferApplicationUpdateDto"];
+        "application/xml": components["schemas"]["JobOfferApplicationUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a job application
+   * @description Removes an application submitted against one of the tenant's job offers.
+   */
+  DeleteJobApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a job application
+   * @description Partially updates an existing application submitted against one of the tenant's job offers.
+   */
+  PatchJobApplicationAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Change job application status
+   * @description Transitions the application to a new funnel status (e.g. UnderReview, Interviewing, Offered, Hired, Rejected). Raises JobApplicationStatusChanged; terminal statuses are immutable.
+   */
+  ChangeJobApplicationStatusAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        status: "Submitted" | "UnderReview" | "Interviewing" | "Offered" | "Hired" | "Rejected" | "Withdrawn";
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobApplicationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job fields
+   * @description Retrieves job field (role domain) taxonomy entries for the specified tenant.
+   */
+  GetJobFieldsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobFieldDtoListEnvelope"];
+          "application/xml": components["schemas"]["JobFieldDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a job field
+   * @description Creates a new job field (role domain) for the specified tenant.
+   */
+  CreateJobFieldAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobFieldCreateDto"];
+        "application/xml": components["schemas"]["JobFieldCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count job fields
+   * @description Counts job field taxonomy entries for the specified tenant.
+   */
+  GetJobFieldsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job field by ID
+   * @description Retrieves a specific job field by its identifier.
+   */
+  GetJobFieldByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobFieldId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobFieldDtoEnvelope"];
+          "application/xml": components["schemas"]["JobFieldDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a job field
+   * @description Updates an existing job field for the specified tenant.
+   */
+  UpdateJobFieldAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobFieldId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobFieldUpdateDto"];
+        "application/xml": components["schemas"]["JobFieldUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a job field
+   * @description Deletes a job field for the specified tenant.
+   */
+  DeleteJobFieldAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobFieldId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a job field
+   * @description Partially updates an existing job field for the specified tenant.
+   */
+  PatchJobFieldAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobFieldId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job offer fields
+   * @description Retrieves job-offer field link records for the tenant. Filter with `$filter=JobOfferId eq '...'` or `JobFieldId eq '...'`.
+   */
+  GetJobOfferFieldsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobOfferFieldRecordDtoListEnvelope"];
+          "application/xml": components["schemas"]["JobOfferFieldRecordDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a job offer field
+   * @description Links a job field to a job offer for the specified tenant.
+   */
+  CreateJobOfferFieldAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobOfferFieldRecordCreateDto"];
+        "application/xml": components["schemas"]["JobOfferFieldRecordCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count job offer fields
+   * @description Counts job-offer field link records for the specified tenant.
+   */
+  GetJobOfferFieldsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get job offer field by ID
+   * @description Retrieves a specific job-offer field link record by its identifier.
+   */
+  GetJobOfferFieldByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferFieldId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobOfferFieldRecordDtoEnvelope"];
+          "application/xml": components["schemas"]["JobOfferFieldRecordDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a job offer field
+   * @description Updates an existing job-offer field link record for the specified tenant.
+   */
+  UpdateJobOfferFieldAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferFieldId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JobOfferFieldRecordUpdateDto"];
+        "application/xml": components["schemas"]["JobOfferFieldRecordUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a job offer field
+   * @description Removes a job-offer field link record for the specified tenant.
+   */
+  DeleteJobOfferFieldAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferFieldId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a job offer field
+   * @description Partially updates an existing job-offer field link record for the specified tenant.
+   */
+  PatchJobOfferFieldAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferFieldId: string;
       };
     };
     requestBody?: {
@@ -5397,6 +7760,225 @@ export interface operations {
       };
       /** @description Unauthorized */
       401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get public job offers
+   * @description Retrieves published job offers for the Talent Portal. Anonymous; optionally scoped to a single tenant.
+   */
+  GetPublicJobOffersAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobOfferDtoListEnvelope"];
+          "application/xml": components["schemas"]["JobOfferDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count public job offers
+   * @description Counts published job offers for the Talent Portal. Anonymous; optionally scoped to a single tenant.
+   */
+  GetPublicJobOffersCountAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get public job offer by ID
+   * @description Retrieves a published job offer by its identifier for the Talent Portal. Anonymous; optionally scoped to a tenant.
+   */
+  GetPublicJobOfferByIdAsync: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["JobOfferDtoEnvelope"];
+          "application/xml": components["schemas"]["JobOfferDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Publish a job offer
+   * @description Publishes the job offer to the public Talent Portal (raises JobOfferPublished).
+   */
+  PublishJobOfferAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Close a job offer
+   * @description Closes the job offer without a hire and removes it from the public board (raises JobOfferClosed).
+   */
+  CloseJobOfferAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Mark a job offer filled
+   * @description Marks the offer filled — converted to a hire — and removes it from the public board (raises JobOfferFilled).
+   */
+  FillJobOfferAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        jobOfferId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -6884,6 +9466,330 @@ export interface operations {
       };
       path: {
         payrollId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get required skills
+   * @description Retrieves required-skill records for the specified tenant. Filter by `$filter=JobOfferId eq '...'` or `EmployerProfileId eq '...'`.
+   */
+  GetRequiredSkillsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RequiredSkillRecordDtoListEnvelope"];
+          "application/xml": components["schemas"]["RequiredSkillRecordDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a required skill
+   * @description Creates a new required-skill record for the specified tenant.
+   */
+  CreateRequiredSkillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RequiredSkillRecordCreateDto"];
+        "application/xml": components["schemas"]["RequiredSkillRecordCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count required skills
+   * @description Counts required-skill records for the specified tenant.
+   */
+  GetRequiredSkillsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get required skill by ID
+   * @description Retrieves a specific required-skill record by its identifier.
+   */
+  GetRequiredSkillByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        requiredSkillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["RequiredSkillRecordDtoEnvelope"];
+          "application/xml": components["schemas"]["RequiredSkillRecordDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a required skill
+   * @description Updates an existing required-skill record for the specified tenant.
+   */
+  UpdateRequiredSkillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        requiredSkillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["RequiredSkillRecordUpdateDto"];
+        "application/xml": components["schemas"]["RequiredSkillRecordUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a required skill
+   * @description Deletes a required-skill record for the specified tenant.
+   */
+  DeleteRequiredSkillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        requiredSkillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a required skill
+   * @description Partially updates an existing required-skill record for the specified tenant.
+   */
+  PatchRequiredSkillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        requiredSkillId: string;
       };
     };
     requestBody?: {

@@ -1007,11 +1007,12 @@ export type SupportRequestAttachmentCreateDto = {
     validResponse?: boolean;
     parentFileUploadId?: string | null;
     filePath?: string | null;
+    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
     metadata?: string | null;
     supportRequestId?: string | null;
 };
 
-export type SupportRequestAttachmentDto = {
+export type SupportRequestAttachmentDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     notes?: string | null;
@@ -1021,6 +1022,8 @@ export type SupportRequestAttachmentDto = {
     hash?: string | null;
     fileUrl?: string | null;
     filePath?: string | null;
+    storageKey?: string | null;
+    storageProviderKey?: string | null;
     fileName?: string | null;
     abstract?: string | null;
     keyWords?: string | null;
@@ -1034,6 +1037,49 @@ export type SupportRequestAttachmentDto = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
+    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    readonly hasThumbnail?: boolean;
+    thumbnailStorageKey?: string | null;
+    thumbnailContentType?: string | null;
+    thumbnailWidth?: number;
+    thumbnailHeight?: number;
+    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+    supportRequestId?: string | null;
+};
+
+export type SupportRequestAttachmentDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    notes?: string | null;
+    title?: string | null;
+    author?: string | null;
+    isFolder?: boolean;
+    hash?: string | null;
+    fileUrl?: string | null;
+    filePath?: string | null;
+    storageKey?: string | null;
+    storageProviderKey?: string | null;
+    fileName?: string | null;
+    abstract?: string | null;
+    keyWords?: string | null;
+    metadata?: string | null;
+    fileLength?: number;
+    contentType?: string | null;
+    parentFileId?: string | null;
+    validResponse?: boolean;
+    userId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    socialProfileId?: string | null;
+    folderPath?: string | null;
+    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    thumbnailStorageKey?: string | null;
+    thumbnailContentType?: string | null;
+    thumbnailWidth?: number;
+    thumbnailHeight?: number;
+    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
     supportRequestId?: string | null;
 };
 
@@ -1043,13 +1089,13 @@ export type SupportRequestAttachmentDtoEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: SupportRequestAttachmentDto;
+    result?: SupportRequestAttachmentDtoReadable;
 };
 
 export type SupportRequestAttachmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: SupportRequestAttachmentDto;
+    result?: SupportRequestAttachmentDtoWritable;
 };
 
 export type SupportRequestAttachmentDtoListEnvelopeReadable = {
@@ -1058,13 +1104,13 @@ export type SupportRequestAttachmentDtoListEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: Array<SupportRequestAttachmentDto> | null;
+    result?: Array<SupportRequestAttachmentDtoReadable> | null;
 };
 
 export type SupportRequestAttachmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: Array<SupportRequestAttachmentDto> | null;
+    result?: Array<SupportRequestAttachmentDtoWritable> | null;
 };
 
 export type SupportRequestAttachmentUpdateDto = {
@@ -1447,37 +1493,6 @@ export type WarrantyRequestUpdateDto = {
     approvedTimestamp?: string;
     supportEntitlementId?: string | null;
     warrantyPolicyId?: string | null;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
 };
 
 export type GetVersionData = {
@@ -5512,5 +5527,5 @@ export type UpdateWarrantyRequestAsyncResponses = {
 export type UpdateWarrantyRequestAsyncResponse = UpdateWarrantyRequestAsyncResponses[keyof UpdateWarrantyRequestAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

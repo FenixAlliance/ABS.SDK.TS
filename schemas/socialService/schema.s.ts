@@ -5,114 +5,87 @@
 
 
 export interface paths {
-  "/api/v2/AiService/Completions/Complete": {
-    get: {
-      parameters: {
-        query: {
-          tenantId: string;
-          conversationId?: string;
-          message?: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-        /** @description Unauthorized */
-        401: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-        /** @description Forbidden */
-        403: {
-          content: {
-            "application/json;odata.metadata=minimal;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false": components["schemas"]["ErrorEnvelope"];
-            "application/json": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=minimal;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=full;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.metadata=none;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=true;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;odata.streaming=false;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=false": components["schemas"]["ErrorEnvelope"];
-            "application/json;IEEE754Compatible=true": components["schemas"]["ErrorEnvelope"];
-            "application/xml": components["schemas"]["ErrorEnvelope"];
-            "text/plain": components["schemas"]["ErrorEnvelope"];
-            "application/octet-stream": components["schemas"]["ErrorEnvelope"];
-            "text/json": components["schemas"]["ErrorEnvelope"];
-            "text/xml": components["schemas"]["ErrorEnvelope"];
-          };
-        };
-      };
-    };
+  "/api/v2/SocialService/Curriculums/{curriculumId}/Experiences": {
+    /**
+     * Get curriculum experiences
+     * @description Retrieves the work-experience records of a curriculum authored on the specified social profile.
+     */
+    get: operations["GetCurriculumExperiencesAsync"];
+    /**
+     * Create a curriculum experience
+     * @description Adds a work-experience record to a curriculum authored on the specified social profile.
+     */
+    post: operations["CreateCurriculumExperienceAsync"];
+  };
+  "/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/Count": {
+    /**
+     * Count curriculum experiences
+     * @description Returns the count of work-experience records of a curriculum.
+     */
+    get: operations["GetCurriculumExperiencesCountAsync"];
+  };
+  "/api/v2/SocialService/Curriculums/{curriculumId}/Experiences/{experienceId}": {
+    /**
+     * Get curriculum experience by ID
+     * @description Retrieves a specific work-experience record of a curriculum.
+     */
+    get: operations["GetCurriculumExperienceAsync"];
+    /**
+     * Update a curriculum experience
+     * @description Updates an existing work-experience record of a curriculum.
+     */
+    put: operations["UpdateCurriculumExperienceAsync"];
+    /**
+     * Delete a curriculum experience
+     * @description Removes a work-experience record from a curriculum.
+     */
+    delete: operations["DeleteCurriculumExperienceAsync"];
+    /**
+     * Patch a curriculum experience
+     * @description Partially updates an existing work-experience record of a curriculum.
+     */
+    patch: operations["PatchCurriculumExperienceAsync"];
+  };
+  "/api/v2/SocialService/Curriculums": {
+    /**
+     * Get curricula
+     * @description Retrieves the curricula (CVs) authored on the specified social profile.
+     */
+    get: operations["GetCurriculumsAsync"];
+    /**
+     * Create a curriculum
+     * @description Creates a curriculum (CV) on the specified social profile.
+     */
+    post: operations["CreateCurriculumAsync"];
+  };
+  "/api/v2/SocialService/Curriculums/Count": {
+    /**
+     * Count curricula
+     * @description Returns the count of curricula authored on the specified social profile.
+     */
+    get: operations["GetCurriculumsCountAsync"];
+  };
+  "/api/v2/SocialService/Curriculums/{curriculumId}": {
+    /**
+     * Get curriculum by ID
+     * @description Retrieves a specific curriculum authored on the specified social profile.
+     */
+    get: operations["GetCurriculumAsync"];
+    /**
+     * Update a curriculum
+     * @description Updates an existing curriculum authored on the specified social profile.
+     */
+    put: operations["UpdateCurriculumAsync"];
+    /**
+     * Delete a curriculum
+     * @description Deletes a curriculum authored on the specified social profile.
+     */
+    delete: operations["DeleteCurriculumAsync"];
+    /**
+     * Patch a curriculum
+     * @description Partially updates an existing curriculum authored on the specified social profile.
+     */
+    patch: operations["PatchCurriculumAsync"];
   };
   "/version": {
     get: {
@@ -410,6 +383,47 @@ export interface paths {
         };
       };
     };
+  };
+  "/api/v2/SocialService/Skills": {
+    /**
+     * Get skills
+     * @description Retrieves the skill catalog for the specified tenant.
+     */
+    get: operations["GetSkillsAsync"];
+    /**
+     * Create a skill
+     * @description Creates a new skill catalog entry for the specified tenant.
+     */
+    post: operations["CreateSkillAsync"];
+  };
+  "/api/v2/SocialService/Skills/Count": {
+    /**
+     * Count skills
+     * @description Counts skill catalog entries for the specified tenant.
+     */
+    get: operations["GetSkillsCountAsync"];
+  };
+  "/api/v2/SocialService/Skills/{skillId}": {
+    /**
+     * Get skill by ID
+     * @description Retrieves a specific skill by its identifier.
+     */
+    get: operations["GetSkillByIdAsync"];
+    /**
+     * Update a skill
+     * @description Updates an existing skill for the specified tenant.
+     */
+    put: operations["UpdateSkillAsync"];
+    /**
+     * Delete a skill
+     * @description Deletes a skill for the specified tenant.
+     */
+    delete: operations["DeleteSkillAsync"];
+    /**
+     * Patch a skill
+     * @description Partially updates an existing skill for the specified tenant.
+     */
+    patch: operations["PatchSkillAsync"];
   };
   "/api/v2/SocialService/SocialFeeds": {
     /**
@@ -881,6 +895,207 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["ConversationDto"][] | null;
     };
+    CurriculumCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      socialProfileId?: string | null;
+      jobApplicantProfileId?: string | null;
+      undergraduate?: boolean;
+      certifiedProfessional?: boolean;
+      sales?: boolean;
+      others?: boolean;
+      finance?: boolean;
+      research?: boolean;
+      advocate?: boolean;
+      marketing?: boolean;
+      education?: boolean;
+      executive?: boolean;
+      commercial?: boolean;
+      graphicDesign?: boolean;
+      sustainability?: boolean;
+      administrative?: boolean;
+      humanResources?: boolean;
+      soundEngineering?: boolean;
+      cloudEngineering?: boolean;
+      firstLevelSupport?: boolean;
+      secondLevelSupport?: boolean;
+      softwareEngineering?: boolean;
+      partnerAccountRepresentative?: boolean;
+      startupSuccessRepresentative?: boolean;
+      customerSuccessRepresentative?: boolean;
+    };
+    CurriculumDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      socialProfileId?: string | null;
+      jobApplicantProfileId?: string | null;
+      undergraduate?: boolean;
+      certifiedProfessional?: boolean;
+      sales?: boolean;
+      others?: boolean;
+      finance?: boolean;
+      research?: boolean;
+      advocate?: boolean;
+      marketing?: boolean;
+      education?: boolean;
+      executive?: boolean;
+      commercial?: boolean;
+      graphicDesign?: boolean;
+      sustainability?: boolean;
+      administrative?: boolean;
+      humanResources?: boolean;
+      soundEngineering?: boolean;
+      cloudEngineering?: boolean;
+      firstLevelSupport?: boolean;
+      secondLevelSupport?: boolean;
+      softwareEngineering?: boolean;
+      partnerAccountRepresentative?: boolean;
+      startupSuccessRepresentative?: boolean;
+      customerSuccessRepresentative?: boolean;
+    };
+    CurriculumDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CurriculumDto"];
+    };
+    CurriculumDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CurriculumDto"][] | null;
+    };
+    CurriculumExperienceCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      curriculumId?: string | null;
+      title?: string | null;
+      description?: string | null;
+      /** Format: double */
+      priority?: number;
+      organization?: string | null;
+      featured?: boolean;
+      current?: boolean;
+      validated?: boolean;
+      imageUrl?: string | null;
+      /** Format: date-time */
+      dateFrom?: string;
+      /** Format: date-time */
+      dateTo?: string;
+      /** Format: date-time */
+      date?: string;
+      countryLanguageId?: string | null;
+      proficiencyRatingValueId?: string | null;
+      proficiencyRatingModelId?: string | null;
+      achievements?: string | null;
+      responsibilities?: string | null;
+      employerProfileId?: string | null;
+    };
+    CurriculumExperienceDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      curriculumId?: string | null;
+      title?: string | null;
+      description?: string | null;
+      /** Format: double */
+      priority?: number;
+      organization?: string | null;
+      featured?: boolean;
+      current?: boolean;
+      validated?: boolean;
+      imageUrl?: string | null;
+      /** Format: date-time */
+      dateFrom?: string;
+      /** Format: date-time */
+      dateTo?: string;
+      /** Format: date-time */
+      date?: string;
+      countryLanguageId?: string | null;
+      proficiencyRatingValueId?: string | null;
+      proficiencyRatingModelId?: string | null;
+      achievements?: string | null;
+      responsibilities?: string | null;
+      employerProfileId?: string | null;
+    };
+    CurriculumExperienceDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CurriculumExperienceDto"];
+    };
+    CurriculumExperienceDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["CurriculumExperienceDto"][] | null;
+    };
+    CurriculumExperienceUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      /** Format: double */
+      priority?: number;
+      organization?: string | null;
+      featured?: boolean;
+      current?: boolean;
+      validated?: boolean;
+      imageUrl?: string | null;
+      /** Format: date-time */
+      dateFrom?: string;
+      /** Format: date-time */
+      dateTo?: string;
+      /** Format: date-time */
+      date?: string;
+      countryLanguageId?: string | null;
+      proficiencyRatingValueId?: string | null;
+      proficiencyRatingModelId?: string | null;
+      achievements?: string | null;
+      responsibilities?: string | null;
+      employerProfileId?: string | null;
+    };
+    CurriculumUpdateDto: {
+      jobApplicantProfileId?: string | null;
+      undergraduate?: boolean;
+      certifiedProfessional?: boolean;
+      sales?: boolean;
+      others?: boolean;
+      finance?: boolean;
+      research?: boolean;
+      advocate?: boolean;
+      marketing?: boolean;
+      education?: boolean;
+      executive?: boolean;
+      commercial?: boolean;
+      graphicDesign?: boolean;
+      sustainability?: boolean;
+      administrative?: boolean;
+      humanResources?: boolean;
+      soundEngineering?: boolean;
+      cloudEngineering?: boolean;
+      firstLevelSupport?: boolean;
+      secondLevelSupport?: boolean;
+      softwareEngineering?: boolean;
+      partnerAccountRepresentative?: boolean;
+      startupSuccessRepresentative?: boolean;
+      customerSuccessRepresentative?: boolean;
+    };
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -1054,6 +1269,60 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    SkillCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      name: string;
+      url?: string | null;
+      type?: string | null;
+      iconUrl?: string | null;
+      description?: string | null;
+      /** @enum {string} */
+      skillType?: "Skill" | "Certification";
+    };
+    SkillDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      name?: string | null;
+      url?: string | null;
+      type?: string | null;
+      iconUrl?: string | null;
+      description?: string | null;
+      /** @enum {string} */
+      skillType?: "Skill" | "Certification";
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    SkillDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SkillDto"];
+    };
+    SkillDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      activityId?: string | null;
+      result?: components["schemas"]["SkillDto"][] | null;
+    };
+    SkillUpdateDto: {
+      name?: string | null;
+      url?: string | null;
+      type?: string | null;
+      iconUrl?: string | null;
+      description?: string | null;
+      /** @enum {string} */
+      skillType?: "Skill" | "Certification";
+    };
     SocialFeedDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1186,6 +1455,8 @@ export interface components {
       validResponse?: boolean;
       parentFileUploadId?: string | null;
       filePath?: string | null;
+      /** @enum {string} */
+      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
       socialPostId?: string | null;
     };
     SocialPostAttachmentDto: {
@@ -1199,6 +1470,8 @@ export interface components {
       hash?: string | null;
       fileUrl?: string | null;
       filePath?: string | null;
+      storageKey?: string | null;
+      storageProviderKey?: string | null;
       fileName?: string | null;
       abstract?: string | null;
       keyWords?: string | null;
@@ -1213,6 +1486,19 @@ export interface components {
       enrollmentId?: string | null;
       socialProfileId?: string | null;
       folderPath?: string | null;
+      /** @enum {string} */
+      scanStatus?: "NotRequired" | "Pending" | "Clean" | "Infected" | "Failed" | "Quarantined";
+      /** @enum {string} */
+      thumbnailStatus?: "NotRequired" | "Pending" | "Ready" | "Failed" | "Unsupported";
+      hasThumbnail?: boolean;
+      thumbnailStorageKey?: string | null;
+      thumbnailContentType?: string | null;
+      /** Format: int32 */
+      thumbnailWidth?: number;
+      /** Format: int32 */
+      thumbnailHeight?: number;
+      /** @enum {string} */
+      publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
       socialPostId?: string | null;
     };
     SocialPostAttachmentDtoEnvelope: {
@@ -1252,6 +1538,9 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       message: string;
+      bodyHtml?: string | null;
+      /** @enum {string|null} */
+      bodyFormat?: "PlainText" | "Html" | null;
       parentCommentId?: string | null;
       socialProfileId?: string | null;
       socialFeedPostId?: string | null;
@@ -1267,6 +1556,9 @@ export interface components {
       socialFeedPostId?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
+      bodyHtml?: string | null;
+      /** @enum {string|null} */
+      bodyFormat?: "PlainText" | "Html" | null;
       socialPostId?: string | null;
     };
     SocialPostCommentDtoEnvelope: {
@@ -1467,6 +1759,681 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get curriculum experiences
+   * @description Retrieves the work-experience records of a curriculum authored on the specified social profile.
+   */
+  GetCurriculumExperiencesAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CurriculumExperienceDtoListEnvelope"];
+          "application/xml": components["schemas"]["CurriculumExperienceDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a curriculum experience
+   * @description Adds a work-experience record to a curriculum authored on the specified social profile.
+   */
+  CreateCurriculumExperienceAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurriculumExperienceCreateDto"];
+        "application/xml": components["schemas"]["CurriculumExperienceCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count curriculum experiences
+   * @description Returns the count of work-experience records of a curriculum.
+   */
+  GetCurriculumExperiencesCountAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get curriculum experience by ID
+   * @description Retrieves a specific work-experience record of a curriculum.
+   */
+  GetCurriculumExperienceAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+        experienceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CurriculumExperienceDtoEnvelope"];
+          "application/xml": components["schemas"]["CurriculumExperienceDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a curriculum experience
+   * @description Updates an existing work-experience record of a curriculum.
+   */
+  UpdateCurriculumExperienceAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+        experienceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurriculumExperienceUpdateDto"];
+        "application/xml": components["schemas"]["CurriculumExperienceUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a curriculum experience
+   * @description Removes a work-experience record from a curriculum.
+   */
+  DeleteCurriculumExperienceAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+        experienceId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a curriculum experience
+   * @description Partially updates an existing work-experience record of a curriculum.
+   */
+  PatchCurriculumExperienceAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+        experienceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get curricula
+   * @description Retrieves the curricula (CVs) authored on the specified social profile.
+   */
+  GetCurriculumsAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CurriculumDtoListEnvelope"];
+          "application/xml": components["schemas"]["CurriculumDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a curriculum
+   * @description Creates a curriculum (CV) on the specified social profile.
+   */
+  CreateCurriculumAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurriculumCreateDto"];
+        "application/xml": components["schemas"]["CurriculumCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count curricula
+   * @description Returns the count of curricula authored on the specified social profile.
+   */
+  GetCurriculumsCountAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get curriculum by ID
+   * @description Retrieves a specific curriculum authored on the specified social profile.
+   */
+  GetCurriculumAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CurriculumDtoEnvelope"];
+          "application/xml": components["schemas"]["CurriculumDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a curriculum
+   * @description Updates an existing curriculum authored on the specified social profile.
+   */
+  UpdateCurriculumAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurriculumUpdateDto"];
+        "application/xml": components["schemas"]["CurriculumUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a curriculum
+   * @description Deletes a curriculum authored on the specified social profile.
+   */
+  DeleteCurriculumAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a curriculum
+   * @description Partially updates an existing curriculum authored on the specified social profile.
+   */
+  PatchCurriculumAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        curriculumId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   "MapIdentityApi-/confirmEmail": {
     parameters: {
       query: {
@@ -1479,6 +2446,330 @@ export interface operations {
       /** @description OK */
       200: {
         content: never;
+      };
+    };
+  };
+  /**
+   * Get skills
+   * @description Retrieves the skill catalog for the specified tenant.
+   */
+  GetSkillsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SkillDtoListEnvelope"];
+          "application/xml": components["schemas"]["SkillDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a skill
+   * @description Creates a new skill catalog entry for the specified tenant.
+   */
+  CreateSkillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SkillCreateDto"];
+        "application/xml": components["schemas"]["SkillCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count skills
+   * @description Counts skill catalog entries for the specified tenant.
+   */
+  GetSkillsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get skill by ID
+   * @description Retrieves a specific skill by its identifier.
+   */
+  GetSkillByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        skillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SkillDtoEnvelope"];
+          "application/xml": components["schemas"]["SkillDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a skill
+   * @description Updates an existing skill for the specified tenant.
+   */
+  UpdateSkillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        skillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SkillUpdateDto"];
+        "application/xml": components["schemas"]["SkillUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a skill
+   * @description Deletes a skill for the specified tenant.
+   */
+  DeleteSkillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        skillId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Patch a skill
+   * @description Partially updates an existing skill for the specified tenant.
+   */
+  PatchSkillAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        skillId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["Operation"][];
+        "application/xml": components["schemas"]["Operation"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
       };
     };
   };

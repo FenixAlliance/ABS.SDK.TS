@@ -294,6 +294,7 @@ export type PaymentModeCreateDto = {
     timestamp?: string;
     name: string;
     description?: string | null;
+    paymentMeansCode?: string | null;
 };
 
 export type PaymentModeDto = {
@@ -301,6 +302,7 @@ export type PaymentModeDto = {
     timestamp?: string | null;
     name?: string | null;
     description?: string | null;
+    paymentMeansCode?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
 };
@@ -338,6 +340,7 @@ export type PaymentModeDtoIReadOnlyListEnvelopeWritable = {
 export type PaymentModeUpdateDto = {
     name?: string | null;
     description?: string | null;
+    paymentMeansCode?: string | null;
 };
 
 export type PaymentTermCreateDto = {
@@ -504,37 +507,6 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
 };
 
 export type GetVersionData = {
@@ -1868,5 +1840,5 @@ export type UpdatePaymentTermAsyncResponses = {
 export type UpdatePaymentTermAsyncResponse = UpdatePaymentTermAsyncResponses[keyof UpdatePaymentTermAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

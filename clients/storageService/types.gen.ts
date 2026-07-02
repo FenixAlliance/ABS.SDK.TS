@@ -83,7 +83,7 @@ export type ErrorEnvelopeWritable = {
     correlationId?: string | null;
 };
 
-export type FileUploadDto = {
+export type FileUploadDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
     notes?: string | null;
@@ -93,6 +93,8 @@ export type FileUploadDto = {
     hash?: string | null;
     fileUrl?: string | null;
     filePath?: string | null;
+    storageKey?: string | null;
+    storageProviderKey?: string | null;
     fileName?: string | null;
     abstract?: string | null;
     keyWords?: string | null;
@@ -106,6 +108,48 @@ export type FileUploadDto = {
     enrollmentId?: string | null;
     socialProfileId?: string | null;
     folderPath?: string | null;
+    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    readonly hasThumbnail?: boolean;
+    thumbnailStorageKey?: string | null;
+    thumbnailContentType?: string | null;
+    thumbnailWidth?: number;
+    thumbnailHeight?: number;
+    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+};
+
+export type FileUploadDtoWritable = {
+    id?: string | null;
+    timestamp?: string | null;
+    notes?: string | null;
+    title?: string | null;
+    author?: string | null;
+    isFolder?: boolean;
+    hash?: string | null;
+    fileUrl?: string | null;
+    filePath?: string | null;
+    storageKey?: string | null;
+    storageProviderKey?: string | null;
+    fileName?: string | null;
+    abstract?: string | null;
+    keyWords?: string | null;
+    metadata?: string | null;
+    fileLength?: number;
+    contentType?: string | null;
+    parentFileId?: string | null;
+    validResponse?: boolean;
+    userId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    socialProfileId?: string | null;
+    folderPath?: string | null;
+    scanStatus?: 'NotRequired' | 'Pending' | 'Clean' | 'Infected' | 'Failed' | 'Quarantined';
+    thumbnailStatus?: 'NotRequired' | 'Pending' | 'Ready' | 'Failed' | 'Unsupported';
+    thumbnailStorageKey?: string | null;
+    thumbnailContentType?: string | null;
+    thumbnailWidth?: number;
+    thumbnailHeight?: number;
+    publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
 };
 
 export type FileUploadDtoEnvelopeReadable = {
@@ -114,13 +158,13 @@ export type FileUploadDtoEnvelopeReadable = {
     correlationId?: string | null;
     readonly timestamp?: string;
     readonly activityId?: string | null;
-    result?: FileUploadDto;
+    result?: FileUploadDtoReadable;
 };
 
 export type FileUploadDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
-    result?: FileUploadDto;
+    result?: FileUploadDtoWritable;
 };
 
 export type ForgotPasswordRequest = {
@@ -159,35 +203,13 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type PayloadFileUploadCreateDto = {
-    id?: string;
-    timestamp?: string;
-    notes?: string | null;
+export type ProblemDetails = {
+    type?: string | null;
     title?: string | null;
-    author?: string | null;
-    isFolder?: boolean;
-    fileName?: string | null;
-    abstract?: string | null;
-    keyWords?: string | null;
-    validResponse?: boolean;
-    parentFileUploadId?: string | null;
-    filePath?: string | null;
-    file?: (Blob | File) | null;
-};
-
-export type PayloadFileUploadUpdateDto = {
-    notes?: string | null;
-    metadata?: string | null;
-    title?: string | null;
-    author?: string | null;
-    isFolder?: boolean;
-    fileName?: string | null;
-    abstract?: string | null;
-    keyWords?: string | null;
-    validResponse?: boolean;
-    parentFileUploadID?: string | null;
-    filePath?: string | null;
-    file?: (Blob | File) | null;
+    status?: number | null;
+    detail?: string | null;
+    instance?: string | null;
+    [key: string]: unknown | (string | null) | (string | null) | (number | null) | (string | null) | (string | null) | undefined;
 };
 
 export type RefreshRequest = {
@@ -239,19 +261,6 @@ export type GetAvatarData = {
     url: '/api/v2/StorageService/Avatars/{socialProfileId}';
 };
 
-export type GetAvatarErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetAvatarError = GetAvatarErrors[keyof GetAvatarErrors];
-
 export type GetAvatarResponses = {
     /**
      * OK
@@ -272,19 +281,6 @@ export type GetCurrentUserAvatarData = {
     };
     url: '/api/v2/StorageService/Avatars/User';
 };
-
-export type GetCurrentUserAvatarErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetCurrentUserAvatarError = GetCurrentUserAvatarErrors[keyof GetCurrentUserAvatarErrors];
 
 export type GetCurrentUserAvatarResponses = {
     /**
@@ -349,19 +345,6 @@ export type GetUserAvatarData = {
     url: '/api/v2/StorageService/Avatars/User/{userId}';
 };
 
-export type GetUserAvatarErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetUserAvatarError = GetUserAvatarErrors[keyof GetUserAvatarErrors];
-
 export type GetUserAvatarResponses = {
     /**
      * OK
@@ -384,19 +367,6 @@ export type GetTenantAvatarData = {
     };
     url: '/api/v2/StorageService/Avatars/Tenant/{tenantId}';
 };
-
-export type GetTenantAvatarErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetTenantAvatarError = GetTenantAvatarErrors[keyof GetTenantAvatarErrors];
 
 export type GetTenantAvatarResponses = {
     /**
@@ -462,19 +432,6 @@ export type GetContactAvatarData = {
     };
     url: '/api/v2/StorageService/Avatars/Contact/{contactId}';
 };
-
-export type GetContactAvatarErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetContactAvatarError = GetContactAvatarErrors[keyof GetContactAvatarErrors];
 
 export type GetContactAvatarResponses = {
     /**
@@ -605,36 +562,37 @@ export type GetBlobAsyncResponses = {
 
 export type GetBlobAsyncResponse = GetBlobAsyncResponses[keyof GetBlobAsyncResponses];
 
-export type GetApiV2AiServiceCompletionsCompleteData = {
+export type GetEditorAssetAsyncData = {
     body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
+    headers?: {
+        'x-api-version'?: string;
     };
-    url: '/api/v2/AiService/Completions/Complete';
+    path: {
+        fileId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/StorageService/EditorAssets/{fileId}';
 };
 
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
+export type GetEditorAssetAsyncErrors = {
     /**
-     * Unauthorized
+     * Not Found
      */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
+    404: ProblemDetails;
 };
 
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
+export type GetEditorAssetAsyncError = GetEditorAssetAsyncErrors[keyof GetEditorAssetAsyncErrors];
 
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
+export type GetEditorAssetAsyncResponses = {
     /**
      * OK
      */
-    200: unknown;
+    200: Blob | File;
 };
+
+export type GetEditorAssetAsyncResponse = GetEditorAssetAsyncResponses[keyof GetEditorAssetAsyncResponses];
 
 export type GetVersionData = {
     body?: never;
@@ -1000,7 +958,41 @@ export type GetFilesAsyncResponses = {
 export type GetFilesAsyncResponse = GetFilesAsyncResponses[keyof GetFilesAsyncResponses];
 
 export type CreateFileAsyncData = {
-    body?: PayloadFileUploadCreateDto;
+    body?: {
+        file?: Blob | File;
+        notes?: string;
+        title?: string;
+        author?: string;
+        isFolder?: boolean;
+        fileName?: string;
+        abstract?: string;
+        keyWords?: string;
+        validResponse?: boolean;
+        parentFileUploadId?: string;
+        filePath?: string;
+        publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+        purpose?: 'Unknown' | 'IdentityAvatar' | 'IdentityBanner' | 'ProfileAsset' | 'EngagementInline' | 'EngagementAttachment' | 'MessageAttachment' | 'SocialPost' | 'RecordAttachment' | 'AiGenerated' | 'SystemArtifact' | 'Temporary';
+        'socialProfileId.value'?: string;
+        'appFile.content'?: string;
+        'appFile.sha256'?: string;
+        'appFile.createdAtUtc'?: string;
+        'appFile.userId.value'?: string;
+        'appFile.tenantId.value'?: string;
+        'appFile.enrollmentId.value'?: string;
+        'appFile.source'?: 'Unknown' | 'HttpUpload' | 'Integration' | 'InternalProcess' | 'ApiClient' | 'WorkflowEngine';
+        'appFile.length'?: number;
+        'appFile.name'?: string;
+        'appFile.fileName'?: string;
+        'appFile.lastModified'?: string;
+        'appFile.size'?: number;
+        'appFile.contentType'?: string;
+        'appFile.contentDisposition'?: string;
+        'appFile.headers'?: {
+            [key: string]: string;
+        };
+        id?: string;
+        timestamp?: string;
+    };
     headers?: {
         'x-api-version'?: string;
     };
@@ -1025,14 +1017,6 @@ export type CreateFileAsyncErrors = {
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
-    /**
-     * Conflict
-     */
-    409: ErrorEnvelopeReadable;
-    /**
-     * Unprocessable Content
-     */
-    422: ErrorEnvelopeReadable;
 };
 
 export type CreateFileAsyncError = CreateFileAsyncErrors[keyof CreateFileAsyncErrors];
@@ -1045,6 +1029,41 @@ export type CreateFileAsyncResponses = {
 };
 
 export type CreateFileAsyncResponse = CreateFileAsyncResponses[keyof CreateFileAsyncResponses];
+
+export type GetFilesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/StorageService/Files/Count';
+};
+
+export type GetFilesCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetFilesCountAsyncError = GetFilesCountAsyncErrors[keyof GetFilesCountAsyncErrors];
+
+export type GetFilesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: number;
+};
+
+export type GetFilesCountAsyncResponse = GetFilesCountAsyncResponses[keyof GetFilesCountAsyncResponses];
 
 export type DeleteFileAsyncData = {
     body?: never;
@@ -1063,10 +1082,6 @@ export type DeleteFileAsyncData = {
 
 export type DeleteFileAsyncErrors = {
     /**
-     * Bad Request
-     */
-    400: ErrorEnvelopeReadable;
-    /**
      * Unauthorized
      */
     401: ErrorEnvelopeReadable;
@@ -1075,13 +1090,9 @@ export type DeleteFileAsyncErrors = {
      */
     403: ErrorEnvelopeReadable;
     /**
-     * Conflict
+     * Not Found
      */
-    409: ErrorEnvelopeReadable;
-    /**
-     * Unprocessable Content
-     */
-    422: ErrorEnvelopeReadable;
+    404: ErrorEnvelopeReadable;
 };
 
 export type DeleteFileAsyncError = DeleteFileAsyncErrors[keyof DeleteFileAsyncErrors];
@@ -1090,7 +1101,7 @@ export type DeleteFileAsyncResponses = {
     /**
      * OK
      */
-    200: FileUploadDtoEnvelopeReadable;
+    200: EmptyEnvelopeReadable;
 };
 
 export type DeleteFileAsyncResponse = DeleteFileAsyncResponses[keyof DeleteFileAsyncResponses];
@@ -1116,9 +1127,9 @@ export type GetFileAsyncErrors = {
      */
     401: ErrorEnvelopeReadable;
     /**
-     * Forbidden
+     * Not Found
      */
-    403: ErrorEnvelopeReadable;
+    404: ErrorEnvelopeReadable;
 };
 
 export type GetFileAsyncError = GetFileAsyncErrors[keyof GetFileAsyncErrors];
@@ -1133,7 +1144,37 @@ export type GetFileAsyncResponses = {
 export type GetFileAsyncResponse = GetFileAsyncResponses[keyof GetFileAsyncResponses];
 
 export type UpdateFileAsyncData = {
-    body?: PayloadFileUploadUpdateDto;
+    body?: {
+        file?: Blob | File;
+        notes?: string;
+        metadata?: string;
+        title?: string;
+        author?: string;
+        isFolder?: boolean;
+        fileName?: string;
+        abstract?: string;
+        keyWords?: string;
+        validResponse?: boolean;
+        parentFileUploadID?: string;
+        filePath?: string;
+        'appFile.content'?: string;
+        'appFile.sha256'?: string;
+        'appFile.createdAtUtc'?: string;
+        'appFile.userId.value'?: string;
+        'appFile.tenantId.value'?: string;
+        'appFile.enrollmentId.value'?: string;
+        'appFile.source'?: 'Unknown' | 'HttpUpload' | 'Integration' | 'InternalProcess' | 'ApiClient' | 'WorkflowEngine';
+        'appFile.length'?: number;
+        'appFile.name'?: string;
+        'appFile.fileName'?: string;
+        'appFile.lastModified'?: string;
+        'appFile.size'?: number;
+        'appFile.contentType'?: string;
+        'appFile.contentDisposition'?: string;
+        'appFile.headers'?: {
+            [key: string]: string;
+        };
+    };
     headers?: {
         'x-api-version'?: string;
     };
@@ -1153,21 +1194,13 @@ export type UpdateFileAsyncErrors = {
      */
     400: ErrorEnvelopeReadable;
     /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
     /**
-     * Conflict
+     * Not Found
      */
-    409: ErrorEnvelopeReadable;
-    /**
-     * Unprocessable Content
-     */
-    422: ErrorEnvelopeReadable;
+    404: ErrorEnvelopeReadable;
 };
 
 export type UpdateFileAsyncError = UpdateFileAsyncErrors[keyof UpdateFileAsyncErrors];
@@ -1176,7 +1209,7 @@ export type UpdateFileAsyncResponses = {
     /**
      * OK
      */
-    200: FileUploadDtoEnvelopeReadable;
+    200: EmptyEnvelopeReadable;
 };
 
 export type UpdateFileAsyncResponse = UpdateFileAsyncResponses[keyof UpdateFileAsyncResponses];
@@ -1202,9 +1235,9 @@ export type DownloadFileAsyncErrors = {
      */
     401: ErrorEnvelopeReadable;
     /**
-     * Forbidden
+     * Not Found
      */
-    403: ErrorEnvelopeReadable;
+    404: ErrorEnvelopeReadable;
 };
 
 export type DownloadFileAsyncError = DownloadFileAsyncErrors[keyof DownloadFileAsyncErrors];
@@ -1218,97 +1251,146 @@ export type DownloadFileAsyncResponses = {
 
 export type DownloadFileAsyncResponse = DownloadFileAsyncResponses[keyof DownloadFileAsyncResponses];
 
-export type SingleData = {
+export type GetFileThumbnailAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fileId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/StorageService/Files/{fileId}/Thumbnail';
+};
+
+export type GetFileThumbnailAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetFileThumbnailAsyncError = GetFileThumbnailAsyncErrors[keyof GetFileThumbnailAsyncErrors];
+
+export type GetFileThumbnailAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Blob | File;
+};
+
+export type GetFileThumbnailAsyncResponse = GetFileThumbnailAsyncResponses[keyof GetFileThumbnailAsyncResponses];
+
+export type RadzenUploadSingleData = {
     body?: {
         file?: Blob | File;
-    };
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query?: {
-        tenantId?: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/StorageService/RadzenEditor/Uploads/Single';
-};
-
-export type SingleResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
-export type ImageData = {
-    body?: {
-        file?: Blob | File;
-    };
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query?: {
-        tenantId?: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/StorageService/RadzenEditor/Uploads/Image';
-};
-
-export type ImageResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
-export type MultipleData = {
-    body?: {
-        files?: Array<Blob | File>;
-    };
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query?: {
-        tenantId?: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/StorageService/RadzenEditor/Uploads/Multiple';
-};
-
-export type MultipleResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
-export type PostData = {
-    body?: {
-        files?: Array<Blob | File>;
     };
     headers?: {
         'x-api-version'?: string;
     };
     path: {
-        id: number;
+        tenantId: string;
     };
     query?: {
-        tenantId?: string;
         'api-version'?: string;
     };
-    url: '/api/v2/StorageService/RadzenEditor/Uploads/{id}';
+    url: '/api/v2/fs/radzen/tenants/{tenantId}/upload/single';
 };
 
-export type PostResponses = {
+export type RadzenUploadSingleResponses = {
     /**
      * OK
      */
     200: unknown;
 };
 
-export type SpecificData = {
+export type RadzenUploadSingleScopedData = {
+    body?: {
+        file?: Blob | File;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+        recordType: string;
+        recordId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/single';
+};
+
+export type RadzenUploadSingleScopedResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type RadzenUploadImageData = {
+    body?: {
+        file?: Blob | File;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query?: {
+        visibility?: string;
+        socialProfileId?: string;
+        purpose?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/fs/radzen/tenants/{tenantId}/upload/image';
+};
+
+export type RadzenUploadImageResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type RadzenUploadImageScopedData = {
+    body?: {
+        file?: Blob | File;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+        recordType: string;
+        recordId: string;
+    };
+    query?: {
+        visibility?: string;
+        socialProfileId?: string;
+        purpose?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/image';
+};
+
+export type RadzenUploadImageScopedResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type RadzenUploadUserImageData = {
     body?: {
         file?: Blob | File;
     };
@@ -1317,13 +1399,86 @@ export type SpecificData = {
     };
     path?: never;
     query?: {
-        tenantId?: string;
+        visibility?: string;
+        socialProfileId?: string;
+        purpose?: string;
         'api-version'?: string;
     };
-    url: '/api/v2/StorageService/RadzenEditor/Uploads/Specific';
+    url: '/api/v2/fs/radzen/users/upload/image';
 };
 
-export type SpecificResponses = {
+export type RadzenUploadUserImageResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type RadzenUploadUserImageScopedData = {
+    body?: {
+        file?: Blob | File;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        recordType: string;
+        recordId: string;
+    };
+    query?: {
+        visibility?: string;
+        socialProfileId?: string;
+        purpose?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/fs/radzen/users/{recordType}/{recordId}/upload/image';
+};
+
+export type RadzenUploadUserImageScopedResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type RadzenUploadStreamData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/fs/radzen/tenants/{tenantId}/upload/stream';
+};
+
+export type RadzenUploadStreamResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type RadzenUploadStream2Data = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+        recordType: string;
+        recordId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/fs/radzen/tenants/{tenantId}/{recordType}/{recordId}/upload/stream';
+};
+
+export type RadzenUploadStream2Responses = {
     /**
      * OK
      */
@@ -1332,6 +1487,7 @@ export type SpecificResponses = {
 
 export type SaveFileAsyncData = {
     body?: {
+        file?: Blob | File;
         notes?: string;
         title?: string;
         author?: string;
@@ -1342,6 +1498,9 @@ export type SaveFileAsyncData = {
         validResponse?: boolean;
         parentFileUploadId?: string;
         filePath?: string;
+        publicAccessType?: 'Off' | 'Container' | 'Blob' | 'Unknown';
+        purpose?: 'Unknown' | 'IdentityAvatar' | 'IdentityBanner' | 'ProfileAsset' | 'EngagementInline' | 'EngagementAttachment' | 'MessageAttachment' | 'SocialPost' | 'RecordAttachment' | 'AiGenerated' | 'SystemArtifact' | 'Temporary';
+        'socialProfileId.value'?: string;
         'appFile.content'?: string;
         'appFile.sha256'?: string;
         'appFile.createdAtUtc'?: string;
@@ -1396,5 +1555,5 @@ export type SaveFileAsyncResponses = {
 export type SaveFileAsyncResponse = SaveFileAsyncResponses[keyof SaveFileAsyncResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };

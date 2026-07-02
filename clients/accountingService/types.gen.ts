@@ -953,6 +953,11 @@ export type BillingProfileCreateDto = {
     postalCode: string;
     businessName: string;
     commercialName: string;
+    verificationDigit?: string | null;
+    economicActivityCode?: string | null;
+    economicActivityScheme?: string | null;
+    isPrimary?: boolean | null;
+    establishmentCode?: string | null;
     ticker?: string | null;
     duns?: string | null;
     isPublicCompany?: boolean;
@@ -1009,6 +1014,11 @@ export type BillingProfileDtoReadable = {
     postalCode?: string | null;
     businessName?: string | null;
     commercialName?: string | null;
+    verificationDigit?: string | null;
+    economicActivityCode?: string | null;
+    economicActivityScheme?: string | null;
+    isPrimary?: boolean | null;
+    establishmentCode?: string | null;
     ticker?: string | null;
     duns?: string | null;
     isPublicCompany?: boolean;
@@ -1067,6 +1077,11 @@ export type BillingProfileDtoWritable = {
     postalCode?: string | null;
     businessName?: string | null;
     commercialName?: string | null;
+    verificationDigit?: string | null;
+    economicActivityCode?: string | null;
+    economicActivityScheme?: string | null;
+    isPrimary?: boolean | null;
+    establishmentCode?: string | null;
     ticker?: string | null;
     duns?: string | null;
     isPublicCompany?: boolean;
@@ -1124,6 +1139,11 @@ export type BillingProfileUpdateDto = {
     postalCode?: string | null;
     businessName?: string | null;
     commercialName?: string | null;
+    verificationDigit?: string | null;
+    economicActivityCode?: string | null;
+    economicActivityScheme?: string | null;
+    isPrimary?: boolean | null;
+    establishmentCode?: string | null;
     ticker?: string | null;
     duns?: string | null;
     isPublicCompany?: boolean;
@@ -1701,6 +1721,21 @@ export type CurrencyIdReadable = {
 export type CurrencyIdWritable = {
     code?: string | null;
     country?: string | null;
+};
+
+export type DecimalEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    readonly activityId?: string | null;
+    result?: number;
+};
+
+export type DecimalEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    result?: number;
 };
 
 export type EmptyEnvelopeReadable = {
@@ -3536,6 +3571,8 @@ export type TaxPolicyCreateDto = {
     zero?: boolean;
     reduced?: boolean;
     withholding?: boolean;
+    taxSchemeCode?: string | null;
+    taxCategoryCode?: string | null;
     fiscalAuthorityId?: string | null;
 };
 
@@ -3568,6 +3605,8 @@ export type TaxPolicyDto = {
     zero?: boolean;
     reduced?: boolean;
     withholding?: boolean;
+    taxSchemeCode?: string | null;
+    taxCategoryCode?: string | null;
     fiscalAuthorityId?: string | null;
 };
 
@@ -3626,6 +3665,8 @@ export type TaxPolicyUpdateDto = {
     zero?: boolean;
     reduced?: boolean;
     withholding?: boolean;
+    taxSchemeCode?: string | null;
+    taxCategoryCode?: string | null;
     fiscalAuthorityId?: string | null;
 };
 
@@ -4142,6 +4183,76 @@ export type UpdateAccountGroupResponses = {
 };
 
 export type UpdateAccountGroupResponse = UpdateAccountGroupResponses[keyof UpdateAccountGroupResponses];
+
+export type GetDebitsSumAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/AccountingEntries/Debits/Sum';
+};
+
+export type GetDebitsSumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetDebitsSumAsyncError = GetDebitsSumAsyncErrors[keyof GetDebitsSumAsyncErrors];
+
+export type GetDebitsSumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetDebitsSumAsyncResponse = GetDebitsSumAsyncResponses[keyof GetDebitsSumAsyncResponses];
+
+export type GetCreditsSumAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/AccountingEntries/Credits/Sum';
+};
+
+export type GetCreditsSumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCreditsSumAsyncError = GetCreditsSumAsyncErrors[keyof GetCreditsSumAsyncErrors];
+
+export type GetCreditsSumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetCreditsSumAsyncResponse = GetCreditsSumAsyncResponses[keyof GetCreditsSumAsyncResponses];
 
 export type GetAccountingPeriodsData = {
     body?: never;
@@ -8458,37 +8569,6 @@ export type UpdatePaymentCommissionAsyncResponses = {
 };
 
 export type UpdatePaymentCommissionAsyncResponse = UpdatePaymentCommissionAsyncResponses[keyof UpdatePaymentCommissionAsyncResponses];
-
-export type GetApiV2AiServiceCompletionsCompleteData = {
-    body?: never;
-    path?: never;
-    query: {
-        tenantId: string;
-        conversationId?: string;
-        message?: string;
-    };
-    url: '/api/v2/AiService/Completions/Complete';
-};
-
-export type GetApiV2AiServiceCompletionsCompleteErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetApiV2AiServiceCompletionsCompleteError = GetApiV2AiServiceCompletionsCompleteErrors[keyof GetApiV2AiServiceCompletionsCompleteErrors];
-
-export type GetApiV2AiServiceCompletionsCompleteResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
 
 export type GetCostCentresData = {
     body?: never;
@@ -12983,6 +13063,76 @@ export type UpdateInvoiceEnumerationRangeAsyncResponses = {
 
 export type UpdateInvoiceEnumerationRangeAsyncResponse = UpdateInvoiceEnumerationRangeAsyncResponses[keyof UpdateInvoiceEnumerationRangeAsyncResponses];
 
+export type GetIncomesSumAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/JournalEntries/Incomes/Sum';
+};
+
+export type GetIncomesSumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetIncomesSumAsyncError = GetIncomesSumAsyncErrors[keyof GetIncomesSumAsyncErrors];
+
+export type GetIncomesSumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetIncomesSumAsyncResponse = GetIncomesSumAsyncResponses[keyof GetIncomesSumAsyncResponses];
+
+export type GetExpensesSumAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/JournalEntries/Expenses/Sum';
+};
+
+export type GetExpensesSumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetExpensesSumAsyncError = GetExpensesSumAsyncErrors[keyof GetExpensesSumAsyncErrors];
+
+export type GetExpensesSumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetExpensesSumAsyncResponse = GetExpensesSumAsyncResponses[keyof GetExpensesSumAsyncResponses];
+
 export type GetJournalsAsyncData = {
     body?: never;
     headers?: {
@@ -15497,6 +15647,41 @@ export type GetShareIssuancesCountResponses = {
 
 export type GetShareIssuancesCountResponse = GetShareIssuancesCountResponses[keyof GetShareIssuancesCountResponses];
 
+export type GetShareIssuancesSumData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Shares/Issuances/Sum';
+};
+
+export type GetShareIssuancesSumErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetShareIssuancesSumError = GetShareIssuancesSumErrors[keyof GetShareIssuancesSumErrors];
+
+export type GetShareIssuancesSumResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetShareIssuancesSumResponse = GetShareIssuancesSumResponses[keyof GetShareIssuancesSumResponses];
+
 export type DeleteShareIssuanceData = {
     body?: never;
     headers?: {
@@ -18004,5 +18189,5 @@ export type UpdateTransactionCategoryResponses = {
 export type UpdateTransactionCategoryResponse = UpdateTransactionCategoryResponses[keyof UpdateTransactionCategoryResponses];
 
 export type ClientOptions = {
-    baseUrl: 'https://absuite.net' | (string & {});
+    baseUrl: `${string}://{server}` | (string & {});
 };
