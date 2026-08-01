@@ -12,6 +12,7 @@ export * as ForexService from "../clients/forexService";
 export * as GlobeService from "../clients/globeService";
 export * as HrmsService from "../clients/hrmsService";
 export * as IdentityService from "../clients/identityService";
+export * as IntelligenceService from "../clients/intelligenceService";
 export * as InventoryService from "../clients/inventoryService";
 export * as InvoicingService from "../clients/invoicingService";
 export * as LearningService from "../clients/learningService";
