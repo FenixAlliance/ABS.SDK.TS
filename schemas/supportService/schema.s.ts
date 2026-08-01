@@ -25,21 +25,6 @@ export interface paths {
       };
     };
   };
-  "/api/v2/AIService/Agents/{agentId}/agui": {
-    post: {
-      parameters: {
-        path: {
-          agentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
-  };
   "/hello": {
     get: {
       responses: {
@@ -339,6 +324,13 @@ export interface paths {
      * @description Partially updates an existing inquiry request by its unique identifier.
      */
     patch: operations["PatchInquiryRequestAsync"];
+  };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    /**
+     * Run a governed agent over the AG-UI protocol
+     * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
+     */
+    post: operations["InvokeAgentSurfaceAsync"];
   };
   "/api/v2/SupportService/KnowledgeArticles": {
     /** Retrieve knowledge articles */
@@ -2852,6 +2844,23 @@ export interface operations {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
+      };
+    };
+  };
+  /**
+   * Run a governed agent over the AG-UI protocol
+   * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
+   */
+  InvokeAgentSurfaceAsync: {
+    parameters: {
+      path: {
+        agentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
     };
   };

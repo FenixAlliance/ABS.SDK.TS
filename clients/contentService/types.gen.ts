@@ -5621,22 +5621,6 @@ export type GetHealthResponses = {
     200: unknown;
 };
 
-export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
-    body?: never;
-    path: {
-        agentId: string;
-    };
-    query?: never;
-    url: '/api/v2/AIService/Agents/{agentId}/agui';
-};
-
-export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
 export type GetHelloData = {
     body?: never;
     path?: never;
@@ -5931,6 +5915,22 @@ export type PostAccountManageDownloadPersonalDataData = {
 };
 
 export type PostAccountManageDownloadPersonalDataResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type InvokeAgentSurfaceAsyncData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type InvokeAgentSurfaceAsyncResponses = {
     /**
      * OK
      */

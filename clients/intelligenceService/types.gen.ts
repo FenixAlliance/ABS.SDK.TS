@@ -13,6 +13,35 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type AiProviderDto = {
+    providerKey?: string | null;
+};
+
+export type AiProviderDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<AiProviderDto> | null;
+};
+
+export type AiProviderDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<AiProviderDto> | null;
+};
+
 export type CognitiveAgentConversationCreateDto = {
     id?: string;
     timestamp?: string;
@@ -68,6 +97,31 @@ export type CognitiveAgentConversationDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type CognitiveAgentConversationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CognitiveAgentConversationDto;
+};
+
+export type CognitiveAgentConversationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CognitiveAgentConversationDto;
 };
 
 export type CognitiveAgentConversationDtoListEnvelopeReadable = {
@@ -154,6 +208,31 @@ export type CognitiveAgentDtoCollectionQueryParametersWritable = {
     expand?: string | null;
 };
 
+export type CognitiveAgentDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CognitiveAgentDto;
+};
+
+export type CognitiveAgentDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CognitiveAgentDto;
+};
+
 export type CognitiveAgentDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -215,6 +294,31 @@ export type CognitiveAgentMessageDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type CognitiveAgentMessageDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CognitiveAgentMessageDto;
+};
+
+export type CognitiveAgentMessageDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CognitiveAgentMessageDto;
 };
 
 export type CognitiveAgentMessageDtoListEnvelopeReadable = {
@@ -282,6 +386,31 @@ export type CognitiveAgentSkillDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type CognitiveAgentSkillDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CognitiveAgentSkillDto;
+};
+
+export type CognitiveAgentSkillDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CognitiveAgentSkillDto;
 };
 
 export type CognitiveAgentSkillDtoListEnvelopeReadable = {
@@ -363,6 +492,31 @@ export type CognitiveAgentVariableDtoCollectionQueryParametersWritable = {
     expand?: string | null;
 };
 
+export type CognitiveAgentVariableDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CognitiveAgentVariableDto;
+};
+
+export type CognitiveAgentVariableDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CognitiveAgentVariableDto;
+};
+
 export type CognitiveAgentVariableDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
@@ -435,6 +589,31 @@ export type CognitiveSkillDtoCollectionQueryParametersWritable = {
     search?: string | null;
     select?: string | null;
     expand?: string | null;
+};
+
+export type CognitiveSkillDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CognitiveSkillDto;
+};
+
+export type CognitiveSkillDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CognitiveSkillDto;
 };
 
 export type CognitiveSkillDtoListEnvelopeReadable = {
@@ -588,6 +767,36 @@ export type TwoFactorResponse = {
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
 };
+
+export type GetAiProvidersAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/AiProviders';
+};
+
+export type GetAiProvidersAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+};
+
+export type GetAiProvidersAsyncError = GetAiProvidersAsyncErrors[keyof GetAiProvidersAsyncErrors];
+
+export type GetAiProvidersAsyncResponses = {
+    /**
+     * OK
+     */
+    200: AiProviderDtoListEnvelopeReadable;
+};
+
+export type GetAiProvidersAsyncResponse = GetAiProvidersAsyncResponses[keyof GetAiProvidersAsyncResponses];
 
 export type GetCognitiveAgentConversationsAsyncData = {
     body?: CognitiveAgentConversationDtoCollectionQueryParametersWritable;
@@ -759,7 +968,7 @@ export type GetCognitiveAgentConversationByIdAsyncResponses = {
     /**
      * OK
      */
-    200: CognitiveAgentConversationDto;
+    200: CognitiveAgentConversationDtoEnvelopeReadable;
 };
 
 export type GetCognitiveAgentConversationByIdAsyncResponse = GetCognitiveAgentConversationByIdAsyncResponses[keyof GetCognitiveAgentConversationByIdAsyncResponses];
@@ -902,7 +1111,7 @@ export type GetCognitiveAgentMessageByIdAsyncResponses = {
     /**
      * OK
      */
-    200: CognitiveAgentMessageDto;
+    200: CognitiveAgentMessageDtoEnvelopeReadable;
 };
 
 export type GetCognitiveAgentMessageByIdAsyncResponse = GetCognitiveAgentMessageByIdAsyncResponses[keyof GetCognitiveAgentMessageByIdAsyncResponses];
@@ -1069,7 +1278,7 @@ export type GetCognitiveAgentByIdAsyncResponses = {
     /**
      * OK
      */
-    200: CognitiveAgentDto;
+    200: CognitiveAgentDtoEnvelopeReadable;
 };
 
 export type GetCognitiveAgentByIdAsyncResponse = GetCognitiveAgentByIdAsyncResponses[keyof GetCognitiveAgentByIdAsyncResponses];
@@ -1279,7 +1488,7 @@ export type GetCognitiveAgentSkillByIdAsyncResponses = {
     /**
      * OK
      */
-    200: CognitiveAgentSkillDto;
+    200: CognitiveAgentSkillDtoEnvelopeReadable;
 };
 
 export type GetCognitiveAgentSkillByIdAsyncResponse = GetCognitiveAgentSkillByIdAsyncResponses[keyof GetCognitiveAgentSkillByIdAsyncResponses];
@@ -1490,7 +1699,7 @@ export type GetCognitiveAgentVariableByIdAsyncResponses = {
     /**
      * OK
      */
-    200: CognitiveAgentVariableDto;
+    200: CognitiveAgentVariableDtoEnvelopeReadable;
 };
 
 export type GetCognitiveAgentVariableByIdAsyncResponse = GetCognitiveAgentVariableByIdAsyncResponses[keyof GetCognitiveAgentVariableByIdAsyncResponses];
@@ -1693,7 +1902,7 @@ export type GetCognitiveSkillByIdAsyncResponses = {
     /**
      * OK
      */
-    200: CognitiveSkillDto;
+    200: CognitiveSkillDtoEnvelopeReadable;
 };
 
 export type GetCognitiveSkillByIdAsyncResponse = GetCognitiveSkillByIdAsyncResponses[keyof GetCognitiveSkillByIdAsyncResponses];
@@ -1755,22 +1964,6 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
-export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
-    body?: never;
-    path: {
-        agentId: string;
-    };
-    query?: never;
-    url: '/api/v2/AIService/Agents/{agentId}/agui';
-};
-
-export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -2071,6 +2264,22 @@ export type PostAccountManageDownloadPersonalDataData = {
 };
 
 export type PostAccountManageDownloadPersonalDataResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type InvokeAgentSurfaceAsyncData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type InvokeAgentSurfaceAsyncResponses = {
     /**
      * OK
      */

@@ -223,21 +223,6 @@ export interface paths {
       };
     };
   };
-  "/api/v2/AIService/Agents/{agentId}/agui": {
-    post: {
-      parameters: {
-        path: {
-          agentId: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
-  };
   "/hello": {
     get: {
       responses: {
@@ -605,6 +590,13 @@ export interface paths {
      * @description Replays a terminal message as a NEW processing generation over its immutable received evidence — the inbox's recovery lever (distinct from the outbox's same-row requeue). A selected replay-generation row is resolved back to its lineage root before replaying, so numbering stays global and collision-free; the new row is claimable at once with a fresh retry budget, and the root's evidence and budget are never mutated. Legal only from a terminal state whose authenticity passed. Returns the new generation's identity. The reason is audit-critical. Global-administrator only.
      */
     post: operations["ReplayInboxMessage"];
+  };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    /**
+     * Run a governed agent over the AG-UI protocol
+     * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
+     */
+    post: operations["InvokeAgentSurfaceAsync"];
   };
   "/api/v2/SystemService/IPLookups": {
     /**
@@ -4795,6 +4787,23 @@ export interface operations {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
+      };
+    };
+  };
+  /**
+   * Run a governed agent over the AG-UI protocol
+   * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
+   */
+  InvokeAgentSurfaceAsync: {
+    parameters: {
+      path: {
+        agentId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
       };
     };
   };

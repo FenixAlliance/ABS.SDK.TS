@@ -5,6 +5,13 @@
 
 
 export interface paths {
+  "/api/v2/IntelligenceService/AiProviders": {
+    /**
+     * Get the available AI providers
+     * @description Returns every AI provider key this instance has a registered adapter for. The set is a property of the deployment, so it is not tenant-scoped; what varies per tenant is the credential for a provider, which is never returned here.
+     */
+    get: operations["GetAiProvidersAsync"];
+  };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations": {
     /**
      * Get all conversations for a cognitive agent
@@ -218,21 +225,6 @@ export interface paths {
   };
   "/health": {
     get: {
-      responses: {
-        /** @description OK */
-        200: {
-          content: never;
-        };
-      };
-    };
-  };
-  "/api/v2/AIService/Agents/{agentId}/agui": {
-    post: {
-      parameters: {
-        path: {
-          agentId: string;
-        };
-      };
       responses: {
         /** @description OK */
         200: {
@@ -518,6 +510,13 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    /**
+     * Run a governed agent over the AG-UI protocol
+     * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
+     */
+    post: operations["InvokeAgentSurfaceAsync"];
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -530,6 +529,24 @@ export interface components {
       /** Format: int64 */
       expiresIn: number;
       refreshToken: string | null;
+    };
+    AiProviderDto: {
+      providerKey?: string | null;
+    };
+    AiProviderDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["AiProviderDto"][] | null;
     };
     CognitiveAgentConversationCreateDto: {
       /** Format: uuid */
@@ -579,6 +596,21 @@ export interface components {
       select?: string | null;
       expand?: string | null;
       isEmpty?: boolean;
+    };
+    CognitiveAgentConversationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CognitiveAgentConversationDto"];
     };
     CognitiveAgentConversationDtoListEnvelope: {
       isSuccess?: boolean;
@@ -644,6 +676,21 @@ export interface components {
       expand?: string | null;
       isEmpty?: boolean;
     };
+    CognitiveAgentDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CognitiveAgentDto"];
+    };
     CognitiveAgentDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -688,6 +735,21 @@ export interface components {
       select?: string | null;
       expand?: string | null;
       isEmpty?: boolean;
+    };
+    CognitiveAgentMessageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CognitiveAgentMessageDto"];
     };
     CognitiveAgentMessageDtoListEnvelope: {
       isSuccess?: boolean;
@@ -736,6 +798,21 @@ export interface components {
       select?: string | null;
       expand?: string | null;
       isEmpty?: boolean;
+    };
+    CognitiveAgentSkillDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CognitiveAgentSkillDto"];
     };
     CognitiveAgentSkillDtoListEnvelope: {
       isSuccess?: boolean;
@@ -795,6 +872,21 @@ export interface components {
       expand?: string | null;
       isEmpty?: boolean;
     };
+    CognitiveAgentVariableDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CognitiveAgentVariableDto"];
+    };
     CognitiveAgentVariableDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
@@ -848,6 +940,21 @@ export interface components {
       select?: string | null;
       expand?: string | null;
       isEmpty?: boolean;
+    };
+    CognitiveSkillDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CognitiveSkillDto"];
     };
     CognitiveSkillDtoListEnvelope: {
       isSuccess?: boolean;
@@ -975,6 +1082,36 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Get the available AI providers
+   * @description Returns every AI provider key this instance has a registered adapter for. The set is a property of the deployment, so it is not tenant-scoped; what varies per tenant is the credential for a provider, which is never returned here.
+   */
+  GetAiProvidersAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["AiProviderDtoListEnvelope"];
+          "application/xml": components["schemas"]["AiProviderDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
   /**
    * Get all conversations for a cognitive agent
    * @description Retrieves all managed conversations for the specified cognitive agent and tenant.
@@ -1121,8 +1258,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["CognitiveAgentConversationDto"];
-          "application/xml": components["schemas"]["CognitiveAgentConversationDto"];
+          "application/json": components["schemas"]["CognitiveAgentConversationDtoEnvelope"];
+          "application/xml": components["schemas"]["CognitiveAgentConversationDtoEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -1330,8 +1467,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["CognitiveAgentMessageDto"];
-          "application/xml": components["schemas"]["CognitiveAgentMessageDto"];
+          "application/json": components["schemas"]["CognitiveAgentMessageDtoEnvelope"];
+          "application/xml": components["schemas"]["CognitiveAgentMessageDtoEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -1486,8 +1623,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["CognitiveAgentDto"];
-          "application/xml": components["schemas"]["CognitiveAgentDto"];
+          "application/json": components["schemas"]["CognitiveAgentDtoEnvelope"];
+          "application/xml": components["schemas"]["CognitiveAgentDtoEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -1734,8 +1871,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["CognitiveAgentSkillDto"];
-          "application/xml": components["schemas"]["CognitiveAgentSkillDto"];
+          "application/json": components["schemas"]["CognitiveAgentSkillDtoEnvelope"];
+          "application/xml": components["schemas"]["CognitiveAgentSkillDtoEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -1984,8 +2121,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["CognitiveAgentVariableDto"];
-          "application/xml": components["schemas"]["CognitiveAgentVariableDto"];
+          "application/json": components["schemas"]["CognitiveAgentVariableDtoEnvelope"];
+          "application/xml": components["schemas"]["CognitiveAgentVariableDtoEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -2224,8 +2361,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["CognitiveSkillDto"];
-          "application/xml": components["schemas"]["CognitiveSkillDto"];
+          "application/json": components["schemas"]["CognitiveSkillDtoEnvelope"];
+          "application/xml": components["schemas"]["CognitiveSkillDtoEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -2332,6 +2469,23 @@ export interface operations {
         userId: string;
         code: string;
         changedEmail?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Run a governed agent over the AG-UI protocol
+   * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
+   */
+  InvokeAgentSurfaceAsync: {
+    parameters: {
+      path: {
+        agentId: string;
       };
     };
     responses: {
