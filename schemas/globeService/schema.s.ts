@@ -158,6 +158,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -501,12 +516,31 @@ export interface components {
       latitude?: string | null;
       longitude?: string | null;
     };
+    CityDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CityDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CityDto"][] | null;
     };
@@ -516,12 +550,31 @@ export interface components {
       callingCode?: string | null;
       countryID?: string | null;
     };
+    CountryCallingCodeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CountryCallingCodeDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountryCallingCodeDto"][] | null;
     };
@@ -535,12 +588,31 @@ export interface components {
       nativeName?: string | null;
       flagUrl?: string | null;
     };
+    CountryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CountryDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountryDto"];
     };
@@ -550,6 +622,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountryDto"][] | null;
     };
@@ -563,12 +641,31 @@ export interface components {
       name?: string | null;
       languageNativeName?: string | null;
     };
+    CountryLanguageDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CountryLanguageDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountryLanguageDto"];
     };
@@ -578,6 +675,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountryLanguageDto"][] | null;
     };
@@ -589,12 +692,31 @@ export interface components {
       code?: string | null;
       countryID?: string | null;
     };
+    CountryStateDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CountryStateDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountryStateDto"];
     };
@@ -604,6 +726,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountryStateDto"][] | null;
     };
@@ -614,12 +742,31 @@ export interface components {
       domain?: string | null;
       countryID?: string | null;
     };
+    CountryTopLevelDomainDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CountryTopLevelDomainDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountryTopLevelDomainDto"][] | null;
     };
@@ -632,12 +779,31 @@ export interface components {
       symbol?: string | null;
       country?: components["schemas"]["CountryDto"];
     };
+    CurrencyDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CurrencyDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CurrencyDto"];
     };
@@ -647,6 +813,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CurrencyDto"][] | null;
     };
@@ -656,6 +828,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -688,6 +866,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -721,12 +905,31 @@ export interface components {
       utcOffset?: string | null;
       displayName?: string | null;
     };
+    TimezoneDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TimezoneDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TimezoneDto"];
     };
@@ -736,6 +939,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TimezoneDto"][] | null;
     };
@@ -781,6 +990,11 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -813,6 +1027,11 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -924,6 +1143,11 @@ export interface operations {
         countryId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryStateDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -959,6 +1183,11 @@ export interface operations {
       };
       path: {
         countryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryStateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -999,6 +1228,11 @@ export interface operations {
         countryId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryStateDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1035,6 +1269,11 @@ export interface operations {
       path: {
         countryStateId: string;
         countryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CityDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1075,6 +1314,11 @@ export interface operations {
         countryId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CityDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1110,6 +1354,11 @@ export interface operations {
       };
       path: {
         countryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TimezoneDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1149,6 +1398,11 @@ export interface operations {
         countryId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TimezoneDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1184,6 +1438,11 @@ export interface operations {
       };
       path: {
         countryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurrencyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1223,6 +1482,11 @@ export interface operations {
         countryId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryTopLevelDomainDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1258,6 +1522,11 @@ export interface operations {
       };
       path: {
         countryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryTopLevelDomainDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1297,6 +1566,11 @@ export interface operations {
         countryId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryCallingCodeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1334,6 +1608,11 @@ export interface operations {
         countryId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryCallingCodeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1366,6 +1645,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurrencyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CurrencyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1403,6 +1688,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurrencyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CurrencyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1497,6 +1788,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryLanguageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CountryLanguageDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1532,6 +1829,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CountryLanguageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CountryLanguageDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1611,6 +1914,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TimezoneDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TimezoneDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1646,6 +1955,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TimezoneDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TimezoneDtoCollectionQueryParameters"];
       };
     };
     responses: {

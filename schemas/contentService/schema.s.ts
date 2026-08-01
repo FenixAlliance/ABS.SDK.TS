@@ -300,6 +300,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -768,7 +783,7 @@ export interface paths {
      * Update base web content themes
      * @description Triggers an update of the base web content themes.
      */
-    get: operations["GetLatestCurrencyRatesModelAsync"];
+    get: operations["UpdateThemesAsync"];
   };
   "/api/v2/ContentService/WebComponents": {
     /**
@@ -1128,6 +1143,8 @@ export interface components {
       publicKey?: string | null;
       privateKey?: string | null;
     };
+    /** Format: uuid */
+    AppId: string;
     AppleIcons: {
       the57?: string | null;
       the60?: string | null;
@@ -1140,6 +1157,21 @@ export interface components {
       the152?: string | null;
       the167?: string | null;
       the180?: string | null;
+    };
+    AuthResult: {
+      userId?: components["schemas"]["UserId"];
+      tenantId?: components["schemas"]["TenantId"];
+      portalId?: components["schemas"]["PortalId"];
+      applicationId?: components["schemas"]["AppId"];
+      enrollmentId?: components["schemas"]["EnrollmentId"];
+      correlationId?: string | null;
+      scopes?: string[] | null;
+      error?: string | null;
+      /** @enum {string} */
+      runAs?: "Invoker" | "Application" | "System" | "Service";
+      /** @enum {string} */
+      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      provenance?: components["schemas"]["ExecutionProvenance"];
     };
     AzureAppInsightIntegrationOptions: {
       enable?: boolean;
@@ -1228,12 +1260,31 @@ export interface components {
       /** @enum {string} */
       availability?: "DND" | "Busy" | "Away" | "Offline" | "Available";
     };
+    BlogAuthorDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BlogAuthorDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogAuthorDto"];
     };
@@ -1243,6 +1294,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogAuthorDto"][] | null;
     };
@@ -1290,12 +1347,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    BlogPostCategoryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BlogPostCategoryDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogPostCategoryDto"];
     };
@@ -1305,6 +1381,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogPostCategoryDto"][] | null;
     };
@@ -1343,12 +1425,31 @@ export interface components {
       socialPostId?: string | null;
       parentCommentId?: string | null;
     };
+    BlogPostCommentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BlogPostCommentDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogPostCommentDto"][] | null;
     };
@@ -1435,12 +1536,31 @@ export interface components {
       blogPostCategoryId?: string | null;
       webTemplateId?: string | null;
     };
+    BlogPostDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BlogPostDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogPostDto"];
     };
@@ -1450,6 +1570,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogPostDto"][] | null;
     };
@@ -1492,12 +1618,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    BlogPostTagDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BlogPostTagDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogPostTagDto"];
     };
@@ -1507,6 +1652,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlogPostTagDto"][] | null;
     };
@@ -1628,12 +1779,31 @@ export interface components {
       verified?: boolean;
       businessID?: string | null;
     };
+    BusinessDomainDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BusinessDomainDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BusinessDomainDto"];
     };
@@ -1643,16 +1813,82 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BusinessDomainDto"][] | null;
     };
     BusinessDomainUpdateDto: {
       domain?: string | null;
     };
+    Calendar: {
+      /** Format: date-time */
+      minSupportedDateTime?: string;
+      /** Format: date-time */
+      maxSupportedDateTime?: string;
+      /** @enum {string} */
+      algorithmType?: "Unknown" | "SolarCalendar" | "LunarCalendar" | "LunisolarCalendar";
+      isReadOnly?: boolean;
+      eras?: (readonly number[]) | null;
+      /** Format: int32 */
+      twoDigitYearMax?: number;
+    };
+    CartDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      ip?: string | null;
+      type?: string | null;
+      /** Format: double */
+      total?: number;
+      /** Format: double */
+      taxes?: number;
+      /** Format: double */
+      freight?: number;
+      /** Format: double */
+      subTotal?: number;
+      currencyId?: string | null;
+      countryId?: string | null;
+      /** Format: int32 */
+      itemCartRecordsCount?: number | null;
+      /** Format: int32 */
+      itemToCompareRecordsCount?: number | null;
+    };
     CartOptions: {
       enableGuestCart?: boolean;
       productPlaceholderImage?: string | null;
       redirectToCartPageAfterAddingProducts?: boolean;
+    };
+    Claim: {
+      issuer?: string | null;
+      originalIssuer?: string | null;
+      properties?: {
+        [key: string]: string;
+      } | null;
+      subject?: components["schemas"]["ClaimsIdentity"];
+      type?: string | null;
+      value?: string | null;
+      valueType?: string | null;
+    };
+    ClaimsIdentity: {
+      authenticationType?: string | null;
+      isAuthenticated?: boolean;
+      actor?: components["schemas"]["ClaimsIdentity"];
+      bootstrapContext?: unknown;
+      claims?: (readonly components["schemas"]["Claim"][]) | null;
+      label?: string | null;
+      name?: string | null;
+      nameClaimType?: string | null;
+      roleClaimType?: string | null;
+    };
+    ClaimsPrincipal: {
+      claims?: (readonly components["schemas"]["Claim"][]) | null;
+      identities?: (readonly components["schemas"]["ClaimsIdentity"][]) | null;
+      identity?: components["schemas"]["IIdentity"];
     };
     CodeFieldsOptions: Record<string, never>;
     ColorOptions: {
@@ -1674,6 +1910,91 @@ export interface components {
       color8?: string | null;
       color9?: string | null;
     };
+    CompareInfo: {
+      name?: string | null;
+      version?: components["schemas"]["SortVersion"];
+      /** Format: int32 */
+      lcid?: number;
+    };
+    ContactDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      qualifiedName?: string | null;
+      tenantId?: string | null;
+      /** @enum {string} */
+      type?: "Individual" | "Organization";
+      /** Format: email */
+      email?: string | null;
+      /** Format: tel */
+      phone?: string | null;
+      publicName?: string | null;
+      firstName?: string | null;
+      lastName?: string | null;
+      jobTitle?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      countryId?: string | null;
+      timezoneId?: string | null;
+      languageId?: string | null;
+      socialProfileId?: string | null;
+      /** Format: uri */
+      webUrl?: string | null;
+      /** Format: uri */
+      gitHubUrl?: string | null;
+      /** Format: uri */
+      twitchUrl?: string | null;
+      /** Format: uri */
+      redditUrl?: string | null;
+      /** Format: uri */
+      tikTokUrl?: string | null;
+      /** Format: uri */
+      websiteUrl?: string | null;
+      /** Format: uri */
+      twitterUrl?: string | null;
+      /** Format: uri */
+      facebookUrl?: string | null;
+      /** Format: uri */
+      youTubeUrl?: string | null;
+      /** Format: uri */
+      linkedInUrl?: string | null;
+      /** Format: uri */
+      instagramUrl?: string | null;
+      githubUsername?: string | null;
+      duns?: string | null;
+      taxId?: string | null;
+      about?: string | null;
+      street?: string | null;
+      cartId?: string | null;
+      cityId?: string | null;
+      zipCode?: string | null;
+      stateId?: string | null;
+      walletId?: string | null;
+      faxNumber?: string | null;
+      postalCode?: string | null;
+      currencyId?: string | null;
+      streetLine1?: string | null;
+      streetLine2?: string | null;
+      territoryId?: string | null;
+      mobilePhone?: string | null;
+      enrollmentId?: string | null;
+      annualRevenue?: string | null;
+      relatedUserId?: string | null;
+      businessPhone?: string | null;
+      ownerContactId?: string | null;
+      relatedTenantId?: string | null;
+      activityFeedId?: string | null;
+      parentContactId?: string | null;
+      identityProvider?: string | null;
+      partnerProfileId?: string | null;
+      primaryContactId?: string | null;
+      activeDirectoryId?: string | null;
+      identityProviderAccessToken?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
+    };
+    /** Format: uuid */
+    ContactId: string;
     ContactOptions: {
       email1?: string | null;
       email2?: string | null;
@@ -1694,6 +2015,16 @@ export interface components {
       areaServed?: string[] | null;
       type?: string | null;
     };
+    CountryDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      iso3?: string | null;
+      iso2?: string | null;
+      name?: string | null;
+      nativeName?: string | null;
+      flagUrl?: string | null;
+    };
     CouponsOptions: {
       enableCoupons?: boolean;
       calculateCouponsSecuentially?: boolean;
@@ -1704,6 +2035,54 @@ export interface components {
       twitterHandler?: string | null;
       gitHubUsername?: string | null;
       facebookUsername?: string | null;
+    };
+    CrmContext: {
+      ownerTenantId?: components["schemas"]["TenantId"];
+      ownerTenant?: components["schemas"]["TenantDto"];
+      userContactId?: components["schemas"]["ContactId"];
+      tenantContactId?: components["schemas"]["ContactId"];
+      userContact?: components["schemas"]["ContactDto"];
+      tenantContact?: components["schemas"]["ContactDto"];
+    };
+    CultureInfo: {
+      parent?: components["schemas"]["CultureInfo"];
+      /** Format: int32 */
+      lcid?: number;
+      /** Format: int32 */
+      keyboardLayoutId?: number;
+      name?: string | null;
+      ietfLanguageTag?: string | null;
+      displayName?: string | null;
+      nativeName?: string | null;
+      englishName?: string | null;
+      twoLetterISOLanguageName?: string | null;
+      threeLetterISOLanguageName?: string | null;
+      threeLetterWindowsLanguageName?: string | null;
+      compareInfo?: components["schemas"]["CompareInfo"];
+      textInfo?: components["schemas"]["TextInfo"];
+      isNeutralCulture?: boolean;
+      /** @enum {string} */
+      cultureTypes?: "NeutralCultures" | "SpecificCultures" | "InstalledWin32Cultures" | "AllCultures" | "UserCustomCulture" | "ReplacementCultures" | "WindowsOnlyCultures" | "FrameworkCultures";
+      numberFormat?: components["schemas"]["NumberFormatInfo"];
+      dateTimeFormat?: components["schemas"]["DateTimeFormatInfo"];
+      calendar?: components["schemas"]["Calendar"];
+      optionalCalendars?: (readonly components["schemas"]["Calendar"][]) | null;
+      useUserOverride?: boolean;
+      isReadOnly?: boolean;
+    };
+    CurrencyDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      code?: string | null;
+      name?: string | null;
+      symbol?: string | null;
+      country?: components["schemas"]["CountryDto"];
+    };
+    CurrencyId: {
+      value?: string | null;
+      code?: string | null;
+      country?: string | null;
     };
     CustomFont: {
       name?: string | null;
@@ -1719,6 +2098,36 @@ export interface components {
       icon?: string | null;
       iconColor?: string | null;
       favicon?: string | null;
+    };
+    DateTimeFormatInfo: {
+      amDesignator?: string | null;
+      calendar?: components["schemas"]["Calendar"];
+      dateSeparator?: string | null;
+      /** @enum {string} */
+      firstDayOfWeek?: "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+      /** @enum {string} */
+      calendarWeekRule?: "FirstDay" | "FirstFullWeek" | "FirstFourDayWeek";
+      fullDateTimePattern?: string | null;
+      longDatePattern?: string | null;
+      longTimePattern?: string | null;
+      monthDayPattern?: string | null;
+      pmDesignator?: string | null;
+      rfC1123Pattern?: string | null;
+      shortDatePattern?: string | null;
+      shortTimePattern?: string | null;
+      sortableDateTimePattern?: string | null;
+      timeSeparator?: string | null;
+      universalSortableDateTimePattern?: string | null;
+      yearMonthPattern?: string | null;
+      abbreviatedDayNames?: string[] | null;
+      shortestDayNames?: string[] | null;
+      dayNames?: string[] | null;
+      abbreviatedMonthNames?: string[] | null;
+      monthNames?: string[] | null;
+      isReadOnly?: boolean;
+      nativeCalendarName?: string | null;
+      abbreviatedMonthGenitiveNames?: string[] | null;
+      monthGenitiveNames?: string[] | null;
     };
     DownloadablesOptions: {
       maskFileNames?: boolean;
@@ -1773,15 +2182,226 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
+    /** Format: uuid */
+    EnrollmentId: string;
     ErrorEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
+    };
+    ExecutionContext: {
+      isAuthenticated?: boolean;
+      currentCartId?: string | null;
+      currentUserId?: string | null;
+      currentTenantId?: string | null;
+      currentPortalId?: string | null;
+      currentEnrollmentId?: string | null;
+      currencyId?: string | null;
+      /** Format: int32 */
+      pageSize?: number;
+      dateFormat?: string | null;
+      currencyFormat?: string | null;
+      dateTimeFormat?: string | null;
+      /** Format: date-time */
+      toDateDataSummaries?: string;
+      /** Format: date-time */
+      fromDateDataSummaries?: string;
+      authToken?: components["schemas"]["JsonWebToken"];
+      principal?: components["schemas"]["ClaimsPrincipal"];
+      authorization?: components["schemas"]["AuthResult"];
+      user?: components["schemas"]["ExtendedUserDto"];
+      currentTenant?: components["schemas"]["ExtendedTenantDto"];
+      currentEnrollment?: components["schemas"]["TenantEnrollmentDto"];
+      selectedTenantMappings?: components["schemas"]["CrmContext"];
+      portalOwnerMappings?: components["schemas"]["CrmContext"];
+      rootTenantMappings?: components["schemas"]["CrmContext"];
+      cart?: components["schemas"]["CartDto"];
+      currency?: components["schemas"]["CurrencyDto"];
+      forexRates?: components["schemas"]["ForexRatesDto"];
+      exchangeRate?: components["schemas"]["Money"];
+      country?: components["schemas"]["CountryDto"];
+      rootTenant?: components["schemas"]["TenantDto"];
+      currentPortal?: components["schemas"]["WebPortalDto"];
+      tenants?: components["schemas"]["ExtendedTenantDto"][] | null;
+      enrollments?: components["schemas"]["ExtendedTenantEnrollmentDto"][] | null;
+      availablePortals?: components["schemas"]["WebPortalDto"][] | null;
+      invitations?: components["schemas"]["ExtendedInviteDto"][] | null;
+      grantedPermissions?: string[] | null;
+      accessibleFeatures?: components["schemas"]["SuiteLicenseFeatureDto"][] | null;
+      culture?: components["schemas"]["CultureInfo"];
+      timezoneId?: string | null;
+    };
+    ExecutionContextEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ExecutionContext"];
+    };
+    ExecutionProvenance: {
+      /** @enum {string} */
+      initiation?: "Unknown" | "Http" | "Workflow" | "ScheduledJob" | "Event" | "AiTool" | "Mcp" | "Integration" | "System";
+      onBehalfOfActorId?: components["schemas"]["UserId"];
+      /** @enum {string|null} */
+      onBehalfOfActorKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
+    };
+    ExtendedInviteDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      revoked?: boolean;
+      redeemed?: boolean;
+      /** Format: date-time */
+      redeemedTimestamp?: string | null;
+      userEmail?: string | null;
+      creatorEnrollmentId?: string | null;
+      relatedEnrollmentId?: string | null;
+      tenant?: components["schemas"]["TenantDto"];
+    };
+    ExtendedTenantDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      qualifiedName?: string | null;
+      /** @enum {string} */
+      kind?: "Organization" | "Individual";
+      taxId?: string | null;
+      about?: string | null;
+      walletId?: string | null;
+      socialFeedId?: string | null;
+      businessIndustryId?: string | null;
+      businessSegmentId?: string | null;
+      socialProfileId?: string | null;
+      languageId?: string | null;
+      name?: string | null;
+      duns?: string | null;
+      slogan?: string | null;
+      legalName?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      cartId?: string | null;
+      currencyId?: string | null;
+      timezoneId?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      email?: string | null;
+      phone?: string | null;
+      webUrl?: string | null;
+      facebookUrl?: string | null;
+      twitterUrl?: string | null;
+      gitHubUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      youTubeUrl?: string | null;
+      whatsAppNumber?: string | null;
+      supportPhoneNumber?: string | null;
+      verified?: boolean;
+      businessName?: string | null;
+      businessLegalName?: string | null;
+      twitterUsername?: string | null;
+      cart?: components["schemas"]["CartDto"];
+      wallet?: components["schemas"]["WalletDto"];
+      socialProfile?: components["schemas"]["SocialProfileDto"];
+    };
+    ExtendedTenantEnrollmentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      userId?: string | null;
+      isRoot?: boolean;
+      isOwner?: boolean;
+      isAdmin?: boolean;
+      isDisabled?: boolean;
+      tenant?: components["schemas"]["TenantDto"];
+      user?: components["schemas"]["UserDto"];
+    };
+    ExtendedUserDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      fullName?: string | null;
+      qualifiedName?: string | null;
+      publicName?: string | null;
+      handler?: string | null;
+      lastName?: string | null;
+      firstName?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      gitHubUrl?: string | null;
+      countryId?: string | null;
+      timezoneId?: string | null;
+      websiteUrl?: string | null;
+      twitterUrl?: string | null;
+      youTubeUrl?: string | null;
+      linkedInUrl?: string | null;
+      facebookUrl?: string | null;
+      instagramUrl?: string | null;
+      socialProfileId?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
+      idProvider?: string | null;
+      languageId?: string | null;
+      /** @enum {string|null} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      cityId?: string | null;
+      stateId?: string | null;
+      email?: string | null;
+      about?: string | null;
+      jobTitle?: string | null;
+      socialFeedId?: string | null;
+      currentTenantId?: string | null;
+      currentEnrollmentId?: string | null;
+      status?: string | null;
+      cartId?: string | null;
+      walletId?: string | null;
+      userName?: string | null;
+      currencyId?: string | null;
+      phoneNumber?: string | null;
+      publicIdentifier?: string | null;
+      identityProvider?: string | null;
+      phoneNumberConfirmed?: boolean;
+      emailConfirmed?: boolean;
+      /** @enum {string|null} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      lockoutEnabled?: boolean;
+      /** Format: date-time */
+      lockoutEnd?: string | null;
+      /** Format: int32 */
+      enrollmentsCount?: number | null;
+      /** @enum {string|null} */
+      siteTheme?: "System" | "Light" | "Dark" | null;
+      cart?: components["schemas"]["CartDto"];
+      wallet?: components["schemas"]["WalletDto"];
+      socialProfile?: components["schemas"]["SocialProfileDto"];
+      settings?: components["schemas"]["UserSettingsDto"];
     };
     FacebookIntegrationOptions: {
       enable?: boolean;
@@ -1833,6 +2453,18 @@ export interface components {
       headingsTypography?: components["schemas"]["Typography"];
       widgetsTypography?: components["schemas"]["Typography"];
       copyrightTypography?: components["schemas"]["Typography"];
+    };
+    ForexRatesDto: {
+      success?: boolean;
+      date?: string | null;
+      base?: string | null;
+      /** Format: int64 */
+      timestamp?: number;
+      /** Format: date-time */
+      requestTimestamp?: string;
+      rates?: {
+        [key: string]: number;
+      } | null;
     };
     ForgotPasswordRequest: {
       email: string | null;
@@ -1923,6 +2555,11 @@ export interface components {
       } | null;
       [key: string]: unknown;
     };
+    IIdentity: {
+      name?: string | null;
+      authenticationType?: string | null;
+      isAuthenticated?: boolean;
+    };
     IdentityAndPrivacyOptions: {
       allowGuestOrders?: boolean;
       allowGuestCartRecognition?: boolean;
@@ -1961,6 +2598,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -1995,6 +2638,36 @@ export interface components {
       /** @enum {string} */
       stockDisplayFormat?: "AlwaysDisplayRemainingQuantity" | "OnlyDisplayRemainingQuantityWhenStockIsLow" | "NeverDisplayRemainingQuantity";
     };
+    JsonWebToken: {
+      header?: components["schemas"]["JsonWebTokenHeader"];
+      payload?: components["schemas"]["JsonWebTokenPayload"];
+      signature?: string | null;
+      tokenType?: string | null;
+      /** Format: int64 */
+      expiresIn?: number;
+      accessToken?: string | null;
+    };
+    JsonWebTokenHeader: {
+      alg?: string | null;
+      jku?: string | null;
+      kid?: string | null;
+      typ?: string | null;
+    };
+    JsonWebTokenPayload: {
+      aud?: string | null;
+      cid?: string | null;
+      iss?: string | null;
+      aid?: string | null;
+      sub?: string | null;
+      act?: string | null;
+      /** Format: int64 */
+      iat?: number;
+      /** Format: int64 */
+      nbf?: number;
+      /** Format: int64 */
+      exp?: number;
+      scopes?: string[] | null;
+    };
     LayoutOptions: {
       singleSidebarWidth?: string | null;
       singleSidebarGutter?: string | null;
@@ -2027,12 +2700,31 @@ export interface components {
       countryLanguageId?: string | null;
       tenantId?: string | null;
     };
+    LocalizationStringDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LocalizationStringDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LocalizationStringDto"];
     };
@@ -2042,6 +2734,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LocalizationStringDto"][] | null;
     };
@@ -2137,12 +2835,31 @@ export interface components {
       tenantId?: string | null;
       items?: components["schemas"]["MenuContextItemDto"][] | null;
     };
+    MenuContextDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     MenuContextDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MenuContextDto"];
     };
@@ -2152,6 +2869,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MenuContextDto"][] | null;
     };
@@ -2235,17 +2958,53 @@ export interface components {
       azure?: components["schemas"]["MicrosoftAzureIntegrationOptions"];
     };
     MiscellaneousOptions: Record<string, never>;
+    Money: {
+      /** Format: double */
+      amount?: number;
+      currency?: components["schemas"]["CurrencyId"];
+    };
+    NumberFormatInfo: {
+      /** Format: int32 */
+      currencyDecimalDigits?: number;
+      currencyDecimalSeparator?: string | null;
+      isReadOnly?: boolean;
+      currencyGroupSizes?: number[] | null;
+      numberGroupSizes?: number[] | null;
+      percentGroupSizes?: number[] | null;
+      currencyGroupSeparator?: string | null;
+      currencySymbol?: string | null;
+      naNSymbol?: string | null;
+      /** Format: int32 */
+      currencyNegativePattern?: number;
+      /** Format: int32 */
+      numberNegativePattern?: number;
+      /** Format: int32 */
+      percentPositivePattern?: number;
+      /** Format: int32 */
+      percentNegativePattern?: number;
+      negativeInfinitySymbol?: string | null;
+      negativeSign?: string | null;
+      /** Format: int32 */
+      numberDecimalDigits?: number;
+      numberDecimalSeparator?: string | null;
+      numberGroupSeparator?: string | null;
+      /** Format: int32 */
+      currencyPositivePattern?: number;
+      positiveInfinitySymbol?: string | null;
+      positiveSign?: string | null;
+      /** Format: int32 */
+      percentDecimalDigits?: number;
+      percentDecimalSeparator?: string | null;
+      percentGroupSeparator?: string | null;
+      percentSymbol?: string | null;
+      perMilleSymbol?: string | null;
+      nativeDigits?: string[] | null;
+      /** @enum {string} */
+      digitSubstitution?: "Context" | "None" | "NativeNational";
+    };
     OpenExchangeRatesIntegrationsOptions: {
       enable?: boolean;
       appID?: string | null;
-    };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
-      op?: string | null;
-      from?: string | null;
-      value?: unknown;
     };
     Organization: {
       legalName?: string | null;
@@ -2266,6 +3025,12 @@ export interface components {
       left?: string | null;
     };
     PaginationOptions: Record<string, never>;
+    PatchOperation: {
+      op?: string | null;
+      path?: string | null;
+      from?: string | null;
+      value?: unknown;
+    };
     PaymentMethod: {
       enable?: boolean;
       priority?: boolean;
@@ -2278,6 +3043,8 @@ export interface components {
       paymentMethods?: components["schemas"]["PaymentMethod"][] | null;
     };
     PerformanceOptions: Record<string, never>;
+    /** Format: uuid */
+    PortalId: string;
     PortalOptions: {
       title?: string | null;
       description?: string | null;
@@ -2328,6 +3095,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PortalOptions"];
     };
@@ -2355,6 +3128,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PortalSettings"];
     };
@@ -2501,6 +3280,48 @@ export interface components {
       whatsAppNumber?: string | null;
       wikipediaUrl?: string | null;
     };
+    SocialProfileDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      about?: string | null;
+      cover?: string | null;
+      avatar?: string | null;
+      countryId?: string | null;
+      countryName?: string | null;
+      identityId?: string | null;
+      /** Format: int32 */
+      followsCount?: number | null;
+      /** Format: int32 */
+      messagesCount?: number | null;
+      /** Format: int32 */
+      followersCount?: number | null;
+      /** Format: int32 */
+      notificationsCount?: number | null;
+      /** Format: int32 */
+      unreadNotificationsCount?: number | null;
+      /** Format: int32 */
+      unreadMessagesCount?: number | null;
+      /** @enum {string|null} */
+      type?: "User" | "Tenant" | "Contact" | null;
+      socialFeedId?: string | null;
+      twitterUrl?: string | null;
+      facebookURL?: string | null;
+      linkedInURL?: string | null;
+      youtubeURL?: string | null;
+      githubURL?: string | null;
+      pinterestURL?: string | null;
+      dribbleURL?: string | null;
+      domain?: string | null;
+      notes?: string | null;
+    };
+    SortVersion: {
+      /** Format: int32 */
+      fullVersion?: number;
+      /** Format: uuid */
+      sortId?: string;
+    };
     StoreDataRetentionPolicy: {
       /** Format: int32 */
       dataRetentionTimeSpanAmmount?: number;
@@ -2585,6 +3406,10 @@ export interface components {
       /** @enum {string} */
       prorateFirstRenewal?: "AlwaysAndNoCharge" | "NeverAndNoCharge" | "NeverAndFullCharge" | "AlwaysAndFullCharge" | "ForVirtualProductsOnly" | "ForServiceProductsOnly" | "ForSubscriptionProductsOnly";
     };
+    SuiteLicenseFeatureDto: {
+      key?: string | null;
+      value?: string | null;
+    };
     TaxCalculationOptions: {
       enableTaxes?: boolean;
       roundTaxesAtSubtotalLevel?: boolean;
@@ -2596,6 +3421,78 @@ export interface components {
       additionalTaxClasses?: {
         [key: string]: string[];
       } | null;
+    };
+    TenantDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      qualifiedName?: string | null;
+      /** @enum {string} */
+      kind?: "Organization" | "Individual";
+      taxId?: string | null;
+      about?: string | null;
+      walletId?: string | null;
+      socialFeedId?: string | null;
+      businessIndustryId?: string | null;
+      businessSegmentId?: string | null;
+      socialProfileId?: string | null;
+      languageId?: string | null;
+      name?: string | null;
+      duns?: string | null;
+      slogan?: string | null;
+      legalName?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      cartId?: string | null;
+      currencyId?: string | null;
+      timezoneId?: string | null;
+      countryId?: string | null;
+      stateId?: string | null;
+      cityId?: string | null;
+      email?: string | null;
+      phone?: string | null;
+      webUrl?: string | null;
+      facebookUrl?: string | null;
+      twitterUrl?: string | null;
+      gitHubUrl?: string | null;
+      linkedInUrl?: string | null;
+      instagramUrl?: string | null;
+      youTubeUrl?: string | null;
+      whatsAppNumber?: string | null;
+      supportPhoneNumber?: string | null;
+      verified?: boolean;
+      businessName?: string | null;
+      businessLegalName?: string | null;
+      twitterUsername?: string | null;
+    };
+    TenantEnrollmentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      userId?: string | null;
+      isRoot?: boolean;
+      isOwner?: boolean;
+      isAdmin?: boolean;
+      isDisabled?: boolean;
+    };
+    /** Format: uuid */
+    TenantId: string;
+    TextInfo: {
+      /** Format: int32 */
+      ansiCodePage?: number;
+      /** Format: int32 */
+      oemCodePage?: number;
+      /** Format: int32 */
+      macCodePage?: number;
+      /** Format: int32 */
+      ebcdicCodePage?: number;
+      /** Format: int32 */
+      lcid?: number;
+      cultureName?: string | null;
+      isReadOnly?: boolean;
+      listSeparator?: string | null;
+      isRightToLeft?: boolean;
     };
     ThemingOptions: {
       darkStyling?: boolean;
@@ -2655,6 +3552,100 @@ export interface components {
       headersTypography?: components["schemas"]["Typography"];
       customFonts?: components["schemas"]["CustomFont"][] | null;
     };
+    UserDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      fullName?: string | null;
+      qualifiedName?: string | null;
+      publicName?: string | null;
+      handler?: string | null;
+      lastName?: string | null;
+      firstName?: string | null;
+      coverUrl?: string | null;
+      avatarUrl?: string | null;
+      gitHubUrl?: string | null;
+      countryId?: string | null;
+      timezoneId?: string | null;
+      websiteUrl?: string | null;
+      twitterUrl?: string | null;
+      youTubeUrl?: string | null;
+      linkedInUrl?: string | null;
+      facebookUrl?: string | null;
+      instagramUrl?: string | null;
+      socialProfileId?: string | null;
+      /** Format: date-time */
+      birthday?: string | null;
+      idProvider?: string | null;
+      languageId?: string | null;
+      /** @enum {string|null} */
+      gender?: "Unknown" | "Male" | "Female" | "PreferNotToSay" | null;
+      cityId?: string | null;
+      stateId?: string | null;
+      email?: string | null;
+      about?: string | null;
+      jobTitle?: string | null;
+      socialFeedId?: string | null;
+      currentTenantId?: string | null;
+      currentEnrollmentId?: string | null;
+      status?: string | null;
+      cartId?: string | null;
+      walletId?: string | null;
+      userName?: string | null;
+      currencyId?: string | null;
+      phoneNumber?: string | null;
+      publicIdentifier?: string | null;
+      identityProvider?: string | null;
+      phoneNumberConfirmed?: boolean;
+      emailConfirmed?: boolean;
+      /** @enum {string|null} */
+      availability?: "DND" | "Busy" | "Away" | "Offline" | "Available" | null;
+      lockoutEnabled?: boolean;
+      /** Format: date-time */
+      lockoutEnd?: string | null;
+      /** Format: int32 */
+      enrollmentsCount?: number | null;
+      /** @enum {string|null} */
+      siteTheme?: "System" | "Light" | "Dark" | null;
+    };
+    /** Format: uuid */
+    UserId: string;
+    UserSettingsDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: int32 */
+      pageSize?: number;
+      dateFormat?: string | null;
+      currencyFormat?: string | null;
+      dateTimeFormat?: string | null;
+      /** @enum {string} */
+      siteTheme?: "System" | "Light" | "Dark";
+    };
+    WalletDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** Format: double */
+      balance?: number;
+      /** Format: double */
+      cryptoBalance?: number;
+      testMode?: boolean;
+      verified?: boolean;
+      type?: string | null;
+      currencyId?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      /** Format: double */
+      balanceInUsd?: number;
+      /** Format: double */
+      mainNetEtherBalance?: number;
+      ethereumAddress?: string | null;
+      ethereumPublicKey?: string | null;
+      ethereumPrivateKey?: string | null;
+      /** Format: double */
+      rollingReservePercent?: number;
+    };
     WebComponentCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2692,12 +3683,31 @@ export interface components {
       tenantId?: string | null;
       webPortalId?: string | null;
     };
+    WebComponentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebComponentDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebComponentDto"];
     };
@@ -2707,6 +3717,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebComponentDto"][] | null;
     };
@@ -2802,12 +3818,31 @@ export interface components {
       parentWebContentId?: string | null;
       parentWebContentVersionId?: string | null;
     };
+    WebContentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebContentDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebContentDto"];
     };
@@ -2817,6 +3852,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebContentDto"][] | null;
     };
@@ -2920,12 +3961,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    WebPageCategoryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebPageCategoryDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPageCategoryDto"];
     };
@@ -2935,6 +3995,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPageCategoryDto"][] | null;
     };
@@ -3046,12 +4112,31 @@ export interface components {
       isPrivacyPolicyPage?: boolean;
       isTermsOfServicePage?: boolean;
     };
+    WebPageDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebPageDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPageDto"];
     };
@@ -3061,6 +4146,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPageDto"][] | null;
     };
@@ -3101,12 +4192,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    WebPageTagDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebPageTagDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPageTagDto"];
     };
@@ -3116,6 +4226,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPageTagDto"][] | null;
     };
@@ -3237,12 +4353,31 @@ export interface components {
       businessDomainId?: string | null;
       businessPortalApplicationId?: string | null;
     };
+    WebPortalDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebPortalDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPortalDto"];
     };
@@ -3252,6 +4387,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPortalDto"][] | null;
     };
@@ -3302,12 +4443,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    WebTemplateDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebTemplateDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebTemplateDto"];
     };
@@ -3317,6 +4477,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebTemplateDto"][] | null;
     };
@@ -3363,12 +4529,31 @@ export interface components {
       enable?: boolean;
       tenantId?: string | null;
     };
+    WebsiteThemeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebsiteThemeDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebsiteThemeDto"][] | null;
     };
@@ -3407,6 +4592,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogAuthorDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogAuthorDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3475,6 +4666,12 @@ export interface operations {
         authorId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3508,6 +4705,12 @@ export interface operations {
         authorId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3537,6 +4740,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3575,6 +4784,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3793,8 +5008,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3829,6 +5044,12 @@ export interface operations {
     parameters: {
       query?: {
         tenantId?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3903,6 +5124,12 @@ export interface operations {
     parameters: {
       query?: {
         tenantId?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4058,8 +5285,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4094,6 +5321,12 @@ export interface operations {
     parameters: {
       path: {
         blogPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostTagDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4249,6 +5482,12 @@ export interface operations {
         blogPostId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostCategoryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4402,6 +5641,12 @@ export interface operations {
         blogPostId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCommentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostCommentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4478,6 +5723,12 @@ export interface operations {
       path: {
         commentId: string;
         blogPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostCommentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostCommentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4600,6 +5851,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostTagDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4680,6 +5937,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlogPostTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlogPostTagDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4854,8 +6117,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4894,6 +6157,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessDomainDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessDomainDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4983,6 +6252,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessDomainDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessDomainDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5215,6 +6490,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LocalizationStringDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LocalizationStringDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5295,6 +6576,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LocalizationStringDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LocalizationStringDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5464,6 +6751,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MenuContextDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MenuContextDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5544,6 +6837,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MenuContextDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MenuContextDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5713,6 +7012,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPortalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPortalDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5793,6 +7098,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPortalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPortalDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5910,8 +7221,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["WebPortalDtoEnvelope"];
-          "application/xml": components["schemas"]["WebPortalDtoEnvelope"];
+          "application/json": components["schemas"]["ExecutionContextEnvelope"];
+          "application/xml": components["schemas"]["ExecutionContextEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -6152,8 +7463,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6436,7 +7747,7 @@ export interface operations {
    * Update base web content themes
    * @description Triggers an update of the base web content themes.
    */
-  GetLatestCurrencyRatesModelAsync: {
+  UpdateThemesAsync: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -6474,6 +7785,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebComponentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebComponentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6556,6 +7873,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebComponentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebComponentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6725,6 +8048,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebContentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebContentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -6761,6 +8090,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebContentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebContentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6979,8 +8314,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7019,6 +8354,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPageCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7101,6 +8442,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPageCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7275,8 +8622,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7317,6 +8664,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPageDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7346,6 +8699,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPageDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7520,8 +8879,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7552,6 +8911,12 @@ export interface operations {
       };
       path: {
         webPageId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPageTagDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7688,6 +9053,12 @@ export interface operations {
         webPageId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPageCategoryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7820,6 +9191,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPageTagDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7900,6 +9277,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPageTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPageTagDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8074,8 +9457,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -8114,6 +9497,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebsiteThemeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebsiteThemeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8186,6 +9575,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebsiteThemeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebsiteThemeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8347,8 +9742,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -8384,6 +9779,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebTemplateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebTemplateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8463,6 +9864,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebTemplateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebTemplateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8631,8 +10038,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

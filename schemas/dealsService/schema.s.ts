@@ -217,6 +217,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -823,12 +838,31 @@ export interface components {
       /** Format: double */
       customShippingTaxAmount?: number;
     };
+    DealUnitDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     DealUnitDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["DealUnitDto"];
     };
@@ -838,6 +872,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["DealUnitDto"][] | null;
     };
@@ -860,12 +900,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    DealUnitFlowDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     DealUnitFlowDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["DealUnitFlowDto"];
     };
@@ -875,6 +934,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["DealUnitFlowDto"][] | null;
     };
@@ -903,12 +968,31 @@ export interface components {
       enrollmentId?: string | null;
       parentBusinessProcessStageId?: string | null;
     };
+    DealUnitFlowStageDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     DealUnitFlowStageDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["DealUnitFlowStageDto"];
     };
@@ -918,6 +1002,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["DealUnitFlowStageDto"][] | null;
     };
@@ -1034,7 +1124,6 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      forexRatesSnapshot?: string | null;
       /** Format: double */
       totalBaseAmountInUsd?: number;
       /** Format: double */
@@ -1232,12 +1321,31 @@ export interface components {
       parentBillingItemRecordId?: string | null;
       dealUnitId?: string | null;
     };
+    DealUnitLineDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     DealUnitLineDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["DealUnitLineDto"];
     };
@@ -1247,6 +1355,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["DealUnitLineDto"][] | null;
     };
@@ -1350,7 +1464,6 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      forexRatesSnapshot?: string | null;
       /** Format: double */
       totalBaseAmountInUsd?: number;
       /** Format: double */
@@ -1500,6 +1613,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -1508,6 +1627,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ExtendedDealUnitDto: {
@@ -1660,12 +1785,31 @@ export interface components {
       receiverTenant?: components["schemas"]["TenantDto"];
       enrollment?: components["schemas"]["TenantEnrollmentDto"];
     };
+    ExtendedDealUnitDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExtendedDealUnitDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedDealUnitDto"];
     };
@@ -1675,6 +1819,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedDealUnitDto"][] | null;
     };
@@ -1708,6 +1858,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -1718,11 +1874,9 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -1890,6 +2044,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitFlowDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["DealUnitFlowDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1948,6 +2108,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitFlowDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["DealUnitFlowDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2078,8 +2244,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2110,6 +2276,12 @@ export interface operations {
       };
       path: {
         dealUnitFlowId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitFlowStageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["DealUnitFlowStageDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2176,6 +2348,12 @@ export interface operations {
       };
       path: {
         dealUnitFlowId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitFlowStageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["DealUnitFlowStageDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2310,8 +2488,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2339,6 +2517,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["DealUnitDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2401,6 +2585,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["DealUnitDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2426,6 +2616,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedDealUnitDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedDealUnitDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2556,8 +2752,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2651,6 +2847,12 @@ export interface operations {
         dealUnitId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["DealUnitLineDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2715,6 +2917,12 @@ export interface operations {
       };
       path: {
         dealUnitId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["DealUnitLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["DealUnitLineDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2849,8 +3057,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

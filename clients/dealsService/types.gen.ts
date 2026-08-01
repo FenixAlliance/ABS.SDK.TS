@@ -303,11 +303,39 @@ export type DealUnitDto = {
     customShippingTaxAmount?: number;
 };
 
+export type DealUnitDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type DealUnitDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type DealUnitDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: DealUnitDto;
 };
@@ -315,6 +343,11 @@ export type DealUnitDtoEnvelopeReadable = {
 export type DealUnitDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: DealUnitDto;
 };
 
@@ -323,6 +356,11 @@ export type DealUnitDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<DealUnitDto> | null;
 };
@@ -330,6 +368,11 @@ export type DealUnitDtoListEnvelopeReadable = {
 export type DealUnitDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<DealUnitDto> | null;
 };
 
@@ -351,11 +394,39 @@ export type DealUnitFlowDto = {
     enrollmentId?: string | null;
 };
 
+export type DealUnitFlowDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type DealUnitFlowDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type DealUnitFlowDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: DealUnitFlowDto;
 };
@@ -363,6 +434,11 @@ export type DealUnitFlowDtoEnvelopeReadable = {
 export type DealUnitFlowDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: DealUnitFlowDto;
 };
 
@@ -371,6 +447,11 @@ export type DealUnitFlowDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<DealUnitFlowDto> | null;
 };
@@ -378,6 +459,11 @@ export type DealUnitFlowDtoListEnvelopeReadable = {
 export type DealUnitFlowDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<DealUnitFlowDto> | null;
 };
 
@@ -403,11 +489,39 @@ export type DealUnitFlowStageDto = {
     parentBusinessProcessStageId?: string | null;
 };
 
+export type DealUnitFlowStageDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type DealUnitFlowStageDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type DealUnitFlowStageDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: DealUnitFlowStageDto;
 };
@@ -415,6 +529,11 @@ export type DealUnitFlowStageDtoEnvelopeReadable = {
 export type DealUnitFlowStageDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: DealUnitFlowStageDto;
 };
 
@@ -423,6 +542,11 @@ export type DealUnitFlowStageDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<DealUnitFlowStageDto> | null;
 };
@@ -430,6 +554,11 @@ export type DealUnitFlowStageDtoListEnvelopeReadable = {
 export type DealUnitFlowStageDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<DealUnitFlowStageDto> | null;
 };
 
@@ -529,7 +658,6 @@ export type DealUnitLineCreateDto = {
     priceListItemId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    forexRatesSnapshot?: string | null;
     totalBaseAmountInUsd?: number;
     totalProfitInUsd?: number;
     totalDetailAmountInUsd?: number;
@@ -677,11 +805,39 @@ export type DealUnitLineDto = {
     dealUnitId?: string | null;
 };
 
+export type DealUnitLineDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type DealUnitLineDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type DealUnitLineDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: DealUnitLineDto;
 };
@@ -689,6 +845,11 @@ export type DealUnitLineDtoEnvelopeReadable = {
 export type DealUnitLineDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: DealUnitLineDto;
 };
 
@@ -697,6 +858,11 @@ export type DealUnitLineDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<DealUnitLineDto> | null;
 };
@@ -704,6 +870,11 @@ export type DealUnitLineDtoListEnvelopeReadable = {
 export type DealUnitLineDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<DealUnitLineDto> | null;
 };
 
@@ -791,7 +962,6 @@ export type DealUnitLineUpdateDto = {
     priceListItemId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    forexRatesSnapshot?: string | null;
     totalBaseAmountInUsd?: number;
     totalProfitInUsd?: number;
     totalDetailAmountInUsd?: number;
@@ -899,12 +1069,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -912,12 +1092,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedDealUnitDtoReadable = {
@@ -1128,11 +1318,39 @@ export type ExtendedDealUnitDtoWritable = {
     enrollment?: TenantEnrollmentDto;
 };
 
+export type ExtendedDealUnitDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedDealUnitDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedDealUnitDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ExtendedDealUnitDtoReadable;
 };
@@ -1140,6 +1358,11 @@ export type ExtendedDealUnitDtoEnvelopeReadable = {
 export type ExtendedDealUnitDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ExtendedDealUnitDtoWritable;
 };
 
@@ -1148,6 +1371,11 @@ export type ExtendedDealUnitDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedDealUnitDtoReadable> | null;
 };
@@ -1155,6 +1383,11 @@ export type ExtendedDealUnitDtoListEnvelopeReadable = {
 export type ExtendedDealUnitDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedDealUnitDtoWritable> | null;
 };
 
@@ -1192,6 +1425,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -1199,6 +1437,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -1209,10 +1452,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -1444,7 +1686,7 @@ export type UserDtoWritable = {
 };
 
 export type GetDealUnitFlowsAsyncData = {
-    body?: never;
+    body?: DealUnitFlowDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1498,7 +1740,7 @@ export type CreateDealUnitFlowAsyncResponses = {
 export type CreateDealUnitFlowAsyncResponse = CreateDealUnitFlowAsyncResponses[keyof CreateDealUnitFlowAsyncResponses];
 
 export type GetDealUnitFlowsCountAsyncData = {
-    body?: never;
+    body?: DealUnitFlowDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1583,7 +1825,7 @@ export type GetDealUnitFlowAsyncResponses = {
 export type GetDealUnitFlowAsyncResponse = GetDealUnitFlowAsyncResponses[keyof GetDealUnitFlowAsyncResponses];
 
 export type PatchDealUnitFlowAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         dealUnitFlowId: string;
     };
@@ -1641,7 +1883,7 @@ export type UpdateDealUnitFlowAsyncResponses = {
 export type UpdateDealUnitFlowAsyncResponse = UpdateDealUnitFlowAsyncResponses[keyof UpdateDealUnitFlowAsyncResponses];
 
 export type GetDealUnitFlowStagesAsyncData = {
-    body?: never;
+    body?: DealUnitFlowStageDtoCollectionQueryParametersWritable;
     path: {
         dealUnitFlowId: string;
     };
@@ -1699,7 +1941,7 @@ export type CreateDealUnitFlowStageAsyncResponses = {
 export type CreateDealUnitFlowStageAsyncResponse = CreateDealUnitFlowStageAsyncResponses[keyof CreateDealUnitFlowStageAsyncResponses];
 
 export type GetDealUnitFlowStagesCountAsyncData = {
-    body?: never;
+    body?: DealUnitFlowStageDtoCollectionQueryParametersWritable;
     path: {
         dealUnitFlowId: string;
     };
@@ -1788,7 +2030,7 @@ export type GetDealUnitFlowStageAsyncResponses = {
 export type GetDealUnitFlowStageAsyncResponse = GetDealUnitFlowStageAsyncResponses[keyof GetDealUnitFlowStageAsyncResponses];
 
 export type PatchDealUnitFlowStageAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         dealUnitFlowId: string;
         dealUnitFlowStageId: string;
@@ -1848,7 +2090,7 @@ export type UpdateDealUnitFlowStageAsyncResponses = {
 export type UpdateDealUnitFlowStageAsyncResponse = UpdateDealUnitFlowStageAsyncResponses[keyof UpdateDealUnitFlowStageAsyncResponses];
 
 export type GetDealUnitsAsyncData = {
-    body?: never;
+    body?: DealUnitDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1902,7 +2144,7 @@ export type CreateDealUnitAsyncResponses = {
 export type CreateDealUnitAsyncResponse = CreateDealUnitAsyncResponses[keyof CreateDealUnitAsyncResponses];
 
 export type GetDealUnitsCountAsyncData = {
-    body?: never;
+    body?: DealUnitDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1929,7 +2171,7 @@ export type GetDealUnitsCountAsyncResponses = {
 export type GetDealUnitsCountAsyncResponse = GetDealUnitsCountAsyncResponses[keyof GetDealUnitsCountAsyncResponses];
 
 export type GetExtendedDealUnitsAsyncData = {
-    body?: never;
+    body?: ExtendedDealUnitDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -2014,7 +2256,7 @@ export type GetDealUnitAsyncResponses = {
 export type GetDealUnitAsyncResponse = GetDealUnitAsyncResponses[keyof GetDealUnitAsyncResponses];
 
 export type PatchDealUnitAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         dealUnitId: string;
     };
@@ -2130,7 +2372,7 @@ export type CalculateDealUnitAsyncResponses = {
 export type CalculateDealUnitAsyncResponse = CalculateDealUnitAsyncResponses[keyof CalculateDealUnitAsyncResponses];
 
 export type GetDealUnitLinesAsyncData = {
-    body?: never;
+    body?: DealUnitLineDtoCollectionQueryParametersWritable;
     path: {
         dealUnitId: string;
     };
@@ -2189,7 +2431,7 @@ export type CreateGetDealUnitLinesAsyncResponses = {
 export type CreateGetDealUnitLinesAsyncResponse = CreateGetDealUnitLinesAsyncResponses[keyof CreateGetDealUnitLinesAsyncResponses];
 
 export type GetDealUnitLinesCountAsyncData = {
-    body?: never;
+    body?: DealUnitLineDtoCollectionQueryParametersWritable;
     path: {
         dealUnitId: string;
     };
@@ -2278,7 +2520,7 @@ export type GetDealUnitPriceAsyncResponses = {
 export type GetDealUnitPriceAsyncResponse = GetDealUnitPriceAsyncResponses[keyof GetDealUnitPriceAsyncResponses];
 
 export type PatchDealUnitLineAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         dealUnitId: string;
         dealUnitLineId: string;
@@ -2389,6 +2631,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */

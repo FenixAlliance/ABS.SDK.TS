@@ -89,6 +89,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -448,12 +463,31 @@ export interface components {
       walletAccountId?: string | null;
       tenantId?: string | null;
     };
+    BlockchainBlockDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BlockchainBlockDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlockchainBlockDto"][] | null;
     };
@@ -485,12 +519,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    BlockchainDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BlockchainDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BlockchainDto"][] | null;
     };
@@ -507,6 +560,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -515,6 +574,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -547,6 +612,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -593,12 +664,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    NonFungibleTokenDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     NonFungibleTokenDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["NonFungibleTokenDto"][] | null;
     };
@@ -614,11 +704,9 @@ export interface components {
       mintTransactionHash?: string | null;
       blockchainBlockId?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -678,6 +766,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlockchainDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlockchainDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -750,6 +844,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlockchainDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlockchainDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -911,8 +1011,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -951,6 +1051,12 @@ export interface operations {
       };
       path: {
         blockchainId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlockchainBlockDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlockchainBlockDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1002,6 +1108,12 @@ export interface operations {
       };
       path: {
         blockchainId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BlockchainBlockDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BlockchainBlockDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1109,8 +1221,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1164,6 +1276,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NonFungibleTokenDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["NonFungibleTokenDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1236,6 +1354,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NonFungibleTokenDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["NonFungibleTokenDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1397,8 +1521,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

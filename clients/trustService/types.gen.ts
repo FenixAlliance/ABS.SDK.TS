@@ -18,6 +18,11 @@ export type BooleanEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: boolean;
 };
@@ -25,6 +30,11 @@ export type BooleanEnvelopeReadable = {
 export type BooleanEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: boolean;
 };
 
@@ -250,6 +260,7 @@ export type CreateSigningParticipantDto = {
 export type CreateSigningRequestDto = {
     routingMode?: 'Parallel' | 'Sequential';
     expiresAtUtc?: string | null;
+    message?: string | null;
     correlationId?: string | null;
     externalReference?: string | null;
 };
@@ -259,12 +270,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -272,12 +293,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExecuteSigningRequestDto = {
@@ -329,6 +360,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -336,6 +372,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -346,10 +387,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -365,11 +405,6 @@ export type RecordSigningParticipantOutcomeDto = {
     outcomeAtUtc?: string | null;
     declineReason?: string | null;
     externalReference?: string | null;
-};
-
-export type RecordTrustSigningOutcomeRequest = {
-    request?: TrustSigningRequestDto;
-    result?: TrustSigningResultDto;
 };
 
 export type RefreshRequest = {
@@ -389,27 +424,6 @@ export type ResetPasswordRequest = {
     email: string | null;
     resetCode: string | null;
     newPassword: string | null;
-};
-
-export type SignatureCreateDto = {
-    id?: string;
-    timestamp?: string;
-    type?: string | null;
-    validationCode?: string | null;
-    signatureImage?: string | null;
-    contactId: string;
-    signingProfileId: string;
-    signingCertificateId: string;
-    signedDocumentId: string;
-    signedAtUtc?: string | null;
-    signingStatus?: 'Unknown' | 'Draft' | 'Signed' | 'Failed' | 'Revoked';
-    verificationStatus?: 'Unknown' | 'NotVerified' | 'Valid' | 'Invalid' | 'Expired';
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    digestAlgorithm?: string | null;
-    signatureAlgorithm?: string | null;
-    canonicalizationAlgorithm?: string | null;
-    policyIdentifier?: string | null;
-    correlationId?: string | null;
 };
 
 export type SignatureDto = {
@@ -442,11 +456,39 @@ export type SignatureDto = {
     signedDocumentTitle?: string | null;
 };
 
+export type SignatureDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SignatureDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SignatureDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SignatureDto> | null;
 };
@@ -454,26 +496,12 @@ export type SignatureDtoListEnvelopeReadable = {
 export type SignatureDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SignatureDto> | null;
-};
-
-export type SignatureUpdateDto = {
-    type?: string | null;
-    validationCode?: string | null;
-    signatureImage?: string | null;
-    contactId: string;
-    signingProfileId: string;
-    signingCertificateId: string;
-    signedDocumentId: string;
-    signedAtUtc?: string | null;
-    signingStatus?: 'Unknown' | 'Draft' | 'Signed' | 'Failed' | 'Revoked';
-    verificationStatus?: 'Unknown' | 'NotVerified' | 'Valid' | 'Invalid' | 'Expired';
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    digestAlgorithm?: string | null;
-    signatureAlgorithm?: string | null;
-    canonicalizationAlgorithm?: string | null;
-    policyIdentifier?: string | null;
-    correlationId?: string | null;
 };
 
 export type SignatureVerificationDto = {
@@ -520,11 +548,39 @@ export type SignedDocumentAttachmentDto = {
     signedDocumentTitle?: string | null;
 };
 
+export type SignedDocumentAttachmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SignedDocumentAttachmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SignedDocumentAttachmentDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SignedDocumentAttachmentDto> | null;
 };
@@ -532,6 +588,11 @@ export type SignedDocumentAttachmentDtoListEnvelopeReadable = {
 export type SignedDocumentAttachmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SignedDocumentAttachmentDto> | null;
 };
 
@@ -543,7 +604,6 @@ export type SignedDocumentAttachmentUpdateDto = {
 export type SignedDocumentCreateDto = {
     id?: string;
     timestamp?: string;
-    signed?: boolean;
     url?: string | null;
     type?: string | null;
     title: string;
@@ -551,9 +611,6 @@ export type SignedDocumentCreateDto = {
     contactId: string;
     documentStandard?: 'None' | 'Ubl' | 'Pdf' | 'Xml' | 'Email' | 'Json' | 'Other';
     trustDocumentType?: 'Unknown' | 'Invoice' | 'CreditNote' | 'DebitNote' | 'Contract' | 'Certificate' | 'Email' | 'AuthorityResponse' | 'Other';
-    signingStatus?: 'Unknown' | 'Draft' | 'Signed' | 'Failed' | 'Revoked';
-    verificationStatus?: 'Unknown' | 'NotVerified' | 'Valid' | 'Invalid' | 'Expired';
-    signedAtUtc?: string | null;
     correlationId?: string | null;
     externalReference?: string | null;
 };
@@ -597,11 +654,39 @@ export type SignedDocumentDto = {
     contactName?: string | null;
 };
 
+export type SignedDocumentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SignedDocumentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SignedDocumentDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SignedDocumentDto> | null;
 };
@@ -609,11 +694,15 @@ export type SignedDocumentDtoListEnvelopeReadable = {
 export type SignedDocumentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SignedDocumentDto> | null;
 };
 
 export type SignedDocumentUpdateDto = {
-    signed?: boolean;
     url?: string | null;
     type?: string | null;
     title: string;
@@ -621,9 +710,6 @@ export type SignedDocumentUpdateDto = {
     contactId: string;
     documentStandard?: 'None' | 'Ubl' | 'Pdf' | 'Xml' | 'Email' | 'Json' | 'Other';
     trustDocumentType?: 'Unknown' | 'Invoice' | 'CreditNote' | 'DebitNote' | 'Contract' | 'Certificate' | 'Email' | 'AuthorityResponse' | 'Other';
-    signingStatus?: 'Unknown' | 'Draft' | 'Signed' | 'Failed' | 'Revoked';
-    verificationStatus?: 'Unknown' | 'NotVerified' | 'Valid' | 'Invalid' | 'Expired';
-    signedAtUtc?: string | null;
     correlationId?: string | null;
     externalReference?: string | null;
 };
@@ -639,7 +725,6 @@ export type SigningCertificateCreateDto = {
     certificateType?: 'AuthSignedCertificate' | 'SelfSignedCertificate' | 'AllianceSignedCertificate';
     contactId: string;
     securityCertificateId?: string | null;
-    certificateStatus?: 'Unknown' | 'Active' | 'Expiring' | 'Expired' | 'Revoked' | 'Disabled';
 };
 
 export type SigningCertificateDto = {
@@ -668,11 +753,39 @@ export type SigningCertificateDto = {
     contactName?: string | null;
 };
 
+export type SigningCertificateDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SigningCertificateDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SigningCertificateDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SigningCertificateDto> | null;
 };
@@ -680,6 +793,11 @@ export type SigningCertificateDtoListEnvelopeReadable = {
 export type SigningCertificateDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SigningCertificateDto> | null;
 };
 
@@ -692,7 +810,6 @@ export type SigningCertificateUpdateDto = {
     certificateType?: 'AuthSignedCertificate' | 'SelfSignedCertificate' | 'AllianceSignedCertificate';
     contactId: string;
     securityCertificateId?: string | null;
-    certificateStatus?: 'Unknown' | 'Active' | 'Expiring' | 'Expired' | 'Revoked' | 'Disabled';
 };
 
 export type SigningLogDto = {
@@ -721,11 +838,39 @@ export type SigningLogDto = {
     signedDocumentTitle?: string | null;
 };
 
+export type SigningLogDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SigningLogDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SigningLogDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SigningLogDto> | null;
 };
@@ -733,6 +878,11 @@ export type SigningLogDtoListEnvelopeReadable = {
 export type SigningLogDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SigningLogDto> | null;
 };
 
@@ -757,11 +907,39 @@ export type SigningParticipantDto = {
     externalReference?: string | null;
 };
 
+export type SigningParticipantDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SigningParticipantDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SigningParticipantDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SigningParticipantDto> | null;
 };
@@ -769,6 +947,11 @@ export type SigningParticipantDtoListEnvelopeReadable = {
 export type SigningParticipantDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SigningParticipantDto> | null;
 };
 
@@ -945,11 +1128,39 @@ export type SigningProfileDtoWritable = {
     defaultForDocumentType?: string | null;
 };
 
+export type SigningProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SigningProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SigningProfileDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SigningProfileDtoReadable> | null;
 };
@@ -957,6 +1168,11 @@ export type SigningProfileDtoListEnvelopeReadable = {
 export type SigningProfileDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SigningProfileDtoWritable> | null;
 };
 
@@ -995,11 +1211,39 @@ export type SigningProfileGraphicalRepresentationDto = {
     signingProfileName?: string | null;
 };
 
+export type SigningProfileGraphicalRepresentationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SigningProfileGraphicalRepresentationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SigningProfileGraphicalRepresentationDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SigningProfileGraphicalRepresentationDto> | null;
 };
@@ -1007,6 +1251,11 @@ export type SigningProfileGraphicalRepresentationDtoListEnvelopeReadable = {
 export type SigningProfileGraphicalRepresentationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SigningProfileGraphicalRepresentationDto> | null;
 };
 
@@ -1074,8 +1323,32 @@ export type SigningRequestDto = {
     expiresAtUtc?: string | null;
     voidedAtUtc?: string | null;
     voidedReason?: string | null;
+    message?: string | null;
     correlationId?: string | null;
     externalReference?: string | null;
+};
+
+export type SigningRequestDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SigningRequestDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type SigningRequestDtoListEnvelopeReadable = {
@@ -1083,6 +1356,11 @@ export type SigningRequestDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SigningRequestDto> | null;
 };
@@ -1090,6 +1368,11 @@ export type SigningRequestDtoListEnvelopeReadable = {
 export type SigningRequestDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SigningRequestDto> | null;
 };
 
@@ -1108,6 +1391,11 @@ export type TrustArtifactReferenceDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TrustArtifactReferenceDto;
 };
@@ -1115,6 +1403,11 @@ export type TrustArtifactReferenceDtoEnvelopeReadable = {
 export type TrustArtifactReferenceDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TrustArtifactReferenceDto;
 };
 
@@ -1126,11 +1419,39 @@ export type TrustSigningProviderDescriptorDto = {
     description?: string | null;
 };
 
+export type TrustSigningProviderDescriptorDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TrustSigningProviderDescriptorDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TrustSigningProviderDescriptorDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TrustSigningProviderDescriptorDto> | null;
 };
@@ -1138,6 +1459,11 @@ export type TrustSigningProviderDescriptorDtoListEnvelopeReadable = {
 export type TrustSigningProviderDescriptorDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TrustSigningProviderDescriptorDto> | null;
 };
 
@@ -1166,6 +1492,11 @@ export type TrustSigningReadinessDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TrustSigningReadinessDto;
 };
@@ -1173,6 +1504,11 @@ export type TrustSigningReadinessDtoEnvelopeReadable = {
 export type TrustSigningReadinessDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TrustSigningReadinessDto;
 };
 
@@ -1188,28 +1524,6 @@ export type TrustSigningRequestDto = {
     sourceSha256?: string | null;
     externalReference?: string | null;
     dryRun?: boolean;
-};
-
-export type TrustSigningResultDto = {
-    succeeded?: boolean;
-    signingStatus?: 'Unknown' | 'Draft' | 'Signed' | 'Failed' | 'Revoked';
-    verificationStatus?: 'Unknown' | 'NotVerified' | 'Valid' | 'Invalid' | 'Expired';
-    signedAtUtc?: string | null;
-    signatureFormat?: 'Unknown' | 'XAdES' | 'PAdES' | 'CAdES' | 'SMIME' | 'DetachedXmlDSig' | 'Enveloped' | 'Other';
-    digestAlgorithm?: string | null;
-    digestValue?: string | null;
-    signatureAlgorithm?: string | null;
-    signatureValueHash?: string | null;
-    canonicalizationAlgorithm?: string | null;
-    policyIdentifier?: string | null;
-    correlationId?: string | null;
-    signedStorageObjectId?: string | null;
-    signedSha256?: string | null;
-    evidenceStorageObjectId?: string | null;
-    evidenceSha256?: string | null;
-    providerName?: string | null;
-    resultCode?: string | null;
-    messages?: Array<string> | null;
 };
 
 export type TwoFactorRequest = {
@@ -1254,6 +1568,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1561,7 +1891,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetSignaturesAsyncData = {
-    body?: never;
+    body?: SignatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1591,41 +1921,8 @@ export type GetSignaturesAsyncResponses = {
 
 export type GetSignaturesAsyncResponse = GetSignaturesAsyncResponses[keyof GetSignaturesAsyncResponses];
 
-export type CreateSignatureAsyncData = {
-    body?: SignatureCreateDto;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/TrustService/Signatures';
-};
-
-export type CreateSignatureAsyncErrors = {
-    /**
-     * Bad Request
-     */
-    400: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type CreateSignatureAsyncError = CreateSignatureAsyncErrors[keyof CreateSignatureAsyncErrors];
-
-export type CreateSignatureAsyncResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
 export type GetSignaturesCountAsyncData = {
-    body?: never;
+    body?: SignatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1654,41 +1951,6 @@ export type GetSignaturesCountAsyncResponses = {
 };
 
 export type GetSignaturesCountAsyncResponse = GetSignaturesCountAsyncResponses[keyof GetSignaturesCountAsyncResponses];
-
-export type DeleteSignatureAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        id: string;
-    };
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/TrustService/Signatures/{id}';
-};
-
-export type DeleteSignatureAsyncErrors = {
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-    /**
-     * Not Found
-     */
-    404: ErrorEnvelopeReadable;
-};
-
-export type DeleteSignatureAsyncError = DeleteSignatureAsyncErrors[keyof DeleteSignatureAsyncErrors];
-
-export type DeleteSignatureAsyncResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
 
 export type GetSignatureByIdAsyncData = {
     body?: never;
@@ -1726,78 +1988,6 @@ export type GetSignatureByIdAsyncResponses = {
 };
 
 export type GetSignatureByIdAsyncResponse = GetSignatureByIdAsyncResponses[keyof GetSignatureByIdAsyncResponses];
-
-export type PatchSignatureAsyncData = {
-    body?: Array<Operation>;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        id: string;
-    };
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/TrustService/Signatures/{id}';
-};
-
-export type PatchSignatureAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type PatchSignatureAsyncError = PatchSignatureAsyncErrors[keyof PatchSignatureAsyncErrors];
-
-export type PatchSignatureAsyncResponses = {
-    /**
-     * OK
-     */
-    200: EmptyEnvelopeReadable;
-};
-
-export type PatchSignatureAsyncResponse = PatchSignatureAsyncResponses[keyof PatchSignatureAsyncResponses];
-
-export type UpdateSignatureAsyncData = {
-    body?: SignatureUpdateDto;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        id: string;
-    };
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/TrustService/Signatures/{id}';
-};
-
-export type UpdateSignatureAsyncErrors = {
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-    /**
-     * Not Found
-     */
-    404: ErrorEnvelopeReadable;
-};
-
-export type UpdateSignatureAsyncError = UpdateSignatureAsyncErrors[keyof UpdateSignatureAsyncErrors];
-
-export type UpdateSignatureAsyncResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
 
 export type SetPrimaryAuthoringFileAsyncData = {
     body?: never;
@@ -1951,7 +2141,7 @@ export type VerifyAsyncResponses = {
 export type VerifyAsyncResponse = VerifyAsyncResponses[keyof VerifyAsyncResponses];
 
 export type GetSignedDocumentAttachmentsAsyncData = {
-    body?: never;
+    body?: SignedDocumentAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2015,7 +2205,7 @@ export type CreateSignedDocumentAttachmentAsyncResponses = {
 };
 
 export type GetSignedDocumentAttachmentsCountAsyncData = {
-    body?: never;
+    body?: SignedDocumentAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2118,7 +2308,7 @@ export type GetSignedDocumentAttachmentByIdAsyncResponses = {
 export type GetSignedDocumentAttachmentByIdAsyncResponse = GetSignedDocumentAttachmentByIdAsyncResponses[keyof GetSignedDocumentAttachmentByIdAsyncResponses];
 
 export type PatchSignedDocumentAttachmentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2190,7 +2380,7 @@ export type UpdateSignedDocumentAttachmentAsyncResponses = {
 };
 
 export type GetSignedDocumentsAsyncData = {
-    body?: never;
+    body?: SignedDocumentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2254,7 +2444,7 @@ export type CreateSignedDocumentAsyncResponses = {
 };
 
 export type GetSignedDocumentsCountAsyncData = {
-    body?: never;
+    body?: SignedDocumentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2357,7 +2547,7 @@ export type GetSignedDocumentByIdAsyncResponses = {
 export type GetSignedDocumentByIdAsyncResponse = GetSignedDocumentByIdAsyncResponses[keyof GetSignedDocumentByIdAsyncResponses];
 
 export type PatchSignedDocumentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2467,6 +2657,53 @@ export type QuickSignSignedDocumentAsyncResponses = {
     200: unknown;
 };
 
+export type PrepareAndQuickSignAsyncData = {
+    body?: {
+        id?: string;
+        file?: Blob | File;
+        title?: string;
+        contactId?: string;
+        signingCertificateId?: string;
+        signingProfileId?: string;
+        providerName?: string;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/SignedDocuments/prepare-and-quick-sign';
+};
+
+export type PrepareAndQuickSignAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PrepareAndQuickSignAsyncError = PrepareAndQuickSignAsyncErrors[keyof PrepareAndQuickSignAsyncErrors];
+
+export type PrepareAndQuickSignAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SignedDocumentDto;
+};
+
+export type PrepareAndQuickSignAsyncResponse = PrepareAndQuickSignAsyncResponses[keyof PrepareAndQuickSignAsyncResponses];
+
 export type VerifySignedDocumentSignatureAsyncData = {
     body?: never;
     headers?: {
@@ -2505,7 +2742,7 @@ export type VerifySignedDocumentSignatureAsyncResponses = {
 export type VerifySignedDocumentSignatureAsyncResponse = VerifySignedDocumentSignatureAsyncResponses[keyof VerifySignedDocumentSignatureAsyncResponses];
 
 export type GetSigningCertificatesAsyncData = {
-    body?: never;
+    body?: SigningCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2569,7 +2806,7 @@ export type CreateSigningCertificateAsyncResponses = {
 };
 
 export type GetSigningCertificatesCountAsyncData = {
-    body?: never;
+    body?: SigningCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2672,7 +2909,7 @@ export type GetSigningCertificateByIdAsyncResponses = {
 export type GetSigningCertificateByIdAsyncResponse = GetSigningCertificateByIdAsyncResponses[keyof GetSigningCertificateByIdAsyncResponses];
 
 export type PatchSigningCertificateAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2783,7 +3020,7 @@ export type ImportSigningCertificateAsyncResponses = {
 };
 
 export type GetProvidersAsyncData = {
-    body?: never;
+    body?: TrustSigningProviderDescriptorDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2814,7 +3051,7 @@ export type GetProvidersAsyncResponses = {
 export type GetProvidersAsyncResponse = GetProvidersAsyncResponses[keyof GetProvidersAsyncResponses];
 
 export type GetProvidersCountAsyncData = {
-    body?: never;
+    body?: TrustSigningProviderDescriptorDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2879,41 +3116,8 @@ export type PreviewAsyncResponses = {
 
 export type PreviewAsyncResponse = PreviewAsyncResponses[keyof PreviewAsyncResponses];
 
-export type RecordSigningOutcomeAsyncData = {
-    body?: RecordTrustSigningOutcomeRequest;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/TrustService/SigningEngine/RecordOutcome';
-};
-
-export type RecordSigningOutcomeAsyncErrors = {
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-    /**
-     * Not Found
-     */
-    404: ErrorEnvelopeReadable;
-};
-
-export type RecordSigningOutcomeAsyncError = RecordSigningOutcomeAsyncErrors[keyof RecordSigningOutcomeAsyncErrors];
-
-export type RecordSigningOutcomeAsyncResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
 export type GetSigningLogsAsyncData = {
-    body?: never;
+    body?: SigningLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2944,7 +3148,7 @@ export type GetSigningLogsAsyncResponses = {
 export type GetSigningLogsAsyncResponse = GetSigningLogsAsyncResponses[keyof GetSigningLogsAsyncResponses];
 
 export type GetSigningLogsCountAsyncData = {
-    body?: never;
+    body?: SigningLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3012,7 +3216,7 @@ export type GetSigningLogByIdAsyncResponses = {
 export type GetSigningLogByIdAsyncResponse = GetSigningLogByIdAsyncResponses[keyof GetSigningLogByIdAsyncResponses];
 
 export type GetSigningParticipantsAsyncData = {
-    body?: never;
+    body?: SigningParticipantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3043,7 +3247,7 @@ export type GetSigningParticipantsAsyncResponses = {
 export type GetSigningParticipantsAsyncResponse = GetSigningParticipantsAsyncResponses[keyof GetSigningParticipantsAsyncResponses];
 
 export type GetSigningParticipantsCountAsyncData = {
-    body?: never;
+    body?: SigningParticipantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3151,7 +3355,7 @@ export type RecordOutcomeAsyncResponses = {
 };
 
 export type GetSigningProfileGraphicalRepresentationsAsyncData = {
-    body?: never;
+    body?: SigningProfileGraphicalRepresentationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3215,7 +3419,7 @@ export type CreateSigningProfileGraphicalRepresentationAsyncResponses = {
 };
 
 export type GetSigningProfileGraphicalRepresentationsCountAsyncData = {
-    body?: never;
+    body?: SigningProfileGraphicalRepresentationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3318,7 +3522,7 @@ export type GetSigningProfileGraphicalRepresentationByIdAsyncResponses = {
 export type GetSigningProfileGraphicalRepresentationByIdAsyncResponse = GetSigningProfileGraphicalRepresentationByIdAsyncResponses[keyof GetSigningProfileGraphicalRepresentationByIdAsyncResponses];
 
 export type PatchSigningProfileGraphicalRepresentationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3390,7 +3594,7 @@ export type UpdateSigningProfileGraphicalRepresentationAsyncResponses = {
 };
 
 export type GetSigningProfilesAsyncData = {
-    body?: never;
+    body?: SigningProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3454,7 +3658,7 @@ export type CreateSigningProfileAsyncResponses = {
 };
 
 export type GetSigningProfilesCountAsyncData = {
-    body?: never;
+    body?: SigningProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3557,7 +3761,7 @@ export type GetSigningProfileByIdAsyncResponses = {
 export type GetSigningProfileByIdAsyncResponse = GetSigningProfileByIdAsyncResponses[keyof GetSigningProfileByIdAsyncResponses];
 
 export type PatchSigningProfileAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3629,7 +3833,7 @@ export type UpdateSigningProfileAsyncResponses = {
 };
 
 export type GetSigningRequestsAsyncData = {
-    body?: never;
+    body?: SigningRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3660,7 +3864,7 @@ export type GetSigningRequestsAsyncResponses = {
 export type GetSigningRequestsAsyncResponse = GetSigningRequestsAsyncResponses[keyof GetSigningRequestsAsyncResponses];
 
 export type GetSigningRequestsCountAsyncData = {
-    body?: never;
+    body?: SigningRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3779,6 +3983,55 @@ export type CreateFromDocumentAsyncResponses = {
 };
 
 export type CreateFromDocumentAsyncResponse = CreateFromDocumentAsyncResponses[keyof CreateFromDocumentAsyncResponses];
+
+export type PrepareAndCreateAsyncData = {
+    body?: {
+        file?: Blob | File;
+        title?: string;
+        contactId?: string;
+        routingMode?: 'Parallel' | 'Sequential';
+        expiresAtUtc?: string;
+        message?: string;
+        correlationId?: string;
+        externalReference?: string;
+        signers?: string;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TrustService/SigningRequests/prepare-and-create';
+};
+
+export type PrepareAndCreateAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Conflict
+     */
+    409: ErrorEnvelopeReadable;
+};
+
+export type PrepareAndCreateAsyncError = PrepareAndCreateAsyncErrors[keyof PrepareAndCreateAsyncErrors];
+
+export type PrepareAndCreateAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SigningRequestDto;
+};
+
+export type PrepareAndCreateAsyncResponse = PrepareAndCreateAsyncResponses[keyof PrepareAndCreateAsyncResponses];
 
 export type AddParticipantAsyncData = {
     body?: CreateSigningParticipantDto;

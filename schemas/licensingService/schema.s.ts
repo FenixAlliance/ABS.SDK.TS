@@ -25,6 +25,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -384,12 +399,41 @@ export interface paths {
      */
     patch: operations["PatchLicenseFeatureAsync"];
   };
+  "/api/v2/LicensingService/Licenses": {
+    /**
+     * Get licenses
+     * @description Retrieves the license instances owned by the specified tenant, filtered via OData query options.
+     */
+    get: operations["GetLicensesAsync"];
+    /**
+     * Create a new license
+     * @description Creates a new license instance for the specified tenant.
+     */
+    post: operations["CreateLicenseAsync"];
+  };
   "/api/v2/LicensingService/Licenses/Count": {
     /**
      * Get licenses count
      * @description Returns the count of license instances owned by the specified tenant.
      */
     get: operations["GetLicensesCountAsync"];
+  };
+  "/api/v2/LicensingService/Licenses/{licenseId}": {
+    /**
+     * Get license by ID
+     * @description Retrieves a specific license instance by its identifier.
+     */
+    get: operations["GetLicenseByIdAsync"];
+    /**
+     * Update a license
+     * @description Updates an existing license instance for the specified tenant.
+     */
+    put: operations["UpdateLicenseAsync"];
+    /**
+     * Delete a license
+     * @description Deletes a license instance for the specified tenant.
+     */
+    delete: operations["DeleteLicenseAsync"];
   };
   "/api/v2/LicensingService/LicenseTypes": {
     /**
@@ -492,6 +536,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -500,6 +550,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -532,6 +588,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -557,12 +619,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    LicenseAttributeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LicenseAttributeDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LicenseAttributeDto"][] | null;
     };
@@ -571,6 +652,55 @@ export interface components {
       name?: string | null;
       description?: string | null;
       licenseTypeId?: string | null;
+    };
+    LicenseCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      title: string;
+      description?: string | null;
+      code?: string | null;
+      licenseTypeId?: string | null;
+    };
+    LicenseDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      title?: string | null;
+      description?: string | null;
+      code?: string | null;
+      licenseTypeId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    LicenseDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    LicenseDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["LicenseDto"][] | null;
     };
     LicenseFeatureCreateDto: {
       /** Format: uuid */
@@ -597,12 +727,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    LicenseFeatureDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LicenseFeatureDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LicenseFeatureDto"][] | null;
     };
@@ -650,12 +799,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    LicenseTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LicenseTypeDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LicenseTypeDto"][] | null;
     };
@@ -671,6 +839,12 @@ export interface components {
       /** Format: int32 */
       standardLicenseRelativeExpirationInDays?: number | null;
       licensingCertificateId?: string | null;
+    };
+    LicenseUpdateDto: {
+      title?: string | null;
+      description?: string | null;
+      code?: string | null;
+      licenseTypeId?: string | null;
     };
     LicensingCertificateCreateDto: {
       /** Format: uuid */
@@ -694,12 +868,31 @@ export interface components {
       userId?: string | null;
       enrollmentId?: string | null;
     };
+    LicensingCertificateDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LicensingCertificateDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LicensingCertificateDto"][] | null;
     };
@@ -713,11 +906,9 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -794,6 +985,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseAttributeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicenseAttributeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -864,6 +1061,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseAttributeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicenseAttributeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1025,8 +1228,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1065,6 +1268,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseFeatureDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicenseFeatureDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1137,6 +1346,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseFeatureDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicenseFeatureDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1298,8 +1513,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1312,6 +1527,84 @@ export interface operations {
       };
       /** @description Unauthorized */
       401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get licenses
+   * @description Retrieves the license instances owned by the specified tenant, filtered via OData query options.
+   */
+  GetLicensesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicenseDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LicenseDtoListEnvelope"];
+          "application/xml": components["schemas"]["LicenseDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a new license
+   * @description Creates a new license instance for the specified tenant.
+   */
+  CreateLicenseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseCreateDto"];
+        "application/xml": components["schemas"]["LicenseCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: never;
+      };
+      /** @description Bad Request */
+      400: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -1340,6 +1633,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicenseDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1350,6 +1649,129 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get license by ID
+   * @description Retrieves a specific license instance by its identifier.
+   */
+  GetLicenseByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LicenseDto"];
+          "application/xml": components["schemas"]["LicenseDto"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a license
+   * @description Updates an existing license instance for the specified tenant.
+   */
+  UpdateLicenseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseUpdateDto"];
+        "application/xml": components["schemas"]["LicenseUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a license
+   * @description Deletes a license instance for the specified tenant.
+   */
+  DeleteLicenseAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        licenseId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: never;
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -1369,6 +1791,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicenseTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1441,6 +1869,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicenseTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicenseTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1602,8 +2036,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1642,6 +2076,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicensingCertificateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicensingCertificateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1714,6 +2154,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LicensingCertificateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LicensingCertificateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1875,8 +2321,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

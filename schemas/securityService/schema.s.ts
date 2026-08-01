@@ -5,6 +5,69 @@
 
 
 export interface paths {
+  "/api/v2/SecurityService/ApplicationPrincipals": {
+    /**
+     * Get all application principals
+     * @description Retrieves the non-human application principals enrolled in the specified tenant (including read-only system-locked platform principals).
+     */
+    get: operations["GetApplicationPrincipalsAsync"];
+  };
+  "/api/v2/SecurityService/ApplicationPrincipals/Count": {
+    /**
+     * Get application principals count
+     * @description Retrieves the count of application principals enrolled in the specified tenant.
+     */
+    get: operations["GetApplicationPrincipalsCountAsync"];
+  };
+  "/api/v2/SecurityService/ApplicationPrincipals/{principalId}": {
+    /**
+     * Get application principal by ID
+     * @description Retrieves a specific application principal: owning application, tenant enrollment, lifecycle status, system-locked flag, and its explicit least-privilege permission grants.
+     */
+    get: operations["GetApplicationPrincipalAsync"];
+  };
+  "/api/v2/SecurityService/ApplicationPrincipals/Provision": {
+    /**
+     * Provision an application principal
+     * @description Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application in the specified tenant. System-locked platform applications require a platform administrator.
+     */
+    post: operations["ProvisionApplicationPrincipalAsync"];
+  };
+  "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Permissions": {
+    /**
+     * Grant a permission to an application principal
+     * @description Grants a single least-privilege permission to the application principal's enrollment. Owner/admin/wildcard/*_manage permissions are rejected; system-locked principals require a platform administrator.
+     */
+    post: operations["GrantPermissionAsync"];
+  };
+  "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Permissions/{permission}": {
+    /**
+     * Revoke a permission from an application principal
+     * @description Revokes a direct permission grant from the application principal's enrollment. System-locked principals require a platform administrator.
+     */
+    delete: operations["RevokePermissionAsync"];
+  };
+  "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Enable": {
+    /**
+     * Enable an application principal
+     * @description Reinstates the application principal to the Active lifecycle state.
+     */
+    post: operations["EnableApplicationPrincipalAsync"];
+  };
+  "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Suspend": {
+    /**
+     * Suspend an application principal
+     * @description Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated.
+     */
+    post: operations["SuspendApplicationPrincipalAsync"];
+  };
+  "/api/v2/SecurityService/ApplicationPrincipals/{principalId}/Disable": {
+    /**
+     * Disable an application principal
+     * @description Disables the application principal; dependent unattended execution fails closed.
+     */
+    post: operations["DisableApplicationPrincipalAsync"];
+  };
   "/api/v2/SecurityService/Applications": {
     /**
      * Get all business applications
@@ -72,6 +135,21 @@ export interface paths {
   };
   "/health": {
     get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
       responses: {
         /** @description OK */
         200: {
@@ -698,6 +776,114 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    ApplicationPrincipalDetailDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      displayName?: string | null;
+      /** @enum {string} */
+      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      /** @enum {string} */
+      principalStatus?: "Active" | "Suspended" | "Disabled";
+      businessApplicationId?: string | null;
+      businessApplicationName?: string | null;
+      businessApplicationNamespace?: string | null;
+      businessApplicationDisabled?: boolean;
+      systemLocked?: boolean;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      enrollmentDisabled?: boolean;
+      grantedPermissions?: string[] | null;
+    };
+    ApplicationPrincipalDetailDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ApplicationPrincipalDetailDto"];
+    };
+    ApplicationPrincipalDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      displayName?: string | null;
+      /** @enum {string} */
+      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      /** @enum {string} */
+      principalStatus?: "Active" | "Suspended" | "Disabled";
+      businessApplicationId?: string | null;
+      businessApplicationName?: string | null;
+      systemLocked?: boolean;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      enrollmentDisabled?: boolean;
+      /** Format: int32 */
+      grantedPermissionsCount?: number;
+    };
+    ApplicationPrincipalDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    ApplicationPrincipalDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ApplicationPrincipalDto"][] | null;
+    };
+    ApplicationPrincipalPermissionRequestDto: {
+      permission: string;
+    };
+    ApplicationPrincipalProvisionRequestDto: {
+      businessApplicationId: string;
+    };
+    ApplicationPrincipalProvisioningResultDto: {
+      principalId?: string | null;
+      enrollmentId?: string | null;
+      tenantId?: string | null;
+      principalCreated?: boolean;
+      enrollmentCreated?: boolean;
+    };
+    ApplicationPrincipalProvisioningResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ApplicationPrincipalProvisioningResultDto"];
+    };
     BusinessApplicationCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -782,12 +968,31 @@ export interface components {
       gitRepoUrl?: string | null;
       markedForPublish?: boolean;
     };
+    BusinessApplicationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BusinessApplicationDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BusinessApplicationDto"];
     };
@@ -797,6 +1002,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BusinessApplicationDto"][] | null;
     };
@@ -812,6 +1023,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BusinessApplicationSimpleDto"][] | null;
     };
@@ -856,12 +1073,25 @@ export interface components {
     BusinessSecurityLogDto: {
       id?: string | null;
       /** Format: date-time */
-      timestamp?: string;
+      timestamp?: string | null;
       type?: string | null;
       message?: string | null;
       securityEvent?: string | null;
       requiresAttention?: boolean;
       businessID?: string | null;
+    };
+    BusinessSecurityLogDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     BusinessSecurityLogDtoListEnvelope: {
       isSuccess?: boolean;
@@ -869,6 +1099,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BusinessSecurityLogDto"][] | null;
     };
@@ -878,6 +1114,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -886,6 +1128,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -918,6 +1166,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -932,12 +1186,31 @@ export interface components {
       logType?: "Continue" | "SwitchingProtocols" | "Processing" | "EarlyHints" | "OK" | "Created" | "Accepted" | "NonAuthoritativeInformation" | "NoContent" | "ResetContent" | "PartialContent" | "MultiStatus" | "AlreadyReported" | "IMUsed" | "MultipleChoices" | "MovedPermanently" | "Found" | "SeeOther" | "NotModified" | "UseProxy" | "Unused" | "TemporaryRedirect" | "PermanentRedirect" | "BadRequest" | "Unauthorized" | "PaymentRequired" | "Forbidden" | "NotFound" | "MethodNotAllowed" | "NotAcceptable" | "ProxyAuthenticationRequired" | "RequestTimeout" | "Conflict" | "Gone" | "LengthRequired" | "PreconditionFailed" | "RequestEntityTooLarge" | "RequestUriTooLong" | "UnsupportedMediaType" | "RequestedRangeNotSatisfiable" | "ExpectationFailed" | "MisdirectedRequest" | "UnprocessableEntity" | "Locked" | "FailedDependency" | "UpgradeRequired" | "PreconditionRequired" | "TooManyRequests" | "RequestHeaderFieldsTooLarge" | "UnavailableForLegalReasons" | "InternalServerError" | "NotImplemented" | "BadGateway" | "ServiceUnavailable" | "GatewayTimeout" | "HttpVersionNotSupported" | "VariantAlsoNegotiates" | "InsufficientStorage" | "LoopDetected" | "NotExtended" | "NetworkAuthenticationRequired";
       businessID?: string | null;
     };
+    LogDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LogDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LogDto"][] | null;
     };
@@ -994,6 +1267,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OAuthApplicationDto"];
     };
@@ -1003,6 +1282,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OAuthApplicationDto"][] | null;
     };
@@ -1038,6 +1323,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OAuthAuthorizationDto"];
     };
@@ -1047,14 +1338,18 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OAuthAuthorizationDto"][] | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -1084,12 +1379,31 @@ export interface components {
       businessID?: string | null;
       csr?: string | null;
     };
+    SecurityCertificateDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SecurityCertificateDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SecurityCertificateDto"][] | null;
     };
@@ -1110,12 +1424,31 @@ export interface components {
       description?: string | null;
       isSystemPermission?: boolean;
     };
+    SecurityPermissionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SecurityPermissionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SecurityPermissionDto"];
     };
@@ -1125,6 +1458,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SecurityPermissionDto"][] | null;
     };
@@ -1149,12 +1488,31 @@ export interface components {
       description?: string | null;
       isSystemRole?: boolean;
     };
+    SecurityRoleDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SecurityRoleDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SecurityRoleDto"];
     };
@@ -1164,6 +1522,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SecurityRoleDto"][] | null;
     };
@@ -1188,6 +1552,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TenantEnrollmentDto"][] | null;
     };
@@ -1215,12 +1585,31 @@ export interface components {
       requestURL?: string | null;
       businessID?: string | null;
     };
+    WebhookRequestDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebhookRequestDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebhookRequestDto"][] | null;
     };
@@ -1239,6 +1628,440 @@ export type external = Record<string, never>;
 export interface operations {
 
   /**
+   * Get all application principals
+   * @description Retrieves the non-human application principals enrolled in the specified tenant (including read-only system-locked platform principals).
+   */
+  GetApplicationPrincipalsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ApplicationPrincipalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ApplicationPrincipalDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApplicationPrincipalDtoListEnvelope"];
+          "application/xml": components["schemas"]["ApplicationPrincipalDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get application principals count
+   * @description Retrieves the count of application principals enrolled in the specified tenant.
+   */
+  GetApplicationPrincipalsCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ApplicationPrincipalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ApplicationPrincipalDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get application principal by ID
+   * @description Retrieves a specific application principal: owning application, tenant enrollment, lifecycle status, system-locked flag, and its explicit least-privilege permission grants.
+   */
+  GetApplicationPrincipalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApplicationPrincipalDetailDtoEnvelope"];
+          "application/xml": components["schemas"]["ApplicationPrincipalDetailDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Provision an application principal
+   * @description Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application in the specified tenant. System-locked platform applications require a platform administrator.
+   */
+  ProvisionApplicationPrincipalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ApplicationPrincipalProvisionRequestDto"];
+        "application/xml": components["schemas"]["ApplicationPrincipalProvisionRequestDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApplicationPrincipalProvisioningResultDtoEnvelope"];
+          "application/xml": components["schemas"]["ApplicationPrincipalProvisioningResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Grant a permission to an application principal
+   * @description Grants a single least-privilege permission to the application principal's enrollment. Owner/admin/wildcard/*_manage permissions are rejected; system-locked principals require a platform administrator.
+   */
+  GrantPermissionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ApplicationPrincipalPermissionRequestDto"];
+        "application/xml": components["schemas"]["ApplicationPrincipalPermissionRequestDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Revoke a permission from an application principal
+   * @description Revokes a direct permission grant from the application principal's enrollment. System-locked principals require a platform administrator.
+   */
+  RevokePermissionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+        permission: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Enable an application principal
+   * @description Reinstates the application principal to the Active lifecycle state.
+   */
+  EnableApplicationPrincipalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Suspend an application principal
+   * @description Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated.
+   */
+  SuspendApplicationPrincipalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Disable an application principal
+   * @description Disables the application principal; dependent unattended execution fails closed.
+   */
+  DisableApplicationPrincipalAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get all business applications
    * @description Retrieves all business applications for the specified tenant.
    */
@@ -1250,6 +2073,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessApplicationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessApplicationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1339,6 +2168,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessApplicationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessApplicationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1527,8 +2362,8 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1673,6 +2508,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LogDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1709,6 +2550,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LogDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2024,8 +2871,8 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2192,6 +3039,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SecurityPermissionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SecurityPermissionDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2279,6 +3132,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SecurityPermissionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SecurityPermissionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2467,8 +3326,8 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2974,6 +3833,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SecurityRoleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SecurityRoleDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3061,6 +3926,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SecurityRoleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SecurityRoleDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3249,8 +4120,8 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3756,6 +4627,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SecurityCertificateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SecurityCertificateDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3792,6 +4669,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SecurityCertificateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SecurityCertificateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3832,6 +4715,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessSecurityLogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessSecurityLogDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3868,6 +4757,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessSecurityLogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessSecurityLogDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3908,6 +4803,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebhookRequestDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebhookRequestDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3944,6 +4845,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebhookRequestDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebhookRequestDtoCollectionQueryParameters"];
       };
     };
     responses: {

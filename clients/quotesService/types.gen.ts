@@ -18,6 +18,11 @@ export type BooleanEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: boolean;
 };
@@ -25,6 +30,11 @@ export type BooleanEnvelopeReadable = {
 export type BooleanEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: boolean;
 };
 
@@ -173,12 +183,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -186,12 +206,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedQuoteDtoReadable = {
@@ -356,11 +386,39 @@ export type ExtendedQuoteDtoWritable = {
     enrollment?: TenantEnrollmentDto;
 };
 
+export type ExtendedQuoteDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedQuoteDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedQuoteDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedQuoteDtoReadable> | null;
 };
@@ -368,6 +426,11 @@ export type ExtendedQuoteDtoListEnvelopeReadable = {
 export type ExtendedQuoteDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedQuoteDtoWritable> | null;
 };
 
@@ -405,6 +468,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -412,6 +480,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -422,10 +495,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -440,6 +512,7 @@ export type QuoteCreateDto = {
     individualId?: string | null;
     paymentTermId?: string | null;
     organizationId?: string | null;
+    receiverTenantId?: string | null;
     firstName?: string | null;
     lastName?: string | null;
     companyName?: string | null;
@@ -480,7 +553,6 @@ export type QuoteCreateDto = {
     taxCalculationMethod?: 'Included' | 'Excluded';
     cartId?: string | null;
     dealUnitId?: string | null;
-    receiverTenantId?: string | null;
     effectiveTo?: string | null;
     effectiveFrom?: string | null;
     quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
@@ -562,11 +634,39 @@ export type QuoteDto = {
     customDiscountsAmount?: number;
 };
 
+export type QuoteDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type QuoteDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type QuoteDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: QuoteDto;
 };
@@ -574,6 +674,11 @@ export type QuoteDtoEnvelopeReadable = {
 export type QuoteDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: QuoteDto;
 };
 
@@ -582,6 +687,11 @@ export type QuoteDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<QuoteDto> | null;
 };
@@ -589,6 +699,11 @@ export type QuoteDtoListEnvelopeReadable = {
 export type QuoteDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<QuoteDto> | null;
 };
 
@@ -674,7 +789,6 @@ export type QuoteLineCreateDto = {
     priceListItemId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    forexRatesSnapshot?: string | null;
     totalBaseAmountInUsd?: number;
     totalProfitInUsd?: number;
     totalDetailAmountInUsd?: number;
@@ -822,11 +936,39 @@ export type QuoteLineDto = {
     quoteId?: string | null;
 };
 
+export type QuoteLineDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type QuoteLineDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type QuoteLineDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: QuoteLineDto;
 };
@@ -834,6 +976,11 @@ export type QuoteLineDtoEnvelopeReadable = {
 export type QuoteLineDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: QuoteLineDto;
 };
 
@@ -842,6 +989,11 @@ export type QuoteLineDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<QuoteLineDto> | null;
 };
@@ -849,6 +1001,11 @@ export type QuoteLineDtoListEnvelopeReadable = {
 export type QuoteLineDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<QuoteLineDto> | null;
 };
 
@@ -936,7 +1093,6 @@ export type QuoteLineUpdateDto = {
     priceListItemId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    forexRatesSnapshot?: string | null;
     totalBaseAmountInUsd?: number;
     totalProfitInUsd?: number;
     totalDetailAmountInUsd?: number;
@@ -1050,7 +1206,6 @@ export type QuoteLineUpsertDto = {
     priceListItemId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    forexRatesSnapshot?: string | null;
     totalBaseAmountInUsd?: number;
     totalProfitInUsd?: number;
     totalDetailAmountInUsd?: number;
@@ -1403,6 +1558,22 @@ export type GetHealthResponses = {
     200: unknown;
 };
 
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
 export type GetHelloData = {
     body?: never;
     path?: never;
@@ -1704,7 +1875,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetQuotesData = {
-    body?: never;
+    body?: QuoteDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1758,7 +1929,7 @@ export type CreateQuoteResponses = {
 export type CreateQuoteResponse = CreateQuoteResponses[keyof CreateQuoteResponses];
 
 export type GetQuotesCountData = {
-    body?: never;
+    body?: QuoteDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1785,7 +1956,7 @@ export type GetQuotesCountResponses = {
 export type GetQuotesCountResponse = GetQuotesCountResponses[keyof GetQuotesCountResponses];
 
 export type GetExtendedQuotesData = {
-    body?: never;
+    body?: ExtendedQuoteDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1870,7 +2041,7 @@ export type GetQuoteResponses = {
 export type GetQuoteResponse = GetQuoteResponses[keyof GetQuoteResponses];
 
 export type PatchQuoteAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         quoteId: string;
     };
@@ -2052,7 +2223,7 @@ export type CreateOrderFromQuoteResponses = {
 export type CreateOrderFromQuoteResponse = CreateOrderFromQuoteResponses[keyof CreateOrderFromQuoteResponses];
 
 export type GetQuoteLinesData = {
-    body?: never;
+    body?: QuoteLineDtoCollectionQueryParametersWritable;
     path: {
         quoteId: string;
     };
@@ -2111,7 +2282,7 @@ export type CreateQuoteLineResponses = {
 export type CreateQuoteLineResponse = CreateQuoteLineResponses[keyof CreateQuoteLineResponses];
 
 export type GetQuoteLinesCountData = {
-    body?: never;
+    body?: QuoteLineDtoCollectionQueryParametersWritable;
     path: {
         quoteId: string;
     };
@@ -2200,7 +2371,7 @@ export type GetQuoteLineResponses = {
 export type GetQuoteLineResponse = GetQuoteLineResponses[keyof GetQuoteLineResponses];
 
 export type PatchQuoteLineAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         quoteId: string;
         quoteLineId: string;

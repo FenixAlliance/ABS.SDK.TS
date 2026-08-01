@@ -87,11 +87,39 @@ export type BillOfLadingDto = {
     enrollmentId?: string | null;
 };
 
+export type BillOfLadingDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BillOfLadingDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BillOfLadingDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BillOfLadingDto;
 };
@@ -99,6 +127,11 @@ export type BillOfLadingDtoEnvelopeReadable = {
 export type BillOfLadingDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BillOfLadingDto;
 };
 
@@ -107,6 +140,11 @@ export type BillOfLadingDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BillOfLadingDto> | null;
 };
@@ -114,6 +152,11 @@ export type BillOfLadingDtoListEnvelopeReadable = {
 export type BillOfLadingDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BillOfLadingDto> | null;
 };
 
@@ -145,11 +188,39 @@ export type BillOfLadingLineDto = {
     tenantId?: string | null;
 };
 
+export type BillOfLadingLineDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BillOfLadingLineDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BillOfLadingLineDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BillOfLadingLineDto;
 };
@@ -157,6 +228,11 @@ export type BillOfLadingLineDtoEnvelopeReadable = {
 export type BillOfLadingLineDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BillOfLadingLineDto;
 };
 
@@ -165,6 +241,11 @@ export type BillOfLadingLineDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BillOfLadingLineDto> | null;
 };
@@ -172,6 +253,11 @@ export type BillOfLadingLineDtoListEnvelopeReadable = {
 export type BillOfLadingLineDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BillOfLadingLineDto> | null;
 };
 
@@ -224,12 +310,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -237,12 +333,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -279,6 +385,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -286,6 +397,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -349,11 +465,39 @@ export type ItemShippingPolicyDto = {
     businessProfileRecordID?: string | null;
 };
 
+export type ItemShippingPolicyDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemShippingPolicyDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemShippingPolicyDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemShippingPolicyDto;
 };
@@ -361,6 +505,11 @@ export type ItemShippingPolicyDtoEnvelopeReadable = {
 export type ItemShippingPolicyDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemShippingPolicyDto;
 };
 
@@ -369,6 +518,11 @@ export type ItemShippingPolicyDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemShippingPolicyDto> | null;
 };
@@ -376,6 +530,11 @@ export type ItemShippingPolicyDtoListEnvelopeReadable = {
 export type ItemShippingPolicyDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemShippingPolicyDto> | null;
 };
 
@@ -413,10 +572,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -469,11 +627,39 @@ export type ShipmentDto = {
     buyerBillingProfileId?: string | null;
 };
 
+export type ShipmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShipmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShipmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShipmentDto;
 };
@@ -481,6 +667,11 @@ export type ShipmentDtoEnvelopeReadable = {
 export type ShipmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShipmentDto;
 };
 
@@ -489,6 +680,11 @@ export type ShipmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShipmentDto> | null;
 };
@@ -496,6 +692,11 @@ export type ShipmentDtoListEnvelopeReadable = {
 export type ShipmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShipmentDto> | null;
 };
 
@@ -527,11 +728,39 @@ export type ShippingClassDto = {
     tenantId?: string | null;
 };
 
+export type ShippingClassDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShippingClassDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShippingClassDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShippingClassDto;
 };
@@ -539,6 +768,11 @@ export type ShippingClassDtoEnvelopeReadable = {
 export type ShippingClassDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShippingClassDto;
 };
 
@@ -547,6 +781,11 @@ export type ShippingClassDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShippingClassDto> | null;
 };
@@ -554,6 +793,11 @@ export type ShippingClassDtoListEnvelopeReadable = {
 export type ShippingClassDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShippingClassDto> | null;
 };
 
@@ -580,11 +824,39 @@ export type ShippingCourierDto = {
     enrollmentId?: string | null;
 };
 
+export type ShippingCourierDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShippingCourierDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShippingCourierDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShippingCourierDto;
 };
@@ -592,6 +864,11 @@ export type ShippingCourierDtoEnvelopeReadable = {
 export type ShippingCourierDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShippingCourierDto;
 };
 
@@ -600,6 +877,11 @@ export type ShippingCourierDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShippingCourierDto> | null;
 };
@@ -607,6 +889,11 @@ export type ShippingCourierDtoListEnvelopeReadable = {
 export type ShippingCourierDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShippingCourierDto> | null;
 };
 
@@ -637,11 +924,39 @@ export type ShippingLabelDto = {
     shippingCourierId?: string | null;
 };
 
+export type ShippingLabelDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShippingLabelDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShippingLabelDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShippingLabelDto;
 };
@@ -649,6 +964,11 @@ export type ShippingLabelDtoEnvelopeReadable = {
 export type ShippingLabelDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShippingLabelDto;
 };
 
@@ -657,6 +977,11 @@ export type ShippingLabelDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShippingLabelDto> | null;
 };
@@ -664,6 +989,11 @@ export type ShippingLabelDtoListEnvelopeReadable = {
 export type ShippingLabelDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShippingLabelDto> | null;
 };
 
@@ -700,11 +1030,39 @@ export type ShippingMethodDto = {
     shippingClassCalculationType?: 'PerClass' | 'PerOrder';
 };
 
+export type ShippingMethodDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShippingMethodDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShippingMethodDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShippingMethodDto;
 };
@@ -712,6 +1070,11 @@ export type ShippingMethodDtoEnvelopeReadable = {
 export type ShippingMethodDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShippingMethodDto;
 };
 
@@ -720,6 +1083,11 @@ export type ShippingMethodDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShippingMethodDto> | null;
 };
@@ -727,6 +1095,11 @@ export type ShippingMethodDtoListEnvelopeReadable = {
 export type ShippingMethodDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShippingMethodDto> | null;
 };
 
@@ -755,11 +1128,39 @@ export type ShippingRegionDto = {
     tenantId?: string | null;
 };
 
+export type ShippingRegionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShippingRegionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShippingRegionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShippingRegionDto;
 };
@@ -767,6 +1168,11 @@ export type ShippingRegionDtoEnvelopeReadable = {
 export type ShippingRegionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShippingRegionDto;
 };
 
@@ -775,6 +1181,11 @@ export type ShippingRegionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShippingRegionDto> | null;
 };
@@ -782,6 +1193,11 @@ export type ShippingRegionDtoListEnvelopeReadable = {
 export type ShippingRegionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShippingRegionDto> | null;
 };
 
@@ -811,11 +1227,39 @@ export type ShippingZoneDto = {
     tenantId?: string | null;
 };
 
+export type ShippingZoneDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShippingZoneDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShippingZoneDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShippingZoneDto;
 };
@@ -823,6 +1267,11 @@ export type ShippingZoneDtoEnvelopeReadable = {
 export type ShippingZoneDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShippingZoneDto;
 };
 
@@ -831,6 +1280,11 @@ export type ShippingZoneDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShippingZoneDto> | null;
 };
@@ -838,6 +1292,11 @@ export type ShippingZoneDtoListEnvelopeReadable = {
 export type ShippingZoneDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShippingZoneDto> | null;
 };
 
@@ -866,7 +1325,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetBillsOfLadingAsyncData = {
-    body?: never;
+    body?: BillOfLadingDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -932,7 +1391,7 @@ export type CreateBillOfLadingAsyncResponses = {
 export type CreateBillOfLadingAsyncResponse = CreateBillOfLadingAsyncResponses[keyof CreateBillOfLadingAsyncResponses];
 
 export type GetBillsOfLadingCountAsyncData = {
-    body?: never;
+    body?: BillOfLadingDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1029,7 +1488,7 @@ export type GetBillOfLadingByIdAsyncResponses = {
 export type GetBillOfLadingByIdAsyncResponse = GetBillOfLadingByIdAsyncResponses[keyof GetBillOfLadingByIdAsyncResponses];
 
 export type PatchBillOfLadingAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1103,7 +1562,7 @@ export type UpdateBillOfLadingAsyncResponses = {
 export type UpdateBillOfLadingAsyncResponse = UpdateBillOfLadingAsyncResponses[keyof UpdateBillOfLadingAsyncResponses];
 
 export type GetBillOfLadingLinesAsyncData = {
-    body?: never;
+    body?: BillOfLadingLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1169,7 +1628,7 @@ export type CreateBillOfLadingLineAsyncResponses = {
 export type CreateBillOfLadingLineAsyncResponse = CreateBillOfLadingLineAsyncResponses[keyof CreateBillOfLadingLineAsyncResponses];
 
 export type GetBillOfLadingLinesCountAsyncData = {
-    body?: never;
+    body?: BillOfLadingLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1261,7 +1720,7 @@ export type GetBillOfLadingLineByIdAsyncResponses = {
 export type GetBillOfLadingLineByIdAsyncResponse = GetBillOfLadingLineByIdAsyncResponses[keyof GetBillOfLadingLineByIdAsyncResponses];
 
 export type PatchBillOfLadingLineAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1358,6 +1817,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1665,7 +2140,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetItemShippingPoliciesAsyncData = {
-    body?: never;
+    body?: ItemShippingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1729,7 +2204,7 @@ export type CreateItemShippingPolicyAsyncResponses = {
 };
 
 export type GetItemShippingPoliciesCountAsyncData = {
-    body?: never;
+    body?: ItemShippingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1815,7 +2290,7 @@ export type GetItemShippingPolicyByIdAsyncResponses = {
 export type GetItemShippingPolicyByIdAsyncResponse = GetItemShippingPolicyByIdAsyncResponses[keyof GetItemShippingPolicyByIdAsyncResponses];
 
 export type PatchItemShippingPolicyAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1887,7 +2362,7 @@ export type UpdateItemShippingPolicyAsyncResponses = {
 };
 
 export type GetShipmentsAsyncData = {
-    body?: never;
+    body?: ShipmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1951,7 +2426,7 @@ export type CreateShipmentAsyncResponses = {
 };
 
 export type GetShipmentsCountAsyncData = {
-    body?: never;
+    body?: ShipmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2046,7 +2521,7 @@ export type GetShipmentByIdAsyncResponses = {
 export type GetShipmentByIdAsyncResponse = GetShipmentByIdAsyncResponses[keyof GetShipmentByIdAsyncResponses];
 
 export type PatchShipmentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2118,7 +2593,7 @@ export type UpdateShipmentAsyncResponses = {
 };
 
 export type GetShippingClassesAsyncData = {
-    body?: never;
+    body?: ShippingClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2182,7 +2657,7 @@ export type CreateShippingClassAsyncResponses = {
 };
 
 export type GetShippingClassesCountAsyncData = {
-    body?: never;
+    body?: ShippingClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2268,7 +2743,7 @@ export type GetShippingClassByIdAsyncResponses = {
 export type GetShippingClassByIdAsyncResponse = GetShippingClassByIdAsyncResponses[keyof GetShippingClassByIdAsyncResponses];
 
 export type PatchShippingClassAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2340,7 +2815,7 @@ export type UpdateShippingClassAsyncResponses = {
 };
 
 export type GetShippingCouriersAsyncData = {
-    body?: never;
+    body?: ShippingCourierDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2404,7 +2879,7 @@ export type CreateShippingCourierAsyncResponses = {
 };
 
 export type GetShippingCouriersCountAsyncData = {
-    body?: never;
+    body?: ShippingCourierDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2499,7 +2974,7 @@ export type GetShippingCourierByIdAsyncResponses = {
 export type GetShippingCourierByIdAsyncResponse = GetShippingCourierByIdAsyncResponses[keyof GetShippingCourierByIdAsyncResponses];
 
 export type PatchShippingCourierAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2571,7 +3046,7 @@ export type UpdateShippingCourierAsyncResponses = {
 };
 
 export type GetShippingLabelsAsyncData = {
-    body?: never;
+    body?: ShippingLabelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2635,7 +3110,7 @@ export type CreateShippingLabelAsyncResponses = {
 };
 
 export type GetShippingLabelsCountAsyncData = {
-    body?: never;
+    body?: ShippingLabelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2721,7 +3196,7 @@ export type GetShippingLabelByIdAsyncResponses = {
 export type GetShippingLabelByIdAsyncResponse = GetShippingLabelByIdAsyncResponses[keyof GetShippingLabelByIdAsyncResponses];
 
 export type PatchShippingLabelAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2793,7 +3268,7 @@ export type UpdateShippingLabelAsyncResponses = {
 };
 
 export type GetShippingMethodsAsyncData = {
-    body?: never;
+    body?: ShippingMethodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2857,7 +3332,7 @@ export type CreateShippingMethodAsyncResponses = {
 };
 
 export type GetShippingMethodsCountAsyncData = {
-    body?: never;
+    body?: ShippingMethodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2943,7 +3418,7 @@ export type GetShippingMethodByIdAsyncResponses = {
 export type GetShippingMethodByIdAsyncResponse = GetShippingMethodByIdAsyncResponses[keyof GetShippingMethodByIdAsyncResponses];
 
 export type PatchShippingMethodAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3015,7 +3490,7 @@ export type UpdateShippingMethodAsyncResponses = {
 };
 
 export type GetShippingRegionsAsyncData = {
-    body?: never;
+    body?: ShippingRegionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3079,7 +3554,7 @@ export type CreateShippingRegionAsyncResponses = {
 };
 
 export type GetShippingRegionsCountAsyncData = {
-    body?: never;
+    body?: ShippingRegionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3165,7 +3640,7 @@ export type GetShippingRegionByIdAsyncResponses = {
 export type GetShippingRegionByIdAsyncResponse = GetShippingRegionByIdAsyncResponses[keyof GetShippingRegionByIdAsyncResponses];
 
 export type PatchShippingRegionAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3237,7 +3712,7 @@ export type UpdateShippingRegionAsyncResponses = {
 };
 
 export type GetShippingZonesAsyncData = {
-    body?: never;
+    body?: ShippingZoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3301,7 +3776,7 @@ export type CreateShippingZoneAsyncResponses = {
 };
 
 export type GetShippingZonesCountAsyncData = {
-    body?: never;
+    body?: ShippingZoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3387,7 +3862,7 @@ export type GetShippingZoneByIdAsyncResponses = {
 export type GetShippingZoneByIdAsyncResponse = GetShippingZoneByIdAsyncResponses[keyof GetShippingZoneByIdAsyncResponses];
 
 export type PatchShippingZoneAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

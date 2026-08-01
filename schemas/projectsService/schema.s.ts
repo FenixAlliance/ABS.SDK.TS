@@ -25,6 +25,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -656,6 +671,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -664,6 +685,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -696,6 +723,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -706,11 +739,9 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -743,12 +774,31 @@ export interface components {
       /** Format: date-time */
       projectEndDate?: string;
     };
+    ProjectDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ProjectDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ProjectDto"];
     };
@@ -758,6 +808,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ProjectDto"][] | null;
     };
@@ -808,6 +864,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ProjectPeriodDto"][] | null;
     };
@@ -845,12 +907,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    ProjectTaskDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ProjectTaskDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ProjectTaskDto"];
     };
@@ -860,6 +941,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ProjectTaskDto"][] | null;
     };
@@ -906,12 +993,31 @@ export interface components {
       comments?: string | null;
       type?: string | null;
     };
+    ProjectTimeLogDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ProjectTimeLogDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ProjectTimeLogDto"];
     };
@@ -921,6 +1027,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ProjectTimeLogDto"][] | null;
     };
@@ -977,12 +1089,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    TaskCategoryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TaskCategoryDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TaskCategoryDto"][] | null;
     };
@@ -1071,6 +1202,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1143,6 +1280,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1301,8 +1444,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1507,8 +1650,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1548,6 +1691,12 @@ export interface operations {
         projectId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTimeLogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectTimeLogDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1585,6 +1734,12 @@ export interface operations {
         projectId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTimeLogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectTimeLogDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1620,6 +1775,12 @@ export interface operations {
       };
       path: {
         projectId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTaskDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectTaskDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1700,6 +1861,12 @@ export interface operations {
       };
       path: {
         projectId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTaskDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectTaskDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1824,8 +1991,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1865,6 +2032,12 @@ export interface operations {
         projectId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaskCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaskCategoryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1900,6 +2073,12 @@ export interface operations {
       };
       path: {
         projectId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaskCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaskCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1938,6 +2117,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTaskDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectTaskDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2013,6 +2198,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTaskDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectTaskDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2152,8 +2343,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2181,6 +2372,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaskCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaskCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2255,6 +2452,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaskCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaskCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2413,8 +2616,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2610,8 +2813,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2822,6 +3025,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTimeLogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectTimeLogDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2900,6 +3109,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ProjectTimeLogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ProjectTimeLogDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3187,8 +3402,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

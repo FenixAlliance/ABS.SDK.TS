@@ -18,12 +18,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -31,12 +41,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -73,6 +93,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -80,6 +105,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -90,10 +120,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -122,11 +151,39 @@ export type ProjectDto = {
     projectEndDate?: string;
 };
 
+export type ProjectDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ProjectDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ProjectDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ProjectDto;
 };
@@ -134,6 +191,11 @@ export type ProjectDtoEnvelopeReadable = {
 export type ProjectDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ProjectDto;
 };
 
@@ -142,6 +204,11 @@ export type ProjectDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ProjectDto> | null;
 };
@@ -149,6 +216,11 @@ export type ProjectDtoListEnvelopeReadable = {
 export type ProjectDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ProjectDto> | null;
 };
 
@@ -193,6 +265,11 @@ export type ProjectPeriodDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ProjectPeriodDto> | null;
 };
@@ -200,6 +277,11 @@ export type ProjectPeriodDtoListEnvelopeReadable = {
 export type ProjectPeriodDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ProjectPeriodDto> | null;
 };
 
@@ -231,11 +313,39 @@ export type ProjectTaskDto = {
     enrollmentId?: string | null;
 };
 
+export type ProjectTaskDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ProjectTaskDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ProjectTaskDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ProjectTaskDto;
 };
@@ -243,6 +353,11 @@ export type ProjectTaskDtoEnvelopeReadable = {
 export type ProjectTaskDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ProjectTaskDto;
 };
 
@@ -251,6 +366,11 @@ export type ProjectTaskDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ProjectTaskDto> | null;
 };
@@ -258,6 +378,11 @@ export type ProjectTaskDtoListEnvelopeReadable = {
 export type ProjectTaskDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ProjectTaskDto> | null;
 };
 
@@ -296,11 +421,39 @@ export type ProjectTimeLogDto = {
     type?: string | null;
 };
 
+export type ProjectTimeLogDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ProjectTimeLogDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ProjectTimeLogDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ProjectTimeLogDto;
 };
@@ -308,6 +461,11 @@ export type ProjectTimeLogDtoEnvelopeReadable = {
 export type ProjectTimeLogDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ProjectTimeLogDto;
 };
 
@@ -316,6 +474,11 @@ export type ProjectTimeLogDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ProjectTimeLogDto> | null;
 };
@@ -323,6 +486,11 @@ export type ProjectTimeLogDtoListEnvelopeReadable = {
 export type ProjectTimeLogDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ProjectTimeLogDto> | null;
 };
 
@@ -379,11 +547,39 @@ export type TaskCategoryDto = {
     enrollmentId?: string | null;
 };
 
+export type TaskCategoryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TaskCategoryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TaskCategoryDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TaskCategoryDto> | null;
 };
@@ -391,6 +587,11 @@ export type TaskCategoryDtoListEnvelopeReadable = {
 export type TaskCategoryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TaskCategoryDto> | null;
 };
 
@@ -464,6 +665,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -771,7 +988,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetProjectsByTenantIdAsyncData = {
-    body?: never;
+    body?: ProjectDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -833,7 +1050,7 @@ export type CreateProjectAsyncResponses = {
 export type CreateProjectAsyncResponse = CreateProjectAsyncResponses[keyof CreateProjectAsyncResponses];
 
 export type GetProjectsCountByTenantIdAsyncData = {
-    body?: never;
+    body?: ProjectDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -930,7 +1147,7 @@ export type GetProjectByIdAsyncResponses = {
 export type GetProjectByIdAsyncResponse = GetProjectByIdAsyncResponses[keyof GetProjectByIdAsyncResponses];
 
 export type PatchProjectAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         projectId: string;
     };
@@ -1096,7 +1313,7 @@ export type DeleteProjectPeriodAsyncResponses = {
 export type DeleteProjectPeriodAsyncResponse = DeleteProjectPeriodAsyncResponses[keyof DeleteProjectPeriodAsyncResponses];
 
 export type PatchProjectPeriodAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         projectId: string;
         projectPeriodId: string;
@@ -1164,7 +1381,7 @@ export type UpdateProjectPeriodAsyncResponses = {
 export type UpdateProjectPeriodAsyncResponse = UpdateProjectPeriodAsyncResponses[keyof UpdateProjectPeriodAsyncResponses];
 
 export type GetTimeLogsForProjectAsyncData = {
-    body?: never;
+    body?: ProjectTimeLogDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
     };
@@ -1197,7 +1414,7 @@ export type GetTimeLogsForProjectAsyncResponses = {
 export type GetTimeLogsForProjectAsyncResponse = GetTimeLogsForProjectAsyncResponses[keyof GetTimeLogsForProjectAsyncResponses];
 
 export type GetProjectTimeLogsCountAsyncData = {
-    body?: never;
+    body?: ProjectTimeLogDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
     };
@@ -1230,7 +1447,7 @@ export type GetProjectTimeLogsCountAsyncResponses = {
 export type GetProjectTimeLogsCountAsyncResponse = GetProjectTimeLogsCountAsyncResponses[keyof GetProjectTimeLogsCountAsyncResponses];
 
 export type GetTasksForProjectAsyncData = {
-    body?: never;
+    body?: ProjectTaskDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
     };
@@ -1296,7 +1513,7 @@ export type CreateTaskForProjectAsyncResponses = {
 export type CreateTaskForProjectAsyncResponse = CreateTaskForProjectAsyncResponses[keyof CreateTaskForProjectAsyncResponses];
 
 export type GetTasksForProjectCountAsyncData = {
-    body?: never;
+    body?: ProjectTaskDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
     };
@@ -1363,7 +1580,7 @@ export type DeleteTaskForProjectAsyncResponses = {
 export type DeleteTaskForProjectAsyncResponse = DeleteTaskForProjectAsyncResponses[keyof DeleteTaskForProjectAsyncResponses];
 
 export type PatchTaskForProjectAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         projectId: string;
         projectTaskId: string;
@@ -1431,7 +1648,7 @@ export type UpdateTaskForProjectAsyncResponses = {
 export type UpdateTaskForProjectAsyncResponse = UpdateTaskForProjectAsyncResponses[keyof UpdateTaskForProjectAsyncResponses];
 
 export type GetProjectTaskCategoriesAsyncData = {
-    body?: never;
+    body?: TaskCategoryDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
     };
@@ -1464,7 +1681,7 @@ export type GetProjectTaskCategoriesAsyncResponses = {
 export type GetProjectTaskCategoriesAsyncResponse = GetProjectTaskCategoriesAsyncResponses[keyof GetProjectTaskCategoriesAsyncResponses];
 
 export type GetProjectTaskCategoriesCountAsyncData = {
-    body?: never;
+    body?: TaskCategoryDtoCollectionQueryParametersWritable;
     path: {
         projectId: string;
     };
@@ -1497,7 +1714,7 @@ export type GetProjectTaskCategoriesCountAsyncResponses = {
 export type GetProjectTaskCategoriesCountAsyncResponse = GetProjectTaskCategoriesCountAsyncResponses[keyof GetProjectTaskCategoriesCountAsyncResponses];
 
 export type GetProjectTasksAsyncData = {
-    body?: never;
+    body?: ProjectTaskDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1563,7 +1780,7 @@ export type CreateProjectTaskAsyncResponses = {
 export type CreateProjectTaskAsyncResponse = CreateProjectTaskAsyncResponses[keyof CreateProjectTaskAsyncResponses];
 
 export type GetProjectTasksCountAsyncData = {
-    body?: never;
+    body?: ProjectTaskDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1651,7 +1868,7 @@ export type GetProjectTaskByIdAsyncResponses = {
 export type GetProjectTaskByIdAsyncResponse = GetProjectTaskByIdAsyncResponses[keyof GetProjectTaskByIdAsyncResponses];
 
 export type PatchProjectTaskAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1717,7 +1934,7 @@ export type UpdateProjectTaskAsyncResponses = {
 export type UpdateProjectTaskAsyncResponse = UpdateProjectTaskAsyncResponses[keyof UpdateProjectTaskAsyncResponses];
 
 export type GetTenantTaskCategoriesAsyncData = {
-    body?: never;
+    body?: TaskCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1779,7 +1996,7 @@ export type CreateTaskCategoryAsyncResponses = {
 export type CreateTaskCategoryAsyncResponse = CreateTaskCategoryAsyncResponses[keyof CreateTaskCategoryAsyncResponses];
 
 export type CountTenantTaskCategoriesAsyncData = {
-    body?: never;
+    body?: TaskCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1876,7 +2093,7 @@ export type GetTaskCategoryByIdAsyncResponses = {
 export type GetTaskCategoryByIdAsyncResponse = GetTaskCategoryByIdAsyncResponses[keyof GetTaskCategoryByIdAsyncResponses];
 
 export type PatchTaskCategoryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         taskCategoryId: string;
     };
@@ -2041,7 +2258,7 @@ export type GetTaskTypeByIdAsyncResponses = {
 export type GetTaskTypeByIdAsyncResponse = GetTaskTypeByIdAsyncResponses[keyof GetTaskTypeByIdAsyncResponses];
 
 export type PatchTaskTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         taskTypeId: string;
     };
@@ -2241,7 +2458,7 @@ export type UpdateProjectHoursApprovalApproverAsyncResponses = {
 };
 
 export type GetProjectPeriodTimeLogsAsyncData = {
-    body?: never;
+    body?: ProjectTimeLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2310,7 +2527,7 @@ export type CreateProjectTimeLogAsyncResponses = {
 };
 
 export type CountProjectPeriodTimeLogsAsyncData = {
-    body?: never;
+    body?: ProjectTimeLogDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2527,7 +2744,7 @@ export type GetProjectTimeLogByIdAsyncResponses = {
 export type GetProjectTimeLogByIdAsyncResponse = GetProjectTimeLogByIdAsyncResponses[keyof GetProjectTimeLogByIdAsyncResponses];
 
 export type PatchProjectTimeLogAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

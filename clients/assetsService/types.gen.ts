@@ -31,11 +31,39 @@ export type AssetCategoryDto = {
     assetCount?: number;
 };
 
+export type AssetCategoryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AssetCategoryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AssetCategoryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AssetCategoryDto;
 };
@@ -43,6 +71,11 @@ export type AssetCategoryDtoEnvelopeReadable = {
 export type AssetCategoryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AssetCategoryDto;
 };
 
@@ -51,6 +84,11 @@ export type AssetCategoryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AssetCategoryDto> | null;
 };
@@ -58,6 +96,11 @@ export type AssetCategoryDtoListEnvelopeReadable = {
 export type AssetCategoryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AssetCategoryDto> | null;
 };
 
@@ -127,11 +170,39 @@ export type AssetDepreciationRecordDto = {
     period?: string | null;
 };
 
+export type AssetDepreciationRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AssetDepreciationRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AssetDepreciationRecordDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AssetDepreciationRecordDto;
 };
@@ -139,6 +210,11 @@ export type AssetDepreciationRecordDtoEnvelopeReadable = {
 export type AssetDepreciationRecordDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AssetDepreciationRecordDto;
 };
 
@@ -147,6 +223,11 @@ export type AssetDepreciationRecordDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AssetDepreciationRecordDto> | null;
 };
@@ -154,6 +235,11 @@ export type AssetDepreciationRecordDtoListEnvelopeReadable = {
 export type AssetDepreciationRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AssetDepreciationRecordDto> | null;
 };
 
@@ -201,11 +287,39 @@ export type AssetDto = {
     purchaseReceiptId?: string | null;
 };
 
+export type AssetDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AssetDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AssetDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AssetDto;
 };
@@ -213,6 +327,11 @@ export type AssetDtoEnvelopeReadable = {
 export type AssetDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AssetDto;
 };
 
@@ -221,6 +340,11 @@ export type AssetDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AssetDto> | null;
 };
@@ -228,6 +352,11 @@ export type AssetDtoListEnvelopeReadable = {
 export type AssetDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AssetDto> | null;
 };
 
@@ -267,11 +396,39 @@ export type AssetRepairDto = {
     assetMaintenanceTeamName?: string | null;
 };
 
+export type AssetRepairDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AssetRepairDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AssetRepairDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AssetRepairDto;
 };
@@ -279,6 +436,11 @@ export type AssetRepairDtoEnvelopeReadable = {
 export type AssetRepairDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AssetRepairDto;
 };
 
@@ -287,6 +449,11 @@ export type AssetRepairDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AssetRepairDto> | null;
 };
@@ -294,6 +461,11 @@ export type AssetRepairDtoListEnvelopeReadable = {
 export type AssetRepairDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AssetRepairDto> | null;
 };
 
@@ -352,11 +524,39 @@ export type AssetTransferDto = {
     destinationDepartmentName?: string | null;
 };
 
+export type AssetTransferDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AssetTransferDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AssetTransferDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AssetTransferDto;
 };
@@ -364,6 +564,11 @@ export type AssetTransferDtoEnvelopeReadable = {
 export type AssetTransferDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AssetTransferDto;
 };
 
@@ -372,6 +577,11 @@ export type AssetTransferDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AssetTransferDto> | null;
 };
@@ -379,6 +589,11 @@ export type AssetTransferDtoListEnvelopeReadable = {
 export type AssetTransferDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AssetTransferDto> | null;
 };
 
@@ -409,11 +624,39 @@ export type AssetTypeDto = {
     assetCount?: number;
 };
 
+export type AssetTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AssetTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AssetTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AssetTypeDto;
 };
@@ -421,6 +664,11 @@ export type AssetTypeDtoEnvelopeReadable = {
 export type AssetTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AssetTypeDto;
 };
 
@@ -429,6 +677,11 @@ export type AssetTypeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AssetTypeDto> | null;
 };
@@ -436,6 +689,11 @@ export type AssetTypeDtoListEnvelopeReadable = {
 export type AssetTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AssetTypeDto> | null;
 };
 
@@ -491,11 +749,39 @@ export type AssetValueAmendDto = {
     currencyId?: string | null;
 };
 
+export type AssetValueAmendDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AssetValueAmendDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AssetValueAmendDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AssetValueAmendDto;
 };
@@ -503,6 +789,11 @@ export type AssetValueAmendDtoEnvelopeReadable = {
 export type AssetValueAmendDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AssetValueAmendDto;
 };
 
@@ -511,6 +802,11 @@ export type AssetValueAmendDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AssetValueAmendDto> | null;
 };
@@ -518,6 +814,11 @@ export type AssetValueAmendDtoListEnvelopeReadable = {
 export type AssetValueAmendDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AssetValueAmendDto> | null;
 };
 
@@ -532,12 +833,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -545,12 +856,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -587,6 +908,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -594,6 +920,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -604,10 +935,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -648,7 +978,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetAssetCategoriesData = {
-    body?: never;
+    body?: AssetCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -788,7 +1118,7 @@ export type GetAssetCategoryResponses = {
 export type GetAssetCategoryResponse = GetAssetCategoryResponses[keyof GetAssetCategoryResponses];
 
 export type PatchAssetCategoryData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         categoryId: string;
     };
@@ -870,7 +1200,7 @@ export type UpdateAssetCategoryResponses = {
 export type UpdateAssetCategoryResponse = UpdateAssetCategoryResponses[keyof UpdateAssetCategoryResponses];
 
 export type GetAssetCategoriesCountData = {
-    body?: never;
+    body?: AssetCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -901,7 +1231,7 @@ export type GetAssetCategoriesCountResponses = {
 export type GetAssetCategoriesCountResponse = GetAssetCategoriesCountResponses[keyof GetAssetCategoriesCountResponses];
 
 export type GetAssetsData = {
-    body?: never;
+    body?: AssetDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -967,7 +1297,7 @@ export type CreateAssetResponses = {
 export type CreateAssetResponse = CreateAssetResponses[keyof CreateAssetResponses];
 
 export type GetAssetsCountData = {
-    body?: never;
+    body?: AssetDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1072,7 +1402,7 @@ export type GetAssetResponses = {
 export type GetAssetResponse = GetAssetResponses[keyof GetAssetResponses];
 
 export type PatchAssetData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         assetId: string;
     };
@@ -1154,7 +1484,7 @@ export type UpdateAssetResponses = {
 export type UpdateAssetResponse = UpdateAssetResponses[keyof UpdateAssetResponses];
 
 export type GetAssetAssetCategoriesData = {
-    body?: never;
+    body?: AssetCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1220,7 +1550,7 @@ export type CreateAssetAssetCategoryResponses = {
 export type CreateAssetAssetCategoryResponse = CreateAssetAssetCategoryResponses[keyof CreateAssetAssetCategoryResponses];
 
 export type GetAssetAssetCategoriesCountData = {
-    body?: never;
+    body?: AssetCategoryDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1325,7 +1655,7 @@ export type GetAssetAssetCategoryResponses = {
 export type GetAssetAssetCategoryResponse = GetAssetAssetCategoryResponses[keyof GetAssetAssetCategoryResponses];
 
 export type PatchAssetAssetCategoryData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         categoryId: string;
     };
@@ -1407,7 +1737,7 @@ export type UpdateAssetAssetCategoryResponses = {
 export type UpdateAssetAssetCategoryResponse = UpdateAssetAssetCategoryResponses[keyof UpdateAssetAssetCategoryResponses];
 
 export type GetAssetRepairsData = {
-    body?: never;
+    body?: AssetRepairDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
     };
@@ -1473,7 +1803,7 @@ export type CreateAssetRepairResponses = {
 export type CreateAssetRepairResponse = CreateAssetRepairResponses[keyof CreateAssetRepairResponses];
 
 export type GetAssetRepairsCountData = {
-    body?: never;
+    body?: AssetRepairDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
     };
@@ -1574,7 +1904,7 @@ export type GetAssetRepairResponses = {
 export type GetAssetRepairResponse = GetAssetRepairResponses[keyof GetAssetRepairResponses];
 
 export type PatchAssetRepairData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         assetId: string;
         repairId: string;
@@ -1650,7 +1980,7 @@ export type UpdateAssetRepairResponses = {
 export type UpdateAssetRepairResponse = UpdateAssetRepairResponses[keyof UpdateAssetRepairResponses];
 
 export type GetAssetValueAmendsData = {
-    body?: never;
+    body?: AssetValueAmendDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
     };
@@ -1716,7 +2046,7 @@ export type CreateAssetValueAmendResponses = {
 export type CreateAssetValueAmendResponse = CreateAssetValueAmendResponses[keyof CreateAssetValueAmendResponses];
 
 export type GetAssetValueAmendsCountData = {
-    body?: never;
+    body?: AssetValueAmendDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
     };
@@ -1817,7 +2147,7 @@ export type GetAssetValueAmendResponses = {
 export type GetAssetValueAmendResponse = GetAssetValueAmendResponses[keyof GetAssetValueAmendResponses];
 
 export type PatchAssetValueAmendData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         assetId: string;
         amendId: string;
@@ -1893,7 +2223,7 @@ export type UpdateAssetValueAmendResponses = {
 export type UpdateAssetValueAmendResponse = UpdateAssetValueAmendResponses[keyof UpdateAssetValueAmendResponses];
 
 export type GetAssetDepreciationRecordsData = {
-    body?: never;
+    body?: AssetDepreciationRecordDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
     };
@@ -1959,7 +2289,7 @@ export type CreateAssetDepreciationRecordResponses = {
 export type CreateAssetDepreciationRecordResponse = CreateAssetDepreciationRecordResponses[keyof CreateAssetDepreciationRecordResponses];
 
 export type GetAssetDepreciationRecordsCountData = {
-    body?: never;
+    body?: AssetDepreciationRecordDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
     };
@@ -2060,7 +2390,7 @@ export type GetAssetDepreciationRecordResponses = {
 export type GetAssetDepreciationRecordResponse = GetAssetDepreciationRecordResponses[keyof GetAssetDepreciationRecordResponses];
 
 export type PatchAssetDepreciationRecordData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         assetId: string;
         recordId: string;
@@ -2136,7 +2466,7 @@ export type UpdateAssetDepreciationRecordResponses = {
 export type UpdateAssetDepreciationRecordResponse = UpdateAssetDepreciationRecordResponses[keyof UpdateAssetDepreciationRecordResponses];
 
 export type GetAssetTransfersData = {
-    body?: never;
+    body?: AssetTransferDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
     };
@@ -2202,7 +2532,7 @@ export type CreateAssetTransferResponses = {
 export type CreateAssetTransferResponse = CreateAssetTransferResponses[keyof CreateAssetTransferResponses];
 
 export type GetAssetTransfersCountData = {
-    body?: never;
+    body?: AssetTransferDtoCollectionQueryParametersWritable;
     path: {
         assetId: string;
     };
@@ -2303,7 +2633,7 @@ export type GetAssetTransferResponses = {
 export type GetAssetTransferResponse = GetAssetTransferResponses[keyof GetAssetTransferResponses];
 
 export type PatchAssetTransferData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         assetId: string;
         transferId: string;
@@ -2379,7 +2709,7 @@ export type UpdateAssetTransferResponses = {
 export type UpdateAssetTransferResponse = UpdateAssetTransferResponses[keyof UpdateAssetTransferResponses];
 
 export type GetAssetTransfersAsyncData = {
-    body?: never;
+    body?: AssetTransferDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -2441,7 +2771,7 @@ export type CreateAssetTransferAsyncResponses = {
 export type CreateAssetTransferAsyncResponse = CreateAssetTransferAsyncResponses[keyof CreateAssetTransferAsyncResponses];
 
 export type GetAssetTransfersCountAsyncData = {
-    body?: never;
+    body?: AssetTransferDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -2538,7 +2868,7 @@ export type GetAssetTransferAsyncResponses = {
 export type GetAssetTransferAsyncResponse = GetAssetTransferAsyncResponses[keyof GetAssetTransferAsyncResponses];
 
 export type PatchAssetTransferAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         transferId: string;
     };
@@ -2612,7 +2942,7 @@ export type UpdateAssetTransferAsyncResponses = {
 export type UpdateAssetTransferAsyncResponse = UpdateAssetTransferAsyncResponses[keyof UpdateAssetTransferAsyncResponses];
 
 export type GetAssetTypesData = {
-    body?: never;
+    body?: AssetTypeDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -2752,7 +3082,7 @@ export type GetAssetTypeResponses = {
 export type GetAssetTypeResponse = GetAssetTypeResponses[keyof GetAssetTypeResponses];
 
 export type PatchAssetTypeData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         typeId: string;
     };
@@ -2834,7 +3164,7 @@ export type UpdateAssetTypeResponses = {
 export type UpdateAssetTypeResponse = UpdateAssetTypeResponses[keyof UpdateAssetTypeResponses];
 
 export type GetAssetTypesCountData = {
-    body?: never;
+    body?: AssetTypeDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -2886,6 +3216,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */

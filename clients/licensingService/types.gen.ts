@@ -18,12 +18,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -31,12 +41,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -73,6 +93,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -80,6 +105,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -103,11 +133,39 @@ export type LicenseAttributeDto = {
     enrollmentId?: string | null;
 };
 
+export type LicenseAttributeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LicenseAttributeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LicenseAttributeDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LicenseAttributeDto> | null;
 };
@@ -115,6 +173,11 @@ export type LicenseAttributeDtoListEnvelopeReadable = {
 export type LicenseAttributeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LicenseAttributeDto> | null;
 };
 
@@ -123,6 +186,74 @@ export type LicenseAttributeUpdateDto = {
     name?: string | null;
     description?: string | null;
     licenseTypeId?: string | null;
+};
+
+export type LicenseCreateDto = {
+    id?: string;
+    timestamp?: string;
+    title: string;
+    description?: string | null;
+    code?: string | null;
+    licenseTypeId?: string | null;
+};
+
+export type LicenseDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    title?: string | null;
+    description?: string | null;
+    code?: string | null;
+    licenseTypeId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type LicenseDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LicenseDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type LicenseDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<LicenseDto> | null;
+};
+
+export type LicenseDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<LicenseDto> | null;
 };
 
 export type LicenseFeatureCreateDto = {
@@ -149,11 +280,39 @@ export type LicenseFeatureDto = {
     enrollmentId?: string | null;
 };
 
+export type LicenseFeatureDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LicenseFeatureDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LicenseFeatureDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LicenseFeatureDto> | null;
 };
@@ -161,6 +320,11 @@ export type LicenseFeatureDtoListEnvelopeReadable = {
 export type LicenseFeatureDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LicenseFeatureDto> | null;
 };
 
@@ -202,11 +366,39 @@ export type LicenseTypeDto = {
     enrollmentId?: string | null;
 };
 
+export type LicenseTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LicenseTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LicenseTypeDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LicenseTypeDto> | null;
 };
@@ -214,6 +406,11 @@ export type LicenseTypeDtoListEnvelopeReadable = {
 export type LicenseTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LicenseTypeDto> | null;
 };
 
@@ -226,6 +423,13 @@ export type LicenseTypeUpdateDto = {
     trialLicenseRelativeExpirationInDays?: number | null;
     standardLicenseRelativeExpirationInDays?: number | null;
     licensingCertificateId?: string | null;
+};
+
+export type LicenseUpdateDto = {
+    title?: string | null;
+    description?: string | null;
+    code?: string | null;
+    licenseTypeId?: string | null;
 };
 
 export type LicensingCertificateCreateDto = {
@@ -249,11 +453,39 @@ export type LicensingCertificateDto = {
     enrollmentId?: string | null;
 };
 
+export type LicensingCertificateDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LicensingCertificateDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LicensingCertificateDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LicensingCertificateDto> | null;
 };
@@ -261,6 +493,11 @@ export type LicensingCertificateDtoListEnvelopeReadable = {
 export type LicensingCertificateDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LicensingCertificateDto> | null;
 };
 
@@ -276,10 +513,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -341,6 +577,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -648,7 +900,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetLicenseAttributesAsyncData = {
-    body?: never;
+    body?: LicenseAttributeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -712,7 +964,7 @@ export type CreateLicenseAttributeAsyncResponses = {
 };
 
 export type GetLicenseAttributesCountAsyncData = {
-    body?: never;
+    body?: LicenseAttributeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -815,7 +1067,7 @@ export type GetLicenseAttributeByIdAsyncResponses = {
 export type GetLicenseAttributeByIdAsyncResponse = GetLicenseAttributeByIdAsyncResponses[keyof GetLicenseAttributeByIdAsyncResponses];
 
 export type PatchLicenseAttributeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -887,7 +1139,7 @@ export type UpdateLicenseAttributeAsyncResponses = {
 };
 
 export type GetLicenseFeaturesAsyncData = {
-    body?: never;
+    body?: LicenseFeatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -951,7 +1203,7 @@ export type CreateLicenseFeatureAsyncResponses = {
 };
 
 export type GetLicenseFeaturesCountAsyncData = {
-    body?: never;
+    body?: LicenseFeatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1054,7 +1306,7 @@ export type GetLicenseFeatureByIdAsyncResponses = {
 export type GetLicenseFeatureByIdAsyncResponse = GetLicenseFeatureByIdAsyncResponses[keyof GetLicenseFeatureByIdAsyncResponses];
 
 export type PatchLicenseFeatureAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1125,8 +1377,72 @@ export type UpdateLicenseFeatureAsyncResponses = {
     200: unknown;
 };
 
+export type GetLicensesAsyncData = {
+    body?: LicenseDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Licenses';
+};
+
+export type GetLicensesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetLicensesAsyncError = GetLicensesAsyncErrors[keyof GetLicensesAsyncErrors];
+
+export type GetLicensesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: LicenseDtoListEnvelopeReadable;
+};
+
+export type GetLicensesAsyncResponse = GetLicensesAsyncResponses[keyof GetLicensesAsyncResponses];
+
+export type CreateLicenseAsyncData = {
+    body?: LicenseCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Licenses';
+};
+
+export type CreateLicenseAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateLicenseAsyncError = CreateLicenseAsyncErrors[keyof CreateLicenseAsyncErrors];
+
+export type CreateLicenseAsyncResponses = {
+    /**
+     * Created
+     */
+    201: unknown;
+};
+
 export type GetLicensesCountAsyncData = {
-    body?: never;
+    body?: LicenseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1156,8 +1472,115 @@ export type GetLicensesCountAsyncResponses = {
 
 export type GetLicensesCountAsyncResponse = GetLicensesCountAsyncResponses[keyof GetLicensesCountAsyncResponses];
 
-export type GetLicenseTypesAsyncData = {
+export type DeleteLicenseAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        licenseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Licenses/{licenseId}';
+};
+
+export type DeleteLicenseAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DeleteLicenseAsyncError = DeleteLicenseAsyncErrors[keyof DeleteLicenseAsyncErrors];
+
+export type DeleteLicenseAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetLicenseByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        licenseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Licenses/{licenseId}';
+};
+
+export type GetLicenseByIdAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetLicenseByIdAsyncError = GetLicenseByIdAsyncErrors[keyof GetLicenseByIdAsyncErrors];
+
+export type GetLicenseByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: LicenseDto;
+};
+
+export type GetLicenseByIdAsyncResponse = GetLicenseByIdAsyncResponses[keyof GetLicenseByIdAsyncResponses];
+
+export type UpdateLicenseAsyncData = {
+    body?: LicenseUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        licenseId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/LicensingService/Licenses/{licenseId}';
+};
+
+export type UpdateLicenseAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UpdateLicenseAsyncError = UpdateLicenseAsyncErrors[keyof UpdateLicenseAsyncErrors];
+
+export type UpdateLicenseAsyncResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type GetLicenseTypesAsyncData = {
+    body?: LicenseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1221,7 +1644,7 @@ export type CreateLicenseTypeAsyncResponses = {
 };
 
 export type GetLicenseTypesCountAsyncData = {
-    body?: never;
+    body?: LicenseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1324,7 +1747,7 @@ export type GetLicenseTypeByIdAsyncResponses = {
 export type GetLicenseTypeByIdAsyncResponse = GetLicenseTypeByIdAsyncResponses[keyof GetLicenseTypeByIdAsyncResponses];
 
 export type PatchLicenseTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1396,7 +1819,7 @@ export type UpdateLicenseTypeAsyncResponses = {
 };
 
 export type GetLicensingCertificatesAsyncData = {
-    body?: never;
+    body?: LicensingCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1460,7 +1883,7 @@ export type CreateLicensingCertificateAsyncResponses = {
 };
 
 export type GetLicensingCertificatesCountAsyncData = {
-    body?: never;
+    body?: LicensingCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1563,7 +1986,7 @@ export type GetLicensingCertificateByIdAsyncResponses = {
 export type GetLicensingCertificateByIdAsyncResponse = GetLicensingCertificateByIdAsyncResponses[keyof GetLicensingCertificateByIdAsyncResponses];
 
 export type PatchLicensingCertificateAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

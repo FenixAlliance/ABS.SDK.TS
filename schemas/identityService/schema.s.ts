@@ -67,6 +67,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -456,6 +471,11 @@ export interface components {
       correlationId?: string | null;
       scopes?: string[] | null;
       error?: string | null;
+      /** @enum {string} */
+      runAs?: "Invoker" | "Application" | "System" | "Service";
+      /** @enum {string} */
+      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      provenance?: components["schemas"]["ExecutionProvenance"];
     };
     AuthResultEnvelope: {
       isSuccess?: boolean;
@@ -463,6 +483,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AuthResult"];
     };
@@ -474,7 +500,20 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
+    };
+    ExecutionProvenance: {
+      /** @enum {string} */
+      initiation?: "Unknown" | "Http" | "Workflow" | "ScheduledJob" | "Event" | "AiTool" | "Mcp" | "Integration" | "System";
+      onBehalfOfActorId?: components["schemas"]["UserId"];
+      /** @enum {string|null} */
+      onBehalfOfActorKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
     };
     ForgotPasswordRequest: {
       email: string | null;
@@ -518,6 +557,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["JsonWebKeySet"];
     };
@@ -536,6 +581,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["JsonWebToken"];
     };
@@ -593,6 +644,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OpenIdConfiguration"];
     };
@@ -623,6 +680,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: string[] | null;
     };
@@ -682,6 +745,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["UserCreateDto"];
     };

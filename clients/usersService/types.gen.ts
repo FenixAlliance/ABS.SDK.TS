@@ -42,11 +42,39 @@ export type AddressDto = {
     enrollmentId?: string | null;
 };
 
+export type AddressDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AddressDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AddressDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AddressDto> | null;
 };
@@ -54,6 +82,11 @@ export type AddressDtoListEnvelopeReadable = {
 export type AddressDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AddressDto> | null;
 };
 
@@ -77,6 +110,11 @@ export type CartDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CartDto;
 };
@@ -84,6 +122,11 @@ export type CartDtoEnvelopeReadable = {
 export type CartDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CartDto;
 };
 
@@ -92,12 +135,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -105,12 +158,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedTenantDtoReadable = {
@@ -205,6 +268,11 @@ export type ExtendedTenantDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedTenantDtoReadable> | null;
 };
@@ -212,6 +280,11 @@ export type ExtendedTenantDtoListEnvelopeReadable = {
 export type ExtendedTenantDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedTenantDtoWritable> | null;
 };
 
@@ -246,6 +319,11 @@ export type ExtendedTenantEnrollmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedTenantEnrollmentDtoReadable> | null;
 };
@@ -253,6 +331,11 @@ export type ExtendedTenantEnrollmentDtoListEnvelopeReadable = {
 export type ExtendedTenantEnrollmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedTenantEnrollmentDtoWritable> | null;
 };
 
@@ -368,6 +451,11 @@ export type ExtendedUserDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ExtendedUserDtoReadable;
 };
@@ -375,6 +463,11 @@ export type ExtendedUserDtoEnvelopeReadable = {
 export type ExtendedUserDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ExtendedUserDtoWritable;
 };
 
@@ -387,11 +480,39 @@ export type FollowRecordDto = {
     alerts?: boolean;
 };
 
+export type FollowRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FollowRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FollowRecordDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FollowRecordDto> | null;
 };
@@ -399,6 +520,11 @@ export type FollowRecordDtoListEnvelopeReadable = {
 export type FollowRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FollowRecordDto> | null;
 };
 
@@ -436,6 +562,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -443,6 +574,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -467,11 +603,39 @@ export type NotificationDto = {
     issuedTimestamp?: string;
 };
 
+export type NotificationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type NotificationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type NotificationDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<NotificationDto> | null;
 };
@@ -479,15 +643,12 @@ export type NotificationDtoListEnvelopeReadable = {
 export type NotificationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<NotificationDto> | null;
-};
-
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
-    op?: string | null;
-    from?: string | null;
-    value?: unknown;
 };
 
 export type OptionCreateDto = {
@@ -514,11 +675,39 @@ export type OptionDto = {
     expiration?: number;
 };
 
+export type OptionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type OptionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type OptionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: OptionDto;
 };
@@ -526,6 +715,11 @@ export type OptionDtoEnvelopeReadable = {
 export type OptionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: OptionDto;
 };
 
@@ -534,6 +728,11 @@ export type OptionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<OptionDto> | null;
 };
@@ -541,6 +740,11 @@ export type OptionDtoListEnvelopeReadable = {
 export type OptionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<OptionDto> | null;
 };
 
@@ -552,6 +756,13 @@ export type OptionUpdateDto = {
     autoload?: boolean;
     transient?: boolean;
     expiration?: number;
+};
+
+export type PatchOperation = {
+    op?: string | null;
+    path?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type RefreshRequest = {
@@ -607,6 +818,11 @@ export type SocialProfileDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialProfileDto;
 };
@@ -614,6 +830,11 @@ export type SocialProfileDtoEnvelopeReadable = {
 export type SocialProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialProfileDto;
 };
 
@@ -698,11 +919,39 @@ export type TenantDtoWritable = {
     twitterUsername?: string | null;
 };
 
+export type TenantDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantDtoReadable> | null;
 };
@@ -710,6 +959,11 @@ export type TenantDtoListEnvelopeReadable = {
 export type TenantDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantDtoWritable> | null;
 };
 
@@ -729,6 +983,11 @@ export type TenantEnrollmentDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantEnrollmentDto;
 };
@@ -736,6 +995,11 @@ export type TenantEnrollmentDtoEnvelopeReadable = {
 export type TenantEnrollmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantEnrollmentDto;
 };
 
@@ -744,6 +1008,11 @@ export type TenantEnrollmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantEnrollmentDto> | null;
 };
@@ -751,6 +1020,11 @@ export type TenantEnrollmentDtoListEnvelopeReadable = {
 export type TenantEnrollmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantEnrollmentDto> | null;
 };
 
@@ -771,6 +1045,11 @@ export type TenantInvitationDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantInvitationDto> | null;
 };
@@ -778,6 +1057,11 @@ export type TenantInvitationDtoListEnvelopeReadable = {
 export type TenantInvitationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantInvitationDto> | null;
 };
 
@@ -901,6 +1185,11 @@ export type UserDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: UserDtoReadable;
 };
@@ -908,6 +1197,11 @@ export type UserDtoEnvelopeReadable = {
 export type UserDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: UserDtoWritable;
 };
 
@@ -926,6 +1220,11 @@ export type UserSettingsDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: UserSettingsDto;
 };
@@ -933,6 +1232,11 @@ export type UserSettingsDtoEnvelopeReadable = {
 export type UserSettingsDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: UserSettingsDto;
 };
 
@@ -996,6 +1300,11 @@ export type WalletDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: WalletDto;
 };
@@ -1003,6 +1312,11 @@ export type WalletDtoEnvelopeReadable = {
 export type WalletDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: WalletDto;
 };
 
@@ -1028,6 +1342,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1335,7 +1665,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetUserOptionsData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1406,7 +1736,7 @@ export type CreateUserOptionResponses = {
 export type CreateUserOptionResponse = CreateUserOptionResponses[keyof CreateUserOptionResponses];
 
 export type GetUserOptionsCountData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1513,7 +1843,7 @@ export type GetUserOptionByIdResponses = {
 export type GetUserOptionByIdResponse = GetUserOptionByIdResponses[keyof GetUserOptionByIdResponses];
 
 export type PatchUserOptionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1689,7 +2019,7 @@ export type GetCurrentUserAsyncResponses = {
 export type GetCurrentUserAsyncResponse = GetCurrentUserAsyncResponses[keyof GetCurrentUserAsyncResponses];
 
 export type PatchCurrentUserAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1849,7 +2179,7 @@ export type UpdateAvatarAsyncResponses = {
 export type UpdateAvatarAsyncResponse = UpdateAvatarAsyncResponses[keyof UpdateAvatarAsyncResponses];
 
 export type GetCurrentUserFollowsAsyncData = {
-    body?: never;
+    body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1879,7 +2209,7 @@ export type GetCurrentUserFollowsAsyncResponses = {
 export type GetCurrentUserFollowsAsyncResponse = GetCurrentUserFollowsAsyncResponses[keyof GetCurrentUserFollowsAsyncResponses];
 
 export type CountCurrentUserFollowsAsyncData = {
-    body?: never;
+    body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1909,7 +2239,7 @@ export type CountCurrentUserFollowsAsyncResponses = {
 export type CountCurrentUserFollowsAsyncResponse = CountCurrentUserFollowsAsyncResponses[keyof CountCurrentUserFollowsAsyncResponses];
 
 export type GetCurrentUserFollowersAsyncData = {
-    body?: never;
+    body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1939,7 +2269,7 @@ export type GetCurrentUserFollowersAsyncResponses = {
 export type GetCurrentUserFollowersAsyncResponse = GetCurrentUserFollowersAsyncResponses[keyof GetCurrentUserFollowersAsyncResponses];
 
 export type CountCurrentUserFollowersAsyncData = {
-    body?: never;
+    body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1969,7 +2299,7 @@ export type CountCurrentUserFollowersAsyncResponses = {
 export type CountCurrentUserFollowersAsyncResponse = CountCurrentUserFollowersAsyncResponses[keyof CountCurrentUserFollowersAsyncResponses];
 
 export type GetCurrentUserTenantsAsyncData = {
-    body?: never;
+    body?: TenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2003,7 +2333,7 @@ export type GetCurrentUserTenantsAsyncResponses = {
 export type GetCurrentUserTenantsAsyncResponse = GetCurrentUserTenantsAsyncResponses[keyof GetCurrentUserTenantsAsyncResponses];
 
 export type CountCurrentUserTenantsAsyncData = {
-    body?: never;
+    body?: TenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2253,7 +2583,7 @@ export type GetCurrentUserWalletAsyncResponses = {
 export type GetCurrentUserWalletAsyncResponse = GetCurrentUserWalletAsyncResponses[keyof GetCurrentUserWalletAsyncResponses];
 
 export type GetCurrentUserNotificationsAsyncData = {
-    body?: never;
+    body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2283,7 +2613,7 @@ export type GetCurrentUserNotificationsAsyncResponses = {
 export type GetCurrentUserNotificationsAsyncResponse = GetCurrentUserNotificationsAsyncResponses[keyof GetCurrentUserNotificationsAsyncResponses];
 
 export type CountCurrentUserNotificationsAsyncData = {
-    body?: never;
+    body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2373,7 +2703,7 @@ export type UpdateCurrentUserSettingsAsyncResponses = {
 export type UpdateCurrentUserSettingsAsyncResponse = UpdateCurrentUserSettingsAsyncResponses[keyof UpdateCurrentUserSettingsAsyncResponses];
 
 export type GetCurrentUserAddressesAsyncData = {
-    body?: never;
+    body?: AddressDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };

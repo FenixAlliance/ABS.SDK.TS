@@ -37,11 +37,39 @@ export type BlockchainBlockDto = {
     tenantId?: string | null;
 };
 
+export type BlockchainBlockDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BlockchainBlockDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BlockchainBlockDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BlockchainBlockDto> | null;
 };
@@ -49,6 +77,11 @@ export type BlockchainBlockDtoListEnvelopeReadable = {
 export type BlockchainBlockDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BlockchainBlockDto> | null;
 };
 
@@ -77,11 +110,39 @@ export type BlockchainDto = {
     enrollmentId?: string | null;
 };
 
+export type BlockchainDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BlockchainDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BlockchainDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BlockchainDto> | null;
 };
@@ -89,6 +150,11 @@ export type BlockchainDtoListEnvelopeReadable = {
 export type BlockchainDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BlockchainDto> | null;
 };
 
@@ -104,12 +170,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -117,12 +193,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -159,6 +245,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -166,6 +257,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -208,11 +304,39 @@ export type NonFungibleTokenDto = {
     enrollmentId?: string | null;
 };
 
+export type NonFungibleTokenDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type NonFungibleTokenDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type NonFungibleTokenDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<NonFungibleTokenDto> | null;
 };
@@ -220,6 +344,11 @@ export type NonFungibleTokenDtoListEnvelopeReadable = {
 export type NonFungibleTokenDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<NonFungibleTokenDto> | null;
 };
 
@@ -235,10 +364,9 @@ export type NonFungibleTokenUpdateDto = {
     blockchainBlockId?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -279,7 +407,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetBlockchainsAsyncData = {
-    body?: never;
+    body?: BlockchainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -343,7 +471,7 @@ export type CreateBlockchainAsyncResponses = {
 };
 
 export type GetBlockchainsCountAsyncData = {
-    body?: never;
+    body?: BlockchainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -446,7 +574,7 @@ export type GetBlockchainByIdAsyncResponses = {
 export type GetBlockchainByIdAsyncResponse = GetBlockchainByIdAsyncResponses[keyof GetBlockchainByIdAsyncResponses];
 
 export type PatchBlockchainAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -518,7 +646,7 @@ export type UpdateBlockchainAsyncResponses = {
 };
 
 export type GetBlockchainBlocksAsyncData = {
-    body?: never;
+    body?: BlockchainBlockDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -564,7 +692,7 @@ export type CreateBlockchainBlockAsyncResponses = {
 };
 
 export type GetBlockchainBlocksCountAsyncData = {
-    body?: never;
+    body?: BlockchainBlockDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -636,7 +764,7 @@ export type GetBlockchainBlockByIdAsyncResponses = {
 export type GetBlockchainBlockByIdAsyncResponse = GetBlockchainBlockByIdAsyncResponses[keyof GetBlockchainBlockByIdAsyncResponses];
 
 export type PatchBlockchainBlockAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -718,6 +846,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1025,7 +1169,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetNonFungibleTokensAsyncData = {
-    body?: never;
+    body?: NonFungibleTokenDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1089,7 +1233,7 @@ export type CreateNonFungibleTokenAsyncResponses = {
 };
 
 export type GetNonFungibleTokensCountAsyncData = {
-    body?: never;
+    body?: NonFungibleTokenDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1192,7 +1336,7 @@ export type GetNonFungibleTokenByIdAsyncResponses = {
 export type GetNonFungibleTokenByIdAsyncResponse = GetNonFungibleTokenByIdAsyncResponses[keyof GetNonFungibleTokenByIdAsyncResponses];
 
 export type PatchNonFungibleTokenAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

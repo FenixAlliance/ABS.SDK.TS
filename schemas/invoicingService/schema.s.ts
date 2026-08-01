@@ -25,6 +25,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -632,16 +647,6 @@ export interface components {
       code?: string | null;
       country?: string | null;
     };
-    DecimalEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      /** Format: double */
-      result?: number;
-    };
     EmailDispatchRequest: {
       title: string;
       message: string;
@@ -667,6 +672,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     Envelope: {
@@ -675,6 +686,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: string | null;
     };
@@ -684,6 +701,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ExtendedInvoiceDto: {
@@ -808,12 +831,31 @@ export interface components {
       enrollment?: components["schemas"]["SimpleTenantEnrollmentDto"];
       invoiceLines?: components["schemas"]["InvoiceLineDto"][] | null;
     };
+    ExtendedInvoiceDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExtendedInvoiceDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedInvoiceDto"][] | null;
     };
@@ -847,6 +889,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -903,12 +951,31 @@ export interface components {
       /** @enum {string} */
       type?: "Discount" | "Surcharge";
     };
+    InvoiceAdjustmentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     InvoiceAdjustmentDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceAdjustmentDto"];
     };
@@ -918,6 +985,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceAdjustmentDto"][] | null;
     };
@@ -1152,12 +1225,31 @@ export interface components {
       /** @enum {string} */
       invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
     };
+    InvoiceDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     InvoiceDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceDto"];
     };
@@ -1167,6 +1259,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceDto"][] | null;
     };
@@ -1196,12 +1294,31 @@ export interface components {
       taxPolicyName?: string | null;
       taxPolicyDescription?: string | null;
     };
+    InvoiceLineAppliedTaxDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     InvoiceLineAppliedTaxDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceLineAppliedTaxDto"][] | null;
     };
@@ -1429,12 +1546,31 @@ export interface components {
       parentBillingItemRecordId?: string | null;
       invoiceId?: string | null;
     };
+    InvoiceLineDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     InvoiceLineDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceLineDto"];
     };
@@ -1444,6 +1580,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceLineDto"][] | null;
     };
@@ -1453,6 +1595,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceLineDto"][] | null;
     };
@@ -1548,12 +1696,31 @@ export interface components {
       referralInvoiceId?: string | null;
       referencedInvoiceId?: string | null;
     };
+    InvoiceReferenceDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     InvoiceReferenceDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceReferenceDto"];
     };
@@ -1563,6 +1730,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceReferenceDto"][] | null;
     };
@@ -1681,14 +1854,18 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -1766,12 +1943,31 @@ export interface components {
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
     };
+    PaymentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentDto"][] | null;
     };
@@ -1963,6 +2159,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2023,6 +2225,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2050,6 +2258,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedInvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedInvoiceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2075,6 +2289,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedInvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedInvoiceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2235,8 +2455,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2300,6 +2520,12 @@ export interface operations {
         invoiceId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceLineDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2350,6 +2576,12 @@ export interface operations {
       };
       path: {
         invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceLineDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2456,8 +2688,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2515,6 +2747,12 @@ export interface operations {
         invoiceLineId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceLineAppliedTaxDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceLineAppliedTaxDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2567,6 +2805,12 @@ export interface operations {
       path: {
         invoiceId: string;
         invoiceLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceLineAppliedTaxDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceLineAppliedTaxDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2652,8 +2896,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2677,6 +2921,12 @@ export interface operations {
       };
       path: {
         invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceAdjustmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceAdjustmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2729,6 +2979,12 @@ export interface operations {
       };
       path: {
         invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceAdjustmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceAdjustmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2835,8 +3091,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2867,6 +3123,12 @@ export interface operations {
       };
       path: {
         invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceReferenceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceReferenceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2919,6 +3181,12 @@ export interface operations {
       };
       path: {
         invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceReferenceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceReferenceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3025,8 +3293,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3052,6 +3320,12 @@ export interface operations {
         invoiceId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3073,6 +3347,12 @@ export interface operations {
       };
       path: {
         invoiceId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3230,12 +3510,18 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["DecimalEnvelope"];
-          "application/xml": components["schemas"]["DecimalEnvelope"];
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -3264,12 +3550,18 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["DecimalEnvelope"];
-          "application/xml": components["schemas"]["DecimalEnvelope"];
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
         };
       };
       /** @description Unauthorized */

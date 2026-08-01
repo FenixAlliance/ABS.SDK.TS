@@ -148,6 +148,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -615,12 +630,41 @@ export interface paths {
      */
     patch: operations["PatchNewsletterAsync"];
   };
+  "/api/v2/MarketingService/NewsletterSubscriptions": {
+    /**
+     * Get newsletter subscriptions
+     * @description Retrieves a collection of newsletter subscriptions for the specified tenant using OData query options.
+     */
+    get: operations["GetNewsletterSubscriptionsAsync"];
+    /**
+     * Create a newsletter subscription
+     * @description Creates a new newsletter subscription for the specified tenant.
+     */
+    post: operations["CreateNewsletterSubscriptionAsync"];
+  };
   "/api/v2/MarketingService/NewsletterSubscriptions/Count": {
     /**
      * Get newsletter subscriptions count
      * @description Returns the count of newsletter subscriptions for the specified tenant using OData query options.
      */
     get: operations["GetNewsletterSubscriptionsCountAsync"];
+  };
+  "/api/v2/MarketingService/NewsletterSubscriptions/{newsletterSubscriptionId}": {
+    /**
+     * Get newsletter subscription by ID
+     * @description Retrieves the details of a specific newsletter subscription by its ID.
+     */
+    get: operations["GetNewsletterSubscriptionByIdAsync"];
+    /**
+     * Update a newsletter subscription
+     * @description Updates an existing newsletter subscription by its ID.
+     */
+    put: operations["UpdateNewsletterSubscriptionAsync"];
+    /**
+     * Delete a newsletter subscription
+     * @description Deletes a newsletter subscription by its ID.
+     */
+    delete: operations["DeleteNewsletterSubscriptionAsync"];
   };
   "/api/v2/MarketingService/SocialMediaPosts": {
     /**
@@ -743,12 +787,31 @@ export interface components {
       description?: string | null;
       enabled?: boolean;
     };
+    EmailGroupDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     EmailGroupDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["EmailGroupDto"];
     };
@@ -758,6 +821,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["EmailGroupDto"][] | null;
     };
@@ -844,12 +913,31 @@ export interface components {
       parentWebContentId?: string | null;
       parentWebContentVersionId?: string | null;
     };
+    EmailSignatureDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     EmailSignatureDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["EmailSignatureDto"];
     };
@@ -859,6 +947,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["EmailSignatureDto"][] | null;
     };
@@ -1006,12 +1100,31 @@ export interface components {
       marketingCampaignId?: string | null;
       marketingCampaignName?: string | null;
     };
+    EmailTemplateDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     EmailTemplateDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["EmailTemplateDto"];
     };
@@ -1021,6 +1134,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["EmailTemplateDto"][] | null;
     };
@@ -1094,6 +1213,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -1102,6 +1227,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -1134,6 +1265,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -1161,12 +1298,31 @@ export interface components {
       name?: string | null;
       description?: string | null;
     };
+    MarketingAreaDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     MarketingAreaDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MarketingAreaDto"];
     };
@@ -1176,6 +1332,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MarketingAreaDto"][] | null;
     };
@@ -1240,12 +1402,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    MarketingCampaignDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     MarketingCampaignDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MarketingCampaignDto"];
     };
@@ -1307,12 +1488,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    MarketingLeadDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     MarketingLeadDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MarketingLeadDto"];
     };
@@ -1322,6 +1522,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MarketingLeadDto"][] | null;
     };
@@ -1383,12 +1589,31 @@ export interface components {
       /** @enum {string} */
       marketingListTarget?: "Individual" | "Organization" | "Lead";
     };
+    MarketingListDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     MarketingListDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MarketingListDto"];
     };
@@ -1398,6 +1623,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MarketingListDto"][] | null;
     };
@@ -1438,27 +1669,109 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    NewsletterDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     NewsletterDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["NewsletterDto"];
+    };
+    NewsletterSubscriptionCreateDto: {
+      /** Format: uuid */
+      id?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      email?: string | null;
+      verified?: boolean;
+      newsletterId?: string | null;
+      contactId?: string | null;
+    };
+    NewsletterSubscriptionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      email?: string | null;
+      verified?: boolean;
+      contactId?: string | null;
+      userId?: string | null;
+      newsletterId?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+    };
+    NewsletterSubscriptionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    NewsletterSubscriptionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["NewsletterSubscriptionDto"];
+    };
+    NewsletterSubscriptionDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["NewsletterSubscriptionDto"][] | null;
+    };
+    NewsletterSubscriptionUpdateDto: {
+      email?: string | null;
+      verified?: boolean;
+      newsletterId?: string | null;
+      contactId?: string | null;
     };
     NewsletterUpdateDto: {
       code?: string | null;
       title?: string | null;
       name?: string | null;
-    };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
-      op?: string | null;
-      from?: string | null;
-      value?: unknown;
     };
     OrderDto: {
       id?: string | null;
@@ -1488,6 +1801,8 @@ export interface components {
       customerNotes?: string | null;
       /** @enum {string} */
       taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1565,8 +1880,6 @@ export interface components {
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
       /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
       freightTerms?: "FOB" | "NoCharge";
       /** @enum {string} */
       orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
@@ -1597,8 +1910,20 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OrderDto"];
+    };
+    PatchOperation: {
+      op?: string | null;
+      path?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1637,12 +1962,31 @@ export interface components {
       socialPostBucketId?: string | null;
       enrollmentId?: string | null;
     };
+    SocialMediaPostDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SocialMediaPostDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialMediaPostDto"];
     };
@@ -1652,6 +1996,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialMediaPostDto"][] | null;
     };
@@ -1677,12 +2027,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    SocialPostBucketDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SocialPostBucketDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialPostBucketDto"];
     };
@@ -1692,6 +2061,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialPostBucketDto"][] | null;
     };
@@ -1739,6 +2114,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["EmailGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1828,6 +2209,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["EmailGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2030,8 +2417,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2070,6 +2457,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailSignatureDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["EmailSignatureDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2159,6 +2552,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailSignatureDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["EmailSignatureDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2361,8 +2760,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2401,6 +2800,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailTemplateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["EmailTemplateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2490,6 +2895,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["EmailTemplateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["EmailTemplateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2692,8 +3103,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2747,6 +3158,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingAreaDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MarketingAreaDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2836,6 +3253,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingAreaDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MarketingAreaDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3024,8 +3447,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3064,6 +3487,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingCampaignDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MarketingCampaignDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3153,6 +3582,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingCampaignDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MarketingCampaignDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3355,8 +3790,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3395,6 +3830,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingLeadDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MarketingLeadDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3443,6 +3884,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingLeadDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MarketingLeadDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3552,8 +3999,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3592,6 +4039,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingListDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MarketingListDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3681,6 +4134,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MarketingListDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MarketingListDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3883,8 +4342,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3923,6 +4382,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NewsletterDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["NewsletterDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4012,6 +4477,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NewsletterDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["NewsletterDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4214,8 +4685,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4224,6 +4695,108 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get newsletter subscriptions
+   * @description Retrieves a collection of newsletter subscriptions for the specified tenant using OData query options.
+   */
+  GetNewsletterSubscriptionsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NewsletterSubscriptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["NewsletterSubscriptionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["NewsletterSubscriptionDtoListEnvelope"];
+          "application/xml": components["schemas"]["NewsletterSubscriptionDtoListEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a newsletter subscription
+   * @description Creates a new newsletter subscription for the specified tenant.
+   */
+  CreateNewsletterSubscriptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NewsletterSubscriptionCreateDto"];
+        "application/xml": components["schemas"]["NewsletterSubscriptionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -4256,12 +4829,168 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NewsletterSubscriptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["NewsletterSubscriptionDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
         content: {
           "application/json": components["schemas"]["Int32Envelope"];
           "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get newsletter subscription by ID
+   * @description Retrieves the details of a specific newsletter subscription by its ID.
+   */
+  GetNewsletterSubscriptionByIdAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        newsletterSubscriptionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["NewsletterSubscriptionDtoEnvelope"];
+          "application/xml": components["schemas"]["NewsletterSubscriptionDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a newsletter subscription
+   * @description Updates an existing newsletter subscription by its ID.
+   */
+  UpdateNewsletterSubscriptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        newsletterSubscriptionId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NewsletterSubscriptionUpdateDto"];
+        "application/xml": components["schemas"]["NewsletterSubscriptionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a newsletter subscription
+   * @description Deletes a newsletter subscription by its ID.
+   */
+  DeleteNewsletterSubscriptionAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        newsletterSubscriptionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Bad Request */
@@ -4299,6 +5028,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialMediaPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialMediaPostDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4388,6 +5123,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialMediaPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialMediaPostDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4590,8 +5331,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4630,6 +5371,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostBucketDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostBucketDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4719,6 +5466,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostBucketDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostBucketDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4921,8 +5674,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

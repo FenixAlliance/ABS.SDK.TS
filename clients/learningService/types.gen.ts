@@ -24,6 +24,11 @@ export type AverageDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AverageDto;
 };
@@ -31,6 +36,11 @@ export type AverageDtoEnvelopeReadable = {
 export type AverageDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AverageDto;
 };
 
@@ -257,6 +267,11 @@ export type CountDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CountDto;
 };
@@ -264,6 +279,11 @@ export type CountDtoEnvelopeReadable = {
 export type CountDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CountDto;
 };
 
@@ -287,6 +307,29 @@ export type CourseArticleDto = {
     courseId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseArticleDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseArticleDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseArticleUpdateDto = {
@@ -317,6 +360,29 @@ export type CourseAssignmentComponentDto = {
     courseId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseAssignmentComponentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseAssignmentComponentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseAssignmentComponentUpdateDto = {
@@ -362,6 +428,29 @@ export type CourseAssignmentDto = {
     enrollmentId?: string | null;
 };
 
+export type CourseAssignmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseAssignmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseAssignmentTypeCreateDto = {
     id?: string;
     timestamp?: string;
@@ -384,6 +473,29 @@ export type CourseAssignmentTypeDto = {
     courseId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseAssignmentTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseAssignmentTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseAssignmentTypeUpdateDto = {
@@ -425,6 +537,29 @@ export type CourseCategoryDto = {
     isFeatured?: boolean;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseCategoryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseCategoryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseCategoryUpdateDto = {
@@ -490,6 +625,29 @@ export type CourseCohortDto = {
     enrollmentId?: string | null;
 };
 
+export type CourseCohortDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseCohortDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseCohortUpdateDto = {
     name?: string | null;
     startDateTime?: string | null;
@@ -524,11 +682,39 @@ export type CourseCompletionCertificateDto = {
     instructorLastName?: string | null;
 };
 
+export type CourseCompletionCertificateDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseCompletionCertificateDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseCompletionCertificateDtoIReadOnlyListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CourseCompletionCertificateDto> | null;
 };
@@ -536,6 +722,11 @@ export type CourseCompletionCertificateDtoIReadOnlyListEnvelopeReadable = {
 export type CourseCompletionCertificateDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CourseCompletionCertificateDto> | null;
 };
 
@@ -560,6 +751,29 @@ export type CourseContentGroupDto = {
     courseId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseContentGroupDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseContentGroupDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseContentGroupUpdateDto = {
@@ -770,11 +984,39 @@ export type CourseDto = {
     inscriptionsEndDateTime?: string | null;
 };
 
+export type CourseDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseDtoIReadOnlyListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CourseDto> | null;
 };
@@ -782,6 +1024,11 @@ export type CourseDtoIReadOnlyListEnvelopeReadable = {
 export type CourseDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CourseDto> | null;
 };
 
@@ -805,11 +1052,39 @@ export type CourseEnrollmentDto = {
     courseCompletionCertificateId?: string | null;
 };
 
+export type CourseEnrollmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseEnrollmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseEnrollmentDtoIReadOnlyListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CourseEnrollmentDto> | null;
 };
@@ -817,6 +1092,11 @@ export type CourseEnrollmentDtoIReadOnlyListEnvelopeReadable = {
 export type CourseEnrollmentDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CourseEnrollmentDto> | null;
 };
 
@@ -849,6 +1129,29 @@ export type CourseFileDto = {
     enrollmentId?: string | null;
 };
 
+export type CourseFileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseFileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseFileUpdateDto = {
     title?: string | null;
     fileName?: string | null;
@@ -875,6 +1178,29 @@ export type CourseForumDto = {
     enrollmentId?: string | null;
 };
 
+export type CourseForumDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseForumDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseForumUpdateDto = {
     title?: string | null;
     description?: string | null;
@@ -898,6 +1224,29 @@ export type CourseGradingRubricDto = {
     courseId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseGradingRubricDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseGradingRubricDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseGradingRubricUpdateDto = {
@@ -932,6 +1281,29 @@ export type CourseHandoutDto = {
     enrollmentId?: string | null;
 };
 
+export type CourseHandoutDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseHandoutDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseHandoutUpdateDto = {
     name?: string | null;
     description?: string | null;
@@ -963,6 +1335,29 @@ export type CourseLibraryDto = {
     enrollmentId?: string | null;
 };
 
+export type CourseLibraryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseLibraryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseLibraryUpdateDto = {
     title?: string | null;
     description?: string | null;
@@ -988,6 +1383,29 @@ export type CourseNewsDto = {
     courseId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseNewsDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseNewsDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseNewsUpdateDto = {
@@ -1016,6 +1434,29 @@ export type CoursePageDto = {
     courseId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CoursePageDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CoursePageDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CoursePageUpdateDto = {
@@ -1051,6 +1492,29 @@ export type CourseProblemSetDto = {
     enrollmentId?: string | null;
 };
 
+export type CourseProblemSetDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseProblemSetDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseProblemSetUpdateDto = {
     title?: string | null;
     description?: string | null;
@@ -1084,6 +1548,29 @@ export type CourseSectionDto = {
     enrollmentId?: string | null;
 };
 
+export type CourseSectionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseSectionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseSectionUpdateDto = {
     name?: string | null;
     icon?: string | null;
@@ -1108,6 +1595,29 @@ export type CourseTeamMembershipDto = {
     courseTeamMembershipType?: 'Admin' | 'Staff';
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseTeamMembershipDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseTeamMembershipDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseTeamMembershipUpdateDto = {
@@ -1137,6 +1647,29 @@ export type CourseUnitComponentDto = {
     courseUnitId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type CourseUnitComponentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseUnitComponentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseUnitComponentUpdateDto = {
@@ -1174,6 +1707,29 @@ export type CourseUnitDto = {
     courseHandouts?: Array<CourseHandoutDto> | null;
     courseAssignments?: Array<CourseAssignmentDto> | null;
     courseComponents?: Array<CourseUnitComponentDto> | null;
+};
+
+export type CourseUnitDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseUnitDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type CourseUnitUpdateDto = {
@@ -1228,6 +1784,29 @@ export type CourseWikiDto = {
     courseUnitId?: string | null;
 };
 
+export type CourseWikiDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CourseWikiDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CourseWikiUpdateDto = {
     title?: string | null;
     description?: string | null;
@@ -1240,12 +1819,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -1253,12 +1842,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -1425,11 +2024,39 @@ export type InstructorProfileDtoWritable = {
     authorized?: boolean;
 };
 
+export type InstructorProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InstructorProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InstructorProfileDtoIReadOnlyListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InstructorProfileDtoReadable> | null;
 };
@@ -1437,6 +2064,11 @@ export type InstructorProfileDtoIReadOnlyListEnvelopeReadable = {
 export type InstructorProfileDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InstructorProfileDtoWritable> | null;
 };
 
@@ -1475,10 +2107,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -1633,11 +2264,39 @@ export type StudentProfileDtoWritable = {
     data9Label?: string | null;
 };
 
+export type StudentProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type StudentProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type StudentProfileDtoIReadOnlyListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<StudentProfileDtoReadable> | null;
 };
@@ -1645,6 +2304,11 @@ export type StudentProfileDtoIReadOnlyListEnvelopeReadable = {
 export type StudentProfileDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<StudentProfileDtoWritable> | null;
 };
 
@@ -1692,7 +2356,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetCourseArticlesAsyncData = {
-    body?: never;
+    body?: CourseArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1752,7 +2416,7 @@ export type CreateCourseArticleAsyncResponses = {
 };
 
 export type GetCourseArticlesCountAsyncData = {
-    body?: never;
+    body?: CourseArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1846,7 +2510,7 @@ export type GetCourseArticleByIdAsyncResponses = {
 export type GetCourseArticleByIdAsyncResponse = GetCourseArticleByIdAsyncResponses[keyof GetCourseArticleByIdAsyncResponses];
 
 export type PatchCourseArticleAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1910,7 +2574,7 @@ export type UpdateCourseArticleAsyncResponses = {
 };
 
 export type GetCourseAssignmentComponentsAsyncData = {
-    body?: never;
+    body?: CourseAssignmentComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1970,7 +2634,7 @@ export type CreateCourseAssignmentComponentAsyncResponses = {
 };
 
 export type GetCourseAssignmentComponentsCountAsyncData = {
-    body?: never;
+    body?: CourseAssignmentComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2064,7 +2728,7 @@ export type GetCourseAssignmentComponentByIdAsyncResponses = {
 export type GetCourseAssignmentComponentByIdAsyncResponse = GetCourseAssignmentComponentByIdAsyncResponses[keyof GetCourseAssignmentComponentByIdAsyncResponses];
 
 export type PatchCourseAssignmentComponentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2128,7 +2792,7 @@ export type UpdateCourseAssignmentComponentAsyncResponses = {
 };
 
 export type GetCourseAssignmentsAsyncData = {
-    body?: never;
+    body?: CourseAssignmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2188,7 +2852,7 @@ export type CreateCourseAssignmentAsyncResponses = {
 };
 
 export type GetCourseAssignmentsCountAsyncData = {
-    body?: never;
+    body?: CourseAssignmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2282,7 +2946,7 @@ export type GetCourseAssignmentByIdAsyncResponses = {
 export type GetCourseAssignmentByIdAsyncResponse = GetCourseAssignmentByIdAsyncResponses[keyof GetCourseAssignmentByIdAsyncResponses];
 
 export type PatchCourseAssignmentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2346,7 +3010,7 @@ export type UpdateCourseAssignmentAsyncResponses = {
 };
 
 export type GetCourseAssignmentTypesAsyncData = {
-    body?: never;
+    body?: CourseAssignmentTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2406,7 +3070,7 @@ export type CreateCourseAssignmentTypeAsyncResponses = {
 };
 
 export type GetCourseAssignmentTypesCountAsyncData = {
-    body?: never;
+    body?: CourseAssignmentTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2500,7 +3164,7 @@ export type GetCourseAssignmentTypeByIdAsyncResponses = {
 export type GetCourseAssignmentTypeByIdAsyncResponse = GetCourseAssignmentTypeByIdAsyncResponses[keyof GetCourseAssignmentTypeByIdAsyncResponses];
 
 export type PatchCourseAssignmentTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2564,7 +3228,7 @@ export type UpdateCourseAssignmentTypeAsyncResponses = {
 };
 
 export type GetCourseCategoriesAsyncData = {
-    body?: never;
+    body?: CourseCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2624,7 +3288,7 @@ export type CreateCourseCategoryAsyncResponses = {
 };
 
 export type GetCourseCategoriesCountAsyncData = {
-    body?: never;
+    body?: CourseCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2718,7 +3382,7 @@ export type GetCourseCategoryByIdAsyncResponses = {
 export type GetCourseCategoryByIdAsyncResponse = GetCourseCategoryByIdAsyncResponses[keyof GetCourseCategoryByIdAsyncResponses];
 
 export type PatchCourseCategoryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2937,7 +3601,7 @@ export type GetCourseCertificateAsyncResponses = {
 export type GetCourseCertificateAsyncResponse = GetCourseCertificateAsyncResponses[keyof GetCourseCertificateAsyncResponses];
 
 export type PatchCourseCertificateAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3125,7 +3789,7 @@ export type GetCourseCertificateTemplateAsyncResponses = {
 export type GetCourseCertificateTemplateAsyncResponse = GetCourseCertificateTemplateAsyncResponses[keyof GetCourseCertificateTemplateAsyncResponses];
 
 export type PatchCourseCertificateTemplateAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3220,7 +3884,7 @@ export type GetCourseCertificateTemplatesCountAsyncResponses = {
 export type GetCourseCertificateTemplatesCountAsyncResponse = GetCourseCertificateTemplatesCountAsyncResponses[keyof GetCourseCertificateTemplatesCountAsyncResponses];
 
 export type GetCourseCohortsAsyncData = {
-    body?: never;
+    body?: CourseCohortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3280,7 +3944,7 @@ export type CreateCourseCohortAsyncResponses = {
 };
 
 export type GetCourseCohortsCountAsyncData = {
-    body?: never;
+    body?: CourseCohortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3374,7 +4038,7 @@ export type GetCourseCohortByIdAsyncResponses = {
 export type GetCourseCohortByIdAsyncResponse = GetCourseCohortByIdAsyncResponses[keyof GetCourseCohortByIdAsyncResponses];
 
 export type PatchCourseCohortAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3438,7 +4102,7 @@ export type UpdateCourseCohortAsyncResponses = {
 };
 
 export type GetCourseContentGroupsAsyncData = {
-    body?: never;
+    body?: CourseContentGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3498,7 +4162,7 @@ export type CreateCourseContentGroupAsyncResponses = {
 };
 
 export type GetCourseContentGroupsCountAsyncData = {
-    body?: never;
+    body?: CourseContentGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3592,7 +4256,7 @@ export type GetCourseContentGroupByIdAsyncResponses = {
 export type GetCourseContentGroupByIdAsyncResponse = GetCourseContentGroupByIdAsyncResponses[keyof GetCourseContentGroupByIdAsyncResponses];
 
 export type PatchCourseContentGroupAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3656,7 +4320,7 @@ export type UpdateCourseContentGroupAsyncResponses = {
 };
 
 export type GetCourseContentGroupsByCourseAsyncData = {
-    body?: never;
+    body?: CourseContentGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3688,7 +4352,7 @@ export type GetCourseContentGroupsByCourseAsyncResponses = {
 export type GetCourseContentGroupsByCourseAsyncResponse = GetCourseContentGroupsByCourseAsyncResponses[keyof GetCourseContentGroupsByCourseAsyncResponses];
 
 export type GetCourseContentGroupsByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseContentGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3720,7 +4384,7 @@ export type GetCourseContentGroupsByCourseCountAsyncResponses = {
 export type GetCourseContentGroupsByCourseCountAsyncResponse = GetCourseContentGroupsByCourseCountAsyncResponses[keyof GetCourseContentGroupsByCourseCountAsyncResponses];
 
 export type GetEnrollmentsAsyncData = {
-    body?: never;
+    body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3780,7 +4444,7 @@ export type CreateCourseEnrollmentAsyncResponses = {
 };
 
 export type GetEnrollmentsCountAsyncData = {
-    body?: never;
+    body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3875,7 +4539,7 @@ export type GetCourseEnrollmentAsyncResponses = {
 export type GetCourseEnrollmentAsyncResponse = GetCourseEnrollmentAsyncResponses[keyof GetCourseEnrollmentAsyncResponses];
 
 export type PatchCourseEnrollmentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3937,7 +4601,7 @@ export type UpdateCourseEnrollmentAsyncResponses = {
 };
 
 export type GetStudentCourseEnrollmentsAsyncData = {
-    body?: never;
+    body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3970,7 +4634,7 @@ export type GetStudentCourseEnrollmentsAsyncResponses = {
 export type GetStudentCourseEnrollmentsAsyncResponse = GetStudentCourseEnrollmentsAsyncResponses[keyof GetStudentCourseEnrollmentsAsyncResponses];
 
 export type GetCourseFilesAsyncData = {
-    body?: never;
+    body?: CourseFileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4030,7 +4694,7 @@ export type CreateCourseFileAsyncResponses = {
 };
 
 export type GetCourseFilesCountAsyncData = {
-    body?: never;
+    body?: CourseFileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4124,7 +4788,7 @@ export type GetCourseFileByIdAsyncResponses = {
 export type GetCourseFileByIdAsyncResponse = GetCourseFileByIdAsyncResponses[keyof GetCourseFileByIdAsyncResponses];
 
 export type PatchCourseFileAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4186,7 +4850,7 @@ export type UpdateCourseFileAsyncResponses = {
 };
 
 export type GetCourseForumsAsyncData = {
-    body?: never;
+    body?: CourseForumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4248,7 +4912,7 @@ export type CreateCourseForumAsyncResponses = {
 export type CreateCourseForumAsyncResponse = CreateCourseForumAsyncResponses[keyof CreateCourseForumAsyncResponses];
 
 export type GetCourseForumsCountAsyncData = {
-    body?: never;
+    body?: CourseForumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4342,7 +5006,7 @@ export type GetCourseForumByIdAsyncResponses = {
 export type GetCourseForumByIdAsyncResponse = GetCourseForumByIdAsyncResponses[keyof GetCourseForumByIdAsyncResponses];
 
 export type PatchCourseForumAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4406,7 +5070,7 @@ export type UpdateCourseForumAsyncResponses = {
 export type UpdateCourseForumAsyncResponse = UpdateCourseForumAsyncResponses[keyof UpdateCourseForumAsyncResponses];
 
 export type GetCourseGradingRubricsAsyncData = {
-    body?: never;
+    body?: CourseGradingRubricDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4466,7 +5130,7 @@ export type CreateCourseGradingRubricAsyncResponses = {
 };
 
 export type GetCourseGradingRubricsCountAsyncData = {
-    body?: never;
+    body?: CourseGradingRubricDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4560,7 +5224,7 @@ export type GetCourseGradingRubricByIdAsyncResponses = {
 export type GetCourseGradingRubricByIdAsyncResponse = GetCourseGradingRubricByIdAsyncResponses[keyof GetCourseGradingRubricByIdAsyncResponses];
 
 export type PatchCourseGradingRubricAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4622,7 +5286,7 @@ export type UpdateCourseGradingRubricAsyncResponses = {
 };
 
 export type GetCourseHandoutsAsyncData = {
-    body?: never;
+    body?: CourseHandoutDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4684,7 +5348,7 @@ export type CreateCourseHandoutAsyncResponses = {
 export type CreateCourseHandoutAsyncResponse = CreateCourseHandoutAsyncResponses[keyof CreateCourseHandoutAsyncResponses];
 
 export type GetCourseHandoutsCountAsyncData = {
-    body?: never;
+    body?: CourseHandoutDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4778,7 +5442,7 @@ export type GetCourseHandoutByIdAsyncResponses = {
 export type GetCourseHandoutByIdAsyncResponse = GetCourseHandoutByIdAsyncResponses[keyof GetCourseHandoutByIdAsyncResponses];
 
 export type PatchCourseHandoutAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4842,7 +5506,7 @@ export type UpdateCourseHandoutAsyncResponses = {
 export type UpdateCourseHandoutAsyncResponse = UpdateCourseHandoutAsyncResponses[keyof UpdateCourseHandoutAsyncResponses];
 
 export type GetCourseLibrariesAsyncData = {
-    body?: never;
+    body?: CourseLibraryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4904,7 +5568,7 @@ export type CreateCourseLibraryAsyncResponses = {
 export type CreateCourseLibraryAsyncResponse = CreateCourseLibraryAsyncResponses[keyof CreateCourseLibraryAsyncResponses];
 
 export type GetCourseLibrariesCountAsyncData = {
-    body?: never;
+    body?: CourseLibraryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4998,7 +5662,7 @@ export type GetCourseLibraryByIdAsyncResponses = {
 export type GetCourseLibraryByIdAsyncResponse = GetCourseLibraryByIdAsyncResponses[keyof GetCourseLibraryByIdAsyncResponses];
 
 export type PatchCourseLibraryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5062,7 +5726,7 @@ export type UpdateCourseLibraryAsyncResponses = {
 export type UpdateCourseLibraryAsyncResponse = UpdateCourseLibraryAsyncResponses[keyof UpdateCourseLibraryAsyncResponses];
 
 export type GetCoursePagesAsyncData = {
-    body?: never;
+    body?: CoursePageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5122,7 +5786,7 @@ export type CreateCoursePageAsyncResponses = {
 };
 
 export type GetCoursePagesCountAsyncData = {
-    body?: never;
+    body?: CoursePageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5216,7 +5880,7 @@ export type GetCoursePageByIdAsyncResponses = {
 export type GetCoursePageByIdAsyncResponse = GetCoursePageByIdAsyncResponses[keyof GetCoursePageByIdAsyncResponses];
 
 export type PatchCoursePageAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5278,7 +5942,7 @@ export type UpdateCoursePageAsyncResponses = {
 };
 
 export type GetCourseProblemSetsAsyncData = {
-    body?: never;
+    body?: CourseProblemSetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5338,7 +6002,7 @@ export type CreateCourseProblemSetAsyncResponses = {
 };
 
 export type GetCourseProblemSetsCountAsyncData = {
-    body?: never;
+    body?: CourseProblemSetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5432,7 +6096,7 @@ export type GetCourseProblemSetByIdAsyncResponses = {
 export type GetCourseProblemSetByIdAsyncResponse = GetCourseProblemSetByIdAsyncResponses[keyof GetCourseProblemSetByIdAsyncResponses];
 
 export type PatchCourseProblemSetAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5496,7 +6160,7 @@ export type UpdateCourseProblemSetAsyncResponses = {
 };
 
 export type GetCoursesAsyncData = {
-    body?: never;
+    body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5556,7 +6220,7 @@ export type CreateCourseAsyncResponses = {
 };
 
 export type GetCoursesCountAsyncData = {
-    body?: never;
+    body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5651,7 +6315,7 @@ export type GetCourseByIdAsyncResponses = {
 export type GetCourseByIdAsyncResponse = GetCourseByIdAsyncResponses[keyof GetCourseByIdAsyncResponses];
 
 export type PatchCourseAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5715,7 +6379,7 @@ export type UpdateCourseAsyncResponses = {
 };
 
 export type GetCourseWikisByCourseAsyncData = {
-    body?: never;
+    body?: CourseWikiDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5747,7 +6411,7 @@ export type GetCourseWikisByCourseAsyncResponses = {
 export type GetCourseWikisByCourseAsyncResponse = GetCourseWikisByCourseAsyncResponses[keyof GetCourseWikisByCourseAsyncResponses];
 
 export type GetCourseWikisByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseWikiDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5779,7 +6443,7 @@ export type GetCourseWikisByCourseCountAsyncResponses = {
 export type GetCourseWikisByCourseCountAsyncResponse = GetCourseWikisByCourseCountAsyncResponses[keyof GetCourseWikisByCourseCountAsyncResponses];
 
 export type GetCourseArticlesByCourseWikiAsyncData = {
-    body?: never;
+    body?: CourseArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5812,7 +6476,7 @@ export type GetCourseArticlesByCourseWikiAsyncResponses = {
 export type GetCourseArticlesByCourseWikiAsyncResponse = GetCourseArticlesByCourseWikiAsyncResponses[keyof GetCourseArticlesByCourseWikiAsyncResponses];
 
 export type GetCourseArticlesByCourseWikiCountAsyncData = {
-    body?: never;
+    body?: CourseArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5845,7 +6509,7 @@ export type GetCourseArticlesByCourseWikiCountAsyncResponses = {
 export type GetCourseArticlesByCourseWikiCountAsyncResponse = GetCourseArticlesByCourseWikiCountAsyncResponses[keyof GetCourseArticlesByCourseWikiCountAsyncResponses];
 
 export type GetCourseUpdatesByCourseAsyncData = {
-    body?: never;
+    body?: CourseNewsDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5877,7 +6541,7 @@ export type GetCourseUpdatesByCourseAsyncResponses = {
 export type GetCourseUpdatesByCourseAsyncResponse = GetCourseUpdatesByCourseAsyncResponses[keyof GetCourseUpdatesByCourseAsyncResponses];
 
 export type GetCourseUpdatesByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseNewsDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5909,7 +6573,7 @@ export type GetCourseUpdatesByCourseCountAsyncResponses = {
 export type GetCourseUpdatesByCourseCountAsyncResponse = GetCourseUpdatesByCourseCountAsyncResponses[keyof GetCourseUpdatesByCourseCountAsyncResponses];
 
 export type GetCourseSectionsByCourseAsyncData = {
-    body?: never;
+    body?: CourseSectionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5941,7 +6605,7 @@ export type GetCourseSectionsByCourseAsyncResponses = {
 export type GetCourseSectionsByCourseAsyncResponse = GetCourseSectionsByCourseAsyncResponses[keyof GetCourseSectionsByCourseAsyncResponses];
 
 export type GetCourseSectionsByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseSectionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5973,7 +6637,7 @@ export type GetCourseSectionsByCourseCountAsyncResponses = {
 export type GetCourseSectionsByCourseCountAsyncResponse = GetCourseSectionsByCourseCountAsyncResponses[keyof GetCourseSectionsByCourseCountAsyncResponses];
 
 export type GetCourseUnitsBySectionAsyncData = {
-    body?: never;
+    body?: CourseUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6006,7 +6670,7 @@ export type GetCourseUnitsBySectionAsyncResponses = {
 export type GetCourseUnitsBySectionAsyncResponse = GetCourseUnitsBySectionAsyncResponses[keyof GetCourseUnitsBySectionAsyncResponses];
 
 export type GetCourseUnitsBySectionCountAsyncData = {
-    body?: never;
+    body?: CourseUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6039,7 +6703,7 @@ export type GetCourseUnitsBySectionCountAsyncResponses = {
 export type GetCourseUnitsBySectionCountAsyncResponse = GetCourseUnitsBySectionCountAsyncResponses[keyof GetCourseUnitsBySectionCountAsyncResponses];
 
 export type GetCourseAssignmentsByCourseAsyncData = {
-    body?: never;
+    body?: CourseAssignmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6071,7 +6735,7 @@ export type GetCourseAssignmentsByCourseAsyncResponses = {
 export type GetCourseAssignmentsByCourseAsyncResponse = GetCourseAssignmentsByCourseAsyncResponses[keyof GetCourseAssignmentsByCourseAsyncResponses];
 
 export type GetCourseAssignmentsByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseAssignmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6103,7 +6767,7 @@ export type GetCourseAssignmentsByCourseCountAsyncResponses = {
 export type GetCourseAssignmentsByCourseCountAsyncResponse = GetCourseAssignmentsByCourseCountAsyncResponses[keyof GetCourseAssignmentsByCourseCountAsyncResponses];
 
 export type GetCourseCategoriesByCourseAsyncData = {
-    body?: never;
+    body?: CourseCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6135,7 +6799,7 @@ export type GetCourseCategoriesByCourseAsyncResponses = {
 export type GetCourseCategoriesByCourseAsyncResponse = GetCourseCategoriesByCourseAsyncResponses[keyof GetCourseCategoriesByCourseAsyncResponses];
 
 export type GetCourseCategoriesByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6167,7 +6831,7 @@ export type GetCourseCategoriesByCourseCountAsyncResponses = {
 export type GetCourseCategoriesByCourseCountAsyncResponse = GetCourseCategoriesByCourseCountAsyncResponses[keyof GetCourseCategoriesByCourseCountAsyncResponses];
 
 export type GetCourseCohortsByCourseAsyncData = {
-    body?: never;
+    body?: CourseCohortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6199,7 +6863,7 @@ export type GetCourseCohortsByCourseAsyncResponses = {
 export type GetCourseCohortsByCourseAsyncResponse = GetCourseCohortsByCourseAsyncResponses[keyof GetCourseCohortsByCourseAsyncResponses];
 
 export type GetCourseCohortsByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseCohortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6231,7 +6895,7 @@ export type GetCourseCohortsByCourseCountAsyncResponses = {
 export type GetCourseCohortsByCourseCountAsyncResponse = GetCourseCohortsByCourseCountAsyncResponses[keyof GetCourseCohortsByCourseCountAsyncResponses];
 
 export type GetCourseFilesByCourseAsyncData = {
-    body?: never;
+    body?: CourseFileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6263,7 +6927,7 @@ export type GetCourseFilesByCourseAsyncResponses = {
 export type GetCourseFilesByCourseAsyncResponse = GetCourseFilesByCourseAsyncResponses[keyof GetCourseFilesByCourseAsyncResponses];
 
 export type GetCourseFilesByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseFileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6295,7 +6959,7 @@ export type GetCourseFilesByCourseCountAsyncResponses = {
 export type GetCourseFilesByCourseCountAsyncResponse = GetCourseFilesByCourseCountAsyncResponses[keyof GetCourseFilesByCourseCountAsyncResponses];
 
 export type GetCourseForumsByCourseAsyncData = {
-    body?: never;
+    body?: CourseForumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6327,7 +6991,7 @@ export type GetCourseForumsByCourseAsyncResponses = {
 export type GetCourseForumsByCourseAsyncResponse = GetCourseForumsByCourseAsyncResponses[keyof GetCourseForumsByCourseAsyncResponses];
 
 export type GetCourseForumsByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseForumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6359,7 +7023,7 @@ export type GetCourseForumsByCourseCountAsyncResponses = {
 export type GetCourseForumsByCourseCountAsyncResponse = GetCourseForumsByCourseCountAsyncResponses[keyof GetCourseForumsByCourseCountAsyncResponses];
 
 export type GetCourseLibrariesByCourseAsyncData = {
-    body?: never;
+    body?: CourseLibraryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6391,7 +7055,7 @@ export type GetCourseLibrariesByCourseAsyncResponses = {
 export type GetCourseLibrariesByCourseAsyncResponse = GetCourseLibrariesByCourseAsyncResponses[keyof GetCourseLibrariesByCourseAsyncResponses];
 
 export type GetCourseLibrariesByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseLibraryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6423,7 +7087,7 @@ export type GetCourseLibrariesByCourseCountAsyncResponses = {
 export type GetCourseLibrariesByCourseCountAsyncResponse = GetCourseLibrariesByCourseCountAsyncResponses[keyof GetCourseLibrariesByCourseCountAsyncResponses];
 
 export type GetCoursePagesByCourseAsyncData = {
-    body?: never;
+    body?: CoursePageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6455,7 +7119,7 @@ export type GetCoursePagesByCourseAsyncResponses = {
 export type GetCoursePagesByCourseAsyncResponse = GetCoursePagesByCourseAsyncResponses[keyof GetCoursePagesByCourseAsyncResponses];
 
 export type GetCoursePagesByCourseCountAsyncData = {
-    body?: never;
+    body?: CoursePageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6487,7 +7151,7 @@ export type GetCoursePagesByCourseCountAsyncResponses = {
 export type GetCoursePagesByCourseCountAsyncResponse = GetCoursePagesByCourseCountAsyncResponses[keyof GetCoursePagesByCourseCountAsyncResponses];
 
 export type GetCourseProblemSetsByCourseAsyncData = {
-    body?: never;
+    body?: CourseProblemSetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6519,7 +7183,7 @@ export type GetCourseProblemSetsByCourseAsyncResponses = {
 export type GetCourseProblemSetsByCourseAsyncResponse = GetCourseProblemSetsByCourseAsyncResponses[keyof GetCourseProblemSetsByCourseAsyncResponses];
 
 export type GetCourseProblemSetsByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseProblemSetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6551,7 +7215,7 @@ export type GetCourseProblemSetsByCourseCountAsyncResponses = {
 export type GetCourseProblemSetsByCourseCountAsyncResponse = GetCourseProblemSetsByCourseCountAsyncResponses[keyof GetCourseProblemSetsByCourseCountAsyncResponses];
 
 export type GetCourseHandoutsByCourseAsyncData = {
-    body?: never;
+    body?: CourseHandoutDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6583,7 +7247,7 @@ export type GetCourseHandoutsByCourseAsyncResponses = {
 export type GetCourseHandoutsByCourseAsyncResponse = GetCourseHandoutsByCourseAsyncResponses[keyof GetCourseHandoutsByCourseAsyncResponses];
 
 export type GetCourseHandoutsByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseHandoutDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6615,7 +7279,7 @@ export type GetCourseHandoutsByCourseCountAsyncResponses = {
 export type GetCourseHandoutsByCourseCountAsyncResponse = GetCourseHandoutsByCourseCountAsyncResponses[keyof GetCourseHandoutsByCourseCountAsyncResponses];
 
 export type GetCourseUnitComponentsByCourseAsyncData = {
-    body?: never;
+    body?: CourseUnitComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6647,7 +7311,7 @@ export type GetCourseUnitComponentsByCourseAsyncResponses = {
 export type GetCourseUnitComponentsByCourseAsyncResponse = GetCourseUnitComponentsByCourseAsyncResponses[keyof GetCourseUnitComponentsByCourseAsyncResponses];
 
 export type GetCourseUnitComponentsByCourseCountAsyncData = {
-    body?: never;
+    body?: CourseUnitComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6807,7 +7471,7 @@ export type GetInstructorProfilesByCourseCountAsyncResponses = {
 export type GetInstructorProfilesByCourseCountAsyncResponse = GetInstructorProfilesByCourseCountAsyncResponses[keyof GetInstructorProfilesByCourseCountAsyncResponses];
 
 export type GetCourseEnrollmentsByCourseAsyncData = {
-    body?: never;
+    body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6840,7 +7504,7 @@ export type GetCourseEnrollmentsByCourseAsyncResponses = {
 export type GetCourseEnrollmentsByCourseAsyncResponse = GetCourseEnrollmentsByCourseAsyncResponses[keyof GetCourseEnrollmentsByCourseAsyncResponses];
 
 export type GetCourseSectionsAsyncData = {
-    body?: never;
+    body?: CourseSectionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6900,7 +7564,7 @@ export type CreateCourseSectionAsyncResponses = {
 };
 
 export type GetCourseSectionsCountAsyncData = {
-    body?: never;
+    body?: CourseSectionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6994,7 +7658,7 @@ export type GetCourseSectionByIdAsyncResponses = {
 export type GetCourseSectionByIdAsyncResponse = GetCourseSectionByIdAsyncResponses[keyof GetCourseSectionByIdAsyncResponses];
 
 export type PatchCourseSectionAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7058,7 +7722,7 @@ export type UpdateCourseSectionAsyncResponses = {
 };
 
 export type GetCourseTeamMembershipsAsyncData = {
-    body?: never;
+    body?: CourseTeamMembershipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7118,7 +7782,7 @@ export type CreateCourseTeamMembershipAsyncResponses = {
 };
 
 export type GetCourseTeamMembershipsCountAsyncData = {
-    body?: never;
+    body?: CourseTeamMembershipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7212,7 +7876,7 @@ export type GetCourseTeamMembershipByIdAsyncResponses = {
 export type GetCourseTeamMembershipByIdAsyncResponse = GetCourseTeamMembershipByIdAsyncResponses[keyof GetCourseTeamMembershipByIdAsyncResponses];
 
 export type PatchCourseTeamMembershipAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7276,7 +7940,7 @@ export type UpdateCourseTeamMembershipAsyncResponses = {
 };
 
 export type GetCourseUnitComponentsAsyncData = {
-    body?: never;
+    body?: CourseUnitComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7336,7 +8000,7 @@ export type CreateCourseUnitComponentAsyncResponses = {
 };
 
 export type GetCourseUnitComponentsCountAsyncData = {
-    body?: never;
+    body?: CourseUnitComponentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7430,7 +8094,7 @@ export type GetCourseUnitComponentByIdAsyncResponses = {
 export type GetCourseUnitComponentByIdAsyncResponse = GetCourseUnitComponentByIdAsyncResponses[keyof GetCourseUnitComponentByIdAsyncResponses];
 
 export type PatchCourseUnitComponentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7494,7 +8158,7 @@ export type UpdateCourseUnitComponentAsyncResponses = {
 };
 
 export type GetCourseUnitsAsyncData = {
-    body?: never;
+    body?: CourseUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7554,7 +8218,7 @@ export type CreateCourseUnitAsyncResponses = {
 };
 
 export type GetCourseUnitsCountAsyncData = {
-    body?: never;
+    body?: CourseUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7648,7 +8312,7 @@ export type GetCourseUnitByIdAsyncResponses = {
 export type GetCourseUnitByIdAsyncResponse = GetCourseUnitByIdAsyncResponses[keyof GetCourseUnitByIdAsyncResponses];
 
 export type PatchCourseUnitAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7712,7 +8376,7 @@ export type UpdateCourseUnitAsyncResponses = {
 };
 
 export type GetCourseUpdatesAsyncData = {
-    body?: never;
+    body?: CourseNewsDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7772,7 +8436,7 @@ export type CreateCourseUpdateAsyncResponses = {
 };
 
 export type GetCourseUpdatesCountAsyncData = {
-    body?: never;
+    body?: CourseNewsDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7866,7 +8530,7 @@ export type GetCourseUpdateByIdAsyncResponses = {
 export type GetCourseUpdateByIdAsyncResponse = GetCourseUpdateByIdAsyncResponses[keyof GetCourseUpdateByIdAsyncResponses];
 
 export type PatchCourseUpdateAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7930,7 +8594,7 @@ export type UpdateCourseUpdateAsyncResponses = {
 };
 
 export type GetCourseWikisAsyncData = {
-    body?: never;
+    body?: CourseWikiDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7990,7 +8654,7 @@ export type CreateCourseWikiAsyncResponses = {
 };
 
 export type GetCourseWikisCountAsyncData = {
-    body?: never;
+    body?: CourseWikiDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8084,7 +8748,7 @@ export type GetCourseWikiByIdAsyncResponses = {
 export type GetCourseWikiByIdAsyncResponse = GetCourseWikiByIdAsyncResponses[keyof GetCourseWikiByIdAsyncResponses];
 
 export type PatchCourseWikiAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8169,6 +8833,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -8631,7 +9311,7 @@ export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdRespon
 export type GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponse = GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses[keyof GetApiV2LearningServiceInstructorProfilesByInstructorProfileIdResponses];
 
 export type PatchApiV2LearningServiceInstructorProfilesByInstructorProfileIdData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8695,7 +9375,7 @@ export type PutApiV2LearningServiceInstructorProfilesByInstructorProfileIdRespon
 };
 
 export type GetMyStudentProfilesAsyncData = {
-    body?: never;
+    body?: StudentProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8725,7 +9405,7 @@ export type GetMyStudentProfilesAsyncResponses = {
 export type GetMyStudentProfilesAsyncResponse = GetMyStudentProfilesAsyncResponses[keyof GetMyStudentProfilesAsyncResponses];
 
 export type GetMyStudentProfilesCountAsyncData = {
-    body?: never;
+    body?: StudentProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8755,7 +9435,7 @@ export type GetMyStudentProfilesCountAsyncResponses = {
 export type GetMyStudentProfilesCountAsyncResponse = GetMyStudentProfilesCountAsyncResponses[keyof GetMyStudentProfilesCountAsyncResponses];
 
 export type GetMyInstructorProfilesAsyncData = {
-    body?: never;
+    body?: InstructorProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8785,7 +9465,7 @@ export type GetMyInstructorProfilesAsyncResponses = {
 export type GetMyInstructorProfilesAsyncResponse = GetMyInstructorProfilesAsyncResponses[keyof GetMyInstructorProfilesAsyncResponses];
 
 export type GetMyInstructorProfilesCountAsyncData = {
-    body?: never;
+    body?: InstructorProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8815,7 +9495,7 @@ export type GetMyInstructorProfilesCountAsyncResponses = {
 export type GetMyInstructorProfilesCountAsyncResponse = GetMyInstructorProfilesCountAsyncResponses[keyof GetMyInstructorProfilesCountAsyncResponses];
 
 export type GetMyEnrollmentsAsyncData = {
-    body?: never;
+    body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8845,7 +9525,7 @@ export type GetMyEnrollmentsAsyncResponses = {
 export type GetMyEnrollmentsAsyncResponse = GetMyEnrollmentsAsyncResponses[keyof GetMyEnrollmentsAsyncResponses];
 
 export type GetMyEnrollmentsCountAsyncData = {
-    body?: never;
+    body?: CourseEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8875,7 +9555,7 @@ export type GetMyEnrollmentsCountAsyncResponses = {
 export type GetMyEnrollmentsCountAsyncResponse = GetMyEnrollmentsCountAsyncResponses[keyof GetMyEnrollmentsCountAsyncResponses];
 
 export type GetMyStudentCoursesAsyncData = {
-    body?: never;
+    body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8905,7 +9585,7 @@ export type GetMyStudentCoursesAsyncResponses = {
 export type GetMyStudentCoursesAsyncResponse = GetMyStudentCoursesAsyncResponses[keyof GetMyStudentCoursesAsyncResponses];
 
 export type GetMyStudentCoursesCountAsyncData = {
-    body?: never;
+    body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8935,7 +9615,7 @@ export type GetMyStudentCoursesCountAsyncResponses = {
 export type GetMyStudentCoursesCountAsyncResponse = GetMyStudentCoursesCountAsyncResponses[keyof GetMyStudentCoursesCountAsyncResponses];
 
 export type GetMyInstructorCoursesAsyncData = {
-    body?: never;
+    body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8965,7 +9645,7 @@ export type GetMyInstructorCoursesAsyncResponses = {
 export type GetMyInstructorCoursesAsyncResponse = GetMyInstructorCoursesAsyncResponses[keyof GetMyInstructorCoursesAsyncResponses];
 
 export type GetMyInstructorCoursesCountAsyncData = {
-    body?: never;
+    body?: CourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8995,7 +9675,7 @@ export type GetMyInstructorCoursesCountAsyncResponses = {
 export type GetMyInstructorCoursesCountAsyncResponse = GetMyInstructorCoursesCountAsyncResponses[keyof GetMyInstructorCoursesCountAsyncResponses];
 
 export type GetMyCertificatesAsyncData = {
-    body?: never;
+    body?: CourseCompletionCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9025,7 +9705,7 @@ export type GetMyCertificatesAsyncResponses = {
 export type GetMyCertificatesAsyncResponse = GetMyCertificatesAsyncResponses[keyof GetMyCertificatesAsyncResponses];
 
 export type GetMyCertificatesCountAsyncData = {
-    body?: never;
+    body?: CourseCompletionCertificateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9300,7 +9980,7 @@ export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses = 
 export type GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponse = GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses[keyof GetApiV2LearningServiceStudentProfilesByStudentProfileIdResponses];
 
 export type PatchApiV2LearningServiceStudentProfilesByStudentProfileIdData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

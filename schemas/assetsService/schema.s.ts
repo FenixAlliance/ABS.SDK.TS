@@ -394,6 +394,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -704,12 +719,31 @@ export interface components {
       /** Format: int32 */
       assetCount?: number;
     };
+    AssetCategoryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AssetCategoryDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetCategoryDto"];
     };
@@ -719,6 +753,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetCategoryDto"][] | null;
     };
@@ -811,12 +851,31 @@ export interface components {
       month?: number;
       period?: string | null;
     };
+    AssetDepreciationRecordDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AssetDepreciationRecordDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetDepreciationRecordDto"];
     };
@@ -826,6 +885,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetDepreciationRecordDto"][] | null;
     };
@@ -883,12 +948,31 @@ export interface components {
       organizationDepartmentName?: string | null;
       purchaseReceiptId?: string | null;
     };
+    AssetDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AssetDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetDto"];
     };
@@ -898,6 +982,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetDto"][] | null;
     };
@@ -950,12 +1040,31 @@ export interface components {
       assetMaintenanceTeamId?: string | null;
       assetMaintenanceTeamName?: string | null;
     };
+    AssetRepairDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AssetRepairDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetRepairDto"];
     };
@@ -965,6 +1074,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetRepairDto"][] | null;
     };
@@ -1028,12 +1143,31 @@ export interface components {
       destinationDepartmentId?: string | null;
       destinationDepartmentName?: string | null;
     };
+    AssetTransferDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AssetTransferDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetTransferDto"];
     };
@@ -1043,6 +1177,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetTransferDto"][] | null;
     };
@@ -1074,12 +1214,31 @@ export interface components {
       /** Format: int32 */
       assetCount?: number;
     };
+    AssetTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AssetTypeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetTypeDto"];
     };
@@ -1089,6 +1248,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetTypeDto"][] | null;
     };
@@ -1155,12 +1320,31 @@ export interface components {
       amendmentDate?: string;
       currencyId?: string | null;
     };
+    AssetValueAmendDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AssetValueAmendDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetValueAmendDto"];
     };
@@ -1170,6 +1354,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AssetValueAmendDto"][] | null;
     };
@@ -1186,6 +1376,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -1194,6 +1390,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -1226,6 +1428,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -1236,11 +1444,9 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -1296,6 +1502,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1526,8 +1738,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1578,6 +1790,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetCategoryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1610,6 +1828,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1691,6 +1915,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1874,8 +2104,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1924,6 +2154,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2005,6 +2241,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2188,8 +2430,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2241,6 +2483,12 @@ export interface operations {
       };
       path: {
         assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetRepairDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetRepairDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2321,6 +2569,12 @@ export interface operations {
       };
       path: {
         assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetRepairDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetRepairDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2483,8 +2737,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2536,6 +2790,12 @@ export interface operations {
       };
       path: {
         assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetValueAmendDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetValueAmendDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2616,6 +2876,12 @@ export interface operations {
       };
       path: {
         assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetValueAmendDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetValueAmendDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2778,8 +3044,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2831,6 +3097,12 @@ export interface operations {
       };
       path: {
         assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetDepreciationRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetDepreciationRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2911,6 +3183,12 @@ export interface operations {
       };
       path: {
         assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetDepreciationRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetDepreciationRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3073,8 +3351,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3126,6 +3404,12 @@ export interface operations {
       };
       path: {
         assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetTransferDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetTransferDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3206,6 +3490,12 @@ export interface operations {
       };
       path: {
         assetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetTransferDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetTransferDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3368,8 +3658,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3418,6 +3708,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetTransferDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetTransferDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3492,6 +3788,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetTransferDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetTransferDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3650,8 +3952,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3700,6 +4002,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3930,8 +4238,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3980,6 +4288,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssetTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AssetTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {

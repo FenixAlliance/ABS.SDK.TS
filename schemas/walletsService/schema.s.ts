@@ -25,6 +25,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -363,30 +378,6 @@ export interface paths {
      */
     get: operations["GetWalletPaymentsCountAsync"];
   };
-  "/api/v2/WalletsService/Wallets/{walletId}/Locations/Count": {
-    /**
-     * Get Wallet Locations Count
-     * @description Get locations count of a specific wallet by ID.
-     */
-    get: operations["GetWalletLocationsCountAsync"];
-  };
-  "/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}": {
-    /**
-     * Get Wallet Location
-     * @description Get a specific location of a specific wallet by ID.
-     */
-    get: operations["GetWalletLocationAsync"];
-    /**
-     * Update Wallet Location
-     * @description Update a specific location of a specific wallet by ID.
-     */
-    put: operations["UpdateWalletLocationAsync"];
-    /**
-     * Delete Wallet Location
-     * @description Delete a specific location of a specific wallet by ID.
-     */
-    delete: operations["DeleteWalletLocationAsync"];
-  };
   "/api/v2/WalletsService/Wallets/{walletId}/Locations": {
     /**
      * Get Wallet Locations
@@ -397,7 +388,31 @@ export interface paths {
      * Create Wallet Location
      * @description Create a new location for a specific wallet by ID.
      */
-    post: operations["CreateWalletLocationAsync"];
+    post: operations["CreateLocationForWalletAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Locations/Count": {
+    /**
+     * Get Wallet Locations Count
+     * @description Get locations count of a specific wallet by ID.
+     */
+    get: operations["GetLocationsForWalletCountAsync"];
+  };
+  "/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}": {
+    /**
+     * Get Wallet Location
+     * @description Get a specific location of a specific wallet by ID.
+     */
+    get: operations["GetLocationForWalletAsync"];
+    /**
+     * Update Wallet Location
+     * @description Update a specific location of a specific wallet by ID.
+     */
+    put: operations["UpdateLocationForWalletAsync"];
+    /**
+     * Delete Wallet Location
+     * @description Delete a specific location of a specific wallet by ID.
+     */
+    delete: operations["DeleteLocationForWalletAsync"];
   };
   "/api/v2/WalletsService/Wallets/{walletId}/Invoices/Incoming": {
     /**
@@ -655,12 +670,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    BankAccountDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BankAccountDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankAccountDto"];
     };
@@ -670,6 +704,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankAccountDto"][] | null;
     };
@@ -766,6 +806,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -774,6 +820,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ExtendedOrderDto: {
@@ -804,6 +856,8 @@ export interface components {
       customerNotes?: string | null;
       /** @enum {string} */
       taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -881,8 +935,6 @@ export interface components {
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
       /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
       freightTerms?: "FOB" | "NoCharge";
       /** @enum {string} */
       orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
@@ -913,12 +965,31 @@ export interface components {
       receiverTenant?: components["schemas"]["TenantDto"];
       enrollment?: components["schemas"]["TenantEnrollmentDto"];
     };
+    ExtendedOrderDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExtendedOrderDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedOrderDto"][] | null;
     };
@@ -952,6 +1023,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -1071,12 +1148,31 @@ export interface components {
       /** @enum {string} */
       invoiceStatus?: "Draft" | "Closed" | "Signed" | "Expired" | "Paid";
     };
+    InvoiceDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     InvoiceDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceDto"][] | null;
     };
@@ -1140,12 +1236,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    LocationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LocationDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LocationDto"];
     };
@@ -1155,6 +1270,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LocationDto"][] | null;
     };
@@ -1189,14 +1310,6 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
-      op?: string | null;
-      from?: string | null;
-      value?: unknown;
-    };
     OrderDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1225,6 +1338,8 @@ export interface components {
       customerNotes?: string | null;
       /** @enum {string} */
       taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -1302,8 +1417,6 @@ export interface components {
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
       /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
       freightTerms?: "FOB" | "NoCharge";
       /** @enum {string} */
       orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
@@ -1328,14 +1441,39 @@ export interface components {
       /** Format: double */
       customWithholdingTaxAmount?: number;
     };
+    OrderDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     OrderDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OrderDto"][] | null;
+    };
+    PatchOperation: {
+      op?: string | null;
+      path?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     PaymentChargebackDto: {
       id?: string | null;
@@ -1349,12 +1487,31 @@ export interface components {
       /** Format: double */
       totalFees?: number;
     };
+    PaymentChargebackDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentChargebackDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentChargebackDto"][] | null;
     };
@@ -1504,12 +1661,31 @@ export interface components {
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
     };
+    PaymentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentDto"][] | null;
     };
@@ -1523,12 +1699,31 @@ export interface components {
       /** Format: double */
       totalFees?: number;
     };
+    PaymentRefundDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentRefundDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentRefundDto"][] | null;
     };
@@ -1562,12 +1757,31 @@ export interface components {
       walletAccountId?: string | null;
       paymentGatewayId?: string | null;
     };
+    PaymentTokenDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentTokenDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentTokenDto"];
     };
@@ -1577,6 +1791,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentTokenDto"][] | null;
     };
@@ -1698,12 +1918,31 @@ export interface components {
       /** Format: double */
       customDiscountsAmount?: number;
     };
+    QuoteDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     QuoteDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["QuoteDto"][] | null;
     };
@@ -1877,6 +2116,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WalletDto"];
     };
@@ -1896,12 +2141,31 @@ export interface components {
       withdrawedAmount?: number;
       currencyId?: string | null;
     };
+    WalletWithdrawDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WalletWithdrawDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WalletWithdrawDto"][] | null;
     };
@@ -1929,12 +2193,31 @@ export interface components {
       walletAccountId?: string | null;
       bankAccountId?: string | null;
     };
+    WalletWithdrawRequestDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WalletWithdrawRequestDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WalletWithdrawRequestDto"][] | null;
     };
@@ -2023,6 +2306,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OrderDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2061,6 +2350,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2103,6 +2398,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OrderDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2141,6 +2442,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2183,6 +2490,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2221,6 +2534,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2309,6 +2628,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2334,10 +2659,10 @@ export interface operations {
     };
   };
   /**
-   * Get Wallet Locations Count
-   * @description Get locations count of a specific wallet by ID.
+   * Get Wallet Locations
+   * @description Get locations of a specific wallet by ID.
    */
-  GetWalletLocationsCountAsync: {
+  GetLocationsForWalletAsync: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2347,6 +2672,104 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LocationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LocationDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["LocationDtoListEnvelope"];
+          "application/xml": components["schemas"]["LocationDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create Wallet Location
+   * @description Create a new location for a specific wallet by ID.
+   */
+  CreateLocationForWalletAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LocationCreateDto"];
+        "application/xml": components["schemas"]["LocationCreateDto"];
+      };
+    };
+    responses: {
+      /** @description Created */
+      201: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get Wallet Locations Count
+   * @description Get locations count of a specific wallet by ID.
+   */
+  GetLocationsForWalletCountAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LocationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LocationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2377,7 +2800,7 @@ export interface operations {
    * Get Wallet Location
    * @description Get a specific location of a specific wallet by ID.
    */
-  GetWalletLocationAsync: {
+  GetLocationForWalletAsync: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2418,7 +2841,7 @@ export interface operations {
    * Update Wallet Location
    * @description Update a specific location of a specific wallet by ID.
    */
-  UpdateWalletLocationAsync: {
+  UpdateLocationForWalletAsync: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2465,7 +2888,7 @@ export interface operations {
    * Delete Wallet Location
    * @description Delete a specific location of a specific wallet by ID.
    */
-  DeleteWalletLocationAsync: {
+  DeleteLocationForWalletAsync: {
     parameters: {
       query?: {
         "api-version"?: string;
@@ -2503,92 +2926,6 @@ export interface operations {
     };
   };
   /**
-   * Get Wallet Locations
-   * @description Get locations of a specific wallet by ID.
-   */
-  GetLocationsForWalletAsync: {
-    parameters: {
-      query?: {
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        walletId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["LocationDtoListEnvelope"];
-          "application/xml": components["schemas"]["LocationDtoListEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Create Wallet Location
-   * @description Create a new location for a specific wallet by ID.
-   */
-  CreateWalletLocationAsync: {
-    parameters: {
-      query?: {
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        walletId: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["LocationCreateDto"];
-        "application/xml": components["schemas"]["LocationCreateDto"];
-      };
-    };
-    responses: {
-      /** @description Created */
-      201: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
    * Get Incoming Wallet Invoices
    * @description Get incoming invoices of a specific wallet by ID.
    */
@@ -2602,6 +2939,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2644,6 +2987,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2682,6 +3031,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2724,6 +3079,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2762,6 +3123,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2804,6 +3171,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2842,6 +3215,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2884,6 +3263,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2922,6 +3307,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["QuoteDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["QuoteDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2964,6 +3355,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["QuoteDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["QuoteDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3002,6 +3399,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankAccountDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankAccountDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3088,6 +3491,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankAccountDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankAccountDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3262,8 +3671,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3304,6 +3713,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WalletWithdrawDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WalletWithdrawDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3392,6 +3807,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WalletWithdrawDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WalletWithdrawDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3430,6 +3851,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WalletWithdrawRequestDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WalletWithdrawRequestDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3472,6 +3899,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WalletWithdrawRequestDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WalletWithdrawRequestDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3510,6 +3943,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentChargebackDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentChargebackDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3552,6 +3991,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentChargebackDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentChargebackDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3590,6 +4035,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentRefundDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentRefundDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3632,6 +4083,12 @@ export interface operations {
         walletId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentRefundDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentRefundDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3670,6 +4127,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentTokenDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentTokenDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3756,6 +4219,12 @@ export interface operations {
       };
       path: {
         walletId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentTokenDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentTokenDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3930,8 +4399,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

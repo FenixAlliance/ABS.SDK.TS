@@ -33,6 +33,11 @@ export type CartDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CartDto;
 };
@@ -40,6 +45,11 @@ export type CartDtoEnvelopeReadable = {
 export type CartDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CartDto;
 };
 
@@ -255,11 +265,39 @@ export type ContactDtoWritable = {
     birthday?: string | null;
 };
 
+export type ContactDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ContactDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ContactDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ContactDtoReadable;
 };
@@ -267,6 +305,11 @@ export type ContactDtoEnvelopeReadable = {
 export type ContactDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ContactDtoWritable;
 };
 
@@ -275,6 +318,11 @@ export type ContactDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ContactDtoReadable> | null;
 };
@@ -282,6 +330,11 @@ export type ContactDtoListEnvelopeReadable = {
 export type ContactDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ContactDtoWritable> | null;
 };
 
@@ -322,11 +375,39 @@ export type ContactEmailDtoWritable = {
     contact?: ContactDtoWritable;
 };
 
+export type ContactEmailDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ContactEmailDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ContactEmailDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ContactEmailDtoReadable> | null;
 };
@@ -334,6 +415,11 @@ export type ContactEmailDtoListEnvelopeReadable = {
 export type ContactEmailDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ContactEmailDtoWritable> | null;
 };
 
@@ -474,11 +560,39 @@ export type ContactProfileDtoWritable = {
     data9Label?: string | null;
 };
 
+export type ContactProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ContactProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ContactProfileDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ContactProfileDtoReadable> | null;
 };
@@ -486,6 +600,11 @@ export type ContactProfileDtoListEnvelopeReadable = {
 export type ContactProfileDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ContactProfileDtoWritable> | null;
 };
 
@@ -537,11 +656,39 @@ export type ContactRelationDto = {
     tenantId?: string | null;
 };
 
+export type ContactRelationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ContactRelationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ContactRelationDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ContactRelationDto> | null;
 };
@@ -549,6 +696,11 @@ export type ContactRelationDtoListEnvelopeReadable = {
 export type ContactRelationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ContactRelationDto> | null;
 };
 
@@ -569,11 +721,39 @@ export type ContactRelationTypeDto = {
     tenantId?: string | null;
 };
 
+export type ContactRelationTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ContactRelationTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ContactRelationTypeDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ContactRelationTypeDto> | null;
 };
@@ -581,6 +761,11 @@ export type ContactRelationTypeDtoListEnvelopeReadable = {
 export type ContactRelationTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ContactRelationTypeDto> | null;
 };
 
@@ -611,11 +796,39 @@ export type ContactSourceDto = {
     tenantId?: string | null;
 };
 
+export type ContactSourceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ContactSourceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ContactSourceDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ContactSourceDto> | null;
 };
@@ -623,6 +836,11 @@ export type ContactSourceDtoListEnvelopeReadable = {
 export type ContactSourceDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ContactSourceDto> | null;
 };
 
@@ -732,11 +950,39 @@ export type ContactsGroupDto = {
     enrollmentId?: string | null;
 };
 
+export type ContactsGroupDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ContactsGroupDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ContactsGroupDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ContactsGroupDto> | null;
 };
@@ -744,6 +990,11 @@ export type ContactsGroupDtoListEnvelopeReadable = {
 export type ContactsGroupDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ContactsGroupDto> | null;
 };
 
@@ -774,12 +1025,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type EnvelopeReadable = {
@@ -787,6 +1048,11 @@ export type EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: string | null;
 };
@@ -794,6 +1060,11 @@ export type EnvelopeReadable = {
 export type EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: string | null;
 };
 
@@ -802,12 +1073,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedContactDtoReadable = {
@@ -943,11 +1224,39 @@ export type ExtendedContactDtoWritable = {
     primaryContact?: SimpleContactDtoWritable;
 };
 
+export type ExtendedContactDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedContactDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedContactDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ExtendedContactDtoReadable;
 };
@@ -955,6 +1264,11 @@ export type ExtendedContactDtoEnvelopeReadable = {
 export type ExtendedContactDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ExtendedContactDtoWritable;
 };
 
@@ -963,6 +1277,11 @@ export type ExtendedContactDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedContactDtoReadable> | null;
 };
@@ -970,6 +1289,11 @@ export type ExtendedContactDtoListEnvelopeReadable = {
 export type ExtendedContactDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedContactDtoWritable> | null;
 };
 
@@ -1007,6 +1331,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -1014,6 +1343,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -1022,14 +1356,6 @@ export type LoginRequest = {
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
-};
-
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
-    op?: string | null;
-    from?: string | null;
-    value?: unknown;
 };
 
 export type OptionCreateDto = {
@@ -1056,11 +1382,39 @@ export type OptionDto = {
     expiration?: number;
 };
 
+export type OptionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type OptionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type OptionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: OptionDto;
 };
@@ -1068,6 +1422,11 @@ export type OptionDtoEnvelopeReadable = {
 export type OptionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: OptionDto;
 };
 
@@ -1076,6 +1435,11 @@ export type OptionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<OptionDto> | null;
 };
@@ -1083,6 +1447,11 @@ export type OptionDtoListEnvelopeReadable = {
 export type OptionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<OptionDto> | null;
 };
 
@@ -1094,6 +1463,13 @@ export type OptionUpdateDto = {
     autoload?: boolean;
     transient?: boolean;
     expiration?: number;
+};
+
+export type PatchOperation = {
+    op?: string | null;
+    path?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type RefreshRequest = {
@@ -1212,6 +1588,11 @@ export type SocialProfileDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialProfileDto;
 };
@@ -1219,6 +1600,11 @@ export type SocialProfileDtoEnvelopeReadable = {
 export type SocialProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialProfileDto;
 };
 
@@ -1261,6 +1647,11 @@ export type WalletDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: WalletDto;
 };
@@ -1268,11 +1659,16 @@ export type WalletDtoEnvelopeReadable = {
 export type WalletDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: WalletDto;
 };
 
 export type GetContactGroupsAsyncData = {
-    body?: never;
+    body?: ContactsGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1336,7 +1732,7 @@ export type CreateContactGroupAsyncResponses = {
 };
 
 export type GetContactGroupsCountAsyncData = {
-    body?: never;
+    body?: ContactsGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1439,7 +1835,7 @@ export type GetContactGroupByIdAsyncResponses = {
 export type GetContactGroupByIdAsyncResponse = GetContactGroupByIdAsyncResponses[keyof GetContactGroupByIdAsyncResponses];
 
 export type PatchContactGroupAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1511,7 +1907,7 @@ export type UpdateContactGroupAsyncResponses = {
 };
 
 export type GetContactProfilesAsyncData = {
-    body?: never;
+    body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1575,7 +1971,7 @@ export type CreateContactProfileAsyncResponses = {
 };
 
 export type GetContactProfilesCountAsyncData = {
-    body?: never;
+    body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1606,7 +2002,7 @@ export type GetContactProfilesCountAsyncResponses = {
 export type GetContactProfilesCountAsyncResponse = GetContactProfilesCountAsyncResponses[keyof GetContactProfilesCountAsyncResponses];
 
 export type GetPatientProfilesCountAsyncData = {
-    body?: never;
+    body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1637,7 +2033,7 @@ export type GetPatientProfilesCountAsyncResponses = {
 export type GetPatientProfilesCountAsyncResponse = GetPatientProfilesCountAsyncResponses[keyof GetPatientProfilesCountAsyncResponses];
 
 export type GetPartnerProfilesCountAsyncData = {
-    body?: never;
+    body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1740,7 +2136,7 @@ export type GetContactProfileByIdAsyncResponses = {
 export type GetContactProfileByIdAsyncResponse = GetContactProfileByIdAsyncResponses[keyof GetContactProfileByIdAsyncResponses];
 
 export type PatchContactProfileAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1812,7 +2208,7 @@ export type UpdateContactProfileAsyncResponses = {
 };
 
 export type GetContactRelationsAsyncData = {
-    body?: never;
+    body?: ContactRelationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1876,7 +2272,7 @@ export type CreateContactRelationAsyncResponses = {
 };
 
 export type GetContactRelationsCountAsyncData = {
-    body?: never;
+    body?: ContactRelationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1979,7 +2375,7 @@ export type GetContactRelationByIdAsyncResponses = {
 export type GetContactRelationByIdAsyncResponse = GetContactRelationByIdAsyncResponses[keyof GetContactRelationByIdAsyncResponses];
 
 export type PatchContactRelationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2051,7 +2447,7 @@ export type UpdateContactRelationAsyncResponses = {
 };
 
 export type GetContactRelationTypesAsyncData = {
-    body?: never;
+    body?: ContactRelationTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2115,7 +2511,7 @@ export type CreateContactRelationTypeAsyncResponses = {
 };
 
 export type GetContactRelationTypesCountAsyncData = {
-    body?: never;
+    body?: ContactRelationTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2218,7 +2614,7 @@ export type GetContactRelationTypeByIdAsyncResponses = {
 export type GetContactRelationTypeByIdAsyncResponse = GetContactRelationTypeByIdAsyncResponses[keyof GetContactRelationTypeByIdAsyncResponses];
 
 export type PatchContactRelationTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2290,7 +2686,7 @@ export type UpdateContactRelationTypeAsyncResponses = {
 };
 
 export type GetContactsAsyncData = {
-    body?: never;
+    body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2360,7 +2756,7 @@ export type CreateContactAsyncResponses = {
 export type CreateContactAsyncResponse = CreateContactAsyncResponses[keyof CreateContactAsyncResponses];
 
 export type GetContactsCountAsyncData = {
-    body?: never;
+    body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2395,7 +2791,7 @@ export type GetContactsCountAsyncResponses = {
 export type GetContactsCountAsyncResponse = GetContactsCountAsyncResponses[keyof GetContactsCountAsyncResponses];
 
 export type GetExtendedContactsAsyncData = {
-    body?: never;
+    body?: ExtendedContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2504,7 +2900,7 @@ export type GetContactAsyncResponses = {
 export type GetContactAsyncResponse = GetContactAsyncResponses[keyof GetContactAsyncResponses];
 
 export type PatchContactAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2615,7 +3011,7 @@ export type GetExtendedContactAsyncResponses = {
 export type GetExtendedContactAsyncResponse = GetExtendedContactAsyncResponses[keyof GetExtendedContactAsyncResponses];
 
 export type GetBusinessOwnedIndividualsAsyncData = {
-    body?: never;
+    body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2650,7 +3046,7 @@ export type GetBusinessOwnedIndividualsAsyncResponses = {
 export type GetBusinessOwnedIndividualsAsyncResponse = GetBusinessOwnedIndividualsAsyncResponses[keyof GetBusinessOwnedIndividualsAsyncResponses];
 
 export type GetBusinessOwnedIndividualsCountAsyncData = {
-    body?: never;
+    body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2685,7 +3081,7 @@ export type GetBusinessOwnedIndividualsCountAsyncResponses = {
 export type GetBusinessOwnedIndividualsCountAsyncResponse = GetBusinessOwnedIndividualsCountAsyncResponses[keyof GetBusinessOwnedIndividualsCountAsyncResponses];
 
 export type GetExtendedBusinessOwnedIndividualsAsyncData = {
-    body?: never;
+    body?: ExtendedContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2761,7 +3157,7 @@ export type GetBusinessOwnedIndividualAsyncResponses = {
 export type GetBusinessOwnedIndividualAsyncResponse = GetBusinessOwnedIndividualAsyncResponses[keyof GetBusinessOwnedIndividualAsyncResponses];
 
 export type GetBusinessOwnedOrganizationsAsyncData = {
-    body?: never;
+    body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2796,7 +3192,7 @@ export type GetBusinessOwnedOrganizationsAsyncResponses = {
 export type GetBusinessOwnedOrganizationsAsyncResponse = GetBusinessOwnedOrganizationsAsyncResponses[keyof GetBusinessOwnedOrganizationsAsyncResponses];
 
 export type GetBusinessOwnedOrganizationsCountAsyncData = {
-    body?: never;
+    body?: ContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2831,7 +3227,7 @@ export type GetBusinessOwnedOrganizationsCountAsyncResponses = {
 export type GetBusinessOwnedOrganizationsCountAsyncResponse = GetBusinessOwnedOrganizationsCountAsyncResponses[keyof GetBusinessOwnedOrganizationsCountAsyncResponses];
 
 export type GetExtendedBusinessOwnedOrganizationsAsyncData = {
-    body?: never;
+    body?: ExtendedContactDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3141,7 +3537,7 @@ export type CreateProfileForContactAsyncResponses = {
 };
 
 export type GetProfilesForContactCountAsyncData = {
-    body?: never;
+    body?: ContactProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3549,7 +3945,7 @@ export type SendContactEmailResponses = {
 };
 
 export type GetContactEmailsAsyncData = {
-    body?: never;
+    body?: ContactEmailDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3586,7 +3982,7 @@ export type GetContactEmailsAsyncResponses = {
 export type GetContactEmailsAsyncResponse = GetContactEmailsAsyncResponses[keyof GetContactEmailsAsyncResponses];
 
 export type GetContactEmailsCountAsyncData = {
-    body?: never;
+    body?: ContactEmailDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3690,7 +4086,7 @@ export type DeleteContactEmailAsyncResponses = {
 };
 
 export type PatchContactEmailAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3802,7 +4198,7 @@ export type VerifyContactEmailAsyncResponses = {
 };
 
 export type GetContactSourcesAsyncData = {
-    body?: never;
+    body?: ContactSourceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3866,7 +4262,7 @@ export type CreateContactSourceAsyncResponses = {
 };
 
 export type GetContactSourcesCountAsyncData = {
-    body?: never;
+    body?: ContactSourceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3969,7 +4365,7 @@ export type GetContactSourceByIdAsyncResponses = {
 export type GetContactSourceByIdAsyncResponse = GetContactSourceByIdAsyncResponses[keyof GetContactSourceByIdAsyncResponses];
 
 export type PatchContactSourceAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4062,6 +4458,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -4369,7 +4781,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetContactOptionsData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4446,7 +4858,7 @@ export type CreateContactOptionResponses = {
 export type CreateContactOptionResponse = CreateContactOptionResponses[keyof CreateContactOptionResponses];
 
 export type GetContactOptionsCountData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4560,7 +4972,7 @@ export type GetContactOptionByIdResponses = {
 export type GetContactOptionByIdResponse = GetContactOptionByIdResponses[keyof GetContactOptionByIdResponses];
 
 export type PatchContactOptionAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4675,7 +5087,7 @@ export type GetContactOptionByKeyResponses = {
 export type GetContactOptionByKeyResponse = GetContactOptionByKeyResponses[keyof GetContactOptionByKeyResponses];
 
 export type PatchContactOptionByKeyAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

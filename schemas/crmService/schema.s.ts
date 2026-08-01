@@ -520,6 +520,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -925,6 +940,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CartDto"];
     };
@@ -1056,12 +1077,31 @@ export interface components {
       /** Format: date-time */
       birthday?: string | null;
     };
+    ContactDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ContactDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ContactDto"];
     };
@@ -1071,6 +1111,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ContactDto"][] | null;
     };
@@ -1099,12 +1145,31 @@ export interface components {
       verifiedTimestamp?: string | null;
       contact?: components["schemas"]["ContactDto"];
     };
+    ContactEmailDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ContactEmailDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ContactEmailDto"][] | null;
     };
@@ -1181,12 +1246,31 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
     };
+    ContactProfileDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ContactProfileDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ContactProfileDto"][] | null;
     };
@@ -1238,12 +1322,31 @@ export interface components {
       qualifiedName?: string | null;
       tenantId?: string | null;
     };
+    ContactRelationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ContactRelationDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ContactRelationDto"][] | null;
     };
@@ -1265,12 +1368,31 @@ export interface components {
       description?: string | null;
       tenantId?: string | null;
     };
+    ContactRelationTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ContactRelationTypeDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ContactRelationTypeDto"][] | null;
     };
@@ -1300,12 +1422,31 @@ export interface components {
       description?: string | null;
       tenantId?: string | null;
     };
+    ContactSourceDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ContactSourceDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ContactSourceDto"][] | null;
     };
@@ -1377,12 +1518,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    ContactsGroupDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ContactsGroupDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ContactsGroupDto"][] | null;
     };
@@ -1415,6 +1575,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     Envelope: {
@@ -1423,6 +1589,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: string | null;
     };
@@ -1432,6 +1604,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ExtendedContactDto: {
@@ -1516,12 +1694,31 @@ export interface components {
       parentContact?: components["schemas"]["SimpleContactDto"];
       primaryContact?: components["schemas"]["SimpleContactDto"];
     };
+    ExtendedContactDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExtendedContactDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedContactDto"];
     };
@@ -1531,6 +1728,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedContactDto"][] | null;
     };
@@ -1564,6 +1767,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -1573,14 +1782,6 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
-    };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
-      op?: string | null;
-      from?: string | null;
-      value?: unknown;
     };
     OptionCreateDto: {
       /** Format: uuid */
@@ -1609,12 +1810,31 @@ export interface components {
       /** Format: int32 */
       expiration?: number;
     };
+    OptionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     OptionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OptionDto"];
     };
@@ -1624,6 +1844,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OptionDto"][] | null;
     };
@@ -1636,6 +1862,12 @@ export interface components {
       transient?: boolean;
       /** Format: int32 */
       expiration?: number;
+    };
+    PatchOperation: {
+      op?: string | null;
+      path?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1740,6 +1972,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"];
     };
@@ -1788,6 +2026,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WalletDto"];
     };
@@ -1817,6 +2061,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactsGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactsGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1889,6 +2139,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactsGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactsGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2050,8 +2306,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2090,6 +2346,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2164,6 +2426,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2195,6 +2463,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2224,6 +2498,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2385,8 +2665,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2425,6 +2705,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactRelationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactRelationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2497,6 +2783,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactRelationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactRelationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2658,8 +2950,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2698,6 +2990,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactRelationTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactRelationTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2770,6 +3068,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactRelationTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactRelationTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2931,8 +3235,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2971,6 +3275,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3055,6 +3365,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3091,6 +3407,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedContactDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3265,8 +3587,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3348,6 +3670,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3386,6 +3714,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3422,6 +3756,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedContactDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3510,6 +3850,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3548,6 +3894,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3584,6 +3936,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedContactDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedContactDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3959,6 +4317,12 @@ export interface operations {
       };
       path: {
         contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4427,6 +4791,12 @@ export interface operations {
         contactId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactEmailDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactEmailDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4466,6 +4836,12 @@ export interface operations {
       };
       path: {
         contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactEmailDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactEmailDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4633,8 +5009,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4718,6 +5094,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactSourceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactSourceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4788,6 +5170,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ContactSourceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ContactSourceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4949,8 +5337,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5008,6 +5396,12 @@ export interface operations {
       };
       path: {
         contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5099,6 +5493,12 @@ export interface operations {
       };
       path: {
         contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5277,8 +5677,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5368,8 +5768,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

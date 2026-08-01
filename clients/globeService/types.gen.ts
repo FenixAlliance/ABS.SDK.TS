@@ -24,11 +24,39 @@ export type CityDto = {
     longitude?: string | null;
 };
 
+export type CityDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CityDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CityDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CityDto> | null;
 };
@@ -36,6 +64,11 @@ export type CityDtoListEnvelopeReadable = {
 export type CityDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CityDto> | null;
 };
 
@@ -45,11 +78,39 @@ export type CountryCallingCodeDto = {
     countryID?: string | null;
 };
 
+export type CountryCallingCodeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CountryCallingCodeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CountryCallingCodeDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CountryCallingCodeDto> | null;
 };
@@ -57,6 +118,11 @@ export type CountryCallingCodeDtoListEnvelopeReadable = {
 export type CountryCallingCodeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CountryCallingCodeDto> | null;
 };
 
@@ -70,11 +136,39 @@ export type CountryDto = {
     flagUrl?: string | null;
 };
 
+export type CountryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CountryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CountryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CountryDto;
 };
@@ -82,6 +176,11 @@ export type CountryDtoEnvelopeReadable = {
 export type CountryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CountryDto;
 };
 
@@ -90,6 +189,11 @@ export type CountryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CountryDto> | null;
 };
@@ -97,6 +201,11 @@ export type CountryDtoListEnvelopeReadable = {
 export type CountryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CountryDto> | null;
 };
 
@@ -110,11 +219,39 @@ export type CountryLanguageDto = {
     languageNativeName?: string | null;
 };
 
+export type CountryLanguageDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CountryLanguageDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CountryLanguageDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CountryLanguageDto;
 };
@@ -122,6 +259,11 @@ export type CountryLanguageDtoEnvelopeReadable = {
 export type CountryLanguageDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CountryLanguageDto;
 };
 
@@ -130,6 +272,11 @@ export type CountryLanguageDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CountryLanguageDto> | null;
 };
@@ -137,6 +284,11 @@ export type CountryLanguageDtoListEnvelopeReadable = {
 export type CountryLanguageDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CountryLanguageDto> | null;
 };
 
@@ -148,11 +300,39 @@ export type CountryStateDto = {
     countryID?: string | null;
 };
 
+export type CountryStateDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CountryStateDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CountryStateDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CountryStateDto;
 };
@@ -160,6 +340,11 @@ export type CountryStateDtoEnvelopeReadable = {
 export type CountryStateDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CountryStateDto;
 };
 
@@ -168,6 +353,11 @@ export type CountryStateDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CountryStateDto> | null;
 };
@@ -175,6 +365,11 @@ export type CountryStateDtoListEnvelopeReadable = {
 export type CountryStateDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CountryStateDto> | null;
 };
 
@@ -185,11 +380,39 @@ export type CountryTopLevelDomainDto = {
     countryID?: string | null;
 };
 
+export type CountryTopLevelDomainDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CountryTopLevelDomainDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CountryTopLevelDomainDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CountryTopLevelDomainDto> | null;
 };
@@ -197,6 +420,11 @@ export type CountryTopLevelDomainDtoListEnvelopeReadable = {
 export type CountryTopLevelDomainDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CountryTopLevelDomainDto> | null;
 };
 
@@ -209,11 +437,39 @@ export type CurrencyDto = {
     country?: CountryDto;
 };
 
+export type CurrencyDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CurrencyDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CurrencyDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CurrencyDto;
 };
@@ -221,6 +477,11 @@ export type CurrencyDtoEnvelopeReadable = {
 export type CurrencyDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CurrencyDto;
 };
 
@@ -229,6 +490,11 @@ export type CurrencyDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CurrencyDto> | null;
 };
@@ -236,6 +502,11 @@ export type CurrencyDtoListEnvelopeReadable = {
 export type CurrencyDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CurrencyDto> | null;
 };
 
@@ -244,12 +515,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -286,6 +567,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -293,6 +579,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -337,11 +628,39 @@ export type TimezoneDtoWritable = {
     utcOffset?: string | null;
 };
 
+export type TimezoneDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TimezoneDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TimezoneDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TimezoneDtoReadable;
 };
@@ -349,6 +668,11 @@ export type TimezoneDtoEnvelopeReadable = {
 export type TimezoneDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TimezoneDtoWritable;
 };
 
@@ -357,6 +681,11 @@ export type TimezoneDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TimezoneDtoReadable> | null;
 };
@@ -364,6 +693,11 @@ export type TimezoneDtoListEnvelopeReadable = {
 export type TimezoneDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TimezoneDtoWritable> | null;
 };
 
@@ -384,7 +718,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetAllCountriesData = {
-    body?: never;
+    body?: CountryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -418,7 +752,7 @@ export type GetAllCountriesResponses = {
 export type GetAllCountriesResponse = GetAllCountriesResponses[keyof GetAllCountriesResponses];
 
 export type CountCountriesData = {
-    body?: never;
+    body?: CountryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -523,7 +857,7 @@ export type GetCountryByIdResponses = {
 export type GetCountryByIdResponse = GetCountryByIdResponses[keyof GetCountryByIdResponses];
 
 export type GetCountryStatesAsyncData = {
-    body?: never;
+    body?: CountryStateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -559,7 +893,7 @@ export type GetCountryStatesAsyncResponses = {
 export type GetCountryStatesAsyncResponse = GetCountryStatesAsyncResponses[keyof GetCountryStatesAsyncResponses];
 
 export type CountCountryStatesAsyncData = {
-    body?: never;
+    body?: CountryStateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -595,7 +929,7 @@ export type CountCountryStatesAsyncResponses = {
 export type CountCountryStatesAsyncResponse = CountCountryStatesAsyncResponses[keyof CountCountryStatesAsyncResponses];
 
 export type GetCountryStateByIdAsyncData = {
-    body?: never;
+    body?: CountryStateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -632,7 +966,7 @@ export type GetCountryStateByIdAsyncResponses = {
 export type GetCountryStateByIdAsyncResponse = GetCountryStateByIdAsyncResponses[keyof GetCountryStateByIdAsyncResponses];
 
 export type GetCitiesByCountryStateIdAsyncData = {
-    body?: never;
+    body?: CityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -669,7 +1003,7 @@ export type GetCitiesByCountryStateIdAsyncResponses = {
 export type GetCitiesByCountryStateIdAsyncResponse = GetCitiesByCountryStateIdAsyncResponses[keyof GetCitiesByCountryStateIdAsyncResponses];
 
 export type CountCitiesByStateAsyncData = {
-    body?: never;
+    body?: CityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -706,7 +1040,7 @@ export type CountCitiesByStateAsyncResponses = {
 export type CountCitiesByStateAsyncResponse = CountCitiesByStateAsyncResponses[keyof CountCitiesByStateAsyncResponses];
 
 export type GetTimeZonesByCountryIdAsyncData = {
-    body?: never;
+    body?: TimezoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -742,7 +1076,7 @@ export type GetTimeZonesByCountryIdAsyncResponses = {
 export type GetTimeZonesByCountryIdAsyncResponse = GetTimeZonesByCountryIdAsyncResponses[keyof GetTimeZonesByCountryIdAsyncResponses];
 
 export type CountTimezonesByCountryAsyncData = {
-    body?: never;
+    body?: TimezoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -778,7 +1112,7 @@ export type CountTimezonesByCountryAsyncResponses = {
 export type CountTimezonesByCountryAsyncResponse = CountTimezonesByCountryAsyncResponses[keyof CountTimezonesByCountryAsyncResponses];
 
 export type GetEnabledCurrenciesByCountryIdAsyncData = {
-    body?: never;
+    body?: CurrencyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -814,7 +1148,7 @@ export type GetEnabledCurrenciesByCountryIdAsyncResponses = {
 export type GetEnabledCurrenciesByCountryIdAsyncResponse = GetEnabledCurrenciesByCountryIdAsyncResponses[keyof GetEnabledCurrenciesByCountryIdAsyncResponses];
 
 export type GetTopLevelDomainsByCountryIdAsyncData = {
-    body?: never;
+    body?: CountryTopLevelDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -850,7 +1184,7 @@ export type GetTopLevelDomainsByCountryIdAsyncResponses = {
 export type GetTopLevelDomainsByCountryIdAsyncResponse = GetTopLevelDomainsByCountryIdAsyncResponses[keyof GetTopLevelDomainsByCountryIdAsyncResponses];
 
 export type CountTopLevelDomainsByCountryAsyncData = {
-    body?: never;
+    body?: CountryTopLevelDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -886,7 +1220,7 @@ export type CountTopLevelDomainsByCountryAsyncResponses = {
 export type CountTopLevelDomainsByCountryAsyncResponse = CountTopLevelDomainsByCountryAsyncResponses[keyof CountTopLevelDomainsByCountryAsyncResponses];
 
 export type GetCallingCodesByCountryIdAsyncData = {
-    body?: never;
+    body?: CountryCallingCodeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -922,7 +1256,7 @@ export type GetCallingCodesByCountryIdAsyncResponses = {
 export type GetCallingCodesByCountryIdAsyncResponse = GetCallingCodesByCountryIdAsyncResponses[keyof GetCallingCodesByCountryIdAsyncResponses];
 
 export type CountCallingCodesByCountryAsyncData = {
-    body?: never;
+    body?: CountryCallingCodeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -958,7 +1292,7 @@ export type CountCallingCodesByCountryAsyncResponses = {
 export type CountCallingCodesByCountryAsyncResponse = CountCallingCodesByCountryAsyncResponses[keyof CountCallingCodesByCountryAsyncResponses];
 
 export type GetEnabledCurrenciesAsyncData = {
-    body?: never;
+    body?: CurrencyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -992,7 +1326,7 @@ export type GetEnabledCurrenciesAsyncResponses = {
 export type GetEnabledCurrenciesAsyncResponse = GetEnabledCurrenciesAsyncResponses[keyof GetEnabledCurrenciesAsyncResponses];
 
 export type CountCurrenciesAsyncData = {
-    body?: never;
+    body?: CurrencyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1083,6 +1417,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1390,7 +1740,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetLanguagesAsyncData = {
-    body?: never;
+    body?: CountryLanguageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1424,7 +1774,7 @@ export type GetLanguagesAsyncResponses = {
 export type GetLanguagesAsyncResponse = GetLanguagesAsyncResponses[keyof GetLanguagesAsyncResponses];
 
 export type CountLanguagesAsyncData = {
-    body?: never;
+    body?: CountryLanguageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1494,7 +1844,7 @@ export type GetLanguageByIdAsyncResponses = {
 export type GetLanguageByIdAsyncResponse = GetLanguageByIdAsyncResponses[keyof GetLanguageByIdAsyncResponses];
 
 export type GetTimeZonesAsyncData = {
-    body?: never;
+    body?: TimezoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1528,7 +1878,7 @@ export type GetTimeZonesAsyncResponses = {
 export type GetTimeZonesAsyncResponse = GetTimeZonesAsyncResponses[keyof GetTimeZonesAsyncResponses];
 
 export type CountTimezonesAsyncData = {
-    body?: never;
+    body?: TimezoneDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };

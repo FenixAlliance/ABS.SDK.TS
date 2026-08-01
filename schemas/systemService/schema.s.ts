@@ -19,6 +19,76 @@ export interface paths {
      */
     get: operations["IsRequestValidAsync"];
   };
+  "/api/v2/SystemService/ApplicationPrincipals": {
+    /**
+     * List application principals across all tenants
+     * @description Lists every non-human application principal enrollment across ALL tenants (payload-safe fields only), including the platform-managed (system-locked) connectors. Use OData to scope — e.g. $filter=SystemLocked eq true for the platform connectors or TenantId eq '{guid}' for one tenant — and to page/order. Global-administrator only.
+     */
+    get: operations["GetGlobalApplicationPrincipals"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/Count": {
+    /**
+     * Count application principals across all tenants
+     * @description Returns the count of application principal enrollments across ALL tenants under the same OData shaping as the list read (e.g. $filter=SystemLocked eq true). Global-administrator only.
+     */
+    get: operations["GetGlobalApplicationPrincipalsCount"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/{principalId}": {
+    /**
+     * Get one application principal (any tenant)
+     * @description Returns one application principal's detail by id: owning application, an enrollment, the system-locked flag, lifecycle status, and that enrollment's explicit least-privilege grants. Pass tenantId to select the enrollment for a multi-tenant principal; when omitted the principal's first enrollment is used. Global-administrator only.
+     */
+    get: operations["GetGlobalApplicationPrincipal"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/Provision": {
+    /**
+     * Provision an application principal (any tenant, incl. system-locked)
+     * @description Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application. tenantId selects the target tenant (defaults to the platform/root tenant). Unlike the per-tenant lane, a system-locked platform application is provisionable here. Global-administrator only.
+     */
+    post: operations["ProvisionGlobalApplicationPrincipal"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/PaymentsConnector": {
+    /**
+     * Provision the platform payments-connector identity
+     * @description Idempotently stands up the platform payments-connector identity — its well-known business application, its application principal, and its own least-privilege enrollment (payments_create/payments_update/journals_post). tenantId selects the target tenant (defaults to the platform/root tenant). The provisioned connector then appears in this global list and (for its tenant) the per-tenant list. Global-administrator only.
+     */
+    post: operations["ProvisionPaymentsConnector"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Permissions": {
+    /**
+     * Grant a permission to an application principal (any tenant)
+     * @description Grants a single least-privilege permission to the application principal's enrollment in the tenantId tenant (grants are per-tenant, so tenantId is required). Owner/admin/wildcard/*_manage permissions are rejected even for a global admin (least-privilege by construction). Global-administrator only.
+     */
+    post: operations["GrantGlobalApplicationPrincipalPermission"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Permissions/{permission}": {
+    /**
+     * Revoke a permission from an application principal (any tenant)
+     * @description Revokes a direct permission grant from the application principal's enrollment in the tenantId tenant (required). Idempotent. Global-administrator only.
+     */
+    delete: operations["RevokeGlobalApplicationPrincipalPermission"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Enable": {
+    /**
+     * Enable an application principal (global)
+     * @description Reinstates the application principal to the Active lifecycle state (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
+     */
+    post: operations["EnableGlobalApplicationPrincipal"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Suspend": {
+    /**
+     * Suspend an application principal (global)
+     * @description Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
+     */
+    post: operations["SuspendGlobalApplicationPrincipal"];
+  };
+  "/api/v2/SystemService/ApplicationPrincipals/{principalId}/Disable": {
+    /**
+     * Disable an application principal (global)
+     * @description Disables the application principal; dependent unattended execution fails closed (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
+     */
+    post: operations["DisableGlobalApplicationPrincipal"];
+  };
   "/api/v2/SystemService/BusinessDomains": {
     /**
      * Retrieve all business domains in the system
@@ -145,6 +215,21 @@ export interface paths {
   };
   "/health": {
     get: {
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
       responses: {
         /** @description OK */
         200: {
@@ -430,6 +515,97 @@ export interface paths {
       };
     };
   };
+  "/api/v2/SystemService/Inbox/Health": {
+    /**
+     * Get durable-inbox processor health
+     * @description Returns a single snapshot of the durable-inbox processor: whether it is enabled, the per-status counts (received/accepted/processing/retry-scheduled/rejected/quarantined/dead-lettered/cancelled), the age of the oldest accepted message, and the last successful processing instant. Global-administrator only.
+     */
+    get: operations["GetInboxHealth"];
+  };
+  "/api/v2/SystemService/Inbox/Messages": {
+    /**
+     * List inbox messages
+     * @description Lists durable-inbox messages (payload-safe fields only). Use OData to scope by any projected field — e.g. $filter=Status eq 'Quarantined' for the quarantine review, Status eq 'DeadLettered' for terminal failures, VerificationStatus eq 'Failed' for forged/untrusted callbacks, SourceSystem eq 'stripe', or a ReceivedAtUtc range — and to page/order. Global-administrator only.
+     */
+    get: operations["GetInboxMessages"];
+  };
+  "/api/v2/SystemService/Inbox/Messages/Count": {
+    /**
+     * Count inbox messages
+     * @description Returns the count of durable-inbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'Quarantined'). Global-administrator only.
+     */
+    get: operations["GetInboxMessagesCount"];
+  };
+  "/api/v2/SystemService/Inbox/Messages/{id}": {
+    /**
+     * Get one inbox message
+     * @description Returns one inbox message's payload-safe detail by id — both lifecycle axes (processing status + independent verification status), the dedup lineage, attempt/generation counters, the recorded failure, and the timestamps. Global-administrator only.
+     */
+    get: operations["GetInboxMessage"];
+  };
+  "/api/v2/SystemService/Inbox/Correlations/{correlationId}": {
+    /**
+     * Get an inbox correlation chain
+     * @description Returns every inbox message that shares a correlation id — one logical inbound interaction end-to-end, including its replay generations — oldest-received first. Global-administrator only.
+     */
+    get: operations["GetInboxCorrelationChain"];
+  };
+  "/api/v2/SystemService/Inbox/Duplicates": {
+    /**
+     * List duplicate-bearing inbox messages
+     * @description Lists inbox messages that have observed a re-delivery (DeliveryCount > 1) — durable evidence that a source is re-sending, surfaced with DeliveryCount / LastDuplicateReceivedAtUtc. Further OData filtering/paging applies. Global-administrator only.
+     */
+    get: operations["GetDuplicateInboxMessages"];
+  };
+  "/api/v2/SystemService/Inbox/Duplicates/Count": {
+    /**
+     * Count duplicate-bearing inbox messages
+     * @description Returns the count of duplicate-bearing inbox messages under the same OData shaping as the duplicates list. Global-administrator only.
+     */
+    get: operations["GetDuplicateInboxMessagesCount"];
+  };
+  "/api/v2/SystemService/Inbox/Messages/{id}/Expedite": {
+    /**
+     * Expedite a retry-scheduled inbox message
+     * @description Pulls a RetryScheduled message's scheduled instant forward to now so the processor claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched. Only a RetryScheduled message can be expedited. Global-administrator only.
+     */
+    post: operations["ExpediteInboxMessage"];
+  };
+  "/api/v2/SystemService/Inbox/Messages/{id}/CancelRetry": {
+    /**
+     * Cancel a scheduled inbox retry
+     * @description Stops a RetryScheduled message from retrying by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. Only a RetryScheduled message can be cancelled. Global-administrator only.
+     */
+    post: operations["CancelInboxMessageRetry"];
+  };
+  "/api/v2/SystemService/Inbox/Messages/{id}/ReleaseLease": {
+    /**
+     * Release a stuck inbox lease
+     * @description Force-releases the lease on a message wedged in Processing (a crashed/hung processor) and returns it to the claimable Accepted state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. Only a Processing message can have its lease released. Global-administrator only.
+     */
+    post: operations["ReleaseInboxMessageLease"];
+  };
+  "/api/v2/SystemService/Inbox/Messages/{id}/DeadLetter": {
+    /**
+     * Manually dead-letter an inbox message
+     * @description Manually moves a non-terminal message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
+     */
+    post: operations["DeadLetterInboxMessage"];
+  };
+  "/api/v2/SystemService/Inbox/Messages/{id}/Quarantine": {
+    /**
+     * Manually quarantine an inbox message
+     * @description Manually holds a non-terminal message for review in the terminal Quarantined state (e.g. an operator judges it suspicious). The reason is audit-critical. Global-administrator only.
+     */
+    post: operations["QuarantineInboxMessage"];
+  };
+  "/api/v2/SystemService/Inbox/Messages/{id}/Replay": {
+    /**
+     * Replay a terminal inbox message as a new generation
+     * @description Replays a terminal message as a NEW processing generation over its immutable received evidence — the inbox's recovery lever (distinct from the outbox's same-row requeue). A selected replay-generation row is resolved back to its lineage root before replaying, so numbering stays global and collision-free; the new row is claimable at once with a fresh retry budget, and the root's evidence and budget are never mutated. Legal only from a terminal state whose authenticity passed. Returns the new generation's identity. The reason is audit-critical. Global-administrator only.
+     */
+    post: operations["ReplayInboxMessage"];
+  };
   "/api/v2/SystemService/IPLookups": {
     /**
      * Retrieve a list of system IP lookups
@@ -482,14 +658,14 @@ export interface paths {
      * Retrieve license attributes
      * @description Retrieves all additional attributes for a given license.
      */
-    get: operations["GetLicenseAttributesAsync"];
+    get: operations["GetAttributesForLicenseAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Features": {
     /**
      * Retrieve license features
      * @description Retrieves all features for a given license.
      */
-    get: operations["GetLicenseFeaturesAsync"];
+    get: operations["GetFeaturesForLicenseAsync"];
   };
   "/api/v2/SystemService/Licensing/Licenses/{licenseId}/Quota": {
     /**
@@ -588,6 +764,76 @@ export interface paths {
      * @description Create or update a system option by key
      */
     put: operations["UpsertSystemOption"];
+  };
+  "/api/v2/SystemService/Outbox/Health": {
+    /**
+     * Get durable-outbox relay health
+     * @description Returns a single snapshot of the durable-outbox relay: whether it is enabled, the per-status counts (pending/processing/failed/dead-lettered), the age of the oldest pending message, and the last successful dispatch instant. Global-administrator only.
+     */
+    get: operations["GetOutboxHealth"];
+  };
+  "/api/v2/SystemService/Outbox/Messages": {
+    /**
+     * List outbox messages
+     * @description Lists durable-outbox messages (payload-safe fields only). Use OData to scope to a state — e.g. $filter=Status eq 'DeadLettered' for the dead-letter set or Status eq 'Failed' for retry-eligible rows — and to page/order. Global-administrator only.
+     */
+    get: operations["GetOutboxMessages"];
+  };
+  "/api/v2/SystemService/Outbox/Messages/Count": {
+    /**
+     * Count outbox messages
+     * @description Returns the count of durable-outbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'DeadLettered'). Global-administrator only.
+     */
+    get: operations["GetOutboxMessagesCount"];
+  };
+  "/api/v2/SystemService/Outbox/Messages/{id}": {
+    /**
+     * Get one outbox message
+     * @description Returns one outbox message's payload-safe detail by id — its lifecycle status, the two classification axes (kind + message type), the attempt/ceiling budget, the recorded failure, the idempotency + correlation lineage, and the timestamps. Global-administrator only.
+     */
+    get: operations["GetOutboxMessage"];
+  };
+  "/api/v2/SystemService/Outbox/Correlations/{correlationId}": {
+    /**
+     * Get an outbox correlation chain
+     * @description Returns every outbox message that shares a correlation id — one logical unit of async work end-to-end (e.g. a command and the events its handler in turn staged) — oldest-created first. Global-administrator only.
+     */
+    get: operations["GetOutboxCorrelationChain"];
+  };
+  "/api/v2/SystemService/Outbox/Messages/{id}/Replay": {
+    /**
+     * Replay a dead-lettered or failed outbox message
+     * @description Requeues a DeadLettered or Failed message back to Pending so the relay re-drives it immediately (clearing the lease and recorded error, and bypassing the remaining backoff). The attempt budget is preserved — a replay grants one more pass, not a fresh budget. Replaying a message that is already Pending/Processing or is Succeeded/Cancelled is rejected. Global-administrator only.
+     */
+    post: operations["ReplayOutboxMessage"];
+  };
+  "/api/v2/SystemService/Outbox/Messages/{id}/Expedite": {
+    /**
+     * Expedite a failed (retry-eligible) outbox message
+     * @description Pulls a Failed message's scheduled instant forward to now so the relay claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched (the lighter-touch counterpart to Replay, which also clears the recorded error). Only a Failed message can be expedited. Global-administrator only.
+     */
+    post: operations["ExpediteOutboxMessage"];
+  };
+  "/api/v2/SystemService/Outbox/Messages/{id}/Cancel": {
+    /**
+     * Cancel an outbox message
+     * @description Stops a Pending or Failed message by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. An in-flight (Processing) or already-terminal message is rejected. Global-administrator only.
+     */
+    post: operations["CancelOutboxMessage"];
+  };
+  "/api/v2/SystemService/Outbox/Messages/{id}/DeadLetter": {
+    /**
+     * Manually dead-letter an outbox message
+     * @description Manually moves a Processing or Failed message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
+     */
+    post: operations["DeadLetterOutboxMessage"];
+  };
+  "/api/v2/SystemService/Outbox/Messages/{id}/ReleaseLease": {
+    /**
+     * Release a stuck outbox lease
+     * @description Force-releases the lease on a message wedged in Processing (a crashed/hung relay) and returns it to the claimable Pending state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. The relay auto-reclaims a crashed row once its lease expires; this manual lever forces the release immediately. Only a Processing message can have its lease released. Global-administrator only.
+     */
+    post: operations["ReleaseOutboxMessageLease"];
   };
   "/api/v2/SystemService/Overview": {
     /**
@@ -877,12 +1123,126 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    ApplicationPrincipalDetailDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      displayName?: string | null;
+      /** @enum {string} */
+      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      /** @enum {string} */
+      principalStatus?: "Active" | "Suspended" | "Disabled";
+      businessApplicationId?: string | null;
+      businessApplicationName?: string | null;
+      businessApplicationNamespace?: string | null;
+      businessApplicationDisabled?: boolean;
+      systemLocked?: boolean;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      enrollmentDisabled?: boolean;
+      grantedPermissions?: string[] | null;
+    };
+    ApplicationPrincipalDetailDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ApplicationPrincipalDetailDto"];
+    };
+    ApplicationPrincipalDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      displayName?: string | null;
+      /** @enum {string} */
+      principalKind?: "Human" | "Agent" | "Application" | "Service" | "System";
+      /** @enum {string} */
+      principalStatus?: "Active" | "Suspended" | "Disabled";
+      businessApplicationId?: string | null;
+      businessApplicationName?: string | null;
+      systemLocked?: boolean;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      enrollmentDisabled?: boolean;
+      /** Format: int32 */
+      grantedPermissionsCount?: number;
+    };
+    ApplicationPrincipalDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    ApplicationPrincipalDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ApplicationPrincipalDto"][] | null;
+    };
+    ApplicationPrincipalPermissionRequestDto: {
+      permission: string;
+    };
+    ApplicationPrincipalProvisionRequestDto: {
+      businessApplicationId: string;
+    };
+    ApplicationPrincipalProvisioningResultDto: {
+      principalId?: string | null;
+      enrollmentId?: string | null;
+      tenantId?: string | null;
+      principalCreated?: boolean;
+      enrollmentCreated?: boolean;
+    };
+    ApplicationPrincipalProvisioningResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ApplicationPrincipalProvisioningResultDto"];
+    };
     BooleanEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: boolean;
     };
@@ -895,12 +1255,31 @@ export interface components {
       verified?: boolean;
       businessID?: string | null;
     };
+    BusinessDomainDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BusinessDomainDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BusinessDomainDto"];
     };
@@ -910,6 +1289,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BusinessDomainDto"][] | null;
     };
@@ -934,12 +1319,31 @@ export interface components {
       /** Format: int32 */
       itemToCompareRecordsCount?: number | null;
     };
+    CartDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CartDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CartDto"];
     };
@@ -949,6 +1353,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CartDto"][] | null;
     };
@@ -977,6 +1387,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     Envelope: {
@@ -985,6 +1401,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: string | null;
     };
@@ -994,6 +1416,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ExtendedTenantDto: {
@@ -1042,12 +1470,31 @@ export interface components {
       wallet?: components["schemas"]["WalletDto"];
       socialProfile?: components["schemas"]["SocialProfileDto"];
     };
+    ExtendedTenantDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExtendedTenantDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedTenantDto"][] | null;
     };
@@ -1111,12 +1558,31 @@ export interface components {
       socialProfile?: components["schemas"]["SocialProfileDto"];
       settings?: components["schemas"]["UserSettingsDto"];
     };
+    ExtendedUserDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExtendedUserDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedUserDto"];
     };
@@ -1126,6 +1592,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedUserDto"][] | null;
     };
@@ -1144,6 +1616,31 @@ export interface components {
       } | null;
       [key: string]: unknown;
     };
+    IOpenApiContact: {
+      name?: string | null;
+      email?: string | null;
+      url?: string | null;
+    };
+    IOpenApiDefinitionSpec: {
+      enable?: boolean;
+      name?: string | null;
+      title?: string | null;
+      version?: string | null;
+      description?: string | null;
+      termsOfService?: string | null;
+      openApiEndpoint?: components["schemas"]["IOpenApiEndpoint"];
+      openApiContact?: components["schemas"]["IOpenApiContact"];
+      license?: components["schemas"]["IOpenApiLicense"];
+    };
+    IOpenApiEndpoint: {
+      enable?: boolean;
+      name?: string | null;
+      url?: string | null;
+    };
+    IOpenApiLicense: {
+      name?: string | null;
+      url?: string | null;
+    };
     IPLookupDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1152,12 +1649,31 @@ export interface components {
       ua?: string | null;
       city?: string | null;
     };
+    IPLookupDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     IPLookupDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["IPLookupDto"];
     };
@@ -1167,33 +1683,14 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["IPLookupDto"][] | null;
-    };
-    ISwaggerContact: {
-      name?: string | null;
-      email?: string | null;
-      url?: string | null;
-    };
-    ISwaggerEndpoint: {
-      enable?: boolean;
-      name?: string | null;
-      url?: string | null;
-    };
-    ISwaggerLicense: {
-      name?: string | null;
-      url?: string | null;
-    };
-    ISwaggerSpec: {
-      enable?: boolean;
-      name?: string | null;
-      title?: string | null;
-      version?: string | null;
-      description?: string | null;
-      termsOfService?: string | null;
-      swaggerEndpoint?: components["schemas"]["ISwaggerEndpoint"];
-      openApiContact?: components["schemas"]["ISwaggerContact"];
-      license?: components["schemas"]["ISwaggerLicense"];
     };
     IValidationFailure: {
       message?: string | null;
@@ -1205,8 +1702,175 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["IValidationFailure"][] | null;
+    };
+    InboxAdminReasonDto: {
+      reason: string;
+    };
+    InboxHealthDto: {
+      enabled?: boolean;
+      /** Format: int32 */
+      receivedCount?: number;
+      /** Format: int32 */
+      acceptedCount?: number;
+      /** Format: int32 */
+      processingCount?: number;
+      /** Format: int32 */
+      retryScheduledCount?: number;
+      /** Format: int32 */
+      rejectedCount?: number;
+      /** Format: int32 */
+      quarantinedCount?: number;
+      /** Format: int32 */
+      deadLetterCount?: number;
+      /** Format: int32 */
+      cancelledCount?: number;
+      /** Format: double */
+      oldestAcceptedAgeSeconds?: number | null;
+      /** Format: date-time */
+      lastSuccessfulProcessingUtc?: string | null;
+      successfulProcessingTracked?: boolean;
+    };
+    InboxHealthDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InboxHealthDto"];
+    };
+    InboxMessageDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      sourceSystem?: string | null;
+      sourceRegistrationId?: string | null;
+      externalMessageId?: string | null;
+      deduplicationKey?: string | null;
+      deduplicationSignature?: string | null;
+      payloadDigest?: string | null;
+      /** Format: int32 */
+      deliveryCount?: number;
+      /** Format: date-time */
+      lastDuplicateReceivedAtUtc?: string | null;
+      messageType?: string | null;
+      version?: string | null;
+      contentType?: string | null;
+      /** @enum {string} */
+      status?: "Received" | "AuthenticityPending" | "Accepted" | "Processing" | "Succeeded" | "RetryScheduled" | "Rejected" | "Quarantined" | "DeadLettered" | "Cancelled";
+      /** Format: int32 */
+      attempts?: number;
+      /** Format: int32 */
+      maxAttempts?: number;
+      /** @enum {string} */
+      verificationStatus?: "Unverified" | "Verified" | "Failed" | "Untrusted" | "NotRequired";
+      verificationProfile?: string | null;
+      verificationAlgorithm?: string | null;
+      /** Format: date-time */
+      verifiedAtUtc?: string | null;
+      /** Format: int32 */
+      generation?: number;
+      /** Format: int32 */
+      replayCount?: number;
+      originalInboxMessageId?: string | null;
+      failureCode?: string | null;
+      failureReason?: string | null;
+      correlationId?: string | null;
+      causationId?: string | null;
+      lockedBy?: string | null;
+      /** Format: date-time */
+      lockedUntilUtc?: string | null;
+      /** Format: date-time */
+      availableAtUtc?: string;
+      /** Format: date-time */
+      receivedAtUtc?: string;
+      /** Format: date-time */
+      createdAtUtc?: string;
+      /** Format: date-time */
+      lastAttemptAtUtc?: string | null;
+      /** Format: date-time */
+      processedAtUtc?: string | null;
+      /** Format: date-time */
+      failedAtUtc?: string | null;
+    };
+    InboxMessageDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    InboxMessageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InboxMessageDto"];
+    };
+    InboxMessageDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InboxMessageDto"][] | null;
+    };
+    InboxReplayResultDto: {
+      newInboxMessageId?: string | null;
+      rootInboxMessageId?: string | null;
+      /** Format: int32 */
+      generation?: number;
+    };
+    InboxReplayResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["InboxReplayResultDto"];
     };
     InfoRequest: {
       newEmail?: string | null;
@@ -1223,6 +1887,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -1235,48 +1905,6 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
-    };
-    Module: {
-      enable?: boolean;
-      active?: boolean;
-      /** Format: int32 */
-      order?: number;
-      id?: string | null;
-      name?: string | null;
-      fullName?: string | null;
-      description?: string | null;
-      /** @enum {string} */
-      type?: "Module" | "Integration" | "StudioModule" | "StudioIntegration";
-      configuration?: string | null;
-      author?: string | null;
-      authorUrl?: string | null;
-      license?: string | null;
-      requireLicenseAcceptance?: boolean | null;
-      repository?: string | null;
-      path?: string | null;
-      icon?: string | null;
-      image?: string | null;
-      nuSpecPath?: string | null;
-      manifest?: string | null;
-      documentation?: string | null;
-      website?: string | null;
-      logo?: string | null;
-      swaggerSpec?: components["schemas"]["ISwaggerSpec"];
-      swaggerSpecs?: components["schemas"]["ISwaggerSpec"][] | null;
-      url?: string | null;
-      assemblyPaths?: string[] | null;
-      requiredPermissions?: (readonly string[]) | null;
-      markedForDeletion?: boolean;
-      version?: string | null;
-    };
-    ModuleListEnvelope: {
-      isSuccess?: boolean;
-      errorMessage?: string | null;
-      correlationId?: string | null;
-      /** Format: date-time */
-      timestamp?: string;
-      activityId?: string | null;
-      result?: components["schemas"]["Module"][] | null;
     };
     ObjectEmailDispatchRequest: {
       title: string;
@@ -1297,14 +1925,6 @@ export interface components {
       templateUrl?: string | null;
       emailTemplateId?: string | null;
       payload?: unknown;
-    };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
-      op?: string | null;
-      from?: string | null;
-      value?: unknown;
     };
     OptionCreateDto: {
       /** Format: uuid */
@@ -1333,12 +1953,31 @@ export interface components {
       /** Format: int32 */
       expiration?: number;
     };
+    OptionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     OptionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OptionDto"];
     };
@@ -1348,6 +1987,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OptionDto"][] | null;
     };
@@ -1360,6 +2005,121 @@ export interface components {
       transient?: boolean;
       /** Format: int32 */
       expiration?: number;
+    };
+    OutboxAdminReasonDto: {
+      reason: string;
+    };
+    OutboxHealthDto: {
+      enabled?: boolean;
+      /** Format: int32 */
+      pendingCount?: number;
+      /** Format: int32 */
+      processingCount?: number;
+      /** Format: int32 */
+      failedCount?: number;
+      /** Format: int32 */
+      deadLetterCount?: number;
+      /** Format: double */
+      oldestPendingAgeSeconds?: number | null;
+      /** Format: date-time */
+      lastSuccessfulDispatchUtc?: string | null;
+      successfulDispatchTracked?: boolean;
+    };
+    OutboxHealthDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["OutboxHealthDto"];
+    };
+    OutboxMessageDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      /** @enum {string} */
+      kind?: "Event" | "Command";
+      messageType?: string | null;
+      /** @enum {string} */
+      status?: "Pending" | "Processing" | "Succeeded" | "Failed" | "DeadLettered" | "Cancelled";
+      /** Format: int32 */
+      attempts?: number;
+      /** Format: int32 */
+      maxAttempts?: number;
+      failureCode?: string | null;
+      failureReason?: string | null;
+      idempotencyKey?: string | null;
+      correlationId?: string | null;
+      lockedBy?: string | null;
+      /** Format: date-time */
+      lockedUntilUtc?: string | null;
+      /** Format: date-time */
+      availableAtUtc?: string;
+      /** Format: date-time */
+      createdAtUtc?: string;
+      /** Format: date-time */
+      lastAttemptAtUtc?: string | null;
+      /** Format: date-time */
+      processedAtUtc?: string | null;
+      /** Format: date-time */
+      failedAtUtc?: string | null;
+    };
+    OutboxMessageDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    OutboxMessageDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["OutboxMessageDto"];
+    };
+    OutboxMessageDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["OutboxMessageDto"][] | null;
+    };
+    PatchOperation: {
+      op?: string | null;
+      path?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1418,6 +2178,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: string[] | null;
     };
@@ -1431,6 +2197,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["StudioModule"][] | null;
     };
@@ -1455,6 +2227,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SuiteLicenseAssignmentDto"][] | null;
     };
@@ -1478,6 +2256,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SuiteLicenseDto"];
     };
@@ -1487,8 +2271,64 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SuiteLicenseDto"][] | null;
+    };
+    SuiteModule: {
+      enable?: boolean;
+      markedForDeletion?: boolean;
+      active?: boolean;
+      /** Format: int32 */
+      order?: number;
+      id?: string | null;
+      name?: string | null;
+      fullName?: string | null;
+      description?: string | null;
+      /** @enum {string} */
+      type?: "Module" | "Integration" | "StudioModule" | "StudioIntegration" | "WasmModule" | "WasmIntegration";
+      /** @enum {string} */
+      category?: "Other" | "FinanceAndAccounting" | "SalesAndCommerce" | "MarketingAndEngagement" | "CustomerRelations" | "OperationsAndSupplyChain" | "ProjectsAndProductivity" | "PeopleAndWorkforce" | "LearningAndEducation" | "ContentAndWeb" | "DataAndAnalytics" | "ArtificialIntelligence" | "SecurityAndIdentity" | "TrustAndCompliance" | "Communication" | "DeveloperAndPlatform" | "IndustrySolutions";
+      configuration?: string | null;
+      author?: string | null;
+      authorUrl?: string | null;
+      license?: string | null;
+      requireLicenseAcceptance?: boolean | null;
+      repository?: string | null;
+      icon?: string | null;
+      image?: string | null;
+      nuSpecPath?: string | null;
+      manifest?: string | null;
+      logo?: string | null;
+      website?: string | null;
+      documentation?: string | null;
+      url?: string | null;
+      path?: string | null;
+      openApiDefinitionSpec?: components["schemas"]["IOpenApiDefinitionSpec"];
+      swaggerSpecs?: components["schemas"]["IOpenApiDefinitionSpec"][] | null;
+      assemblyPaths?: string[] | null;
+      requiredPermissions?: (readonly string[]) | null;
+      version?: string | null;
+    };
+    SuiteModuleListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["SuiteModule"][] | null;
     };
     SystemOverviewDto: {
       /** Format: date-span */
@@ -1523,6 +2363,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SystemOverviewDto"];
     };
@@ -1602,12 +2448,31 @@ export interface components {
       businessLegalName?: string | null;
       twitterUsername?: string | null;
     };
+    TenantDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TenantDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TenantDto"];
     };
@@ -1617,6 +2482,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TenantDto"][] | null;
     };
@@ -1758,12 +2629,31 @@ export interface components {
       /** @enum {string|null} */
       siteTheme?: "System" | "Light" | "Dark" | null;
     };
+    UserDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     UserDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["UserDto"];
     };
@@ -1773,6 +2663,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["UserDto"][] | null;
     };
@@ -1872,12 +2768,31 @@ export interface components {
       businessDomainId?: string | null;
       businessPortalApplicationId?: string | null;
     };
+    WebPortalDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     WebPortalDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPortalDto"];
     };
@@ -1887,6 +2802,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["WebPortalDto"][] | null;
     };
@@ -1955,6 +2876,497 @@ export interface operations {
     };
   };
   /**
+   * List application principals across all tenants
+   * @description Lists every non-human application principal enrollment across ALL tenants (payload-safe fields only), including the platform-managed (system-locked) connectors. Use OData to scope — e.g. $filter=SystemLocked eq true for the platform connectors or TenantId eq '{guid}' for one tenant — and to page/order. Global-administrator only.
+   */
+  GetGlobalApplicationPrincipals: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ApplicationPrincipalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ApplicationPrincipalDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApplicationPrincipalDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["ApplicationPrincipalDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count application principals across all tenants
+   * @description Returns the count of application principal enrollments across ALL tenants under the same OData shaping as the list read (e.g. $filter=SystemLocked eq true). Global-administrator only.
+   */
+  GetGlobalApplicationPrincipalsCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ApplicationPrincipalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ApplicationPrincipalDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get one application principal (any tenant)
+   * @description Returns one application principal's detail by id: owning application, an enrollment, the system-locked flag, lifecycle status, and that enrollment's explicit least-privilege grants. Pass tenantId to select the enrollment for a multi-tenant principal; when omitted the principal's first enrollment is used. Global-administrator only.
+   */
+  GetGlobalApplicationPrincipal: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApplicationPrincipalDetailDtoEnvelope"];
+          "application/xml": components["schemas"]["ApplicationPrincipalDetailDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Provision an application principal (any tenant, incl. system-locked)
+   * @description Idempotently provisions the application principal (and its own least-privilege enrollment) for a governed business application. tenantId selects the target tenant (defaults to the platform/root tenant). Unlike the per-tenant lane, a system-locked platform application is provisionable here. Global-administrator only.
+   */
+  ProvisionGlobalApplicationPrincipal: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ApplicationPrincipalProvisionRequestDto"];
+        "application/xml": components["schemas"]["ApplicationPrincipalProvisionRequestDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApplicationPrincipalProvisioningResultDtoEnvelope"];
+          "application/xml": components["schemas"]["ApplicationPrincipalProvisioningResultDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Provision the platform payments-connector identity
+   * @description Idempotently stands up the platform payments-connector identity — its well-known business application, its application principal, and its own least-privilege enrollment (payments_create/payments_update/journals_post). tenantId selects the target tenant (defaults to the platform/root tenant). The provisioned connector then appears in this global list and (for its tenant) the per-tenant list. Global-administrator only.
+   */
+  ProvisionPaymentsConnector: {
+    parameters: {
+      query?: {
+        tenantId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ApplicationPrincipalProvisioningResultDtoEnvelope"];
+          "application/xml": components["schemas"]["ApplicationPrincipalProvisioningResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Grant a permission to an application principal (any tenant)
+   * @description Grants a single least-privilege permission to the application principal's enrollment in the tenantId tenant (grants are per-tenant, so tenantId is required). Owner/admin/wildcard/*_manage permissions are rejected even for a global admin (least-privilege by construction). Global-administrator only.
+   */
+  GrantGlobalApplicationPrincipalPermission: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ApplicationPrincipalPermissionRequestDto"];
+        "application/xml": components["schemas"]["ApplicationPrincipalPermissionRequestDto"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Revoke a permission from an application principal (any tenant)
+   * @description Revokes a direct permission grant from the application principal's enrollment in the tenantId tenant (required). Idempotent. Global-administrator only.
+   */
+  RevokeGlobalApplicationPrincipalPermission: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+        permission: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Enable an application principal (global)
+   * @description Reinstates the application principal to the Active lifecycle state (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
+   */
+  EnableGlobalApplicationPrincipal: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Suspend an application principal (global)
+   * @description Temporarily suspends the application principal; its identity is retained but it cannot act until reinstated (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
+   */
+  SuspendGlobalApplicationPrincipal: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Disable an application principal (global)
+   * @description Disables the application principal; dependent unattended execution fails closed (applies to system-locked principals here). tenantId scopes the action to a tenant the principal is enrolled in (required). Global-administrator only.
+   */
+  DisableGlobalApplicationPrincipal: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        principalId: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve all business domains in the system
    * @description Retrieve all registered business domains across every tenant (global administrators only).
    */
@@ -1965,6 +3377,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessDomainDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessDomainDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2002,6 +3420,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BusinessDomainDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BusinessDomainDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2168,6 +3592,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CartDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CartDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2203,6 +3633,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CartDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CartDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2326,6 +3762,12 @@ export interface operations {
         contactId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2413,6 +3855,12 @@ export interface operations {
       };
       path: {
         contactId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2587,8 +4035,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2700,6 +4148,657 @@ export interface operations {
     };
   };
   /**
+   * Get durable-inbox processor health
+   * @description Returns a single snapshot of the durable-inbox processor: whether it is enabled, the per-status counts (received/accepted/processing/retry-scheduled/rejected/quarantined/dead-lettered/cancelled), the age of the oldest accepted message, and the last successful processing instant. Global-administrator only.
+   */
+  GetInboxHealth: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InboxHealthDtoEnvelope"];
+          "application/xml": components["schemas"]["InboxHealthDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List inbox messages
+   * @description Lists durable-inbox messages (payload-safe fields only). Use OData to scope by any projected field — e.g. $filter=Status eq 'Quarantined' for the quarantine review, Status eq 'DeadLettered' for terminal failures, VerificationStatus eq 'Failed' for forged/untrusted callbacks, SourceSystem eq 'stripe', or a ReceivedAtUtc range — and to page/order. Global-administrator only.
+   */
+  GetInboxMessages: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InboxMessageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InboxMessageDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InboxMessageDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InboxMessageDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count inbox messages
+   * @description Returns the count of durable-inbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'Quarantined'). Global-administrator only.
+   */
+  GetInboxMessagesCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InboxMessageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InboxMessageDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get one inbox message
+   * @description Returns one inbox message's payload-safe detail by id — both lifecycle axes (processing status + independent verification status), the dedup lineage, attempt/generation counters, the recorded failure, and the timestamps. Global-administrator only.
+   */
+  GetInboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InboxMessageDtoEnvelope"];
+          "application/xml": components["schemas"]["InboxMessageDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an inbox correlation chain
+   * @description Returns every inbox message that shares a correlation id — one logical inbound interaction end-to-end, including its replay generations — oldest-received first. Global-administrator only.
+   */
+  GetInboxCorrelationChain: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        correlationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InboxMessageDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InboxMessageDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List duplicate-bearing inbox messages
+   * @description Lists inbox messages that have observed a re-delivery (DeliveryCount > 1) — durable evidence that a source is re-sending, surfaced with DeliveryCount / LastDuplicateReceivedAtUtc. Further OData filtering/paging applies. Global-administrator only.
+   */
+  GetDuplicateInboxMessages: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InboxMessageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InboxMessageDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InboxMessageDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["InboxMessageDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count duplicate-bearing inbox messages
+   * @description Returns the count of duplicate-bearing inbox messages under the same OData shaping as the duplicates list. Global-administrator only.
+   */
+  GetDuplicateInboxMessagesCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InboxMessageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InboxMessageDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Expedite a retry-scheduled inbox message
+   * @description Pulls a RetryScheduled message's scheduled instant forward to now so the processor claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched. Only a RetryScheduled message can be expedited. Global-administrator only.
+   */
+  ExpediteInboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel a scheduled inbox retry
+   * @description Stops a RetryScheduled message from retrying by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. Only a RetryScheduled message can be cancelled. Global-administrator only.
+   */
+  CancelInboxMessageRetry: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InboxAdminReasonDto"];
+        "application/xml": components["schemas"]["InboxAdminReasonDto"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Release a stuck inbox lease
+   * @description Force-releases the lease on a message wedged in Processing (a crashed/hung processor) and returns it to the claimable Accepted state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. Only a Processing message can have its lease released. Global-administrator only.
+   */
+  ReleaseInboxMessageLease: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Manually dead-letter an inbox message
+   * @description Manually moves a non-terminal message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
+   */
+  DeadLetterInboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InboxAdminReasonDto"];
+        "application/xml": components["schemas"]["InboxAdminReasonDto"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Manually quarantine an inbox message
+   * @description Manually holds a non-terminal message for review in the terminal Quarantined state (e.g. an operator judges it suspicious). The reason is audit-critical. Global-administrator only.
+   */
+  QuarantineInboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InboxAdminReasonDto"];
+        "application/xml": components["schemas"]["InboxAdminReasonDto"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Replay a terminal inbox message as a new generation
+   * @description Replays a terminal message as a NEW processing generation over its immutable received evidence — the inbox's recovery lever (distinct from the outbox's same-row requeue). A selected replay-generation row is resolved back to its lineage root before replaying, so numbering stays global and collision-free; the new row is claimable at once with a fresh retry budget, and the root's evidence and budget are never mutated. Legal only from a terminal state whose authenticity passed. Returns the new generation's identity. The reason is audit-critical. Global-administrator only.
+   */
+  ReplayInboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InboxAdminReasonDto"];
+        "application/xml": components["schemas"]["InboxAdminReasonDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["InboxReplayResultDtoEnvelope"];
+          "application/xml": components["schemas"]["InboxReplayResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of system IP lookups
    * @description Retrieve a list of all IP lookups in the system
    */
@@ -2710,6 +4809,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["IPLookupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["IPLookupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2747,6 +4852,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["IPLookupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["IPLookupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3190,7 +5301,7 @@ export interface operations {
    * Retrieve license attributes
    * @description Retrieves all additional attributes for a given license.
    */
-  GetLicenseAttributesAsync: {
+  GetAttributesForLicenseAsync: {
     parameters: {
       query: {
         tenantId: string;
@@ -3302,7 +5413,7 @@ export interface operations {
    * Retrieve license features
    * @description Retrieves all features for a given license.
    */
-  GetLicenseFeaturesAsync: {
+  GetFeaturesForLicenseAsync: {
     parameters: {
       query: {
         tenantId: string;
@@ -3957,8 +6068,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["ModuleListEnvelope"];
-          "application/xml": components["schemas"]["ModuleListEnvelope"];
+          "application/json": components["schemas"]["SuiteModuleListEnvelope"];
+          "application/xml": components["schemas"]["SuiteModuleListEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -3989,6 +6100,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4072,6 +6189,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4242,8 +6365,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4359,6 +6482,505 @@ export interface operations {
     };
   };
   /**
+   * Get durable-outbox relay health
+   * @description Returns a single snapshot of the durable-outbox relay: whether it is enabled, the per-status counts (pending/processing/failed/dead-lettered), the age of the oldest pending message, and the last successful dispatch instant. Global-administrator only.
+   */
+  GetOutboxHealth: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OutboxHealthDtoEnvelope"];
+          "application/xml": components["schemas"]["OutboxHealthDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * List outbox messages
+   * @description Lists durable-outbox messages (payload-safe fields only). Use OData to scope to a state — e.g. $filter=Status eq 'DeadLettered' for the dead-letter set or Status eq 'Failed' for retry-eligible rows — and to page/order. Global-administrator only.
+   */
+  GetOutboxMessages: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OutboxMessageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OutboxMessageDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OutboxMessageDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["OutboxMessageDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count outbox messages
+   * @description Returns the count of durable-outbox messages under the same OData shaping as the list read (e.g. $filter=Status eq 'DeadLettered'). Global-administrator only.
+   */
+  GetOutboxMessagesCount: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OutboxMessageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OutboxMessageDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get one outbox message
+   * @description Returns one outbox message's payload-safe detail by id — its lifecycle status, the two classification axes (kind + message type), the attempt/ceiling budget, the recorded failure, the idempotency + correlation lineage, and the timestamps. Global-administrator only.
+   */
+  GetOutboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OutboxMessageDtoEnvelope"];
+          "application/xml": components["schemas"]["OutboxMessageDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get an outbox correlation chain
+   * @description Returns every outbox message that shares a correlation id — one logical unit of async work end-to-end (e.g. a command and the events its handler in turn staged) — oldest-created first. Global-administrator only.
+   */
+  GetOutboxCorrelationChain: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        correlationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["OutboxMessageDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["OutboxMessageDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Replay a dead-lettered or failed outbox message
+   * @description Requeues a DeadLettered or Failed message back to Pending so the relay re-drives it immediately (clearing the lease and recorded error, and bypassing the remaining backoff). The attempt budget is preserved — a replay grants one more pass, not a fresh budget. Replaying a message that is already Pending/Processing or is Succeeded/Cancelled is rejected. Global-administrator only.
+   */
+  ReplayOutboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Expedite a failed (retry-eligible) outbox message
+   * @description Pulls a Failed message's scheduled instant forward to now so the relay claims it on the next poll, bypassing the remaining backoff. Same row, retry budget untouched (the lighter-touch counterpart to Replay, which also clears the recorded error). Only a Failed message can be expedited. Global-administrator only.
+   */
+  ExpediteOutboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Cancel an outbox message
+   * @description Stops a Pending or Failed message by operator decision, moving it to the terminal Cancelled state (deliberately distinct from DeadLettered so the dead-letter gauge stays honest). The reason is audit-critical. An in-flight (Processing) or already-terminal message is rejected. Global-administrator only.
+   */
+  CancelOutboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OutboxAdminReasonDto"];
+        "application/xml": components["schemas"]["OutboxAdminReasonDto"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Manually dead-letter an outbox message
+   * @description Manually moves a Processing or Failed message to the terminal DeadLettered state. The reason is audit-critical. Global-administrator only.
+   */
+  DeadLetterOutboxMessage: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OutboxAdminReasonDto"];
+        "application/xml": components["schemas"]["OutboxAdminReasonDto"];
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Release a stuck outbox lease
+   * @description Force-releases the lease on a message wedged in Processing (a crashed/hung relay) and returns it to the claimable Pending state, due now, so the next poll re-drives it. The in-flight attempt is NOT counted — a crash is not a business failure. The relay auto-reclaims a crashed row once its lease expires; this manual lever forces the release immediately. Only a Processing message can have its lease released. Global-administrator only.
+   */
+  ReleaseOutboxMessageLease: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description No Content */
+      204: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get system overview information
    * @description Returns runtime, memory, and entity count information for the system
    */
@@ -4406,6 +7028,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPortalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPortalDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4486,6 +7114,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["WebPortalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["WebPortalDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4656,8 +7290,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4699,6 +7333,12 @@ export interface operations {
       };
       path: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4788,6 +7428,12 @@ export interface operations {
       };
       path: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4962,8 +7608,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5001,6 +7647,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TenantDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5083,6 +7735,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TenantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TenantDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5120,6 +7778,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedTenantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedTenantDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5155,6 +7819,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedTenantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedTenantDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5325,8 +7995,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5428,6 +8098,12 @@ export interface operations {
         userId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5515,6 +8191,12 @@ export interface operations {
       };
       path: {
         userId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5689,8 +8371,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5728,6 +8410,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UserDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["UserDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5810,6 +8498,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UserDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["UserDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5847,6 +8541,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedUserDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedUserDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5882,6 +8582,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedUserDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedUserDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6052,8 +8758,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

@@ -13,17 +13,34 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type CreateProviderWebhookRegistrationRequest = {
+    providerCode?: string | null;
+    externalAccountId?: string | null;
+    webhookSigningSecret?: string | null;
+    credentialMode?: 'TenantManaged' | 'PlatformManaged' | 'ExternalReference';
+};
+
 export type EmptyEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -31,12 +48,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -73,6 +100,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -80,6 +112,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -90,10 +127,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -223,11 +259,39 @@ export type PaymentDto = {
     receiverWalletAccountId?: string | null;
 };
 
+export type PaymentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentDto> | null;
 };
@@ -235,6 +299,11 @@ export type PaymentDtoListEnvelopeReadable = {
 export type PaymentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentDto> | null;
 };
 
@@ -254,11 +323,39 @@ export type PaymentMethodDto = {
     enrollmentId?: string | null;
 };
 
+export type PaymentMethodDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentMethodDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentMethodDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PaymentMethodDto;
 };
@@ -266,6 +363,11 @@ export type PaymentMethodDtoEnvelopeReadable = {
 export type PaymentMethodDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PaymentMethodDto;
 };
 
@@ -274,6 +376,11 @@ export type PaymentMethodDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentMethodDto> | null;
 };
@@ -281,6 +388,11 @@ export type PaymentMethodDtoIReadOnlyListEnvelopeReadable = {
 export type PaymentMethodDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentMethodDto> | null;
 };
 
@@ -307,11 +419,39 @@ export type PaymentModeDto = {
     enrollmentId?: string | null;
 };
 
+export type PaymentModeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentModeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentModeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PaymentModeDto;
 };
@@ -319,6 +459,11 @@ export type PaymentModeDtoEnvelopeReadable = {
 export type PaymentModeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PaymentModeDto;
 };
 
@@ -327,6 +472,11 @@ export type PaymentModeDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentModeDto> | null;
 };
@@ -334,6 +484,11 @@ export type PaymentModeDtoIReadOnlyListEnvelopeReadable = {
 export type PaymentModeDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentModeDto> | null;
 };
 
@@ -341,6 +496,69 @@ export type PaymentModeUpdateDto = {
     name?: string | null;
     description?: string | null;
     paymentMeansCode?: string | null;
+};
+
+export type PaymentProviderRegistrationDto = {
+    id?: string | null;
+    createdAtUtc?: string;
+    lastModifiedUtc?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    providerCode?: string | null;
+    credentialSetReference?: string | null;
+    hasCredential?: boolean;
+    credentialMode?: 'TenantManaged' | 'PlatformManaged' | 'ExternalReference';
+    externalAccountId?: string | null;
+    enabledCapabilities?: 'None' | 'Collection' | 'Authorization' | 'Capture' | 'Refund' | 'Void' | 'SplitPayment' | 'Transfer' | 'Payout' | 'RecipientOnboarding' | 'BalanceInquiry';
+    status?: 'Draft' | 'Active' | 'Disabled' | 'Suspended';
+};
+
+export type PaymentProviderRegistrationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentProviderRegistrationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type PaymentProviderRegistrationDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<PaymentProviderRegistrationDto> | null;
+};
+
+export type PaymentProviderRegistrationDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<PaymentProviderRegistrationDto> | null;
 };
 
 export type PaymentTermCreateDto = {
@@ -373,11 +591,39 @@ export type PaymentTermDto = {
     enrollmentId?: string | null;
 };
 
+export type PaymentTermDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentTermDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentTermDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PaymentTermDto;
 };
@@ -385,6 +631,11 @@ export type PaymentTermDtoEnvelopeReadable = {
 export type PaymentTermDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PaymentTermDto;
 };
 
@@ -393,6 +644,11 @@ export type PaymentTermDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentTermDto> | null;
 };
@@ -400,6 +656,11 @@ export type PaymentTermDtoIReadOnlyListEnvelopeReadable = {
 export type PaymentTermDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentTermDto> | null;
 };
 
@@ -474,6 +735,39 @@ export type PaymentUpdateDto = {
     receiverWalletAccountId?: string | null;
 };
 
+export type ProviderWebhookRegistrationCreatedDto = {
+    id?: string | null;
+    providerCode?: string | null;
+    status?: 'Draft' | 'Active' | 'Disabled' | 'Suspended';
+    webhookRegistrationKey?: string | null;
+    webhookUrl?: string | null;
+};
+
+export type ProviderWebhookRegistrationCreatedDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ProviderWebhookRegistrationCreatedDto;
+};
+
+export type ProviderWebhookRegistrationCreatedDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ProviderWebhookRegistrationCreatedDto;
+};
+
 export type RefreshRequest = {
     refreshToken: string | null;
 };
@@ -531,6 +825,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -838,7 +1148,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetPaymentMethodsAsyncData = {
-    body?: never;
+    body?: PaymentMethodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -908,7 +1218,7 @@ export type CreatePaymentMethodAsyncResponses = {
 export type CreatePaymentMethodAsyncResponse = CreatePaymentMethodAsyncResponses[keyof CreatePaymentMethodAsyncResponses];
 
 export type GetPaymentMethodsCountAsyncData = {
-    body?: never;
+    body?: PaymentMethodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1017,7 +1327,7 @@ export type GetPaymentMethodDetailsAsyncResponses = {
 export type GetPaymentMethodDetailsAsyncResponse = GetPaymentMethodDetailsAsyncResponses[keyof GetPaymentMethodDetailsAsyncResponses];
 
 export type PatchPaymentMethodAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1091,7 +1401,7 @@ export type UpdatePaymentMethodAsyncResponses = {
 export type UpdatePaymentMethodAsyncResponse = UpdatePaymentMethodAsyncResponses[keyof UpdatePaymentMethodAsyncResponses];
 
 export type GetPaymentModesAsyncData = {
-    body?: never;
+    body?: PaymentModeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1161,7 +1471,7 @@ export type CreatePaymentModeAsyncResponses = {
 export type CreatePaymentModeAsyncResponse = CreatePaymentModeAsyncResponses[keyof CreatePaymentModeAsyncResponses];
 
 export type GetPaymentModesCountAsyncData = {
-    body?: never;
+    body?: PaymentModeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1270,7 +1580,7 @@ export type GetPaymentModeDetailsAsyncResponses = {
 export type GetPaymentModeDetailsAsyncResponse = GetPaymentModeDetailsAsyncResponses[keyof GetPaymentModeDetailsAsyncResponses];
 
 export type PatchPaymentModeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1342,6 +1652,140 @@ export type UpdatePaymentModeAsyncResponses = {
 };
 
 export type UpdatePaymentModeAsyncResponse = UpdatePaymentModeAsyncResponses[keyof UpdatePaymentModeAsyncResponses];
+
+export type GetAsyncData = {
+    body?: PaymentProviderRegistrationDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentProviderRegistrations';
+};
+
+export type GetAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetAsyncError = GetAsyncErrors[keyof GetAsyncErrors];
+
+export type GetAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PaymentProviderRegistrationDtoListEnvelopeReadable;
+};
+
+export type GetAsyncResponse = GetAsyncResponses[keyof GetAsyncResponses];
+
+export type CreateAsyncData = {
+    body?: CreateProviderWebhookRegistrationRequest;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentProviderRegistrations';
+};
+
+export type CreateAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateAsyncError = CreateAsyncErrors[keyof CreateAsyncErrors];
+
+export type CreateAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProviderWebhookRegistrationCreatedDtoEnvelopeReadable;
+};
+
+export type CreateAsyncResponse = CreateAsyncResponses[keyof CreateAsyncResponses];
+
+export type GetCountAsyncData = {
+    body?: PaymentProviderRegistrationDtoCollectionQueryParametersWritable;
+    path?: never;
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentProviderRegistrations/Count';
+};
+
+export type GetCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCountAsyncError = GetCountAsyncErrors[keyof GetCountAsyncErrors];
+
+export type GetCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetCountAsyncResponse = GetCountAsyncResponses[keyof GetCountAsyncResponses];
+
+export type RotateKeyAsyncData = {
+    body?: never;
+    path: {
+        registrationId: string;
+    };
+    query: {
+        tenantId: string;
+    };
+    url: '/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/RotateKey';
+};
+
+export type RotateKeyAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type RotateKeyAsyncError = RotateKeyAsyncErrors[keyof RotateKeyAsyncErrors];
+
+export type RotateKeyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ProviderWebhookRegistrationCreatedDtoEnvelopeReadable;
+};
+
+export type RotateKeyAsyncResponse = RotateKeyAsyncResponses[keyof RotateKeyAsyncResponses];
 
 export type GetPaymentAsyncData = {
     body?: never;
@@ -1447,7 +1891,7 @@ export type GetPaymentAsyncV2Responses = {
 export type GetPaymentAsyncV2Response = GetPaymentAsyncV2Responses[keyof GetPaymentAsyncV2Responses];
 
 export type PatchPaymentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         paymentId: string;
     };
@@ -1517,7 +1961,7 @@ export type UpdatePaymentAsyncResponses = {
 export type UpdatePaymentAsyncResponse = UpdatePaymentAsyncResponses[keyof UpdatePaymentAsyncResponses];
 
 export type GetPaymentsAsyncData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1587,7 +2031,7 @@ export type CreatePaymentAsyncResponses = {
 export type CreatePaymentAsyncResponse = CreatePaymentAsyncResponses[keyof CreatePaymentAsyncResponses];
 
 export type GetPaymentTermsAsyncData = {
-    body?: never;
+    body?: PaymentTermDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1657,7 +2101,7 @@ export type CreatePaymentTermAsyncResponses = {
 export type CreatePaymentTermAsyncResponse = CreatePaymentTermAsyncResponses[keyof CreatePaymentTermAsyncResponses];
 
 export type GetPaymentTermsCountAsyncData = {
-    body?: never;
+    body?: PaymentTermDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1766,7 +2210,7 @@ export type GetPaymentTermDetailsAsyncResponses = {
 export type GetPaymentTermDetailsAsyncResponse = GetPaymentTermDetailsAsyncResponses[keyof GetPaymentTermDetailsAsyncResponses];
 
 export type PatchPaymentTermAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

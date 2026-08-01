@@ -46,20 +46,6 @@ export interface paths {
      */
     patch: operations["PatchAccountGroupAsync"];
   };
-  "/api/v2/AccountingService/AccountingEntries/Debits/Sum": {
-    /**
-     * Sum tenant accounting-entry debits
-     * @description Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.
-     */
-    get: operations["GetDebitsSumAsync"];
-  };
-  "/api/v2/AccountingService/AccountingEntries/Credits/Sum": {
-    /**
-     * Sum tenant accounting-entry credits
-     * @description Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.
-     */
-    get: operations["GetCreditsSumAsync"];
-  };
   "/api/v2/AccountingService/AccountingPeriods": {
     /**
      * Get all accounting periods for a tenant
@@ -100,6 +86,34 @@ export interface paths {
      * @description Partially updates an accounting period.
      */
     patch: operations["PatchAccountingPeriodAsync"];
+  };
+  "/api/v2/AccountingService/Summary/Incomes/Sum": {
+    /**
+     * Sum tenant incomes
+     * @description Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetIncomesSumAsync"];
+  };
+  "/api/v2/AccountingService/Summary/Expenses/Sum": {
+    /**
+     * Sum tenant expenses
+     * @description Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetExpensesSumAsync"];
+  };
+  "/api/v2/AccountingService/Summary/Debits/Sum": {
+    /**
+     * Sum tenant accounting-entry debits
+     * @description Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetDebitsSumAsync"];
+  };
+  "/api/v2/AccountingService/Summary/Credits/Sum": {
+    /**
+     * Sum tenant accounting-entry credits
+     * @description Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.
+     */
+    get: operations["GetCreditsSumAsync"];
   };
   "/api/v2/AccountingService/Accounts": {
     /**
@@ -991,6 +1005,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -1530,6 +1559,20 @@ export interface paths {
      */
     patch: operations["PatchFiscalPeriodAsync"];
   };
+  "/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Open": {
+    /**
+     * Open a fiscal period
+     * @description Opens a closed fiscal period so journal entries can post into it. Rejects reopening a locked or an already-open period.
+     */
+    post: operations["OpenFiscalPeriod"];
+  };
+  "/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Close": {
+    /**
+     * Close a fiscal period
+     * @description Closes a fiscal period so no further journal entries can post into it. Rejects closing a locked (hard-sealed) period.
+     */
+    post: operations["CloseFiscalPeriod"];
+  };
   "/api/v2/AccountingService/Fiscals/Authorities/{authorityId}/FiscalRegimes": {
     /**
      * Get fiscal regimes for an authority
@@ -1781,20 +1824,6 @@ export interface paths {
      */
     patch: operations["PatchInvoiceEnumerationRangeAsync"];
   };
-  "/api/v2/AccountingService/JournalEntries/Incomes/Sum": {
-    /**
-     * Sum tenant incomes
-     * @description Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.
-     */
-    get: operations["GetIncomesSumAsync"];
-  };
-  "/api/v2/AccountingService/JournalEntries/Expenses/Sum": {
-    /**
-     * Sum tenant expenses
-     * @description Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.
-     */
-    get: operations["GetExpensesSumAsync"];
-  };
   "/api/v2/AccountingService/Journals": {
     /**
      * Get all journals
@@ -1836,6 +1865,13 @@ export interface paths {
      */
     patch: operations["PatchJournalAsync"];
   };
+  "/api/v2/AccountingService/Journals/{journalId}/AssignToBook": {
+    /**
+     * Bind a journal to a financial book
+     * @description Establishes the one-way Journal↔FinancialBook binding (finish-line #5): binds an unbound journal to the supplied book and sets its book-scoped code, enforcing (Tenant, Book, Code) uniqueness. Binding an unbound journal or re-affirming the same book succeeds; a duplicate code in the book is rejected (400), and re-homing an already-bound journal to a DIFFERENT book is rejected by the aggregate. Requires the journals_update permission.
+     */
+    post: operations["AssignJournalToBookAsync"];
+  };
   "/api/v2/AccountingService/Journals/{journalId}/Entries": {
     /**
      * Get journal entries
@@ -1855,21 +1891,12 @@ export interface paths {
      */
     get: operations["GetJournalEntriesCountAsync"];
   };
-  "/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits": {
-    /**
-     * Aggregate journal entry debits
-     * @description Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.
-     */
-    get: operations["AggregateJournalEntryDebitsAsync"];
-  };
-  "/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits": {
-    /**
-     * Aggregate journal entry credits
-     * @description Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.
-     */
-    get: operations["AggregateJournalEntryCreditsAsync"];
-  };
   "/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}": {
+    /**
+     * Get journal entry by ID
+     * @description Retrieves a single journal entry WITH its hydrated posting lines — each line's account, direction, description and currency facets (transaction / functional / account / USD).
+     */
+    get: operations["GetJournalEntryDetailsAsync"];
     /**
      * Update journal entry
      * @description Updates a specific journal entry.
@@ -1885,6 +1912,34 @@ export interface paths {
      * @description Partially updates a journal entry.
      */
     patch: operations["PatchJournalEntryAsync"];
+  };
+  "/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits": {
+    /**
+     * Aggregate journal entry debits
+     * @description Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.
+     */
+    get: operations["AggregateJournalEntryDebitsAsync"];
+  };
+  "/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits": {
+    /**
+     * Aggregate journal entry credits
+     * @description Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.
+     */
+    get: operations["AggregateJournalEntryCreditsAsync"];
+  };
+  "/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Post": {
+    /**
+     * Post a draft journal entry
+     * @description Posts a DRAFT journal entry into its own open fiscal period. Enforces the balanced-entry invariant and the open-period gate, then seals the entry (immutable — correct via reversal, never edit/delete). An unbalanced draft or a closed period is rejected. Requires the journals_post permission.
+     */
+    post: operations["PostJournalEntryAsync"];
+  };
+  "/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Reverse": {
+    /**
+     * Reverse a posted journal entry
+     * @description Reverses a POSTED journal entry by writing a balanced compensating counter-entry into the supplied open fiscal period and marking the original Reversed — one atomic operation (append-only audit trail). Requires the journals_reverse permission.
+     */
+    post: operations["ReverseJournalEntryAsync"];
   };
   "/api/v2/AccountingService/JournalTypes/{journalTypeId}": {
     /**
@@ -2132,6 +2187,20 @@ export interface paths {
      */
     patch: operations["PatchLoanTypeAsync"];
   };
+  "/api/v2/AccountingService/PostingExecutions": {
+    /**
+     * List posting executions
+     * @description Lists the tenant's posting-inbox executions (the durable evidence of every posting intent). Use OData to scope to a state — e.g. $filter=Status eq 'Rejected' for rejected intents, or Status eq 'PendingMapping'/'PendingPeriod'/'PendingRate' for the retryable pending set — and to page/order. Requires journals_read.
+     */
+    get: operations["GetPostingExecutionsAsync"];
+  };
+  "/api/v2/AccountingService/PostingExecutions/Count": {
+    /**
+     * Count posting executions
+     * @description Returns the count of the tenant's posting-inbox executions under the same OData shaping as the list read (e.g. $filter=Status eq 'Rejected' to count rejected intents). Requires journals_read.
+     */
+    get: operations["CountPostingExecutionsAsync"];
+  };
   "/api/v2/AccountingService/Receipts": {
     /**
      * Retrieves tenant receipts
@@ -2172,6 +2241,13 @@ export interface paths {
      * @description Partially updates the specified receipt using a JSON Patch document.
      */
     patch: operations["PatchReceiptAsync"];
+  };
+  "/api/v2/AccountingService/Reports/TrialBalance": {
+    /**
+     * Trial balance for a fiscal period
+     * @description Returns the per-account posted debit/credit totals for the given fiscal period (optionally scoped to a single financial book), plus grand totals and the Σdebits == Σcredits balanced flag. Amounts are normalized to the target currency (default USD) from the stored USD reporting amounts.
+     */
+    get: operations["GetTrialBalanceAsync"];
   };
   "/api/v2/AccountingService/Shares/Classes": {
     /**
@@ -2667,6 +2743,10 @@ export interface components {
       parentAccountId?: string | null;
       /** @enum {string} */
       accountCategory: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      isContra?: boolean;
+      isMonetary?: boolean;
+      /** @enum {string|null} */
+      incomeStatementSubType?: "OperatingRevenue" | "Gain" | "OperatingExpense" | "Loss" | null;
     };
     AccountDto: {
       id?: string | null;
@@ -2705,6 +2785,12 @@ export interface components {
       childrenAccountsCount?: number;
       /** @enum {string} */
       accountCategory?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      isContra?: boolean;
+      isMonetary?: boolean;
+      /** @enum {string|null} */
+      incomeStatementSubType?: "OperatingRevenue" | "Gain" | "OperatingExpense" | "Loss" | null;
+      /** @enum {string} */
+      normalBalance?: "Debit" | "Credit";
       balanceAmount?: components["schemas"]["Money"];
       creditsBalanceAmount?: components["schemas"]["Money"];
       debitsBalanceAmount?: components["schemas"]["Money"];
@@ -2712,12 +2798,31 @@ export interface components {
       debitsBalanceAmountInUsd?: components["schemas"]["Money"];
       creditsBalanceAmountInUsd?: components["schemas"]["Money"];
     };
+    AccountDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AccountDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountDto"];
     };
@@ -2727,6 +2832,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountDto"][] | null;
     };
@@ -2749,12 +2860,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    AccountGroupDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AccountGroupDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountGroupDto"];
     };
@@ -2764,6 +2894,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountGroupDto"][] | null;
     };
@@ -2789,12 +2925,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    AccountRelationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AccountRelationDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountRelationDto"][] | null;
     };
@@ -2819,12 +2974,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    AccountTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AccountTypeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountTypeDto"];
     };
@@ -2834,6 +3008,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountTypeDto"][] | null;
     };
@@ -2854,50 +3034,72 @@ export interface components {
       parentAccountId?: string | null;
       /** @enum {string} */
       accountCategory?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
+      isContra?: boolean;
+      isMonetary?: boolean;
+      /** @enum {string|null} */
+      incomeStatementSubType?: "OperatingRevenue" | "Gain" | "OperatingExpense" | "Loss" | null;
     };
     AccountingEntryCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      description: string;
-      /** Format: date-time */
-      date?: string | null;
-      /** Format: double */
-      amount?: number;
-      currencyId: string;
-      debitAccountId?: string | null;
-      creditAccountId?: string | null;
-      journalEntryId?: string | null;
+      journalEntryId: string;
+      accountId: string;
       /** @enum {string} */
-      accountingEntryType?: "None" | "Debit" | "Credit";
+      direction: "Debit" | "Credit";
+      /** Format: double */
+      transactionAmount?: number;
+      transactionCurrencyId: string;
+      description: string;
     };
     AccountingEntryDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      journalEntryId?: string | null;
+      accountId?: string | null;
+      accountName?: string | null;
+      /** @enum {string} */
+      direction?: "Debit" | "Credit";
+      description?: string | null;
+      /** Format: double */
+      transactionAmount?: number;
+      transactionCurrencyId?: string | null;
+      /** Format: double */
+      functionalAmount?: number;
+      functionalCurrencyId?: string | null;
+      /** Format: double */
+      accountAmount?: number;
+      accountCurrencyId?: string | null;
+      /** Format: double */
+      reportingAmountInUsd?: number;
+      /** Format: double */
+      forexRate?: number;
+      forexRatesSnapshot?: string | null;
+      costCentreId?: string | null;
+      projectId?: string | null;
       /** Format: double */
       debit?: number;
       /** Format: double */
       credit?: number;
-      description?: string | null;
-      /** Format: double */
-      forexRate?: number;
-      accountId?: string | null;
-      tenantId?: string | null;
-      /** Format: date-time */
-      date?: string | null;
-      enrollmentId?: string | null;
-      currencyId?: string | null;
-      debitAccountId?: string | null;
-      creditAccountId?: string | null;
-      journalEntryId?: string | null;
-      debitAccountName?: string | null;
-      creditAccountName?: string | null;
-      /** @enum {string} */
-      accountingEntryType?: "None" | "Debit" | "Credit";
-      debitAmount?: components["schemas"]["Money"];
-      creditAmount?: components["schemas"]["Money"];
+      amount?: components["schemas"]["Money"];
+      amountInUsd?: components["schemas"]["Money"];
+    };
+    AccountingEntryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     AccountingEntryDtoEnvelope: {
       isSuccess?: boolean;
@@ -2905,6 +3107,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountingEntryDto"];
     };
@@ -2914,21 +3122,24 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountingEntryDto"][] | null;
     };
     AccountingEntryUpdateDto: {
-      description?: string | null;
-      /** Format: double */
-      amount?: number;
-      /** Format: date-time */
-      date?: string | null;
-      currencyId?: string | null;
-      debitAccountId?: string | null;
-      creditAccountId?: string | null;
       journalEntryId?: string | null;
+      accountId?: string | null;
       /** @enum {string} */
-      accountingEntryType?: "None" | "Debit" | "Credit";
+      direction?: "Debit" | "Credit";
+      /** Format: double */
+      transactionAmount?: number;
+      transactionCurrencyId?: string | null;
+      description?: string | null;
     };
     AccountingPeriodCreateDto: {
       /** Format: uuid */
@@ -2953,12 +3164,31 @@ export interface components {
       /** Format: date-time */
       dateEnd?: string;
     };
+    AccountingPeriodDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AccountingPeriodDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountingPeriodDto"];
     };
@@ -2968,6 +3198,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AccountingPeriodDto"][] | null;
     };
@@ -3007,12 +3243,31 @@ export interface components {
       taxBaseAmountInUSD?: number;
       billingItemRecordId?: string | null;
     };
+    AppliedItemTaxRecordDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AppliedItemTaxRecordDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AppliedItemTaxRecordDto"][] | null;
     };
@@ -3053,12 +3308,31 @@ export interface components {
       /** Format: double */
       taxBaseAmountInUSD?: number;
     };
+    AppliedTaxPolicyRecordDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     AppliedTaxPolicyRecordDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AppliedTaxPolicyRecordDto"];
     };
@@ -3068,6 +3342,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AppliedTaxPolicyRecordDto"][] | null;
     };
@@ -3079,6 +3359,10 @@ export interface components {
       taxAmountInUSD?: number;
       /** Format: double */
       taxBaseAmountInUSD?: number;
+    };
+    AssignJournalToBookRequest: {
+      financialBookId: string;
+      code: string;
     };
     BankAccountCreateDto: {
       /** Format: uuid */
@@ -3110,12 +3394,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    BankAccountDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BankAccountDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankAccountDto"];
     };
@@ -3125,6 +3428,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankAccountDto"][] | null;
     };
@@ -3155,12 +3464,31 @@ export interface components {
       image?: string | null;
       countryId?: string | null;
     };
+    BankDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BankDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankDto"];
     };
@@ -3170,6 +3498,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankDto"][] | null;
     };
@@ -3232,12 +3566,31 @@ export interface components {
       bankAccountId?: string | null;
       currencyId?: string | null;
     };
+    BankGuaranteeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BankGuaranteeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankGuaranteeDto"];
     };
@@ -3247,6 +3600,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankGuaranteeDto"][] | null;
     };
@@ -3314,12 +3673,31 @@ export interface components {
       bankId?: string | null;
       bankName?: string | null;
     };
+    BankProfileDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BankProfileDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankProfileDto"][] | null;
     };
@@ -3372,12 +3750,31 @@ export interface components {
       bankProfileId?: string | null;
       bankAccountId?: string | null;
     };
+    BankTransactionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BankTransactionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankTransactionDto"];
     };
@@ -3387,6 +3784,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BankTransactionDto"][] | null;
     };
@@ -3514,12 +3917,31 @@ export interface components {
       fiscalAuthorityName?: string | null;
       countryName?: string | null;
     };
+    BillingProfileDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BillingProfileDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BillingProfileDto"];
     };
@@ -3529,6 +3951,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BillingProfileDto"][] | null;
     };
@@ -3567,45 +3995,42 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
       description: string;
-      /** Format: date-time */
-      date?: string | null;
       /** Format: double */
-      amount?: number;
+      plannedAmount?: number;
       currencyId: string;
-      debitAccountId?: string | null;
-      creditAccountId?: string | null;
-      journalEntryId?: string | null;
-      /** @enum {string} */
-      accountingEntryType?: "None" | "Debit" | "Credit";
-      budgetId?: string | null;
+      debitAccountId: string;
+      creditAccountId: string;
+      budgetId: string;
     };
     BudgetAccountEntryDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      /** Format: double */
-      debit?: number;
-      /** Format: double */
-      credit?: number;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
       description?: string | null;
       /** Format: double */
-      forexRate?: number;
-      accountId?: string | null;
-      tenantId?: string | null;
-      /** Format: date-time */
-      date?: string | null;
-      enrollmentId?: string | null;
+      plannedAmount?: number;
       currencyId?: string | null;
       debitAccountId?: string | null;
       creditAccountId?: string | null;
-      journalEntryId?: string | null;
-      debitAccountName?: string | null;
-      creditAccountName?: string | null;
-      /** @enum {string} */
-      accountingEntryType?: "None" | "Debit" | "Credit";
-      debitAmount?: components["schemas"]["Money"];
-      creditAmount?: components["schemas"]["Money"];
       budgetId?: string | null;
+      /** Format: date-time */
+      date?: string | null;
+      plannedAmountMoney?: components["schemas"]["Money"];
+    };
+    BudgetAccountEntryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     BudgetAccountEntryDtoEnvelope: {
       isSuccess?: boolean;
@@ -3613,6 +4038,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BudgetAccountEntryDto"];
     };
@@ -3622,21 +4053,22 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BudgetAccountEntryDto"][] | null;
     };
     BudgetAccountEntryUpdateDto: {
       description?: string | null;
       /** Format: double */
-      amount?: number;
-      /** Format: date-time */
-      date?: string | null;
+      plannedAmount?: number;
       currencyId?: string | null;
       debitAccountId?: string | null;
       creditAccountId?: string | null;
-      journalEntryId?: string | null;
-      /** @enum {string} */
-      accountingEntryType?: "None" | "Debit" | "Credit";
       budgetId?: string | null;
     };
     BudgetCreateDto: {
@@ -3655,12 +4087,31 @@ export interface components {
       tenantId?: string | null;
       fiscalYearId?: string | null;
     };
+    BudgetDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     BudgetDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BudgetDto"];
     };
@@ -3670,6 +4121,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["BudgetDto"][] | null;
     };
@@ -3689,6 +4146,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ChartOfAccounts"][] | null;
     };
@@ -3735,12 +4198,31 @@ export interface components {
       emisorContactId?: string | null;
       receiverContactId?: string | null;
     };
+    CommissionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CommissionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CommissionDto"];
     };
@@ -3750,6 +4232,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CommissionDto"][] | null;
     };
@@ -3865,12 +4353,31 @@ export interface components {
       fiscalYearId?: string | null;
       costCentreId?: string | null;
     };
+    CostCentreBudgetDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CostCentreBudgetDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CostCentreBudgetDto"];
     };
@@ -3880,6 +4387,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CostCentreBudgetDto"][] | null;
     };
@@ -3914,12 +4427,31 @@ export interface components {
       costCentresGroupId?: string | null;
       parentCostCentreId?: string | null;
     };
+    CostCentreDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CostCentreDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CostCentreDto"];
     };
@@ -3929,6 +4461,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CostCentreDto"][] | null;
     };
@@ -3952,12 +4490,31 @@ export interface components {
       tenantId?: string | null;
       parentCostCentresGroupId?: string | null;
     };
+    CostCentreGroupDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CostCentreGroupDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CostCentreGroupDto"];
     };
@@ -3967,6 +4524,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CostCentreGroupDto"][] | null;
     };
@@ -4007,6 +4570,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: double */
       result?: number;
@@ -4017,6 +4586,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -4025,6 +4600,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ExpenseClaimCreateDto: {
@@ -4042,12 +4623,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    ExpenseClaimDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExpenseClaimDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExpenseClaimDto"];
     };
@@ -4057,6 +4657,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExpenseClaimDto"][] | null;
     };
@@ -4080,12 +4686,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    ExpenseTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExpenseTypeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExpenseTypeDto"];
     };
@@ -4095,6 +4720,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExpenseTypeDto"][] | null;
     };
@@ -4118,12 +4749,31 @@ export interface components {
       description?: string | null;
       tenantId?: string | null;
     };
+    FinancialBookDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     FinancialBookDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FinancialBookDto"];
     };
@@ -4133,6 +4783,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FinancialBookDto"][] | null;
     };
@@ -4163,12 +4819,31 @@ export interface components {
       logoUrl?: string | null;
       webUrl?: string | null;
     };
+    FiscalAuthorityDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     FiscalAuthorityDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalAuthorityDto"];
     };
@@ -4178,6 +4853,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalAuthorityDto"][] | null;
     };
@@ -4207,12 +4888,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    FiscalIdentificationTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     FiscalIdentificationTypeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalIdentificationTypeDto"];
     };
@@ -4222,6 +4922,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalIdentificationTypeDto"][] | null;
     };
@@ -4235,12 +4941,12 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      name?: string | null;
+      name: string;
       /** Format: date-time */
       fromDate?: string;
       /** Format: date-time */
       toDate?: string;
-      fiscalYearId?: string | null;
+      fiscalYearId: string;
     };
     FiscalPeriodDto: {
       id?: string | null;
@@ -4254,6 +4960,21 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
       fiscalYearId?: string | null;
+      /** @enum {string} */
+      status?: "Open" | "Closed" | "Locked";
+    };
+    FiscalPeriodDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     FiscalPeriodDtoEnvelope: {
       isSuccess?: boolean;
@@ -4261,6 +4982,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalPeriodDto"];
     };
@@ -4270,16 +4997,22 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalPeriodDto"][] | null;
     };
     FiscalPeriodUpdateDto: {
-      name?: string | null;
+      name: string;
       /** Format: date-time */
       fromDate?: string;
       /** Format: date-time */
       toDate?: string;
-      fiscalYearId?: string | null;
+      fiscalYearId: string;
     };
     FiscalRegimeCreateDto: {
       /** Format: uuid */
@@ -4300,12 +5033,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    FiscalRegimeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     FiscalRegimeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalRegimeDto"];
     };
@@ -4315,6 +5067,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalRegimeDto"][] | null;
     };
@@ -4342,12 +5100,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    FiscalResponsibilityDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     FiscalResponsibilityDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalResponsibilityDto"];
     };
@@ -4357,6 +5134,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalResponsibilityDto"][] | null;
     };
@@ -4377,12 +5160,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    FiscalResponsibilityRecordDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     FiscalResponsibilityRecordDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalResponsibilityRecordDto"];
     };
@@ -4392,6 +5194,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalResponsibilityRecordDto"][] | null;
     };
@@ -4409,14 +5217,14 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      name?: string | null;
+      name: string;
       description?: string | null;
       closed?: boolean;
       /** Format: date-time */
       endDate?: string;
       /** Format: date-time */
       startDate?: string;
-      fiscalAuthorityId?: string | null;
+      fiscalAuthorityId: string;
     };
     FiscalYearDto: {
       id?: string | null;
@@ -4433,12 +5241,31 @@ export interface components {
       /** Format: date-time */
       startDate?: string;
     };
+    FiscalYearDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     FiscalYearDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalYearDto"];
     };
@@ -4448,6 +5275,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalYearDto"][] | null;
     };
@@ -4457,18 +5290,24 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FiscalYearDto"][] | null;
     };
     FiscalYearUpdateDto: {
-      name?: string | null;
+      name: string;
       description?: string | null;
       closed?: boolean;
       /** Format: date-time */
       endDate?: string;
       /** Format: date-time */
       startDate?: string;
-      fiscalAuthorityId?: string | null;
+      fiscalAuthorityId: string;
     };
     ForgotPasswordRequest: {
       email: string | null;
@@ -4486,12 +5325,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    GrantDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     GrantDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["GrantDto"];
     };
@@ -4501,6 +5359,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["GrantDto"][] | null;
     };
@@ -4532,6 +5396,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -4583,12 +5453,31 @@ export interface components {
       /** @enum {string} */
       documentType?: "Standard" | "DebitNote" | "CreditNote";
     };
+    InvoiceEnumerationRangeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     InvoiceEnumerationRangeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceEnumerationRangeDto"];
     };
@@ -4598,6 +5487,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InvoiceEnumerationRangeDto"][] | null;
     };
@@ -4639,12 +5534,31 @@ export interface components {
       itemPriceId?: string | null;
       itemId?: string | null;
     };
+    ItemTaxPolicyRecordDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemTaxPolicyRecordDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemTaxPolicyRecordDto"];
     };
@@ -4654,6 +5568,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemTaxPolicyRecordDto"][] | null;
     };
@@ -4674,6 +5594,8 @@ export interface components {
       parentJournalId?: string | null;
       journalTypeId?: string | null;
       ledgerId?: string | null;
+      financialBookId?: string | null;
+      code?: string | null;
     };
     JournalDto: {
       id?: string | null;
@@ -4687,6 +5609,21 @@ export interface components {
       fiscalYearId?: string | null;
       journalTypeId?: string | null;
       parentJournalId?: string | null;
+      financialBookId?: string | null;
+      code?: string | null;
+    };
+    JournalDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     JournalDtoEnvelope: {
       isSuccess?: boolean;
@@ -4694,6 +5631,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["JournalDto"];
     };
@@ -4703,6 +5646,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["JournalDto"][] | null;
     };
@@ -4711,58 +5660,85 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      group?: boolean;
-      opening?: boolean;
-      description: string;
-      /** Format: date-time */
-      date: string;
-      /** Format: double */
-      debit?: number;
-      /** Format: double */
-      credit?: number;
       journalId: string;
-      currencyId: string;
-      debitAccountId: string;
-      creditAccountId: string;
-      parentJournalEntryId?: string | null;
-      invoiceCode?: string | null;
+      fiscalPeriodId: string;
+      transactionCurrencyId: string;
+      description: string;
+      sourceDocumentType?: string | null;
+      sourceDocumentId?: string | null;
+      idempotencyKey?: string | null;
+      isOpeningBalance?: boolean;
+      accountingEntries?: components["schemas"]["AccountingEntryCreateDto"][] | null;
     };
     JournalEntryDto: {
       id?: string | null;
       /** Format: date-time */
       timestamp?: string | null;
-      group?: boolean;
-      opening?: boolean;
-      description?: string | null;
-      /** Format: date-time */
-      date?: string | null;
-      forexRatesSnapshot?: string | null;
-      /** Format: double */
-      forexRate?: number;
-      /** Format: double */
-      credit?: number;
-      /** Format: double */
-      debit?: number;
-      /** Format: double */
-      creditInUsd?: number;
-      /** Format: double */
-      debitInUsd?: number;
-      currencyId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
       journalId?: string | null;
       journalName?: string | null;
       journalCode?: string | null;
-      creditAccountId?: string | null;
-      creditAccountName?: string | null;
-      debitAccountId?: string | null;
-      debitAccountName?: string | null;
-      invoiceCode?: string | null;
-      parentJournalEntryId?: string | null;
-      creditAmount?: components["schemas"]["Money"];
-      debitAmount?: components["schemas"]["Money"];
-      creditAmountInUsd?: components["schemas"]["Money"];
-      debitAmountInUsd?: components["schemas"]["Money"];
+      fiscalPeriodId?: string | null;
+      financialBookId?: string | null;
+      description?: string | null;
+      /** @enum {string} */
+      entryType?: "Simple" | "Compound" | "Adjusting" | "Reversing";
+      /** @enum {string} */
+      status?: "Draft" | "Posted" | "Reversed" | "Voided";
+      /** Format: date-time */
+      postingDate?: string | null;
+      isOpeningBalance?: boolean;
+      transactionCurrencyId?: string | null;
+      sourceDocumentType?: string | null;
+      sourceDocumentId?: string | null;
+      idempotencyKey?: string | null;
+      reversalOfJournalEntryId?: string | null;
+      postedBy?: string | null;
+      /** Format: double */
+      forexRate?: number;
+      forexRatesSnapshot?: string | null;
+      /** Format: double */
+      debitInUsd?: number;
+      /** Format: double */
+      creditInUsd?: number;
+      accountingEntries?: components["schemas"]["AccountingEntryDto"][] | null;
+      /** Format: double */
+      totalDebit?: number;
+      /** Format: double */
+      totalCredit?: number;
+      totalDebitAmount?: components["schemas"]["Money"];
+      totalCreditAmount?: components["schemas"]["Money"];
+      debitInUsdAmount?: components["schemas"]["Money"];
+      creditInUsdAmount?: components["schemas"]["Money"];
+    };
+    JournalEntryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    JournalEntryDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["JournalEntryDto"];
     };
     JournalEntryDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
@@ -4770,25 +5746,22 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["JournalEntryDto"][] | null;
     };
     JournalEntryUpdateDto: {
-      group?: boolean;
-      opening?: boolean;
+      fiscalPeriodId: string;
+      transactionCurrencyId: string;
       description: string;
-      /** Format: date-time */
-      date: string;
-      /** Format: double */
-      debit?: number;
-      /** Format: double */
-      credit?: number;
-      journalId: string;
-      currencyId: string;
-      invoiceCode?: string | null;
-      debitAccountId: string;
-      creditAccountId: string;
-      parentJournalEntryId?: string | null;
+      sourceDocumentType?: string | null;
+      sourceDocumentId?: string | null;
+      isOpeningBalance?: boolean;
     };
     JournalTypeCreateDto: {
       /** Format: uuid */
@@ -4805,12 +5778,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    JournalTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     JournalTypeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["JournalTypeDto"];
     };
@@ -4820,6 +5812,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["JournalTypeDto"][] | null;
     };
@@ -4847,12 +5845,31 @@ export interface components {
       enrollmentId?: string | null;
       ledgerTypeId?: string | null;
     };
+    LedgerDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LedgerDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LedgerDto"];
     };
@@ -4862,6 +5879,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LedgerDto"][] | null;
     };
@@ -4872,7 +5895,7 @@ export interface components {
       timestamp?: string;
       name: string;
       /** @enum {string} */
-      ledgerClass?: "Assets" | "Equity" | "Gains" | "Losses" | "Revenue" | "Expenses" | "Liabilities";
+      ledgerClass?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
     };
     LedgerTypeDto: {
       id?: string | null;
@@ -4880,9 +5903,22 @@ export interface components {
       timestamp?: string | null;
       name?: string | null;
       /** @enum {string} */
-      ledgerClass?: "Assets" | "Equity" | "Gains" | "Losses" | "Revenue" | "Expenses" | "Liabilities";
+      ledgerClass?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities";
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    LedgerTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     LedgerTypeDtoEnvelope: {
       isSuccess?: boolean;
@@ -4890,6 +5926,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LedgerTypeDto"];
     };
@@ -4899,13 +5941,19 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LedgerTypeDto"][] | null;
     };
     LedgerTypeUpdateDto: {
       name?: string | null;
       /** @enum {string|null} */
-      ledgerClass?: "Assets" | "Equity" | "Gains" | "Losses" | "Revenue" | "Expenses" | "Liabilities" | null;
+      ledgerClass?: "Assets" | "Equity" | "Revenue" | "Expense" | "Liabilities" | null;
     };
     LoanApplicationCreateDto: {
       /** Format: uuid */
@@ -4920,12 +5968,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    LoanApplicationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LoanApplicationDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LoanApplicationDto"];
     };
@@ -4935,6 +6002,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LoanApplicationDto"][] | null;
     };
@@ -4974,12 +6047,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    LoanDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LoanDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LoanDto"];
     };
@@ -4989,6 +6081,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LoanDto"][] | null;
     };
@@ -5009,12 +6107,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    LoanTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     LoanTypeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LoanTypeDto"];
     };
@@ -5024,6 +6141,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["LoanTypeDto"][] | null;
     };
@@ -5061,14 +6184,18 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -5102,12 +6229,31 @@ export interface components {
       receiverContactId?: string | null;
       paymentId?: string | null;
     };
+    PaymentCommissionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentCommissionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentCommissionDto"];
     };
@@ -5117,6 +6263,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentCommissionDto"][] | null;
     };
@@ -5138,11 +6290,80 @@ export interface components {
       receiverContactId?: string | null;
       paymentId?: string | null;
     };
+    PostingBookResultDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      financialBookId?: string | null;
+      /** @enum {string} */
+      status?: "Posted" | "Duplicate" | "Rejected";
+      journalEntryId?: string | null;
+      failureCode?: string | null;
+    };
+    PostingExecutionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      postingIntentId?: string | null;
+      postingIdempotencyKey?: string | null;
+      intentType?: string | null;
+      postingOperation?: string | null;
+      sourceDocumentType?: string | null;
+      sourceDocumentId?: string | null;
+      /** @enum {string} */
+      status?: "Received" | "Processing" | "Posted" | "Duplicate" | "PendingMapping" | "PendingPeriod" | "PendingRate" | "Rejected";
+      /** @enum {string|null} */
+      failureKind?: "UnknownOperation" | "UnknownRole" | "AmbiguousPolicy" | "MissingAccountMapping" | "MissingFinancialBook" | "MissingJournal" | "ClosedPeriod" | "MissingFxRate" | "InvalidFxEvidence" | "UnbalancedPlan" | "DuplicateIntent" | "DuplicateBookPosting" | "InvalidPartyReference" | "InvalidCustodyContext" | "PolicyConfigurationError" | null;
+      failureCode?: string | null;
+      retryable?: boolean;
+      correlationId?: string | null;
+      causationId?: string | null;
+      /** Format: date-time */
+      receivedAtUtc?: string;
+      /** Format: date-time */
+      processingStartedAtUtc?: string | null;
+      /** Format: date-time */
+      completedAtUtc?: string | null;
+      bookResults?: components["schemas"]["PostingBookResultDto"][] | null;
+      /** @enum {string|null} */
+      failureClass?: "Retryable" | "OperatorActionRequired" | "ConfigurationError" | "ProducerError" | null;
+    };
+    PostingExecutionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    PostingExecutionDtoIReadOnlyListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PostingExecutionDto"][] | null;
+    };
     ReceiptCreateDto: {
       /** Format: uuid */
       id?: string;
       /** Format: date-time */
       timestamp?: string;
+      closed?: boolean;
       title?: string | null;
       priceListId?: string | null;
       description?: string | null;
@@ -5160,6 +6381,8 @@ export interface components {
       countryId?: string | null;
       stateId?: string | null;
       cityId?: string | null;
+      /** Format: double */
+      forexRate?: number;
       currencyId?: string | null;
       /** Format: double */
       totalDetail?: number;
@@ -5203,12 +6426,9 @@ export interface components {
       taxCalculationMethod?: "Included" | "Excluded";
       paymentId?: string | null;
       /** Format: double */
-      forexRate?: number;
-      /** Format: double */
       totalAmount?: number;
       /** Format: double */
       totalAmountInUSD?: number;
-      closed?: boolean;
       contactId?: string | null;
       /** @enum {string} */
       receiptType?: "PaymentReceipt" | "PurchaseReceipt";
@@ -5230,12 +6450,31 @@ export interface components {
       orderId?: string | null;
       invoiceId?: string | null;
     };
+    ReceiptDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ReceiptDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ReceiptDto"];
     };
@@ -5245,6 +6484,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ReceiptDto"][] | null;
     };
@@ -5277,6 +6522,9 @@ export interface components {
       resetCode: string | null;
       newPassword: string | null;
     };
+    ReverseJournalEntryRequest: {
+      reversalPeriodId: string;
+    };
     SeedChartOfAccountsRequest: {
       fileUrl?: string | null;
     };
@@ -5303,12 +6551,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    ShareClassDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ShareClassDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ShareClassDto"];
     };
@@ -5318,6 +6585,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ShareClassDto"][] | null;
     };
@@ -5351,12 +6624,31 @@ export interface components {
       quantity?: number;
       currencyId?: string | null;
     };
+    ShareIssuanceDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ShareIssuanceDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ShareIssuanceDto"];
     };
@@ -5366,6 +6658,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ShareIssuanceDto"][] | null;
     };
@@ -5401,12 +6699,31 @@ export interface components {
       enrollmentId?: string | null;
       tenantId?: string | null;
     };
+    ShareTransferDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ShareTransferDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ShareTransferDto"];
     };
@@ -5416,6 +6733,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ShareTransferDto"][] | null;
     };
@@ -5436,12 +6759,31 @@ export interface components {
       enrollmentId?: string | null;
       tenantId?: string | null;
     };
+    ShareTransferReasonDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ShareTransferReasonDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ShareTransferReasonDto"];
     };
@@ -5451,6 +6793,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ShareTransferReasonDto"][] | null;
     };
@@ -5487,12 +6835,31 @@ export interface components {
       enrollmentId?: string | null;
       fiscalAuthorityId?: string | null;
     };
+    TaxClassDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TaxClassDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TaxClassDto"];
     };
@@ -5502,6 +6869,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TaxClassDto"][] | null;
     };
@@ -5592,12 +6965,31 @@ export interface components {
       taxCategoryCode?: string | null;
       fiscalAuthorityId?: string | null;
     };
+    TaxPolicyDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TaxPolicyDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TaxPolicyDto"];
     };
@@ -5607,6 +6999,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TaxPolicyDto"][] | null;
     };
@@ -5705,12 +7103,31 @@ export interface components {
       taxPolicyId?: string | null;
       enrollmentId?: string | null;
     };
+    TaxRateDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TaxRateDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TaxRateDto"];
     };
@@ -5720,6 +7137,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TaxRateDto"][] | null;
     };
@@ -5765,12 +7188,31 @@ export interface components {
       enrollmentId?: string | null;
       tenantId?: string | null;
     };
+    TransactionCategoryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TransactionCategoryDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TransactionCategoryDto"];
     };
@@ -5780,6 +7222,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TransactionCategoryDto"][] | null;
     };
@@ -5832,12 +7280,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    TransactionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TransactionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TransactionDto"];
     };
@@ -5847,6 +7314,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TransactionDto"][] | null;
     };
@@ -5867,6 +7340,43 @@ export interface components {
       unitId?: string | null;
       transactionCategoryId?: string | null;
       currencyId?: string | null;
+    };
+    TrialBalanceDto: {
+      fiscalPeriodId?: string | null;
+      financialBookId?: string | null;
+      currencyId?: string | null;
+      rows?: components["schemas"]["TrialBalanceRowDto"][] | null;
+      /** Format: double */
+      totalDebit?: number;
+      /** Format: double */
+      totalCredit?: number;
+      isBalanced?: boolean;
+    };
+    TrialBalanceDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["TrialBalanceDto"];
+    };
+    TrialBalanceRowDto: {
+      accountId?: string | null;
+      code?: string | null;
+      name?: string | null;
+      /** @enum {string} */
+      normalBalance?: "Debit" | "Credit";
+      /** Format: double */
+      debit?: number;
+      /** Format: double */
+      credit?: number;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -5914,6 +7424,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6003,6 +7519,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6198,8 +7720,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6208,82 +7730,6 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Sum tenant accounting-entry debits
-   * @description Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.
-   */
-  GetDebitsSumAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["DecimalEnvelope"];
-          "application/xml": components["schemas"]["DecimalEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Sum tenant accounting-entry credits
-   * @description Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.
-   */
-  GetCreditsSumAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["DecimalEnvelope"];
-          "application/xml": components["schemas"]["DecimalEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -6314,6 +7760,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingPeriodDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingPeriodDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6403,6 +7855,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingPeriodDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingPeriodDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6591,8 +8049,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6601,6 +8059,182 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sum tenant incomes
+   * @description Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.
+   */
+  GetIncomesSumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sum tenant expenses
+   * @description Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.
+   */
+  GetExpensesSumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sum tenant accounting-entry debits
+   * @description Returns SUM(AccountingEntry.Debit) for the tenant, filtered by the supplied OData date range.
+   */
+  GetDebitsSumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DecimalEnvelope"];
+          "application/xml": components["schemas"]["DecimalEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Sum tenant accounting-entry credits
+   * @description Returns SUM(AccountingEntry.Credit) for the tenant, filtered by the supplied OData date range.
+   */
+  GetCreditsSumAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["DecimalEnvelope"];
+          "application/xml": components["schemas"]["DecimalEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -6631,6 +8265,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6715,6 +8355,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -6751,6 +8397,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6925,8 +8577,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7090,6 +8742,12 @@ export interface operations {
         accountId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7185,6 +8843,12 @@ export interface operations {
         accountId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7224,6 +8888,12 @@ export interface operations {
       };
       path: {
         accountId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7416,8 +9086,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7459,6 +9129,12 @@ export interface operations {
       };
       path: {
         accountId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7549,6 +9225,12 @@ export interface operations {
         accountId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7588,6 +9270,12 @@ export interface operations {
       };
       path: {
         accountId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7678,6 +9366,12 @@ export interface operations {
         accountId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountingEntryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7715,6 +9409,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7800,6 +9500,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountTypeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7880,6 +9586,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8054,8 +9766,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -8095,6 +9807,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountRelationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountRelationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8179,6 +9897,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AccountRelationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AccountRelationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8315,8 +10039,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -8438,6 +10162,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8525,6 +10255,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8720,8 +10456,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -8777,6 +10513,12 @@ export interface operations {
       };
       path: {
         bankId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankAccountDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankAccountDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8872,6 +10614,12 @@ export interface operations {
       };
       path: {
         bankId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankAccountDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankAccountDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9064,8 +10812,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -9121,6 +10869,12 @@ export interface operations {
       };
       path: {
         bankId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankGuaranteeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankGuaranteeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9216,6 +10970,12 @@ export interface operations {
       };
       path: {
         bankId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankGuaranteeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankGuaranteeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9408,8 +11168,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -9465,6 +11225,12 @@ export interface operations {
       };
       path: {
         bankId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankTransactionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankTransactionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9560,6 +11326,12 @@ export interface operations {
       };
       path: {
         bankId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankTransactionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankTransactionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9752,8 +11524,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -9808,6 +11580,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankProfileDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -9844,6 +11622,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BankProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BankProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9885,6 +11669,12 @@ export interface operations {
       };
       path: {
         billableLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppliedItemTaxRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AppliedItemTaxRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9945,6 +11735,12 @@ export interface operations {
       };
       path: {
         billableLineId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppliedItemTaxRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AppliedItemTaxRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10039,8 +11835,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -10173,8 +11969,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -10213,6 +12009,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BillingProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BillingProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10267,6 +12069,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BillingProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BillingProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10427,8 +12235,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -10474,6 +12282,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BudgetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BudgetDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10558,6 +12372,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BudgetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BudgetDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10597,6 +12417,12 @@ export interface operations {
       };
       path: {
         budgetId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["BudgetAccountEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["BudgetAccountEntryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10822,8 +12648,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -10869,6 +12695,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CommissionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CommissionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10951,6 +12783,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CommissionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CommissionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11125,8 +12963,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -11165,6 +13003,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentCommissionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentCommissionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11247,6 +13091,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentCommissionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentCommissionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11421,8 +13271,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -11461,6 +13311,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CostCentreDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CostCentreDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11543,6 +13399,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CostCentreDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CostCentreDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11717,8 +13579,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -11757,6 +13619,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CostCentreGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CostCentreGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11839,6 +13707,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CostCentreGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CostCentreGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -12013,8 +13887,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -12053,6 +13927,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CostCentreBudgetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CostCentreBudgetDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -12271,8 +14151,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -12311,6 +14191,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExpenseClaimDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExpenseClaimDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -12393,6 +14279,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExpenseClaimDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExpenseClaimDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -12567,8 +14459,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -12607,6 +14499,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExpenseTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExpenseTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -12689,6 +14587,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExpenseTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExpenseTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -12863,8 +14767,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -12918,6 +14822,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FinancialBookDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FinancialBookDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -13014,6 +14924,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FinancialBookDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FinancialBookDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -13216,8 +15132,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -13256,6 +15172,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalAuthorityDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalAuthorityDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -13338,6 +15260,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalAuthorityDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalAuthorityDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -13512,8 +15440,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -13558,6 +15486,12 @@ export interface operations {
         authorityId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalYearDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalYearDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -13597,6 +15531,12 @@ export interface operations {
       };
       path: {
         fiscalAuthorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalYearDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalYearDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -13816,8 +15756,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -13862,6 +15802,12 @@ export interface operations {
         authorityId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceEnumerationRangeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceEnumerationRangeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -13901,6 +15847,12 @@ export interface operations {
       };
       path: {
         fiscalAuthorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceEnumerationRangeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceEnumerationRangeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -14120,8 +16072,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -14165,6 +16117,12 @@ export interface operations {
         authorityId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalIdentificationTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalIdentificationTypeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -14204,6 +16162,12 @@ export interface operations {
       };
       path: {
         authorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalIdentificationTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalIdentificationTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -14423,8 +16387,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -14470,6 +16434,12 @@ export interface operations {
         authorityId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalPeriodDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalPeriodDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -14510,6 +16480,12 @@ export interface operations {
       path: {
         fiscalAuthorityId: string;
         fiscalYearId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalPeriodDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalPeriodDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -14730,8 +16706,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -14759,6 +16735,102 @@ export interface operations {
     };
   };
   /**
+   * Open a fiscal period
+   * @description Opens a closed fiscal period so journal entries can post into it. Rejects reopening a locked or an already-open period.
+   */
+  OpenFiscalPeriod: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        fiscalPeriodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Close a fiscal period
+   * @description Closes a fiscal period so no further journal entries can post into it. Rejects closing a locked (hard-sealed) period.
+   */
+  CloseFiscalPeriod: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        fiscalPeriodId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get fiscal regimes for an authority
    * @description Retrieves all fiscal regimes for the specified fiscal authority.
    */
@@ -14774,6 +16846,12 @@ export interface operations {
       };
       path: {
         authorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalRegimeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalRegimeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -14815,6 +16893,12 @@ export interface operations {
       };
       path: {
         fiscalAuthorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalRegimeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalRegimeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -15034,8 +17118,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -15080,6 +17164,12 @@ export interface operations {
         authorityId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalResponsibilityDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalResponsibilityDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -15119,6 +17209,12 @@ export interface operations {
       };
       path: {
         fiscalAuthorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalResponsibilityDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalResponsibilityDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -15338,8 +17434,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -15384,6 +17480,12 @@ export interface operations {
         fiscalResponsibilityId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalResponsibilityRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalResponsibilityRecordDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -15424,6 +17526,12 @@ export interface operations {
       path: {
         fiscalAuthorityId: string;
         fiscalResponsibilityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalResponsibilityRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalResponsibilityRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -15644,8 +17752,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -15684,6 +17792,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalYearDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalYearDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -15738,6 +17852,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FiscalYearDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FiscalYearDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -15856,8 +17976,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -15896,6 +18016,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["GrantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["GrantDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -15950,6 +18076,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["GrantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["GrantDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -16068,8 +18200,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -16108,6 +18240,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InvoiceEnumerationRangeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InvoiceEnumerationRangeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -16361,8 +18499,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -16371,82 +18509,6 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Sum tenant incomes
-   * @description Returns SUM(JournalEntry.Credit) for Credit-direction journal entries in the tenant, filtered by the supplied OData date range.
-   */
-  GetIncomesSumAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["DecimalEnvelope"];
-          "application/xml": components["schemas"]["DecimalEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Sum tenant expenses
-   * @description Returns SUM(JournalEntry.Debit) for Debit-direction journal entries in the tenant, filtered by the supplied OData date range.
-   */
-  GetExpensesSumAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["DecimalEnvelope"];
-          "application/xml": components["schemas"]["DecimalEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -16477,6 +18539,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -16559,6 +18627,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -16733,8 +18807,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -16743,6 +18817,60 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Bind a journal to a financial book
+   * @description Establishes the one-way Journal↔FinancialBook binding (finish-line #5): binds an unbound journal to the supplied book and sets its book-scoped code, enforcing (Tenant, Book, Code) uniqueness. Binding an unbound journal or re-affirming the same book succeeds; a duplicate code in the book is rejected (400), and re-homing an already-bound journal to a DIFFERENT book is rejected by the aggregate. Requires the journals_update permission.
+   */
+  AssignJournalToBookAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AssignJournalToBookRequest"];
+        "application/xml": components["schemas"]["AssignJournalToBookRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -16776,6 +18904,12 @@ export interface operations {
       };
       path: {
         journalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -16866,6 +19000,12 @@ export interface operations {
         journalId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -16891,14 +19031,13 @@ export interface operations {
     };
   };
   /**
-   * Aggregate journal entry debits
-   * @description Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.
+   * Get journal entry by ID
+   * @description Retrieves a single journal entry WITH its hydrated posting lines — each line's account, direction, description and currency facets (transaction / functional / account / USD).
    */
-  AggregateJournalEntryDebitsAsync: {
+  GetJournalEntryDetailsAsync: {
     parameters: {
       query: {
         tenantId: string;
-        currencyId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -16906,56 +19045,15 @@ export interface operations {
       };
       path: {
         journalId: string;
+        entryId: string;
       };
     };
     responses: {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["MoneyEnvelope"];
-          "application/xml": components["schemas"]["MoneyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Aggregate journal entry credits
-   * @description Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.
-   */
-  AggregateJournalEntryCreditsAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        currencyId?: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        journalId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["MoneyEnvelope"];
-          "application/xml": components["schemas"]["MoneyEnvelope"];
+          "application/json": components["schemas"]["JournalEntryDtoEnvelope"];
+          "application/xml": components["schemas"]["JournalEntryDtoEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -17084,8 +19182,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -17105,6 +19203,213 @@ export interface operations {
       };
       /** @description Forbidden */
       403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate journal entry debits
+   * @description Returns the sum of all debit amounts for entries in the specified journal, normalized to the target currency.
+   */
+  AggregateJournalEntryDebitsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Aggregate journal entry credits
+   * @description Returns the sum of all credit amounts for entries in the specified journal, normalized to the target currency.
+   */
+  AggregateJournalEntryCreditsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalEntryDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MoneyEnvelope"];
+          "application/xml": components["schemas"]["MoneyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Post a draft journal entry
+   * @description Posts a DRAFT journal entry into its own open fiscal period. Enforces the balanced-entry invariant and the open-period gate, then seals the entry (immutable — correct via reversal, never edit/delete). An unbalanced draft or a closed period is rejected. Requires the journals_post permission.
+   */
+  PostJournalEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+        entryId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Reverse a posted journal entry
+   * @description Reverses a POSTED journal entry by writing a balanced compensating counter-entry into the supplied open fiscal period and marking the original Reversed — one atomic operation (append-only audit trail). Requires the journals_reverse permission.
+   */
+  ReverseJournalEntryAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        journalId: string;
+        entryId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ReverseJournalEntryRequest"];
+        "application/xml": components["schemas"]["ReverseJournalEntryRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unprocessable Content */
+      422: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -17218,8 +19523,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -17258,6 +19563,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -17314,6 +19625,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["JournalTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["JournalTypeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -17336,6 +19653,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LedgerDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LedgerDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -17418,6 +19741,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LedgerDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LedgerDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -17592,8 +19921,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -17632,6 +19961,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LedgerTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LedgerTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -17714,6 +20049,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LedgerTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LedgerTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -17888,8 +20229,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -18064,8 +20405,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -18104,6 +20445,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LoanDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LoanDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -18188,6 +20535,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LoanDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LoanDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -18224,6 +20577,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LoanApplicationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LoanApplicationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -18306,6 +20665,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LoanApplicationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LoanApplicationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -18480,8 +20845,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -18520,6 +20885,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LoanTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LoanTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -18602,6 +20973,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["LoanTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["LoanTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -18776,8 +21153,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -18805,6 +21182,94 @@ export interface operations {
     };
   };
   /**
+   * List posting executions
+   * @description Lists the tenant's posting-inbox executions (the durable evidence of every posting intent). Use OData to scope to a state — e.g. $filter=Status eq 'Rejected' for rejected intents, or Status eq 'PendingMapping'/'PendingPeriod'/'PendingRate' for the retryable pending set — and to page/order. Requires journals_read.
+   */
+  GetPostingExecutionsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PostingExecutionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PostingExecutionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PostingExecutionDtoIReadOnlyListEnvelope"];
+          "application/xml": components["schemas"]["PostingExecutionDtoIReadOnlyListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count posting executions
+   * @description Returns the count of the tenant's posting-inbox executions under the same OData shaping as the list read (e.g. $filter=Status eq 'Rejected' to count rejected intents). Requires journals_read.
+   */
+  CountPostingExecutionsAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PostingExecutionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PostingExecutionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieves tenant receipts
    * @description Fetches all receipts for a given tenant with OData support.
    */
@@ -18812,6 +21277,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ReceiptDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ReceiptDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -18858,6 +21329,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ReceiptDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ReceiptDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -18960,8 +21437,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -18970,6 +21447,47 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Trial balance for a fiscal period
+   * @description Returns the per-account posted debit/credit totals for the given fiscal period (optionally scoped to a single financial book), plus grand totals and the Σdebits == Σcredits balanced flag. Amounts are normalized to the target currency (default USD) from the stored USD reporting amounts.
+   */
+  GetTrialBalanceAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        fiscalPeriodId: string;
+        financialBookId?: string;
+        currencyId?: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["TrialBalanceDtoEnvelope"];
+          "application/xml": components["schemas"]["TrialBalanceDtoEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -19000,6 +21518,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareClassDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareClassDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -19089,6 +21613,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareClassDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareClassDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -19284,8 +21814,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -19324,6 +21854,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareIssuanceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareIssuanceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -19415,6 +21951,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareIssuanceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareIssuanceDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -19451,6 +21993,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareIssuanceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareIssuanceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -19646,8 +22194,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -19686,6 +22234,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareTransferDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareTransferDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -19775,6 +22329,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareTransferDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareTransferDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -19970,8 +22530,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -20010,6 +22570,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareTransferReasonDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareTransferReasonDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -20099,6 +22665,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ShareTransferReasonDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ShareTransferReasonDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -20294,8 +22866,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -20334,6 +22906,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxClassDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaxClassDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -20416,6 +22994,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxClassDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaxClassDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -20590,8 +23174,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -20630,6 +23214,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaxPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -20714,6 +23304,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaxPolicyDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -20753,6 +23349,12 @@ export interface operations {
       };
       path: {
         authorityId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaxPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -20927,8 +23529,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -20970,6 +23572,12 @@ export interface operations {
       };
       path: {
         taxPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTaxPolicyRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTaxPolicyRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -21195,8 +23803,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -21238,6 +23846,12 @@ export interface operations {
       };
       path: {
         taxPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppliedTaxPolicyRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AppliedTaxPolicyRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -21326,6 +23940,12 @@ export interface operations {
       };
       path: {
         taxPolicyId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["AppliedTaxPolicyRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["AppliedTaxPolicyRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -21504,8 +24124,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -21544,6 +24164,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxRateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaxRateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -21626,6 +24252,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TaxRateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TaxRateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -21800,8 +24432,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -21840,6 +24472,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TransactionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TransactionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -21929,6 +24567,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TransactionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TransactionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -22124,8 +24768,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -22164,6 +24808,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TransactionCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TransactionCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -22253,6 +24903,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TransactionCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TransactionCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -22448,8 +25104,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

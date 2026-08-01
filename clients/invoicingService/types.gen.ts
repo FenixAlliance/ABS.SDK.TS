@@ -24,21 +24,6 @@ export type CurrencyIdWritable = {
     country?: string | null;
 };
 
-export type DecimalEnvelopeReadable = {
-    readonly isSuccess?: boolean;
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    readonly timestamp?: string;
-    readonly activityId?: string | null;
-    result?: number;
-};
-
-export type DecimalEnvelopeWritable = {
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    result?: number;
-};
-
 export type EmailDispatchRequest = {
     title: string;
     message: string;
@@ -61,12 +46,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type EnvelopeReadable = {
@@ -74,6 +69,11 @@ export type EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: string | null;
 };
@@ -81,6 +81,11 @@ export type EnvelopeReadable = {
 export type EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: string | null;
 };
 
@@ -89,12 +94,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedInvoiceDtoReadable = {
@@ -277,11 +292,39 @@ export type ExtendedInvoiceDtoWritable = {
     invoiceLines?: Array<InvoiceLineDto> | null;
 };
 
+export type ExtendedInvoiceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedInvoiceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedInvoiceDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedInvoiceDtoReadable> | null;
 };
@@ -289,6 +332,11 @@ export type ExtendedInvoiceDtoListEnvelopeReadable = {
 export type ExtendedInvoiceDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedInvoiceDtoWritable> | null;
 };
 
@@ -326,6 +374,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -333,6 +386,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -371,11 +429,39 @@ export type InvoiceAdjustmentDto = {
     type?: 'Discount' | 'Surcharge';
 };
 
+export type InvoiceAdjustmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InvoiceAdjustmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InvoiceAdjustmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: InvoiceAdjustmentDto;
 };
@@ -383,6 +469,11 @@ export type InvoiceAdjustmentDtoEnvelopeReadable = {
 export type InvoiceAdjustmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: InvoiceAdjustmentDto;
 };
 
@@ -391,6 +482,11 @@ export type InvoiceAdjustmentDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InvoiceAdjustmentDto> | null;
 };
@@ -398,6 +494,11 @@ export type InvoiceAdjustmentDtoIReadOnlyListEnvelopeReadable = {
 export type InvoiceAdjustmentDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InvoiceAdjustmentDto> | null;
 };
 
@@ -570,11 +671,39 @@ export type InvoiceDto = {
     invoiceStatus?: 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
 };
 
+export type InvoiceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InvoiceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InvoiceDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: InvoiceDto;
 };
@@ -582,6 +711,11 @@ export type InvoiceDtoEnvelopeReadable = {
 export type InvoiceDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: InvoiceDto;
 };
 
@@ -590,6 +724,11 @@ export type InvoiceDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InvoiceDto> | null;
 };
@@ -597,6 +736,11 @@ export type InvoiceDtoListEnvelopeReadable = {
 export type InvoiceDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InvoiceDto> | null;
 };
 
@@ -623,11 +767,39 @@ export type InvoiceLineAppliedTaxDto = {
     taxPolicyDescription?: string | null;
 };
 
+export type InvoiceLineAppliedTaxDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InvoiceLineAppliedTaxDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InvoiceLineAppliedTaxDtoIReadOnlyListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InvoiceLineAppliedTaxDto> | null;
 };
@@ -635,6 +807,11 @@ export type InvoiceLineAppliedTaxDtoIReadOnlyListEnvelopeReadable = {
 export type InvoiceLineAppliedTaxDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InvoiceLineAppliedTaxDto> | null;
 };
 
@@ -813,11 +990,39 @@ export type InvoiceLineDto = {
     invoiceId?: string | null;
 };
 
+export type InvoiceLineDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InvoiceLineDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InvoiceLineDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: InvoiceLineDto;
 };
@@ -825,6 +1030,11 @@ export type InvoiceLineDtoEnvelopeReadable = {
 export type InvoiceLineDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: InvoiceLineDto;
 };
 
@@ -833,6 +1043,11 @@ export type InvoiceLineDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InvoiceLineDto> | null;
 };
@@ -840,6 +1055,11 @@ export type InvoiceLineDtoIReadOnlyListEnvelopeReadable = {
 export type InvoiceLineDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InvoiceLineDto> | null;
 };
 
@@ -848,6 +1068,11 @@ export type InvoiceLineDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InvoiceLineDto> | null;
 };
@@ -855,6 +1080,11 @@ export type InvoiceLineDtoListEnvelopeReadable = {
 export type InvoiceLineDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InvoiceLineDto> | null;
 };
 
@@ -932,11 +1162,39 @@ export type InvoiceReferenceDto = {
     referencedInvoiceId?: string | null;
 };
 
+export type InvoiceReferenceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InvoiceReferenceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InvoiceReferenceDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: InvoiceReferenceDto;
 };
@@ -944,6 +1202,11 @@ export type InvoiceReferenceDtoEnvelopeReadable = {
 export type InvoiceReferenceDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: InvoiceReferenceDto;
 };
 
@@ -952,6 +1215,11 @@ export type InvoiceReferenceDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InvoiceReferenceDto> | null;
 };
@@ -959,6 +1227,11 @@ export type InvoiceReferenceDtoIReadOnlyListEnvelopeReadable = {
 export type InvoiceReferenceDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InvoiceReferenceDto> | null;
 };
 
@@ -1062,6 +1335,11 @@ export type MoneyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: MoneyReadable;
 };
@@ -1069,13 +1347,17 @@ export type MoneyEnvelopeReadable = {
 export type MoneyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: MoneyWritable;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -1144,11 +1426,39 @@ export type PaymentDto = {
     receiverWalletAccountId?: string | null;
 };
 
+export type PaymentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentDtoIReadOnlyListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentDto> | null;
 };
@@ -1156,6 +1466,11 @@ export type PaymentDtoIReadOnlyListEnvelopeReadable = {
 export type PaymentDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentDto> | null;
 };
 
@@ -1412,6 +1727,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1719,7 +2050,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetInvoicesData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1773,7 +2104,7 @@ export type CreateInvoiceResponses = {
 export type CreateInvoiceResponse = CreateInvoiceResponses[keyof CreateInvoiceResponses];
 
 export type GetInvoicesCountData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1800,7 +2131,7 @@ export type GetInvoicesCountResponses = {
 export type GetInvoicesCountResponse = GetInvoicesCountResponses[keyof GetInvoicesCountResponses];
 
 export type GetExtendedInvoicesData = {
-    body?: never;
+    body?: ExtendedInvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1827,7 +2158,7 @@ export type GetExtendedInvoicesResponses = {
 export type GetExtendedInvoicesResponse = GetExtendedInvoicesResponses[keyof GetExtendedInvoicesResponses];
 
 export type GetExtendedInvoicesCountData = {
-    body?: never;
+    body?: ExtendedInvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1941,7 +2272,7 @@ export type GetInvoiceResponses = {
 export type GetInvoiceResponse = GetInvoiceResponses[keyof GetInvoiceResponses];
 
 export type PatchInvoiceData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
     };
@@ -2028,7 +2359,7 @@ export type CalculateInvoiceResponses = {
 export type CalculateInvoiceResponse = CalculateInvoiceResponses[keyof CalculateInvoiceResponses];
 
 export type GetInvoiceLinesData = {
-    body?: never;
+    body?: InvoiceLineDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
     };
@@ -2069,7 +2400,7 @@ export type CreateInvoiceLineResponses = {
 export type CreateInvoiceLineResponse = CreateInvoiceLineResponses[keyof CreateInvoiceLineResponses];
 
 export type GetInvoiceLinesCountData = {
-    body?: never;
+    body?: InvoiceLineDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
     };
@@ -2131,7 +2462,7 @@ export type GetInvoiceLineResponses = {
 export type GetInvoiceLineResponse = GetInvoiceLineResponses[keyof GetInvoiceLineResponses];
 
 export type PatchInvoiceLineData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
         invoiceLineId: string;
@@ -2203,7 +2534,7 @@ export type CalculateInvoiceLineResponses = {
 export type CalculateInvoiceLineResponse = CalculateInvoiceLineResponses[keyof CalculateInvoiceLineResponses];
 
 export type GetInvoiceLineTaxesData = {
-    body?: never;
+    body?: InvoiceLineAppliedTaxDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
         invoiceLineId: string;
@@ -2245,7 +2576,7 @@ export type CreateInvoiceLineTaxResponses = {
 export type CreateInvoiceLineTaxResponse = CreateInvoiceLineTaxResponses[keyof CreateInvoiceLineTaxResponses];
 
 export type GetInvoiceLineTaxesCountData = {
-    body?: never;
+    body?: InvoiceLineAppliedTaxDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
         invoiceLineId: string;
@@ -2288,7 +2619,7 @@ export type DeleteInvoiceLineTaxResponses = {
 export type DeleteInvoiceLineTaxResponse = DeleteInvoiceLineTaxResponses[keyof DeleteInvoiceLineTaxResponses];
 
 export type PatchInvoiceLineTaxData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
         invoiceLineId: string;
@@ -2332,7 +2663,7 @@ export type UpdateInvoiceLineTaxResponses = {
 export type UpdateInvoiceLineTaxResponse = UpdateInvoiceLineTaxResponses[keyof UpdateInvoiceLineTaxResponses];
 
 export type GetInvoiceAdjustmentsData = {
-    body?: never;
+    body?: InvoiceAdjustmentDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
     };
@@ -2372,7 +2703,7 @@ export type CreateInvoiceAdjustmentResponses = {
 export type CreateInvoiceAdjustmentResponse = CreateInvoiceAdjustmentResponses[keyof CreateInvoiceAdjustmentResponses];
 
 export type GetInvoiceAdjustmentsCountData = {
-    body?: never;
+    body?: InvoiceAdjustmentDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
     };
@@ -2434,7 +2765,7 @@ export type GetInvoiceAdjustmentResponses = {
 export type GetInvoiceAdjustmentResponse = GetInvoiceAdjustmentResponses[keyof GetInvoiceAdjustmentResponses];
 
 export type PatchInvoiceAdjustmentData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
         invoiceAdjustmentId: string;
@@ -2485,7 +2816,7 @@ export type UpdateInvoiceAdjustmentResponses = {
 export type UpdateInvoiceAdjustmentResponse = UpdateInvoiceAdjustmentResponses[keyof UpdateInvoiceAdjustmentResponses];
 
 export type GetInvoiceReferencesData = {
-    body?: never;
+    body?: InvoiceReferenceDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
     };
@@ -2525,7 +2856,7 @@ export type CreateInvoiceReferenceResponses = {
 export type CreateInvoiceReferenceResponse = CreateInvoiceReferenceResponses[keyof CreateInvoiceReferenceResponses];
 
 export type GetInvoiceReferencesCountData = {
-    body?: never;
+    body?: InvoiceReferenceDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
     };
@@ -2587,7 +2918,7 @@ export type GetInvoiceReferenceResponses = {
 export type GetInvoiceReferenceResponse = GetInvoiceReferenceResponses[keyof GetInvoiceReferenceResponses];
 
 export type PatchInvoiceReferenceData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         invoiceId: string;
         invoiceReferenceId: string;
@@ -2629,7 +2960,7 @@ export type UpdateInvoiceReferenceResponses = {
 export type UpdateInvoiceReferenceResponse = UpdateInvoiceReferenceResponses[keyof UpdateInvoiceReferenceResponses];
 
 export type GetInvoicePaymentsData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
     };
@@ -2649,7 +2980,7 @@ export type GetInvoicePaymentsResponses = {
 export type GetInvoicePaymentsResponse = GetInvoicePaymentsResponses[keyof GetInvoicePaymentsResponses];
 
 export type GetInvoicePaymentsCountData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     path: {
         invoiceId: string;
     };
@@ -2764,7 +3095,7 @@ export type AggregateInvoiceGlobalSurchargesResponses = {
 export type AggregateInvoiceGlobalSurchargesResponse = AggregateInvoiceGlobalSurchargesResponses[keyof AggregateInvoiceGlobalSurchargesResponses];
 
 export type GetSalesInvoicesSumData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -2789,13 +3120,13 @@ export type GetSalesInvoicesSumResponses = {
     /**
      * OK
      */
-    200: DecimalEnvelopeReadable;
+    200: MoneyEnvelopeReadable;
 };
 
 export type GetSalesInvoicesSumResponse = GetSalesInvoicesSumResponses[keyof GetSalesInvoicesSumResponses];
 
 export type GetPurchaseInvoicesSumData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -2820,7 +3151,7 @@ export type GetPurchaseInvoicesSumResponses = {
     /**
      * OK
      */
-    200: DecimalEnvelopeReadable;
+    200: MoneyEnvelopeReadable;
 };
 
 export type GetPurchaseInvoicesSumResponse = GetPurchaseInvoicesSumResponses[keyof GetPurchaseInvoicesSumResponses];

@@ -34,6 +34,9 @@ export type AccountCreateDto = {
     accountTypeId?: string | null;
     parentAccountId?: string | null;
     accountCategory: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    isContra?: boolean;
+    isMonetary?: boolean;
+    incomeStatementSubType?: 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
 };
 
 export type AccountDtoReadable = {
@@ -63,6 +66,10 @@ export type AccountDtoReadable = {
     enrollmentId?: string | null;
     childrenAccountsCount?: number;
     accountCategory?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    isContra?: boolean;
+    isMonetary?: boolean;
+    incomeStatementSubType?: 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
+    normalBalance?: 'Debit' | 'Credit';
     balanceAmount?: MoneyReadable;
     creditsBalanceAmount?: MoneyReadable;
     debitsBalanceAmount?: MoneyReadable;
@@ -98,6 +105,10 @@ export type AccountDtoWritable = {
     enrollmentId?: string | null;
     childrenAccountsCount?: number;
     accountCategory?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    isContra?: boolean;
+    isMonetary?: boolean;
+    incomeStatementSubType?: 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
+    normalBalance?: 'Debit' | 'Credit';
     balanceAmount?: MoneyWritable;
     creditsBalanceAmount?: MoneyWritable;
     debitsBalanceAmount?: MoneyWritable;
@@ -106,11 +117,39 @@ export type AccountDtoWritable = {
     creditsBalanceAmountInUsd?: MoneyWritable;
 };
 
+export type AccountDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AccountDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AccountDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AccountDtoReadable;
 };
@@ -118,6 +157,11 @@ export type AccountDtoEnvelopeReadable = {
 export type AccountDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AccountDtoWritable;
 };
 
@@ -126,6 +170,11 @@ export type AccountDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AccountDtoReadable> | null;
 };
@@ -133,6 +182,11 @@ export type AccountDtoListEnvelopeReadable = {
 export type AccountDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AccountDtoWritable> | null;
 };
 
@@ -154,11 +208,39 @@ export type AccountGroupDto = {
     enrollmentId?: string | null;
 };
 
+export type AccountGroupDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AccountGroupDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AccountGroupDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AccountGroupDto;
 };
@@ -166,6 +248,11 @@ export type AccountGroupDtoEnvelopeReadable = {
 export type AccountGroupDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AccountGroupDto;
 };
 
@@ -174,6 +261,11 @@ export type AccountGroupDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AccountGroupDto> | null;
 };
@@ -181,6 +273,11 @@ export type AccountGroupDtoListEnvelopeReadable = {
 export type AccountGroupDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AccountGroupDto> | null;
 };
 
@@ -206,11 +303,39 @@ export type AccountRelationDto = {
     enrollmentId?: string | null;
 };
 
+export type AccountRelationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AccountRelationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AccountRelationDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AccountRelationDto> | null;
 };
@@ -218,6 +343,11 @@ export type AccountRelationDtoListEnvelopeReadable = {
 export type AccountRelationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AccountRelationDto> | null;
 };
 
@@ -242,11 +372,39 @@ export type AccountTypeDto = {
     enrollmentId?: string | null;
 };
 
+export type AccountTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AccountTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AccountTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AccountTypeDto;
 };
@@ -254,6 +412,11 @@ export type AccountTypeDtoEnvelopeReadable = {
 export type AccountTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AccountTypeDto;
 };
 
@@ -262,6 +425,11 @@ export type AccountTypeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AccountTypeDto> | null;
 };
@@ -269,6 +437,11 @@ export type AccountTypeDtoListEnvelopeReadable = {
 export type AccountTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AccountTypeDto> | null;
 };
 
@@ -289,63 +462,95 @@ export type AccountUpdateDto = {
     accountTypeId?: string | null;
     parentAccountId?: string | null;
     accountCategory?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
+    isContra?: boolean;
+    isMonetary?: boolean;
+    incomeStatementSubType?: 'OperatingRevenue' | 'Gain' | 'OperatingExpense' | 'Loss';
 };
 
 export type AccountingEntryCreateDto = {
     id?: string;
     timestamp?: string;
+    journalEntryId: string;
+    accountId: string;
+    direction: 'Debit' | 'Credit';
+    transactionAmount?: number;
+    transactionCurrencyId: string;
     description: string;
-    date?: string | null;
-    amount?: number;
-    currencyId: string;
-    debitAccountId?: string | null;
-    creditAccountId?: string | null;
-    journalEntryId?: string | null;
-    accountingEntryType?: 'None' | 'Debit' | 'Credit';
 };
 
 export type AccountingEntryDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
-    debit?: number;
-    credit?: number;
-    description?: string | null;
-    forexRate?: number;
-    accountId?: string | null;
     tenantId?: string | null;
-    date?: string | null;
     enrollmentId?: string | null;
-    currencyId?: string | null;
-    debitAccountId?: string | null;
-    creditAccountId?: string | null;
     journalEntryId?: string | null;
-    debitAccountName?: string | null;
-    creditAccountName?: string | null;
-    accountingEntryType?: 'None' | 'Debit' | 'Credit';
-    debitAmount?: MoneyReadable;
-    creditAmount?: MoneyReadable;
+    accountId?: string | null;
+    accountName?: string | null;
+    direction?: 'Debit' | 'Credit';
+    description?: string | null;
+    transactionAmount?: number;
+    transactionCurrencyId?: string | null;
+    functionalAmount?: number;
+    functionalCurrencyId?: string | null;
+    accountAmount?: number;
+    accountCurrencyId?: string | null;
+    reportingAmountInUsd?: number;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    costCentreId?: string | null;
+    projectId?: string | null;
+    readonly debit?: number;
+    readonly credit?: number;
+    amount?: MoneyReadable;
+    amountInUsd?: MoneyReadable;
 };
 
 export type AccountingEntryDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    debit?: number;
-    credit?: number;
-    description?: string | null;
-    forexRate?: number;
-    accountId?: string | null;
     tenantId?: string | null;
-    date?: string | null;
     enrollmentId?: string | null;
-    currencyId?: string | null;
-    debitAccountId?: string | null;
-    creditAccountId?: string | null;
     journalEntryId?: string | null;
-    debitAccountName?: string | null;
-    creditAccountName?: string | null;
-    accountingEntryType?: 'None' | 'Debit' | 'Credit';
-    debitAmount?: MoneyWritable;
-    creditAmount?: MoneyWritable;
+    accountId?: string | null;
+    accountName?: string | null;
+    direction?: 'Debit' | 'Credit';
+    description?: string | null;
+    transactionAmount?: number;
+    transactionCurrencyId?: string | null;
+    functionalAmount?: number;
+    functionalCurrencyId?: string | null;
+    accountAmount?: number;
+    accountCurrencyId?: string | null;
+    reportingAmountInUsd?: number;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    costCentreId?: string | null;
+    projectId?: string | null;
+    amount?: MoneyWritable;
+    amountInUsd?: MoneyWritable;
+};
+
+export type AccountingEntryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AccountingEntryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type AccountingEntryDtoEnvelopeReadable = {
@@ -353,6 +558,11 @@ export type AccountingEntryDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AccountingEntryDtoReadable;
 };
@@ -360,6 +570,11 @@ export type AccountingEntryDtoEnvelopeReadable = {
 export type AccountingEntryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AccountingEntryDtoWritable;
 };
 
@@ -368,6 +583,11 @@ export type AccountingEntryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AccountingEntryDtoReadable> | null;
 };
@@ -375,18 +595,21 @@ export type AccountingEntryDtoListEnvelopeReadable = {
 export type AccountingEntryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AccountingEntryDtoWritable> | null;
 };
 
 export type AccountingEntryUpdateDto = {
-    description?: string | null;
-    amount?: number;
-    date?: string | null;
-    currencyId?: string | null;
-    debitAccountId?: string | null;
-    creditAccountId?: string | null;
     journalEntryId?: string | null;
-    accountingEntryType?: 'None' | 'Debit' | 'Credit';
+    accountId?: string | null;
+    direction?: 'Debit' | 'Credit';
+    transactionAmount?: number;
+    transactionCurrencyId?: string | null;
+    description?: string | null;
 };
 
 export type AccountingPeriodCreateDto = {
@@ -407,11 +630,39 @@ export type AccountingPeriodDto = {
     dateEnd?: string;
 };
 
+export type AccountingPeriodDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AccountingPeriodDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AccountingPeriodDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AccountingPeriodDto;
 };
@@ -419,6 +670,11 @@ export type AccountingPeriodDtoEnvelopeReadable = {
 export type AccountingPeriodDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AccountingPeriodDto;
 };
 
@@ -427,6 +683,11 @@ export type AccountingPeriodDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AccountingPeriodDto> | null;
 };
@@ -434,6 +695,11 @@ export type AccountingPeriodDtoListEnvelopeReadable = {
 export type AccountingPeriodDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AccountingPeriodDto> | null;
 };
 
@@ -467,11 +733,39 @@ export type AppliedItemTaxRecordDto = {
     billingItemRecordId?: string | null;
 };
 
+export type AppliedItemTaxRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AppliedItemTaxRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AppliedItemTaxRecordDtoIReadOnlyListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AppliedItemTaxRecordDto> | null;
 };
@@ -479,6 +773,11 @@ export type AppliedItemTaxRecordDtoIReadOnlyListEnvelopeReadable = {
 export type AppliedItemTaxRecordDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AppliedItemTaxRecordDto> | null;
 };
 
@@ -513,11 +812,39 @@ export type AppliedTaxPolicyRecordDto = {
     taxBaseAmountInUSD?: number;
 };
 
+export type AppliedTaxPolicyRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AppliedTaxPolicyRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AppliedTaxPolicyRecordDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AppliedTaxPolicyRecordDto;
 };
@@ -525,6 +852,11 @@ export type AppliedTaxPolicyRecordDtoEnvelopeReadable = {
 export type AppliedTaxPolicyRecordDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AppliedTaxPolicyRecordDto;
 };
 
@@ -533,6 +865,11 @@ export type AppliedTaxPolicyRecordDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AppliedTaxPolicyRecordDto> | null;
 };
@@ -540,6 +877,11 @@ export type AppliedTaxPolicyRecordDtoListEnvelopeReadable = {
 export type AppliedTaxPolicyRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AppliedTaxPolicyRecordDto> | null;
 };
 
@@ -549,6 +891,11 @@ export type AppliedTaxPolicyRecordUpdateDto = {
     itemId?: string | null;
     taxAmountInUSD?: number;
     taxBaseAmountInUSD?: number;
+};
+
+export type AssignJournalToBookRequest = {
+    financialBookId: string;
+    code: string;
 };
 
 export type BankAccountCreateDto = {
@@ -580,11 +927,39 @@ export type BankAccountDto = {
     enrollmentId?: string | null;
 };
 
+export type BankAccountDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BankAccountDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BankAccountDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BankAccountDto;
 };
@@ -592,6 +967,11 @@ export type BankAccountDtoEnvelopeReadable = {
 export type BankAccountDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BankAccountDto;
 };
 
@@ -600,6 +980,11 @@ export type BankAccountDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BankAccountDto> | null;
 };
@@ -607,6 +992,11 @@ export type BankAccountDtoListEnvelopeReadable = {
 export type BankAccountDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BankAccountDto> | null;
 };
 
@@ -637,11 +1027,39 @@ export type BankDto = {
     countryId?: string | null;
 };
 
+export type BankDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BankDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BankDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BankDto;
 };
@@ -649,6 +1067,11 @@ export type BankDtoEnvelopeReadable = {
 export type BankDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BankDto;
 };
 
@@ -657,6 +1080,11 @@ export type BankDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BankDto> | null;
 };
@@ -664,6 +1092,11 @@ export type BankDtoListEnvelopeReadable = {
 export type BankDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BankDto> | null;
 };
 
@@ -711,11 +1144,39 @@ export type BankGuaranteeDto = {
     currencyId?: string | null;
 };
 
+export type BankGuaranteeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BankGuaranteeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BankGuaranteeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BankGuaranteeDto;
 };
@@ -723,6 +1184,11 @@ export type BankGuaranteeDtoEnvelopeReadable = {
 export type BankGuaranteeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BankGuaranteeDto;
 };
 
@@ -731,6 +1197,11 @@ export type BankGuaranteeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BankGuaranteeDto> | null;
 };
@@ -738,6 +1209,11 @@ export type BankGuaranteeDtoListEnvelopeReadable = {
 export type BankGuaranteeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BankGuaranteeDto> | null;
 };
 
@@ -835,11 +1311,39 @@ export type BankProfileDtoWritable = {
     bankName?: string | null;
 };
 
+export type BankProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BankProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BankProfileDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BankProfileDtoReadable> | null;
 };
@@ -847,6 +1351,11 @@ export type BankProfileDtoListEnvelopeReadable = {
 export type BankProfileDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BankProfileDtoWritable> | null;
 };
 
@@ -888,11 +1397,39 @@ export type BankTransactionDto = {
     bankAccountId?: string | null;
 };
 
+export type BankTransactionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BankTransactionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BankTransactionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BankTransactionDto;
 };
@@ -900,6 +1437,11 @@ export type BankTransactionDtoEnvelopeReadable = {
 export type BankTransactionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BankTransactionDto;
 };
 
@@ -908,6 +1450,11 @@ export type BankTransactionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BankTransactionDto> | null;
 };
@@ -915,6 +1462,11 @@ export type BankTransactionDtoListEnvelopeReadable = {
 export type BankTransactionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BankTransactionDto> | null;
 };
 
@@ -1098,11 +1650,39 @@ export type BillingProfileDtoWritable = {
     countryName?: string | null;
 };
 
+export type BillingProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BillingProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BillingProfileDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BillingProfileDtoReadable;
 };
@@ -1110,6 +1690,11 @@ export type BillingProfileDtoEnvelopeReadable = {
 export type BillingProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BillingProfileDtoWritable;
 };
 
@@ -1118,6 +1703,11 @@ export type BillingProfileDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BillingProfileDtoReadable> | null;
 };
@@ -1125,6 +1715,11 @@ export type BillingProfileDtoIReadOnlyListEnvelopeReadable = {
 export type BillingProfileDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BillingProfileDtoWritable> | null;
 };
 
@@ -1161,60 +1756,64 @@ export type BudgetAccountEntryCreateDto = {
     id?: string;
     timestamp?: string;
     description: string;
-    date?: string | null;
-    amount?: number;
+    plannedAmount?: number;
     currencyId: string;
-    debitAccountId?: string | null;
-    creditAccountId?: string | null;
-    journalEntryId?: string | null;
-    accountingEntryType?: 'None' | 'Debit' | 'Credit';
-    budgetId?: string | null;
+    debitAccountId: string;
+    creditAccountId: string;
+    budgetId: string;
 };
 
 export type BudgetAccountEntryDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
-    debit?: number;
-    credit?: number;
-    description?: string | null;
-    forexRate?: number;
-    accountId?: string | null;
     tenantId?: string | null;
-    date?: string | null;
     enrollmentId?: string | null;
+    description?: string | null;
+    plannedAmount?: number;
     currencyId?: string | null;
     debitAccountId?: string | null;
     creditAccountId?: string | null;
-    journalEntryId?: string | null;
-    debitAccountName?: string | null;
-    creditAccountName?: string | null;
-    accountingEntryType?: 'None' | 'Debit' | 'Credit';
-    debitAmount?: MoneyReadable;
-    creditAmount?: MoneyReadable;
     budgetId?: string | null;
+    date?: string | null;
+    plannedAmountMoney?: MoneyReadable;
 };
 
 export type BudgetAccountEntryDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    debit?: number;
-    credit?: number;
-    description?: string | null;
-    forexRate?: number;
-    accountId?: string | null;
     tenantId?: string | null;
-    date?: string | null;
     enrollmentId?: string | null;
+    description?: string | null;
+    plannedAmount?: number;
     currencyId?: string | null;
     debitAccountId?: string | null;
     creditAccountId?: string | null;
-    journalEntryId?: string | null;
-    debitAccountName?: string | null;
-    creditAccountName?: string | null;
-    accountingEntryType?: 'None' | 'Debit' | 'Credit';
-    debitAmount?: MoneyWritable;
-    creditAmount?: MoneyWritable;
     budgetId?: string | null;
+    date?: string | null;
+    plannedAmountMoney?: MoneyWritable;
+};
+
+export type BudgetAccountEntryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BudgetAccountEntryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type BudgetAccountEntryDtoEnvelopeReadable = {
@@ -1222,6 +1821,11 @@ export type BudgetAccountEntryDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BudgetAccountEntryDtoReadable;
 };
@@ -1229,6 +1833,11 @@ export type BudgetAccountEntryDtoEnvelopeReadable = {
 export type BudgetAccountEntryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BudgetAccountEntryDtoWritable;
 };
 
@@ -1237,6 +1846,11 @@ export type BudgetAccountEntryDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BudgetAccountEntryDtoReadable> | null;
 };
@@ -1244,18 +1858,20 @@ export type BudgetAccountEntryDtoIReadOnlyListEnvelopeReadable = {
 export type BudgetAccountEntryDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BudgetAccountEntryDtoWritable> | null;
 };
 
 export type BudgetAccountEntryUpdateDto = {
     description?: string | null;
-    amount?: number;
-    date?: string | null;
+    plannedAmount?: number;
     currencyId?: string | null;
     debitAccountId?: string | null;
     creditAccountId?: string | null;
-    journalEntryId?: string | null;
-    accountingEntryType?: 'None' | 'Debit' | 'Credit';
     budgetId?: string | null;
 };
 
@@ -1274,11 +1890,39 @@ export type BudgetDto = {
     fiscalYearId?: string | null;
 };
 
+export type BudgetDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BudgetDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BudgetDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BudgetDto;
 };
@@ -1286,6 +1930,11 @@ export type BudgetDtoEnvelopeReadable = {
 export type BudgetDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BudgetDto;
 };
 
@@ -1294,6 +1943,11 @@ export type BudgetDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BudgetDto> | null;
 };
@@ -1301,6 +1955,11 @@ export type BudgetDtoIReadOnlyListEnvelopeReadable = {
 export type BudgetDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BudgetDto> | null;
 };
 
@@ -1321,6 +1980,11 @@ export type ChartOfAccountsListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ChartOfAccounts> | null;
 };
@@ -1328,6 +1992,11 @@ export type ChartOfAccountsListEnvelopeReadable = {
 export type ChartOfAccountsListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ChartOfAccounts> | null;
 };
 
@@ -1365,11 +2034,39 @@ export type CommissionDto = {
     receiverContactId?: string | null;
 };
 
+export type CommissionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CommissionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CommissionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CommissionDto;
 };
@@ -1377,6 +2074,11 @@ export type CommissionDtoEnvelopeReadable = {
 export type CommissionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CommissionDto;
 };
 
@@ -1385,6 +2087,11 @@ export type CommissionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CommissionDto> | null;
 };
@@ -1392,6 +2099,11 @@ export type CommissionDtoListEnvelopeReadable = {
 export type CommissionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CommissionDto> | null;
 };
 
@@ -1549,11 +2261,39 @@ export type CostCentreBudgetDto = {
     costCentreId?: string | null;
 };
 
+export type CostCentreBudgetDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CostCentreBudgetDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CostCentreBudgetDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CostCentreBudgetDto;
 };
@@ -1561,6 +2301,11 @@ export type CostCentreBudgetDtoEnvelopeReadable = {
 export type CostCentreBudgetDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CostCentreBudgetDto;
 };
 
@@ -1569,6 +2314,11 @@ export type CostCentreBudgetDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CostCentreBudgetDto> | null;
 };
@@ -1576,6 +2326,11 @@ export type CostCentreBudgetDtoListEnvelopeReadable = {
 export type CostCentreBudgetDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CostCentreBudgetDto> | null;
 };
 
@@ -1608,11 +2363,39 @@ export type CostCentreDto = {
     parentCostCentreId?: string | null;
 };
 
+export type CostCentreDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CostCentreDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CostCentreDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CostCentreDto;
 };
@@ -1620,6 +2403,11 @@ export type CostCentreDtoEnvelopeReadable = {
 export type CostCentreDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CostCentreDto;
 };
 
@@ -1628,6 +2416,11 @@ export type CostCentreDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CostCentreDto> | null;
 };
@@ -1635,6 +2428,11 @@ export type CostCentreDtoListEnvelopeReadable = {
 export type CostCentreDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CostCentreDto> | null;
 };
 
@@ -1657,11 +2455,39 @@ export type CostCentreGroupDto = {
     parentCostCentresGroupId?: string | null;
 };
 
+export type CostCentreGroupDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CostCentreGroupDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CostCentreGroupDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CostCentreGroupDto;
 };
@@ -1669,6 +2495,11 @@ export type CostCentreGroupDtoEnvelopeReadable = {
 export type CostCentreGroupDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CostCentreGroupDto;
 };
 
@@ -1677,6 +2508,11 @@ export type CostCentreGroupDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CostCentreGroupDto> | null;
 };
@@ -1684,6 +2520,11 @@ export type CostCentreGroupDtoListEnvelopeReadable = {
 export type CostCentreGroupDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CostCentreGroupDto> | null;
 };
 
@@ -1728,6 +2569,11 @@ export type DecimalEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -1735,6 +2581,11 @@ export type DecimalEnvelopeReadable = {
 export type DecimalEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -1743,12 +2594,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -1756,12 +2617,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExpenseClaimCreateDto = {
@@ -1778,11 +2649,39 @@ export type ExpenseClaimDto = {
     enrollmentId?: string | null;
 };
 
+export type ExpenseClaimDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExpenseClaimDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExpenseClaimDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ExpenseClaimDto;
 };
@@ -1790,6 +2689,11 @@ export type ExpenseClaimDtoEnvelopeReadable = {
 export type ExpenseClaimDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ExpenseClaimDto;
 };
 
@@ -1798,6 +2702,11 @@ export type ExpenseClaimDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExpenseClaimDto> | null;
 };
@@ -1805,6 +2714,11 @@ export type ExpenseClaimDtoListEnvelopeReadable = {
 export type ExpenseClaimDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExpenseClaimDto> | null;
 };
 
@@ -1828,11 +2742,39 @@ export type ExpenseTypeDto = {
     enrollmentId?: string | null;
 };
 
+export type ExpenseTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExpenseTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExpenseTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ExpenseTypeDto;
 };
@@ -1840,6 +2782,11 @@ export type ExpenseTypeDtoEnvelopeReadable = {
 export type ExpenseTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ExpenseTypeDto;
 };
 
@@ -1848,6 +2795,11 @@ export type ExpenseTypeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExpenseTypeDto> | null;
 };
@@ -1855,6 +2807,11 @@ export type ExpenseTypeDtoListEnvelopeReadable = {
 export type ExpenseTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExpenseTypeDto> | null;
 };
 
@@ -1878,11 +2835,39 @@ export type FinancialBookDto = {
     tenantId?: string | null;
 };
 
+export type FinancialBookDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FinancialBookDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FinancialBookDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: FinancialBookDto;
 };
@@ -1890,6 +2875,11 @@ export type FinancialBookDtoEnvelopeReadable = {
 export type FinancialBookDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: FinancialBookDto;
 };
 
@@ -1898,6 +2888,11 @@ export type FinancialBookDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FinancialBookDto> | null;
 };
@@ -1905,6 +2900,11 @@ export type FinancialBookDtoListEnvelopeReadable = {
 export type FinancialBookDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FinancialBookDto> | null;
 };
 
@@ -1935,11 +2935,39 @@ export type FiscalAuthorityDto = {
     webUrl?: string | null;
 };
 
+export type FiscalAuthorityDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FiscalAuthorityDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FiscalAuthorityDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: FiscalAuthorityDto;
 };
@@ -1947,6 +2975,11 @@ export type FiscalAuthorityDtoEnvelopeReadable = {
 export type FiscalAuthorityDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: FiscalAuthorityDto;
 };
 
@@ -1955,6 +2988,11 @@ export type FiscalAuthorityDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FiscalAuthorityDto> | null;
 };
@@ -1962,6 +3000,11 @@ export type FiscalAuthorityDtoListEnvelopeReadable = {
 export type FiscalAuthorityDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FiscalAuthorityDto> | null;
 };
 
@@ -1991,11 +3034,39 @@ export type FiscalIdentificationTypeDto = {
     enrollmentId?: string | null;
 };
 
+export type FiscalIdentificationTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FiscalIdentificationTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FiscalIdentificationTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: FiscalIdentificationTypeDto;
 };
@@ -2003,6 +3074,11 @@ export type FiscalIdentificationTypeDtoEnvelopeReadable = {
 export type FiscalIdentificationTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: FiscalIdentificationTypeDto;
 };
 
@@ -2011,6 +3087,11 @@ export type FiscalIdentificationTypeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FiscalIdentificationTypeDto> | null;
 };
@@ -2018,6 +3099,11 @@ export type FiscalIdentificationTypeDtoListEnvelopeReadable = {
 export type FiscalIdentificationTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FiscalIdentificationTypeDto> | null;
 };
 
@@ -2030,10 +3116,10 @@ export type FiscalIdentificationTypeUpdateDto = {
 export type FiscalPeriodCreateDto = {
     id?: string;
     timestamp?: string;
-    name?: string | null;
+    name: string;
     fromDate?: string;
     toDate?: string;
-    fiscalYearId?: string | null;
+    fiscalYearId: string;
 };
 
 export type FiscalPeriodDto = {
@@ -2045,6 +3131,30 @@ export type FiscalPeriodDto = {
     tenantId?: string | null;
     enrollmentId?: string | null;
     fiscalYearId?: string | null;
+    status?: 'Open' | 'Closed' | 'Locked';
+};
+
+export type FiscalPeriodDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FiscalPeriodDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type FiscalPeriodDtoEnvelopeReadable = {
@@ -2052,6 +3162,11 @@ export type FiscalPeriodDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: FiscalPeriodDto;
 };
@@ -2059,6 +3174,11 @@ export type FiscalPeriodDtoEnvelopeReadable = {
 export type FiscalPeriodDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: FiscalPeriodDto;
 };
 
@@ -2067,6 +3187,11 @@ export type FiscalPeriodDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FiscalPeriodDto> | null;
 };
@@ -2074,14 +3199,19 @@ export type FiscalPeriodDtoListEnvelopeReadable = {
 export type FiscalPeriodDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FiscalPeriodDto> | null;
 };
 
 export type FiscalPeriodUpdateDto = {
-    name?: string | null;
+    name: string;
     fromDate?: string;
     toDate?: string;
-    fiscalYearId?: string | null;
+    fiscalYearId: string;
 };
 
 export type FiscalRegimeCreateDto = {
@@ -2102,11 +3232,39 @@ export type FiscalRegimeDto = {
     enrollmentId?: string | null;
 };
 
+export type FiscalRegimeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FiscalRegimeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FiscalRegimeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: FiscalRegimeDto;
 };
@@ -2114,6 +3272,11 @@ export type FiscalRegimeDtoEnvelopeReadable = {
 export type FiscalRegimeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: FiscalRegimeDto;
 };
 
@@ -2122,6 +3285,11 @@ export type FiscalRegimeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FiscalRegimeDto> | null;
 };
@@ -2129,6 +3297,11 @@ export type FiscalRegimeDtoListEnvelopeReadable = {
 export type FiscalRegimeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FiscalRegimeDto> | null;
 };
 
@@ -2156,11 +3329,39 @@ export type FiscalResponsibilityDto = {
     enrollmentId?: string | null;
 };
 
+export type FiscalResponsibilityDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FiscalResponsibilityDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FiscalResponsibilityDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: FiscalResponsibilityDto;
 };
@@ -2168,6 +3369,11 @@ export type FiscalResponsibilityDtoEnvelopeReadable = {
 export type FiscalResponsibilityDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: FiscalResponsibilityDto;
 };
 
@@ -2176,6 +3382,11 @@ export type FiscalResponsibilityDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FiscalResponsibilityDto> | null;
 };
@@ -2183,6 +3394,11 @@ export type FiscalResponsibilityDtoListEnvelopeReadable = {
 export type FiscalResponsibilityDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FiscalResponsibilityDto> | null;
 };
 
@@ -2202,11 +3418,39 @@ export type FiscalResponsibilityRecordDto = {
     enrollmentId?: string | null;
 };
 
+export type FiscalResponsibilityRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FiscalResponsibilityRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FiscalResponsibilityRecordDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: FiscalResponsibilityRecordDto;
 };
@@ -2214,6 +3458,11 @@ export type FiscalResponsibilityRecordDtoEnvelopeReadable = {
 export type FiscalResponsibilityRecordDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: FiscalResponsibilityRecordDto;
 };
 
@@ -2222,6 +3471,11 @@ export type FiscalResponsibilityRecordDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FiscalResponsibilityRecordDto> | null;
 };
@@ -2229,6 +3483,11 @@ export type FiscalResponsibilityRecordDtoListEnvelopeReadable = {
 export type FiscalResponsibilityRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FiscalResponsibilityRecordDto> | null;
 };
 
@@ -2246,12 +3505,12 @@ export type FiscalResponsibilityUpdateDto = {
 export type FiscalYearCreateDto = {
     id?: string;
     timestamp?: string;
-    name?: string | null;
+    name: string;
     description?: string | null;
     closed?: boolean;
     endDate?: string;
     startDate?: string;
-    fiscalAuthorityId?: string | null;
+    fiscalAuthorityId: string;
 };
 
 export type FiscalYearDto = {
@@ -2267,11 +3526,39 @@ export type FiscalYearDto = {
     startDate?: string;
 };
 
+export type FiscalYearDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FiscalYearDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FiscalYearDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: FiscalYearDto;
 };
@@ -2279,6 +3566,11 @@ export type FiscalYearDtoEnvelopeReadable = {
 export type FiscalYearDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: FiscalYearDto;
 };
 
@@ -2287,6 +3579,11 @@ export type FiscalYearDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FiscalYearDto> | null;
 };
@@ -2294,6 +3591,11 @@ export type FiscalYearDtoIReadOnlyListEnvelopeReadable = {
 export type FiscalYearDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FiscalYearDto> | null;
 };
 
@@ -2302,6 +3604,11 @@ export type FiscalYearDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FiscalYearDto> | null;
 };
@@ -2309,16 +3616,21 @@ export type FiscalYearDtoListEnvelopeReadable = {
 export type FiscalYearDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FiscalYearDto> | null;
 };
 
 export type FiscalYearUpdateDto = {
-    name?: string | null;
+    name: string;
     description?: string | null;
     closed?: boolean;
     endDate?: string;
     startDate?: string;
-    fiscalAuthorityId?: string | null;
+    fiscalAuthorityId: string;
 };
 
 export type ForgotPasswordRequest = {
@@ -2337,11 +3649,39 @@ export type GrantDto = {
     enrollmentId?: string | null;
 };
 
+export type GrantDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type GrantDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type GrantDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: GrantDto;
 };
@@ -2349,6 +3689,11 @@ export type GrantDtoEnvelopeReadable = {
 export type GrantDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: GrantDto;
 };
 
@@ -2357,6 +3702,11 @@ export type GrantDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<GrantDto> | null;
 };
@@ -2364,6 +3714,11 @@ export type GrantDtoIReadOnlyListEnvelopeReadable = {
 export type GrantDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<GrantDto> | null;
 };
 
@@ -2401,6 +3756,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -2408,6 +3768,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -2445,11 +3810,39 @@ export type InvoiceEnumerationRangeDto = {
     documentType?: 'Standard' | 'DebitNote' | 'CreditNote';
 };
 
+export type InvoiceEnumerationRangeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InvoiceEnumerationRangeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InvoiceEnumerationRangeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: InvoiceEnumerationRangeDto;
 };
@@ -2457,6 +3850,11 @@ export type InvoiceEnumerationRangeDtoEnvelopeReadable = {
 export type InvoiceEnumerationRangeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: InvoiceEnumerationRangeDto;
 };
 
@@ -2465,6 +3863,11 @@ export type InvoiceEnumerationRangeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InvoiceEnumerationRangeDto> | null;
 };
@@ -2472,6 +3875,11 @@ export type InvoiceEnumerationRangeDtoListEnvelopeReadable = {
 export type InvoiceEnumerationRangeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InvoiceEnumerationRangeDto> | null;
 };
 
@@ -2507,11 +3915,39 @@ export type ItemTaxPolicyRecordDto = {
     itemId?: string | null;
 };
 
+export type ItemTaxPolicyRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemTaxPolicyRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemTaxPolicyRecordDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemTaxPolicyRecordDto;
 };
@@ -2519,6 +3955,11 @@ export type ItemTaxPolicyRecordDtoEnvelopeReadable = {
 export type ItemTaxPolicyRecordDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemTaxPolicyRecordDto;
 };
 
@@ -2527,6 +3968,11 @@ export type ItemTaxPolicyRecordDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemTaxPolicyRecordDto> | null;
 };
@@ -2534,6 +3980,11 @@ export type ItemTaxPolicyRecordDtoListEnvelopeReadable = {
 export type ItemTaxPolicyRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemTaxPolicyRecordDto> | null;
 };
 
@@ -2552,6 +4003,8 @@ export type JournalCreateDto = {
     parentJournalId?: string | null;
     journalTypeId?: string | null;
     ledgerId?: string | null;
+    financialBookId?: string | null;
+    code?: string | null;
 };
 
 export type JournalDto = {
@@ -2565,6 +4018,31 @@ export type JournalDto = {
     fiscalYearId?: string | null;
     journalTypeId?: string | null;
     parentJournalId?: string | null;
+    financialBookId?: string | null;
+    code?: string | null;
+};
+
+export type JournalDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JournalDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type JournalDtoEnvelopeReadable = {
@@ -2572,6 +4050,11 @@ export type JournalDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JournalDto;
 };
@@ -2579,6 +4062,11 @@ export type JournalDtoEnvelopeReadable = {
 export type JournalDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JournalDto;
 };
 
@@ -2587,6 +4075,11 @@ export type JournalDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JournalDto> | null;
 };
@@ -2594,86 +4087,140 @@ export type JournalDtoIReadOnlyListEnvelopeReadable = {
 export type JournalDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JournalDto> | null;
 };
 
 export type JournalEntryCreateDto = {
     id?: string;
     timestamp?: string;
-    group?: boolean;
-    opening?: boolean;
-    description: string;
-    date: string;
-    debit?: number;
-    credit?: number;
     journalId: string;
-    currencyId: string;
-    debitAccountId: string;
-    creditAccountId: string;
-    parentJournalEntryId?: string | null;
-    invoiceCode?: string | null;
+    fiscalPeriodId: string;
+    transactionCurrencyId: string;
+    description: string;
+    sourceDocumentType?: string | null;
+    sourceDocumentId?: string | null;
+    idempotencyKey?: string | null;
+    isOpeningBalance?: boolean;
+    accountingEntries?: Array<AccountingEntryCreateDto> | null;
 };
 
 export type JournalEntryDtoReadable = {
     id?: string | null;
     timestamp?: string | null;
-    group?: boolean;
-    opening?: boolean;
-    description?: string | null;
-    date?: string | null;
-    forexRatesSnapshot?: string | null;
-    forexRate?: number;
-    credit?: number;
-    debit?: number;
-    creditInUsd?: number;
-    debitInUsd?: number;
-    currencyId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
     journalId?: string | null;
     journalName?: string | null;
     journalCode?: string | null;
-    creditAccountId?: string | null;
-    creditAccountName?: string | null;
-    debitAccountId?: string | null;
-    debitAccountName?: string | null;
-    invoiceCode?: string | null;
-    parentJournalEntryId?: string | null;
-    creditAmount?: MoneyReadable;
-    debitAmount?: MoneyReadable;
-    creditAmountInUsd?: MoneyReadable;
-    debitAmountInUsd?: MoneyReadable;
+    fiscalPeriodId?: string | null;
+    financialBookId?: string | null;
+    description?: string | null;
+    entryType?: 'Simple' | 'Compound' | 'Adjusting' | 'Reversing';
+    status?: 'Draft' | 'Posted' | 'Reversed' | 'Voided';
+    postingDate?: string | null;
+    isOpeningBalance?: boolean;
+    transactionCurrencyId?: string | null;
+    sourceDocumentType?: string | null;
+    sourceDocumentId?: string | null;
+    idempotencyKey?: string | null;
+    reversalOfJournalEntryId?: string | null;
+    postedBy?: string | null;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    debitInUsd?: number;
+    creditInUsd?: number;
+    accountingEntries?: Array<AccountingEntryDtoReadable> | null;
+    readonly totalDebit?: number;
+    readonly totalCredit?: number;
+    totalDebitAmount?: MoneyReadable;
+    totalCreditAmount?: MoneyReadable;
+    debitInUsdAmount?: MoneyReadable;
+    creditInUsdAmount?: MoneyReadable;
 };
 
 export type JournalEntryDtoWritable = {
     id?: string | null;
     timestamp?: string | null;
-    group?: boolean;
-    opening?: boolean;
-    description?: string | null;
-    date?: string | null;
-    forexRatesSnapshot?: string | null;
-    forexRate?: number;
-    credit?: number;
-    debit?: number;
-    creditInUsd?: number;
-    debitInUsd?: number;
-    currencyId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
     journalId?: string | null;
     journalName?: string | null;
     journalCode?: string | null;
-    creditAccountId?: string | null;
-    creditAccountName?: string | null;
-    debitAccountId?: string | null;
-    debitAccountName?: string | null;
-    invoiceCode?: string | null;
-    parentJournalEntryId?: string | null;
-    creditAmount?: MoneyWritable;
-    debitAmount?: MoneyWritable;
-    creditAmountInUsd?: MoneyWritable;
-    debitAmountInUsd?: MoneyWritable;
+    fiscalPeriodId?: string | null;
+    financialBookId?: string | null;
+    description?: string | null;
+    entryType?: 'Simple' | 'Compound' | 'Adjusting' | 'Reversing';
+    status?: 'Draft' | 'Posted' | 'Reversed' | 'Voided';
+    postingDate?: string | null;
+    isOpeningBalance?: boolean;
+    transactionCurrencyId?: string | null;
+    sourceDocumentType?: string | null;
+    sourceDocumentId?: string | null;
+    idempotencyKey?: string | null;
+    reversalOfJournalEntryId?: string | null;
+    postedBy?: string | null;
+    forexRate?: number;
+    forexRatesSnapshot?: string | null;
+    debitInUsd?: number;
+    creditInUsd?: number;
+    accountingEntries?: Array<AccountingEntryDtoWritable> | null;
+    totalDebitAmount?: MoneyWritable;
+    totalCreditAmount?: MoneyWritable;
+    debitInUsdAmount?: MoneyWritable;
+    creditInUsdAmount?: MoneyWritable;
+};
+
+export type JournalEntryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JournalEntryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type JournalEntryDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: JournalEntryDtoReadable;
+};
+
+export type JournalEntryDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: JournalEntryDtoWritable;
 };
 
 export type JournalEntryDtoIReadOnlyListEnvelopeReadable = {
@@ -2681,6 +4228,11 @@ export type JournalEntryDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JournalEntryDtoReadable> | null;
 };
@@ -2688,22 +4240,21 @@ export type JournalEntryDtoIReadOnlyListEnvelopeReadable = {
 export type JournalEntryDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JournalEntryDtoWritable> | null;
 };
 
 export type JournalEntryUpdateDto = {
-    group?: boolean;
-    opening?: boolean;
+    fiscalPeriodId: string;
+    transactionCurrencyId: string;
     description: string;
-    date: string;
-    debit?: number;
-    credit?: number;
-    journalId: string;
-    currencyId: string;
-    invoiceCode?: string | null;
-    debitAccountId: string;
-    creditAccountId: string;
-    parentJournalEntryId?: string | null;
+    sourceDocumentType?: string | null;
+    sourceDocumentId?: string | null;
+    isOpeningBalance?: boolean;
 };
 
 export type JournalTypeCreateDto = {
@@ -2720,11 +4271,39 @@ export type JournalTypeDto = {
     enrollmentId?: string | null;
 };
 
+export type JournalTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JournalTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type JournalTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JournalTypeDto;
 };
@@ -2732,6 +4311,11 @@ export type JournalTypeDtoEnvelopeReadable = {
 export type JournalTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JournalTypeDto;
 };
 
@@ -2740,6 +4324,11 @@ export type JournalTypeDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JournalTypeDto> | null;
 };
@@ -2747,6 +4336,11 @@ export type JournalTypeDtoIReadOnlyListEnvelopeReadable = {
 export type JournalTypeDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JournalTypeDto> | null;
 };
 
@@ -2774,11 +4368,39 @@ export type LedgerDto = {
     ledgerTypeId?: string | null;
 };
 
+export type LedgerDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LedgerDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LedgerDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LedgerDto;
 };
@@ -2786,6 +4408,11 @@ export type LedgerDtoEnvelopeReadable = {
 export type LedgerDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LedgerDto;
 };
 
@@ -2794,6 +4421,11 @@ export type LedgerDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LedgerDto> | null;
 };
@@ -2801,6 +4433,11 @@ export type LedgerDtoIReadOnlyListEnvelopeReadable = {
 export type LedgerDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LedgerDto> | null;
 };
 
@@ -2808,16 +4445,39 @@ export type LedgerTypeCreateDto = {
     id?: string;
     timestamp?: string;
     name: string;
-    ledgerClass?: 'Assets' | 'Equity' | 'Gains' | 'Losses' | 'Revenue' | 'Expenses' | 'Liabilities';
+    ledgerClass?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
 };
 
 export type LedgerTypeDto = {
     id?: string | null;
     timestamp?: string | null;
     name?: string | null;
-    ledgerClass?: 'Assets' | 'Equity' | 'Gains' | 'Losses' | 'Revenue' | 'Expenses' | 'Liabilities';
+    ledgerClass?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type LedgerTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LedgerTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type LedgerTypeDtoEnvelopeReadable = {
@@ -2825,6 +4485,11 @@ export type LedgerTypeDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LedgerTypeDto;
 };
@@ -2832,6 +4497,11 @@ export type LedgerTypeDtoEnvelopeReadable = {
 export type LedgerTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LedgerTypeDto;
 };
 
@@ -2840,6 +4510,11 @@ export type LedgerTypeDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LedgerTypeDto> | null;
 };
@@ -2847,12 +4522,17 @@ export type LedgerTypeDtoIReadOnlyListEnvelopeReadable = {
 export type LedgerTypeDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LedgerTypeDto> | null;
 };
 
 export type LedgerTypeUpdateDto = {
     name?: string | null;
-    ledgerClass?: 'Assets' | 'Equity' | 'Gains' | 'Losses' | 'Revenue' | 'Expenses' | 'Liabilities';
+    ledgerClass?: 'Assets' | 'Equity' | 'Revenue' | 'Expense' | 'Liabilities';
 };
 
 export type LoanApplicationCreateDto = {
@@ -2867,11 +4547,39 @@ export type LoanApplicationDto = {
     enrollmentId?: string | null;
 };
 
+export type LoanApplicationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LoanApplicationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LoanApplicationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LoanApplicationDto;
 };
@@ -2879,6 +4587,11 @@ export type LoanApplicationDtoEnvelopeReadable = {
 export type LoanApplicationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LoanApplicationDto;
 };
 
@@ -2887,6 +4600,11 @@ export type LoanApplicationDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LoanApplicationDto> | null;
 };
@@ -2894,6 +4612,11 @@ export type LoanApplicationDtoIReadOnlyListEnvelopeReadable = {
 export type LoanApplicationDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LoanApplicationDto> | null;
 };
 
@@ -2927,11 +4650,39 @@ export type LoanDto = {
     enrollmentId?: string | null;
 };
 
+export type LoanDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LoanDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LoanDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LoanDto;
 };
@@ -2939,6 +4690,11 @@ export type LoanDtoEnvelopeReadable = {
 export type LoanDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LoanDto;
 };
 
@@ -2947,6 +4703,11 @@ export type LoanDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LoanDto> | null;
 };
@@ -2954,6 +4715,11 @@ export type LoanDtoIReadOnlyListEnvelopeReadable = {
 export type LoanDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LoanDto> | null;
 };
 
@@ -2973,11 +4739,39 @@ export type LoanTypeDto = {
     enrollmentId?: string | null;
 };
 
+export type LoanTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LoanTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LoanTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LoanTypeDto;
 };
@@ -2985,6 +4779,11 @@ export type LoanTypeDtoEnvelopeReadable = {
 export type LoanTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LoanTypeDto;
 };
 
@@ -2993,6 +4792,11 @@ export type LoanTypeDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LoanTypeDto> | null;
 };
@@ -3000,6 +4804,11 @@ export type LoanTypeDtoIReadOnlyListEnvelopeReadable = {
 export type LoanTypeDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LoanTypeDto> | null;
 };
 
@@ -3040,6 +4849,11 @@ export type MoneyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: MoneyReadable;
 };
@@ -3047,13 +4861,17 @@ export type MoneyEnvelopeReadable = {
 export type MoneyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: MoneyWritable;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -3083,11 +4901,39 @@ export type PaymentCommissionDto = {
     paymentId?: string | null;
 };
 
+export type PaymentCommissionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentCommissionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentCommissionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PaymentCommissionDto;
 };
@@ -3095,6 +4941,11 @@ export type PaymentCommissionDtoEnvelopeReadable = {
 export type PaymentCommissionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PaymentCommissionDto;
 };
 
@@ -3103,6 +4954,11 @@ export type PaymentCommissionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentCommissionDto> | null;
 };
@@ -3110,6 +4966,11 @@ export type PaymentCommissionDtoListEnvelopeReadable = {
 export type PaymentCommissionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentCommissionDto> | null;
 };
 
@@ -3128,9 +4989,91 @@ export type PaymentCommissionUpdateDto = {
     paymentId?: string | null;
 };
 
+export type PostingBookResultDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    financialBookId?: string | null;
+    status?: 'Posted' | 'Duplicate' | 'Rejected';
+    journalEntryId?: string | null;
+    failureCode?: string | null;
+};
+
+export type PostingExecutionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    postingIntentId?: string | null;
+    postingIdempotencyKey?: string | null;
+    intentType?: string | null;
+    postingOperation?: string | null;
+    sourceDocumentType?: string | null;
+    sourceDocumentId?: string | null;
+    status?: 'Received' | 'Processing' | 'Posted' | 'Duplicate' | 'PendingMapping' | 'PendingPeriod' | 'PendingRate' | 'Rejected';
+    failureKind?: 'UnknownOperation' | 'UnknownRole' | 'AmbiguousPolicy' | 'MissingAccountMapping' | 'MissingFinancialBook' | 'MissingJournal' | 'ClosedPeriod' | 'MissingFxRate' | 'InvalidFxEvidence' | 'UnbalancedPlan' | 'DuplicateIntent' | 'DuplicateBookPosting' | 'InvalidPartyReference' | 'InvalidCustodyContext' | 'PolicyConfigurationError';
+    failureCode?: string | null;
+    retryable?: boolean;
+    correlationId?: string | null;
+    causationId?: string | null;
+    receivedAtUtc?: string;
+    processingStartedAtUtc?: string | null;
+    completedAtUtc?: string | null;
+    bookResults?: Array<PostingBookResultDto> | null;
+    failureClass?: 'Retryable' | 'OperatorActionRequired' | 'ConfigurationError' | 'ProducerError';
+};
+
+export type PostingExecutionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PostingExecutionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type PostingExecutionDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<PostingExecutionDto> | null;
+};
+
+export type PostingExecutionDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<PostingExecutionDto> | null;
+};
+
 export type ReceiptCreateDto = {
     id?: string;
     timestamp?: string;
+    closed?: boolean;
     title?: string | null;
     priceListId?: string | null;
     description?: string | null;
@@ -3148,6 +5091,7 @@ export type ReceiptCreateDto = {
     countryId?: string | null;
     stateId?: string | null;
     cityId?: string | null;
+    forexRate?: number;
     currencyId?: string | null;
     totalDetail?: number;
     totalDetailCurrencyId?: string | null;
@@ -3176,10 +5120,8 @@ export type ReceiptCreateDto = {
     costCalculationMethod?: 'Automatic' | 'Custom';
     taxCalculationMethod?: 'Included' | 'Excluded';
     paymentId?: string | null;
-    forexRate?: number;
     totalAmount?: number;
     totalAmountInUSD?: number;
-    closed?: boolean;
     contactId?: string | null;
     receiptType?: 'PaymentReceipt' | 'PurchaseReceipt';
     orderId?: string | null;
@@ -3200,11 +5142,39 @@ export type ReceiptDto = {
     invoiceId?: string | null;
 };
 
+export type ReceiptDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ReceiptDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ReceiptDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ReceiptDto;
 };
@@ -3212,6 +5182,11 @@ export type ReceiptDtoEnvelopeReadable = {
 export type ReceiptDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ReceiptDto;
 };
 
@@ -3220,6 +5195,11 @@ export type ReceiptDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ReceiptDto> | null;
 };
@@ -3227,6 +5207,11 @@ export type ReceiptDtoIReadOnlyListEnvelopeReadable = {
 export type ReceiptDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ReceiptDto> | null;
 };
 
@@ -3261,6 +5246,10 @@ export type ResetPasswordRequest = {
     newPassword: string | null;
 };
 
+export type ReverseJournalEntryRequest = {
+    reversalPeriodId: string;
+};
+
 export type SeedChartOfAccountsRequest = {
     fileUrl?: string | null;
 };
@@ -3287,11 +5276,39 @@ export type ShareClassDto = {
     enrollmentId?: string | null;
 };
 
+export type ShareClassDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShareClassDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShareClassDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShareClassDto;
 };
@@ -3299,6 +5316,11 @@ export type ShareClassDtoEnvelopeReadable = {
 export type ShareClassDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShareClassDto;
 };
 
@@ -3307,6 +5329,11 @@ export type ShareClassDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShareClassDto> | null;
 };
@@ -3314,6 +5341,11 @@ export type ShareClassDtoListEnvelopeReadable = {
 export type ShareClassDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShareClassDto> | null;
 };
 
@@ -3343,11 +5375,39 @@ export type ShareIssuanceDto = {
     currencyId?: string | null;
 };
 
+export type ShareIssuanceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShareIssuanceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShareIssuanceDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShareIssuanceDto;
 };
@@ -3355,6 +5415,11 @@ export type ShareIssuanceDtoEnvelopeReadable = {
 export type ShareIssuanceDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShareIssuanceDto;
 };
 
@@ -3363,6 +5428,11 @@ export type ShareIssuanceDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShareIssuanceDto> | null;
 };
@@ -3370,6 +5440,11 @@ export type ShareIssuanceDtoListEnvelopeReadable = {
 export type ShareIssuanceDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShareIssuanceDto> | null;
 };
 
@@ -3401,11 +5476,39 @@ export type ShareTransferDto = {
     tenantId?: string | null;
 };
 
+export type ShareTransferDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShareTransferDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShareTransferDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShareTransferDto;
 };
@@ -3413,6 +5516,11 @@ export type ShareTransferDtoEnvelopeReadable = {
 export type ShareTransferDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShareTransferDto;
 };
 
@@ -3421,6 +5529,11 @@ export type ShareTransferDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShareTransferDto> | null;
 };
@@ -3428,6 +5541,11 @@ export type ShareTransferDtoListEnvelopeReadable = {
 export type ShareTransferDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShareTransferDto> | null;
 };
 
@@ -3447,11 +5565,39 @@ export type ShareTransferReasonDto = {
     tenantId?: string | null;
 };
 
+export type ShareTransferReasonDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShareTransferReasonDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShareTransferReasonDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShareTransferReasonDto;
 };
@@ -3459,6 +5605,11 @@ export type ShareTransferReasonDtoEnvelopeReadable = {
 export type ShareTransferReasonDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShareTransferReasonDto;
 };
 
@@ -3467,6 +5618,11 @@ export type ShareTransferReasonDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShareTransferReasonDto> | null;
 };
@@ -3474,6 +5630,11 @@ export type ShareTransferReasonDtoListEnvelopeReadable = {
 export type ShareTransferReasonDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShareTransferReasonDto> | null;
 };
 
@@ -3508,11 +5669,39 @@ export type TaxClassDto = {
     fiscalAuthorityId?: string | null;
 };
 
+export type TaxClassDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TaxClassDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TaxClassDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TaxClassDto;
 };
@@ -3520,6 +5709,11 @@ export type TaxClassDtoEnvelopeReadable = {
 export type TaxClassDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TaxClassDto;
 };
 
@@ -3528,6 +5722,11 @@ export type TaxClassDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TaxClassDto> | null;
 };
@@ -3535,6 +5734,11 @@ export type TaxClassDtoListEnvelopeReadable = {
 export type TaxClassDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TaxClassDto> | null;
 };
 
@@ -3610,11 +5814,39 @@ export type TaxPolicyDto = {
     fiscalAuthorityId?: string | null;
 };
 
+export type TaxPolicyDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TaxPolicyDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TaxPolicyDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TaxPolicyDto;
 };
@@ -3622,6 +5854,11 @@ export type TaxPolicyDtoEnvelopeReadable = {
 export type TaxPolicyDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TaxPolicyDto;
 };
 
@@ -3630,6 +5867,11 @@ export type TaxPolicyDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TaxPolicyDto> | null;
 };
@@ -3637,6 +5879,11 @@ export type TaxPolicyDtoListEnvelopeReadable = {
 export type TaxPolicyDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TaxPolicyDto> | null;
 };
 
@@ -3718,11 +5965,39 @@ export type TaxRateDto = {
     enrollmentId?: string | null;
 };
 
+export type TaxRateDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TaxRateDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TaxRateDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TaxRateDto;
 };
@@ -3730,6 +6005,11 @@ export type TaxRateDtoEnvelopeReadable = {
 export type TaxRateDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TaxRateDto;
 };
 
@@ -3738,6 +6018,11 @@ export type TaxRateDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TaxRateDto> | null;
 };
@@ -3745,6 +6030,11 @@ export type TaxRateDtoListEnvelopeReadable = {
 export type TaxRateDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TaxRateDto> | null;
 };
 
@@ -3785,11 +6075,39 @@ export type TransactionCategoryDto = {
     tenantId?: string | null;
 };
 
+export type TransactionCategoryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TransactionCategoryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TransactionCategoryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TransactionCategoryDto;
 };
@@ -3797,6 +6115,11 @@ export type TransactionCategoryDtoEnvelopeReadable = {
 export type TransactionCategoryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TransactionCategoryDto;
 };
 
@@ -3805,6 +6128,11 @@ export type TransactionCategoryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TransactionCategoryDto> | null;
 };
@@ -3812,6 +6140,11 @@ export type TransactionCategoryDtoListEnvelopeReadable = {
 export type TransactionCategoryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TransactionCategoryDto> | null;
 };
 
@@ -3854,11 +6187,39 @@ export type TransactionDto = {
     enrollmentId?: string | null;
 };
 
+export type TransactionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TransactionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TransactionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TransactionDto;
 };
@@ -3866,6 +6227,11 @@ export type TransactionDtoEnvelopeReadable = {
 export type TransactionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TransactionDto;
 };
 
@@ -3874,6 +6240,11 @@ export type TransactionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TransactionDto> | null;
 };
@@ -3881,6 +6252,11 @@ export type TransactionDtoListEnvelopeReadable = {
 export type TransactionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TransactionDto> | null;
 };
 
@@ -3896,6 +6272,50 @@ export type TransactionUpdateDto = {
     unitId?: string | null;
     transactionCategoryId?: string | null;
     currencyId?: string | null;
+};
+
+export type TrialBalanceDto = {
+    fiscalPeriodId?: string | null;
+    financialBookId?: string | null;
+    currencyId?: string | null;
+    rows?: Array<TrialBalanceRowDto> | null;
+    totalDebit?: number;
+    totalCredit?: number;
+    isBalanced?: boolean;
+};
+
+export type TrialBalanceDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: TrialBalanceDto;
+};
+
+export type TrialBalanceDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: TrialBalanceDto;
+};
+
+export type TrialBalanceRowDto = {
+    accountId?: string | null;
+    code?: string | null;
+    name?: string | null;
+    normalBalance?: 'Debit' | 'Credit';
+    debit?: number;
+    credit?: number;
 };
 
 export type TwoFactorRequest = {
@@ -3921,7 +6341,7 @@ export type UpdateLedgerDto = {
 };
 
 export type GetAccountGroupsData = {
-    body?: never;
+    body?: AccountGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3995,7 +6415,7 @@ export type CreateAccountGroupResponses = {
 export type CreateAccountGroupResponse = CreateAccountGroupResponses[keyof CreateAccountGroupResponses];
 
 export type GetAccountGroupsCountAsyncData = {
-    body?: never;
+    body?: AccountGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4103,7 +6523,7 @@ export type GetAccountGroupResponses = {
 export type GetAccountGroupResponse = GetAccountGroupResponses[keyof GetAccountGroupResponses];
 
 export type PatchAccountGroupAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4184,78 +6604,8 @@ export type UpdateAccountGroupResponses = {
 
 export type UpdateAccountGroupResponse = UpdateAccountGroupResponses[keyof UpdateAccountGroupResponses];
 
-export type GetDebitsSumAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/AccountingService/AccountingEntries/Debits/Sum';
-};
-
-export type GetDebitsSumAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetDebitsSumAsyncError = GetDebitsSumAsyncErrors[keyof GetDebitsSumAsyncErrors];
-
-export type GetDebitsSumAsyncResponses = {
-    /**
-     * OK
-     */
-    200: DecimalEnvelopeReadable;
-};
-
-export type GetDebitsSumAsyncResponse = GetDebitsSumAsyncResponses[keyof GetDebitsSumAsyncResponses];
-
-export type GetCreditsSumAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/AccountingService/AccountingEntries/Credits/Sum';
-};
-
-export type GetCreditsSumAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetCreditsSumAsyncError = GetCreditsSumAsyncErrors[keyof GetCreditsSumAsyncErrors];
-
-export type GetCreditsSumAsyncResponses = {
-    /**
-     * OK
-     */
-    200: DecimalEnvelopeReadable;
-};
-
-export type GetCreditsSumAsyncResponse = GetCreditsSumAsyncResponses[keyof GetCreditsSumAsyncResponses];
-
 export type GetAccountingPeriodsData = {
-    body?: never;
+    body?: AccountingPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4329,7 +6679,7 @@ export type CreateAccountingPeriodResponses = {
 export type CreateAccountingPeriodResponse = CreateAccountingPeriodResponses[keyof CreateAccountingPeriodResponses];
 
 export type GetAccountingPeriodsCountAsyncData = {
-    body?: never;
+    body?: AccountingPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4442,7 +6792,7 @@ export type GetAccountingPeriodResponses = {
 export type GetAccountingPeriodResponse = GetAccountingPeriodResponses[keyof GetAccountingPeriodResponses];
 
 export type PatchAccountingPeriodAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4519,8 +6869,148 @@ export type UpdateAccountingPeriodResponses = {
 
 export type UpdateAccountingPeriodResponse = UpdateAccountingPeriodResponses[keyof UpdateAccountingPeriodResponses];
 
+export type GetIncomesSumAsyncData = {
+    body?: JournalEntryDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Summary/Incomes/Sum';
+};
+
+export type GetIncomesSumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetIncomesSumAsyncError = GetIncomesSumAsyncErrors[keyof GetIncomesSumAsyncErrors];
+
+export type GetIncomesSumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MoneyEnvelopeReadable;
+};
+
+export type GetIncomesSumAsyncResponse = GetIncomesSumAsyncResponses[keyof GetIncomesSumAsyncResponses];
+
+export type GetExpensesSumAsyncData = {
+    body?: JournalEntryDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Summary/Expenses/Sum';
+};
+
+export type GetExpensesSumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetExpensesSumAsyncError = GetExpensesSumAsyncErrors[keyof GetExpensesSumAsyncErrors];
+
+export type GetExpensesSumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MoneyEnvelopeReadable;
+};
+
+export type GetExpensesSumAsyncResponse = GetExpensesSumAsyncResponses[keyof GetExpensesSumAsyncResponses];
+
+export type GetDebitsSumAsyncData = {
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Summary/Debits/Sum';
+};
+
+export type GetDebitsSumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetDebitsSumAsyncError = GetDebitsSumAsyncErrors[keyof GetDebitsSumAsyncErrors];
+
+export type GetDebitsSumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetDebitsSumAsyncResponse = GetDebitsSumAsyncResponses[keyof GetDebitsSumAsyncResponses];
+
+export type GetCreditsSumAsyncData = {
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Summary/Credits/Sum';
+};
+
+export type GetCreditsSumAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCreditsSumAsyncError = GetCreditsSumAsyncErrors[keyof GetCreditsSumAsyncErrors];
+
+export type GetCreditsSumAsyncResponses = {
+    /**
+     * OK
+     */
+    200: DecimalEnvelopeReadable;
+};
+
+export type GetCreditsSumAsyncResponse = GetCreditsSumAsyncResponses[keyof GetCreditsSumAsyncResponses];
+
 export type GetAccountsAsyncData = {
-    body?: never;
+    body?: AccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4590,7 +7080,7 @@ export type CreateAccountAsyncResponses = {
 export type CreateAccountAsyncResponse = CreateAccountAsyncResponses[keyof CreateAccountAsyncResponses];
 
 export type GetAccountsCountAsyncData = {
-    body?: never;
+    body?: AccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4625,7 +7115,7 @@ export type GetAccountsCountAsyncResponses = {
 export type GetAccountsCountAsyncResponse = GetAccountsCountAsyncResponses[keyof GetAccountsCountAsyncResponses];
 
 export type GetRootAccountsAsyncData = {
-    body?: never;
+    body?: AccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4734,7 +7224,7 @@ export type GetAccountDetailsAsyncResponses = {
 export type GetAccountDetailsAsyncResponse = GetAccountDetailsAsyncResponses[keyof GetAccountDetailsAsyncResponses];
 
 export type PatchAccountAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4917,7 +7407,7 @@ export type GetChildAccountsAsyncResponses = {
 export type GetChildAccountsAsyncResponse = GetChildAccountsAsyncResponses[keyof GetChildAccountsAsyncResponses];
 
 export type GetAccountEntriesAsyncData = {
-    body?: never;
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4995,7 +7485,7 @@ export type CreateAccountEntryAsyncResponses = {
 export type CreateAccountEntryAsyncResponse = CreateAccountEntryAsyncResponses[keyof CreateAccountEntryAsyncResponses];
 
 export type GetDebitAccountEntriesAsyncData = {
-    body?: never;
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5032,7 +7522,7 @@ export type GetDebitAccountEntriesAsyncResponses = {
 export type GetDebitAccountEntriesAsyncResponse = GetDebitAccountEntriesAsyncResponses[keyof GetDebitAccountEntriesAsyncResponses];
 
 export type GetCreditAccountEntriesAsyncData = {
-    body?: never;
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5149,7 +7639,7 @@ export type GetAccountEntryAsyncResponses = {
 export type GetAccountEntryAsyncResponse = GetAccountEntryAsyncResponses[keyof GetAccountEntryAsyncResponses];
 
 export type PatchAccountEntryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5229,7 +7719,7 @@ export type UpdateAccountEntryAsyncResponses = {
 export type UpdateAccountEntryAsyncResponse = UpdateAccountEntryAsyncResponses[keyof UpdateAccountEntryAsyncResponses];
 
 export type GetAccountDebitsAsyncData = {
-    body?: never;
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5303,7 +7793,7 @@ export type CreateAccountDebitAsyncResponses = {
 export type CreateAccountDebitAsyncResponse = CreateAccountDebitAsyncResponses[keyof CreateAccountDebitAsyncResponses];
 
 export type GetAccountDebitsCountAsyncData = {
-    body?: never;
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5340,7 +7830,7 @@ export type GetAccountDebitsCountAsyncResponses = {
 export type GetAccountDebitsCountAsyncResponse = GetAccountDebitsCountAsyncResponses[keyof GetAccountDebitsCountAsyncResponses];
 
 export type GetAccountCreditsAsyncData = {
-    body?: never;
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5414,7 +7904,7 @@ export type CreateAccountCreditAsyncResponses = {
 export type CreateAccountCreditAsyncResponse = CreateAccountCreditAsyncResponses[keyof CreateAccountCreditAsyncResponses];
 
 export type GetAccountCreditsCountAsyncData = {
-    body?: never;
+    body?: AccountingEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5451,7 +7941,7 @@ export type GetAccountCreditsCountAsyncResponses = {
 export type GetAccountCreditsCountAsyncResponse = GetAccountCreditsCountAsyncResponses[keyof GetAccountCreditsCountAsyncResponses];
 
 export type AggregateAccountsBalanceAsyncData = {
-    body?: never;
+    body?: AccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5523,7 +8013,7 @@ export type GetAccountAggregateAsyncResponses = {
 export type GetAccountAggregateAsyncResponse = GetAccountAggregateAsyncResponses[keyof GetAccountAggregateAsyncResponses];
 
 export type GetAccountTypesAsyncData = {
-    body?: never;
+    body?: AccountTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5593,7 +8083,7 @@ export type CreateAccountTypeAsyncResponses = {
 export type CreateAccountTypeAsyncResponse = CreateAccountTypeAsyncResponses[keyof CreateAccountTypeAsyncResponses];
 
 export type GetAccountTypesCountAsyncData = {
-    body?: never;
+    body?: AccountTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5702,7 +8192,7 @@ export type GetAccountTypeByIdAsyncResponses = {
 export type GetAccountTypeByIdAsyncResponse = GetAccountTypeByIdAsyncResponses[keyof GetAccountTypeByIdAsyncResponses];
 
 export type PatchAccountTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5776,7 +8266,7 @@ export type UpdateAccountTypeAsyncResponses = {
 export type UpdateAccountTypeAsyncResponse = UpdateAccountTypeAsyncResponses[keyof UpdateAccountTypeAsyncResponses];
 
 export type GetAccountRelationsAsyncData = {
-    body?: never;
+    body?: AccountRelationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5848,7 +8338,7 @@ export type CreateAccountRelationAsyncResponses = {
 export type CreateAccountRelationAsyncResponse = CreateAccountRelationAsyncResponses[keyof CreateAccountRelationAsyncResponses];
 
 export type GetAccountRelationsCountAsyncData = {
-    body?: never;
+    body?: AccountRelationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5922,7 +8412,7 @@ export type DeleteAccountRelationAsyncResponses = {
 export type DeleteAccountRelationAsyncResponse = DeleteAccountRelationAsyncResponses[keyof DeleteAccountRelationAsyncResponses];
 
 export type PatchAccountRelationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6067,7 +8557,7 @@ export type SeedChartOfAccountsAsyncResponses = {
 export type SeedChartOfAccountsAsyncResponse = SeedChartOfAccountsAsyncResponses[keyof SeedChartOfAccountsAsyncResponses];
 
 export type GetBanksData = {
-    body?: never;
+    body?: BankDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6141,7 +8631,7 @@ export type CreateBankResponses = {
 export type CreateBankResponse = CreateBankResponses[keyof CreateBankResponses];
 
 export type GetBanksCountData = {
-    body?: never;
+    body?: BankDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6249,7 +8739,7 @@ export type GetBankResponses = {
 export type GetBankResponse = GetBankResponses[keyof GetBankResponses];
 
 export type PatchBankData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6339,7 +8829,7 @@ export type UpdateBankResponses = {
 export type UpdateBankResponse = UpdateBankResponses[keyof UpdateBankResponses];
 
 export type GetBankAccountsData = {
-    body?: never;
+    body?: BankAccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6417,7 +8907,7 @@ export type CreateBankAccountResponses = {
 export type CreateBankAccountResponse = CreateBankAccountResponses[keyof CreateBankAccountResponses];
 
 export type GetBankAccountsCountData = {
-    body?: never;
+    body?: BankAccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6529,7 +9019,7 @@ export type GetBankAccountResponses = {
 export type GetBankAccountResponse = GetBankAccountResponses[keyof GetBankAccountResponses];
 
 export type PatchBankAccountData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6617,7 +9107,7 @@ export type UpdateBankAccountResponses = {
 export type UpdateBankAccountResponse = UpdateBankAccountResponses[keyof UpdateBankAccountResponses];
 
 export type GetBankGuaranteesData = {
-    body?: never;
+    body?: BankGuaranteeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6695,7 +9185,7 @@ export type CreateBankGuaranteeResponses = {
 export type CreateBankGuaranteeResponse = CreateBankGuaranteeResponses[keyof CreateBankGuaranteeResponses];
 
 export type GetBankGuaranteesCountData = {
-    body?: never;
+    body?: BankGuaranteeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6807,7 +9297,7 @@ export type GetBankGuaranteeResponses = {
 export type GetBankGuaranteeResponse = GetBankGuaranteeResponses[keyof GetBankGuaranteeResponses];
 
 export type PatchBankGuaranteeData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6895,7 +9385,7 @@ export type UpdateBankGuaranteeResponses = {
 export type UpdateBankGuaranteeResponse = UpdateBankGuaranteeResponses[keyof UpdateBankGuaranteeResponses];
 
 export type GetBankTransactionsData = {
-    body?: never;
+    body?: BankTransactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6973,7 +9463,7 @@ export type CreateBankTransactionResponses = {
 export type CreateBankTransactionResponse = CreateBankTransactionResponses[keyof CreateBankTransactionResponses];
 
 export type GetBankTransactionsCountData = {
-    body?: never;
+    body?: BankTransactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7085,7 +9575,7 @@ export type GetBankTransactionResponses = {
 export type GetBankTransactionResponse = GetBankTransactionResponses[keyof GetBankTransactionResponses];
 
 export type PatchBankTransactionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7173,7 +9663,7 @@ export type UpdateBankTransactionResponses = {
 export type UpdateBankTransactionResponse = UpdateBankTransactionResponses[keyof UpdateBankTransactionResponses];
 
 export type GetBankProfilesData = {
-    body?: never;
+    body?: BankProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7208,7 +9698,7 @@ export type GetBankProfilesResponses = {
 export type GetBankProfilesResponse = GetBankProfilesResponses[keyof GetBankProfilesResponses];
 
 export type GetBankProfilesCountData = {
-    body?: never;
+    body?: BankProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7243,7 +9733,7 @@ export type GetBankProfilesCountResponses = {
 export type GetBankProfilesCountResponse = GetBankProfilesCountResponses[keyof GetBankProfilesCountResponses];
 
 export type GetBillableLineTaxesData = {
-    body?: never;
+    body?: AppliedItemTaxRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7291,7 +9781,7 @@ export type CreateBillableLineTaxResponses = {
 export type CreateBillableLineTaxResponse = CreateBillableLineTaxResponses[keyof CreateBillableLineTaxResponses];
 
 export type GetBillableLineTaxesCountData = {
-    body?: never;
+    body?: AppliedItemTaxRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7340,7 +9830,7 @@ export type DeleteBillableLineTaxResponses = {
 export type DeleteBillableLineTaxResponse = DeleteBillableLineTaxResponses[keyof DeleteBillableLineTaxResponses];
 
 export type PatchBillableLineTaxAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7451,7 +9941,7 @@ export type GetBillingProfileByIdAsyncResponses = {
 export type GetBillingProfileByIdAsyncResponse = GetBillingProfileByIdAsyncResponses[keyof GetBillingProfileByIdAsyncResponses];
 
 export type PatchBillingProfileAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7512,7 +10002,7 @@ export type UpdateBillingProfileAsyncResponses = {
 export type UpdateBillingProfileAsyncResponse = UpdateBillingProfileAsyncResponses[keyof UpdateBillingProfileAsyncResponses];
 
 export type GetBillingProfilesAsyncData = {
-    body?: never;
+    body?: BillingProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7556,7 +10046,7 @@ export type CreateBillingProfileAsyncResponses = {
 export type CreateBillingProfileAsyncResponse = CreateBillingProfileAsyncResponses[keyof CreateBillingProfileAsyncResponses];
 
 export type GetBillingProfilesCountAsyncData = {
-    body?: never;
+    body?: BillingProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7652,7 +10142,7 @@ export type GetBudgetDetailsAsyncResponses = {
 export type GetBudgetDetailsAsyncResponse = GetBudgetDetailsAsyncResponses[keyof GetBudgetDetailsAsyncResponses];
 
 export type PatchBudgetAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7730,7 +10220,7 @@ export type UpdateBudgetAsyncResponses = {
 export type UpdateBudgetAsyncResponse = UpdateBudgetAsyncResponses[keyof UpdateBudgetAsyncResponses];
 
 export type GetBudgetsAsyncData = {
-    body?: never;
+    body?: BudgetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7800,7 +10290,7 @@ export type CreateBudgetAsyncResponses = {
 export type CreateBudgetAsyncResponse = CreateBudgetAsyncResponses[keyof CreateBudgetAsyncResponses];
 
 export type GetBudgetsCountAsyncData = {
-    body?: never;
+    body?: BudgetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7835,7 +10325,7 @@ export type GetBudgetsCountAsyncResponses = {
 export type GetBudgetsCountAsyncResponse = GetBudgetsCountAsyncResponses[keyof GetBudgetsCountAsyncResponses];
 
 export type GetBudgetAccountEntriesCollectionAsyncData = {
-    body?: never;
+    body?: BudgetAccountEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7985,7 +10475,7 @@ export type GetBudgetAccountEntryAsyncResponses = {
 export type GetBudgetAccountEntryAsyncResponse = GetBudgetAccountEntryAsyncResponses[keyof GetBudgetAccountEntryAsyncResponses];
 
 export type PatchBudgetAccountEntryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8065,7 +10555,7 @@ export type UpdateBudgetAccountEntryAsyncResponses = {
 export type UpdateBudgetAccountEntryAsyncResponse = UpdateBudgetAccountEntryAsyncResponses[keyof UpdateBudgetAccountEntryAsyncResponses];
 
 export type GetCommissionsAsyncData = {
-    body?: never;
+    body?: CommissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8135,7 +10625,7 @@ export type CreateCommissionAsyncResponses = {
 export type CreateCommissionAsyncResponse = CreateCommissionAsyncResponses[keyof CreateCommissionAsyncResponses];
 
 export type GetCommissionsCountAsyncData = {
-    body?: never;
+    body?: CommissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8244,7 +10734,7 @@ export type GetCommissionAsyncResponses = {
 export type GetCommissionAsyncResponse = GetCommissionAsyncResponses[keyof GetCommissionAsyncResponses];
 
 export type PatchCommissionAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8318,7 +10808,7 @@ export type UpdateCommissionAsyncResponses = {
 export type UpdateCommissionAsyncResponse = UpdateCommissionAsyncResponses[keyof UpdateCommissionAsyncResponses];
 
 export type GetPaymentCommissionsAsyncData = {
-    body?: never;
+    body?: PaymentCommissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8388,7 +10878,7 @@ export type CreatePaymentCommissionAsyncResponses = {
 export type CreatePaymentCommissionAsyncResponse = CreatePaymentCommissionAsyncResponses[keyof CreatePaymentCommissionAsyncResponses];
 
 export type GetPaymentCommissionsCountAsyncData = {
-    body?: never;
+    body?: PaymentCommissionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8497,7 +10987,7 @@ export type GetPaymentCommissionAsyncResponses = {
 export type GetPaymentCommissionAsyncResponse = GetPaymentCommissionAsyncResponses[keyof GetPaymentCommissionAsyncResponses];
 
 export type PatchPaymentCommissionAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8571,7 +11061,7 @@ export type UpdatePaymentCommissionAsyncResponses = {
 export type UpdatePaymentCommissionAsyncResponse = UpdatePaymentCommissionAsyncResponses[keyof UpdatePaymentCommissionAsyncResponses];
 
 export type GetCostCentresData = {
-    body?: never;
+    body?: CostCentreDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8641,7 +11131,7 @@ export type CreateCostCentreResponses = {
 export type CreateCostCentreResponse = CreateCostCentreResponses[keyof CreateCostCentreResponses];
 
 export type GetCostCentresCountData = {
-    body?: never;
+    body?: CostCentreDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8750,7 +11240,7 @@ export type GetCostCentreResponses = {
 export type GetCostCentreResponse = GetCostCentreResponses[keyof GetCostCentreResponses];
 
 export type PatchCostCentreData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8824,7 +11314,7 @@ export type UpdateCostCentreResponses = {
 export type UpdateCostCentreResponse = UpdateCostCentreResponses[keyof UpdateCostCentreResponses];
 
 export type GetCostCentreGroupsData = {
-    body?: never;
+    body?: CostCentreGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8894,7 +11384,7 @@ export type CreateCostCentreGroupResponses = {
 export type CreateCostCentreGroupResponse = CreateCostCentreGroupResponses[keyof CreateCostCentreGroupResponses];
 
 export type GetCostCentreGroupsCountData = {
-    body?: never;
+    body?: CostCentreGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9003,7 +11493,7 @@ export type GetCostCentreGroupResponses = {
 export type GetCostCentreGroupResponse = GetCostCentreGroupResponses[keyof GetCostCentreGroupResponses];
 
 export type PatchCostCentreGroupData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9077,7 +11567,7 @@ export type UpdateCostCentreGroupResponses = {
 export type UpdateCostCentreGroupResponse = UpdateCostCentreGroupResponses[keyof UpdateCostCentreGroupResponses];
 
 export type GetCostCentreBudgetsData = {
-    body?: never;
+    body?: CostCentreBudgetDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9221,7 +11711,7 @@ export type GetCostCentreBudgetResponses = {
 export type GetCostCentreBudgetResponse = GetCostCentreBudgetResponses[keyof GetCostCentreBudgetResponses];
 
 export type PatchCostCentreBudgetData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9295,7 +11785,7 @@ export type UpdateCostCentreBudgetResponses = {
 export type UpdateCostCentreBudgetResponse = UpdateCostCentreBudgetResponses[keyof UpdateCostCentreBudgetResponses];
 
 export type GetExpenseClaimsData = {
-    body?: never;
+    body?: ExpenseClaimDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9365,7 +11855,7 @@ export type CreateExpenseClaimResponses = {
 export type CreateExpenseClaimResponse = CreateExpenseClaimResponses[keyof CreateExpenseClaimResponses];
 
 export type GetExpenseClaimsCountData = {
-    body?: never;
+    body?: ExpenseClaimDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9474,7 +11964,7 @@ export type GetExpenseClaimResponses = {
 export type GetExpenseClaimResponse = GetExpenseClaimResponses[keyof GetExpenseClaimResponses];
 
 export type PatchExpenseClaimData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9548,7 +12038,7 @@ export type UpdateExpenseClaimResponses = {
 export type UpdateExpenseClaimResponse = UpdateExpenseClaimResponses[keyof UpdateExpenseClaimResponses];
 
 export type GetExpenseTypesData = {
-    body?: never;
+    body?: ExpenseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9618,7 +12108,7 @@ export type CreateExpenseTypeResponses = {
 export type CreateExpenseTypeResponse = CreateExpenseTypeResponses[keyof CreateExpenseTypeResponses];
 
 export type GetExpenseTypesCountData = {
-    body?: never;
+    body?: ExpenseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9727,7 +12217,7 @@ export type GetExpenseTypeResponses = {
 export type GetExpenseTypeResponse = GetExpenseTypeResponses[keyof GetExpenseTypeResponses];
 
 export type PatchExpenseTypeData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9822,6 +12312,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -10129,7 +12635,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetFinancialBooksAsyncData = {
-    body?: never;
+    body?: FinancialBookDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10207,7 +12713,7 @@ export type CreateFinancialBookAsyncResponses = {
 export type CreateFinancialBookAsyncResponse = CreateFinancialBookAsyncResponses[keyof CreateFinancialBookAsyncResponses];
 
 export type GetFinancialBooksCountAsyncData = {
-    body?: never;
+    body?: FinancialBookDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10328,7 +12834,7 @@ export type GetFinancialBookDetailsAsyncResponses = {
 export type GetFinancialBookDetailsAsyncResponse = GetFinancialBookDetailsAsyncResponses[keyof GetFinancialBookDetailsAsyncResponses];
 
 export type PatchFinancialBookAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10406,7 +12912,7 @@ export type UpdateFinancialBookAsyncResponses = {
 export type UpdateFinancialBookAsyncResponse = UpdateFinancialBookAsyncResponses[keyof UpdateFinancialBookAsyncResponses];
 
 export type GetFiscalAuthoritiesData = {
-    body?: never;
+    body?: FiscalAuthorityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10476,7 +12982,7 @@ export type CreateFiscalAuthorityResponses = {
 export type CreateFiscalAuthorityResponse = CreateFiscalAuthorityResponses[keyof CreateFiscalAuthorityResponses];
 
 export type GetFiscalAuthoritiesCountData = {
-    body?: never;
+    body?: FiscalAuthorityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10585,7 +13091,7 @@ export type GetFiscalAuthorityResponses = {
 export type GetFiscalAuthorityResponse = GetFiscalAuthorityResponses[keyof GetFiscalAuthorityResponses];
 
 export type PatchFiscalAuthorityAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10659,7 +13165,7 @@ export type UpdateFiscalAuthorityResponses = {
 export type UpdateFiscalAuthorityResponse = UpdateFiscalAuthorityResponses[keyof UpdateFiscalAuthorityResponses];
 
 export type GetFiscalYearsData = {
-    body?: never;
+    body?: FiscalYearDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10697,7 +13203,7 @@ export type GetFiscalYearsResponses = {
 export type GetFiscalYearsResponse = GetFiscalYearsResponses[keyof GetFiscalYearsResponses];
 
 export type GetFiscalYearsCountData = {
-    body?: never;
+    body?: FiscalYearDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10844,7 +13350,7 @@ export type DeleteFiscalYearResponses = {
 export type DeleteFiscalYearResponse = DeleteFiscalYearResponses[keyof DeleteFiscalYearResponses];
 
 export type PatchFiscalAuthorityYearAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10918,7 +13424,7 @@ export type UpdateFiscalYearResponses = {
 export type UpdateFiscalYearResponse = UpdateFiscalYearResponses[keyof UpdateFiscalYearResponses];
 
 export type GetInvoiceEnumerationRangesData = {
-    body?: never;
+    body?: InvoiceEnumerationRangeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -10956,7 +13462,7 @@ export type GetInvoiceEnumerationRangesResponses = {
 export type GetInvoiceEnumerationRangesResponse = GetInvoiceEnumerationRangesResponses[keyof GetInvoiceEnumerationRangesResponses];
 
 export type GetInvoiceEnumerationRangesCountData = {
-    body?: never;
+    body?: InvoiceEnumerationRangeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11103,7 +13609,7 @@ export type DeleteInvoiceEnumerationRangeResponses = {
 export type DeleteInvoiceEnumerationRangeResponse = DeleteInvoiceEnumerationRangeResponses[keyof DeleteInvoiceEnumerationRangeResponses];
 
 export type PatchFiscalEnumerationRangeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11177,7 +13683,7 @@ export type UpdateInvoiceEnumerationRangeResponses = {
 export type UpdateInvoiceEnumerationRangeResponse = UpdateInvoiceEnumerationRangeResponses[keyof UpdateInvoiceEnumerationRangeResponses];
 
 export type GetFiscalIdentificationTypesData = {
-    body?: never;
+    body?: FiscalIdentificationTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11214,7 +13720,7 @@ export type GetFiscalIdentificationTypesResponses = {
 export type GetFiscalIdentificationTypesResponse = GetFiscalIdentificationTypesResponses[keyof GetFiscalIdentificationTypesResponses];
 
 export type GetFiscalIdentificationTypesCountData = {
-    body?: never;
+    body?: FiscalIdentificationTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11361,7 +13867,7 @@ export type DeleteFiscalIdentificationTypeResponses = {
 export type DeleteFiscalIdentificationTypeResponse = DeleteFiscalIdentificationTypeResponses[keyof DeleteFiscalIdentificationTypeResponses];
 
 export type PatchFiscalIdentificationTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11435,7 +13941,7 @@ export type UpdateFiscalIdentificationTypeResponses = {
 export type UpdateFiscalIdentificationTypeResponse = UpdateFiscalIdentificationTypeResponses[keyof UpdateFiscalIdentificationTypeResponses];
 
 export type GetFiscalPeriodsData = {
-    body?: never;
+    body?: FiscalPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11474,7 +13980,7 @@ export type GetFiscalPeriodsResponses = {
 export type GetFiscalPeriodsResponse = GetFiscalPeriodsResponses[keyof GetFiscalPeriodsResponses];
 
 export type GetFiscalPeriodsCountData = {
-    body?: never;
+    body?: FiscalPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11623,7 +14129,7 @@ export type DeleteFiscalPeriodResponses = {
 export type DeleteFiscalPeriodResponse = DeleteFiscalPeriodResponses[keyof DeleteFiscalPeriodResponses];
 
 export type PatchFiscalPeriodAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11696,8 +14202,90 @@ export type UpdateFiscalPeriodResponses = {
 
 export type UpdateFiscalPeriodResponse = UpdateFiscalPeriodResponses[keyof UpdateFiscalPeriodResponses];
 
-export type GetFiscalRegimesData = {
+export type OpenFiscalPeriodData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fiscalPeriodId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Open';
+};
+
+export type OpenFiscalPeriodErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type OpenFiscalPeriodError = OpenFiscalPeriodErrors[keyof OpenFiscalPeriodErrors];
+
+export type OpenFiscalPeriodResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type OpenFiscalPeriodResponse = OpenFiscalPeriodResponses[keyof OpenFiscalPeriodResponses];
+
+export type CloseFiscalPeriodData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        fiscalPeriodId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Fiscals/Authorities/FiscalPeriods/{fiscalPeriodId}/Close';
+};
+
+export type CloseFiscalPeriodErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type CloseFiscalPeriodError = CloseFiscalPeriodErrors[keyof CloseFiscalPeriodErrors];
+
+export type CloseFiscalPeriodResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type CloseFiscalPeriodResponse = CloseFiscalPeriodResponses[keyof CloseFiscalPeriodResponses];
+
+export type GetFiscalRegimesData = {
+    body?: FiscalRegimeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11735,7 +14323,7 @@ export type GetFiscalRegimesResponses = {
 export type GetFiscalRegimesResponse = GetFiscalRegimesResponses[keyof GetFiscalRegimesResponses];
 
 export type GetFiscalRegimesCountData = {
-    body?: never;
+    body?: FiscalRegimeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11882,7 +14470,7 @@ export type DeleteFiscalRegimeResponses = {
 export type DeleteFiscalRegimeResponse = DeleteFiscalRegimeResponses[keyof DeleteFiscalRegimeResponses];
 
 export type PatchFiscalRegimeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11956,7 +14544,7 @@ export type UpdateFiscalRegimeResponses = {
 export type UpdateFiscalRegimeResponse = UpdateFiscalRegimeResponses[keyof UpdateFiscalRegimeResponses];
 
 export type GetFiscalResponsibilitiesData = {
-    body?: never;
+    body?: FiscalResponsibilityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -11994,7 +14582,7 @@ export type GetFiscalResponsibilitiesResponses = {
 export type GetFiscalResponsibilitiesResponse = GetFiscalResponsibilitiesResponses[keyof GetFiscalResponsibilitiesResponses];
 
 export type GetFiscalResponsibilitiesCountData = {
-    body?: never;
+    body?: FiscalResponsibilityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12141,7 +14729,7 @@ export type DeleteFiscalResponsibilityResponses = {
 export type DeleteFiscalResponsibilityResponse = DeleteFiscalResponsibilityResponses[keyof DeleteFiscalResponsibilityResponses];
 
 export type PatchFiscalResponsibilityAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12215,7 +14803,7 @@ export type UpdateFiscalResponsibilityResponses = {
 export type UpdateFiscalResponsibilityResponse = UpdateFiscalResponsibilityResponses[keyof UpdateFiscalResponsibilityResponses];
 
 export type GetFiscalResponsibilityRecordsData = {
-    body?: never;
+    body?: FiscalResponsibilityRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12253,7 +14841,7 @@ export type GetFiscalResponsibilityRecordsResponses = {
 export type GetFiscalResponsibilityRecordsResponse = GetFiscalResponsibilityRecordsResponses[keyof GetFiscalResponsibilityRecordsResponses];
 
 export type GetFiscalResponsibilityRecordsCountData = {
-    body?: never;
+    body?: FiscalResponsibilityRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12402,7 +14990,7 @@ export type DeleteFiscalResponsibilityRecordResponses = {
 export type DeleteFiscalResponsibilityRecordResponse = DeleteFiscalResponsibilityRecordResponses[keyof DeleteFiscalResponsibilityRecordResponses];
 
 export type PatchFiscalResponsibilityRecordAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12476,7 +15064,7 @@ export type UpdateFiscalResponsibilityRecordResponses = {
 export type UpdateFiscalResponsibilityRecordResponse = UpdateFiscalResponsibilityRecordResponses[keyof UpdateFiscalResponsibilityRecordResponses];
 
 export type GetFiscalYearsAsyncData = {
-    body?: never;
+    body?: FiscalYearDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12520,7 +15108,7 @@ export type CreateFiscalYearAsyncResponses = {
 export type CreateFiscalYearAsyncResponse = CreateFiscalYearAsyncResponses[keyof CreateFiscalYearAsyncResponses];
 
 export type GetFiscalYearsCountAsyncData = {
-    body?: never;
+    body?: FiscalYearDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12590,7 +15178,7 @@ export type GetFiscalYearDetailsAsyncResponses = {
 export type GetFiscalYearDetailsAsyncResponse = GetFiscalYearDetailsAsyncResponses[keyof GetFiscalYearDetailsAsyncResponses];
 
 export type PatchFiscalYearAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12651,7 +15239,7 @@ export type UpdateFiscalYearAsyncResponses = {
 export type UpdateFiscalYearAsyncResponse = UpdateFiscalYearAsyncResponses[keyof UpdateFiscalYearAsyncResponses];
 
 export type GetGrantsAsyncData = {
-    body?: never;
+    body?: GrantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12695,7 +15283,7 @@ export type CreateGrantAsyncResponses = {
 export type CreateGrantAsyncResponse = CreateGrantAsyncResponses[keyof CreateGrantAsyncResponses];
 
 export type GetGrantsCountAsyncData = {
-    body?: never;
+    body?: GrantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12765,7 +15353,7 @@ export type GetGrantDetailsAsyncResponses = {
 export type GetGrantDetailsAsyncResponse = GetGrantDetailsAsyncResponses[keyof GetGrantDetailsAsyncResponses];
 
 export type PatchGrantAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12826,7 +15414,7 @@ export type UpdateGrantAsyncResponses = {
 export type UpdateGrantAsyncResponse = UpdateGrantAsyncResponses[keyof UpdateGrantAsyncResponses];
 
 export type GetInvoiceEnumerationRangesAsyncData = {
-    body?: never;
+    body?: InvoiceEnumerationRangeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -12986,7 +15574,7 @@ export type GetInvoiceEnumerationRangeDetailsAsyncResponses = {
 export type GetInvoiceEnumerationRangeDetailsAsyncResponse = GetInvoiceEnumerationRangeDetailsAsyncResponses[keyof GetInvoiceEnumerationRangeDetailsAsyncResponses];
 
 export type PatchInvoiceEnumerationRangeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13063,78 +15651,8 @@ export type UpdateInvoiceEnumerationRangeAsyncResponses = {
 
 export type UpdateInvoiceEnumerationRangeAsyncResponse = UpdateInvoiceEnumerationRangeAsyncResponses[keyof UpdateInvoiceEnumerationRangeAsyncResponses];
 
-export type GetIncomesSumAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/AccountingService/JournalEntries/Incomes/Sum';
-};
-
-export type GetIncomesSumAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetIncomesSumAsyncError = GetIncomesSumAsyncErrors[keyof GetIncomesSumAsyncErrors];
-
-export type GetIncomesSumAsyncResponses = {
-    /**
-     * OK
-     */
-    200: DecimalEnvelopeReadable;
-};
-
-export type GetIncomesSumAsyncResponse = GetIncomesSumAsyncResponses[keyof GetIncomesSumAsyncResponses];
-
-export type GetExpensesSumAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path?: never;
-    query: {
-        tenantId: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/AccountingService/JournalEntries/Expenses/Sum';
-};
-
-export type GetExpensesSumAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetExpensesSumAsyncError = GetExpensesSumAsyncErrors[keyof GetExpensesSumAsyncErrors];
-
-export type GetExpensesSumAsyncResponses = {
-    /**
-     * OK
-     */
-    200: DecimalEnvelopeReadable;
-};
-
-export type GetExpensesSumAsyncResponse = GetExpensesSumAsyncResponses[keyof GetExpensesSumAsyncResponses];
-
 export type GetJournalsAsyncData = {
-    body?: never;
+    body?: JournalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13204,7 +15722,7 @@ export type CreateJournalAsyncResponses = {
 export type CreateJournalAsyncResponse = CreateJournalAsyncResponses[keyof CreateJournalAsyncResponses];
 
 export type CountJournalsAsyncData = {
-    body?: never;
+    body?: JournalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13313,7 +15831,7 @@ export type GetJournalDetailsAsyncResponses = {
 export type GetJournalDetailsAsyncResponse = GetJournalDetailsAsyncResponses[keyof GetJournalDetailsAsyncResponses];
 
 export type PatchJournalAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13386,8 +15904,49 @@ export type UpdateJournalAsyncResponses = {
 
 export type UpdateJournalAsyncResponse = UpdateJournalAsyncResponses[keyof UpdateJournalAsyncResponses];
 
+export type AssignJournalToBookAsyncData = {
+    body?: AssignJournalToBookRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Journals/{journalId}/AssignToBook';
+};
+
+export type AssignJournalToBookAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AssignJournalToBookAsyncError = AssignJournalToBookAsyncErrors[keyof AssignJournalToBookAsyncErrors];
+
+export type AssignJournalToBookAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type AssignJournalToBookAsyncResponse = AssignJournalToBookAsyncResponses[keyof AssignJournalToBookAsyncResponses];
+
 export type GetJournalEntriesAsyncData = {
-    body?: never;
+    body?: JournalEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13461,7 +16020,7 @@ export type CreateJournalEntryAsyncResponses = {
 export type CreateJournalEntryAsyncResponse = CreateJournalEntryAsyncResponses[keyof CreateJournalEntryAsyncResponses];
 
 export type GetJournalEntriesCountAsyncData = {
-    body?: never;
+    body?: JournalEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13496,82 +16055,6 @@ export type GetJournalEntriesCountAsyncResponses = {
 };
 
 export type GetJournalEntriesCountAsyncResponse = GetJournalEntriesCountAsyncResponses[keyof GetJournalEntriesCountAsyncResponses];
-
-export type AggregateJournalEntryDebitsAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        journalId: string;
-    };
-    query: {
-        tenantId: string;
-        currencyId?: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits';
-};
-
-export type AggregateJournalEntryDebitsAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type AggregateJournalEntryDebitsAsyncError = AggregateJournalEntryDebitsAsyncErrors[keyof AggregateJournalEntryDebitsAsyncErrors];
-
-export type AggregateJournalEntryDebitsAsyncResponses = {
-    /**
-     * OK
-     */
-    200: MoneyEnvelopeReadable;
-};
-
-export type AggregateJournalEntryDebitsAsyncResponse = AggregateJournalEntryDebitsAsyncResponses[keyof AggregateJournalEntryDebitsAsyncResponses];
-
-export type AggregateJournalEntryCreditsAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        journalId: string;
-    };
-    query: {
-        tenantId: string;
-        currencyId?: string;
-        'api-version'?: string;
-    };
-    url: '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits';
-};
-
-export type AggregateJournalEntryCreditsAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type AggregateJournalEntryCreditsAsyncError = AggregateJournalEntryCreditsAsyncErrors[keyof AggregateJournalEntryCreditsAsyncErrors];
-
-export type AggregateJournalEntryCreditsAsyncResponses = {
-    /**
-     * OK
-     */
-    200: MoneyEnvelopeReadable;
-};
-
-export type AggregateJournalEntryCreditsAsyncResponse = AggregateJournalEntryCreditsAsyncResponses[keyof AggregateJournalEntryCreditsAsyncResponses];
 
 export type DeleteJournalEntryAsyncData = {
     body?: never;
@@ -13611,8 +16094,46 @@ export type DeleteJournalEntryAsyncResponses = {
 
 export type DeleteJournalEntryAsyncResponse = DeleteJournalEntryAsyncResponses[keyof DeleteJournalEntryAsyncResponses];
 
+export type GetJournalEntryDetailsAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}';
+};
+
+export type GetJournalEntryDetailsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetJournalEntryDetailsAsyncError = GetJournalEntryDetailsAsyncErrors[keyof GetJournalEntryDetailsAsyncErrors];
+
+export type GetJournalEntryDetailsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: JournalEntryDtoEnvelopeReadable;
+};
+
+export type GetJournalEntryDetailsAsyncResponse = GetJournalEntryDetailsAsyncResponses[keyof GetJournalEntryDetailsAsyncResponses];
+
 export type PatchJournalEntryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13687,6 +16208,170 @@ export type UpdateJournalEntryAsyncResponses = {
 
 export type UpdateJournalEntryAsyncResponse = UpdateJournalEntryAsyncResponses[keyof UpdateJournalEntryAsyncResponses];
 
+export type AggregateJournalEntryDebitsAsyncData = {
+    body?: JournalEntryDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalId: string;
+    };
+    query: {
+        tenantId: string;
+        currencyId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Debits';
+};
+
+export type AggregateJournalEntryDebitsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AggregateJournalEntryDebitsAsyncError = AggregateJournalEntryDebitsAsyncErrors[keyof AggregateJournalEntryDebitsAsyncErrors];
+
+export type AggregateJournalEntryDebitsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MoneyEnvelopeReadable;
+};
+
+export type AggregateJournalEntryDebitsAsyncResponse = AggregateJournalEntryDebitsAsyncResponses[keyof AggregateJournalEntryDebitsAsyncResponses];
+
+export type AggregateJournalEntryCreditsAsyncData = {
+    body?: JournalEntryDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalId: string;
+    };
+    query: {
+        tenantId: string;
+        currencyId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Journals/{journalId}/Entries/Aggregate/Credits';
+};
+
+export type AggregateJournalEntryCreditsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type AggregateJournalEntryCreditsAsyncError = AggregateJournalEntryCreditsAsyncErrors[keyof AggregateJournalEntryCreditsAsyncErrors];
+
+export type AggregateJournalEntryCreditsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: MoneyEnvelopeReadable;
+};
+
+export type AggregateJournalEntryCreditsAsyncResponse = AggregateJournalEntryCreditsAsyncResponses[keyof AggregateJournalEntryCreditsAsyncResponses];
+
+export type PostJournalEntryAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Post';
+};
+
+export type PostJournalEntryAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type PostJournalEntryAsyncError = PostJournalEntryAsyncErrors[keyof PostJournalEntryAsyncErrors];
+
+export type PostJournalEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type PostJournalEntryAsyncResponse = PostJournalEntryAsyncResponses[keyof PostJournalEntryAsyncResponses];
+
+export type ReverseJournalEntryAsyncData = {
+    body?: ReverseJournalEntryRequest;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        journalId: string;
+        entryId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Journals/{journalId}/Entries/{entryId}/Reverse';
+};
+
+export type ReverseJournalEntryAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type ReverseJournalEntryAsyncError = ReverseJournalEntryAsyncErrors[keyof ReverseJournalEntryAsyncErrors];
+
+export type ReverseJournalEntryAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type ReverseJournalEntryAsyncResponse = ReverseJournalEntryAsyncResponses[keyof ReverseJournalEntryAsyncResponses];
+
 export type DeleteJournalTypeAsyncData = {
     body?: never;
     headers?: {
@@ -13736,7 +16421,7 @@ export type GetJournalTypeDetailsAsyncResponses = {
 export type GetJournalTypeDetailsAsyncResponse = GetJournalTypeDetailsAsyncResponses[keyof GetJournalTypeDetailsAsyncResponses];
 
 export type PatchJournalTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13797,7 +16482,7 @@ export type UpdateJournalTypeAsyncResponses = {
 export type UpdateJournalTypeAsyncResponse = UpdateJournalTypeAsyncResponses[keyof UpdateJournalTypeAsyncResponses];
 
 export type GetJournalTypesAsyncData = {
-    body?: never;
+    body?: JournalTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13841,7 +16526,7 @@ export type CreateJournalTypeAsyncResponses = {
 export type CreateJournalTypeAsyncResponse = CreateJournalTypeAsyncResponses[keyof CreateJournalTypeAsyncResponses];
 
 export type GetJournalTypesCountAsyncData = {
-    body?: never;
+    body?: JournalTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13863,7 +16548,7 @@ export type GetJournalTypesCountAsyncResponses = {
 export type GetJournalTypesCountAsyncResponse = GetJournalTypesCountAsyncResponses[keyof GetJournalTypesCountAsyncResponses];
 
 export type GetLedgersAsyncData = {
-    body?: never;
+    body?: LedgerDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -13933,7 +16618,7 @@ export type CreateLedgerAsyncResponses = {
 export type CreateLedgerAsyncResponse = CreateLedgerAsyncResponses[keyof CreateLedgerAsyncResponses];
 
 export type GetLedgersCountAsyncData = {
-    body?: never;
+    body?: LedgerDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14042,7 +16727,7 @@ export type GetLedgerDetailsAsyncResponses = {
 export type GetLedgerDetailsAsyncResponse = GetLedgerDetailsAsyncResponses[keyof GetLedgerDetailsAsyncResponses];
 
 export type PatchLedgerAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14116,7 +16801,7 @@ export type UpdateLedgerAsyncResponses = {
 export type UpdateLedgerAsyncResponse = UpdateLedgerAsyncResponses[keyof UpdateLedgerAsyncResponses];
 
 export type GetLedgerTypesAsyncData = {
-    body?: never;
+    body?: LedgerTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14186,7 +16871,7 @@ export type CreateLedgerTypeAsyncResponses = {
 export type CreateLedgerTypeAsyncResponse = CreateLedgerTypeAsyncResponses[keyof CreateLedgerTypeAsyncResponses];
 
 export type GetLedgerTypesCountAsyncData = {
-    body?: never;
+    body?: LedgerTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14295,7 +16980,7 @@ export type GetLedgerTypeDetailsAsyncResponses = {
 export type GetLedgerTypeDetailsAsyncResponse = GetLedgerTypeDetailsAsyncResponses[keyof GetLedgerTypeDetailsAsyncResponses];
 
 export type PatchLedgerTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14443,7 +17128,7 @@ export type GetLoanDetailsAsyncResponses = {
 export type GetLoanDetailsAsyncResponse = GetLoanDetailsAsyncResponses[keyof GetLoanDetailsAsyncResponses];
 
 export type PatchLoanAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14517,7 +17202,7 @@ export type UpdateLoanAsyncResponses = {
 export type UpdateLoanAsyncResponse = UpdateLoanAsyncResponses[keyof UpdateLoanAsyncResponses];
 
 export type GetLoansAsyncData = {
-    body?: never;
+    body?: LoanDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14587,7 +17272,7 @@ export type CreateLoanAsyncResponses = {
 export type CreateLoanAsyncResponse = CreateLoanAsyncResponses[keyof CreateLoanAsyncResponses];
 
 export type GetLoansCountAsyncData = {
-    body?: never;
+    body?: LoanDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14622,7 +17307,7 @@ export type GetLoansCountAsyncResponses = {
 export type GetLoansCountAsyncResponse = GetLoansCountAsyncResponses[keyof GetLoansCountAsyncResponses];
 
 export type GetLoanApplicationsAsyncData = {
-    body?: never;
+    body?: LoanApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14692,7 +17377,7 @@ export type CreateLoanApplicationAsyncResponses = {
 export type CreateLoanApplicationAsyncResponse = CreateLoanApplicationAsyncResponses[keyof CreateLoanApplicationAsyncResponses];
 
 export type GetLoanApplicationsCountAsyncData = {
-    body?: never;
+    body?: LoanApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14801,7 +17486,7 @@ export type GetLoanApplicationDetailsAsyncResponses = {
 export type GetLoanApplicationDetailsAsyncResponse = GetLoanApplicationDetailsAsyncResponses[keyof GetLoanApplicationDetailsAsyncResponses];
 
 export type PatchLoanApplicationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14875,7 +17560,7 @@ export type UpdateLoanApplicationAsyncResponses = {
 export type UpdateLoanApplicationAsyncResponse = UpdateLoanApplicationAsyncResponses[keyof UpdateLoanApplicationAsyncResponses];
 
 export type GetLoanTypesAsyncData = {
-    body?: never;
+    body?: LoanTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -14945,7 +17630,7 @@ export type CreateLoanTypeAsyncResponses = {
 export type CreateLoanTypeAsyncResponse = CreateLoanTypeAsyncResponses[keyof CreateLoanTypeAsyncResponses];
 
 export type GetLoanTypesCountAsyncData = {
-    body?: never;
+    body?: LoanTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15054,7 +17739,7 @@ export type GetLoanTypeByIdAsyncResponses = {
 export type GetLoanTypeByIdAsyncResponse = GetLoanTypeByIdAsyncResponses[keyof GetLoanTypeByIdAsyncResponses];
 
 export type PatchLoanTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15127,8 +17812,78 @@ export type UpdateLoanTypeAsyncResponses = {
 
 export type UpdateLoanTypeAsyncResponse = UpdateLoanTypeAsyncResponses[keyof UpdateLoanTypeAsyncResponses];
 
+export type GetPostingExecutionsAsyncData = {
+    body?: PostingExecutionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/PostingExecutions';
+};
+
+export type GetPostingExecutionsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetPostingExecutionsAsyncError = GetPostingExecutionsAsyncErrors[keyof GetPostingExecutionsAsyncErrors];
+
+export type GetPostingExecutionsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: PostingExecutionDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type GetPostingExecutionsAsyncResponse = GetPostingExecutionsAsyncResponses[keyof GetPostingExecutionsAsyncResponses];
+
+export type CountPostingExecutionsAsyncData = {
+    body?: PostingExecutionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/PostingExecutions/Count';
+};
+
+export type CountPostingExecutionsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CountPostingExecutionsAsyncError = CountPostingExecutionsAsyncErrors[keyof CountPostingExecutionsAsyncErrors];
+
+export type CountPostingExecutionsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type CountPostingExecutionsAsyncResponse = CountPostingExecutionsAsyncResponses[keyof CountPostingExecutionsAsyncResponses];
+
 export type GetReceiptsAsyncData = {
-    body?: never;
+    body?: ReceiptDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -15164,7 +17919,7 @@ export type CreateReceiptAsyncResponses = {
 export type CreateReceiptAsyncResponse = CreateReceiptAsyncResponses[keyof CreateReceiptAsyncResponses];
 
 export type GetReceiptsCountAsyncData = {
-    body?: never;
+    body?: ReceiptDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -15222,7 +17977,7 @@ export type GetReceiptDetailsAsyncResponses = {
 export type GetReceiptDetailsAsyncResponse = GetReceiptDetailsAsyncResponses[keyof GetReceiptDetailsAsyncResponses];
 
 export type PatchReceiptAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         receiptId: string;
     };
@@ -15274,8 +18029,46 @@ export type UpdateReceiptAsyncResponses = {
 
 export type UpdateReceiptAsyncResponse = UpdateReceiptAsyncResponses[keyof UpdateReceiptAsyncResponses];
 
-export type GetShareClassesData = {
+export type GetTrialBalanceAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        fiscalPeriodId: string;
+        financialBookId?: string;
+        currencyId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/AccountingService/Reports/TrialBalance';
+};
+
+export type GetTrialBalanceAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetTrialBalanceAsyncError = GetTrialBalanceAsyncErrors[keyof GetTrialBalanceAsyncErrors];
+
+export type GetTrialBalanceAsyncResponses = {
+    /**
+     * OK
+     */
+    200: TrialBalanceDtoEnvelopeReadable;
+};
+
+export type GetTrialBalanceAsyncResponse = GetTrialBalanceAsyncResponses[keyof GetTrialBalanceAsyncResponses];
+
+export type GetShareClassesData = {
+    body?: ShareClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15349,7 +18142,7 @@ export type CreateShareClassResponses = {
 export type CreateShareClassResponse = CreateShareClassResponses[keyof CreateShareClassResponses];
 
 export type GetShareClassesCountData = {
-    body?: never;
+    body?: ShareClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15457,7 +18250,7 @@ export type GetShareClassResponses = {
 export type GetShareClassResponse = GetShareClassResponses[keyof GetShareClassResponses];
 
 export type PatchShareClassData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15539,7 +18332,7 @@ export type UpdateShareClassResponses = {
 export type UpdateShareClassResponse = UpdateShareClassResponses[keyof UpdateShareClassResponses];
 
 export type GetShareIssuancesData = {
-    body?: never;
+    body?: ShareIssuanceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15613,7 +18406,7 @@ export type CreateShareIssuanceResponses = {
 export type CreateShareIssuanceResponse = CreateShareIssuanceResponses[keyof CreateShareIssuanceResponses];
 
 export type GetShareIssuancesCountData = {
-    body?: never;
+    body?: ShareIssuanceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15648,7 +18441,7 @@ export type GetShareIssuancesCountResponses = {
 export type GetShareIssuancesCountResponse = GetShareIssuancesCountResponses[keyof GetShareIssuancesCountResponses];
 
 export type GetShareIssuancesSumData = {
-    body?: never;
+    body?: ShareIssuanceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15756,7 +18549,7 @@ export type GetShareIssuanceResponses = {
 export type GetShareIssuanceResponse = GetShareIssuanceResponses[keyof GetShareIssuanceResponses];
 
 export type PatchShareIssuanceData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15838,7 +18631,7 @@ export type UpdateShareIssuanceResponses = {
 export type UpdateShareIssuanceResponse = UpdateShareIssuanceResponses[keyof UpdateShareIssuanceResponses];
 
 export type GetShareTransfersData = {
-    body?: never;
+    body?: ShareTransferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -15912,7 +18705,7 @@ export type CreateShareTransferResponses = {
 export type CreateShareTransferResponse = CreateShareTransferResponses[keyof CreateShareTransferResponses];
 
 export type GetShareTransfersCountData = {
-    body?: never;
+    body?: ShareTransferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16020,7 +18813,7 @@ export type GetShareTransferResponses = {
 export type GetShareTransferResponse = GetShareTransferResponses[keyof GetShareTransferResponses];
 
 export type PatchShareTransferData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16102,7 +18895,7 @@ export type UpdateShareTransferResponses = {
 export type UpdateShareTransferResponse = UpdateShareTransferResponses[keyof UpdateShareTransferResponses];
 
 export type GetShareTransferReasonsData = {
-    body?: never;
+    body?: ShareTransferReasonDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16176,7 +18969,7 @@ export type CreateShareTransferReasonResponses = {
 export type CreateShareTransferReasonResponse = CreateShareTransferReasonResponses[keyof CreateShareTransferReasonResponses];
 
 export type GetShareTransferReasonsCountData = {
-    body?: never;
+    body?: ShareTransferReasonDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16284,7 +19077,7 @@ export type GetShareTransferReasonResponses = {
 export type GetShareTransferReasonResponse = GetShareTransferReasonResponses[keyof GetShareTransferReasonResponses];
 
 export type PatchShareTransferReasonData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16366,7 +19159,7 @@ export type UpdateShareTransferReasonResponses = {
 export type UpdateShareTransferReasonResponse = UpdateShareTransferReasonResponses[keyof UpdateShareTransferReasonResponses];
 
 export type GetTaxClassesData = {
-    body?: never;
+    body?: TaxClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16436,7 +19229,7 @@ export type CreateTaxClassResponses = {
 export type CreateTaxClassResponse = CreateTaxClassResponses[keyof CreateTaxClassResponses];
 
 export type GetTaxClassesCountData = {
-    body?: never;
+    body?: TaxClassDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16545,7 +19338,7 @@ export type GetTaxClassResponses = {
 export type GetTaxClassResponse = GetTaxClassResponses[keyof GetTaxClassResponses];
 
 export type PatchTaxClassData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16619,7 +19412,7 @@ export type UpdateTaxClassResponses = {
 export type UpdateTaxClassResponse = UpdateTaxClassResponses[keyof UpdateTaxClassResponses];
 
 export type GetTaxPoliciesData = {
-    body?: never;
+    body?: TaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16689,7 +19482,7 @@ export type CreateTaxPolicyResponses = {
 export type CreateTaxPolicyResponse = CreateTaxPolicyResponses[keyof CreateTaxPolicyResponses];
 
 export type GetTaxPoliciesCountData = {
-    body?: never;
+    body?: TaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16724,7 +19517,7 @@ export type GetTaxPoliciesCountResponses = {
 export type GetTaxPoliciesCountResponse = GetTaxPoliciesCountResponses[keyof GetTaxPoliciesCountResponses];
 
 export type GetTaxPoliciesByAuthorityData = {
-    body?: never;
+    body?: TaxPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16835,7 +19628,7 @@ export type GetTaxPolicyResponses = {
 export type GetTaxPolicyResponse = GetTaxPolicyResponses[keyof GetTaxPolicyResponses];
 
 export type PatchTaxPolicyData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -16909,7 +19702,7 @@ export type UpdateTaxPolicyResponses = {
 export type UpdateTaxPolicyResponse = UpdateTaxPolicyResponses[keyof UpdateTaxPolicyResponses];
 
 export type GetItemTaxPolicyRecordsData = {
-    body?: never;
+    body?: ItemTaxPolicyRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17059,7 +19852,7 @@ export type GetItemTaxPolicyRecordResponses = {
 export type GetItemTaxPolicyRecordResponse = GetItemTaxPolicyRecordResponses[keyof GetItemTaxPolicyRecordResponses];
 
 export type PatchItemTaxPolicyRecordData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17135,7 +19928,7 @@ export type UpdateItemTaxPolicyRecordResponses = {
 export type UpdateItemTaxPolicyRecordResponse = UpdateItemTaxPolicyRecordResponses[keyof UpdateItemTaxPolicyRecordResponses];
 
 export type GetAppliedTaxPolicyRecordsData = {
-    body?: never;
+    body?: AppliedTaxPolicyRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17209,7 +20002,7 @@ export type CreateAppliedTaxPolicyRecordResponses = {
 export type CreateAppliedTaxPolicyRecordResponse = CreateAppliedTaxPolicyRecordResponses[keyof CreateAppliedTaxPolicyRecordResponses];
 
 export type GetAppliedTaxPolicyRecordsCountData = {
-    body?: never;
+    body?: AppliedTaxPolicyRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17322,7 +20115,7 @@ export type GetAppliedTaxPolicyRecordResponses = {
 export type GetAppliedTaxPolicyRecordResponse = GetAppliedTaxPolicyRecordResponses[keyof GetAppliedTaxPolicyRecordResponses];
 
 export type PatchAppliedTaxPolicyRecordData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17398,7 +20191,7 @@ export type UpdateAppliedTaxPolicyRecordResponses = {
 export type UpdateAppliedTaxPolicyRecordResponse = UpdateAppliedTaxPolicyRecordResponses[keyof UpdateAppliedTaxPolicyRecordResponses];
 
 export type GetTaxRatesData = {
-    body?: never;
+    body?: TaxRateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17468,7 +20261,7 @@ export type CreateTaxRateResponses = {
 export type CreateTaxRateResponse = CreateTaxRateResponses[keyof CreateTaxRateResponses];
 
 export type GetTaxRatesCountData = {
-    body?: never;
+    body?: TaxRateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17577,7 +20370,7 @@ export type GetTaxRateResponses = {
 export type GetTaxRateResponse = GetTaxRateResponses[keyof GetTaxRateResponses];
 
 export type PatchTaxRateData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17651,7 +20444,7 @@ export type UpdateTaxRateResponses = {
 export type UpdateTaxRateResponse = UpdateTaxRateResponses[keyof UpdateTaxRateResponses];
 
 export type GetTransactionsData = {
-    body?: never;
+    body?: TransactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17725,7 +20518,7 @@ export type CreateTransactionResponses = {
 export type CreateTransactionResponse = CreateTransactionResponses[keyof CreateTransactionResponses];
 
 export type GetTransactionsCountData = {
-    body?: never;
+    body?: TransactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17842,7 +20635,7 @@ export type GetTransactionResponses = {
 export type GetTransactionResponse = GetTransactionResponses[keyof GetTransactionResponses];
 
 export type PatchTransactionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17920,7 +20713,7 @@ export type UpdateTransactionResponses = {
 export type UpdateTransactionResponse = UpdateTransactionResponses[keyof UpdateTransactionResponses];
 
 export type GetTransactionCategoriesData = {
-    body?: never;
+    body?: TransactionCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -17994,7 +20787,7 @@ export type CreateTransactionCategoryResponses = {
 export type CreateTransactionCategoryResponse = CreateTransactionCategoryResponses[keyof CreateTransactionCategoryResponses];
 
 export type GetTransactionCategoriesCountData = {
-    body?: never;
+    body?: TransactionCategoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -18111,7 +20904,7 @@ export type GetTransactionCategoryResponses = {
 export type GetTransactionCategoryResponse = GetTransactionCategoryResponses[keyof GetTransactionCategoryResponses];
 
 export type PatchTransactionCategoryData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

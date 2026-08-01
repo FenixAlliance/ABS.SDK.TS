@@ -18,6 +18,11 @@ export type EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: string | null;
 };
@@ -25,6 +30,11 @@ export type EnvelopeReadable = {
 export type EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: string | null;
 };
 
@@ -33,12 +43,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -75,6 +95,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -82,6 +107,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -92,10 +122,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -165,11 +194,39 @@ export type ServiceCaseDto = {
     promisedEndDate?: string;
 };
 
+export type ServiceCaseDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ServiceCaseDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ServiceCaseDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ServiceCaseDto;
 };
@@ -177,6 +234,11 @@ export type ServiceCaseDtoEnvelopeReadable = {
 export type ServiceCaseDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ServiceCaseDto;
 };
 
@@ -185,6 +247,11 @@ export type ServiceCaseDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ServiceCaseDto> | null;
 };
@@ -192,6 +259,11 @@ export type ServiceCaseDtoIReadOnlyListEnvelopeReadable = {
 export type ServiceCaseDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ServiceCaseDto> | null;
 };
 
@@ -209,11 +281,39 @@ export type ServiceCaseTypeDto = {
     description?: string | null;
 };
 
+export type ServiceCaseTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ServiceCaseTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ServiceCaseTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ServiceCaseTypeDto;
 };
@@ -221,6 +321,11 @@ export type ServiceCaseTypeDtoEnvelopeReadable = {
 export type ServiceCaseTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ServiceCaseTypeDto;
 };
 
@@ -229,6 +334,11 @@ export type ServiceCaseTypeDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ServiceCaseTypeDto> | null;
 };
@@ -236,6 +346,11 @@ export type ServiceCaseTypeDtoIReadOnlyListEnvelopeReadable = {
 export type ServiceCaseTypeDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ServiceCaseTypeDto> | null;
 };
 
@@ -597,11 +712,39 @@ export type ServiceDto = {
     servicePlanId?: string | null;
 };
 
+export type ServiceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ServiceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ServiceDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ServiceDto;
 };
@@ -609,6 +752,11 @@ export type ServiceDtoEnvelopeReadable = {
 export type ServiceDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ServiceDto;
 };
 
@@ -617,6 +765,11 @@ export type ServiceDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ServiceDto> | null;
 };
@@ -624,6 +777,11 @@ export type ServiceDtoIReadOnlyListEnvelopeReadable = {
 export type ServiceDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ServiceDto> | null;
 };
 
@@ -643,11 +801,39 @@ export type ServiceLevelAgreementDto = {
     contactId?: string | null;
 };
 
+export type ServiceLevelAgreementDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ServiceLevelAgreementDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ServiceLevelAgreementDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ServiceLevelAgreementDto;
 };
@@ -655,6 +841,11 @@ export type ServiceLevelAgreementDtoEnvelopeReadable = {
 export type ServiceLevelAgreementDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ServiceLevelAgreementDto;
 };
 
@@ -663,6 +854,11 @@ export type ServiceLevelAgreementDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ServiceLevelAgreementDto> | null;
 };
@@ -670,6 +866,11 @@ export type ServiceLevelAgreementDtoIReadOnlyListEnvelopeReadable = {
 export type ServiceLevelAgreementDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ServiceLevelAgreementDto> | null;
 };
 
@@ -1009,11 +1210,39 @@ export type ServiceLevelDto = {
     serviceId?: string | null;
 };
 
+export type ServiceLevelDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ServiceLevelDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ServiceLevelDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ServiceLevelDto;
 };
@@ -1021,6 +1250,11 @@ export type ServiceLevelDtoEnvelopeReadable = {
 export type ServiceLevelDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ServiceLevelDto;
 };
 
@@ -1029,6 +1263,11 @@ export type ServiceLevelDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ServiceLevelDto> | null;
 };
@@ -1036,6 +1275,11 @@ export type ServiceLevelDtoIReadOnlyListEnvelopeReadable = {
 export type ServiceLevelDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ServiceLevelDto> | null;
 };
 
@@ -1225,11 +1469,39 @@ export type ServiceQueueDto = {
     serviceId?: string | null;
 };
 
+export type ServiceQueueDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ServiceQueueDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ServiceQueueDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ServiceQueueDto;
 };
@@ -1237,6 +1509,11 @@ export type ServiceQueueDtoEnvelopeReadable = {
 export type ServiceQueueDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ServiceQueueDto;
 };
 
@@ -1245,6 +1522,11 @@ export type ServiceQueueDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ServiceQueueDto> | null;
 };
@@ -1252,6 +1534,11 @@ export type ServiceQueueDtoIReadOnlyListEnvelopeReadable = {
 export type ServiceQueueDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ServiceQueueDto> | null;
 };
 
@@ -1472,6 +1759,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1779,7 +2082,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetServiceCasesAsyncData = {
-    body?: never;
+    body?: ServiceCaseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1849,7 +2152,7 @@ export type CreateServiceCaseAsyncResponses = {
 export type CreateServiceCaseAsyncResponse = CreateServiceCaseAsyncResponses[keyof CreateServiceCaseAsyncResponses];
 
 export type GetServiceCasesCountAsyncData = {
-    body?: never;
+    body?: ServiceCaseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1958,7 +2261,7 @@ export type GetServiceCaseByIdAsyncResponses = {
 export type GetServiceCaseByIdAsyncResponse = GetServiceCaseByIdAsyncResponses[keyof GetServiceCaseByIdAsyncResponses];
 
 export type PatchServiceCaseAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2032,7 +2335,7 @@ export type UpdateServiceCaseAsyncResponses = {
 export type UpdateServiceCaseAsyncResponse = UpdateServiceCaseAsyncResponses[keyof UpdateServiceCaseAsyncResponses];
 
 export type GetServiceCaseTypesAsyncData = {
-    body?: never;
+    body?: ServiceCaseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2102,7 +2405,7 @@ export type CreateServiceCaseTypeAsyncResponses = {
 export type CreateServiceCaseTypeAsyncResponse = CreateServiceCaseTypeAsyncResponses[keyof CreateServiceCaseTypeAsyncResponses];
 
 export type GetServiceCaseTypesCountAsyncData = {
-    body?: never;
+    body?: ServiceCaseTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2211,7 +2514,7 @@ export type GetServiceCaseTypeByIdAsyncResponses = {
 export type GetServiceCaseTypeByIdAsyncResponse = GetServiceCaseTypeByIdAsyncResponses[keyof GetServiceCaseTypeByIdAsyncResponses];
 
 export type PatchServiceCaseTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2285,7 +2588,7 @@ export type UpdateServiceCaseTypeAsyncResponses = {
 export type UpdateServiceCaseTypeAsyncResponse = UpdateServiceCaseTypeAsyncResponses[keyof UpdateServiceCaseTypeAsyncResponses];
 
 export type GetServiceLevelAgreementsAsyncData = {
-    body?: never;
+    body?: ServiceLevelAgreementDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2355,7 +2658,7 @@ export type CreateServiceLevelAgreementAsyncResponses = {
 export type CreateServiceLevelAgreementAsyncResponse = CreateServiceLevelAgreementAsyncResponses[keyof CreateServiceLevelAgreementAsyncResponses];
 
 export type GetServiceLevelAgreementsCountAsyncData = {
-    body?: never;
+    body?: ServiceLevelAgreementDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2464,7 +2767,7 @@ export type GetServiceLevelAgreementByIdAsyncResponses = {
 export type GetServiceLevelAgreementByIdAsyncResponse = GetServiceLevelAgreementByIdAsyncResponses[keyof GetServiceLevelAgreementByIdAsyncResponses];
 
 export type PatchServiceLevelAgreementAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2538,7 +2841,7 @@ export type UpdateServiceLevelAgreementAsyncResponses = {
 export type UpdateServiceLevelAgreementAsyncResponse = UpdateServiceLevelAgreementAsyncResponses[keyof UpdateServiceLevelAgreementAsyncResponses];
 
 export type GetAllServiceLevelsAsyncData = {
-    body?: never;
+    body?: ServiceLevelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2573,7 +2876,7 @@ export type GetAllServiceLevelsAsyncResponses = {
 export type GetAllServiceLevelsAsyncResponse = GetAllServiceLevelsAsyncResponses[keyof GetAllServiceLevelsAsyncResponses];
 
 export type CountAllServiceLevelsAsyncData = {
-    body?: never;
+    body?: ServiceLevelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2608,7 +2911,7 @@ export type CountAllServiceLevelsAsyncResponses = {
 export type CountAllServiceLevelsAsyncResponse = CountAllServiceLevelsAsyncResponses[keyof CountAllServiceLevelsAsyncResponses];
 
 export type GetServiceLevelsAsyncData = {
-    body?: never;
+    body?: ServiceLevelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2682,7 +2985,7 @@ export type CreateServiceLevelAsyncResponses = {
 export type CreateServiceLevelAsyncResponse = CreateServiceLevelAsyncResponses[keyof CreateServiceLevelAsyncResponses];
 
 export type GetServiceLevelsCountAsyncData = {
-    body?: never;
+    body?: ServiceLevelDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2795,7 +3098,7 @@ export type GetServiceLevelByIdAsyncResponses = {
 export type GetServiceLevelByIdAsyncResponse = GetServiceLevelByIdAsyncResponses[keyof GetServiceLevelByIdAsyncResponses];
 
 export type PatchServiceLevelAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2871,7 +3174,7 @@ export type UpdateServiceLevelAsyncResponses = {
 export type UpdateServiceLevelAsyncResponse = UpdateServiceLevelAsyncResponses[keyof UpdateServiceLevelAsyncResponses];
 
 export type GetServiceQueuesAsyncData = {
-    body?: never;
+    body?: ServiceQueueDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2941,7 +3244,7 @@ export type CreateServiceQueueAsyncResponses = {
 export type CreateServiceQueueAsyncResponse = CreateServiceQueueAsyncResponses[keyof CreateServiceQueueAsyncResponses];
 
 export type GetServiceQueuesCountAsyncData = {
-    body?: never;
+    body?: ServiceQueueDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3050,7 +3353,7 @@ export type GetServiceQueueByIdAsyncResponses = {
 export type GetServiceQueueByIdAsyncResponse = GetServiceQueueByIdAsyncResponses[keyof GetServiceQueueByIdAsyncResponses];
 
 export type PatchServiceQueueAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3124,7 +3427,7 @@ export type UpdateServiceQueueAsyncResponses = {
 export type UpdateServiceQueueAsyncResponse = UpdateServiceQueueAsyncResponses[keyof UpdateServiceQueueAsyncResponses];
 
 export type GetServicesAsyncData = {
-    body?: never;
+    body?: ServiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3194,7 +3497,7 @@ export type CreateServiceAsyncResponses = {
 export type CreateServiceAsyncResponse = CreateServiceAsyncResponses[keyof CreateServiceAsyncResponses];
 
 export type GetServicesCountAsyncData = {
-    body?: never;
+    body?: ServiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3303,7 +3606,7 @@ export type GetServiceByIdAsyncResponses = {
 export type GetServiceByIdAsyncResponse = GetServiceByIdAsyncResponses[keyof GetServiceByIdAsyncResponses];
 
 export type PatchServiceAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

@@ -32,11 +32,39 @@ export type AppraisalStageDto = {
     stageOrder?: number;
 };
 
+export type AppraisalStageDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AppraisalStageDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AppraisalStageDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AppraisalStageDto;
 };
@@ -44,6 +72,11 @@ export type AppraisalStageDtoEnvelopeReadable = {
 export type AppraisalStageDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AppraisalStageDto;
 };
 
@@ -52,6 +85,11 @@ export type AppraisalStageDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AppraisalStageDto> | null;
 };
@@ -59,6 +97,11 @@ export type AppraisalStageDtoListEnvelopeReadable = {
 export type AppraisalStageDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AppraisalStageDto> | null;
 };
 
@@ -84,11 +127,39 @@ export type AppraisalWorkflowDto = {
     tenantId?: string | null;
 };
 
+export type AppraisalWorkflowDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AppraisalWorkflowDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AppraisalWorkflowDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AppraisalWorkflowDto;
 };
@@ -96,6 +167,11 @@ export type AppraisalWorkflowDtoEnvelopeReadable = {
 export type AppraisalWorkflowDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AppraisalWorkflowDto;
 };
 
@@ -104,6 +180,11 @@ export type AppraisalWorkflowDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AppraisalWorkflowDto> | null;
 };
@@ -111,6 +192,11 @@ export type AppraisalWorkflowDtoListEnvelopeReadable = {
 export type AppraisalWorkflowDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AppraisalWorkflowDto> | null;
 };
 
@@ -349,11 +435,39 @@ export type EmployeeAppraisalSessionDto = {
     appraisalStageId?: string | null;
 };
 
+export type EmployeeAppraisalSessionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type EmployeeAppraisalSessionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type EmployeeAppraisalSessionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: EmployeeAppraisalSessionDto;
 };
@@ -361,6 +475,11 @@ export type EmployeeAppraisalSessionDtoEnvelopeReadable = {
 export type EmployeeAppraisalSessionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: EmployeeAppraisalSessionDto;
 };
 
@@ -369,6 +488,11 @@ export type EmployeeAppraisalSessionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<EmployeeAppraisalSessionDto> | null;
 };
@@ -376,6 +500,11 @@ export type EmployeeAppraisalSessionDtoListEnvelopeReadable = {
 export type EmployeeAppraisalSessionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<EmployeeAppraisalSessionDto> | null;
 };
 
@@ -540,11 +669,39 @@ export type EmployeeProfileDtoWritable = {
     employeeTypeId?: string | null;
 };
 
+export type EmployeeProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type EmployeeProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type EmployeeProfileDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: EmployeeProfileDtoReadable;
 };
@@ -552,6 +709,11 @@ export type EmployeeProfileDtoEnvelopeReadable = {
 export type EmployeeProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: EmployeeProfileDtoWritable;
 };
 
@@ -560,6 +722,11 @@ export type EmployeeProfileDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<EmployeeProfileDtoReadable> | null;
 };
@@ -567,6 +734,11 @@ export type EmployeeProfileDtoListEnvelopeReadable = {
 export type EmployeeProfileDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<EmployeeProfileDtoWritable> | null;
 };
 
@@ -619,11 +791,39 @@ export type EmployeeTypeDto = {
     enrollmentId?: string | null;
 };
 
+export type EmployeeTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type EmployeeTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type EmployeeTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: EmployeeTypeDto;
 };
@@ -631,6 +831,11 @@ export type EmployeeTypeDtoEnvelopeReadable = {
 export type EmployeeTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: EmployeeTypeDto;
 };
 
@@ -639,6 +844,11 @@ export type EmployeeTypeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<EmployeeTypeDto> | null;
 };
@@ -646,6 +856,11 @@ export type EmployeeTypeDtoListEnvelopeReadable = {
 export type EmployeeTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<EmployeeTypeDto> | null;
 };
 
@@ -785,11 +1000,39 @@ export type EmployerProfileDtoWritable = {
     data9Label?: string | null;
 };
 
+export type EmployerProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type EmployerProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type EmployerProfileDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: EmployerProfileDtoReadable;
 };
@@ -797,6 +1040,11 @@ export type EmployerProfileDtoEnvelopeReadable = {
 export type EmployerProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: EmployerProfileDtoWritable;
 };
 
@@ -805,6 +1053,11 @@ export type EmployerProfileDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<EmployerProfileDtoReadable> | null;
 };
@@ -812,6 +1065,11 @@ export type EmployerProfileDtoListEnvelopeReadable = {
 export type EmployerProfileDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<EmployerProfileDtoWritable> | null;
 };
 
@@ -847,12 +1105,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -860,12 +1128,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -898,11 +1176,39 @@ export type GigApplicationDto = {
     jobApplicantProfileId?: string | null;
 };
 
+export type GigApplicationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type GigApplicationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type GigApplicationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: GigApplicationDto;
 };
@@ -910,6 +1216,11 @@ export type GigApplicationDtoEnvelopeReadable = {
 export type GigApplicationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: GigApplicationDto;
 };
 
@@ -918,6 +1229,11 @@ export type GigApplicationDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<GigApplicationDto> | null;
 };
@@ -925,6 +1241,11 @@ export type GigApplicationDtoListEnvelopeReadable = {
 export type GigApplicationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<GigApplicationDto> | null;
 };
 
@@ -1017,11 +1338,39 @@ export type GigDto = {
     cityId?: string | null;
 };
 
+export type GigDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type GigDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type GigDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: GigDto;
 };
@@ -1029,6 +1378,11 @@ export type GigDtoEnvelopeReadable = {
 export type GigDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: GigDto;
 };
 
@@ -1037,6 +1391,11 @@ export type GigDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<GigDto> | null;
 };
@@ -1044,6 +1403,11 @@ export type GigDtoListEnvelopeReadable = {
 export type GigDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<GigDto> | null;
 };
 
@@ -1114,6 +1478,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -1121,6 +1490,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -1283,11 +1657,39 @@ export type JobApplicantProfileDtoWritable = {
     currencyId?: string | null;
 };
 
+export type JobApplicantProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JobApplicantProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type JobApplicantProfileDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JobApplicantProfileDtoReadable;
 };
@@ -1295,6 +1697,11 @@ export type JobApplicantProfileDtoEnvelopeReadable = {
 export type JobApplicantProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JobApplicantProfileDtoWritable;
 };
 
@@ -1303,6 +1710,11 @@ export type JobApplicantProfileDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JobApplicantProfileDtoReadable> | null;
 };
@@ -1310,6 +1722,11 @@ export type JobApplicantProfileDtoListEnvelopeReadable = {
 export type JobApplicantProfileDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JobApplicantProfileDtoWritable> | null;
 };
 
@@ -1365,11 +1782,39 @@ export type JobFieldDto = {
     enrollmentId?: string | null;
 };
 
+export type JobFieldDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JobFieldDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type JobFieldDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JobFieldDto;
 };
@@ -1377,6 +1822,11 @@ export type JobFieldDtoEnvelopeReadable = {
 export type JobFieldDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JobFieldDto;
 };
 
@@ -1385,6 +1835,11 @@ export type JobFieldDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JobFieldDto> | null;
 };
@@ -1392,6 +1847,11 @@ export type JobFieldDtoListEnvelopeReadable = {
 export type JobFieldDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JobFieldDto> | null;
 };
 
@@ -1430,11 +1890,39 @@ export type JobOfferApplicationDto = {
     jobApplicantProfileId?: string | null;
 };
 
+export type JobOfferApplicationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JobOfferApplicationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type JobOfferApplicationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JobOfferApplicationDto;
 };
@@ -1442,6 +1930,11 @@ export type JobOfferApplicationDtoEnvelopeReadable = {
 export type JobOfferApplicationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JobOfferApplicationDto;
 };
 
@@ -1450,6 +1943,11 @@ export type JobOfferApplicationDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JobOfferApplicationDto> | null;
 };
@@ -1457,6 +1955,11 @@ export type JobOfferApplicationDtoListEnvelopeReadable = {
 export type JobOfferApplicationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JobOfferApplicationDto> | null;
 };
 
@@ -1578,11 +2081,39 @@ export type JobOfferDto = {
     cityId?: string | null;
 };
 
+export type JobOfferDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JobOfferDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type JobOfferDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JobOfferDto;
 };
@@ -1590,6 +2121,11 @@ export type JobOfferDtoEnvelopeReadable = {
 export type JobOfferDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JobOfferDto;
 };
 
@@ -1598,6 +2134,11 @@ export type JobOfferDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JobOfferDto> | null;
 };
@@ -1605,6 +2146,11 @@ export type JobOfferDtoListEnvelopeReadable = {
 export type JobOfferDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JobOfferDto> | null;
 };
 
@@ -1617,11 +2163,34 @@ export type JobOfferFieldRecordCreateDto = {
 
 export type JobOfferFieldRecordDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     jobFieldId?: string | null;
     jobOfferId?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
+};
+
+export type JobOfferFieldRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JobOfferFieldRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type JobOfferFieldRecordDtoEnvelopeReadable = {
@@ -1629,6 +2198,11 @@ export type JobOfferFieldRecordDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JobOfferFieldRecordDto;
 };
@@ -1636,6 +2210,11 @@ export type JobOfferFieldRecordDtoEnvelopeReadable = {
 export type JobOfferFieldRecordDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JobOfferFieldRecordDto;
 };
 
@@ -1644,6 +2223,11 @@ export type JobOfferFieldRecordDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JobOfferFieldRecordDto> | null;
 };
@@ -1651,6 +2235,11 @@ export type JobOfferFieldRecordDtoListEnvelopeReadable = {
 export type JobOfferFieldRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JobOfferFieldRecordDto> | null;
 };
 
@@ -1737,11 +2326,39 @@ export type JobTitleDto = {
     enrollmentId?: string | null;
 };
 
+export type JobTitleDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type JobTitleDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type JobTitleDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JobTitleDto;
 };
@@ -1749,6 +2366,11 @@ export type JobTitleDtoEnvelopeReadable = {
 export type JobTitleDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JobTitleDto;
 };
 
@@ -1757,6 +2379,11 @@ export type JobTitleDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<JobTitleDto> | null;
 };
@@ -1764,6 +2391,11 @@ export type JobTitleDtoListEnvelopeReadable = {
 export type JobTitleDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<JobTitleDto> | null;
 };
 
@@ -1800,11 +2432,39 @@ export type LeaveApplicationDto = {
     enrollmentId?: string | null;
 };
 
+export type LeaveApplicationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LeaveApplicationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LeaveApplicationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LeaveApplicationDto;
 };
@@ -1812,6 +2472,11 @@ export type LeaveApplicationDtoEnvelopeReadable = {
 export type LeaveApplicationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LeaveApplicationDto;
 };
 
@@ -1820,6 +2485,11 @@ export type LeaveApplicationDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LeaveApplicationDto> | null;
 };
@@ -1827,6 +2497,11 @@ export type LeaveApplicationDtoListEnvelopeReadable = {
 export type LeaveApplicationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LeaveApplicationDto> | null;
 };
 
@@ -1853,11 +2528,39 @@ export type LeaveTypeDto = {
     tenantId?: string | null;
 };
 
+export type LeaveTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LeaveTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LeaveTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LeaveTypeDto;
 };
@@ -1865,6 +2568,11 @@ export type LeaveTypeDtoEnvelopeReadable = {
 export type LeaveTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LeaveTypeDto;
 };
 
@@ -1873,6 +2581,11 @@ export type LeaveTypeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LeaveTypeDto> | null;
 };
@@ -1880,6 +2593,11 @@ export type LeaveTypeDtoListEnvelopeReadable = {
 export type LeaveTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LeaveTypeDto> | null;
 };
 
@@ -1895,10 +2613,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -1917,11 +2634,39 @@ export type PayrollDto = {
     payrollPeriodId?: string | null;
 };
 
+export type PayrollDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PayrollDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PayrollDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PayrollDto;
 };
@@ -1929,6 +2674,11 @@ export type PayrollDtoEnvelopeReadable = {
 export type PayrollDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PayrollDto;
 };
 
@@ -1937,6 +2687,11 @@ export type PayrollDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PayrollDto> | null;
 };
@@ -1944,6 +2699,11 @@ export type PayrollDtoListEnvelopeReadable = {
 export type PayrollDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PayrollDto> | null;
 };
 
@@ -1965,11 +2725,39 @@ export type PayrollPeriodDto = {
     end?: string | null;
 };
 
+export type PayrollPeriodDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PayrollPeriodDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PayrollPeriodDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PayrollPeriodDto;
 };
@@ -1977,6 +2765,11 @@ export type PayrollPeriodDtoEnvelopeReadable = {
 export type PayrollPeriodDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PayrollPeriodDto;
 };
 
@@ -1985,6 +2778,11 @@ export type PayrollPeriodDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PayrollPeriodDto> | null;
 };
@@ -1992,6 +2790,11 @@ export type PayrollPeriodDtoListEnvelopeReadable = {
 export type PayrollPeriodDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PayrollPeriodDto> | null;
 };
 
@@ -2028,7 +2831,7 @@ export type RequiredSkillRecordCreateDto = {
 
 export type RequiredSkillRecordDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     experienceInYears?: number;
     priority?: number;
     requiredSkillRecordType?: 'MustHave' | 'Optional';
@@ -2039,11 +2842,39 @@ export type RequiredSkillRecordDto = {
     enrollmentId?: string | null;
 };
 
+export type RequiredSkillRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type RequiredSkillRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type RequiredSkillRecordDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: RequiredSkillRecordDto;
 };
@@ -2051,6 +2882,11 @@ export type RequiredSkillRecordDtoEnvelopeReadable = {
 export type RequiredSkillRecordDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: RequiredSkillRecordDto;
 };
 
@@ -2059,6 +2895,11 @@ export type RequiredSkillRecordDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<RequiredSkillRecordDto> | null;
 };
@@ -2066,6 +2907,11 @@ export type RequiredSkillRecordDtoListEnvelopeReadable = {
 export type RequiredSkillRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<RequiredSkillRecordDto> | null;
 };
 
@@ -2106,11 +2952,39 @@ export type SalaryDto = {
     enrollmentId?: string | null;
 };
 
+export type SalaryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SalaryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SalaryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SalaryDto;
 };
@@ -2118,6 +2992,11 @@ export type SalaryDtoEnvelopeReadable = {
 export type SalaryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SalaryDto;
 };
 
@@ -2126,6 +3005,11 @@ export type SalaryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SalaryDto> | null;
 };
@@ -2133,6 +3017,11 @@ export type SalaryDtoListEnvelopeReadable = {
 export type SalaryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SalaryDto> | null;
 };
 
@@ -2187,11 +3076,39 @@ export type ScheduleDto = {
     holidayScheduleId?: string | null;
 };
 
+export type ScheduleDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ScheduleDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ScheduleDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ScheduleDto;
 };
@@ -2199,6 +3116,11 @@ export type ScheduleDtoEnvelopeReadable = {
 export type ScheduleDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ScheduleDto;
 };
 
@@ -2207,6 +3129,11 @@ export type ScheduleDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ScheduleDto> | null;
 };
@@ -2214,6 +3141,11 @@ export type ScheduleDtoListEnvelopeReadable = {
 export type ScheduleDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ScheduleDto> | null;
 };
 
@@ -2288,11 +3220,39 @@ export type ShiftDto = {
     employeeProfileId?: string | null;
 };
 
+export type ShiftDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ShiftDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ShiftDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ShiftDto;
 };
@@ -2300,6 +3260,11 @@ export type ShiftDtoEnvelopeReadable = {
 export type ShiftDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ShiftDto;
 };
 
@@ -2308,6 +3273,11 @@ export type ShiftDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ShiftDto> | null;
 };
@@ -2315,6 +3285,11 @@ export type ShiftDtoListEnvelopeReadable = {
 export type ShiftDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ShiftDto> | null;
 };
 
@@ -2381,11 +3356,39 @@ export type TimeIntervalDto = {
     parentTimeIntervalId?: string | null;
 };
 
+export type TimeIntervalDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TimeIntervalDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TimeIntervalDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TimeIntervalDto;
 };
@@ -2393,6 +3396,11 @@ export type TimeIntervalDtoEnvelopeReadable = {
 export type TimeIntervalDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TimeIntervalDto;
 };
 
@@ -2401,6 +3409,11 @@ export type TimeIntervalDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TimeIntervalDto> | null;
 };
@@ -2408,6 +3421,11 @@ export type TimeIntervalDtoListEnvelopeReadable = {
 export type TimeIntervalDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TimeIntervalDto> | null;
 };
 
@@ -2444,11 +3462,39 @@ export type TrainingProgramCourseDto = {
     courseId?: string | null;
 };
 
+export type TrainingProgramCourseDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TrainingProgramCourseDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TrainingProgramCourseDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TrainingProgramCourseDto;
 };
@@ -2456,6 +3502,11 @@ export type TrainingProgramCourseDtoEnvelopeReadable = {
 export type TrainingProgramCourseDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TrainingProgramCourseDto;
 };
 
@@ -2464,6 +3515,11 @@ export type TrainingProgramCourseDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TrainingProgramCourseDto> | null;
 };
@@ -2471,6 +3527,11 @@ export type TrainingProgramCourseDtoListEnvelopeReadable = {
 export type TrainingProgramCourseDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TrainingProgramCourseDto> | null;
 };
 
@@ -2494,11 +3555,39 @@ export type TrainingProgramDto = {
     tenantId?: string | null;
 };
 
+export type TrainingProgramDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TrainingProgramDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TrainingProgramDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TrainingProgramDto;
 };
@@ -2506,6 +3595,11 @@ export type TrainingProgramDtoEnvelopeReadable = {
 export type TrainingProgramDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TrainingProgramDto;
 };
 
@@ -2514,6 +3608,11 @@ export type TrainingProgramDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TrainingProgramDto> | null;
 };
@@ -2521,6 +3620,11 @@ export type TrainingProgramDtoListEnvelopeReadable = {
 export type TrainingProgramDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TrainingProgramDto> | null;
 };
 
@@ -2576,11 +3680,39 @@ export type TrainingProgramEventDto = {
     trainingProgramId?: string | null;
 };
 
+export type TrainingProgramEventDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TrainingProgramEventDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TrainingProgramEventDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TrainingProgramEventDto;
 };
@@ -2588,6 +3720,11 @@ export type TrainingProgramEventDtoEnvelopeReadable = {
 export type TrainingProgramEventDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TrainingProgramEventDto;
 };
 
@@ -2596,6 +3733,11 @@ export type TrainingProgramEventDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TrainingProgramEventDto> | null;
 };
@@ -2603,6 +3745,11 @@ export type TrainingProgramEventDtoListEnvelopeReadable = {
 export type TrainingProgramEventDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TrainingProgramEventDto> | null;
 };
 
@@ -2651,7 +3798,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetAppraisalStagesAsyncData = {
-    body?: never;
+    body?: AppraisalStageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2725,7 +3872,7 @@ export type CreateAppraisalStageAsyncResponses = {
 export type CreateAppraisalStageAsyncResponse = CreateAppraisalStageAsyncResponses[keyof CreateAppraisalStageAsyncResponses];
 
 export type GetAppraisalStagesCountAsyncData = {
-    body?: never;
+    body?: AppraisalStageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2879,7 +4026,7 @@ export type UpdateAppraisalStageAsyncResponses = {
 export type UpdateAppraisalStageAsyncResponse = UpdateAppraisalStageAsyncResponses[keyof UpdateAppraisalStageAsyncResponses];
 
 export type GetAppraisalWorkflowsAsyncData = {
-    body?: never;
+    body?: AppraisalWorkflowDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2953,7 +4100,7 @@ export type CreateAppraisalWorkflowAsyncResponses = {
 export type CreateAppraisalWorkflowAsyncResponse = CreateAppraisalWorkflowAsyncResponses[keyof CreateAppraisalWorkflowAsyncResponses];
 
 export type GetAppraisalWorkflowsCountAsyncData = {
-    body?: never;
+    body?: AppraisalWorkflowDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3107,7 +4254,7 @@ export type UpdateAppraisalWorkflowAsyncResponses = {
 export type UpdateAppraisalWorkflowAsyncResponse = UpdateAppraisalWorkflowAsyncResponses[keyof UpdateAppraisalWorkflowAsyncResponses];
 
 export type GetEmployeeAppraisalSessionsAsyncData = {
-    body?: never;
+    body?: EmployeeAppraisalSessionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3181,7 +4328,7 @@ export type CreateEmployeeAppraisalSessionAsyncResponses = {
 export type CreateEmployeeAppraisalSessionAsyncResponse = CreateEmployeeAppraisalSessionAsyncResponses[keyof CreateEmployeeAppraisalSessionAsyncResponses];
 
 export type GetEmployeeAppraisalSessionsCountAsyncData = {
-    body?: never;
+    body?: EmployeeAppraisalSessionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3294,7 +4441,7 @@ export type GetEmployeeAppraisalSessionByIdAsyncResponses = {
 export type GetEmployeeAppraisalSessionByIdAsyncResponse = GetEmployeeAppraisalSessionByIdAsyncResponses[keyof GetEmployeeAppraisalSessionByIdAsyncResponses];
 
 export type PatchEmployeeAppraisalSessionAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3376,7 +4523,7 @@ export type UpdateEmployeeAppraisalSessionAsyncResponses = {
 export type UpdateEmployeeAppraisalSessionAsyncResponse = UpdateEmployeeAppraisalSessionAsyncResponses[keyof UpdateEmployeeAppraisalSessionAsyncResponses];
 
 export type GetEmployeesAsyncData = {
-    body?: never;
+    body?: EmployeeProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3450,7 +4597,7 @@ export type CreateEmployeeAsyncResponses = {
 export type CreateEmployeeAsyncResponse = CreateEmployeeAsyncResponses[keyof CreateEmployeeAsyncResponses];
 
 export type GetEmployeesCountAsyncData = {
-    body?: never;
+    body?: EmployeeProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3563,7 +4710,7 @@ export type GetEmployeeByIdAsyncResponses = {
 export type GetEmployeeByIdAsyncResponse = GetEmployeeByIdAsyncResponses[keyof GetEmployeeByIdAsyncResponses];
 
 export type PatchEmployeeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3645,7 +4792,7 @@ export type UpdateEmployeeAsyncResponses = {
 export type UpdateEmployeeAsyncResponse = UpdateEmployeeAsyncResponses[keyof UpdateEmployeeAsyncResponses];
 
 export type GetEmployeeTypesAsyncData = {
-    body?: never;
+    body?: EmployeeTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3719,7 +4866,7 @@ export type CreateEmployeeTypeAsyncResponses = {
 export type CreateEmployeeTypeAsyncResponse = CreateEmployeeTypeAsyncResponses[keyof CreateEmployeeTypeAsyncResponses];
 
 export type GetEmployeeTypesCountAsyncData = {
-    body?: never;
+    body?: EmployeeTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3832,7 +4979,7 @@ export type GetEmployeeTypeByIdAsyncResponses = {
 export type GetEmployeeTypeByIdAsyncResponse = GetEmployeeTypeByIdAsyncResponses[keyof GetEmployeeTypeByIdAsyncResponses];
 
 export type PatchEmployeeTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3914,7 +5061,7 @@ export type UpdateEmployeeTypeAsyncResponses = {
 export type UpdateEmployeeTypeAsyncResponse = UpdateEmployeeTypeAsyncResponses[keyof UpdateEmployeeTypeAsyncResponses];
 
 export type GetEmployersAsyncData = {
-    body?: never;
+    body?: EmployerProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3988,7 +5135,7 @@ export type CreateEmployerAsyncResponses = {
 export type CreateEmployerAsyncResponse = CreateEmployerAsyncResponses[keyof CreateEmployerAsyncResponses];
 
 export type GetEmployersCountAsyncData = {
-    body?: never;
+    body?: EmployerProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4101,7 +5248,7 @@ export type GetEmployerByIdAsyncResponses = {
 export type GetEmployerByIdAsyncResponse = GetEmployerByIdAsyncResponses[keyof GetEmployerByIdAsyncResponses];
 
 export type PatchEmployerAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4204,6 +5351,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -4511,7 +5674,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetGigApplicationsAsyncData = {
-    body?: never;
+    body?: GigApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4585,7 +5748,7 @@ export type CreateGigApplicationAsyncResponses = {
 export type CreateGigApplicationAsyncResponse = CreateGigApplicationAsyncResponses[keyof CreateGigApplicationAsyncResponses];
 
 export type GetGigApplicationsCountAsyncData = {
-    body?: never;
+    body?: GigApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4698,7 +5861,7 @@ export type GetGigApplicationByIdAsyncResponses = {
 export type GetGigApplicationByIdAsyncResponse = GetGigApplicationByIdAsyncResponses[keyof GetGigApplicationByIdAsyncResponses];
 
 export type PatchGigApplicationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4817,7 +5980,7 @@ export type AcceptGigApplicationAsyncResponses = {
 export type AcceptGigApplicationAsyncResponse = AcceptGigApplicationAsyncResponses[keyof AcceptGigApplicationAsyncResponses];
 
 export type GetGigsAsyncData = {
-    body?: never;
+    body?: GigDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4891,7 +6054,7 @@ export type CreateGigAsyncResponses = {
 export type CreateGigAsyncResponse = CreateGigAsyncResponses[keyof CreateGigAsyncResponses];
 
 export type GetGigsCountAsyncData = {
-    body?: never;
+    body?: GigDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5004,7 +6167,7 @@ export type GetGigByIdAsyncResponses = {
 export type GetGigByIdAsyncResponse = GetGigByIdAsyncResponses[keyof GetGigByIdAsyncResponses];
 
 export type PatchGigAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5086,7 +6249,7 @@ export type UpdateGigAsyncResponses = {
 export type UpdateGigAsyncResponse = UpdateGigAsyncResponses[keyof UpdateGigAsyncResponses];
 
 export type GetJobApplicantsAsyncData = {
-    body?: never;
+    body?: JobApplicantProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5160,7 +6323,7 @@ export type CreateJobApplicantAsyncResponses = {
 export type CreateJobApplicantAsyncResponse = CreateJobApplicantAsyncResponses[keyof CreateJobApplicantAsyncResponses];
 
 export type GetJobApplicantsCountAsyncData = {
-    body?: never;
+    body?: JobApplicantProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5273,7 +6436,7 @@ export type GetJobApplicantByIdAsyncResponses = {
 export type GetJobApplicantByIdAsyncResponse = GetJobApplicantByIdAsyncResponses[keyof GetJobApplicantByIdAsyncResponses];
 
 export type PatchJobApplicantAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5355,7 +6518,7 @@ export type UpdateJobApplicantAsyncResponses = {
 export type UpdateJobApplicantAsyncResponse = UpdateJobApplicantAsyncResponses[keyof UpdateJobApplicantAsyncResponses];
 
 export type GetJobApplicationsAsyncData = {
-    body?: never;
+    body?: JobOfferApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5429,7 +6592,7 @@ export type CreateJobApplicationAsyncResponses = {
 export type CreateJobApplicationAsyncResponse = CreateJobApplicationAsyncResponses[keyof CreateJobApplicationAsyncResponses];
 
 export type GetJobApplicationsCountAsyncData = {
-    body?: never;
+    body?: JobOfferApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5542,7 +6705,7 @@ export type GetJobApplicationByIdAsyncResponses = {
 export type GetJobApplicationByIdAsyncResponse = GetJobApplicationByIdAsyncResponses[keyof GetJobApplicationByIdAsyncResponses];
 
 export type PatchJobApplicationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5662,7 +6825,7 @@ export type ChangeJobApplicationStatusAsyncResponses = {
 export type ChangeJobApplicationStatusAsyncResponse = ChangeJobApplicationStatusAsyncResponses[keyof ChangeJobApplicationStatusAsyncResponses];
 
 export type GetJobFieldsAsyncData = {
-    body?: never;
+    body?: JobFieldDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5736,7 +6899,7 @@ export type CreateJobFieldAsyncResponses = {
 export type CreateJobFieldAsyncResponse = CreateJobFieldAsyncResponses[keyof CreateJobFieldAsyncResponses];
 
 export type GetJobFieldsCountAsyncData = {
-    body?: never;
+    body?: JobFieldDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5849,7 +7012,7 @@ export type GetJobFieldByIdAsyncResponses = {
 export type GetJobFieldByIdAsyncResponse = GetJobFieldByIdAsyncResponses[keyof GetJobFieldByIdAsyncResponses];
 
 export type PatchJobFieldAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5931,7 +7094,7 @@ export type UpdateJobFieldAsyncResponses = {
 export type UpdateJobFieldAsyncResponse = UpdateJobFieldAsyncResponses[keyof UpdateJobFieldAsyncResponses];
 
 export type GetJobOfferFieldsAsyncData = {
-    body?: never;
+    body?: JobOfferFieldRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6005,7 +7168,7 @@ export type CreateJobOfferFieldAsyncResponses = {
 export type CreateJobOfferFieldAsyncResponse = CreateJobOfferFieldAsyncResponses[keyof CreateJobOfferFieldAsyncResponses];
 
 export type GetJobOfferFieldsCountAsyncData = {
-    body?: never;
+    body?: JobOfferFieldRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6118,7 +7281,7 @@ export type GetJobOfferFieldByIdAsyncResponses = {
 export type GetJobOfferFieldByIdAsyncResponse = GetJobOfferFieldByIdAsyncResponses[keyof GetJobOfferFieldByIdAsyncResponses];
 
 export type PatchJobOfferFieldAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6200,7 +7363,7 @@ export type UpdateJobOfferFieldAsyncResponses = {
 export type UpdateJobOfferFieldAsyncResponse = UpdateJobOfferFieldAsyncResponses[keyof UpdateJobOfferFieldAsyncResponses];
 
 export type GetJobOffersAsyncData = {
-    body?: never;
+    body?: JobOfferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6274,7 +7437,7 @@ export type CreateJobOfferAsyncResponses = {
 export type CreateJobOfferAsyncResponse = CreateJobOfferAsyncResponses[keyof CreateJobOfferAsyncResponses];
 
 export type GetJobOffersCountAsyncData = {
-    body?: never;
+    body?: JobOfferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6387,7 +7550,7 @@ export type GetJobOfferByIdAsyncResponses = {
 export type GetJobOfferByIdAsyncResponse = GetJobOfferByIdAsyncResponses[keyof GetJobOfferByIdAsyncResponses];
 
 export type PatchJobOfferAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6469,7 +7632,7 @@ export type UpdateJobOfferAsyncResponses = {
 export type UpdateJobOfferAsyncResponse = UpdateJobOfferAsyncResponses[keyof UpdateJobOfferAsyncResponses];
 
 export type GetPublicJobOffersAsyncData = {
-    body?: never;
+    body?: JobOfferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6500,7 +7663,7 @@ export type GetPublicJobOffersAsyncResponses = {
 export type GetPublicJobOffersAsyncResponse = GetPublicJobOffersAsyncResponses[keyof GetPublicJobOffersAsyncResponses];
 
 export type GetPublicJobOffersCountAsyncData = {
-    body?: never;
+    body?: JobOfferDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6675,7 +7838,7 @@ export type FillJobOfferAsyncResponses = {
 export type FillJobOfferAsyncResponse = FillJobOfferAsyncResponses[keyof FillJobOfferAsyncResponses];
 
 export type GetJobTitlesAsyncData = {
-    body?: never;
+    body?: JobTitleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6749,7 +7912,7 @@ export type CreateJobTitleAsyncResponses = {
 export type CreateJobTitleAsyncResponse = CreateJobTitleAsyncResponses[keyof CreateJobTitleAsyncResponses];
 
 export type GetJobTitlesCountAsyncData = {
-    body?: never;
+    body?: JobTitleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6862,7 +8025,7 @@ export type GetJobTitleByIdAsyncResponses = {
 export type GetJobTitleByIdAsyncResponse = GetJobTitleByIdAsyncResponses[keyof GetJobTitleByIdAsyncResponses];
 
 export type PatchJobTitleAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6944,7 +8107,7 @@ export type UpdateJobTitleAsyncResponses = {
 export type UpdateJobTitleAsyncResponse = UpdateJobTitleAsyncResponses[keyof UpdateJobTitleAsyncResponses];
 
 export type GetLeaveApplicationsAsyncData = {
-    body?: never;
+    body?: LeaveApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7018,7 +8181,7 @@ export type CreateLeaveApplicationAsyncResponses = {
 export type CreateLeaveApplicationAsyncResponse = CreateLeaveApplicationAsyncResponses[keyof CreateLeaveApplicationAsyncResponses];
 
 export type GetLeaveApplicationsCountAsyncData = {
-    body?: never;
+    body?: LeaveApplicationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7131,7 +8294,7 @@ export type GetLeaveApplicationByIdAsyncResponses = {
 export type GetLeaveApplicationByIdAsyncResponse = GetLeaveApplicationByIdAsyncResponses[keyof GetLeaveApplicationByIdAsyncResponses];
 
 export type PatchLeaveApplicationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7213,7 +8376,7 @@ export type UpdateLeaveApplicationAsyncResponses = {
 export type UpdateLeaveApplicationAsyncResponse = UpdateLeaveApplicationAsyncResponses[keyof UpdateLeaveApplicationAsyncResponses];
 
 export type GetLeaveTypesAsyncData = {
-    body?: never;
+    body?: LeaveTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7287,7 +8450,7 @@ export type CreateLeaveTypeAsyncResponses = {
 export type CreateLeaveTypeAsyncResponse = CreateLeaveTypeAsyncResponses[keyof CreateLeaveTypeAsyncResponses];
 
 export type GetLeaveTypesCountAsyncData = {
-    body?: never;
+    body?: LeaveTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7441,7 +8604,7 @@ export type UpdateLeaveTypeAsyncResponses = {
 export type UpdateLeaveTypeAsyncResponse = UpdateLeaveTypeAsyncResponses[keyof UpdateLeaveTypeAsyncResponses];
 
 export type GetPayrollPeriodsAsyncData = {
-    body?: never;
+    body?: PayrollPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7515,7 +8678,7 @@ export type CreatePayrollPeriodAsyncResponses = {
 export type CreatePayrollPeriodAsyncResponse = CreatePayrollPeriodAsyncResponses[keyof CreatePayrollPeriodAsyncResponses];
 
 export type GetPayrollPeriodsCountAsyncData = {
-    body?: never;
+    body?: PayrollPeriodDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7669,7 +8832,7 @@ export type UpdatePayrollPeriodAsyncResponses = {
 export type UpdatePayrollPeriodAsyncResponse = UpdatePayrollPeriodAsyncResponses[keyof UpdatePayrollPeriodAsyncResponses];
 
 export type GetPayrollsAsyncData = {
-    body?: never;
+    body?: PayrollDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7743,7 +8906,7 @@ export type CreatePayrollAsyncResponses = {
 export type CreatePayrollAsyncResponse = CreatePayrollAsyncResponses[keyof CreatePayrollAsyncResponses];
 
 export type GetPayrollsCountAsyncData = {
-    body?: never;
+    body?: PayrollDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7856,7 +9019,7 @@ export type GetPayrollByIdAsyncResponses = {
 export type GetPayrollByIdAsyncResponse = GetPayrollByIdAsyncResponses[keyof GetPayrollByIdAsyncResponses];
 
 export type PatchPayrollAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7938,7 +9101,7 @@ export type UpdatePayrollAsyncResponses = {
 export type UpdatePayrollAsyncResponse = UpdatePayrollAsyncResponses[keyof UpdatePayrollAsyncResponses];
 
 export type GetRequiredSkillsAsyncData = {
-    body?: never;
+    body?: RequiredSkillRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8012,7 +9175,7 @@ export type CreateRequiredSkillAsyncResponses = {
 export type CreateRequiredSkillAsyncResponse = CreateRequiredSkillAsyncResponses[keyof CreateRequiredSkillAsyncResponses];
 
 export type GetRequiredSkillsCountAsyncData = {
-    body?: never;
+    body?: RequiredSkillRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8125,7 +9288,7 @@ export type GetRequiredSkillByIdAsyncResponses = {
 export type GetRequiredSkillByIdAsyncResponse = GetRequiredSkillByIdAsyncResponses[keyof GetRequiredSkillByIdAsyncResponses];
 
 export type PatchRequiredSkillAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8207,7 +9370,7 @@ export type UpdateRequiredSkillAsyncResponses = {
 export type UpdateRequiredSkillAsyncResponse = UpdateRequiredSkillAsyncResponses[keyof UpdateRequiredSkillAsyncResponses];
 
 export type GetSalariesAsyncData = {
-    body?: never;
+    body?: SalaryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8281,7 +9444,7 @@ export type CreateSalaryAsyncResponses = {
 export type CreateSalaryAsyncResponse = CreateSalaryAsyncResponses[keyof CreateSalaryAsyncResponses];
 
 export type GetSalariesCountAsyncData = {
-    body?: never;
+    body?: SalaryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8394,7 +9557,7 @@ export type GetSalaryByIdAsyncResponses = {
 export type GetSalaryByIdAsyncResponse = GetSalaryByIdAsyncResponses[keyof GetSalaryByIdAsyncResponses];
 
 export type PatchSalaryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8476,7 +9639,7 @@ export type UpdateSalaryAsyncResponses = {
 export type UpdateSalaryAsyncResponse = UpdateSalaryAsyncResponses[keyof UpdateSalaryAsyncResponses];
 
 export type GetSchedulesAsyncData = {
-    body?: never;
+    body?: ScheduleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8550,7 +9713,7 @@ export type CreateScheduleAsyncResponses = {
 export type CreateScheduleAsyncResponse = CreateScheduleAsyncResponses[keyof CreateScheduleAsyncResponses];
 
 export type GetSchedulesCountAsyncData = {
-    body?: never;
+    body?: ScheduleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8663,7 +9826,7 @@ export type GetScheduleByIdAsyncResponses = {
 export type GetScheduleByIdAsyncResponse = GetScheduleByIdAsyncResponses[keyof GetScheduleByIdAsyncResponses];
 
 export type PatchScheduleAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8745,7 +9908,7 @@ export type UpdateScheduleAsyncResponses = {
 export type UpdateScheduleAsyncResponse = UpdateScheduleAsyncResponses[keyof UpdateScheduleAsyncResponses];
 
 export type GetShiftsAsyncData = {
-    body?: never;
+    body?: ShiftDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8819,7 +9982,7 @@ export type CreateShiftAsyncResponses = {
 export type CreateShiftAsyncResponse = CreateShiftAsyncResponses[keyof CreateShiftAsyncResponses];
 
 export type GetShiftsCountAsyncData = {
-    body?: never;
+    body?: ShiftDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8932,7 +10095,7 @@ export type GetShiftByIdAsyncResponses = {
 export type GetShiftByIdAsyncResponse = GetShiftByIdAsyncResponses[keyof GetShiftByIdAsyncResponses];
 
 export type PatchShiftAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9014,7 +10177,7 @@ export type UpdateShiftAsyncResponses = {
 export type UpdateShiftAsyncResponse = UpdateShiftAsyncResponses[keyof UpdateShiftAsyncResponses];
 
 export type GetTimeIntervalsAsyncData = {
-    body?: never;
+    body?: TimeIntervalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9088,7 +10251,7 @@ export type CreateTimeIntervalAsyncResponses = {
 export type CreateTimeIntervalAsyncResponse = CreateTimeIntervalAsyncResponses[keyof CreateTimeIntervalAsyncResponses];
 
 export type GetTimeIntervalsCountAsyncData = {
-    body?: never;
+    body?: TimeIntervalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9201,7 +10364,7 @@ export type GetTimeIntervalByIdAsyncResponses = {
 export type GetTimeIntervalByIdAsyncResponse = GetTimeIntervalByIdAsyncResponses[keyof GetTimeIntervalByIdAsyncResponses];
 
 export type PatchTimeIntervalAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9283,7 +10446,7 @@ export type UpdateTimeIntervalAsyncResponses = {
 export type UpdateTimeIntervalAsyncResponse = UpdateTimeIntervalAsyncResponses[keyof UpdateTimeIntervalAsyncResponses];
 
 export type GetTrainingProgramCoursesAsyncData = {
-    body?: never;
+    body?: TrainingProgramCourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9357,7 +10520,7 @@ export type CreateTrainingProgramCourseAsyncResponses = {
 export type CreateTrainingProgramCourseAsyncResponse = CreateTrainingProgramCourseAsyncResponses[keyof CreateTrainingProgramCourseAsyncResponses];
 
 export type GetTrainingProgramCoursesCountAsyncData = {
-    body?: never;
+    body?: TrainingProgramCourseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9470,7 +10633,7 @@ export type GetTrainingProgramCourseByIdAsyncResponses = {
 export type GetTrainingProgramCourseByIdAsyncResponse = GetTrainingProgramCourseByIdAsyncResponses[keyof GetTrainingProgramCourseByIdAsyncResponses];
 
 export type PatchTrainingProgramCourseAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9552,7 +10715,7 @@ export type UpdateTrainingProgramCourseAsyncResponses = {
 export type UpdateTrainingProgramCourseAsyncResponse = UpdateTrainingProgramCourseAsyncResponses[keyof UpdateTrainingProgramCourseAsyncResponses];
 
 export type GetTrainingProgramEventsAsyncData = {
-    body?: never;
+    body?: TrainingProgramEventDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9626,7 +10789,7 @@ export type CreateTrainingProgramEventAsyncResponses = {
 export type CreateTrainingProgramEventAsyncResponse = CreateTrainingProgramEventAsyncResponses[keyof CreateTrainingProgramEventAsyncResponses];
 
 export type GetTrainingProgramEventsCountAsyncData = {
-    body?: never;
+    body?: TrainingProgramEventDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9739,7 +10902,7 @@ export type GetTrainingProgramEventByIdAsyncResponses = {
 export type GetTrainingProgramEventByIdAsyncResponse = GetTrainingProgramEventByIdAsyncResponses[keyof GetTrainingProgramEventByIdAsyncResponses];
 
 export type PatchTrainingProgramEventAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9821,7 +10984,7 @@ export type UpdateTrainingProgramEventAsyncResponses = {
 export type UpdateTrainingProgramEventAsyncResponse = UpdateTrainingProgramEventAsyncResponses[keyof UpdateTrainingProgramEventAsyncResponses];
 
 export type GetTrainingProgramsAsyncData = {
-    body?: never;
+    body?: TrainingProgramDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9895,7 +11058,7 @@ export type CreateTrainingProgramAsyncResponses = {
 export type CreateTrainingProgramAsyncResponse = CreateTrainingProgramAsyncResponses[keyof CreateTrainingProgramAsyncResponses];
 
 export type GetTrainingProgramsCountAsyncData = {
-    body?: never;
+    body?: TrainingProgramDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };

@@ -25,6 +25,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -384,6 +399,32 @@ export interface paths {
      */
     patch: operations["PatchPaymentModeAsync"];
   };
+  "/api/v2/PaymentsService/PaymentProviderRegistrations": {
+    /**
+     * Lists the tenant's provider registrations
+     * @description Gets all provider registrations for the current tenant with OData support (no secret is ever returned).
+     */
+    get: operations["GetAsync"];
+    /**
+     * Provisions a provider webhook registration
+     * @description Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL.
+     */
+    post: operations["CreateAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentProviderRegistrations/Count": {
+    /**
+     * Counts the tenant's provider registrations
+     * @description Gets the count of provider registrations for the current tenant (OData sibling of the list).
+     */
+    get: operations["GetCountAsync"];
+  };
+  "/api/v2/PaymentsService/PaymentProviderRegistrations/{registrationId}/RotateKey": {
+    /**
+     * Rotates a registration's webhook key
+     * @description Mints a fresh webhook key (invalidating the previous one) and reveals it once, plus its composed URL.
+     */
+    post: operations["RotateKeyAsync"];
+  };
   "/api/v2/PaymentsService/Payments/{paymentId}/Details": {
     /**
      * Gets a payment by ID (deprecated)
@@ -480,12 +521,25 @@ export interface components {
       expiresIn: number;
       refreshToken: string | null;
     };
+    CreateProviderWebhookRegistrationRequest: {
+      providerCode?: string | null;
+      externalAccountId?: string | null;
+      webhookSigningSecret?: string | null;
+      /** @enum {string} */
+      credentialMode?: "TenantManaged" | "PlatformManaged" | "ExternalReference";
+    };
     EmptyEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -494,6 +548,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -526,6 +586,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -536,11 +602,9 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -690,12 +754,31 @@ export interface components {
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
     };
+    PaymentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentDto"][] | null;
     };
@@ -716,12 +799,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    PaymentMethodDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentMethodDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentMethodDto"];
     };
@@ -731,6 +833,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentMethodDto"][] | null;
     };
@@ -757,12 +865,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    PaymentModeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentModeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentModeDto"];
     };
@@ -772,6 +899,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentModeDto"][] | null;
     };
@@ -779,6 +912,53 @@ export interface components {
       name?: string | null;
       description?: string | null;
       paymentMeansCode?: string | null;
+    };
+    PaymentProviderRegistrationDto: {
+      id?: string | null;
+      /** Format: date-time */
+      createdAtUtc?: string;
+      /** Format: date-time */
+      lastModifiedUtc?: string | null;
+      tenantId?: string | null;
+      enrollmentId?: string | null;
+      providerCode?: string | null;
+      credentialSetReference?: string | null;
+      hasCredential?: boolean;
+      /** @enum {string} */
+      credentialMode?: "TenantManaged" | "PlatformManaged" | "ExternalReference";
+      externalAccountId?: string | null;
+      /** @enum {string} */
+      enabledCapabilities?: "None" | "Collection" | "Authorization" | "Capture" | "Refund" | "Void" | "SplitPayment" | "Transfer" | "Payout" | "RecipientOnboarding" | "BalanceInquiry";
+      /** @enum {string} */
+      status?: "Draft" | "Active" | "Disabled" | "Suspended";
+    };
+    PaymentProviderRegistrationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    PaymentProviderRegistrationDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["PaymentProviderRegistrationDto"][] | null;
     };
     PaymentTermCreateDto: {
       /** Format: uuid */
@@ -821,12 +1001,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    PaymentTermDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     PaymentTermDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentTermDto"];
     };
@@ -836,6 +1035,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PaymentTermDto"][] | null;
     };
@@ -923,6 +1128,29 @@ export interface components {
       emisorWalletAccountId?: string | null;
       receiverWalletAccountId?: string | null;
     };
+    ProviderWebhookRegistrationCreatedDto: {
+      id?: string | null;
+      providerCode?: string | null;
+      /** @enum {string} */
+      status?: "Draft" | "Active" | "Disabled" | "Suspended";
+      webhookRegistrationKey?: string | null;
+      webhookUrl?: string | null;
+    };
+    ProviderWebhookRegistrationCreatedDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ProviderWebhookRegistrationCreatedDto"];
+    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -994,6 +1222,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentMethodDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentMethodDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1076,6 +1310,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentMethodDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentMethodDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1250,8 +1490,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1290,6 +1530,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentModeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentModeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1372,6 +1618,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentModeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentModeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1546,8 +1798,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1556,6 +1808,177 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["EmptyEnvelope"];
           "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Lists the tenant's provider registrations
+   * @description Gets all provider registrations for the current tenant with OData support (no secret is ever returned).
+   */
+  GetAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentProviderRegistrationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentProviderRegistrationDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PaymentProviderRegistrationDtoListEnvelope"];
+          "application/xml": components["schemas"]["PaymentProviderRegistrationDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Provisions a provider webhook registration
+   * @description Stores the BYO signing secret in the tenant options store, creates + activates the registration, and reveals the one-time plaintext webhook key plus its fully-composed inbound URL.
+   */
+  CreateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CreateProviderWebhookRegistrationRequest"];
+        "application/xml": components["schemas"]["CreateProviderWebhookRegistrationRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProviderWebhookRegistrationCreatedDtoEnvelope"];
+          "application/xml": components["schemas"]["ProviderWebhookRegistrationCreatedDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Counts the tenant's provider registrations
+   * @description Gets the count of provider registrations for the current tenant (OData sibling of the list).
+   */
+  GetCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentProviderRegistrationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentProviderRegistrationDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Rotates a registration's webhook key
+   * @description Mints a fresh webhook key (invalidating the previous one) and reveals it once, plus its composed URL.
+   */
+  RotateKeyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+      };
+      path: {
+        registrationId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProviderWebhookRegistrationCreatedDtoEnvelope"];
+          "application/xml": components["schemas"]["ProviderWebhookRegistrationCreatedDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -1758,8 +2181,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -1794,6 +2217,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1888,6 +2317,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentTermDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentTermDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1968,6 +2403,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PaymentTermDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PaymentTermDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2142,8 +2583,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

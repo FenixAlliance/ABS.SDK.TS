@@ -42,11 +42,39 @@ export type BankAccountDto = {
     enrollmentId?: string | null;
 };
 
+export type BankAccountDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BankAccountDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BankAccountDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BankAccountDto;
 };
@@ -54,6 +82,11 @@ export type BankAccountDtoEnvelopeReadable = {
 export type BankAccountDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BankAccountDto;
 };
 
@@ -62,6 +95,11 @@ export type BankAccountDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BankAccountDto> | null;
 };
@@ -69,6 +107,11 @@ export type BankAccountDtoListEnvelopeReadable = {
 export type BankAccountDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BankAccountDto> | null;
 };
 
@@ -211,12 +254,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -224,12 +277,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedOrderDtoReadable = {
@@ -258,6 +321,7 @@ export type ExtendedOrderDtoReadable = {
     cityId?: string | null;
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -308,7 +372,6 @@ export type ExtendedOrderDtoReadable = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
     requestedDeliveryDate?: string;
@@ -355,6 +418,7 @@ export type ExtendedOrderDtoWritable = {
     cityId?: string | null;
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -405,7 +469,6 @@ export type ExtendedOrderDtoWritable = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
     requestedDeliveryDate?: string;
@@ -426,11 +489,39 @@ export type ExtendedOrderDtoWritable = {
     enrollment?: TenantEnrollmentDto;
 };
 
+export type ExtendedOrderDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedOrderDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedOrderDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedOrderDtoReadable> | null;
 };
@@ -438,6 +529,11 @@ export type ExtendedOrderDtoListEnvelopeReadable = {
 export type ExtendedOrderDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedOrderDtoWritable> | null;
 };
 
@@ -475,6 +571,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -482,6 +583,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -568,11 +674,39 @@ export type InvoiceDto = {
     invoiceStatus?: 'Draft' | 'Closed' | 'Signed' | 'Expired' | 'Paid';
 };
 
+export type InvoiceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InvoiceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InvoiceDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InvoiceDto> | null;
 };
@@ -580,6 +714,11 @@ export type InvoiceDtoListEnvelopeReadable = {
 export type InvoiceDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InvoiceDto> | null;
 };
 
@@ -638,11 +777,39 @@ export type LocationDto = {
     enrollmentId?: string | null;
 };
 
+export type LocationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LocationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LocationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LocationDto;
 };
@@ -650,6 +817,11 @@ export type LocationDtoEnvelopeReadable = {
 export type LocationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LocationDto;
 };
 
@@ -658,6 +830,11 @@ export type LocationDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LocationDto> | null;
 };
@@ -665,6 +842,11 @@ export type LocationDtoListEnvelopeReadable = {
 export type LocationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LocationDto> | null;
 };
 
@@ -699,14 +881,6 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
-    op?: string | null;
-    from?: string | null;
-    value?: unknown;
-};
-
 export type OrderDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -733,6 +907,7 @@ export type OrderDto = {
     cityId?: string | null;
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -783,7 +958,6 @@ export type OrderDto = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
     requestedDeliveryDate?: string;
@@ -798,11 +972,39 @@ export type OrderDto = {
     customWithholdingTaxAmount?: number;
 };
 
+export type OrderDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type OrderDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type OrderDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<OrderDto> | null;
 };
@@ -810,7 +1012,19 @@ export type OrderDtoListEnvelopeReadable = {
 export type OrderDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<OrderDto> | null;
+};
+
+export type PatchOperation = {
+    op?: string | null;
+    path?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type PaymentChargebackDto = {
@@ -823,11 +1037,39 @@ export type PaymentChargebackDto = {
     totalFees?: number;
 };
 
+export type PaymentChargebackDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentChargebackDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentChargebackDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentChargebackDto> | null;
 };
@@ -835,6 +1077,11 @@ export type PaymentChargebackDtoListEnvelopeReadable = {
 export type PaymentChargebackDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentChargebackDto> | null;
 };
 
@@ -963,11 +1210,39 @@ export type PaymentDto = {
     receiverWalletAccountId?: string | null;
 };
 
+export type PaymentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentDto> | null;
 };
@@ -975,6 +1250,11 @@ export type PaymentDtoListEnvelopeReadable = {
 export type PaymentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentDto> | null;
 };
 
@@ -987,11 +1267,39 @@ export type PaymentRefundDto = {
     totalFees?: number;
 };
 
+export type PaymentRefundDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentRefundDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentRefundDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentRefundDto> | null;
 };
@@ -999,6 +1307,11 @@ export type PaymentRefundDtoListEnvelopeReadable = {
 export type PaymentRefundDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentRefundDto> | null;
 };
 
@@ -1029,11 +1342,39 @@ export type PaymentTokenDto = {
     paymentGatewayId?: string | null;
 };
 
+export type PaymentTokenDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PaymentTokenDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PaymentTokenDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PaymentTokenDto;
 };
@@ -1041,6 +1382,11 @@ export type PaymentTokenDtoEnvelopeReadable = {
 export type PaymentTokenDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PaymentTokenDto;
 };
 
@@ -1049,6 +1395,11 @@ export type PaymentTokenDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PaymentTokenDto> | null;
 };
@@ -1056,6 +1407,11 @@ export type PaymentTokenDtoListEnvelopeReadable = {
 export type PaymentTokenDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PaymentTokenDto> | null;
 };
 
@@ -1145,11 +1501,39 @@ export type QuoteDto = {
     customDiscountsAmount?: number;
 };
 
+export type QuoteDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type QuoteDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type QuoteDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<QuoteDto> | null;
 };
@@ -1157,6 +1541,11 @@ export type QuoteDtoListEnvelopeReadable = {
 export type QuoteDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<QuoteDto> | null;
 };
 
@@ -1409,6 +1798,11 @@ export type WalletDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: WalletDto;
 };
@@ -1416,6 +1810,11 @@ export type WalletDtoEnvelopeReadable = {
 export type WalletDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: WalletDto;
 };
 
@@ -1431,11 +1830,39 @@ export type WalletWithdrawDto = {
     currencyId?: string | null;
 };
 
+export type WalletWithdrawDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WalletWithdrawDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WalletWithdrawDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WalletWithdrawDto> | null;
 };
@@ -1443,6 +1870,11 @@ export type WalletWithdrawDtoListEnvelopeReadable = {
 export type WalletWithdrawDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WalletWithdrawDto> | null;
 };
 
@@ -1466,11 +1898,39 @@ export type WalletWithdrawRequestDto = {
     bankAccountId?: string | null;
 };
 
+export type WalletWithdrawRequestDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WalletWithdrawRequestDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WalletWithdrawRequestDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WalletWithdrawRequestDto> | null;
 };
@@ -1478,6 +1938,11 @@ export type WalletWithdrawRequestDtoListEnvelopeReadable = {
 export type WalletWithdrawRequestDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WalletWithdrawRequestDto> | null;
 };
 
@@ -1503,6 +1968,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1846,7 +2327,7 @@ export type GetWalletDetailsAsyncResponses = {
 export type GetWalletDetailsAsyncResponse = GetWalletDetailsAsyncResponses[keyof GetWalletDetailsAsyncResponses];
 
 export type GetWalletOrdersAsyncData = {
-    body?: never;
+    body?: OrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1882,7 +2363,7 @@ export type GetWalletOrdersAsyncResponses = {
 export type GetWalletOrdersAsyncResponse = GetWalletOrdersAsyncResponses[keyof GetWalletOrdersAsyncResponses];
 
 export type GetWalletExtendedOrdersAsyncData = {
-    body?: never;
+    body?: ExtendedOrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1918,7 +2399,7 @@ export type GetWalletExtendedOrdersAsyncResponses = {
 export type GetWalletExtendedOrdersAsyncResponse = GetWalletExtendedOrdersAsyncResponses[keyof GetWalletExtendedOrdersAsyncResponses];
 
 export type GetWalletOrdersCountAsyncData = {
-    body?: never;
+    body?: OrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1954,7 +2435,7 @@ export type GetWalletOrdersCountAsyncResponses = {
 export type GetWalletOrdersCountAsyncResponse = GetWalletOrdersCountAsyncResponses[keyof GetWalletOrdersCountAsyncResponses];
 
 export type GetWalletInvoicesAsyncData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1990,7 +2471,7 @@ export type GetWalletInvoicesAsyncResponses = {
 export type GetWalletInvoicesAsyncResponse = GetWalletInvoicesAsyncResponses[keyof GetWalletInvoicesAsyncResponses];
 
 export type GetWalletInvoicesCountAsyncData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2026,7 +2507,7 @@ export type GetWalletInvoicesCountAsyncResponses = {
 export type GetWalletInvoicesCountAsyncResponse = GetWalletInvoicesCountAsyncResponses[keyof GetWalletInvoicesCountAsyncResponses];
 
 export type GetWalletPaymentsAsyncData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2098,7 +2579,7 @@ export type CreateWalletPaymentAsyncResponses = {
 export type CreateWalletPaymentAsyncResponse = CreateWalletPaymentAsyncResponses[keyof CreateWalletPaymentAsyncResponses];
 
 export type GetWalletPaymentsCountAsyncData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2133,155 +2614,8 @@ export type GetWalletPaymentsCountAsyncResponses = {
 
 export type GetWalletPaymentsCountAsyncResponse = GetWalletPaymentsCountAsyncResponses[keyof GetWalletPaymentsCountAsyncResponses];
 
-export type GetWalletLocationsCountAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        walletId: string;
-    };
-    query?: {
-        'api-version'?: string;
-    };
-    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/Count';
-};
-
-export type GetWalletLocationsCountAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetWalletLocationsCountAsyncError = GetWalletLocationsCountAsyncErrors[keyof GetWalletLocationsCountAsyncErrors];
-
-export type GetWalletLocationsCountAsyncResponses = {
-    /**
-     * OK
-     */
-    200: Int32EnvelopeReadable;
-};
-
-export type GetWalletLocationsCountAsyncResponse = GetWalletLocationsCountAsyncResponses[keyof GetWalletLocationsCountAsyncResponses];
-
-export type DeleteWalletLocationAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        walletId: string;
-        locationId: string;
-    };
-    query?: {
-        'api-version'?: string;
-    };
-    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
-};
-
-export type DeleteWalletLocationAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type DeleteWalletLocationAsyncError = DeleteWalletLocationAsyncErrors[keyof DeleteWalletLocationAsyncErrors];
-
-export type DeleteWalletLocationAsyncResponses = {
-    /**
-     * No Content
-     */
-    204: EmptyEnvelopeReadable;
-};
-
-export type DeleteWalletLocationAsyncResponse = DeleteWalletLocationAsyncResponses[keyof DeleteWalletLocationAsyncResponses];
-
-export type GetWalletLocationAsyncData = {
-    body?: never;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        walletId: string;
-        locationId: string;
-    };
-    query?: {
-        'api-version'?: string;
-    };
-    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
-};
-
-export type GetWalletLocationAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type GetWalletLocationAsyncError = GetWalletLocationAsyncErrors[keyof GetWalletLocationAsyncErrors];
-
-export type GetWalletLocationAsyncResponses = {
-    /**
-     * OK
-     */
-    200: LocationDtoEnvelopeReadable;
-};
-
-export type GetWalletLocationAsyncResponse = GetWalletLocationAsyncResponses[keyof GetWalletLocationAsyncResponses];
-
-export type UpdateWalletLocationAsyncData = {
-    body?: LocationUpdateDto;
-    headers?: {
-        'x-api-version'?: string;
-    };
-    path: {
-        walletId: string;
-        locationId: string;
-    };
-    query?: {
-        'api-version'?: string;
-    };
-    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
-};
-
-export type UpdateWalletLocationAsyncErrors = {
-    /**
-     * Unauthorized
-     */
-    401: ErrorEnvelopeReadable;
-    /**
-     * Forbidden
-     */
-    403: ErrorEnvelopeReadable;
-};
-
-export type UpdateWalletLocationAsyncError = UpdateWalletLocationAsyncErrors[keyof UpdateWalletLocationAsyncErrors];
-
-export type UpdateWalletLocationAsyncResponses = {
-    /**
-     * OK
-     */
-    200: EmptyEnvelopeReadable;
-};
-
-export type UpdateWalletLocationAsyncResponse = UpdateWalletLocationAsyncResponses[keyof UpdateWalletLocationAsyncResponses];
-
 export type GetLocationsForWalletAsyncData = {
-    body?: never;
+    body?: LocationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2316,7 +2650,7 @@ export type GetLocationsForWalletAsyncResponses = {
 
 export type GetLocationsForWalletAsyncResponse = GetLocationsForWalletAsyncResponses[keyof GetLocationsForWalletAsyncResponses];
 
-export type CreateWalletLocationAsyncData = {
+export type CreateLocationForWalletAsyncData = {
     body?: LocationCreateDto;
     headers?: {
         'x-api-version'?: string;
@@ -2330,7 +2664,7 @@ export type CreateWalletLocationAsyncData = {
     url: '/api/v2/WalletsService/Wallets/{walletId}/Locations';
 };
 
-export type CreateWalletLocationAsyncErrors = {
+export type CreateLocationForWalletAsyncErrors = {
     /**
      * Unauthorized
      */
@@ -2341,19 +2675,166 @@ export type CreateWalletLocationAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type CreateWalletLocationAsyncError = CreateWalletLocationAsyncErrors[keyof CreateWalletLocationAsyncErrors];
+export type CreateLocationForWalletAsyncError = CreateLocationForWalletAsyncErrors[keyof CreateLocationForWalletAsyncErrors];
 
-export type CreateWalletLocationAsyncResponses = {
+export type CreateLocationForWalletAsyncResponses = {
     /**
      * Created
      */
     201: EmptyEnvelopeReadable;
 };
 
-export type CreateWalletLocationAsyncResponse = CreateWalletLocationAsyncResponses[keyof CreateWalletLocationAsyncResponses];
+export type CreateLocationForWalletAsyncResponse = CreateLocationForWalletAsyncResponses[keyof CreateLocationForWalletAsyncResponses];
+
+export type GetLocationsForWalletCountAsyncData = {
+    body?: LocationDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/Count';
+};
+
+export type GetLocationsForWalletCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetLocationsForWalletCountAsyncError = GetLocationsForWalletCountAsyncErrors[keyof GetLocationsForWalletCountAsyncErrors];
+
+export type GetLocationsForWalletCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetLocationsForWalletCountAsyncResponse = GetLocationsForWalletCountAsyncResponses[keyof GetLocationsForWalletCountAsyncResponses];
+
+export type DeleteLocationForWalletAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        locationId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
+};
+
+export type DeleteLocationForWalletAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteLocationForWalletAsyncError = DeleteLocationForWalletAsyncErrors[keyof DeleteLocationForWalletAsyncErrors];
+
+export type DeleteLocationForWalletAsyncResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type DeleteLocationForWalletAsyncResponse = DeleteLocationForWalletAsyncResponses[keyof DeleteLocationForWalletAsyncResponses];
+
+export type GetLocationForWalletAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        locationId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
+};
+
+export type GetLocationForWalletAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetLocationForWalletAsyncError = GetLocationForWalletAsyncErrors[keyof GetLocationForWalletAsyncErrors];
+
+export type GetLocationForWalletAsyncResponses = {
+    /**
+     * OK
+     */
+    200: LocationDtoEnvelopeReadable;
+};
+
+export type GetLocationForWalletAsyncResponse = GetLocationForWalletAsyncResponses[keyof GetLocationForWalletAsyncResponses];
+
+export type UpdateLocationForWalletAsyncData = {
+    body?: LocationUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        walletId: string;
+        locationId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/WalletsService/Wallets/{walletId}/Locations/{locationId}';
+};
+
+export type UpdateLocationForWalletAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateLocationForWalletAsyncError = UpdateLocationForWalletAsyncErrors[keyof UpdateLocationForWalletAsyncErrors];
+
+export type UpdateLocationForWalletAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateLocationForWalletAsyncResponse = UpdateLocationForWalletAsyncResponses[keyof UpdateLocationForWalletAsyncResponses];
 
 export type GetIncomingWalletInvoicesAsyncData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2389,7 +2870,7 @@ export type GetIncomingWalletInvoicesAsyncResponses = {
 export type GetIncomingWalletInvoicesAsyncResponse = GetIncomingWalletInvoicesAsyncResponses[keyof GetIncomingWalletInvoicesAsyncResponses];
 
 export type GetIncomingWalletInvoicesCountAsyncData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2425,7 +2906,7 @@ export type GetIncomingWalletInvoicesCountAsyncResponses = {
 export type GetIncomingWalletInvoicesCountAsyncResponse = GetIncomingWalletInvoicesCountAsyncResponses[keyof GetIncomingWalletInvoicesCountAsyncResponses];
 
 export type GetOutgoingWalletInvoicesAsyncData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2461,7 +2942,7 @@ export type GetOutgoingWalletInvoicesAsyncResponses = {
 export type GetOutgoingWalletInvoicesAsyncResponse = GetOutgoingWalletInvoicesAsyncResponses[keyof GetOutgoingWalletInvoicesAsyncResponses];
 
 export type GetOutgoingWalletInvoicesCountAsyncData = {
-    body?: never;
+    body?: InvoiceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2497,7 +2978,7 @@ export type GetOutgoingWalletInvoicesCountAsyncResponses = {
 export type GetOutgoingWalletInvoicesCountAsyncResponse = GetOutgoingWalletInvoicesCountAsyncResponses[keyof GetOutgoingWalletInvoicesCountAsyncResponses];
 
 export type GetIncomingPaymentsAsyncData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2533,7 +3014,7 @@ export type GetIncomingPaymentsAsyncResponses = {
 export type GetIncomingPaymentsAsyncResponse = GetIncomingPaymentsAsyncResponses[keyof GetIncomingPaymentsAsyncResponses];
 
 export type GetIncomingPaymentsCountAsyncData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2569,7 +3050,7 @@ export type GetIncomingPaymentsCountAsyncResponses = {
 export type GetIncomingPaymentsCountAsyncResponse = GetIncomingPaymentsCountAsyncResponses[keyof GetIncomingPaymentsCountAsyncResponses];
 
 export type GetOutgoingPaymentsAsyncData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2605,7 +3086,7 @@ export type GetOutgoingPaymentsAsyncResponses = {
 export type GetOutgoingPaymentsAsyncResponse = GetOutgoingPaymentsAsyncResponses[keyof GetOutgoingPaymentsAsyncResponses];
 
 export type GetOutgoingPaymentsCountAsyncData = {
-    body?: never;
+    body?: PaymentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2641,7 +3122,7 @@ export type GetOutgoingPaymentsCountAsyncResponses = {
 export type GetOutgoingPaymentsCountAsyncResponse = GetOutgoingPaymentsCountAsyncResponses[keyof GetOutgoingPaymentsCountAsyncResponses];
 
 export type GetWalletQuotesAsyncData = {
-    body?: never;
+    body?: QuoteDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2677,7 +3158,7 @@ export type GetWalletQuotesAsyncResponses = {
 export type GetWalletQuotesAsyncResponse = GetWalletQuotesAsyncResponses[keyof GetWalletQuotesAsyncResponses];
 
 export type GetWalletQuotesCountAsyncData = {
-    body?: never;
+    body?: QuoteDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2713,7 +3194,7 @@ export type GetWalletQuotesCountAsyncResponses = {
 export type GetWalletQuotesCountAsyncResponse = GetWalletQuotesCountAsyncResponses[keyof GetWalletQuotesCountAsyncResponses];
 
 export type GetWalletBankAccountsAsyncData = {
-    body?: never;
+    body?: BankAccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2785,7 +3266,7 @@ export type CreateWalletBankAccountAsyncResponses = {
 export type CreateWalletBankAccountAsyncResponse = CreateWalletBankAccountAsyncResponses[keyof CreateWalletBankAccountAsyncResponses];
 
 export type GetWalletBankAccountsCountAsyncData = {
-    body?: never;
+    body?: BankAccountDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2895,7 +3376,7 @@ export type GetWalletBankAccountAsyncResponses = {
 export type GetWalletBankAccountAsyncResponse = GetWalletBankAccountAsyncResponses[keyof GetWalletBankAccountAsyncResponses];
 
 export type PatchWalletBankAccountAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2969,7 +3450,7 @@ export type UpdateWalletBankAccountAsyncResponses = {
 export type UpdateWalletBankAccountAsyncResponse = UpdateWalletBankAccountAsyncResponses[keyof UpdateWalletBankAccountAsyncResponses];
 
 export type GetWalletWithdrawsAsyncData = {
-    body?: never;
+    body?: WalletWithdrawDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3041,7 +3522,7 @@ export type CreateWalletWithdrawRequestAsyncResponses = {
 export type CreateWalletWithdrawRequestAsyncResponse = CreateWalletWithdrawRequestAsyncResponses[keyof CreateWalletWithdrawRequestAsyncResponses];
 
 export type GetWalletWithdrawsCountAsyncData = {
-    body?: never;
+    body?: WalletWithdrawDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3077,7 +3558,7 @@ export type GetWalletWithdrawsCountAsyncResponses = {
 export type GetWalletWithdrawsCountAsyncResponse = GetWalletWithdrawsCountAsyncResponses[keyof GetWalletWithdrawsCountAsyncResponses];
 
 export type GetWalletWithdrawRequestsAsyncData = {
-    body?: never;
+    body?: WalletWithdrawRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3113,7 +3594,7 @@ export type GetWalletWithdrawRequestsAsyncResponses = {
 export type GetWalletWithdrawRequestsAsyncResponse = GetWalletWithdrawRequestsAsyncResponses[keyof GetWalletWithdrawRequestsAsyncResponses];
 
 export type GetWalletWithdrawRequestsCountAsyncData = {
-    body?: never;
+    body?: WalletWithdrawRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3149,7 +3630,7 @@ export type GetWalletWithdrawRequestsCountAsyncResponses = {
 export type GetWalletWithdrawRequestsCountAsyncResponse = GetWalletWithdrawRequestsCountAsyncResponses[keyof GetWalletWithdrawRequestsCountAsyncResponses];
 
 export type GetWalletChargebacksAsyncData = {
-    body?: never;
+    body?: PaymentChargebackDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3185,7 +3666,7 @@ export type GetWalletChargebacksAsyncResponses = {
 export type GetWalletChargebacksAsyncResponse = GetWalletChargebacksAsyncResponses[keyof GetWalletChargebacksAsyncResponses];
 
 export type GetWalletChargebacksCountAsyncData = {
-    body?: never;
+    body?: PaymentChargebackDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3221,7 +3702,7 @@ export type GetWalletChargebacksCountAsyncResponses = {
 export type GetWalletChargebacksCountAsyncResponse = GetWalletChargebacksCountAsyncResponses[keyof GetWalletChargebacksCountAsyncResponses];
 
 export type GetWalletRefundsAsyncData = {
-    body?: never;
+    body?: PaymentRefundDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3257,7 +3738,7 @@ export type GetWalletRefundsAsyncResponses = {
 export type GetWalletRefundsAsyncResponse = GetWalletRefundsAsyncResponses[keyof GetWalletRefundsAsyncResponses];
 
 export type GetWalletRefundsCountAsyncData = {
-    body?: never;
+    body?: PaymentRefundDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3293,7 +3774,7 @@ export type GetWalletRefundsCountAsyncResponses = {
 export type GetWalletRefundsCountAsyncResponse = GetWalletRefundsCountAsyncResponses[keyof GetWalletRefundsCountAsyncResponses];
 
 export type GetWalletTokensAsyncData = {
-    body?: never;
+    body?: PaymentTokenDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3365,7 +3846,7 @@ export type CreateWalletTokenAsyncResponses = {
 export type CreateWalletTokenAsyncResponse = CreateWalletTokenAsyncResponses[keyof CreateWalletTokenAsyncResponses];
 
 export type GetWalletTokensCountAsyncData = {
-    body?: never;
+    body?: PaymentTokenDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3475,7 +3956,7 @@ export type GetWalletTokenAsyncResponses = {
 export type GetWalletTokenAsyncResponse = GetWalletTokenAsyncResponses[keyof GetWalletTokenAsyncResponses];
 
 export type PatchWalletTokenAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

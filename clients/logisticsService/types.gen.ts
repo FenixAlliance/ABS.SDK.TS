@@ -84,11 +84,39 @@ export type AirwayBillDto = {
     lines?: Array<WaybillLineDto> | null;
 };
 
+export type AirwayBillDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type AirwayBillDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type AirwayBillDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AirwayBillDto;
 };
@@ -96,6 +124,11 @@ export type AirwayBillDtoEnvelopeReadable = {
 export type AirwayBillDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AirwayBillDto;
 };
 
@@ -104,6 +137,11 @@ export type AirwayBillDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<AirwayBillDto> | null;
 };
@@ -111,6 +149,11 @@ export type AirwayBillDtoListEnvelopeReadable = {
 export type AirwayBillDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<AirwayBillDto> | null;
 };
 
@@ -376,11 +419,39 @@ export type DeliveryNoteDto = {
     tenantId?: string | null;
 };
 
+export type DeliveryNoteDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type DeliveryNoteDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type DeliveryNoteDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: DeliveryNoteDto;
 };
@@ -388,6 +459,11 @@ export type DeliveryNoteDtoEnvelopeReadable = {
 export type DeliveryNoteDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: DeliveryNoteDto;
 };
 
@@ -396,6 +472,11 @@ export type DeliveryNoteDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<DeliveryNoteDto> | null;
 };
@@ -403,6 +484,11 @@ export type DeliveryNoteDtoListEnvelopeReadable = {
 export type DeliveryNoteDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<DeliveryNoteDto> | null;
 };
 
@@ -422,12 +508,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -435,12 +531,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -477,6 +583,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -484,6 +595,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -504,11 +620,39 @@ export type ItemPackingSlipDto = {
     orderId?: string | null;
 };
 
+export type ItemPackingSlipDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemPackingSlipDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemPackingSlipDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemPackingSlipDto;
 };
@@ -516,6 +660,11 @@ export type ItemPackingSlipDtoEnvelopeReadable = {
 export type ItemPackingSlipDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemPackingSlipDto;
 };
 
@@ -524,6 +673,11 @@ export type ItemPackingSlipDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemPackingSlipDto> | null;
 };
@@ -531,6 +685,11 @@ export type ItemPackingSlipDtoListEnvelopeReadable = {
 export type ItemPackingSlipDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemPackingSlipDto> | null;
 };
 
@@ -551,11 +710,39 @@ export type ItemPackingSlipEntryDto = {
     tenantId?: string | null;
 };
 
+export type ItemPackingSlipEntryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemPackingSlipEntryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemPackingSlipEntryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemPackingSlipEntryDto;
 };
@@ -563,6 +750,11 @@ export type ItemPackingSlipEntryDtoEnvelopeReadable = {
 export type ItemPackingSlipEntryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemPackingSlipEntryDto;
 };
 
@@ -571,6 +763,11 @@ export type ItemPackingSlipEntryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemPackingSlipEntryDto> | null;
 };
@@ -578,6 +775,11 @@ export type ItemPackingSlipEntryDtoListEnvelopeReadable = {
 export type ItemPackingSlipEntryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemPackingSlipEntryDto> | null;
 };
 
@@ -609,11 +811,39 @@ export type ItemPickListDto = {
     tenantId?: string | null;
 };
 
+export type ItemPickListDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemPickListDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemPickListDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemPickListDto;
 };
@@ -621,6 +851,11 @@ export type ItemPickListDtoEnvelopeReadable = {
 export type ItemPickListDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemPickListDto;
 };
 
@@ -629,6 +864,11 @@ export type ItemPickListDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemPickListDto> | null;
 };
@@ -636,6 +876,11 @@ export type ItemPickListDtoListEnvelopeReadable = {
 export type ItemPickListDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemPickListDto> | null;
 };
 
@@ -660,11 +905,39 @@ export type ItemPickListEntryDto = {
     tenantId?: string | null;
 };
 
+export type ItemPickListEntryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemPickListEntryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemPickListEntryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemPickListEntryDto;
 };
@@ -672,6 +945,11 @@ export type ItemPickListEntryDtoEnvelopeReadable = {
 export type ItemPickListEntryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemPickListEntryDto;
 };
 
@@ -680,6 +958,11 @@ export type ItemPickListEntryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemPickListEntryDto> | null;
 };
@@ -687,6 +970,11 @@ export type ItemPickListEntryDtoListEnvelopeReadable = {
 export type ItemPickListEntryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemPickListEntryDto> | null;
 };
 
@@ -721,11 +1009,39 @@ export type ItemRestockDto = {
     buyerBillingProfileId?: string | null;
 };
 
+export type ItemRestockDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemRestockDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemRestockDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemRestockDto;
 };
@@ -733,6 +1049,11 @@ export type ItemRestockDtoEnvelopeReadable = {
 export type ItemRestockDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemRestockDto;
 };
 
@@ -741,6 +1062,11 @@ export type ItemRestockDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemRestockDto> | null;
 };
@@ -748,6 +1074,11 @@ export type ItemRestockDtoListEnvelopeReadable = {
 export type ItemRestockDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemRestockDto> | null;
 };
 
@@ -772,11 +1103,39 @@ export type ItemRestockEntryDto = {
     tenantId?: string | null;
 };
 
+export type ItemRestockEntryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemRestockEntryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemRestockEntryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemRestockEntryDto;
 };
@@ -784,6 +1143,11 @@ export type ItemRestockEntryDtoEnvelopeReadable = {
 export type ItemRestockEntryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemRestockEntryDto;
 };
 
@@ -792,6 +1156,11 @@ export type ItemRestockEntryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemRestockEntryDto> | null;
 };
@@ -799,6 +1168,11 @@ export type ItemRestockEntryDtoListEnvelopeReadable = {
 export type ItemRestockEntryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemRestockEntryDto> | null;
 };
 
@@ -829,11 +1203,39 @@ export type ItemRetainSampleDto = {
     itemId?: string | null;
 };
 
+export type ItemRetainSampleDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemRetainSampleDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemRetainSampleDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemRetainSampleDto;
 };
@@ -841,6 +1243,11 @@ export type ItemRetainSampleDtoEnvelopeReadable = {
 export type ItemRetainSampleDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemRetainSampleDto;
 };
 
@@ -849,6 +1256,11 @@ export type ItemRetainSampleDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemRetainSampleDto> | null;
 };
@@ -856,6 +1268,11 @@ export type ItemRetainSampleDtoListEnvelopeReadable = {
 export type ItemRetainSampleDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemRetainSampleDto> | null;
 };
 
@@ -871,10 +1288,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -941,11 +1357,39 @@ export type PortDto = {
     parentPortId?: string | null;
 };
 
+export type PortDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PortDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PortDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PortDto;
 };
@@ -953,6 +1397,11 @@ export type PortDtoEnvelopeReadable = {
 export type PortDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PortDto;
 };
 
@@ -961,6 +1410,11 @@ export type PortDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PortDto> | null;
 };
@@ -968,6 +1422,11 @@ export type PortDtoListEnvelopeReadable = {
 export type PortDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PortDto> | null;
 };
 
@@ -1051,11 +1510,39 @@ export type ProofOfDeliveryDto = {
     deliveryNoteIds?: Array<string> | null;
 };
 
+export type ProofOfDeliveryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ProofOfDeliveryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ProofOfDeliveryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ProofOfDeliveryDto;
 };
@@ -1063,6 +1550,11 @@ export type ProofOfDeliveryDtoEnvelopeReadable = {
 export type ProofOfDeliveryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ProofOfDeliveryDto;
 };
 
@@ -1071,6 +1563,11 @@ export type ProofOfDeliveryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ProofOfDeliveryDto> | null;
 };
@@ -1078,6 +1575,11 @@ export type ProofOfDeliveryDtoListEnvelopeReadable = {
 export type ProofOfDeliveryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ProofOfDeliveryDto> | null;
 };
 
@@ -1108,11 +1610,39 @@ export type ProofOfDeliveryLineDto = {
     tenantId?: string | null;
 };
 
+export type ProofOfDeliveryLineDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ProofOfDeliveryLineDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ProofOfDeliveryLineDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ProofOfDeliveryLineDto> | null;
 };
@@ -1120,6 +1650,11 @@ export type ProofOfDeliveryLineDtoListEnvelopeReadable = {
 export type ProofOfDeliveryLineDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ProofOfDeliveryLineDto> | null;
 };
 
@@ -1215,11 +1750,39 @@ export type RailWaybillDto = {
     lines?: Array<WaybillLineDto> | null;
 };
 
+export type RailWaybillDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type RailWaybillDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type RailWaybillDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: RailWaybillDto;
 };
@@ -1227,6 +1790,11 @@ export type RailWaybillDtoEnvelopeReadable = {
 export type RailWaybillDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: RailWaybillDto;
 };
 
@@ -1235,6 +1803,11 @@ export type RailWaybillDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<RailWaybillDto> | null;
 };
@@ -1242,6 +1815,11 @@ export type RailWaybillDtoListEnvelopeReadable = {
 export type RailWaybillDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<RailWaybillDto> | null;
 };
 
@@ -1364,11 +1942,39 @@ export type RoadWaybillDto = {
     lines?: Array<WaybillLineDto> | null;
 };
 
+export type RoadWaybillDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type RoadWaybillDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type RoadWaybillDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: RoadWaybillDto;
 };
@@ -1376,6 +1982,11 @@ export type RoadWaybillDtoEnvelopeReadable = {
 export type RoadWaybillDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: RoadWaybillDto;
 };
 
@@ -1384,6 +1995,11 @@ export type RoadWaybillDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<RoadWaybillDto> | null;
 };
@@ -1391,6 +2007,11 @@ export type RoadWaybillDtoListEnvelopeReadable = {
 export type RoadWaybillDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<RoadWaybillDto> | null;
 };
 
@@ -1481,11 +2102,39 @@ export type SeawayBillDto = {
     lines?: Array<WaybillLineDto> | null;
 };
 
+export type SeawayBillDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SeawayBillDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SeawayBillDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SeawayBillDto;
 };
@@ -1493,6 +2142,11 @@ export type SeawayBillDtoEnvelopeReadable = {
 export type SeawayBillDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SeawayBillDto;
 };
 
@@ -1501,6 +2155,11 @@ export type SeawayBillDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SeawayBillDto> | null;
 };
@@ -1508,6 +2167,11 @@ export type SeawayBillDtoListEnvelopeReadable = {
 export type SeawayBillDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SeawayBillDto> | null;
 };
 
@@ -1671,11 +2335,39 @@ export type SupplierProfileDtoWritable = {
     data9Label?: string | null;
 };
 
+export type SupplierProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SupplierProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SupplierProfileDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SupplierProfileDtoReadable;
 };
@@ -1683,6 +2375,11 @@ export type SupplierProfileDtoEnvelopeReadable = {
 export type SupplierProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SupplierProfileDtoWritable;
 };
 
@@ -1691,6 +2388,11 @@ export type SupplierProfileDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SupplierProfileDtoReadable> | null;
 };
@@ -1698,6 +2400,11 @@ export type SupplierProfileDtoListEnvelopeReadable = {
 export type SupplierProfileDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SupplierProfileDtoWritable> | null;
 };
 
@@ -1782,11 +2489,39 @@ export type TruckDriverDto = {
     enrollmentId?: string | null;
 };
 
+export type TruckDriverDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TruckDriverDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TruckDriverDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TruckDriverDto;
 };
@@ -1794,6 +2529,11 @@ export type TruckDriverDtoEnvelopeReadable = {
 export type TruckDriverDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TruckDriverDto;
 };
 
@@ -1802,6 +2542,11 @@ export type TruckDriverDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TruckDriverDto> | null;
 };
@@ -1809,6 +2554,11 @@ export type TruckDriverDtoListEnvelopeReadable = {
 export type TruckDriverDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TruckDriverDto> | null;
 };
 
@@ -1845,11 +2595,39 @@ export type TruckDto = {
     enrollmentId?: string | null;
 };
 
+export type TruckDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TruckDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TruckDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TruckDto;
 };
@@ -1857,6 +2635,11 @@ export type TruckDtoEnvelopeReadable = {
 export type TruckDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TruckDto;
 };
 
@@ -1865,6 +2648,11 @@ export type TruckDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TruckDto> | null;
 };
@@ -1872,6 +2660,11 @@ export type TruckDtoListEnvelopeReadable = {
 export type TruckDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TruckDto> | null;
 };
 
@@ -1917,11 +2710,39 @@ export type TruckTripDto = {
     enrollmentId?: string | null;
 };
 
+export type TruckTripDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TruckTripDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TruckTripDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TruckTripDto> | null;
 };
@@ -1929,6 +2750,11 @@ export type TruckTripDtoListEnvelopeReadable = {
 export type TruckTripDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TruckTripDto> | null;
 };
 
@@ -2020,11 +2846,39 @@ export type VesselDto = {
     enrollmentId?: string | null;
 };
 
+export type VesselDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type VesselDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type VesselDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: VesselDto;
 };
@@ -2032,6 +2886,11 @@ export type VesselDtoEnvelopeReadable = {
 export type VesselDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: VesselDto;
 };
 
@@ -2040,6 +2899,11 @@ export type VesselDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<VesselDto> | null;
 };
@@ -2047,6 +2911,11 @@ export type VesselDtoListEnvelopeReadable = {
 export type VesselDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<VesselDto> | null;
 };
 
@@ -2097,11 +2966,39 @@ export type VoyageDto = {
     enrollmentId?: string | null;
 };
 
+export type VoyageDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type VoyageDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type VoyageDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: VoyageDto;
 };
@@ -2109,6 +3006,11 @@ export type VoyageDtoEnvelopeReadable = {
 export type VoyageDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: VoyageDto;
 };
 
@@ -2117,6 +3019,11 @@ export type VoyageDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<VoyageDto> | null;
 };
@@ -2124,6 +3031,11 @@ export type VoyageDtoListEnvelopeReadable = {
 export type VoyageDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<VoyageDto> | null;
 };
 
@@ -2155,11 +3067,39 @@ export type VoyagePortCallDto = {
     tenantId?: string | null;
 };
 
+export type VoyagePortCallDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type VoyagePortCallDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type VoyagePortCallDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<VoyagePortCallDto> | null;
 };
@@ -2167,6 +3107,11 @@ export type VoyagePortCallDtoListEnvelopeReadable = {
 export type VoyagePortCallDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<VoyagePortCallDto> | null;
 };
 
@@ -2227,11 +3172,39 @@ export type WarehouseDto = {
     parentWarehouseId?: string | null;
 };
 
+export type WarehouseDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WarehouseDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WarehouseDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: WarehouseDto;
 };
@@ -2239,6 +3212,11 @@ export type WarehouseDtoEnvelopeReadable = {
 export type WarehouseDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: WarehouseDto;
 };
 
@@ -2247,6 +3225,11 @@ export type WarehouseDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WarehouseDto> | null;
 };
@@ -2254,6 +3237,11 @@ export type WarehouseDtoListEnvelopeReadable = {
 export type WarehouseDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WarehouseDto> | null;
 };
 
@@ -2327,11 +3315,39 @@ export type WaybillLineDto = {
     tenantId?: string | null;
 };
 
+export type WaybillLineDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WaybillLineDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WaybillLineDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WaybillLineDto> | null;
 };
@@ -2339,6 +3355,11 @@ export type WaybillLineDtoListEnvelopeReadable = {
 export type WaybillLineDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WaybillLineDto> | null;
 };
 
@@ -2365,7 +3386,7 @@ export type WaybillLineUpdateDto = {
 };
 
 export type GetAirwayBillsAsyncData = {
-    body?: never;
+    body?: AirwayBillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2431,7 +3452,7 @@ export type CreateAirwayBillAsyncResponses = {
 export type CreateAirwayBillAsyncResponse = CreateAirwayBillAsyncResponses[keyof CreateAirwayBillAsyncResponses];
 
 export type GetAirwayBillsCountAsyncData = {
-    body?: never;
+    body?: AirwayBillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2528,7 +3549,7 @@ export type GetAirwayBillByIdAsyncResponses = {
 export type GetAirwayBillByIdAsyncResponse = GetAirwayBillByIdAsyncResponses[keyof GetAirwayBillByIdAsyncResponses];
 
 export type PatchAirwayBillAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2759,7 +3780,7 @@ export type CancelAirwayBillAsyncResponses = {
 export type CancelAirwayBillAsyncResponse = CancelAirwayBillAsyncResponses[keyof CancelAirwayBillAsyncResponses];
 
 export type GetAirwayBillLinesAsyncData = {
-    body?: never;
+    body?: WaybillLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2825,7 +3846,7 @@ export type AddAirwayBillLineAsyncResponses = {
 export type AddAirwayBillLineAsyncResponse = AddAirwayBillLineAsyncResponses[keyof AddAirwayBillLineAsyncResponses];
 
 export type GetAirwayBillLinesCountAsyncData = {
-    body?: never;
+    body?: WaybillLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2892,7 +3913,7 @@ export type RemoveAirwayBillLineAsyncResponses = {
 export type RemoveAirwayBillLineAsyncResponse = RemoveAirwayBillLineAsyncResponses[keyof RemoveAirwayBillLineAsyncResponses];
 
 export type PatchAirwayBillLineAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2960,7 +3981,7 @@ export type UpdateAirwayBillLineAsyncResponses = {
 export type UpdateAirwayBillLineAsyncResponse = UpdateAirwayBillLineAsyncResponses[keyof UpdateAirwayBillLineAsyncResponses];
 
 export type GetDeliveryNotesAsyncData = {
-    body?: never;
+    body?: DeliveryNoteDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3026,7 +4047,7 @@ export type CreateDeliveryNoteAsyncResponses = {
 export type CreateDeliveryNoteAsyncResponse = CreateDeliveryNoteAsyncResponses[keyof CreateDeliveryNoteAsyncResponses];
 
 export type GetDeliveryNotesCountAsyncData = {
-    body?: never;
+    body?: DeliveryNoteDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3168,6 +4189,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -3475,7 +4512,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetItemPackingSlipsAsyncData = {
-    body?: never;
+    body?: ItemPackingSlipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3541,7 +4578,7 @@ export type CreateItemPackingSlipAsyncResponses = {
 export type CreateItemPackingSlipAsyncResponse = CreateItemPackingSlipAsyncResponses[keyof CreateItemPackingSlipAsyncResponses];
 
 export type GetItemPackingSlipsCountAsyncData = {
-    body?: never;
+    body?: ItemPackingSlipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3629,7 +4666,7 @@ export type GetItemPackingSlipByIdAsyncResponses = {
 export type GetItemPackingSlipByIdAsyncResponse = GetItemPackingSlipByIdAsyncResponses[keyof GetItemPackingSlipByIdAsyncResponses];
 
 export type PatchItemPackingSlipAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3695,7 +4732,7 @@ export type UpdateItemPackingSlipAsyncResponses = {
 export type UpdateItemPackingSlipAsyncResponse = UpdateItemPackingSlipAsyncResponses[keyof UpdateItemPackingSlipAsyncResponses];
 
 export type GetItemPackingSlipEntriesAsyncData = {
-    body?: never;
+    body?: ItemPackingSlipEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3752,7 +4789,7 @@ export type CreateItemPackingSlipEntryAsyncResponses = {
 export type CreateItemPackingSlipEntryAsyncResponse = CreateItemPackingSlipEntryAsyncResponses[keyof CreateItemPackingSlipEntryAsyncResponses];
 
 export type GetItemPackingSlipEntriesCountAsyncData = {
-    body?: never;
+    body?: ItemPackingSlipEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3844,7 +4881,7 @@ export type GetItemPackingSlipEntryByIdAsyncResponses = {
 export type GetItemPackingSlipEntryByIdAsyncResponse = GetItemPackingSlipEntryByIdAsyncResponses[keyof GetItemPackingSlipEntryByIdAsyncResponses];
 
 export type PatchItemPackingSlipEntryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3912,7 +4949,7 @@ export type UpdateItemPackingSlipEntryAsyncResponses = {
 export type UpdateItemPackingSlipEntryAsyncResponse = UpdateItemPackingSlipEntryAsyncResponses[keyof UpdateItemPackingSlipEntryAsyncResponses];
 
 export type GetItemPickListsAsyncData = {
-    body?: never;
+    body?: ItemPickListDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3978,7 +5015,7 @@ export type CreateItemPickListAsyncResponses = {
 export type CreateItemPickListAsyncResponse = CreateItemPickListAsyncResponses[keyof CreateItemPickListAsyncResponses];
 
 export type GetItemPickListsCountAsyncData = {
-    body?: never;
+    body?: ItemPickListDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4066,7 +5103,7 @@ export type GetItemPickListByIdAsyncResponses = {
 export type GetItemPickListByIdAsyncResponse = GetItemPickListByIdAsyncResponses[keyof GetItemPickListByIdAsyncResponses];
 
 export type PatchItemPickListAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4132,7 +5169,7 @@ export type UpdateItemPickListAsyncResponses = {
 export type UpdateItemPickListAsyncResponse = UpdateItemPickListAsyncResponses[keyof UpdateItemPickListAsyncResponses];
 
 export type GetItemPickListEntriesAsyncData = {
-    body?: never;
+    body?: ItemPickListEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4189,7 +5226,7 @@ export type CreateItemPickListEntryAsyncResponses = {
 export type CreateItemPickListEntryAsyncResponse = CreateItemPickListEntryAsyncResponses[keyof CreateItemPickListEntryAsyncResponses];
 
 export type GetItemPickListEntriesCountAsyncData = {
-    body?: never;
+    body?: ItemPickListEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4281,7 +5318,7 @@ export type GetItemPickListEntryByIdAsyncResponses = {
 export type GetItemPickListEntryByIdAsyncResponse = GetItemPickListEntryByIdAsyncResponses[keyof GetItemPickListEntryByIdAsyncResponses];
 
 export type PatchItemPickListEntryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4349,7 +5386,7 @@ export type UpdateItemPickListEntryAsyncResponses = {
 export type UpdateItemPickListEntryAsyncResponse = UpdateItemPickListEntryAsyncResponses[keyof UpdateItemPickListEntryAsyncResponses];
 
 export type GetItemRestocksAsyncData = {
-    body?: never;
+    body?: ItemRestockDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4415,7 +5452,7 @@ export type CreateItemRestockAsyncResponses = {
 export type CreateItemRestockAsyncResponse = CreateItemRestockAsyncResponses[keyof CreateItemRestockAsyncResponses];
 
 export type GetItemRestocksCountAsyncData = {
-    body?: never;
+    body?: ItemRestockDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4503,7 +5540,7 @@ export type GetItemRestockByIdAsyncResponses = {
 export type GetItemRestockByIdAsyncResponse = GetItemRestockByIdAsyncResponses[keyof GetItemRestockByIdAsyncResponses];
 
 export type PatchItemRestockAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4569,7 +5606,7 @@ export type UpdateItemRestockAsyncResponses = {
 export type UpdateItemRestockAsyncResponse = UpdateItemRestockAsyncResponses[keyof UpdateItemRestockAsyncResponses];
 
 export type GetItemRestockEntriesAsyncData = {
-    body?: never;
+    body?: ItemRestockEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4626,7 +5663,7 @@ export type CreateItemRestockEntryAsyncResponses = {
 export type CreateItemRestockEntryAsyncResponse = CreateItemRestockEntryAsyncResponses[keyof CreateItemRestockEntryAsyncResponses];
 
 export type GetItemRestockEntriesCountAsyncData = {
-    body?: never;
+    body?: ItemRestockEntryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4718,7 +5755,7 @@ export type GetItemRestockEntryByIdAsyncResponses = {
 export type GetItemRestockEntryByIdAsyncResponse = GetItemRestockEntryByIdAsyncResponses[keyof GetItemRestockEntryByIdAsyncResponses];
 
 export type PatchItemRestockEntryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4786,7 +5823,7 @@ export type UpdateItemRestockEntryAsyncResponses = {
 export type UpdateItemRestockEntryAsyncResponse = UpdateItemRestockEntryAsyncResponses[keyof UpdateItemRestockEntryAsyncResponses];
 
 export type GetItemRetainSamplesAsyncData = {
-    body?: never;
+    body?: ItemRetainSampleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4852,7 +5889,7 @@ export type CreateItemRetainSampleAsyncResponses = {
 export type CreateItemRetainSampleAsyncResponse = CreateItemRetainSampleAsyncResponses[keyof CreateItemRetainSampleAsyncResponses];
 
 export type GetItemRetainSamplesCountAsyncData = {
-    body?: never;
+    body?: ItemRetainSampleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4940,7 +5977,7 @@ export type GetItemRetainSampleByIdAsyncResponses = {
 export type GetItemRetainSampleByIdAsyncResponse = GetItemRetainSampleByIdAsyncResponses[keyof GetItemRetainSampleByIdAsyncResponses];
 
 export type PatchItemRetainSampleAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5006,7 +6043,7 @@ export type UpdateItemRetainSampleAsyncResponses = {
 export type UpdateItemRetainSampleAsyncResponse = UpdateItemRetainSampleAsyncResponses[keyof UpdateItemRetainSampleAsyncResponses];
 
 export type GetPortsAsyncData = {
-    body?: never;
+    body?: PortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5072,7 +6109,7 @@ export type CreatePortAsyncResponses = {
 export type CreatePortAsyncResponse = CreatePortAsyncResponses[keyof CreatePortAsyncResponses];
 
 export type GetPortsCountAsyncData = {
-    body?: never;
+    body?: PortDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5169,7 +6206,7 @@ export type GetPortByIdAsyncResponses = {
 export type GetPortByIdAsyncResponse = GetPortByIdAsyncResponses[keyof GetPortByIdAsyncResponses];
 
 export type PatchPortAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5243,7 +6280,7 @@ export type UpdatePortAsyncResponses = {
 export type UpdatePortAsyncResponse = UpdatePortAsyncResponses[keyof UpdatePortAsyncResponses];
 
 export type GetProofsOfDeliveryAsyncData = {
-    body?: never;
+    body?: ProofOfDeliveryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5309,7 +6346,7 @@ export type CreateProofOfDeliveryAsyncResponses = {
 export type CreateProofOfDeliveryAsyncResponse = CreateProofOfDeliveryAsyncResponses[keyof CreateProofOfDeliveryAsyncResponses];
 
 export type GetProofsOfDeliveryCountAsyncData = {
-    body?: never;
+    body?: ProofOfDeliveryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5406,7 +6443,7 @@ export type GetProofOfDeliveryByIdAsyncResponses = {
 export type GetProofOfDeliveryByIdAsyncResponse = GetProofOfDeliveryByIdAsyncResponses[keyof GetProofOfDeliveryByIdAsyncResponses];
 
 export type PatchProofOfDeliveryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5579,7 +6616,7 @@ export type RejectProofOfDeliveryAsyncResponses = {
 export type RejectProofOfDeliveryAsyncResponse = RejectProofOfDeliveryAsyncResponses[keyof RejectProofOfDeliveryAsyncResponses];
 
 export type GetProofOfDeliveryLinesAsyncData = {
-    body?: never;
+    body?: ProofOfDeliveryLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5645,7 +6682,7 @@ export type AddProofOfDeliveryLineAsyncResponses = {
 export type AddProofOfDeliveryLineAsyncResponse = AddProofOfDeliveryLineAsyncResponses[keyof AddProofOfDeliveryLineAsyncResponses];
 
 export type GetProofOfDeliveryLinesCountAsyncData = {
-    body?: never;
+    body?: ProofOfDeliveryLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5712,7 +6749,7 @@ export type RemoveProofOfDeliveryLineAsyncResponses = {
 export type RemoveProofOfDeliveryLineAsyncResponse = RemoveProofOfDeliveryLineAsyncResponses[keyof RemoveProofOfDeliveryLineAsyncResponses];
 
 export type PatchProofOfDeliveryLineAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5922,7 +6959,7 @@ export type AttachDeliveryNoteAsyncResponses = {
 export type AttachDeliveryNoteAsyncResponse = AttachDeliveryNoteAsyncResponses[keyof AttachDeliveryNoteAsyncResponses];
 
 export type GetRailWaybillsAsyncData = {
-    body?: never;
+    body?: RailWaybillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5988,7 +7025,7 @@ export type CreateRailWaybillAsyncResponses = {
 export type CreateRailWaybillAsyncResponse = CreateRailWaybillAsyncResponses[keyof CreateRailWaybillAsyncResponses];
 
 export type GetRailWaybillsCountAsyncData = {
-    body?: never;
+    body?: RailWaybillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6085,7 +7122,7 @@ export type GetRailWaybillByIdAsyncResponses = {
 export type GetRailWaybillByIdAsyncResponse = GetRailWaybillByIdAsyncResponses[keyof GetRailWaybillByIdAsyncResponses];
 
 export type PatchRailWaybillAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6283,7 +7320,7 @@ export type CancelRailWaybillAsyncResponses = {
 export type CancelRailWaybillAsyncResponse = CancelRailWaybillAsyncResponses[keyof CancelRailWaybillAsyncResponses];
 
 export type GetRailWaybillLinesAsyncData = {
-    body?: never;
+    body?: WaybillLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6349,7 +7386,7 @@ export type AddRailWaybillLineAsyncResponses = {
 export type AddRailWaybillLineAsyncResponse = AddRailWaybillLineAsyncResponses[keyof AddRailWaybillLineAsyncResponses];
 
 export type GetRailWaybillLinesCountAsyncData = {
-    body?: never;
+    body?: WaybillLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6416,7 +7453,7 @@ export type RemoveRailWaybillLineAsyncResponses = {
 export type RemoveRailWaybillLineAsyncResponse = RemoveRailWaybillLineAsyncResponses[keyof RemoveRailWaybillLineAsyncResponses];
 
 export type PatchRailWaybillLineAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6484,7 +7521,7 @@ export type UpdateRailWaybillLineAsyncResponses = {
 export type UpdateRailWaybillLineAsyncResponse = UpdateRailWaybillLineAsyncResponses[keyof UpdateRailWaybillLineAsyncResponses];
 
 export type GetRoadWaybillsAsyncData = {
-    body?: never;
+    body?: RoadWaybillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6550,7 +7587,7 @@ export type CreateRoadWaybillAsyncResponses = {
 export type CreateRoadWaybillAsyncResponse = CreateRoadWaybillAsyncResponses[keyof CreateRoadWaybillAsyncResponses];
 
 export type GetRoadWaybillsCountAsyncData = {
-    body?: never;
+    body?: RoadWaybillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6647,7 +7684,7 @@ export type GetRoadWaybillByIdAsyncResponses = {
 export type GetRoadWaybillByIdAsyncResponse = GetRoadWaybillByIdAsyncResponses[keyof GetRoadWaybillByIdAsyncResponses];
 
 export type PatchRoadWaybillAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6878,7 +7915,7 @@ export type CancelRoadWaybillAsyncResponses = {
 export type CancelRoadWaybillAsyncResponse = CancelRoadWaybillAsyncResponses[keyof CancelRoadWaybillAsyncResponses];
 
 export type GetRoadWaybillLinesAsyncData = {
-    body?: never;
+    body?: WaybillLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6944,7 +7981,7 @@ export type AddRoadWaybillLineAsyncResponses = {
 export type AddRoadWaybillLineAsyncResponse = AddRoadWaybillLineAsyncResponses[keyof AddRoadWaybillLineAsyncResponses];
 
 export type GetRoadWaybillLinesCountAsyncData = {
-    body?: never;
+    body?: WaybillLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7011,7 +8048,7 @@ export type RemoveRoadWaybillLineAsyncResponses = {
 export type RemoveRoadWaybillLineAsyncResponse = RemoveRoadWaybillLineAsyncResponses[keyof RemoveRoadWaybillLineAsyncResponses];
 
 export type PatchRoadWaybillLineAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7079,7 +8116,7 @@ export type UpdateRoadWaybillLineAsyncResponses = {
 export type UpdateRoadWaybillLineAsyncResponse = UpdateRoadWaybillLineAsyncResponses[keyof UpdateRoadWaybillLineAsyncResponses];
 
 export type GetSeawayBillsAsyncData = {
-    body?: never;
+    body?: SeawayBillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7145,7 +8182,7 @@ export type CreateSeawayBillAsyncResponses = {
 export type CreateSeawayBillAsyncResponse = CreateSeawayBillAsyncResponses[keyof CreateSeawayBillAsyncResponses];
 
 export type GetSeawayBillsCountAsyncData = {
-    body?: never;
+    body?: SeawayBillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7242,7 +8279,7 @@ export type GetSeawayBillByIdAsyncResponses = {
 export type GetSeawayBillByIdAsyncResponse = GetSeawayBillByIdAsyncResponses[keyof GetSeawayBillByIdAsyncResponses];
 
 export type PatchSeawayBillAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7473,7 +8510,7 @@ export type CancelSeawayBillAsyncResponses = {
 export type CancelSeawayBillAsyncResponse = CancelSeawayBillAsyncResponses[keyof CancelSeawayBillAsyncResponses];
 
 export type GetSeawayBillLinesAsyncData = {
-    body?: never;
+    body?: WaybillLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7539,7 +8576,7 @@ export type AddSeawayBillLineAsyncResponses = {
 export type AddSeawayBillLineAsyncResponse = AddSeawayBillLineAsyncResponses[keyof AddSeawayBillLineAsyncResponses];
 
 export type GetSeawayBillLinesCountAsyncData = {
-    body?: never;
+    body?: WaybillLineDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7606,7 +8643,7 @@ export type RemoveSeawayBillLineAsyncResponses = {
 export type RemoveSeawayBillLineAsyncResponse = RemoveSeawayBillLineAsyncResponses[keyof RemoveSeawayBillLineAsyncResponses];
 
 export type PatchSeawayBillLineAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7674,7 +8711,7 @@ export type UpdateSeawayBillLineAsyncResponses = {
 export type UpdateSeawayBillLineAsyncResponse = UpdateSeawayBillLineAsyncResponses[keyof UpdateSeawayBillLineAsyncResponses];
 
 export type GetSupplierProfilesAsyncData = {
-    body?: never;
+    body?: SupplierProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7740,7 +8777,7 @@ export type CreateSupplierProfileAsyncResponses = {
 export type CreateSupplierProfileAsyncResponse = CreateSupplierProfileAsyncResponses[keyof CreateSupplierProfileAsyncResponses];
 
 export type GetSupplierProfilesCountAsyncData = {
-    body?: never;
+    body?: SupplierProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7837,7 +8874,7 @@ export type GetSupplierProfileByIdAsyncResponses = {
 export type GetSupplierProfileByIdAsyncResponse = GetSupplierProfileByIdAsyncResponses[keyof GetSupplierProfileByIdAsyncResponses];
 
 export type PatchSupplierProfileAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7903,7 +8940,7 @@ export type UpdateSupplierProfileAsyncResponses = {
 export type UpdateSupplierProfileAsyncResponse = UpdateSupplierProfileAsyncResponses[keyof UpdateSupplierProfileAsyncResponses];
 
 export type GetTruckDriversAsyncData = {
-    body?: never;
+    body?: TruckDriverDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7969,7 +9006,7 @@ export type CreateTruckDriverAsyncResponses = {
 export type CreateTruckDriverAsyncResponse = CreateTruckDriverAsyncResponses[keyof CreateTruckDriverAsyncResponses];
 
 export type GetTruckDriversCountAsyncData = {
-    body?: never;
+    body?: TruckDriverDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8066,7 +9103,7 @@ export type GetTruckDriverByIdAsyncResponses = {
 export type GetTruckDriverByIdAsyncResponse = GetTruckDriverByIdAsyncResponses[keyof GetTruckDriverByIdAsyncResponses];
 
 export type PatchTruckDriverAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8206,7 +9243,7 @@ export type DeactivateTruckDriverAsyncResponses = {
 export type DeactivateTruckDriverAsyncResponse = DeactivateTruckDriverAsyncResponses[keyof DeactivateTruckDriverAsyncResponses];
 
 export type GetTrucksAsyncData = {
-    body?: never;
+    body?: TruckDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8272,7 +9309,7 @@ export type CreateTruckAsyncResponses = {
 export type CreateTruckAsyncResponse = CreateTruckAsyncResponses[keyof CreateTruckAsyncResponses];
 
 export type GetTrucksCountAsyncData = {
-    body?: never;
+    body?: TruckDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8369,7 +9406,7 @@ export type GetTruckByIdAsyncResponses = {
 export type GetTruckByIdAsyncResponse = GetTruckByIdAsyncResponses[keyof GetTruckByIdAsyncResponses];
 
 export type PatchTruckAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8443,7 +9480,7 @@ export type UpdateTruckAsyncResponses = {
 export type UpdateTruckAsyncResponse = UpdateTruckAsyncResponses[keyof UpdateTruckAsyncResponses];
 
 export type GetTruckTripsAsyncData = {
-    body?: never;
+    body?: TruckTripDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8509,7 +9546,7 @@ export type CreateTruckTripAsyncResponses = {
 export type CreateTruckTripAsyncResponse = CreateTruckTripAsyncResponses[keyof CreateTruckTripAsyncResponses];
 
 export type GetTruckTripsCountAsyncData = {
-    body?: never;
+    body?: TruckTripDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8576,7 +9613,7 @@ export type DeleteTruckTripAsyncResponses = {
 export type DeleteTruckTripAsyncResponse = DeleteTruckTripAsyncResponses[keyof DeleteTruckTripAsyncResponses];
 
 export type PatchTruckTripAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8822,7 +9859,7 @@ export type CancelTripAsyncResponses = {
 export type CancelTripAsyncResponse = CancelTripAsyncResponses[keyof CancelTripAsyncResponses];
 
 export type GetVesselsAsyncData = {
-    body?: never;
+    body?: VesselDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8888,7 +9925,7 @@ export type CreateVesselAsyncResponses = {
 export type CreateVesselAsyncResponse = CreateVesselAsyncResponses[keyof CreateVesselAsyncResponses];
 
 export type GetVesselsCountAsyncData = {
-    body?: never;
+    body?: VesselDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8985,7 +10022,7 @@ export type GetVesselByIdAsyncResponses = {
 export type GetVesselByIdAsyncResponse = GetVesselByIdAsyncResponses[keyof GetVesselByIdAsyncResponses];
 
 export type PatchVesselAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9059,7 +10096,7 @@ export type UpdateVesselAsyncResponses = {
 export type UpdateVesselAsyncResponse = UpdateVesselAsyncResponses[keyof UpdateVesselAsyncResponses];
 
 export type GetVoyagesAsyncData = {
-    body?: never;
+    body?: VoyageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9125,7 +10162,7 @@ export type CreateVoyageAsyncResponses = {
 export type CreateVoyageAsyncResponse = CreateVoyageAsyncResponses[keyof CreateVoyageAsyncResponses];
 
 export type GetVoyagesCountAsyncData = {
-    body?: never;
+    body?: VoyageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9222,7 +10259,7 @@ export type GetVoyageByIdAsyncResponses = {
 export type GetVoyageByIdAsyncResponse = GetVoyageByIdAsyncResponses[keyof GetVoyageByIdAsyncResponses];
 
 export type PatchVoyageAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9395,7 +10432,7 @@ export type CancelVoyageAsyncResponses = {
 export type CancelVoyageAsyncResponse = CancelVoyageAsyncResponses[keyof CancelVoyageAsyncResponses];
 
 export type GetVoyagePortCallsAsyncData = {
-    body?: never;
+    body?: VoyagePortCallDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9461,7 +10498,7 @@ export type CreateVoyagePortCallAsyncResponses = {
 export type CreateVoyagePortCallAsyncResponse = CreateVoyagePortCallAsyncResponses[keyof CreateVoyagePortCallAsyncResponses];
 
 export type GetVoyagePortCallsCountAsyncData = {
-    body?: never;
+    body?: VoyagePortCallDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9528,7 +10565,7 @@ export type DeleteVoyagePortCallAsyncResponses = {
 export type DeleteVoyagePortCallAsyncResponse = DeleteVoyagePortCallAsyncResponses[keyof DeleteVoyagePortCallAsyncResponses];
 
 export type PatchVoyagePortCallAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9604,7 +10641,7 @@ export type UpdateVoyagePortCallAsyncResponses = {
 export type UpdateVoyagePortCallAsyncResponse = UpdateVoyagePortCallAsyncResponses[keyof UpdateVoyagePortCallAsyncResponses];
 
 export type GetWarehousesAsyncData = {
-    body?: never;
+    body?: WarehouseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9670,7 +10707,7 @@ export type CreateWarehouseAsyncResponses = {
 export type CreateWarehouseAsyncResponse = CreateWarehouseAsyncResponses[keyof CreateWarehouseAsyncResponses];
 
 export type GetWarehousesCountAsyncData = {
-    body?: never;
+    body?: WarehouseDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -9758,7 +10795,7 @@ export type GetWarehouseByIdAsyncResponses = {
 export type GetWarehouseByIdAsyncResponse = GetWarehouseByIdAsyncResponses[keyof GetWarehouseByIdAsyncResponses];
 
 export type PatchWarehouseAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

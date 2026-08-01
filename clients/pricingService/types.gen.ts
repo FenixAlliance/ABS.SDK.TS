@@ -50,11 +50,39 @@ export type DiscountDto = {
     beginQuantity?: number;
 };
 
+export type DiscountDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type DiscountDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type DiscountDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: DiscountDto;
 };
@@ -62,6 +90,11 @@ export type DiscountDtoEnvelopeReadable = {
 export type DiscountDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: DiscountDto;
 };
 
@@ -70,6 +103,11 @@ export type DiscountDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<DiscountDto> | null;
 };
@@ -77,6 +115,11 @@ export type DiscountDtoListEnvelopeReadable = {
 export type DiscountDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<DiscountDto> | null;
 };
 
@@ -98,11 +141,39 @@ export type DiscountListDto = {
     enrollmentId?: string | null;
 };
 
+export type DiscountListDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type DiscountListDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type DiscountListDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: DiscountListDto;
 };
@@ -110,6 +181,11 @@ export type DiscountListDtoEnvelopeReadable = {
 export type DiscountListDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: DiscountListDto;
 };
 
@@ -118,6 +194,11 @@ export type DiscountListDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<DiscountListDto> | null;
 };
@@ -125,6 +206,11 @@ export type DiscountListDtoListEnvelopeReadable = {
 export type DiscountListDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<DiscountListDto> | null;
 };
 
@@ -149,12 +235,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -162,12 +258,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -204,6 +310,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -211,6 +322,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -279,6 +395,11 @@ export type ItemPriceCalculationEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemPriceCalculationReadable;
 };
@@ -286,6 +407,11 @@ export type ItemPriceCalculationEnvelopeReadable = {
 export type ItemPriceCalculationEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemPriceCalculationWritable;
 };
 
@@ -320,11 +446,39 @@ export type ItemPriceDto = {
     percent?: number;
 };
 
+export type ItemPriceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemPriceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemPriceDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemPriceDto;
 };
@@ -332,6 +486,11 @@ export type ItemPriceDtoEnvelopeReadable = {
 export type ItemPriceDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemPriceDto;
 };
 
@@ -340,6 +499,11 @@ export type ItemPriceDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemPriceDto> | null;
 };
@@ -347,6 +511,11 @@ export type ItemPriceDtoListEnvelopeReadable = {
 export type ItemPriceDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemPriceDto> | null;
 };
 
@@ -383,6 +552,11 @@ export type MoneyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: MoneyReadable;
 };
@@ -390,13 +564,17 @@ export type MoneyEnvelopeReadable = {
 export type MoneyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: MoneyWritable;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -433,11 +611,39 @@ export type PriceListDto = {
     enrollmentId?: string | null;
 };
 
+export type PriceListDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PriceListDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PriceListDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PriceListDto;
 };
@@ -445,6 +651,11 @@ export type PriceListDtoEnvelopeReadable = {
 export type PriceListDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PriceListDto;
 };
 
@@ -453,6 +664,11 @@ export type PriceListDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PriceListDto> | null;
 };
@@ -460,6 +676,11 @@ export type PriceListDtoListEnvelopeReadable = {
 export type PriceListDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PriceListDto> | null;
 };
 
@@ -530,11 +751,39 @@ export type PricingRuleDto = {
     cityId?: string | null;
 };
 
+export type PricingRuleDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PricingRuleDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PricingRuleDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PricingRuleDto;
 };
@@ -542,6 +791,11 @@ export type PricingRuleDtoEnvelopeReadable = {
 export type PricingRuleDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PricingRuleDto;
 };
 
@@ -550,6 +804,11 @@ export type PricingRuleDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PricingRuleDto> | null;
 };
@@ -557,6 +816,11 @@ export type PricingRuleDtoListEnvelopeReadable = {
 export type PricingRuleDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PricingRuleDto> | null;
 };
 
@@ -656,11 +920,39 @@ export type RoundingPolicyDto = {
     enrollmentId?: string | null;
 };
 
+export type RoundingPolicyDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type RoundingPolicyDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type RoundingPolicyDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: RoundingPolicyDto;
 };
@@ -668,6 +960,11 @@ export type RoundingPolicyDtoEnvelopeReadable = {
 export type RoundingPolicyDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: RoundingPolicyDto;
 };
 
@@ -676,6 +973,11 @@ export type RoundingPolicyDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<RoundingPolicyDto> | null;
 };
@@ -683,6 +985,11 @@ export type RoundingPolicyDtoListEnvelopeReadable = {
 export type RoundingPolicyDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<RoundingPolicyDto> | null;
 };
 
@@ -727,7 +1034,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetDiscountListsData = {
-    body?: never;
+    body?: DiscountListDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -797,7 +1104,7 @@ export type CreateDiscountListResponses = {
 export type CreateDiscountListResponse = CreateDiscountListResponses[keyof CreateDiscountListResponses];
 
 export type GetDiscountListsCountData = {
-    body?: never;
+    body?: DiscountListDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -906,7 +1213,7 @@ export type GetDiscountListResponses = {
 export type GetDiscountListResponse = GetDiscountListResponses[keyof GetDiscountListResponses];
 
 export type PatchDiscountListData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         discountListId: string;
     };
@@ -980,7 +1287,7 @@ export type UpdateDiscountListResponses = {
 export type UpdateDiscountListResponse = UpdateDiscountListResponses[keyof UpdateDiscountListResponses];
 
 export type GetDiscountListEntriesData = {
-    body?: never;
+    body?: DiscountDtoCollectionQueryParametersWritable;
     path: {
         discountListId: string;
     };
@@ -1054,7 +1361,7 @@ export type CreateDiscountListEntryResponses = {
 export type CreateDiscountListEntryResponse = CreateDiscountListEntryResponses[keyof CreateDiscountListEntryResponses];
 
 export type GetDiscountListEntriesCountData = {
-    body?: never;
+    body?: DiscountDtoCollectionQueryParametersWritable;
     path: {
         discountListId: string;
     };
@@ -1167,7 +1474,7 @@ export type GetDiscountListEntryResponses = {
 export type GetDiscountListEntryResponse = GetDiscountListEntryResponses[keyof GetDiscountListEntryResponses];
 
 export type PatchDiscountListEntryData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         discountListId: string;
         discountListEntryId: string;
@@ -1264,6 +1571,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1571,7 +1894,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetPriceListsAsyncData = {
-    body?: never;
+    body?: PriceListDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1625,7 +1948,7 @@ export type CreatePriceListAsyncResponses = {
 export type CreatePriceListAsyncResponse = CreatePriceListAsyncResponses[keyof CreatePriceListAsyncResponses];
 
 export type GetPriceListsCountAsyncData = {
-    body?: never;
+    body?: PriceListDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1710,7 +2033,7 @@ export type GetPriceListAsyncResponses = {
 export type GetPriceListAsyncResponse = GetPriceListAsyncResponses[keyof GetPriceListAsyncResponses];
 
 export type PatchPriceListAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         priceListId: string;
     };
@@ -1768,7 +2091,7 @@ export type UpdatePriceListAsyncResponses = {
 export type UpdatePriceListAsyncResponse = UpdatePriceListAsyncResponses[keyof UpdatePriceListAsyncResponses];
 
 export type GetPriceListPricesAsyncData = {
-    body?: never;
+    body?: ItemPriceDtoCollectionQueryParametersWritable;
     path: {
         priceListId: string;
     };
@@ -1827,7 +2150,7 @@ export type CreatePriceListPricesAsyncResponses = {
 export type CreatePriceListPricesAsyncResponse = CreatePriceListPricesAsyncResponses[keyof CreatePriceListPricesAsyncResponses];
 
 export type GetPriceListPricesCountAsyncData = {
-    body?: never;
+    body?: ItemPriceDtoCollectionQueryParametersWritable;
     path: {
         priceListId: string;
     };
@@ -1916,7 +2239,7 @@ export type GetPriceListPriceAsyncResponses = {
 export type GetPriceListPriceAsyncResponse = GetPriceListPriceAsyncResponses[keyof GetPriceListPriceAsyncResponses];
 
 export type PatchPriceListPriceAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         priceListId: string;
         priceId: string;
@@ -2111,7 +2434,7 @@ export type GetTotalSavingsInUsdResponses = {
 export type GetTotalSavingsInUsdResponse = GetTotalSavingsInUsdResponses[keyof GetTotalSavingsInUsdResponses];
 
 export type GetPricingRulesData = {
-    body?: never;
+    body?: PricingRuleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2253,7 +2576,7 @@ export type GetPricingRuleByIdResponses = {
 export type GetPricingRuleByIdResponse = GetPricingRuleByIdResponses[keyof GetPricingRuleByIdResponses];
 
 export type PatchPricingRuleData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2288,7 +2611,7 @@ export type PatchPricingRuleResponses = {
 };
 
 export type GetPricingRulesCountAsyncData = {
-    body?: never;
+    body?: PricingRuleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2353,7 +2676,7 @@ export type UpdatePricingRuleResponses = {
 };
 
 export type GetRoundingPoliciesAsyncData = {
-    body?: never;
+    body?: RoundingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2423,7 +2746,7 @@ export type CreateRoundingPolicyAsyncResponses = {
 export type CreateRoundingPolicyAsyncResponse = CreateRoundingPolicyAsyncResponses[keyof CreateRoundingPolicyAsyncResponses];
 
 export type GetRoundingPoliciesCountAsyncData = {
-    body?: never;
+    body?: RoundingPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2532,7 +2855,7 @@ export type GetRoundingPolicyByIdAsyncResponses = {
 export type GetRoundingPolicyByIdAsyncResponse = GetRoundingPolicyByIdAsyncResponses[keyof GetRoundingPolicyByIdAsyncResponses];
 
 export type PatchRoundingPolicyAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

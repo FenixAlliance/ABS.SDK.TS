@@ -4,7 +4,6 @@ export * as AssetsService from "../clients/assetsService";
 export * as BlockchainsService from "../clients/blockchainsService";
 export * as CartService from "../clients/cartService";
 export * as CatalogService from "../clients/catalogService";
-export * as ContentService from "../clients/contentService";
 export * as CrmService from "../clients/crmService";
 export * as DealsService from "../clients/dealsService";
 export * as EmailTemplates from "../clients/emailTemplates";

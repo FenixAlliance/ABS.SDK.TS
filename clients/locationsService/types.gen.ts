@@ -18,12 +18,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -31,12 +41,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -73,6 +93,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -80,6 +105,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -138,11 +168,39 @@ export type LocationDto = {
     enrollmentId?: string | null;
 };
 
+export type LocationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LocationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LocationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LocationDto;
 };
@@ -150,6 +208,11 @@ export type LocationDtoEnvelopeReadable = {
 export type LocationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LocationDto;
 };
 
@@ -158,6 +221,11 @@ export type LocationDtoIReadOnlyListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LocationDto> | null;
 };
@@ -165,6 +233,11 @@ export type LocationDtoIReadOnlyListEnvelopeReadable = {
 export type LocationDtoIReadOnlyListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LocationDto> | null;
 };
 
@@ -199,10 +272,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -264,6 +336,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -571,7 +659,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetLocationsAsyncData = {
-    body?: never;
+    body?: LocationDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -633,7 +721,7 @@ export type CreateLocationAsyncResponses = {
 export type CreateLocationAsyncResponse = CreateLocationAsyncResponses[keyof CreateLocationAsyncResponses];
 
 export type GetLocationsCountAsyncData = {
-    body?: never;
+    body?: LocationDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -730,7 +818,7 @@ export type GetLocationAsyncResponses = {
 export type GetLocationAsyncResponse = GetLocationAsyncResponses[keyof GetLocationAsyncResponses];
 
 export type PatchLocationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         locationId: string;
     };
@@ -796,7 +884,7 @@ export type UpdateLocationAsyncResponses = {
 export type UpdateLocationAsyncResponse = UpdateLocationAsyncResponses[keyof UpdateLocationAsyncResponses];
 
 export type GetWalletLocationsAsyncData = {
-    body?: never;
+    body?: LocationDtoCollectionQueryParametersWritable;
     path: {
         walletId: string;
     };
@@ -858,7 +946,7 @@ export type CreateWalletLocationAsyncResponses = {
 export type CreateWalletLocationAsyncResponse = CreateWalletLocationAsyncResponses[keyof CreateWalletLocationAsyncResponses];
 
 export type GetWalletLocationsCountAsyncData = {
-    body?: never;
+    body?: LocationDtoCollectionQueryParametersWritable;
     path: {
         walletId: string;
     };
@@ -953,7 +1041,7 @@ export type GetWalletLocationAsyncResponses = {
 export type GetWalletLocationAsyncResponse = GetWalletLocationAsyncResponses[keyof GetWalletLocationAsyncResponses];
 
 export type PatchWalletLocationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         walletId: string;
         locationId: string;

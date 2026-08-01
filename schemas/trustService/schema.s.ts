@@ -25,6 +25,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -308,11 +323,6 @@ export interface paths {
      * @description Retrieves all signatures for the specified tenant.
      */
     get: operations["GetSignaturesAsync"];
-    /**
-     * Create a new signature
-     * @description Creates a new signature for the specified tenant.
-     */
-    post: operations["CreateSignatureAsync"];
   };
   "/api/v2/TrustService/Signatures/Count": {
     /**
@@ -327,21 +337,6 @@ export interface paths {
      * @description Retrieves a specific signature by its identifier.
      */
     get: operations["GetSignatureByIdAsync"];
-    /**
-     * Update a signature
-     * @description Updates an existing signature for the specified tenant.
-     */
-    put: operations["UpdateSignatureAsync"];
-    /**
-     * Delete a signature
-     * @description Deletes a signature for the specified tenant.
-     */
-    delete: operations["DeleteSignatureAsync"];
-    /**
-     * Patch a signature
-     * @description Patch a signature
-     */
-    patch: operations["PatchSignatureAsync"];
   };
   "/api/v2/TrustService/SignedDocumentArtifacts/{signedDocumentId}/primary-file/{fileUploadId}": {
     /**
@@ -460,6 +455,13 @@ export interface paths {
      */
     post: operations["QuickSignSignedDocumentAsync"];
   };
+  "/api/v2/TrustService/SignedDocuments/prepare-and-quick-sign": {
+    /**
+     * Create, freeze, and quick-sign a document in one call
+     * @description Server-side single-signer flow: creates a SignedDocument from the uploaded source, stores it, freezes it, signs it with the chosen certificate + provider, and seals it — all in one unit of work. Returns the sealed document. Evidence truth (signed/status/hashes/artifact ids) is server-produced and cannot be supplied by the caller.
+     */
+    post: operations["PrepareAndQuickSignAsync"];
+  };
   "/api/v2/TrustService/SignedDocuments/{id}/verify-signature": {
     /**
      * Verify a signed document's signature
@@ -535,13 +537,6 @@ export interface paths {
      * @description Side-effect-free: validates a signing request and reports whether it can proceed and with what policy.
      */
     post: operations["PreviewAsync"];
-  };
-  "/api/v2/TrustService/SigningEngine/RecordOutcome": {
-    /**
-     * Record a signing outcome
-     * @description Records an externally/manually produced signing outcome onto the signed document. No bytes or keys are handled.
-     */
-    post: operations["RecordSigningOutcomeAsync"];
   };
   "/api/v2/TrustService/SigningLogs": {
     /**
@@ -686,6 +681,13 @@ export interface paths {
     /** Create a signing request from a frozen document */
     post: operations["CreateFromDocumentAsync"];
   };
+  "/api/v2/TrustService/SigningRequests/prepare-and-create": {
+    /**
+     * Create, store, freeze a document and open a signing request in one call
+     * @description Server-owned flow (T-UX4): creates a SignedDocument from the uploaded source, stores it, freezes it, then creates a signing request over the frozen artifact and attaches its signers — all in one unit of work. Evidence truth (status/hashes/ids/tokens) is server-produced; the caller supplies intent only. The server generates the new document id.
+     */
+    post: operations["PrepareAndCreateAsync"];
+  };
   "/api/v2/TrustService/SigningRequests/{id}/participants": {
     /** Add a participant to a signing request */
     post: operations["AddParticipantAsync"];
@@ -729,6 +731,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: boolean;
     };
@@ -873,6 +881,7 @@ export interface components {
       routingMode?: "Parallel" | "Sequential";
       /** Format: date-time */
       expiresAtUtc?: string | null;
+      message?: string | null;
       correlationId?: string | null;
       externalReference?: string | null;
     };
@@ -882,6 +891,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -890,6 +905,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ExecuteSigningRequestDto: {
@@ -935,6 +956,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -945,11 +972,9 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -966,10 +991,6 @@ export interface components {
       declineReason?: string | null;
       externalReference?: string | null;
     };
-    RecordTrustSigningOutcomeRequest: {
-      request?: components["schemas"]["TrustSigningRequestDto"];
-      result?: components["schemas"]["TrustSigningResultDto"];
-    };
     RefreshRequest: {
       refreshToken: string | null;
     };
@@ -984,32 +1005,6 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
-    };
-    SignatureCreateDto: {
-      /** Format: uuid */
-      id?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      type?: string | null;
-      validationCode?: string | null;
-      signatureImage?: string | null;
-      contactId: string;
-      signingProfileId: string;
-      signingCertificateId: string;
-      signedDocumentId: string;
-      /** Format: date-time */
-      signedAtUtc?: string | null;
-      /** @enum {string|null} */
-      signingStatus?: "Unknown" | "Draft" | "Signed" | "Failed" | "Revoked" | null;
-      /** @enum {string|null} */
-      verificationStatus?: "Unknown" | "NotVerified" | "Valid" | "Invalid" | "Expired" | null;
-      /** @enum {string|null} */
-      signatureFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
-      digestAlgorithm?: string | null;
-      signatureAlgorithm?: string | null;
-      canonicalizationAlgorithm?: string | null;
-      policyIdentifier?: string | null;
-      correlationId?: string | null;
     };
     SignatureDto: {
       id?: string | null;
@@ -1045,36 +1040,33 @@ export interface components {
       signingCertificateTitle?: string | null;
       signedDocumentTitle?: string | null;
     };
+    SignatureDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SignatureDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SignatureDto"][] | null;
-    };
-    SignatureUpdateDto: {
-      type?: string | null;
-      validationCode?: string | null;
-      signatureImage?: string | null;
-      contactId: string;
-      signingProfileId: string;
-      signingCertificateId: string;
-      signedDocumentId: string;
-      /** Format: date-time */
-      signedAtUtc?: string | null;
-      /** @enum {string|null} */
-      signingStatus?: "Unknown" | "Draft" | "Signed" | "Failed" | "Revoked" | null;
-      /** @enum {string|null} */
-      verificationStatus?: "Unknown" | "NotVerified" | "Valid" | "Invalid" | "Expired" | null;
-      /** @enum {string|null} */
-      signatureFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
-      digestAlgorithm?: string | null;
-      signatureAlgorithm?: string | null;
-      canonicalizationAlgorithm?: string | null;
-      policyIdentifier?: string | null;
-      correlationId?: string | null;
     };
     SignatureVerificationDto: {
       isValid?: boolean;
@@ -1126,12 +1118,31 @@ export interface components {
       enrollmentId?: string | null;
       signedDocumentTitle?: string | null;
     };
+    SignedDocumentAttachmentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SignedDocumentAttachmentDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SignedDocumentAttachmentDto"][] | null;
     };
@@ -1145,7 +1156,6 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      signed?: boolean;
       url?: string | null;
       type?: string | null;
       title: string;
@@ -1155,12 +1165,6 @@ export interface components {
       documentStandard?: "None" | "Ubl" | "Pdf" | "Xml" | "Email" | "Json" | "Other" | null;
       /** @enum {string|null} */
       trustDocumentType?: "Unknown" | "Invoice" | "CreditNote" | "DebitNote" | "Contract" | "Certificate" | "Email" | "AuthorityResponse" | "Other" | null;
-      /** @enum {string|null} */
-      signingStatus?: "Unknown" | "Draft" | "Signed" | "Failed" | "Revoked" | null;
-      /** @enum {string|null} */
-      verificationStatus?: "Unknown" | "NotVerified" | "Valid" | "Invalid" | "Expired" | null;
-      /** Format: date-time */
-      signedAtUtc?: string | null;
       correlationId?: string | null;
       externalReference?: string | null;
     };
@@ -1211,17 +1215,35 @@ export interface components {
       graphicalRepresentationGeneratedAtUtc?: string | null;
       contactName?: string | null;
     };
+    SignedDocumentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SignedDocumentDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SignedDocumentDto"][] | null;
     };
     SignedDocumentUpdateDto: {
-      signed?: boolean;
       url?: string | null;
       type?: string | null;
       title: string;
@@ -1231,12 +1253,6 @@ export interface components {
       documentStandard?: "None" | "Ubl" | "Pdf" | "Xml" | "Email" | "Json" | "Other" | null;
       /** @enum {string|null} */
       trustDocumentType?: "Unknown" | "Invoice" | "CreditNote" | "DebitNote" | "Contract" | "Certificate" | "Email" | "AuthorityResponse" | "Other" | null;
-      /** @enum {string|null} */
-      signingStatus?: "Unknown" | "Draft" | "Signed" | "Failed" | "Revoked" | null;
-      /** @enum {string|null} */
-      verificationStatus?: "Unknown" | "NotVerified" | "Valid" | "Invalid" | "Expired" | null;
-      /** Format: date-time */
-      signedAtUtc?: string | null;
       correlationId?: string | null;
       externalReference?: string | null;
     };
@@ -1254,8 +1270,6 @@ export interface components {
       certificateType?: "AuthSignedCertificate" | "SelfSignedCertificate" | "AllianceSignedCertificate";
       contactId: string;
       securityCertificateId?: string | null;
-      /** @enum {string|null} */
-      certificateStatus?: "Unknown" | "Active" | "Expiring" | "Expired" | "Revoked" | "Disabled" | null;
     };
     SigningCertificateDto: {
       id?: string | null;
@@ -1288,12 +1302,31 @@ export interface components {
       notAfterUtc?: string | null;
       contactName?: string | null;
     };
+    SigningCertificateDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SigningCertificateDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SigningCertificateDto"][] | null;
     };
@@ -1307,8 +1340,6 @@ export interface components {
       certificateType?: "AuthSignedCertificate" | "SelfSignedCertificate" | "AllianceSignedCertificate";
       contactId: string;
       securityCertificateId?: string | null;
-      /** @enum {string|null} */
-      certificateStatus?: "Unknown" | "Active" | "Expiring" | "Expired" | "Revoked" | "Disabled" | null;
     };
     SigningLogDto: {
       id?: string | null;
@@ -1338,12 +1369,31 @@ export interface components {
       signingCertificateTitle?: string | null;
       signedDocumentTitle?: string | null;
     };
+    SigningLogDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SigningLogDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SigningLogDto"][] | null;
     };
@@ -1376,12 +1426,31 @@ export interface components {
       correlationId?: string | null;
       externalReference?: string | null;
     };
+    SigningParticipantDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SigningParticipantDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SigningParticipantDto"][] | null;
     };
@@ -1478,12 +1547,31 @@ export interface components {
       isActive?: boolean | null;
       defaultForDocumentType?: string | null;
     };
+    SigningProfileDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SigningProfileDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SigningProfileDto"][] | null;
     };
@@ -1526,12 +1614,31 @@ export interface components {
       createdAtUtc?: string;
       signingProfileName?: string | null;
     };
+    SigningProfileGraphicalRepresentationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SigningProfileGraphicalRepresentationDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SigningProfileGraphicalRepresentationDto"][] | null;
     };
@@ -1607,8 +1714,22 @@ export interface components {
       /** Format: date-time */
       voidedAtUtc?: string | null;
       voidedReason?: string | null;
+      message?: string | null;
       correlationId?: string | null;
       externalReference?: string | null;
+    };
+    SigningRequestDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     SigningRequestDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1616,6 +1737,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SigningRequestDto"][] | null;
     };
@@ -1635,6 +1762,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TrustArtifactReferenceDto"];
     };
@@ -1645,12 +1778,31 @@ export interface components {
       canRecordOutcome?: boolean;
       description?: string | null;
     };
+    TrustSigningProviderDescriptorDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     TrustSigningProviderDescriptorDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TrustSigningProviderDescriptorDto"][] | null;
     };
@@ -1681,6 +1833,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["TrustSigningReadinessDto"];
     };
@@ -1698,31 +1856,6 @@ export interface components {
       sourceSha256?: string | null;
       externalReference?: string | null;
       dryRun?: boolean;
-    };
-    TrustSigningResultDto: {
-      succeeded?: boolean;
-      /** @enum {string|null} */
-      signingStatus?: "Unknown" | "Draft" | "Signed" | "Failed" | "Revoked" | null;
-      /** @enum {string|null} */
-      verificationStatus?: "Unknown" | "NotVerified" | "Valid" | "Invalid" | "Expired" | null;
-      /** Format: date-time */
-      signedAtUtc?: string | null;
-      /** @enum {string|null} */
-      signatureFormat?: "Unknown" | "XAdES" | "PAdES" | "CAdES" | "SMIME" | "DetachedXmlDSig" | "Enveloped" | "Other" | null;
-      digestAlgorithm?: string | null;
-      digestValue?: string | null;
-      signatureAlgorithm?: string | null;
-      signatureValueHash?: string | null;
-      canonicalizationAlgorithm?: string | null;
-      policyIdentifier?: string | null;
-      correlationId?: string | null;
-      signedStorageObjectId?: string | null;
-      signedSha256?: string | null;
-      evidenceStorageObjectId?: string | null;
-      evidenceSha256?: string | null;
-      providerName?: string | null;
-      resultCode?: string | null;
-      messages?: string[] | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -1785,53 +1918,18 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SignatureDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SignatureDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
         content: {
           "application/json": components["schemas"]["SignatureDtoListEnvelope"];
           "application/xml": components["schemas"]["SignatureDtoListEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Create a new signature
-   * @description Creates a new signature for the specified tenant.
-   */
-  CreateSignatureAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["SignatureCreateDto"];
-        "application/xml": components["schemas"]["SignatureCreateDto"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -1855,6 +1953,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SignatureDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SignatureDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1908,135 +2012,6 @@ export interface operations {
       };
       /** @description Not Found */
       404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Update a signature
-   * @description Updates an existing signature for the specified tenant.
-   */
-  UpdateSignatureAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        id: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["SignatureUpdateDto"];
-        "application/xml": components["schemas"]["SignatureUpdateDto"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Delete a signature
-   * @description Deletes a signature for the specified tenant.
-   */
-  DeleteSignatureAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
-   * Patch a signature
-   * @description Patch a signature
-   */
-  PatchSignatureAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-      path: {
-        id: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Forbidden */
-      403: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
@@ -2227,6 +2202,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SignedDocumentAttachmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SignedDocumentAttachmentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2297,6 +2278,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SignedDocumentAttachmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SignedDocumentAttachmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2458,8 +2445,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2498,6 +2485,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SignedDocumentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SignedDocumentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2570,6 +2563,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SignedDocumentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SignedDocumentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2731,8 +2730,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2811,6 +2810,88 @@ export interface operations {
     };
   };
   /**
+   * Create, freeze, and quick-sign a document in one call
+   * @description Server-side single-signer flow: creates a SignedDocument from the uploaded source, stores it, freezes it, signs it with the chosen certificate + provider, and seals it — all in one unit of work. Returns the sealed document. Evidence truth (signed/status/hashes/artifact ids) is server-produced and cannot be supplied by the caller.
+   */
+  PrepareAndQuickSignAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: uuid */
+          id?: string;
+          /** Format: binary */
+          file?: string;
+          title?: string;
+          contactId?: string;
+          signingCertificateId?: string;
+          signingProfileId?: string;
+          providerName?: string;
+        };
+        "application/json": {
+          /** Format: uuid */
+          id?: string;
+          /** Format: binary */
+          file?: string;
+          title?: string;
+          contactId?: string;
+          signingCertificateId?: string;
+          signingProfileId?: string;
+          providerName?: string;
+        };
+        "application/xml": {
+          /** Format: uuid */
+          id?: string;
+          /** Format: binary */
+          file?: string;
+          title?: string;
+          contactId?: string;
+          signingCertificateId?: string;
+          signingProfileId?: string;
+          providerName?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SignedDocumentDto"];
+          "application/xml": components["schemas"]["SignedDocumentDto"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Verify a signed document's signature
    * @description Re-verifies the document's signature against its stored signed artifact (bytes intact + signed by the embedded certificate; certificate trust is a separate concern).
    */
@@ -2863,6 +2944,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningCertificateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningCertificateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2935,6 +3022,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningCertificateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningCertificateDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3096,8 +3189,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3204,6 +3297,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TrustSigningProviderDescriptorDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TrustSigningProviderDescriptorDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3233,6 +3332,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["TrustSigningProviderDescriptorDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["TrustSigningProviderDescriptorDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3297,47 +3402,6 @@ export interface operations {
     };
   };
   /**
-   * Record a signing outcome
-   * @description Records an externally/manually produced signing outcome onto the signed document. No bytes or keys are handled.
-   */
-  RecordSigningOutcomeAsync: {
-    parameters: {
-      query: {
-        tenantId: string;
-        "api-version"?: string;
-      };
-      header?: {
-        "x-api-version"?: string;
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["RecordTrustSigningOutcomeRequest"];
-        "application/xml": components["schemas"]["RecordTrustSigningOutcomeRequest"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-      /** @description Forbidden */
-      403: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-      /** @description Not Found */
-      404: {
-        content: {
-          "application/json": components["schemas"]["ErrorEnvelope"];
-          "application/xml": components["schemas"]["ErrorEnvelope"];
-        };
-      };
-    };
-  };
-  /**
    * Get all signing logs
    * @description Retrieves all signing logs for the specified tenant.
    */
@@ -3349,6 +3413,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningLogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningLogDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3380,6 +3450,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningLogDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningLogDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3451,6 +3527,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningParticipantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningParticipantDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3477,6 +3559,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningParticipantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningParticipantDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3589,6 +3677,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningProfileGraphicalRepresentationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningProfileGraphicalRepresentationDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3659,6 +3753,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningProfileGraphicalRepresentationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningProfileGraphicalRepresentationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3820,8 +3920,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3860,6 +3960,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3932,6 +4038,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4093,8 +4205,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4132,6 +4244,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningRequestDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningRequestDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4158,6 +4276,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SigningRequestDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SigningRequestDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4262,6 +4386,97 @@ export interface operations {
       };
       /** @description Bad Request */
       400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create, store, freeze a document and open a signing request in one call
+   * @description Server-owned flow (T-UX4): creates a SignedDocument from the uploaded source, stores it, freezes it, then creates a signing request over the frozen artifact and attaches its signers — all in one unit of work. Evidence truth (status/hashes/ids/tokens) is server-produced; the caller supplies intent only. The server generates the new document id.
+   */
+  PrepareAndCreateAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: binary */
+          file?: string;
+          title?: string;
+          contactId?: string;
+          /** @enum {string} */
+          routingMode?: "Parallel" | "Sequential";
+          /** Format: date-time */
+          expiresAtUtc?: string;
+          message?: string;
+          correlationId?: string;
+          externalReference?: string;
+          signers?: string;
+        };
+        "application/json": {
+          /** Format: binary */
+          file?: string;
+          title?: string;
+          contactId?: string;
+          /** @enum {string} */
+          routingMode?: "Parallel" | "Sequential";
+          /** Format: date-time */
+          expiresAtUtc?: string;
+          message?: string;
+          correlationId?: string;
+          externalReference?: string;
+          signers?: string;
+        };
+        "application/xml": {
+          /** Format: binary */
+          file?: string;
+          title?: string;
+          contactId?: string;
+          /** @enum {string} */
+          routingMode?: "Parallel" | "Sequential";
+          /** Format: date-time */
+          expiresAtUtc?: string;
+          message?: string;
+          correlationId?: string;
+          externalReference?: string;
+          signers?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SigningRequestDto"];
+          "application/xml": components["schemas"]["SigningRequestDto"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Conflict */
+      409: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

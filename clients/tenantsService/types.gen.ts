@@ -18,6 +18,11 @@ export type BooleanEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: boolean;
 };
@@ -25,7 +30,105 @@ export type BooleanEnvelopeReadable = {
 export type BooleanEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: boolean;
+};
+
+export type BusinessRelationshipCreateDto = {
+    id?: string;
+    timestamp?: string;
+    childTenantId?: string | null;
+    ownershipPercentage?: number;
+};
+
+export type BusinessRelationshipDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    parentTenantId?: string | null;
+    childTenantId?: string | null;
+    ownershipPercentage?: number;
+};
+
+export type BusinessRelationshipDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BusinessRelationshipDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type BusinessRelationshipDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: BusinessRelationshipDto;
+};
+
+export type BusinessRelationshipDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: BusinessRelationshipDto;
+};
+
+export type BusinessRelationshipDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<BusinessRelationshipDto> | null;
+};
+
+export type BusinessRelationshipDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<BusinessRelationshipDto> | null;
+};
+
+export type BusinessRelationshipUpdateDto = {
+    childTenantId?: string | null;
+    ownershipPercentage?: number;
 };
 
 export type CartDto = {
@@ -48,6 +151,11 @@ export type CartDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CartDto;
 };
@@ -55,6 +163,11 @@ export type CartDtoEnvelopeReadable = {
 export type CartDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CartDto;
 };
 
@@ -63,12 +176,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -76,12 +199,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedTenantDtoReadable = {
@@ -176,6 +309,11 @@ export type ExtendedTenantDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ExtendedTenantDtoReadable;
 };
@@ -183,6 +321,11 @@ export type ExtendedTenantDtoEnvelopeReadable = {
 export type ExtendedTenantDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ExtendedTenantDtoWritable;
 };
 
@@ -212,11 +355,39 @@ export type ExtendedTenantEnrollmentDtoWritable = {
     user?: UserDtoWritable;
 };
 
+export type ExtendedTenantEnrollmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedTenantEnrollmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedTenantEnrollmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ExtendedTenantEnrollmentDtoReadable;
 };
@@ -224,6 +395,11 @@ export type ExtendedTenantEnrollmentDtoEnvelopeReadable = {
 export type ExtendedTenantEnrollmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ExtendedTenantEnrollmentDtoWritable;
 };
 
@@ -261,6 +437,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -268,6 +449,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -292,11 +478,39 @@ export type NotificationDto = {
     issuedTimestamp?: string;
 };
 
+export type NotificationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type NotificationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type NotificationDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<NotificationDto> | null;
 };
@@ -304,15 +518,12 @@ export type NotificationDtoListEnvelopeReadable = {
 export type NotificationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<NotificationDto> | null;
-};
-
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
-    op?: string | null;
-    from?: string | null;
-    value?: unknown;
 };
 
 export type OptionCreateDto = {
@@ -339,11 +550,39 @@ export type OptionDto = {
     expiration?: number;
 };
 
+export type OptionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type OptionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type OptionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: OptionDto;
 };
@@ -351,6 +590,11 @@ export type OptionDtoEnvelopeReadable = {
 export type OptionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: OptionDto;
 };
 
@@ -359,6 +603,11 @@ export type OptionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<OptionDto> | null;
 };
@@ -366,6 +615,11 @@ export type OptionDtoListEnvelopeReadable = {
 export type OptionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<OptionDto> | null;
 };
 
@@ -377,6 +631,13 @@ export type OptionUpdateDto = {
     autoload?: boolean;
     transient?: boolean;
     expiration?: number;
+};
+
+export type PatchOperation = {
+    op?: string | null;
+    path?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type RefreshRequest = {
@@ -432,6 +693,11 @@ export type SocialProfileDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialProfileDto;
 };
@@ -439,6 +705,11 @@ export type SocialProfileDtoEnvelopeReadable = {
 export type SocialProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialProfileDto;
 };
 
@@ -447,6 +718,11 @@ export type StringListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<string> | null;
 };
@@ -454,6 +730,11 @@ export type StringListEnvelopeReadable = {
 export type StringListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<string> | null;
 };
 
@@ -474,6 +755,11 @@ export type SuiteLicenseAssignmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SuiteLicenseAssignmentDto> | null;
 };
@@ -481,6 +767,11 @@ export type SuiteLicenseAssignmentDtoListEnvelopeReadable = {
 export type SuiteLicenseAssignmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SuiteLicenseAssignmentDto> | null;
 };
 
@@ -500,6 +791,11 @@ export type SuiteLicenseDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SuiteLicenseDto> | null;
 };
@@ -507,6 +803,11 @@ export type SuiteLicenseDtoListEnvelopeReadable = {
 export type SuiteLicenseDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SuiteLicenseDto> | null;
 };
 
@@ -520,6 +821,11 @@ export type SuiteLicenseFeatureDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SuiteLicenseFeatureDto> | null;
 };
@@ -527,6 +833,11 @@ export type SuiteLicenseFeatureDtoListEnvelopeReadable = {
 export type SuiteLicenseFeatureDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SuiteLicenseFeatureDto> | null;
 };
 
@@ -579,11 +890,39 @@ export type TenantDepartmentDto = {
     parentDepartmentId?: string | null;
 };
 
+export type TenantDepartmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantDepartmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantDepartmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantDepartmentDto;
 };
@@ -591,6 +930,11 @@ export type TenantDepartmentDtoEnvelopeReadable = {
 export type TenantDepartmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantDepartmentDto;
 };
 
@@ -599,6 +943,11 @@ export type TenantDepartmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantDepartmentDto> | null;
 };
@@ -606,6 +955,11 @@ export type TenantDepartmentDtoListEnvelopeReadable = {
 export type TenantDepartmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantDepartmentDto> | null;
 };
 
@@ -703,6 +1057,11 @@ export type TenantDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantDtoReadable;
 };
@@ -710,6 +1069,11 @@ export type TenantDtoEnvelopeReadable = {
 export type TenantDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantDtoWritable;
 };
 
@@ -730,11 +1094,39 @@ export type TenantEnrollmentDto = {
     isDisabled?: boolean;
 };
 
+export type TenantEnrollmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantEnrollmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantEnrollmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantEnrollmentDto;
 };
@@ -742,6 +1134,11 @@ export type TenantEnrollmentDtoEnvelopeReadable = {
 export type TenantEnrollmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantEnrollmentDto;
 };
 
@@ -750,6 +1147,11 @@ export type TenantEnrollmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantEnrollmentDto> | null;
 };
@@ -757,6 +1159,11 @@ export type TenantEnrollmentDtoListEnvelopeReadable = {
 export type TenantEnrollmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantEnrollmentDto> | null;
 };
 
@@ -781,11 +1188,39 @@ export type TenantIndustryDto = {
     parentBusinessIndustryId?: string | null;
 };
 
+export type TenantIndustryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantIndustryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantIndustryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantIndustryDto;
 };
@@ -793,6 +1228,11 @@ export type TenantIndustryDtoEnvelopeReadable = {
 export type TenantIndustryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantIndustryDto;
 };
 
@@ -801,6 +1241,11 @@ export type TenantIndustryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantIndustryDto> | null;
 };
@@ -808,6 +1253,11 @@ export type TenantIndustryDtoListEnvelopeReadable = {
 export type TenantIndustryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantIndustryDto> | null;
 };
 
@@ -834,11 +1284,39 @@ export type TenantInvitationDto = {
     relatedEnrollmentId?: string | null;
 };
 
+export type TenantInvitationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantInvitationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantInvitationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantInvitationDto;
 };
@@ -846,6 +1324,11 @@ export type TenantInvitationDtoEnvelopeReadable = {
 export type TenantInvitationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantInvitationDto;
 };
 
@@ -854,6 +1337,11 @@ export type TenantInvitationDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantInvitationDto> | null;
 };
@@ -861,6 +1349,11 @@ export type TenantInvitationDtoListEnvelopeReadable = {
 export type TenantInvitationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantInvitationDto> | null;
 };
 
@@ -882,11 +1375,39 @@ export type TenantPositionDto = {
     type?: string | null;
 };
 
+export type TenantPositionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantPositionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantPositionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantPositionDto;
 };
@@ -894,6 +1415,11 @@ export type TenantPositionDtoEnvelopeReadable = {
 export type TenantPositionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantPositionDto;
 };
 
@@ -902,6 +1428,11 @@ export type TenantPositionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantPositionDto> | null;
 };
@@ -909,6 +1440,11 @@ export type TenantPositionDtoListEnvelopeReadable = {
 export type TenantPositionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantPositionDto> | null;
 };
 
@@ -934,11 +1470,39 @@ export type TenantSegmentDto = {
     maxEmployees?: number;
 };
 
+export type TenantSegmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantSegmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantSegmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantSegmentDto;
 };
@@ -946,6 +1510,11 @@ export type TenantSegmentDtoEnvelopeReadable = {
 export type TenantSegmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantSegmentDto;
 };
 
@@ -954,6 +1523,11 @@ export type TenantSegmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantSegmentDto> | null;
 };
@@ -961,6 +1535,11 @@ export type TenantSegmentDtoListEnvelopeReadable = {
 export type TenantSegmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantSegmentDto> | null;
 };
 
@@ -985,11 +1564,39 @@ export type TenantSizeDto = {
     employeeHighRangeValue?: number;
 };
 
+export type TenantSizeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantSizeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantSizeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantSizeDto;
 };
@@ -997,6 +1604,11 @@ export type TenantSizeDtoEnvelopeReadable = {
 export type TenantSizeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantSizeDto;
 };
 
@@ -1005,6 +1617,11 @@ export type TenantSizeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantSizeDto> | null;
 };
@@ -1012,6 +1629,11 @@ export type TenantSizeDtoListEnvelopeReadable = {
 export type TenantSizeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantSizeDto> | null;
 };
 
@@ -1036,11 +1658,39 @@ export type TenantTeamContactEnrollmentDto = {
     contactId?: string | null;
 };
 
+export type TenantTeamContactEnrollmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantTeamContactEnrollmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantTeamContactEnrollmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantTeamContactEnrollmentDto;
 };
@@ -1048,6 +1698,11 @@ export type TenantTeamContactEnrollmentDtoEnvelopeReadable = {
 export type TenantTeamContactEnrollmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantTeamContactEnrollmentDto;
 };
 
@@ -1056,6 +1711,11 @@ export type TenantTeamContactEnrollmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantTeamContactEnrollmentDto> | null;
 };
@@ -1063,6 +1723,11 @@ export type TenantTeamContactEnrollmentDtoListEnvelopeReadable = {
 export type TenantTeamContactEnrollmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantTeamContactEnrollmentDto> | null;
 };
 
@@ -1095,11 +1760,39 @@ export type TenantTeamDto = {
     organizationProfileId?: string | null;
 };
 
+export type TenantTeamDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantTeamDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantTeamDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantTeamDto;
 };
@@ -1107,6 +1800,11 @@ export type TenantTeamDtoEnvelopeReadable = {
 export type TenantTeamDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantTeamDto;
 };
 
@@ -1115,6 +1813,11 @@ export type TenantTeamDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantTeamDto> | null;
 };
@@ -1122,6 +1825,11 @@ export type TenantTeamDtoListEnvelopeReadable = {
 export type TenantTeamDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantTeamDto> | null;
 };
 
@@ -1141,11 +1849,39 @@ export type TenantTeamEmployeeEnrollmentDto = {
     employeeProfileId?: string | null;
 };
 
+export type TenantTeamEmployeeEnrollmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantTeamEmployeeEnrollmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantTeamEmployeeEnrollmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantTeamEmployeeEnrollmentDto;
 };
@@ -1153,6 +1889,11 @@ export type TenantTeamEmployeeEnrollmentDtoEnvelopeReadable = {
 export type TenantTeamEmployeeEnrollmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantTeamEmployeeEnrollmentDto;
 };
 
@@ -1161,6 +1902,11 @@ export type TenantTeamEmployeeEnrollmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantTeamEmployeeEnrollmentDto> | null;
 };
@@ -1168,6 +1914,11 @@ export type TenantTeamEmployeeEnrollmentDtoListEnvelopeReadable = {
 export type TenantTeamEmployeeEnrollmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantTeamEmployeeEnrollmentDto> | null;
 };
 
@@ -1192,11 +1943,39 @@ export type TenantTeamProjectEnrollmentDto = {
     projectId?: string | null;
 };
 
+export type TenantTeamProjectEnrollmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantTeamProjectEnrollmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantTeamProjectEnrollmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantTeamProjectEnrollmentDto;
 };
@@ -1204,6 +1983,11 @@ export type TenantTeamProjectEnrollmentDtoEnvelopeReadable = {
 export type TenantTeamProjectEnrollmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantTeamProjectEnrollmentDto;
 };
 
@@ -1212,6 +1996,11 @@ export type TenantTeamProjectEnrollmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantTeamProjectEnrollmentDto> | null;
 };
@@ -1219,6 +2008,11 @@ export type TenantTeamProjectEnrollmentDtoListEnvelopeReadable = {
 export type TenantTeamProjectEnrollmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantTeamProjectEnrollmentDto> | null;
 };
 
@@ -1241,11 +2035,39 @@ export type TenantTeamRecordDto = {
     enrollmentId?: string | null;
 };
 
+export type TenantTeamRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantTeamRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantTeamRecordDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantTeamRecordDto;
 };
@@ -1253,6 +2075,11 @@ export type TenantTeamRecordDtoEnvelopeReadable = {
 export type TenantTeamRecordDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantTeamRecordDto;
 };
 
@@ -1261,6 +2088,11 @@ export type TenantTeamRecordDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantTeamRecordDto> | null;
 };
@@ -1268,6 +2100,11 @@ export type TenantTeamRecordDtoListEnvelopeReadable = {
 export type TenantTeamRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantTeamRecordDto> | null;
 };
 
@@ -1302,11 +2139,39 @@ export type TenantTerritoryDto = {
     parentTerritoryId?: string | null;
 };
 
+export type TenantTerritoryDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantTerritoryDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantTerritoryDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantTerritoryDto;
 };
@@ -1314,6 +2179,11 @@ export type TenantTerritoryDtoEnvelopeReadable = {
 export type TenantTerritoryDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantTerritoryDto;
 };
 
@@ -1322,6 +2192,11 @@ export type TenantTerritoryDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantTerritoryDto> | null;
 };
@@ -1329,6 +2204,11 @@ export type TenantTerritoryDtoListEnvelopeReadable = {
 export type TenantTerritoryDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantTerritoryDto> | null;
 };
 
@@ -1353,11 +2233,39 @@ export type TenantTypeDto = {
     description?: string | null;
 };
 
+export type TenantTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantTypeDto;
 };
@@ -1365,6 +2273,11 @@ export type TenantTypeDtoEnvelopeReadable = {
 export type TenantTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantTypeDto;
 };
 
@@ -1373,6 +2286,11 @@ export type TenantTypeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantTypeDto> | null;
 };
@@ -1380,6 +2298,11 @@ export type TenantTypeDtoListEnvelopeReadable = {
 export type TenantTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantTypeDto> | null;
 };
 
@@ -1413,11 +2336,39 @@ export type TenantUnitDto = {
     parentBusinessUnitId?: string | null;
 };
 
+export type TenantUnitDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantUnitDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantUnitDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantUnitDto;
 };
@@ -1425,6 +2376,11 @@ export type TenantUnitDtoEnvelopeReadable = {
 export type TenantUnitDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantUnitDto;
 };
 
@@ -1433,6 +2389,11 @@ export type TenantUnitDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantUnitDto> | null;
 };
@@ -1440,6 +2401,11 @@ export type TenantUnitDtoListEnvelopeReadable = {
 export type TenantUnitDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantUnitDto> | null;
 };
 
@@ -1519,11 +2485,39 @@ export type UnitDto = {
     enrollmentId?: string | null;
 };
 
+export type UnitDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type UnitDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type UnitDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: UnitDto;
 };
@@ -1531,6 +2525,11 @@ export type UnitDtoEnvelopeReadable = {
 export type UnitDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: UnitDto;
 };
 
@@ -1539,6 +2538,11 @@ export type UnitDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<UnitDto> | null;
 };
@@ -1546,6 +2550,11 @@ export type UnitDtoListEnvelopeReadable = {
 export type UnitDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<UnitDto> | null;
 };
 
@@ -1566,11 +2575,39 @@ export type UnitGroupDto = {
     unitCount?: number;
 };
 
+export type UnitGroupDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type UnitGroupDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type UnitGroupDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: UnitGroupDto;
 };
@@ -1578,6 +2615,11 @@ export type UnitGroupDtoEnvelopeReadable = {
 export type UnitGroupDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: UnitGroupDto;
 };
 
@@ -1586,6 +2628,11 @@ export type UnitGroupDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<UnitGroupDto> | null;
 };
@@ -1593,6 +2640,11 @@ export type UnitGroupDtoListEnvelopeReadable = {
 export type UnitGroupDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<UnitGroupDto> | null;
 };
 
@@ -1712,6 +2764,11 @@ export type UserDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<UserDtoReadable> | null;
 };
@@ -1719,6 +2776,11 @@ export type UserDtoListEnvelopeReadable = {
 export type UserDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<UserDtoWritable> | null;
 };
 
@@ -1745,6 +2807,11 @@ export type WalletDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: WalletDto;
 };
@@ -1752,6 +2819,11 @@ export type WalletDtoEnvelopeReadable = {
 export type WalletDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: WalletDto;
 };
 
@@ -1775,6 +2847,11 @@ export type WebPortalDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WebPortalDto> | null;
 };
@@ -1782,11 +2859,94 @@ export type WebPortalDtoListEnvelopeReadable = {
 export type WebPortalDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WebPortalDto> | null;
 };
 
+export type GetBusinessRelationshipsAsyncData = {
+    body?: BusinessRelationshipDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/BusinessRelationships';
+};
+
+export type GetBusinessRelationshipsAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetBusinessRelationshipsAsyncError = GetBusinessRelationshipsAsyncErrors[keyof GetBusinessRelationshipsAsyncErrors];
+
+export type GetBusinessRelationshipsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: BusinessRelationshipDtoListEnvelopeReadable;
+};
+
+export type GetBusinessRelationshipsAsyncResponse = GetBusinessRelationshipsAsyncResponses[keyof GetBusinessRelationshipsAsyncResponses];
+
+export type CreateBusinessRelationshipAsyncData = {
+    body: BusinessRelationshipCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/BusinessRelationships';
+};
+
+export type CreateBusinessRelationshipAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateBusinessRelationshipAsyncError = CreateBusinessRelationshipAsyncErrors[keyof CreateBusinessRelationshipAsyncErrors];
+
+export type CreateBusinessRelationshipAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateBusinessRelationshipAsyncResponse = CreateBusinessRelationshipAsyncResponses[keyof CreateBusinessRelationshipAsyncResponses];
+
 export type GetBusinessRelationshipsCountAsyncData = {
-    body?: never;
+    body?: BusinessRelationshipDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1820,8 +2980,131 @@ export type GetBusinessRelationshipsCountAsyncResponses = {
 
 export type GetBusinessRelationshipsCountAsyncResponse = GetBusinessRelationshipsCountAsyncResponses[keyof GetBusinessRelationshipsCountAsyncResponses];
 
-export type GetTenantDepartmentsData = {
+export type DeleteBusinessRelationshipAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        businessRelationshipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/BusinessRelationships/{businessRelationshipId}';
+};
+
+export type DeleteBusinessRelationshipAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteBusinessRelationshipAsyncError = DeleteBusinessRelationshipAsyncErrors[keyof DeleteBusinessRelationshipAsyncErrors];
+
+export type DeleteBusinessRelationshipAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteBusinessRelationshipAsyncResponse = DeleteBusinessRelationshipAsyncResponses[keyof DeleteBusinessRelationshipAsyncResponses];
+
+export type GetBusinessRelationshipByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        businessRelationshipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/BusinessRelationships/{businessRelationshipId}';
+};
+
+export type GetBusinessRelationshipByIdAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetBusinessRelationshipByIdAsyncError = GetBusinessRelationshipByIdAsyncErrors[keyof GetBusinessRelationshipByIdAsyncErrors];
+
+export type GetBusinessRelationshipByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: BusinessRelationshipDtoEnvelopeReadable;
+};
+
+export type GetBusinessRelationshipByIdAsyncResponse = GetBusinessRelationshipByIdAsyncResponses[keyof GetBusinessRelationshipByIdAsyncResponses];
+
+export type UpdateBusinessRelationshipAsyncData = {
+    body: BusinessRelationshipUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        businessRelationshipId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/TenantsService/BusinessRelationships/{businessRelationshipId}';
+};
+
+export type UpdateBusinessRelationshipAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateBusinessRelationshipAsyncError = UpdateBusinessRelationshipAsyncErrors[keyof UpdateBusinessRelationshipAsyncErrors];
+
+export type UpdateBusinessRelationshipAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateBusinessRelationshipAsyncResponse = UpdateBusinessRelationshipAsyncResponses[keyof UpdateBusinessRelationshipAsyncResponses];
+
+export type GetTenantDepartmentsData = {
+    body?: TenantDepartmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1891,7 +3174,7 @@ export type CreateTenantDepartmentResponses = {
 export type CreateTenantDepartmentResponse = CreateTenantDepartmentResponses[keyof CreateTenantDepartmentResponses];
 
 export type GetTenantDepartmentsCountData = {
-    body?: never;
+    body?: TenantDepartmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2000,7 +3283,7 @@ export type GetTenantDepartmentByIdResponses = {
 export type GetTenantDepartmentByIdResponse = GetTenantDepartmentByIdResponses[keyof GetTenantDepartmentByIdResponses];
 
 export type PatchTenantDepartmentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2074,7 +3357,7 @@ export type UpdateTenantDepartmentResponses = {
 export type UpdateTenantDepartmentResponse = UpdateTenantDepartmentResponses[keyof UpdateTenantDepartmentResponses];
 
 export type GetTenantEmployeeEnrollmentsData = {
-    body?: never;
+    body?: TenantTeamEmployeeEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2144,7 +3427,7 @@ export type CreateTenantEmployeeEnrollmentResponses = {
 export type CreateTenantEmployeeEnrollmentResponse = CreateTenantEmployeeEnrollmentResponses[keyof CreateTenantEmployeeEnrollmentResponses];
 
 export type GetTenantEmployeeEnrollmentsCountData = {
-    body?: never;
+    body?: TenantTeamEmployeeEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2253,7 +3536,7 @@ export type GetTenantEmployeeEnrollmentByIdResponses = {
 export type GetTenantEmployeeEnrollmentByIdResponse = GetTenantEmployeeEnrollmentByIdResponses[keyof GetTenantEmployeeEnrollmentByIdResponses];
 
 export type PatchTenantEmployeeEnrollmentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2327,7 +3610,7 @@ export type UpdateTenantEmployeeEnrollmentResponses = {
 export type UpdateTenantEmployeeEnrollmentResponse = UpdateTenantEmployeeEnrollmentResponses[keyof UpdateTenantEmployeeEnrollmentResponses];
 
 export type GetTenantEnrollmentsData = {
-    body?: never;
+    body?: TenantEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2397,7 +3680,7 @@ export type CreateTenantEnrollmentResponses = {
 export type CreateTenantEnrollmentResponse = CreateTenantEnrollmentResponses[keyof CreateTenantEnrollmentResponses];
 
 export type GetTenantEnrollmentsCountData = {
-    body?: never;
+    body?: TenantEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2432,7 +3715,7 @@ export type GetTenantEnrollmentsCountResponses = {
 export type GetTenantEnrollmentsCountResponse = GetTenantEnrollmentsCountResponses[keyof GetTenantEnrollmentsCountResponses];
 
 export type GetExtendedTenantEnrollmentsData = {
-    body?: never;
+    body?: ExtendedTenantEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2467,7 +3750,7 @@ export type GetExtendedTenantEnrollmentsResponses = {
 export type GetExtendedTenantEnrollmentsResponse = GetExtendedTenantEnrollmentsResponses[keyof GetExtendedTenantEnrollmentsResponses];
 
 export type GetExtendedTenantEnrollmentsCountData = {
-    body?: never;
+    body?: ExtendedTenantEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2577,7 +3860,7 @@ export type GetTenantEnrollmentByIdResponses = {
 export type GetTenantEnrollmentByIdResponse = GetTenantEnrollmentByIdResponses[keyof GetTenantEnrollmentByIdResponses];
 
 export type PatchTenantEnrollmentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2672,6 +3955,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -2979,7 +4278,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetTenantIndustriesData = {
-    body?: never;
+    body?: TenantIndustryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3049,7 +4348,7 @@ export type CreateTenantIndustryResponses = {
 export type CreateTenantIndustryResponse = CreateTenantIndustryResponses[keyof CreateTenantIndustryResponses];
 
 export type GetTenantIndustriesCountData = {
-    body?: never;
+    body?: TenantIndustryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3158,7 +4457,7 @@ export type GetTenantIndustryByIdResponses = {
 export type GetTenantIndustryByIdResponse = GetTenantIndustryByIdResponses[keyof GetTenantIndustryByIdResponses];
 
 export type PatchTenantIndustryAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3232,7 +4531,7 @@ export type UpdateTenantIndustryResponses = {
 export type UpdateTenantIndustryResponse = UpdateTenantIndustryResponses[keyof UpdateTenantIndustryResponses];
 
 export type GetTenantInvitationsData = {
-    body?: never;
+    body?: TenantInvitationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3302,7 +4601,7 @@ export type SendTenantInvitationResponses = {
 export type SendTenantInvitationResponse = SendTenantInvitationResponses[keyof SendTenantInvitationResponses];
 
 export type GetTenantInvitationsCountData = {
-    body?: never;
+    body?: TenantInvitationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3483,7 +4782,7 @@ export type DeclineTenantInvitationResponses = {
 export type DeclineTenantInvitationResponse = DeclineTenantInvitationResponses[keyof DeclineTenantInvitationResponses];
 
 export type GetTenantOptionsData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3556,7 +4855,7 @@ export type CreateTenantOptionResponses = {
 export type CreateTenantOptionResponse = CreateTenantOptionResponses[keyof CreateTenantOptionResponses];
 
 export type GetTenantOptionsCountData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3666,7 +4965,7 @@ export type GetTenantOptionByIdResponses = {
 export type GetTenantOptionByIdResponse = GetTenantOptionByIdResponses[keyof GetTenantOptionByIdResponses];
 
 export type PatchTenantOptionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3816,7 +5115,7 @@ export type UpsertTenantOptionResponses = {
 export type UpsertTenantOptionResponse = UpsertTenantOptionResponses[keyof UpsertTenantOptionResponses];
 
 export type GetTenantPositionsData = {
-    body?: never;
+    body?: TenantPositionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3886,7 +5185,7 @@ export type CreateTenantPositionResponses = {
 export type CreateTenantPositionResponse = CreateTenantPositionResponses[keyof CreateTenantPositionResponses];
 
 export type GetTenantPositionsCountData = {
-    body?: never;
+    body?: TenantPositionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3995,7 +5294,7 @@ export type GetTenantPositionByIdResponses = {
 export type GetTenantPositionByIdResponse = GetTenantPositionByIdResponses[keyof GetTenantPositionByIdResponses];
 
 export type PatchTenantPositionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4069,7 +5368,7 @@ export type UpdateTenantPositionResponses = {
 export type UpdateTenantPositionResponse = UpdateTenantPositionResponses[keyof UpdateTenantPositionResponses];
 
 export type GetTenantSegmentsData = {
-    body?: never;
+    body?: TenantSegmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4139,7 +5438,7 @@ export type CreateTenantSegmentResponses = {
 export type CreateTenantSegmentResponse = CreateTenantSegmentResponses[keyof CreateTenantSegmentResponses];
 
 export type GetTenantSegmentsCountData = {
-    body?: never;
+    body?: TenantSegmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4248,7 +5547,7 @@ export type GetTenantSegmentByIdResponses = {
 export type GetTenantSegmentByIdResponse = GetTenantSegmentByIdResponses[keyof GetTenantSegmentByIdResponses];
 
 export type PatchTenantSegmentData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4322,7 +5621,7 @@ export type UpdateTenantSegmentResponses = {
 export type UpdateTenantSegmentResponse = UpdateTenantSegmentResponses[keyof UpdateTenantSegmentResponses];
 
 export type GetTenantSizesData = {
-    body?: never;
+    body?: TenantSizeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4392,7 +5691,7 @@ export type CreateTenantSizeResponses = {
 export type CreateTenantSizeResponse = CreateTenantSizeResponses[keyof CreateTenantSizeResponses];
 
 export type GetTenantSizesCountData = {
-    body?: never;
+    body?: TenantSizeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4501,7 +5800,7 @@ export type GetTenantSizeByIdResponses = {
 export type GetTenantSizeByIdResponse = GetTenantSizeByIdResponses[keyof GetTenantSizeByIdResponses];
 
 export type PatchTenantSizeData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4575,7 +5874,7 @@ export type UpdateTenantSizeResponses = {
 export type UpdateTenantSizeResponse = UpdateTenantSizeResponses[keyof UpdateTenantSizeResponses];
 
 export type GetTenantTeamContactEnrollmentsData = {
-    body?: never;
+    body?: TenantTeamContactEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4645,7 +5944,7 @@ export type CreateTenantTeamContactEnrollmentResponses = {
 export type CreateTenantTeamContactEnrollmentResponse = CreateTenantTeamContactEnrollmentResponses[keyof CreateTenantTeamContactEnrollmentResponses];
 
 export type GetTenantTeamContactEnrollmentsCountData = {
-    body?: never;
+    body?: TenantTeamContactEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4754,7 +6053,7 @@ export type GetTenantTeamContactEnrollmentByIdResponses = {
 export type GetTenantTeamContactEnrollmentByIdResponse = GetTenantTeamContactEnrollmentByIdResponses[keyof GetTenantTeamContactEnrollmentByIdResponses];
 
 export type PatchTenantTeamContactEnrollmentData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4828,7 +6127,7 @@ export type UpdateTenantTeamContactEnrollmentResponses = {
 export type UpdateTenantTeamContactEnrollmentResponse = UpdateTenantTeamContactEnrollmentResponses[keyof UpdateTenantTeamContactEnrollmentResponses];
 
 export type GetTenantTeamProjectEnrollmentsData = {
-    body?: never;
+    body?: TenantTeamProjectEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4898,7 +6197,7 @@ export type CreateTenantTeamProjectEnrollmentResponses = {
 export type CreateTenantTeamProjectEnrollmentResponse = CreateTenantTeamProjectEnrollmentResponses[keyof CreateTenantTeamProjectEnrollmentResponses];
 
 export type GetTenantTeamProjectEnrollmentsCountData = {
-    body?: never;
+    body?: TenantTeamProjectEnrollmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5007,7 +6306,7 @@ export type GetTenantTeamProjectEnrollmentByIdResponses = {
 export type GetTenantTeamProjectEnrollmentByIdResponse = GetTenantTeamProjectEnrollmentByIdResponses[keyof GetTenantTeamProjectEnrollmentByIdResponses];
 
 export type PatchTenantTeamProjectEnrollmentData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5081,7 +6380,7 @@ export type UpdateTenantTeamProjectEnrollmentResponses = {
 export type UpdateTenantTeamProjectEnrollmentResponse = UpdateTenantTeamProjectEnrollmentResponses[keyof UpdateTenantTeamProjectEnrollmentResponses];
 
 export type GetTenantTeamRecordsData = {
-    body?: never;
+    body?: TenantTeamRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5151,7 +6450,7 @@ export type CreateTenantTeamRecordResponses = {
 export type CreateTenantTeamRecordResponse = CreateTenantTeamRecordResponses[keyof CreateTenantTeamRecordResponses];
 
 export type GetTenantTeamRecordsCountData = {
-    body?: never;
+    body?: TenantTeamRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5260,7 +6559,7 @@ export type GetTenantTeamRecordByIdResponses = {
 export type GetTenantTeamRecordByIdResponse = GetTenantTeamRecordByIdResponses[keyof GetTenantTeamRecordByIdResponses];
 
 export type PatchTenantTeamRecordData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5334,7 +6633,7 @@ export type UpdateTenantTeamRecordResponses = {
 export type UpdateTenantTeamRecordResponse = UpdateTenantTeamRecordResponses[keyof UpdateTenantTeamRecordResponses];
 
 export type GetTenantTeamsData = {
-    body?: never;
+    body?: TenantTeamDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5404,7 +6703,7 @@ export type CreateTenantTeamResponses = {
 export type CreateTenantTeamResponse = CreateTenantTeamResponses[keyof CreateTenantTeamResponses];
 
 export type GetTenantTeamsCountData = {
-    body?: never;
+    body?: TenantTeamDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5513,7 +6812,7 @@ export type GetTenantTeamByIdResponses = {
 export type GetTenantTeamByIdResponse = GetTenantTeamByIdResponses[keyof GetTenantTeamByIdResponses];
 
 export type PatchTenantTeamData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5692,7 +6991,7 @@ export type GetTenantAsyncResponses = {
 export type GetTenantAsyncResponse = GetTenantAsyncResponses[keyof GetTenantAsyncResponses];
 
 export type PatchTenantAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5835,7 +7134,7 @@ export type GetTenantAvatarAsyncResponses = {
 
 export type GetTenantAvatarAsyncResponse = GetTenantAvatarAsyncResponses[keyof GetTenantAvatarAsyncResponses];
 
-export type UpdateAvatarAsyncData = {
+export type UpdateTenantAvatarAsyncData = {
     body?: {
         avatar?: Blob | File;
     };
@@ -5851,7 +7150,7 @@ export type UpdateAvatarAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Avatar';
 };
 
-export type UpdateAvatarAsyncErrors = {
+export type UpdateTenantAvatarAsyncErrors = {
     /**
      * Unauthorized
      */
@@ -5862,16 +7161,16 @@ export type UpdateAvatarAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type UpdateAvatarAsyncError = UpdateAvatarAsyncErrors[keyof UpdateAvatarAsyncErrors];
+export type UpdateTenantAvatarAsyncError = UpdateTenantAvatarAsyncErrors[keyof UpdateTenantAvatarAsyncErrors];
 
-export type UpdateAvatarAsyncResponses = {
+export type UpdateTenantAvatarAsyncResponses = {
     /**
      * OK
      */
     200: EmptyEnvelopeReadable;
 };
 
-export type UpdateAvatarAsyncResponse = UpdateAvatarAsyncResponses[keyof UpdateAvatarAsyncResponses];
+export type UpdateTenantAvatarAsyncResponse = UpdateTenantAvatarAsyncResponses[keyof UpdateTenantAvatarAsyncResponses];
 
 export type GetTenantWalletAsyncData = {
     body?: never;
@@ -5945,7 +7244,7 @@ export type GetTenantSocialProfileAsyncResponses = {
 
 export type GetTenantSocialProfileAsyncResponse = GetTenantSocialProfileAsyncResponses[keyof GetTenantSocialProfileAsyncResponses];
 
-export type GetTenantCartAsyncData = {
+export type GetCartForTenantAsyncData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -5959,7 +7258,7 @@ export type GetTenantCartAsyncData = {
     url: '/api/v2/TenantsService/Tenants/{tenantId}/Cart';
 };
 
-export type GetTenantCartAsyncErrors = {
+export type GetCartForTenantAsyncErrors = {
     /**
      * Unauthorized
      */
@@ -5970,16 +7269,16 @@ export type GetTenantCartAsyncErrors = {
     403: ErrorEnvelopeReadable;
 };
 
-export type GetTenantCartAsyncError = GetTenantCartAsyncErrors[keyof GetTenantCartAsyncErrors];
+export type GetCartForTenantAsyncError = GetCartForTenantAsyncErrors[keyof GetCartForTenantAsyncErrors];
 
-export type GetTenantCartAsyncResponses = {
+export type GetCartForTenantAsyncResponses = {
     /**
      * OK
      */
     200: CartDtoEnvelopeReadable;
 };
 
-export type GetTenantCartAsyncResponse = GetTenantCartAsyncResponses[keyof GetTenantCartAsyncResponses];
+export type GetCartForTenantAsyncResponse = GetCartForTenantAsyncResponses[keyof GetCartForTenantAsyncResponses];
 
 export type GetTenantUsersAsyncData = {
     body?: never;
@@ -6777,7 +8076,7 @@ export type GetTenantWebPortalsAsyncResponses = {
 export type GetTenantWebPortalsAsyncResponse = GetTenantWebPortalsAsyncResponses[keyof GetTenantWebPortalsAsyncResponses];
 
 export type GetTenantNotificationsAsyncData = {
-    body?: never;
+    body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6813,7 +8112,7 @@ export type GetTenantNotificationsAsyncResponses = {
 export type GetTenantNotificationsAsyncResponse = GetTenantNotificationsAsyncResponses[keyof GetTenantNotificationsAsyncResponses];
 
 export type GetTenantNotificationsCountAsyncData = {
-    body?: never;
+    body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6849,7 +8148,7 @@ export type GetTenantNotificationsCountAsyncResponses = {
 export type GetTenantNotificationsCountAsyncResponse = GetTenantNotificationsCountAsyncResponses[keyof GetTenantNotificationsCountAsyncResponses];
 
 export type GetTenantTerritoriesData = {
-    body?: never;
+    body?: TenantTerritoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -6919,7 +8218,7 @@ export type CreateTenantTerritoryResponses = {
 export type CreateTenantTerritoryResponse = CreateTenantTerritoryResponses[keyof CreateTenantTerritoryResponses];
 
 export type GetTenantTerritoriesCountData = {
-    body?: never;
+    body?: TenantTerritoryDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7028,7 +8327,7 @@ export type GetTenantTerritoryByIdResponses = {
 export type GetTenantTerritoryByIdResponse = GetTenantTerritoryByIdResponses[keyof GetTenantTerritoryByIdResponses];
 
 export type PatchTenantTerritoryData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7102,7 +8401,7 @@ export type UpdateTenantTerritoryResponses = {
 export type UpdateTenantTerritoryResponse = UpdateTenantTerritoryResponses[keyof UpdateTenantTerritoryResponses];
 
 export type GetTenantTypesData = {
-    body?: never;
+    body?: TenantTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7172,7 +8471,7 @@ export type CreateTenantTypeResponses = {
 export type CreateTenantTypeResponse = CreateTenantTypeResponses[keyof CreateTenantTypeResponses];
 
 export type GetTenantTypesCountData = {
-    body?: never;
+    body?: TenantTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7281,7 +8580,7 @@ export type GetTenantTypeByIdResponses = {
 export type GetTenantTypeByIdResponse = GetTenantTypeByIdResponses[keyof GetTenantTypeByIdResponses];
 
 export type PatchTenantTypeData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7355,7 +8654,7 @@ export type UpdateTenantTypeResponses = {
 export type UpdateTenantTypeResponse = UpdateTenantTypeResponses[keyof UpdateTenantTypeResponses];
 
 export type GetUnitGroupsAsyncData = {
-    body?: never;
+    body?: UnitGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7425,7 +8724,7 @@ export type CreateUnitGroupAsyncResponses = {
 export type CreateUnitGroupAsyncResponse = CreateUnitGroupAsyncResponses[keyof CreateUnitGroupAsyncResponses];
 
 export type GetUnitGroupsCountAsyncData = {
-    body?: never;
+    body?: UnitGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7534,7 +8833,7 @@ export type GetUnitGroupAsyncResponses = {
 export type GetUnitGroupAsyncResponse = GetUnitGroupAsyncResponses[keyof GetUnitGroupAsyncResponses];
 
 export type PatchUnitGroupAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7608,7 +8907,7 @@ export type UpdateUnitGroupAsyncResponses = {
 export type UpdateUnitGroupAsyncResponse = UpdateUnitGroupAsyncResponses[keyof UpdateUnitGroupAsyncResponses];
 
 export type GetUnitsAsyncData = {
-    body?: never;
+    body?: UnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7682,7 +8981,7 @@ export type CreateUnitAsyncResponses = {
 export type CreateUnitAsyncResponse = CreateUnitAsyncResponses[keyof CreateUnitAsyncResponses];
 
 export type GetUnitsCountAsyncData = {
-    body?: never;
+    body?: UnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7795,7 +9094,7 @@ export type GetUnitAsyncResponses = {
 export type GetUnitAsyncResponse = GetUnitAsyncResponses[keyof GetUnitAsyncResponses];
 
 export type PatchUnitAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7871,7 +9170,7 @@ export type UpdateUnitAsyncResponses = {
 export type UpdateUnitAsyncResponse = UpdateUnitAsyncResponses[keyof UpdateUnitAsyncResponses];
 
 export type GetTenantUnitsData = {
-    body?: never;
+    body?: TenantUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -7941,7 +9240,7 @@ export type CreateTenantUnitResponses = {
 export type CreateTenantUnitResponse = CreateTenantUnitResponses[keyof CreateTenantUnitResponses];
 
 export type GetTenantUnitsCountData = {
-    body?: never;
+    body?: TenantUnitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -8050,7 +9349,7 @@ export type GetTenantUnitByIdResponses = {
 export type GetTenantUnitByIdResponse = GetTenantUnitByIdResponses[keyof GetTenantUnitByIdResponses];
 
 export type PatchTenantUnitData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

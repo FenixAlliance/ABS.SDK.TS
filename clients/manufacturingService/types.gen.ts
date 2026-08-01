@@ -18,12 +18,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -31,12 +41,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -73,6 +93,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -80,6 +105,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -90,10 +120,9 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -113,11 +142,39 @@ export type ProductionPlanDto = {
     tenantId?: string | null;
 };
 
+export type ProductionPlanDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ProductionPlanDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ProductionPlanDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ProductionPlanDto> | null;
 };
@@ -125,6 +182,11 @@ export type ProductionPlanDtoListEnvelopeReadable = {
 export type ProductionPlanDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ProductionPlanDto> | null;
 };
 
@@ -203,11 +265,39 @@ export type WorkOrderDto = {
     tenantId?: string | null;
 };
 
+export type WorkOrderDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WorkOrderDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WorkOrderDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WorkOrderDto> | null;
 };
@@ -215,6 +305,11 @@ export type WorkOrderDtoListEnvelopeReadable = {
 export type WorkOrderDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WorkOrderDto> | null;
 };
 
@@ -233,11 +328,39 @@ export type WorkOrderTypeDto = {
     tenantId?: string | null;
 };
 
+export type WorkOrderTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WorkOrderTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WorkOrderTypeDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WorkOrderTypeDto> | null;
 };
@@ -245,6 +368,11 @@ export type WorkOrderTypeDtoListEnvelopeReadable = {
 export type WorkOrderTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WorkOrderTypeDto> | null;
 };
 
@@ -288,11 +416,39 @@ export type WorkstationDto = {
     tenantId?: string | null;
 };
 
+export type WorkstationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WorkstationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WorkstationDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WorkstationDto> | null;
 };
@@ -300,6 +456,11 @@ export type WorkstationDtoListEnvelopeReadable = {
 export type WorkstationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WorkstationDto> | null;
 };
 
@@ -332,6 +493,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -639,7 +816,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetProductionPlansAsyncData = {
-    body?: never;
+    body?: ProductionPlanDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -703,7 +880,7 @@ export type CreateProductionPlanAsyncResponses = {
 };
 
 export type GetProductionPlansCountAsyncData = {
-    body?: never;
+    body?: ProductionPlanDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -806,7 +983,7 @@ export type GetProductionPlanByIdAsyncResponses = {
 export type GetProductionPlanByIdAsyncResponse = GetProductionPlanByIdAsyncResponses[keyof GetProductionPlanByIdAsyncResponses];
 
 export type PatchProductionPlanAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -878,7 +1055,7 @@ export type UpdateProductionPlanAsyncResponses = {
 };
 
 export type GetWorkOrdersAsyncData = {
-    body?: never;
+    body?: WorkOrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -942,7 +1119,7 @@ export type CreateWorkOrderAsyncResponses = {
 };
 
 export type GetWorkOrdersCountAsyncData = {
-    body?: never;
+    body?: WorkOrderDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1045,7 +1222,7 @@ export type GetWorkOrderByIdAsyncResponses = {
 export type GetWorkOrderByIdAsyncResponse = GetWorkOrderByIdAsyncResponses[keyof GetWorkOrderByIdAsyncResponses];
 
 export type PatchWorkOrderAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1117,7 +1294,7 @@ export type UpdateWorkOrderAsyncResponses = {
 };
 
 export type GetWorkOrderTypesAsyncData = {
-    body?: never;
+    body?: WorkOrderTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1181,7 +1358,7 @@ export type CreateWorkOrderTypeAsyncResponses = {
 };
 
 export type GetWorkOrderTypesCountAsyncData = {
-    body?: never;
+    body?: WorkOrderTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1284,7 +1461,7 @@ export type GetWorkOrderTypeByIdAsyncResponses = {
 export type GetWorkOrderTypeByIdAsyncResponse = GetWorkOrderTypeByIdAsyncResponses[keyof GetWorkOrderTypeByIdAsyncResponses];
 
 export type PatchWorkOrderTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1356,7 +1533,7 @@ export type UpdateWorkOrderTypeAsyncResponses = {
 };
 
 export type GetWorkstationsAsyncData = {
-    body?: never;
+    body?: WorkstationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1420,7 +1597,7 @@ export type CreateWorkstationAsyncResponses = {
 };
 
 export type GetWorkstationsCountAsyncData = {
-    body?: never;
+    body?: WorkstationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1523,7 +1700,7 @@ export type GetWorkstationByIdAsyncResponses = {
 export type GetWorkstationByIdAsyncResponse = GetWorkstationByIdAsyncResponses[keyof GetWorkstationByIdAsyncResponses];
 
 export type PatchWorkstationAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

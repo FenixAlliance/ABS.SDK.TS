@@ -25,6 +25,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -1284,7 +1299,7 @@ export interface paths {
      * Get item shipping policies
      * @description Retrieves all shipping policies for a specific item.
      */
-    get: operations["GetItemShippingPoliciesAsync"];
+    get: operations["GetCatalogItemShippingPoliciesAsync"];
     /**
      * Relate item to shipping policy
      * @description Relates an item to an existing shipping policy.
@@ -1303,7 +1318,7 @@ export interface paths {
      * Get item shipping policy by ID
      * @description Retrieves a specific shipping policy for an item.
      */
-    get: operations["GetItemShippingPolicyByIdAsync"];
+    get: operations["GetCatalogItemShippingPolicyByIdAsync"];
     /**
      * Remove shipping policy from item
      * @description Removes a shipping policy from an item.
@@ -1931,12 +1946,31 @@ export interface components {
       selectedAttributesOptions?: string[] | null;
       selectedSellingMarginPolicies?: string[] | null;
     };
+    CatalogItemDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CatalogItemDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CatalogItemDto"];
     };
@@ -1946,6 +1980,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CatalogItemDto"][] | null;
     };
@@ -2177,6 +2217,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -2185,6 +2231,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -2217,6 +2269,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -2282,12 +2340,31 @@ export interface components {
       publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
       itemId?: string | null;
     };
+    ItemAttachmentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemAttachmentDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemAttachmentDto"];
     };
@@ -2297,6 +2374,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemAttachmentDto"][] | null;
     };
@@ -2329,12 +2412,31 @@ export interface components {
       description?: string | null;
       tenantId?: string | null;
     };
+    ItemAttributeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemAttributeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemAttributeDto"];
     };
@@ -2344,6 +2446,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemAttributeDto"][] | null;
     };
@@ -2365,12 +2473,31 @@ export interface components {
       itemAttributeId?: string | null;
       tenantId?: string | null;
     };
+    ItemAttributeOptionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemAttributeOptionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemAttributeOptionDto"];
     };
@@ -2380,6 +2507,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemAttributeOptionDto"][] | null;
     };
@@ -2417,12 +2550,31 @@ export interface components {
       trending?: boolean;
       tenantId?: string | null;
     };
+    ItemBrandDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemBrandDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemBrandDto"];
     };
@@ -2432,6 +2584,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemBrandDto"][] | null;
     };
@@ -2465,12 +2623,31 @@ export interface components {
       disabled?: boolean;
       tenantId?: string | null;
     };
+    ItemBundleDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemBundleDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemBundleDto"];
     };
@@ -2480,6 +2657,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemBundleDto"][] | null;
     };
@@ -2517,12 +2700,31 @@ export interface components {
       enrollmentId?: string | null;
       parentItemCategoryId?: string | null;
     };
+    ItemCategoryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemCategoryDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemCategoryDto"];
     };
@@ -2532,6 +2734,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemCategoryDto"][] | null;
     };
@@ -2565,12 +2773,31 @@ export interface components {
       description?: string | null;
       tenantId?: string | null;
     };
+    ItemFamilyDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemFamilyDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemFamilyDto"];
     };
@@ -2580,6 +2807,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemFamilyDto"][] | null;
     };
@@ -2611,12 +2844,31 @@ export interface components {
       /** Format: double */
       startingAtAmountInUsd?: number | null;
     };
+    ItemGoogleCategoryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemGoogleCategoryDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemGoogleCategoryDto"];
     };
@@ -2626,6 +2878,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemGoogleCategoryDto"][] | null;
     };
@@ -2678,12 +2936,31 @@ export interface components {
       parentFileUploadId?: string | null;
       userId?: string | null;
     };
+    ItemImageDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemImageDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemImageDto"];
     };
@@ -2693,6 +2970,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemImageDto"][] | null;
     };
@@ -2737,12 +3020,31 @@ export interface components {
       tenantId?: string | null;
       itemId?: string | null;
     };
+    ItemQuestionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemQuestionDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemQuestionDto"];
     };
@@ -2752,6 +3054,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemQuestionDto"][] | null;
     };
@@ -2807,12 +3115,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    ItemRefundPolicyDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemRefundPolicyDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemRefundPolicyDto"];
     };
@@ -2822,6 +3149,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemRefundPolicyDto"][] | null;
     };
@@ -2862,12 +3195,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    ItemReturnPolicyDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemReturnPolicyDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemReturnPolicyDto"];
     };
@@ -2877,6 +3229,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemReturnPolicyDto"][] | null;
     };
@@ -2901,12 +3259,31 @@ export interface components {
       reviewMessage?: string | null;
       socialProfileId?: string | null;
     };
+    ItemReviewDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemReviewDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemReviewDto"];
     };
@@ -2916,6 +3293,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemReviewDto"][] | null;
     };
@@ -2972,12 +3355,31 @@ export interface components {
       businessID: string;
       businessProfileRecordID?: string | null;
     };
+    ItemShippingPolicyDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemShippingPolicyDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemShippingPolicyDto"];
     };
@@ -2987,6 +3389,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemShippingPolicyDto"][] | null;
     };
@@ -3006,12 +3414,31 @@ export interface components {
       description?: string | null;
       tenantId?: string | null;
     };
+    ItemTagDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemTagDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemTagDto"];
     };
@@ -3021,6 +3448,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemTagDto"][] | null;
     };
@@ -3068,12 +3501,31 @@ export interface components {
       businessID?: string | null;
       businessProfileRecordID?: string | null;
     };
+    ItemTaxPolicyDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemTaxPolicyDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemTaxPolicyDto"];
     };
@@ -3083,6 +3535,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemTaxPolicyDto"][] | null;
     };
@@ -3114,12 +3572,31 @@ export interface components {
       itemCategoryId: string;
       itemGoogleCategoryId?: string | null;
     };
+    ItemTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemTypeDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemTypeDto"];
     };
@@ -3129,6 +3606,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemTypeDto"][] | null;
     };
@@ -3177,12 +3660,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    ItemWarrantyPolicyDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ItemWarrantyPolicyDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemWarrantyPolicyDto"];
     };
@@ -3192,6 +3694,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ItemWarrantyPolicyDto"][] | null;
     };
@@ -3246,12 +3754,31 @@ export interface components {
       /** Format: double */
       merchantRating?: number | null;
     };
+    MerchantDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     MerchantDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MerchantDto"];
     };
@@ -3261,6 +3788,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["MerchantDto"][] | null;
     };
@@ -3275,14 +3808,18 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["Money"];
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -3327,6 +3864,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PricingRuleDto"];
     };
@@ -3336,6 +3879,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PricingRuleDto"][] | null;
     };
@@ -3410,6 +3959,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemAttachmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemAttachmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3628,8 +4183,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3668,6 +4223,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemAttributeOptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemAttributeOptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3750,6 +4311,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemAttributeOptionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemAttributeOptionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3921,8 +4488,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3963,6 +4530,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemAttributeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemAttributeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3999,6 +4572,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemAttributeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemAttributeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4211,8 +4790,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4248,6 +4827,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemBrandDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemBrandDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4463,8 +5048,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4500,6 +5085,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemBundleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemBundleDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4582,6 +5173,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemBundleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemBundleDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4753,8 +5350,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4793,6 +5390,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4961,8 +5564,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4998,6 +5601,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5082,6 +5691,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemFamilyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemFamilyDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5162,6 +5777,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemFamilyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemFamilyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5333,8 +5954,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5374,6 +5995,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemGoogleCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemGoogleCategoryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5409,6 +6036,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemGoogleCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemGoogleCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5678,6 +6311,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemImageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemImageDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5888,8 +6527,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5925,6 +6564,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemQuestionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemQuestionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6137,8 +6782,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6175,6 +6820,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRefundPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemRefundPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6251,6 +6902,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRefundPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemRefundPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6373,6 +7030,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemReturnPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemReturnPolicyDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -6447,6 +7110,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemReturnPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemReturnPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6566,6 +7235,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemReviewDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemReviewDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6778,8 +7453,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6815,6 +7490,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6896,6 +7577,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -6934,6 +7621,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -6970,6 +7663,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CatalogItemDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7137,8 +7836,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7342,6 +8041,12 @@ export interface operations {
         itemId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTagDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7381,6 +8086,12 @@ export interface operations {
       };
       path: {
         itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTagDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7548,6 +8259,12 @@ export interface operations {
       };
       path: {
         itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7806,6 +8523,12 @@ export interface operations {
         itemId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemImageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemImageDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -7971,6 +8694,12 @@ export interface operations {
         itemId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemBrandDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemBrandDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8134,6 +8863,12 @@ export interface operations {
       };
       path: {
         itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemReviewDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemReviewDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8306,6 +9041,12 @@ export interface operations {
         itemId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemQuestionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemQuestionDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8476,6 +9217,12 @@ export interface operations {
         itemId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemCategoryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8639,6 +9386,12 @@ export interface operations {
       };
       path: {
         itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemAttachmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemAttachmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8810,6 +9563,12 @@ export interface operations {
       };
       path: {
         itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTaxPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTaxPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9140,6 +9899,12 @@ export interface operations {
         itemId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemReturnPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemReturnPolicyDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -9303,6 +10068,12 @@ export interface operations {
       };
       path: {
         itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemRefundPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemRefundPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9470,6 +10241,12 @@ export interface operations {
         itemId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemShippingPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemShippingPolicyDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -9633,6 +10410,12 @@ export interface operations {
       };
       path: {
         itemId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemWarrantyPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemWarrantyPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9963,6 +10746,12 @@ export interface operations {
         itemId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemGoogleCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemGoogleCategoryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10116,7 +10905,7 @@ export interface operations {
    * Get item shipping policies
    * @description Retrieves all shipping policies for a specific item.
    */
-  GetItemShippingPoliciesAsync: {
+  GetCatalogItemShippingPoliciesAsync: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -10125,6 +10914,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemShippingPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemShippingPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10203,6 +10998,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemShippingPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemShippingPolicyDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10231,7 +11032,7 @@ export interface operations {
    * Get item shipping policy by ID
    * @description Retrieves a specific shipping policy for an item.
    */
-  GetItemShippingPolicyByIdAsync: {
+  GetCatalogItemShippingPolicyByIdAsync: {
     parameters: {
       query?: {
         tenantId?: string;
@@ -10320,6 +11121,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTagDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTagDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10532,8 +11339,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -10570,6 +11377,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTaxPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTaxPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10646,6 +11459,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTaxPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTaxPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10767,6 +11586,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTypeDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10803,6 +11628,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11018,8 +11849,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -11056,6 +11887,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemWarrantyPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemWarrantyPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11132,6 +11969,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ItemWarrantyPolicyDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ItemWarrantyPolicyDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -11252,6 +12095,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MerchantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MerchantDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -11287,6 +12136,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["MerchantDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["MerchantDtoCollectionQueryParameters"];
       };
     };
     responses: {

@@ -13,11 +13,162 @@ export type AccessTokenResponseWritable = {
     refreshToken: string | null;
 };
 
+export type ApplicationPrincipalDetailDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    displayName?: string | null;
+    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    principalStatus?: 'Active' | 'Suspended' | 'Disabled';
+    businessApplicationId?: string | null;
+    businessApplicationName?: string | null;
+    businessApplicationNamespace?: string | null;
+    businessApplicationDisabled?: boolean;
+    systemLocked?: boolean;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    enrollmentDisabled?: boolean;
+    grantedPermissions?: Array<string> | null;
+};
+
+export type ApplicationPrincipalDetailDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ApplicationPrincipalDetailDto;
+};
+
+export type ApplicationPrincipalDetailDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ApplicationPrincipalDetailDto;
+};
+
+export type ApplicationPrincipalDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    displayName?: string | null;
+    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    principalStatus?: 'Active' | 'Suspended' | 'Disabled';
+    businessApplicationId?: string | null;
+    businessApplicationName?: string | null;
+    systemLocked?: boolean;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+    enrollmentDisabled?: boolean;
+    grantedPermissionsCount?: number;
+};
+
+export type ApplicationPrincipalDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ApplicationPrincipalDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type ApplicationPrincipalDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<ApplicationPrincipalDto> | null;
+};
+
+export type ApplicationPrincipalDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<ApplicationPrincipalDto> | null;
+};
+
+export type ApplicationPrincipalPermissionRequestDto = {
+    permission: string;
+};
+
+export type ApplicationPrincipalProvisionRequestDto = {
+    businessApplicationId: string;
+};
+
+export type ApplicationPrincipalProvisioningResultDto = {
+    principalId?: string | null;
+    enrollmentId?: string | null;
+    tenantId?: string | null;
+    principalCreated?: boolean;
+    enrollmentCreated?: boolean;
+};
+
+export type ApplicationPrincipalProvisioningResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ApplicationPrincipalProvisioningResultDto;
+};
+
+export type ApplicationPrincipalProvisioningResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ApplicationPrincipalProvisioningResultDto;
+};
+
 export type BooleanEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: boolean;
 };
@@ -25,6 +176,11 @@ export type BooleanEnvelopeReadable = {
 export type BooleanEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: boolean;
 };
 
@@ -37,11 +193,39 @@ export type BusinessDomainDto = {
     businessID?: string | null;
 };
 
+export type BusinessDomainDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type BusinessDomainDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type BusinessDomainDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: BusinessDomainDto;
 };
@@ -49,6 +233,11 @@ export type BusinessDomainDtoEnvelopeReadable = {
 export type BusinessDomainDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: BusinessDomainDto;
 };
 
@@ -57,6 +246,11 @@ export type BusinessDomainDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<BusinessDomainDto> | null;
 };
@@ -64,6 +258,11 @@ export type BusinessDomainDtoListEnvelopeReadable = {
 export type BusinessDomainDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<BusinessDomainDto> | null;
 };
 
@@ -82,11 +281,39 @@ export type CartDto = {
     itemToCompareRecordsCount?: number | null;
 };
 
+export type CartDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CartDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CartDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CartDto;
 };
@@ -94,6 +321,11 @@ export type CartDtoEnvelopeReadable = {
 export type CartDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CartDto;
 };
 
@@ -102,6 +334,11 @@ export type CartDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CartDto> | null;
 };
@@ -109,6 +346,11 @@ export type CartDtoListEnvelopeReadable = {
 export type CartDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CartDto> | null;
 };
 
@@ -134,12 +376,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type EnvelopeReadable = {
@@ -147,6 +399,11 @@ export type EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: string | null;
 };
@@ -154,6 +411,11 @@ export type EnvelopeReadable = {
 export type EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: string | null;
 };
 
@@ -162,12 +424,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedTenantDtoReadable = {
@@ -257,11 +529,39 @@ export type ExtendedTenantDtoWritable = {
     socialProfile?: SocialProfileDto;
 };
 
+export type ExtendedTenantDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedTenantDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedTenantDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedTenantDtoReadable> | null;
 };
@@ -269,6 +569,11 @@ export type ExtendedTenantDtoListEnvelopeReadable = {
 export type ExtendedTenantDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedTenantDtoWritable> | null;
 };
 
@@ -379,11 +684,39 @@ export type ExtendedUserDtoWritable = {
     settings?: UserSettingsDto;
 };
 
+export type ExtendedUserDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedUserDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedUserDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ExtendedUserDtoReadable;
 };
@@ -391,6 +724,11 @@ export type ExtendedUserDtoEnvelopeReadable = {
 export type ExtendedUserDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ExtendedUserDtoWritable;
 };
 
@@ -399,6 +737,11 @@ export type ExtendedUserDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedUserDtoReadable> | null;
 };
@@ -406,6 +749,11 @@ export type ExtendedUserDtoListEnvelopeReadable = {
 export type ExtendedUserDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedUserDtoWritable> | null;
 };
 
@@ -427,6 +775,35 @@ export type HttpValidationProblemDetails = {
     } | null) | undefined;
 };
 
+export type IOpenApiContact = {
+    name?: string | null;
+    email?: string | null;
+    url?: string | null;
+};
+
+export type IOpenApiDefinitionSpec = {
+    enable?: boolean;
+    name?: string | null;
+    title?: string | null;
+    version?: string | null;
+    description?: string | null;
+    termsOfService?: string | null;
+    openApiEndpoint?: IOpenApiEndpoint;
+    openApiContact?: IOpenApiContact;
+    license?: IOpenApiLicense;
+};
+
+export type IOpenApiEndpoint = {
+    enable?: boolean;
+    name?: string | null;
+    url?: string | null;
+};
+
+export type IOpenApiLicense = {
+    name?: string | null;
+    url?: string | null;
+};
+
 export type IpLookupDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -435,11 +812,39 @@ export type IpLookupDto = {
     city?: string | null;
 };
 
+export type IpLookupDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type IpLookupDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type IpLookupDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: IpLookupDto;
 };
@@ -447,6 +852,11 @@ export type IpLookupDtoEnvelopeReadable = {
 export type IpLookupDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: IpLookupDto;
 };
 
@@ -455,6 +865,11 @@ export type IpLookupDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<IpLookupDto> | null;
 };
@@ -462,36 +877,12 @@ export type IpLookupDtoListEnvelopeReadable = {
 export type IpLookupDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<IpLookupDto> | null;
-};
-
-export type ISwaggerContact = {
-    name?: string | null;
-    email?: string | null;
-    url?: string | null;
-};
-
-export type ISwaggerEndpoint = {
-    enable?: boolean;
-    name?: string | null;
-    url?: string | null;
-};
-
-export type ISwaggerLicense = {
-    name?: string | null;
-    url?: string | null;
-};
-
-export type ISwaggerSpec = {
-    enable?: boolean;
-    name?: string | null;
-    title?: string | null;
-    version?: string | null;
-    description?: string | null;
-    termsOfService?: string | null;
-    swaggerEndpoint?: ISwaggerEndpoint;
-    openApiContact?: ISwaggerContact;
-    license?: ISwaggerLicense;
 };
 
 export type IValidationFailure = {
@@ -504,6 +895,11 @@ export type IValidationFailureListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<IValidationFailure> | null;
 };
@@ -511,7 +907,199 @@ export type IValidationFailureListEnvelopeReadable = {
 export type IValidationFailureListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<IValidationFailure> | null;
+};
+
+export type InboxAdminReasonDto = {
+    reason: string;
+};
+
+export type InboxHealthDto = {
+    enabled?: boolean;
+    receivedCount?: number;
+    acceptedCount?: number;
+    processingCount?: number;
+    retryScheduledCount?: number;
+    rejectedCount?: number;
+    quarantinedCount?: number;
+    deadLetterCount?: number;
+    cancelledCount?: number;
+    oldestAcceptedAgeSeconds?: number | null;
+    lastSuccessfulProcessingUtc?: string | null;
+    successfulProcessingTracked?: boolean;
+};
+
+export type InboxHealthDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: InboxHealthDto;
+};
+
+export type InboxHealthDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: InboxHealthDto;
+};
+
+export type InboxMessageDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    sourceSystem?: string | null;
+    sourceRegistrationId?: string | null;
+    externalMessageId?: string | null;
+    deduplicationKey?: string | null;
+    deduplicationSignature?: string | null;
+    payloadDigest?: string | null;
+    deliveryCount?: number;
+    lastDuplicateReceivedAtUtc?: string | null;
+    messageType?: string | null;
+    version?: string | null;
+    contentType?: string | null;
+    status?: 'Received' | 'AuthenticityPending' | 'Accepted' | 'Processing' | 'Succeeded' | 'RetryScheduled' | 'Rejected' | 'Quarantined' | 'DeadLettered' | 'Cancelled';
+    attempts?: number;
+    maxAttempts?: number;
+    verificationStatus?: 'Unverified' | 'Verified' | 'Failed' | 'Untrusted' | 'NotRequired';
+    verificationProfile?: string | null;
+    verificationAlgorithm?: string | null;
+    verifiedAtUtc?: string | null;
+    generation?: number;
+    replayCount?: number;
+    originalInboxMessageId?: string | null;
+    failureCode?: string | null;
+    failureReason?: string | null;
+    correlationId?: string | null;
+    causationId?: string | null;
+    lockedBy?: string | null;
+    lockedUntilUtc?: string | null;
+    availableAtUtc?: string;
+    receivedAtUtc?: string;
+    createdAtUtc?: string;
+    lastAttemptAtUtc?: string | null;
+    processedAtUtc?: string | null;
+    failedAtUtc?: string | null;
+};
+
+export type InboxMessageDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InboxMessageDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type InboxMessageDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: InboxMessageDto;
+};
+
+export type InboxMessageDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: InboxMessageDto;
+};
+
+export type InboxMessageDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<InboxMessageDto> | null;
+};
+
+export type InboxMessageDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<InboxMessageDto> | null;
+};
+
+export type InboxReplayResultDto = {
+    newInboxMessageId?: string | null;
+    rootInboxMessageId?: string | null;
+    generation?: number;
+};
+
+export type InboxReplayResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: InboxReplayResultDto;
+};
+
+export type InboxReplayResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: InboxReplayResultDto;
 };
 
 export type InfoRequest = {
@@ -530,6 +1118,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -537,6 +1130,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -549,82 +1147,6 @@ export type LoginRequest = {
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
-};
-
-export type ModuleReadable = {
-    enable?: boolean;
-    readonly active?: boolean;
-    order?: number;
-    id?: string | null;
-    name?: string | null;
-    readonly fullName?: string | null;
-    description?: string | null;
-    type?: 'Module' | 'Integration' | 'StudioModule' | 'StudioIntegration';
-    configuration?: string | null;
-    author?: string | null;
-    authorUrl?: string | null;
-    license?: string | null;
-    requireLicenseAcceptance?: boolean | null;
-    repository?: string | null;
-    path?: string | null;
-    icon?: string | null;
-    image?: string | null;
-    nuSpecPath?: string | null;
-    manifest?: string | null;
-    documentation?: string | null;
-    website?: string | null;
-    logo?: string | null;
-    swaggerSpec?: ISwaggerSpec;
-    swaggerSpecs?: Array<ISwaggerSpec> | null;
-    url?: string | null;
-    assemblyPaths?: Array<string> | null;
-    readonly requiredPermissions?: Array<string> | null;
-    markedForDeletion?: boolean;
-    version?: string | null;
-};
-
-export type ModuleWritable = {
-    enable?: boolean;
-    order?: number;
-    id?: string | null;
-    name?: string | null;
-    description?: string | null;
-    type?: 'Module' | 'Integration' | 'StudioModule' | 'StudioIntegration';
-    configuration?: string | null;
-    author?: string | null;
-    authorUrl?: string | null;
-    license?: string | null;
-    requireLicenseAcceptance?: boolean | null;
-    repository?: string | null;
-    path?: string | null;
-    icon?: string | null;
-    image?: string | null;
-    nuSpecPath?: string | null;
-    manifest?: string | null;
-    documentation?: string | null;
-    website?: string | null;
-    logo?: string | null;
-    swaggerSpec?: ISwaggerSpec;
-    swaggerSpecs?: Array<ISwaggerSpec> | null;
-    url?: string | null;
-    assemblyPaths?: Array<string> | null;
-    markedForDeletion?: boolean;
-    version?: string | null;
-};
-
-export type ModuleListEnvelopeReadable = {
-    readonly isSuccess?: boolean;
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    readonly timestamp?: string;
-    readonly activityId?: string | null;
-    result?: Array<ModuleReadable> | null;
-};
-
-export type ModuleListEnvelopeWritable = {
-    errorMessage?: string | null;
-    correlationId?: string | null;
-    result?: Array<ModuleWritable> | null;
 };
 
 export type ObjectEmailDispatchRequest = {
@@ -643,14 +1165,6 @@ export type ObjectEmailDispatchRequest = {
     templateUrl?: string | null;
     emailTemplateId?: string | null;
     payload?: unknown;
-};
-
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
-    op?: string | null;
-    from?: string | null;
-    value?: unknown;
 };
 
 export type OptionCreateDto = {
@@ -677,11 +1191,39 @@ export type OptionDto = {
     expiration?: number;
 };
 
+export type OptionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type OptionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type OptionDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: OptionDto;
 };
@@ -689,6 +1231,11 @@ export type OptionDtoEnvelopeReadable = {
 export type OptionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: OptionDto;
 };
 
@@ -697,6 +1244,11 @@ export type OptionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<OptionDto> | null;
 };
@@ -704,6 +1256,11 @@ export type OptionDtoListEnvelopeReadable = {
 export type OptionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<OptionDto> | null;
 };
 
@@ -715,6 +1272,148 @@ export type OptionUpdateDto = {
     autoload?: boolean;
     transient?: boolean;
     expiration?: number;
+};
+
+export type OutboxAdminReasonDto = {
+    reason: string;
+};
+
+export type OutboxHealthDto = {
+    enabled?: boolean;
+    pendingCount?: number;
+    processingCount?: number;
+    failedCount?: number;
+    deadLetterCount?: number;
+    oldestPendingAgeSeconds?: number | null;
+    lastSuccessfulDispatchUtc?: string | null;
+    successfulDispatchTracked?: boolean;
+};
+
+export type OutboxHealthDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: OutboxHealthDto;
+};
+
+export type OutboxHealthDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: OutboxHealthDto;
+};
+
+export type OutboxMessageDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    kind?: 'Event' | 'Command';
+    messageType?: string | null;
+    status?: 'Pending' | 'Processing' | 'Succeeded' | 'Failed' | 'DeadLettered' | 'Cancelled';
+    attempts?: number;
+    maxAttempts?: number;
+    failureCode?: string | null;
+    failureReason?: string | null;
+    idempotencyKey?: string | null;
+    correlationId?: string | null;
+    lockedBy?: string | null;
+    lockedUntilUtc?: string | null;
+    availableAtUtc?: string;
+    createdAtUtc?: string;
+    lastAttemptAtUtc?: string | null;
+    processedAtUtc?: string | null;
+    failedAtUtc?: string | null;
+};
+
+export type OutboxMessageDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type OutboxMessageDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type OutboxMessageDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: OutboxMessageDto;
+};
+
+export type OutboxMessageDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: OutboxMessageDto;
+};
+
+export type OutboxMessageDtoIReadOnlyListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<OutboxMessageDto> | null;
+};
+
+export type OutboxMessageDtoIReadOnlyListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<OutboxMessageDto> | null;
+};
+
+export type PatchOperation = {
+    op?: string | null;
+    path?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type RefreshRequest = {
@@ -770,6 +1469,11 @@ export type StringListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<string> | null;
 };
@@ -777,6 +1481,11 @@ export type StringListEnvelopeReadable = {
 export type StringListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<string> | null;
 };
 
@@ -790,6 +1499,11 @@ export type StudioModuleListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<StudioModule> | null;
 };
@@ -797,6 +1511,11 @@ export type StudioModuleListEnvelopeReadable = {
 export type StudioModuleListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<StudioModule> | null;
 };
 
@@ -817,6 +1536,11 @@ export type SuiteLicenseAssignmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SuiteLicenseAssignmentDto> | null;
 };
@@ -824,6 +1548,11 @@ export type SuiteLicenseAssignmentDtoListEnvelopeReadable = {
 export type SuiteLicenseAssignmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SuiteLicenseAssignmentDto> | null;
 };
 
@@ -843,6 +1572,11 @@ export type SuiteLicenseDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SuiteLicenseDto;
 };
@@ -850,6 +1584,11 @@ export type SuiteLicenseDtoEnvelopeReadable = {
 export type SuiteLicenseDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SuiteLicenseDto;
 };
 
@@ -858,6 +1597,11 @@ export type SuiteLicenseDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SuiteLicenseDto> | null;
 };
@@ -865,7 +1609,100 @@ export type SuiteLicenseDtoListEnvelopeReadable = {
 export type SuiteLicenseDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SuiteLicenseDto> | null;
+};
+
+export type SuiteModuleReadable = {
+    enable?: boolean;
+    markedForDeletion?: boolean;
+    readonly active?: boolean;
+    order?: number;
+    id?: string | null;
+    name?: string | null;
+    readonly fullName?: string | null;
+    description?: string | null;
+    type?: 'Module' | 'Integration' | 'StudioModule' | 'StudioIntegration' | 'WasmModule' | 'WasmIntegration';
+    category?: 'Other' | 'FinanceAndAccounting' | 'SalesAndCommerce' | 'MarketingAndEngagement' | 'CustomerRelations' | 'OperationsAndSupplyChain' | 'ProjectsAndProductivity' | 'PeopleAndWorkforce' | 'LearningAndEducation' | 'ContentAndWeb' | 'DataAndAnalytics' | 'ArtificialIntelligence' | 'SecurityAndIdentity' | 'TrustAndCompliance' | 'Communication' | 'DeveloperAndPlatform' | 'IndustrySolutions';
+    configuration?: string | null;
+    author?: string | null;
+    authorUrl?: string | null;
+    license?: string | null;
+    requireLicenseAcceptance?: boolean | null;
+    repository?: string | null;
+    icon?: string | null;
+    image?: string | null;
+    nuSpecPath?: string | null;
+    manifest?: string | null;
+    logo?: string | null;
+    website?: string | null;
+    documentation?: string | null;
+    url?: string | null;
+    path?: string | null;
+    openApiDefinitionSpec?: IOpenApiDefinitionSpec;
+    swaggerSpecs?: Array<IOpenApiDefinitionSpec> | null;
+    assemblyPaths?: Array<string> | null;
+    readonly requiredPermissions?: Array<string> | null;
+    version?: string | null;
+};
+
+export type SuiteModuleWritable = {
+    enable?: boolean;
+    markedForDeletion?: boolean;
+    order?: number;
+    id?: string | null;
+    name?: string | null;
+    description?: string | null;
+    type?: 'Module' | 'Integration' | 'StudioModule' | 'StudioIntegration' | 'WasmModule' | 'WasmIntegration';
+    category?: 'Other' | 'FinanceAndAccounting' | 'SalesAndCommerce' | 'MarketingAndEngagement' | 'CustomerRelations' | 'OperationsAndSupplyChain' | 'ProjectsAndProductivity' | 'PeopleAndWorkforce' | 'LearningAndEducation' | 'ContentAndWeb' | 'DataAndAnalytics' | 'ArtificialIntelligence' | 'SecurityAndIdentity' | 'TrustAndCompliance' | 'Communication' | 'DeveloperAndPlatform' | 'IndustrySolutions';
+    configuration?: string | null;
+    author?: string | null;
+    authorUrl?: string | null;
+    license?: string | null;
+    requireLicenseAcceptance?: boolean | null;
+    repository?: string | null;
+    icon?: string | null;
+    image?: string | null;
+    nuSpecPath?: string | null;
+    manifest?: string | null;
+    logo?: string | null;
+    website?: string | null;
+    documentation?: string | null;
+    url?: string | null;
+    path?: string | null;
+    openApiDefinitionSpec?: IOpenApiDefinitionSpec;
+    swaggerSpecs?: Array<IOpenApiDefinitionSpec> | null;
+    assemblyPaths?: Array<string> | null;
+    version?: string | null;
+};
+
+export type SuiteModuleListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<SuiteModuleReadable> | null;
+};
+
+export type SuiteModuleListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<SuiteModuleWritable> | null;
 };
 
 export type SystemOverviewDto = {
@@ -894,6 +1731,11 @@ export type SystemOverviewDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SystemOverviewDto;
 };
@@ -901,6 +1743,11 @@ export type SystemOverviewDtoEnvelopeReadable = {
 export type SystemOverviewDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SystemOverviewDto;
 };
 
@@ -1012,11 +1859,39 @@ export type TenantDtoWritable = {
     twitterUsername?: string | null;
 };
 
+export type TenantDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type TenantDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type TenantDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: TenantDtoReadable;
 };
@@ -1024,6 +1899,11 @@ export type TenantDtoEnvelopeReadable = {
 export type TenantDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: TenantDtoWritable;
 };
 
@@ -1032,6 +1912,11 @@ export type TenantDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<TenantDtoReadable> | null;
 };
@@ -1039,6 +1924,11 @@ export type TenantDtoListEnvelopeReadable = {
 export type TenantDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<TenantDtoWritable> | null;
 };
 
@@ -1217,11 +2107,39 @@ export type UserDtoWritable = {
     siteTheme?: 'System' | 'Light' | 'Dark';
 };
 
+export type UserDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type UserDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type UserDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: UserDtoReadable;
 };
@@ -1229,6 +2147,11 @@ export type UserDtoEnvelopeReadable = {
 export type UserDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: UserDtoWritable;
 };
 
@@ -1237,6 +2160,11 @@ export type UserDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<UserDtoReadable> | null;
 };
@@ -1244,6 +2172,11 @@ export type UserDtoListEnvelopeReadable = {
 export type UserDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<UserDtoWritable> | null;
 };
 
@@ -1332,11 +2265,39 @@ export type WebPortalDto = {
     businessPortalApplicationId?: string | null;
 };
 
+export type WebPortalDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WebPortalDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WebPortalDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: WebPortalDto;
 };
@@ -1344,6 +2305,11 @@ export type WebPortalDtoEnvelopeReadable = {
 export type WebPortalDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: WebPortalDto;
 };
 
@@ -1352,6 +2318,11 @@ export type WebPortalDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WebPortalDto> | null;
 };
@@ -1359,6 +2330,11 @@ export type WebPortalDtoListEnvelopeReadable = {
 export type WebPortalDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WebPortalDto> | null;
 };
 
@@ -1411,8 +2387,409 @@ export type IsRequestValidAsyncResponses = {
     200: unknown;
 };
 
-export type GetSystemBusinessDomainsData = {
+export type GetGlobalApplicationPrincipalsData = {
+    body?: ApplicationPrincipalDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals';
+};
+
+export type GetGlobalApplicationPrincipalsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetGlobalApplicationPrincipalsError = GetGlobalApplicationPrincipalsErrors[keyof GetGlobalApplicationPrincipalsErrors];
+
+export type GetGlobalApplicationPrincipalsResponses = {
+    /**
+     * OK
+     */
+    200: ApplicationPrincipalDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type GetGlobalApplicationPrincipalsResponse = GetGlobalApplicationPrincipalsResponses[keyof GetGlobalApplicationPrincipalsResponses];
+
+export type GetGlobalApplicationPrincipalsCountData = {
+    body?: ApplicationPrincipalDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/Count';
+};
+
+export type GetGlobalApplicationPrincipalsCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetGlobalApplicationPrincipalsCountError = GetGlobalApplicationPrincipalsCountErrors[keyof GetGlobalApplicationPrincipalsCountErrors];
+
+export type GetGlobalApplicationPrincipalsCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetGlobalApplicationPrincipalsCountResponse = GetGlobalApplicationPrincipalsCountResponses[keyof GetGlobalApplicationPrincipalsCountResponses];
+
+export type GetGlobalApplicationPrincipalData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        principalId: string;
+    };
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}';
+};
+
+export type GetGlobalApplicationPrincipalErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetGlobalApplicationPrincipalError = GetGlobalApplicationPrincipalErrors[keyof GetGlobalApplicationPrincipalErrors];
+
+export type GetGlobalApplicationPrincipalResponses = {
+    /**
+     * OK
+     */
+    200: ApplicationPrincipalDetailDtoEnvelopeReadable;
+};
+
+export type GetGlobalApplicationPrincipalResponse = GetGlobalApplicationPrincipalResponses[keyof GetGlobalApplicationPrincipalResponses];
+
+export type ProvisionGlobalApplicationPrincipalData = {
+    body: ApplicationPrincipalProvisionRequestDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/Provision';
+};
+
+export type ProvisionGlobalApplicationPrincipalErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type ProvisionGlobalApplicationPrincipalError = ProvisionGlobalApplicationPrincipalErrors[keyof ProvisionGlobalApplicationPrincipalErrors];
+
+export type ProvisionGlobalApplicationPrincipalResponses = {
+    /**
+     * OK
+     */
+    200: ApplicationPrincipalProvisioningResultDtoEnvelopeReadable;
+};
+
+export type ProvisionGlobalApplicationPrincipalResponse = ProvisionGlobalApplicationPrincipalResponses[keyof ProvisionGlobalApplicationPrincipalResponses];
+
+export type ProvisionPaymentsConnectorData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        tenantId?: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/PaymentsConnector';
+};
+
+export type ProvisionPaymentsConnectorErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type ProvisionPaymentsConnectorError = ProvisionPaymentsConnectorErrors[keyof ProvisionPaymentsConnectorErrors];
+
+export type ProvisionPaymentsConnectorResponses = {
+    /**
+     * OK
+     */
+    200: ApplicationPrincipalProvisioningResultDtoEnvelopeReadable;
+};
+
+export type ProvisionPaymentsConnectorResponse = ProvisionPaymentsConnectorResponses[keyof ProvisionPaymentsConnectorResponses];
+
+export type GrantGlobalApplicationPrincipalPermissionData = {
+    body: ApplicationPrincipalPermissionRequestDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        principalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Permissions';
+};
+
+export type GrantGlobalApplicationPrincipalPermissionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type GrantGlobalApplicationPrincipalPermissionError = GrantGlobalApplicationPrincipalPermissionErrors[keyof GrantGlobalApplicationPrincipalPermissionErrors];
+
+export type GrantGlobalApplicationPrincipalPermissionResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type GrantGlobalApplicationPrincipalPermissionResponse = GrantGlobalApplicationPrincipalPermissionResponses[keyof GrantGlobalApplicationPrincipalPermissionResponses];
+
+export type RevokeGlobalApplicationPrincipalPermissionData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        principalId: string;
+        permission: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Permissions/{permission}';
+};
+
+export type RevokeGlobalApplicationPrincipalPermissionErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type RevokeGlobalApplicationPrincipalPermissionError = RevokeGlobalApplicationPrincipalPermissionErrors[keyof RevokeGlobalApplicationPrincipalPermissionErrors];
+
+export type RevokeGlobalApplicationPrincipalPermissionResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type RevokeGlobalApplicationPrincipalPermissionResponse = RevokeGlobalApplicationPrincipalPermissionResponses[keyof RevokeGlobalApplicationPrincipalPermissionResponses];
+
+export type EnableGlobalApplicationPrincipalData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        principalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Enable';
+};
+
+export type EnableGlobalApplicationPrincipalErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type EnableGlobalApplicationPrincipalError = EnableGlobalApplicationPrincipalErrors[keyof EnableGlobalApplicationPrincipalErrors];
+
+export type EnableGlobalApplicationPrincipalResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type EnableGlobalApplicationPrincipalResponse = EnableGlobalApplicationPrincipalResponses[keyof EnableGlobalApplicationPrincipalResponses];
+
+export type SuspendGlobalApplicationPrincipalData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        principalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Suspend';
+};
+
+export type SuspendGlobalApplicationPrincipalErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type SuspendGlobalApplicationPrincipalError = SuspendGlobalApplicationPrincipalErrors[keyof SuspendGlobalApplicationPrincipalErrors];
+
+export type SuspendGlobalApplicationPrincipalResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type SuspendGlobalApplicationPrincipalResponse = SuspendGlobalApplicationPrincipalResponses[keyof SuspendGlobalApplicationPrincipalResponses];
+
+export type DisableGlobalApplicationPrincipalData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        principalId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/ApplicationPrincipals/{principalId}/Disable';
+};
+
+export type DisableGlobalApplicationPrincipalErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type DisableGlobalApplicationPrincipalError = DisableGlobalApplicationPrincipalErrors[keyof DisableGlobalApplicationPrincipalErrors];
+
+export type DisableGlobalApplicationPrincipalResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type DisableGlobalApplicationPrincipalResponse = DisableGlobalApplicationPrincipalResponses[keyof DisableGlobalApplicationPrincipalResponses];
+
+export type GetSystemBusinessDomainsData = {
+    body?: BusinessDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1446,7 +2823,7 @@ export type GetSystemBusinessDomainsResponses = {
 export type GetSystemBusinessDomainsResponse = GetSystemBusinessDomainsResponses[keyof GetSystemBusinessDomainsResponses];
 
 export type GetSystemBusinessDomainsCountData = {
-    body?: never;
+    body?: BusinessDomainDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1592,7 +2969,7 @@ export type VerifySystemBusinessDomainResponses = {
 export type VerifySystemBusinessDomainResponse = VerifySystemBusinessDomainResponses[keyof VerifySystemBusinessDomainResponses];
 
 export type GetSystemCartsData = {
-    body?: never;
+    body?: CartDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1626,7 +3003,7 @@ export type GetSystemCartsResponses = {
 export type GetSystemCartsResponse = GetSystemCartsResponses[keyof GetSystemCartsResponses];
 
 export type GetSystemCartsCountData = {
-    body?: never;
+    body?: CartDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1732,7 +3109,7 @@ export type GetSystemCartByIdResponses = {
 export type GetSystemCartByIdResponse = GetSystemCartByIdResponses[keyof GetSystemCartByIdResponses];
 
 export type GetSystemContactOptionsData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1807,7 +3184,7 @@ export type CreateSystemContactOptionResponses = {
 export type CreateSystemContactOptionResponse = CreateSystemContactOptionResponses[keyof CreateSystemContactOptionResponses];
 
 export type GetSystemContactOptionsCountData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1918,7 +3295,7 @@ export type GetSystemContactOptionByIdResponses = {
 export type GetSystemContactOptionByIdResponse = GetSystemContactOptionByIdResponses[keyof GetSystemContactOptionByIdResponses];
 
 export type PatchSystemContactOptionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2066,6 +3443,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -2372,8 +3765,522 @@ export type PostAccountManageDownloadPersonalDataResponses = {
     200: unknown;
 };
 
-export type GetSystemIpLookupsData = {
+export type GetInboxHealthData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Health';
+};
+
+export type GetInboxHealthErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetInboxHealthError = GetInboxHealthErrors[keyof GetInboxHealthErrors];
+
+export type GetInboxHealthResponses = {
+    /**
+     * OK
+     */
+    200: InboxHealthDtoEnvelopeReadable;
+};
+
+export type GetInboxHealthResponse = GetInboxHealthResponses[keyof GetInboxHealthResponses];
+
+export type GetInboxMessagesData = {
+    body?: InboxMessageDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages';
+};
+
+export type GetInboxMessagesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetInboxMessagesError = GetInboxMessagesErrors[keyof GetInboxMessagesErrors];
+
+export type GetInboxMessagesResponses = {
+    /**
+     * OK
+     */
+    200: InboxMessageDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type GetInboxMessagesResponse = GetInboxMessagesResponses[keyof GetInboxMessagesResponses];
+
+export type GetInboxMessagesCountData = {
+    body?: InboxMessageDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages/Count';
+};
+
+export type GetInboxMessagesCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetInboxMessagesCountError = GetInboxMessagesCountErrors[keyof GetInboxMessagesCountErrors];
+
+export type GetInboxMessagesCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetInboxMessagesCountResponse = GetInboxMessagesCountResponses[keyof GetInboxMessagesCountResponses];
+
+export type GetInboxMessageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages/{id}';
+};
+
+export type GetInboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetInboxMessageError = GetInboxMessageErrors[keyof GetInboxMessageErrors];
+
+export type GetInboxMessageResponses = {
+    /**
+     * OK
+     */
+    200: InboxMessageDtoEnvelopeReadable;
+};
+
+export type GetInboxMessageResponse = GetInboxMessageResponses[keyof GetInboxMessageResponses];
+
+export type GetInboxCorrelationChainData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        correlationId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Correlations/{correlationId}';
+};
+
+export type GetInboxCorrelationChainErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type GetInboxCorrelationChainError = GetInboxCorrelationChainErrors[keyof GetInboxCorrelationChainErrors];
+
+export type GetInboxCorrelationChainResponses = {
+    /**
+     * OK
+     */
+    200: InboxMessageDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type GetInboxCorrelationChainResponse = GetInboxCorrelationChainResponses[keyof GetInboxCorrelationChainResponses];
+
+export type GetDuplicateInboxMessagesData = {
+    body?: InboxMessageDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Duplicates';
+};
+
+export type GetDuplicateInboxMessagesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetDuplicateInboxMessagesError = GetDuplicateInboxMessagesErrors[keyof GetDuplicateInboxMessagesErrors];
+
+export type GetDuplicateInboxMessagesResponses = {
+    /**
+     * OK
+     */
+    200: InboxMessageDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type GetDuplicateInboxMessagesResponse = GetDuplicateInboxMessagesResponses[keyof GetDuplicateInboxMessagesResponses];
+
+export type GetDuplicateInboxMessagesCountData = {
+    body?: InboxMessageDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Duplicates/Count';
+};
+
+export type GetDuplicateInboxMessagesCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetDuplicateInboxMessagesCountError = GetDuplicateInboxMessagesCountErrors[keyof GetDuplicateInboxMessagesCountErrors];
+
+export type GetDuplicateInboxMessagesCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetDuplicateInboxMessagesCountResponse = GetDuplicateInboxMessagesCountResponses[keyof GetDuplicateInboxMessagesCountResponses];
+
+export type ExpediteInboxMessageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages/{id}/Expedite';
+};
+
+export type ExpediteInboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type ExpediteInboxMessageError = ExpediteInboxMessageErrors[keyof ExpediteInboxMessageErrors];
+
+export type ExpediteInboxMessageResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type ExpediteInboxMessageResponse = ExpediteInboxMessageResponses[keyof ExpediteInboxMessageResponses];
+
+export type CancelInboxMessageRetryData = {
+    body?: InboxAdminReasonDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages/{id}/CancelRetry';
+};
+
+export type CancelInboxMessageRetryErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type CancelInboxMessageRetryError = CancelInboxMessageRetryErrors[keyof CancelInboxMessageRetryErrors];
+
+export type CancelInboxMessageRetryResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type CancelInboxMessageRetryResponse = CancelInboxMessageRetryResponses[keyof CancelInboxMessageRetryResponses];
+
+export type ReleaseInboxMessageLeaseData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages/{id}/ReleaseLease';
+};
+
+export type ReleaseInboxMessageLeaseErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type ReleaseInboxMessageLeaseError = ReleaseInboxMessageLeaseErrors[keyof ReleaseInboxMessageLeaseErrors];
+
+export type ReleaseInboxMessageLeaseResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type ReleaseInboxMessageLeaseResponse = ReleaseInboxMessageLeaseResponses[keyof ReleaseInboxMessageLeaseResponses];
+
+export type DeadLetterInboxMessageData = {
+    body?: InboxAdminReasonDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages/{id}/DeadLetter';
+};
+
+export type DeadLetterInboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type DeadLetterInboxMessageError = DeadLetterInboxMessageErrors[keyof DeadLetterInboxMessageErrors];
+
+export type DeadLetterInboxMessageResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type DeadLetterInboxMessageResponse = DeadLetterInboxMessageResponses[keyof DeadLetterInboxMessageResponses];
+
+export type QuarantineInboxMessageData = {
+    body?: InboxAdminReasonDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages/{id}/Quarantine';
+};
+
+export type QuarantineInboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type QuarantineInboxMessageError = QuarantineInboxMessageErrors[keyof QuarantineInboxMessageErrors];
+
+export type QuarantineInboxMessageResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type QuarantineInboxMessageResponse = QuarantineInboxMessageResponses[keyof QuarantineInboxMessageResponses];
+
+export type ReplayInboxMessageData = {
+    body?: InboxAdminReasonDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Inbox/Messages/{id}/Replay';
+};
+
+export type ReplayInboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type ReplayInboxMessageError = ReplayInboxMessageErrors[keyof ReplayInboxMessageErrors];
+
+export type ReplayInboxMessageResponses = {
+    /**
+     * OK
+     */
+    200: InboxReplayResultDtoEnvelopeReadable;
+};
+
+export type ReplayInboxMessageResponse = ReplayInboxMessageResponses[keyof ReplayInboxMessageResponses];
+
+export type GetSystemIpLookupsData = {
+    body?: IpLookupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2407,7 +4314,7 @@ export type GetSystemIpLookupsResponses = {
 export type GetSystemIpLookupsResponse = GetSystemIpLookupsResponses[keyof GetSystemIpLookupsResponses];
 
 export type GetSystemIpLookupsCountData = {
-    body?: never;
+    body?: IpLookupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2609,7 +4516,7 @@ export type GetLicenseAssignmentsAsyncResponses = {
 
 export type GetLicenseAssignmentsAsyncResponse = GetLicenseAssignmentsAsyncResponses[keyof GetLicenseAssignmentsAsyncResponses];
 
-export type GetLicenseAttributesAsyncData = {
+export type GetAttributesForLicenseAsyncData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2624,25 +4531,25 @@ export type GetLicenseAttributesAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/{licenseId}/Attributes';
 };
 
-export type GetLicenseAttributesAsyncErrors = {
+export type GetAttributesForLicenseAsyncErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseAttributesAsyncError = GetLicenseAttributesAsyncErrors[keyof GetLicenseAttributesAsyncErrors];
+export type GetAttributesForLicenseAsyncError = GetAttributesForLicenseAsyncErrors[keyof GetAttributesForLicenseAsyncErrors];
 
-export type GetLicenseAttributesAsyncResponses = {
+export type GetAttributesForLicenseAsyncResponses = {
     /**
      * OK
      */
     200: SuiteLicenseAssignmentDtoListEnvelopeReadable;
 };
 
-export type GetLicenseAttributesAsyncResponse = GetLicenseAttributesAsyncResponses[keyof GetLicenseAttributesAsyncResponses];
+export type GetAttributesForLicenseAsyncResponse = GetAttributesForLicenseAsyncResponses[keyof GetAttributesForLicenseAsyncResponses];
 
-export type GetLicenseFeaturesAsyncData = {
+export type GetFeaturesForLicenseAsyncData = {
     body?: never;
     headers?: {
         'x-api-version'?: string;
@@ -2657,23 +4564,23 @@ export type GetLicenseFeaturesAsyncData = {
     url: '/api/v2/SystemService/Licensing/Licenses/{licenseId}/Features';
 };
 
-export type GetLicenseFeaturesAsyncErrors = {
+export type GetFeaturesForLicenseAsyncErrors = {
     /**
      * Forbidden
      */
     403: ErrorEnvelopeReadable;
 };
 
-export type GetLicenseFeaturesAsyncError = GetLicenseFeaturesAsyncErrors[keyof GetLicenseFeaturesAsyncErrors];
+export type GetFeaturesForLicenseAsyncError = GetFeaturesForLicenseAsyncErrors[keyof GetFeaturesForLicenseAsyncErrors];
 
-export type GetLicenseFeaturesAsyncResponses = {
+export type GetFeaturesForLicenseAsyncResponses = {
     /**
      * OK
      */
     200: SuiteLicenseAssignmentDtoListEnvelopeReadable;
 };
 
-export type GetLicenseFeaturesAsyncResponse = GetLicenseFeaturesAsyncResponses[keyof GetLicenseFeaturesAsyncResponses];
+export type GetFeaturesForLicenseAsyncResponse = GetFeaturesForLicenseAsyncResponses[keyof GetFeaturesForLicenseAsyncResponses];
 
 export type GetLicenseRecordsQuotaAsyncData = {
     body?: never;
@@ -2903,13 +4810,13 @@ export type GetAvailableModulesResponses = {
     /**
      * OK
      */
-    200: ModuleListEnvelopeReadable;
+    200: SuiteModuleListEnvelopeReadable;
 };
 
 export type GetAvailableModulesResponse = GetAvailableModulesResponses[keyof GetAvailableModulesResponses];
 
 export type GetSystemOptionsData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2980,7 +4887,7 @@ export type CreateSystemOptionResponses = {
 export type CreateSystemOptionResponse = CreateSystemOptionResponses[keyof CreateSystemOptionResponses];
 
 export type GetSystemOptionsCountData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3087,7 +4994,7 @@ export type GetSystemOptionByIdResponses = {
 export type GetSystemOptionByIdResponse = GetSystemOptionByIdResponses[keyof GetSystemOptionByIdResponses];
 
 export type PatchSystemOptionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3232,6 +5139,408 @@ export type UpsertSystemOptionResponses = {
 
 export type UpsertSystemOptionResponse = UpsertSystemOptionResponses[keyof UpsertSystemOptionResponses];
 
+export type GetOutboxHealthData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Health';
+};
+
+export type GetOutboxHealthErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetOutboxHealthError = GetOutboxHealthErrors[keyof GetOutboxHealthErrors];
+
+export type GetOutboxHealthResponses = {
+    /**
+     * OK
+     */
+    200: OutboxHealthDtoEnvelopeReadable;
+};
+
+export type GetOutboxHealthResponse = GetOutboxHealthResponses[keyof GetOutboxHealthResponses];
+
+export type GetOutboxMessagesData = {
+    body?: OutboxMessageDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Messages';
+};
+
+export type GetOutboxMessagesErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetOutboxMessagesError = GetOutboxMessagesErrors[keyof GetOutboxMessagesErrors];
+
+export type GetOutboxMessagesResponses = {
+    /**
+     * OK
+     */
+    200: OutboxMessageDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type GetOutboxMessagesResponse = GetOutboxMessagesResponses[keyof GetOutboxMessagesResponses];
+
+export type GetOutboxMessagesCountData = {
+    body?: OutboxMessageDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Messages/Count';
+};
+
+export type GetOutboxMessagesCountErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetOutboxMessagesCountError = GetOutboxMessagesCountErrors[keyof GetOutboxMessagesCountErrors];
+
+export type GetOutboxMessagesCountResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetOutboxMessagesCountResponse = GetOutboxMessagesCountResponses[keyof GetOutboxMessagesCountResponses];
+
+export type GetOutboxMessageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Messages/{id}';
+};
+
+export type GetOutboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetOutboxMessageError = GetOutboxMessageErrors[keyof GetOutboxMessageErrors];
+
+export type GetOutboxMessageResponses = {
+    /**
+     * OK
+     */
+    200: OutboxMessageDtoEnvelopeReadable;
+};
+
+export type GetOutboxMessageResponse = GetOutboxMessageResponses[keyof GetOutboxMessageResponses];
+
+export type GetOutboxCorrelationChainData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        correlationId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Correlations/{correlationId}';
+};
+
+export type GetOutboxCorrelationChainErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type GetOutboxCorrelationChainError = GetOutboxCorrelationChainErrors[keyof GetOutboxCorrelationChainErrors];
+
+export type GetOutboxCorrelationChainResponses = {
+    /**
+     * OK
+     */
+    200: OutboxMessageDtoIReadOnlyListEnvelopeReadable;
+};
+
+export type GetOutboxCorrelationChainResponse = GetOutboxCorrelationChainResponses[keyof GetOutboxCorrelationChainResponses];
+
+export type ReplayOutboxMessageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Messages/{id}/Replay';
+};
+
+export type ReplayOutboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type ReplayOutboxMessageError = ReplayOutboxMessageErrors[keyof ReplayOutboxMessageErrors];
+
+export type ReplayOutboxMessageResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type ReplayOutboxMessageResponse = ReplayOutboxMessageResponses[keyof ReplayOutboxMessageResponses];
+
+export type ExpediteOutboxMessageData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Messages/{id}/Expedite';
+};
+
+export type ExpediteOutboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type ExpediteOutboxMessageError = ExpediteOutboxMessageErrors[keyof ExpediteOutboxMessageErrors];
+
+export type ExpediteOutboxMessageResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type ExpediteOutboxMessageResponse = ExpediteOutboxMessageResponses[keyof ExpediteOutboxMessageResponses];
+
+export type CancelOutboxMessageData = {
+    body?: OutboxAdminReasonDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Messages/{id}/Cancel';
+};
+
+export type CancelOutboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type CancelOutboxMessageError = CancelOutboxMessageErrors[keyof CancelOutboxMessageErrors];
+
+export type CancelOutboxMessageResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type CancelOutboxMessageResponse = CancelOutboxMessageResponses[keyof CancelOutboxMessageResponses];
+
+export type DeadLetterOutboxMessageData = {
+    body?: OutboxAdminReasonDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Messages/{id}/DeadLetter';
+};
+
+export type DeadLetterOutboxMessageErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type DeadLetterOutboxMessageError = DeadLetterOutboxMessageErrors[keyof DeadLetterOutboxMessageErrors];
+
+export type DeadLetterOutboxMessageResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type DeadLetterOutboxMessageResponse = DeadLetterOutboxMessageResponses[keyof DeadLetterOutboxMessageResponses];
+
+export type ReleaseOutboxMessageLeaseData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        id: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Outbox/Messages/{id}/ReleaseLease';
+};
+
+export type ReleaseOutboxMessageLeaseErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+    /**
+     * Unprocessable Content
+     */
+    422: ErrorEnvelopeReadable;
+};
+
+export type ReleaseOutboxMessageLeaseError = ReleaseOutboxMessageLeaseErrors[keyof ReleaseOutboxMessageLeaseErrors];
+
+export type ReleaseOutboxMessageLeaseResponses = {
+    /**
+     * No Content
+     */
+    204: EmptyEnvelopeReadable;
+};
+
+export type ReleaseOutboxMessageLeaseResponse = ReleaseOutboxMessageLeaseResponses[keyof ReleaseOutboxMessageLeaseResponses];
+
 export type GetSystemOverviewData = {
     body?: never;
     headers?: {
@@ -3267,7 +5576,7 @@ export type GetSystemOverviewResponses = {
 export type GetSystemOverviewResponse = GetSystemOverviewResponses[keyof GetSystemOverviewResponses];
 
 export type GetSystemPortalsData = {
-    body?: never;
+    body?: WebPortalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3335,7 +5644,7 @@ export type CreateSystemPortalResponses = {
 export type CreateSystemPortalResponse = CreateSystemPortalResponses[keyof CreateSystemPortalResponses];
 
 export type GetSystemPortalsCountData = {
-    body?: never;
+    body?: WebPortalDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3441,7 +5750,7 @@ export type GetSystemPortalByIdResponses = {
 export type GetSystemPortalByIdResponse = GetSystemPortalByIdResponses[keyof GetSystemPortalByIdResponses];
 
 export type PatchSystemPortalData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3513,7 +5822,7 @@ export type UpdateSystemPortalResponses = {
 export type UpdateSystemPortalResponse = UpdateSystemPortalResponses[keyof UpdateSystemPortalResponses];
 
 export type GetSystemTenantOptionsData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3588,7 +5897,7 @@ export type CreateSystemTenantOptionResponses = {
 export type CreateSystemTenantOptionResponse = CreateSystemTenantOptionResponses[keyof CreateSystemTenantOptionResponses];
 
 export type GetSystemTenantOptionsCountData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3699,7 +6008,7 @@ export type GetSystemTenantOptionByIdResponses = {
 export type GetSystemTenantOptionByIdResponse = GetSystemTenantOptionByIdResponses[keyof GetSystemTenantOptionByIdResponses];
 
 export type PatchSystemTenantOptionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3773,7 +6082,7 @@ export type UpdateSystemTenantOptionResponses = {
 export type UpdateSystemTenantOptionResponse = UpdateSystemTenantOptionResponses[keyof UpdateSystemTenantOptionResponses];
 
 export type GetAllTenantsData = {
-    body?: never;
+    body?: TenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3841,7 +6150,7 @@ export type CreateTenantResponses = {
 export type CreateTenantResponse = CreateTenantResponses[keyof CreateTenantResponses];
 
 export type GetTenantsCountData = {
-    body?: never;
+    body?: TenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3875,7 +6184,7 @@ export type GetTenantsCountResponses = {
 export type GetTenantsCountResponse = GetTenantsCountResponses[keyof GetTenantsCountResponses];
 
 export type GetAllExtendedTenantsData = {
-    body?: never;
+    body?: ExtendedTenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3909,7 +6218,7 @@ export type GetAllExtendedTenantsResponses = {
 export type GetAllExtendedTenantsResponse = GetAllExtendedTenantsResponses[keyof GetAllExtendedTenantsResponses];
 
 export type GetExtendedTenantsCountData = {
-    body?: never;
+    body?: ExtendedTenantDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4015,7 +6324,7 @@ export type GetTenantResponses = {
 export type GetTenantResponse = GetTenantResponses[keyof GetTenantResponses];
 
 export type PatchTenantData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4129,7 +6438,7 @@ export type AdminSendTenantEmailResponses = {
 };
 
 export type GetSystemUserOptionsData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4204,7 +6513,7 @@ export type CreateSystemUserOptionResponses = {
 export type CreateSystemUserOptionResponse = CreateSystemUserOptionResponses[keyof CreateSystemUserOptionResponses];
 
 export type GetSystemUserOptionsCountData = {
-    body?: never;
+    body?: OptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4315,7 +6624,7 @@ export type GetSystemUserOptionByIdResponses = {
 export type GetSystemUserOptionByIdResponse = GetSystemUserOptionByIdResponses[keyof GetSystemUserOptionByIdResponses];
 
 export type PatchSystemUserOptionData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4389,7 +6698,7 @@ export type UpdateSystemUserOptionResponses = {
 export type UpdateSystemUserOptionResponse = UpdateSystemUserOptionResponses[keyof UpdateSystemUserOptionResponses];
 
 export type GetUsersAsyncData = {
-    body?: never;
+    body?: UserDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4457,7 +6766,7 @@ export type CreateAccountHolderAsyncResponses = {
 export type CreateAccountHolderAsyncResponse = CreateAccountHolderAsyncResponses[keyof CreateAccountHolderAsyncResponses];
 
 export type GetUsersCountAsyncData = {
-    body?: never;
+    body?: UserDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4491,7 +6800,7 @@ export type GetUsersCountAsyncResponses = {
 export type GetUsersCountAsyncResponse = GetUsersCountAsyncResponses[keyof GetUsersCountAsyncResponses];
 
 export type GetExtendedUsersAsyncData = {
-    body?: never;
+    body?: ExtendedUserDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4525,7 +6834,7 @@ export type GetExtendedUsersAsyncResponses = {
 export type GetExtendedUsersAsyncResponse = GetExtendedUsersAsyncResponses[keyof GetExtendedUsersAsyncResponses];
 
 export type GetExtendedUsersCountAsyncData = {
-    body?: never;
+    body?: ExtendedUserDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4631,7 +6940,7 @@ export type GetUserAsyncResponses = {
 export type GetUserAsyncResponse = GetUserAsyncResponses[keyof GetUserAsyncResponses];
 
 export type PatchAccountHolderAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

@@ -18,12 +18,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -31,12 +41,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedSalesLiteratureDtoReadable = {
@@ -69,11 +89,39 @@ export type ExtendedSalesLiteratureDtoWritable = {
     tenant?: TenantDtoWritable;
 };
 
+export type ExtendedSalesLiteratureDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedSalesLiteratureDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedSalesLiteratureDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedSalesLiteratureDtoReadable> | null;
 };
@@ -81,6 +129,11 @@ export type ExtendedSalesLiteratureDtoListEnvelopeReadable = {
 export type ExtendedSalesLiteratureDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedSalesLiteratureDtoWritable> | null;
 };
 
@@ -118,6 +171,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -125,6 +183,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -153,11 +216,39 @@ export type LoyaltyProgramDto = {
     priceListId?: string | null;
 };
 
+export type LoyaltyProgramDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type LoyaltyProgramDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type LoyaltyProgramDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: LoyaltyProgramDto;
 };
@@ -165,6 +256,11 @@ export type LoyaltyProgramDtoEnvelopeReadable = {
 export type LoyaltyProgramDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: LoyaltyProgramDto;
 };
 
@@ -173,6 +269,11 @@ export type LoyaltyProgramDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<LoyaltyProgramDto> | null;
 };
@@ -180,6 +281,11 @@ export type LoyaltyProgramDtoListEnvelopeReadable = {
 export type LoyaltyProgramDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<LoyaltyProgramDto> | null;
 };
 
@@ -189,10 +295,9 @@ export type LoyaltyProgramUpdateDto = {
     priceListId?: string | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -219,11 +324,39 @@ export type PointOfSaleDto = {
     description?: string | null;
 };
 
+export type PointOfSaleDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PointOfSaleDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type PointOfSaleDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: PointOfSaleDto;
 };
@@ -231,6 +364,11 @@ export type PointOfSaleDtoEnvelopeReadable = {
 export type PointOfSaleDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: PointOfSaleDto;
 };
 
@@ -239,6 +377,11 @@ export type PointOfSaleDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PointOfSaleDto> | null;
 };
@@ -246,6 +389,11 @@ export type PointOfSaleDtoListEnvelopeReadable = {
 export type PointOfSaleDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PointOfSaleDto> | null;
 };
 
@@ -300,11 +448,39 @@ export type SalesLiteratureDto = {
     salesLiteratureTypeId?: string | null;
 };
 
+export type SalesLiteratureDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SalesLiteratureDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SalesLiteratureDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SalesLiteratureDto;
 };
@@ -312,6 +488,11 @@ export type SalesLiteratureDtoEnvelopeReadable = {
 export type SalesLiteratureDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SalesLiteratureDto;
 };
 
@@ -320,6 +501,11 @@ export type SalesLiteratureDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SalesLiteratureDto> | null;
 };
@@ -327,6 +513,11 @@ export type SalesLiteratureDtoListEnvelopeReadable = {
 export type SalesLiteratureDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SalesLiteratureDto> | null;
 };
 
@@ -365,11 +556,39 @@ export type StoreDto = {
     currencyId?: string | null;
 };
 
+export type StoreDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type StoreDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type StoreDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: StoreDto;
 };
@@ -377,6 +596,11 @@ export type StoreDtoEnvelopeReadable = {
 export type StoreDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: StoreDto;
 };
 
@@ -385,6 +609,11 @@ export type StoreDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<StoreDto> | null;
 };
@@ -392,6 +621,11 @@ export type StoreDtoListEnvelopeReadable = {
 export type StoreDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<StoreDto> | null;
 };
 
@@ -520,6 +754,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -827,7 +1077,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type CountLoyaltyProgramsAsyncData = {
-    body?: never;
+    body?: LoyaltyProgramDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -854,7 +1104,7 @@ export type CountLoyaltyProgramsAsyncResponses = {
 export type CountLoyaltyProgramsAsyncResponse = CountLoyaltyProgramsAsyncResponses[keyof CountLoyaltyProgramsAsyncResponses];
 
 export type GetLoyaltyProgramsAsyncData = {
-    body?: never;
+    body?: LoyaltyProgramDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -966,7 +1216,7 @@ export type GetLoyaltyProgramAsyncResponses = {
 export type GetLoyaltyProgramAsyncResponse = GetLoyaltyProgramAsyncResponses[keyof GetLoyaltyProgramAsyncResponses];
 
 export type PatchLoyaltyProgramAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         loyaltyProgramId: string;
     };
@@ -1045,7 +1295,7 @@ export type GetQuoteAsyncResponses = {
 };
 
 export type CountPointOfSalesAsyncData = {
-    body?: never;
+    body?: PointOfSaleDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1072,7 +1322,7 @@ export type CountPointOfSalesAsyncResponses = {
 export type CountPointOfSalesAsyncResponse = CountPointOfSalesAsyncResponses[keyof CountPointOfSalesAsyncResponses];
 
 export type GetPointOfSalesAsyncData = {
-    body?: never;
+    body?: PointOfSaleDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1184,7 +1434,7 @@ export type GetPointOfSaleAsyncResponses = {
 export type GetPointOfSaleAsyncResponse = GetPointOfSaleAsyncResponses[keyof GetPointOfSaleAsyncResponses];
 
 export type PatchPointOfSaleAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         pointOfSaleId: string;
     };
@@ -1242,7 +1492,7 @@ export type UpdatePointOfSaleAsyncResponses = {
 export type UpdatePointOfSaleAsyncResponse = UpdatePointOfSaleAsyncResponses[keyof UpdatePointOfSaleAsyncResponses];
 
 export type CountSalesLiteraturesAsyncData = {
-    body?: never;
+    body?: SalesLiteratureDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1269,7 +1519,7 @@ export type CountSalesLiteraturesAsyncResponses = {
 export type CountSalesLiteraturesAsyncResponse = CountSalesLiteraturesAsyncResponses[keyof CountSalesLiteraturesAsyncResponses];
 
 export type GetSalesLiteraturesAsyncData = {
-    body?: never;
+    body?: SalesLiteratureDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1323,7 +1573,7 @@ export type CreateSalesLiteratureAsyncResponses = {
 export type CreateSalesLiteratureAsyncResponse = CreateSalesLiteratureAsyncResponses[keyof CreateSalesLiteratureAsyncResponses];
 
 export type GetExtendedSalesLiteraturesAsyncData = {
-    body?: never;
+    body?: ExtendedSalesLiteratureDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1408,7 +1658,7 @@ export type GetSalesLiteratureAsyncResponses = {
 export type GetSalesLiteratureAsyncResponse = GetSalesLiteratureAsyncResponses[keyof GetSalesLiteratureAsyncResponses];
 
 export type PatchSalesLiteratureAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         salesLiteratureId: string;
     };
@@ -1466,7 +1716,7 @@ export type UpdateSalesLiteratureAsyncResponses = {
 export type UpdateSalesLiteratureAsyncResponse = UpdateSalesLiteratureAsyncResponses[keyof UpdateSalesLiteratureAsyncResponses];
 
 export type CountStoresAsyncData = {
-    body?: never;
+    body?: StoreDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1493,7 +1743,7 @@ export type CountStoresAsyncResponses = {
 export type CountStoresAsyncResponse = CountStoresAsyncResponses[keyof CountStoresAsyncResponses];
 
 export type GetStoresAsyncData = {
-    body?: never;
+    body?: StoreDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1605,7 +1855,7 @@ export type GetStoreAsyncResponses = {
 export type GetStoreAsyncResponse = GetStoreAsyncResponses[keyof GetStoreAsyncResponses];
 
 export type PatchStoreAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         storeId: string;
     };

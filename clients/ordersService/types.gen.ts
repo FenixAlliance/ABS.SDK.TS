@@ -158,12 +158,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -171,12 +181,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ExtendedOrderDtoReadable = {
@@ -205,6 +225,7 @@ export type ExtendedOrderDtoReadable = {
     cityId?: string | null;
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -255,7 +276,6 @@ export type ExtendedOrderDtoReadable = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
     requestedDeliveryDate?: string;
@@ -302,6 +322,7 @@ export type ExtendedOrderDtoWritable = {
     cityId?: string | null;
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -352,7 +373,6 @@ export type ExtendedOrderDtoWritable = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
     requestedDeliveryDate?: string;
@@ -373,11 +393,39 @@ export type ExtendedOrderDtoWritable = {
     enrollment?: TenantEnrollmentDto;
 };
 
+export type ExtendedOrderDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ExtendedOrderDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ExtendedOrderDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ExtendedOrderDtoReadable> | null;
 };
@@ -385,6 +433,11 @@ export type ExtendedOrderDtoListEnvelopeReadable = {
 export type ExtendedOrderDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ExtendedOrderDtoWritable> | null;
 };
 
@@ -422,6 +475,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -429,6 +487,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -437,14 +500,6 @@ export type LoginRequest = {
     password: string | null;
     twoFactorCode?: string | null;
     twoFactorRecoveryCode?: string | null;
-};
-
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
-    op?: string | null;
-    from?: string | null;
-    value?: unknown;
 };
 
 export type OrderCreateDto = {
@@ -457,6 +512,7 @@ export type OrderCreateDto = {
     individualId?: string | null;
     paymentTermId?: string | null;
     organizationId?: string | null;
+    receiverTenantId?: string | null;
     firstName?: string | null;
     lastName?: string | null;
     companyName?: string | null;
@@ -505,7 +561,6 @@ export type OrderCreateDto = {
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
     quoteStatus?: 'Draft' | 'New' | 'Accepted' | 'Declined' | 'Expired';
     freightTerms?: 'FOB' | 'NoCharge';
-    receiverTenantId?: string | null;
     shippingLocationId?: string | null;
     qualifiedIdentifier?: string | null;
     totalTaxesInUsd?: number;
@@ -545,6 +600,7 @@ export type OrderDto = {
     cityId?: string | null;
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -595,7 +651,6 @@ export type OrderDto = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
     requestedDeliveryDate?: string;
@@ -610,11 +665,39 @@ export type OrderDto = {
     customWithholdingTaxAmount?: number;
 };
 
+export type OrderDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type OrderDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type OrderDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: OrderDto;
 };
@@ -622,6 +705,11 @@ export type OrderDtoEnvelopeReadable = {
 export type OrderDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: OrderDto;
 };
 
@@ -630,6 +718,11 @@ export type OrderDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<OrderDto> | null;
 };
@@ -637,6 +730,11 @@ export type OrderDtoListEnvelopeReadable = {
 export type OrderDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<OrderDto> | null;
 };
 
@@ -722,7 +820,6 @@ export type OrderLineCreateDto = {
     priceListItemId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    forexRatesSnapshot?: string | null;
     totalBaseAmountInUsd?: number;
     totalProfitInUsd?: number;
     totalDetailAmountInUsd?: number;
@@ -870,11 +967,39 @@ export type OrderLineDto = {
     orderId?: string | null;
 };
 
+export type OrderLineDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type OrderLineDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type OrderLineDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: OrderLineDto;
 };
@@ -882,6 +1007,11 @@ export type OrderLineDtoEnvelopeReadable = {
 export type OrderLineDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: OrderLineDto;
 };
 
@@ -890,6 +1020,11 @@ export type OrderLineDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<OrderLineDto> | null;
 };
@@ -897,6 +1032,11 @@ export type OrderLineDtoListEnvelopeReadable = {
 export type OrderLineDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<OrderLineDto> | null;
 };
 
@@ -984,7 +1124,6 @@ export type OrderLineUpdateDto = {
     priceListItemId?: string | null;
     unitId?: string | null;
     unitGroupId?: string | null;
-    forexRatesSnapshot?: string | null;
     totalBaseAmountInUsd?: number;
     totalProfitInUsd?: number;
     totalDetailAmountInUsd?: number;
@@ -1071,6 +1210,13 @@ export type OrderUpdateDto = {
     quoteStatus?: string | null;
     effectiveTo?: string | null;
     effectiveFrom?: string | null;
+};
+
+export type PatchOperation = {
+    op?: string | null;
+    path?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type RefreshRequest = {
@@ -1321,6 +1467,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1655,7 +1817,7 @@ export type SubmitCartResponses = {
 export type SubmitCartResponse = SubmitCartResponses[keyof SubmitCartResponses];
 
 export type GetOrdersData = {
-    body?: never;
+    body?: OrderDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1709,7 +1871,7 @@ export type CreateOrderResponses = {
 export type CreateOrderResponse = CreateOrderResponses[keyof CreateOrderResponses];
 
 export type GetExtendedOrdersData = {
-    body?: never;
+    body?: ExtendedOrderDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1736,7 +1898,7 @@ export type GetExtendedOrdersResponses = {
 export type GetExtendedOrdersResponse = GetExtendedOrdersResponses[keyof GetExtendedOrdersResponses];
 
 export type GetOrdersCountData = {
-    body?: never;
+    body?: OrderDtoCollectionQueryParametersWritable;
     path?: never;
     query: {
         tenantId: string;
@@ -1821,7 +1983,7 @@ export type GetOrderResponses = {
 export type GetOrderResponse = GetOrderResponses[keyof GetOrderResponses];
 
 export type PatchOrderData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         orderId: string;
     };
@@ -1908,7 +2070,7 @@ export type CalculateOrderResponses = {
 export type CalculateOrderResponse = CalculateOrderResponses[keyof CalculateOrderResponses];
 
 export type GetOrderLinesData = {
-    body?: never;
+    body?: OrderLineDtoCollectionQueryParametersWritable;
     path: {
         orderId: string;
     };
@@ -1967,7 +2129,7 @@ export type CreateOrderLineResponses = {
 export type CreateOrderLineResponse = CreateOrderLineResponses[keyof CreateOrderLineResponses];
 
 export type GetOrderLinesCountData = {
-    body?: never;
+    body?: OrderLineDtoCollectionQueryParametersWritable;
     path: {
         orderId: string;
     };
@@ -2056,7 +2218,7 @@ export type GetOrderLineResponses = {
 export type GetOrderLineResponse = GetOrderLineResponses[keyof GetOrderLineResponses];
 
 export type PatchOrderLineData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     path: {
         orderId: string;
         orderLineId: string;

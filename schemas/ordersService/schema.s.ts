@@ -25,6 +25,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -541,6 +556,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -549,6 +570,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ExtendedOrderDto: {
@@ -579,6 +606,8 @@ export interface components {
       customerNotes?: string | null;
       /** @enum {string} */
       taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -656,8 +685,6 @@ export interface components {
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
       /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
       freightTerms?: "FOB" | "NoCharge";
       /** @enum {string} */
       orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
@@ -688,12 +715,31 @@ export interface components {
       receiverTenant?: components["schemas"]["TenantDto"];
       enrollment?: components["schemas"]["TenantEnrollmentDto"];
     };
+    ExtendedOrderDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     ExtendedOrderDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ExtendedOrderDto"][] | null;
     };
@@ -727,6 +773,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -736,14 +788,6 @@ export interface components {
       password: string | null;
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
-    };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
-      op?: string | null;
-      from?: string | null;
-      value?: unknown;
     };
     OrderCreateDto: {
       /** Format: uuid */
@@ -757,6 +801,7 @@ export interface components {
       individualId?: string | null;
       paymentTermId?: string | null;
       organizationId?: string | null;
+      receiverTenantId?: string | null;
       firstName?: string | null;
       lastName?: string | null;
       companyName?: string | null;
@@ -823,7 +868,6 @@ export interface components {
       quoteStatus?: "Draft" | "New" | "Accepted" | "Declined" | "Expired";
       /** @enum {string} */
       freightTerms?: "FOB" | "NoCharge";
-      receiverTenantId?: string | null;
       shippingLocationId?: string | null;
       qualifiedIdentifier?: string | null;
       /** Format: double */
@@ -872,6 +916,8 @@ export interface components {
       customerNotes?: string | null;
       /** @enum {string} */
       taxCalculationMethod?: "Included" | "Excluded";
+      /** @enum {string} */
+      costCalculationMethod?: "Automatic" | "Custom";
       /** Format: double */
       forexRate?: number;
       forexRatesSnapshot?: string | null;
@@ -949,8 +995,6 @@ export interface components {
       sellerBillingProfileId?: string | null;
       buyerBillingProfileId?: string | null;
       /** @enum {string} */
-      costCalculationMethod?: "Automatic" | "Custom";
-      /** @enum {string} */
       freightTerms?: "FOB" | "NoCharge";
       /** @enum {string} */
       orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
@@ -975,12 +1019,31 @@ export interface components {
       /** Format: double */
       customWithholdingTaxAmount?: number;
     };
+    OrderDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     OrderDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OrderDto"];
     };
@@ -990,6 +1053,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OrderDto"][] | null;
     };
@@ -1093,7 +1162,6 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      forexRatesSnapshot?: string | null;
       /** Format: double */
       totalBaseAmountInUsd?: number;
       /** Format: double */
@@ -1291,12 +1359,31 @@ export interface components {
       parentBillingItemRecordId?: string | null;
       orderId?: string | null;
     };
+    OrderLineDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     OrderLineDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OrderLineDto"];
     };
@@ -1306,6 +1393,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["OrderLineDto"][] | null;
     };
@@ -1409,7 +1502,6 @@ export interface components {
       priceListItemId?: string | null;
       unitId?: string | null;
       unitGroupId?: string | null;
-      forexRatesSnapshot?: string | null;
       /** Format: double */
       totalBaseAmountInUsd?: number;
       /** Format: double */
@@ -1532,6 +1624,12 @@ export interface components {
       effectiveTo?: string | null;
       /** Format: date-time */
       effectiveFrom?: string | null;
+    };
+    PatchOperation: {
+      op?: string | null;
+      path?: string | null;
+      from?: string | null;
+      value?: unknown;
     };
     RefreshRequest: {
       refreshToken: string | null;
@@ -1739,6 +1837,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OrderDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1799,6 +1903,12 @@ export interface operations {
         tenantId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ExtendedOrderDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -1824,6 +1934,12 @@ export interface operations {
     parameters: {
       query: {
         tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OrderDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1954,8 +2070,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2017,6 +2133,12 @@ export interface operations {
       };
       path: {
         orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OrderLineDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2083,6 +2205,12 @@ export interface operations {
       };
       path: {
         orderId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["OrderLineDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["OrderLineDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2217,8 +2345,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {

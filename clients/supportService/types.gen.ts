@@ -18,12 +18,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -31,12 +41,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -103,11 +123,39 @@ export type InquiryRequestDto = {
     socialProfileId?: string | null;
 };
 
+export type InquiryRequestDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type InquiryRequestDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type InquiryRequestDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: InquiryRequestDto;
 };
@@ -115,6 +163,11 @@ export type InquiryRequestDtoEnvelopeReadable = {
 export type InquiryRequestDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: InquiryRequestDto;
 };
 
@@ -123,6 +176,11 @@ export type InquiryRequestDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<InquiryRequestDto> | null;
 };
@@ -130,6 +188,11 @@ export type InquiryRequestDtoListEnvelopeReadable = {
 export type InquiryRequestDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<InquiryRequestDto> | null;
 };
 
@@ -152,6 +215,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -159,6 +227,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -217,11 +290,39 @@ export type ItemRefundPolicyDto = {
     enrollmentId?: string | null;
 };
 
+export type ItemRefundPolicyDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemRefundPolicyDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemRefundPolicyDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemRefundPolicyDto;
 };
@@ -229,6 +330,11 @@ export type ItemRefundPolicyDtoEnvelopeReadable = {
 export type ItemRefundPolicyDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemRefundPolicyDto;
 };
 
@@ -237,6 +343,11 @@ export type ItemRefundPolicyDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemRefundPolicyDto> | null;
 };
@@ -244,6 +355,11 @@ export type ItemRefundPolicyDtoListEnvelopeReadable = {
 export type ItemRefundPolicyDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemRefundPolicyDto> | null;
 };
 
@@ -326,11 +442,39 @@ export type ItemReturnPolicyDto = {
     enrollmentId?: string | null;
 };
 
+export type ItemReturnPolicyDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemReturnPolicyDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemReturnPolicyDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemReturnPolicyDto;
 };
@@ -338,6 +482,11 @@ export type ItemReturnPolicyDtoEnvelopeReadable = {
 export type ItemReturnPolicyDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemReturnPolicyDto;
 };
 
@@ -346,6 +495,11 @@ export type ItemReturnPolicyDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemReturnPolicyDto> | null;
 };
@@ -353,6 +507,11 @@ export type ItemReturnPolicyDtoListEnvelopeReadable = {
 export type ItemReturnPolicyDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemReturnPolicyDto> | null;
 };
 
@@ -435,11 +594,39 @@ export type ItemWarrantyPolicyDto = {
     enrollmentId?: string | null;
 };
 
+export type ItemWarrantyPolicyDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ItemWarrantyPolicyDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ItemWarrantyPolicyDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ItemWarrantyPolicyDto;
 };
@@ -447,6 +634,11 @@ export type ItemWarrantyPolicyDtoEnvelopeReadable = {
 export type ItemWarrantyPolicyDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ItemWarrantyPolicyDto;
 };
 
@@ -455,6 +647,11 @@ export type ItemWarrantyPolicyDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ItemWarrantyPolicyDto> | null;
 };
@@ -462,6 +659,11 @@ export type ItemWarrantyPolicyDtoListEnvelopeReadable = {
 export type ItemWarrantyPolicyDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ItemWarrantyPolicyDto> | null;
 };
 
@@ -507,7 +709,7 @@ export type KnowledgeArticleCreateDto = {
 
 export type KnowledgeArticleDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     title?: string | null;
     slug?: string | null;
     excerpt?: string | null;
@@ -525,11 +727,39 @@ export type KnowledgeArticleDto = {
     enrollmentId?: string | null;
 };
 
+export type KnowledgeArticleDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type KnowledgeArticleDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type KnowledgeArticleDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: KnowledgeArticleDto;
 };
@@ -537,6 +767,11 @@ export type KnowledgeArticleDtoEnvelopeReadable = {
 export type KnowledgeArticleDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: KnowledgeArticleDto;
 };
 
@@ -545,6 +780,11 @@ export type KnowledgeArticleDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<KnowledgeArticleDto> | null;
 };
@@ -552,6 +792,11 @@ export type KnowledgeArticleDtoListEnvelopeReadable = {
 export type KnowledgeArticleDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<KnowledgeArticleDto> | null;
 };
 
@@ -588,11 +833,39 @@ export type MaintenanceVisitDto = {
     enrollmentId?: string | null;
 };
 
+export type MaintenanceVisitDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type MaintenanceVisitDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type MaintenanceVisitDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: MaintenanceVisitDto;
 };
@@ -600,6 +873,11 @@ export type MaintenanceVisitDtoEnvelopeReadable = {
 export type MaintenanceVisitDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: MaintenanceVisitDto;
 };
 
@@ -608,6 +886,11 @@ export type MaintenanceVisitDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<MaintenanceVisitDto> | null;
 };
@@ -615,6 +898,11 @@ export type MaintenanceVisitDtoListEnvelopeReadable = {
 export type MaintenanceVisitDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<MaintenanceVisitDto> | null;
 };
 
@@ -622,10 +910,9 @@ export type MaintenanceVisitUpdateDto = {
     [key: string]: never;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -642,6 +929,9 @@ export type PrivateMessageDto = {
     sentTimestamp?: string;
     readTimestamp?: string;
     receivedTimestamp?: string;
+    socialProfileName?: string | null;
+    socialProfileAvatarUrl?: string | null;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
 };
 
 export type PrivateMessageDtoListEnvelopeReadable = {
@@ -649,6 +939,11 @@ export type PrivateMessageDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PrivateMessageDto> | null;
 };
@@ -656,6 +951,11 @@ export type PrivateMessageDtoListEnvelopeReadable = {
 export type PrivateMessageDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PrivateMessageDto> | null;
 };
 
@@ -678,7 +978,7 @@ export type RefundRequestCreateDto = {
 
 export type RefundRequestDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     title?: string | null;
     description?: string | null;
     approved?: boolean;
@@ -692,11 +992,39 @@ export type RefundRequestDto = {
     paymentId?: string | null;
 };
 
+export type RefundRequestDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type RefundRequestDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type RefundRequestDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: RefundRequestDto;
 };
@@ -704,6 +1032,11 @@ export type RefundRequestDtoEnvelopeReadable = {
 export type RefundRequestDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: RefundRequestDto;
 };
 
@@ -712,6 +1045,11 @@ export type RefundRequestDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<RefundRequestDto> | null;
 };
@@ -719,6 +1057,11 @@ export type RefundRequestDtoListEnvelopeReadable = {
 export type RefundRequestDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<RefundRequestDto> | null;
 };
 
@@ -761,7 +1104,7 @@ export type ReturnRequestCreateDto = {
 
 export type ReturnRequestDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     title?: string | null;
     description?: string | null;
     approved?: boolean;
@@ -774,11 +1117,39 @@ export type ReturnRequestDto = {
     returnPolicyId?: string | null;
 };
 
+export type ReturnRequestDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ReturnRequestDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type ReturnRequestDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: ReturnRequestDto;
 };
@@ -786,6 +1157,11 @@ export type ReturnRequestDtoEnvelopeReadable = {
 export type ReturnRequestDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: ReturnRequestDto;
 };
 
@@ -794,6 +1170,11 @@ export type ReturnRequestDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ReturnRequestDto> | null;
 };
@@ -801,6 +1182,11 @@ export type ReturnRequestDtoListEnvelopeReadable = {
 export type ReturnRequestDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ReturnRequestDto> | null;
 };
 
@@ -917,11 +1303,39 @@ export type SupportEntitlementDto = {
     securityCertificateId?: string | null;
 };
 
+export type SupportEntitlementDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SupportEntitlementDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SupportEntitlementDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SupportEntitlementDto;
 };
@@ -929,6 +1343,11 @@ export type SupportEntitlementDtoEnvelopeReadable = {
 export type SupportEntitlementDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SupportEntitlementDto;
 };
 
@@ -937,6 +1356,11 @@ export type SupportEntitlementDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SupportEntitlementDto> | null;
 };
@@ -944,6 +1368,11 @@ export type SupportEntitlementDtoListEnvelopeReadable = {
 export type SupportEntitlementDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SupportEntitlementDto> | null;
 };
 
@@ -1083,11 +1512,39 @@ export type SupportRequestAttachmentDtoWritable = {
     supportRequestId?: string | null;
 };
 
+export type SupportRequestAttachmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SupportRequestAttachmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SupportRequestAttachmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SupportRequestAttachmentDtoReadable;
 };
@@ -1095,6 +1552,11 @@ export type SupportRequestAttachmentDtoEnvelopeReadable = {
 export type SupportRequestAttachmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SupportRequestAttachmentDtoWritable;
 };
 
@@ -1103,6 +1565,11 @@ export type SupportRequestAttachmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SupportRequestAttachmentDtoReadable> | null;
 };
@@ -1110,6 +1577,11 @@ export type SupportRequestAttachmentDtoListEnvelopeReadable = {
 export type SupportRequestAttachmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SupportRequestAttachmentDtoWritable> | null;
 };
 
@@ -1154,11 +1626,39 @@ export type SupportRequestDto = {
     userId?: string | null;
 };
 
+export type SupportRequestDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SupportRequestDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SupportRequestDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SupportRequestDto;
 };
@@ -1166,6 +1666,11 @@ export type SupportRequestDtoEnvelopeReadable = {
 export type SupportRequestDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SupportRequestDto;
 };
 
@@ -1174,6 +1679,11 @@ export type SupportRequestDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SupportRequestDto> | null;
 };
@@ -1181,6 +1691,11 @@ export type SupportRequestDtoListEnvelopeReadable = {
 export type SupportRequestDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SupportRequestDto> | null;
 };
 
@@ -1211,11 +1726,39 @@ export type SupportTicketConversationDto = {
     socialProfileId?: string | null;
 };
 
+export type SupportTicketConversationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SupportTicketConversationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SupportTicketConversationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SupportTicketConversationDto;
 };
@@ -1223,6 +1766,11 @@ export type SupportTicketConversationDtoEnvelopeReadable = {
 export type SupportTicketConversationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SupportTicketConversationDto;
 };
 
@@ -1231,6 +1779,11 @@ export type SupportTicketConversationDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SupportTicketConversationDto> | null;
 };
@@ -1238,6 +1791,11 @@ export type SupportTicketConversationDtoListEnvelopeReadable = {
 export type SupportTicketConversationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SupportTicketConversationDto> | null;
 };
 
@@ -1268,11 +1826,39 @@ export type SupportTicketDto = {
     supportPriorityId?: string | null;
 };
 
+export type SupportTicketDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SupportTicketDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SupportTicketDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SupportTicketDto;
 };
@@ -1280,6 +1866,11 @@ export type SupportTicketDtoEnvelopeReadable = {
 export type SupportTicketDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SupportTicketDto;
 };
 
@@ -1288,6 +1879,11 @@ export type SupportTicketDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SupportTicketDto> | null;
 };
@@ -1295,6 +1891,11 @@ export type SupportTicketDtoListEnvelopeReadable = {
 export type SupportTicketDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SupportTicketDto> | null;
 };
 
@@ -1315,11 +1916,39 @@ export type SupportTicketPriorityDto = {
     supportEntitlementId?: string | null;
 };
 
+export type SupportTicketPriorityDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SupportTicketPriorityDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SupportTicketPriorityDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SupportTicketPriorityDto;
 };
@@ -1327,6 +1956,11 @@ export type SupportTicketPriorityDtoEnvelopeReadable = {
 export type SupportTicketPriorityDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SupportTicketPriorityDto;
 };
 
@@ -1335,6 +1969,11 @@ export type SupportTicketPriorityDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SupportTicketPriorityDto> | null;
 };
@@ -1342,6 +1981,11 @@ export type SupportTicketPriorityDtoListEnvelopeReadable = {
 export type SupportTicketPriorityDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SupportTicketPriorityDto> | null;
 };
 
@@ -1366,11 +2010,39 @@ export type SupportTicketTypeDto = {
     tenantId?: string | null;
 };
 
+export type SupportTicketTypeDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SupportTicketTypeDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SupportTicketTypeDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SupportTicketTypeDto;
 };
@@ -1378,6 +2050,11 @@ export type SupportTicketTypeDtoEnvelopeReadable = {
 export type SupportTicketTypeDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SupportTicketTypeDto;
 };
 
@@ -1386,6 +2063,11 @@ export type SupportTicketTypeDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SupportTicketTypeDto> | null;
 };
@@ -1393,6 +2075,11 @@ export type SupportTicketTypeDtoListEnvelopeReadable = {
 export type SupportTicketTypeDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SupportTicketTypeDto> | null;
 };
 
@@ -1443,7 +2130,7 @@ export type WarrantyRequestCreateDto = {
 
 export type WarrantyRequestDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     title?: string | null;
     description?: string | null;
     approved?: boolean;
@@ -1456,11 +2143,39 @@ export type WarrantyRequestDto = {
     warrantyPolicyId?: string | null;
 };
 
+export type WarrantyRequestDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type WarrantyRequestDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type WarrantyRequestDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: WarrantyRequestDto;
 };
@@ -1468,6 +2183,11 @@ export type WarrantyRequestDtoEnvelopeReadable = {
 export type WarrantyRequestDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: WarrantyRequestDto;
 };
 
@@ -1476,6 +2196,11 @@ export type WarrantyRequestDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<WarrantyRequestDto> | null;
 };
@@ -1483,6 +2208,11 @@ export type WarrantyRequestDtoListEnvelopeReadable = {
 export type WarrantyRequestDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<WarrantyRequestDto> | null;
 };
 
@@ -1517,6 +2247,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -1824,7 +2570,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetInquiryRequestsAsyncData = {
-    body?: never;
+    body?: InquiryRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1868,7 +2614,7 @@ export type CreateInquiryRequestAsyncResponses = {
 export type CreateInquiryRequestAsyncResponse = CreateInquiryRequestAsyncResponses[keyof CreateInquiryRequestAsyncResponses];
 
 export type GetInquiryRequestsCountAsyncData = {
-    body?: never;
+    body?: InquiryRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1938,7 +2684,7 @@ export type GetInquiryRequestAsyncResponses = {
 export type GetInquiryRequestAsyncResponse = GetInquiryRequestAsyncResponses[keyof GetInquiryRequestAsyncResponses];
 
 export type PatchInquiryRequestAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1999,7 +2745,7 @@ export type UpdateInquiryRequestAsyncResponses = {
 export type UpdateInquiryRequestAsyncResponse = UpdateInquiryRequestAsyncResponses[keyof UpdateInquiryRequestAsyncResponses];
 
 export type GetKnowledgeArticlesAsyncData = {
-    body?: never;
+    body?: KnowledgeArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2043,7 +2789,7 @@ export type CreateKnowledgeArticleAsyncResponses = {
 export type CreateKnowledgeArticleAsyncResponse = CreateKnowledgeArticleAsyncResponses[keyof CreateKnowledgeArticleAsyncResponses];
 
 export type GetKnowledgeArticlesCountAsyncData = {
-    body?: never;
+    body?: KnowledgeArticleDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2113,7 +2859,7 @@ export type GetKnowledgeArticleAsyncResponses = {
 export type GetKnowledgeArticleAsyncResponse = GetKnowledgeArticleAsyncResponses[keyof GetKnowledgeArticleAsyncResponses];
 
 export type PatchKnowledgeArticleAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2174,7 +2920,7 @@ export type UpdateKnowledgeArticleAsyncResponses = {
 export type UpdateKnowledgeArticleAsyncResponse = UpdateKnowledgeArticleAsyncResponses[keyof UpdateKnowledgeArticleAsyncResponses];
 
 export type GetMaintenanceVisitsAsyncData = {
-    body?: never;
+    body?: MaintenanceVisitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2218,7 +2964,7 @@ export type CreateMaintenanceVisitAsyncResponses = {
 export type CreateMaintenanceVisitAsyncResponse = CreateMaintenanceVisitAsyncResponses[keyof CreateMaintenanceVisitAsyncResponses];
 
 export type GetMaintenanceVisitsCountAsyncData = {
-    body?: never;
+    body?: MaintenanceVisitDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2288,7 +3034,7 @@ export type GetMaintenanceVisitAsyncResponses = {
 export type GetMaintenanceVisitAsyncResponse = GetMaintenanceVisitAsyncResponses[keyof GetMaintenanceVisitAsyncResponses];
 
 export type PatchMaintenanceVisitAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2349,7 +3095,7 @@ export type UpdateMaintenanceVisitAsyncResponses = {
 export type UpdateMaintenanceVisitAsyncResponse = UpdateMaintenanceVisitAsyncResponses[keyof UpdateMaintenanceVisitAsyncResponses];
 
 export type GetRefundPoliciesAsyncData = {
-    body?: never;
+    body?: ItemRefundPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2419,7 +3165,7 @@ export type CreateRefundPolicyAsyncResponses = {
 export type CreateRefundPolicyAsyncResponse = CreateRefundPolicyAsyncResponses[keyof CreateRefundPolicyAsyncResponses];
 
 export type GetRefundPoliciesCountAsyncData = {
-    body?: never;
+    body?: ItemRefundPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2528,7 +3274,7 @@ export type GetRefundPolicyAsyncResponses = {
 export type GetRefundPolicyAsyncResponse = GetRefundPolicyAsyncResponses[keyof GetRefundPolicyAsyncResponses];
 
 export type PatchRefundPolicyAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2602,7 +3348,7 @@ export type UpdateRefundPolicyAsyncResponses = {
 export type UpdateRefundPolicyAsyncResponse = UpdateRefundPolicyAsyncResponses[keyof UpdateRefundPolicyAsyncResponses];
 
 export type GetRefundRequestsAsyncData = {
-    body?: never;
+    body?: RefundRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2646,7 +3392,7 @@ export type CreateRefundRequestAsyncResponses = {
 export type CreateRefundRequestAsyncResponse = CreateRefundRequestAsyncResponses[keyof CreateRefundRequestAsyncResponses];
 
 export type GetRefundRequestsCountAsyncData = {
-    body?: never;
+    body?: RefundRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2716,7 +3462,7 @@ export type GetRefundRequestAsyncResponses = {
 export type GetRefundRequestAsyncResponse = GetRefundRequestAsyncResponses[keyof GetRefundRequestAsyncResponses];
 
 export type PatchRefundRequestAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2777,7 +3523,7 @@ export type UpdateRefundRequestAsyncResponses = {
 export type UpdateRefundRequestAsyncResponse = UpdateRefundRequestAsyncResponses[keyof UpdateRefundRequestAsyncResponses];
 
 export type GetReturnPoliciesAsyncData = {
-    body?: never;
+    body?: ItemReturnPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2847,7 +3593,7 @@ export type CreateReturnPolicyAsyncResponses = {
 export type CreateReturnPolicyAsyncResponse = CreateReturnPolicyAsyncResponses[keyof CreateReturnPolicyAsyncResponses];
 
 export type GetReturnPoliciesCountAsyncData = {
-    body?: never;
+    body?: ItemReturnPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2956,7 +3702,7 @@ export type GetReturnPolicyAsyncResponses = {
 export type GetReturnPolicyAsyncResponse = GetReturnPolicyAsyncResponses[keyof GetReturnPolicyAsyncResponses];
 
 export type PatchReturnPolicyAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3030,7 +3776,7 @@ export type UpdateReturnPolicyAsyncResponses = {
 export type UpdateReturnPolicyAsyncResponse = UpdateReturnPolicyAsyncResponses[keyof UpdateReturnPolicyAsyncResponses];
 
 export type GetReturnRequestsAsyncData = {
-    body?: never;
+    body?: ReturnRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3074,7 +3820,7 @@ export type CreateReturnRequestAsyncResponses = {
 export type CreateReturnRequestAsyncResponse = CreateReturnRequestAsyncResponses[keyof CreateReturnRequestAsyncResponses];
 
 export type GetReturnRequestsCountAsyncData = {
-    body?: never;
+    body?: ReturnRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3144,7 +3890,7 @@ export type GetReturnRequestAsyncResponses = {
 export type GetReturnRequestAsyncResponse = GetReturnRequestAsyncResponses[keyof GetReturnRequestAsyncResponses];
 
 export type PatchReturnRequestAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3205,7 +3951,7 @@ export type UpdateReturnRequestAsyncResponses = {
 export type UpdateReturnRequestAsyncResponse = UpdateReturnRequestAsyncResponses[keyof UpdateReturnRequestAsyncResponses];
 
 export type GetSupportEntitlementsAsyncData = {
-    body?: never;
+    body?: SupportEntitlementDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3275,7 +4021,7 @@ export type CreateSupportEntitlementAsyncResponses = {
 export type CreateSupportEntitlementAsyncResponse = CreateSupportEntitlementAsyncResponses[keyof CreateSupportEntitlementAsyncResponses];
 
 export type GetSupportEntitlementsCountAsyncData = {
-    body?: never;
+    body?: SupportEntitlementDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3384,7 +4130,7 @@ export type GetSupportEntitlementAsyncResponses = {
 export type GetSupportEntitlementAsyncResponse = GetSupportEntitlementAsyncResponses[keyof GetSupportEntitlementAsyncResponses];
 
 export type PatchSupportEntitlementAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3458,7 +4204,7 @@ export type UpdateSupportEntitlementAsyncResponses = {
 export type UpdateSupportEntitlementAsyncResponse = UpdateSupportEntitlementAsyncResponses[keyof UpdateSupportEntitlementAsyncResponses];
 
 export type GetSupportRequestAttachmentsAsyncData = {
-    body?: never;
+    body?: SupportRequestAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3528,7 +4274,7 @@ export type CreateSupportRequestAttachmentAsyncResponses = {
 export type CreateSupportRequestAttachmentAsyncResponse = CreateSupportRequestAttachmentAsyncResponses[keyof CreateSupportRequestAttachmentAsyncResponses];
 
 export type GetSupportRequestAttachmentsCountAsyncData = {
-    body?: never;
+    body?: SupportRequestAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3637,7 +4383,7 @@ export type GetSupportRequestAttachmentAsyncResponses = {
 export type GetSupportRequestAttachmentAsyncResponse = GetSupportRequestAttachmentAsyncResponses[keyof GetSupportRequestAttachmentAsyncResponses];
 
 export type PatchSupportRequestAttachmentAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3711,7 +4457,7 @@ export type UpdateSupportRequestAttachmentAsyncResponses = {
 export type UpdateSupportRequestAttachmentAsyncResponse = UpdateSupportRequestAttachmentAsyncResponses[keyof UpdateSupportRequestAttachmentAsyncResponses];
 
 export type GetSupportRequestsAsyncData = {
-    body?: never;
+    body?: SupportRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3781,7 +4527,7 @@ export type CreateSupportRequestAsyncResponses = {
 export type CreateSupportRequestAsyncResponse = CreateSupportRequestAsyncResponses[keyof CreateSupportRequestAsyncResponses];
 
 export type GetSupportRequestsCountAsyncData = {
-    body?: never;
+    body?: SupportRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3890,7 +4636,7 @@ export type GetSupportRequestAsyncResponses = {
 export type GetSupportRequestAsyncResponse = GetSupportRequestAsyncResponses[keyof GetSupportRequestAsyncResponses];
 
 export type PatchSupportRequestAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3964,7 +4710,7 @@ export type UpdateSupportRequestAsyncResponses = {
 export type UpdateSupportRequestAsyncResponse = UpdateSupportRequestAsyncResponses[keyof UpdateSupportRequestAsyncResponses];
 
 export type GetSupportRequestTicketsAsyncData = {
-    body?: never;
+    body?: SupportTicketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4001,7 +4747,7 @@ export type GetSupportRequestTicketsAsyncResponses = {
 export type GetSupportRequestTicketsAsyncResponse = GetSupportRequestTicketsAsyncResponses[keyof GetSupportRequestTicketsAsyncResponses];
 
 export type GetSupportRequestAttachmentsByRequestData = {
-    body?: never;
+    body?: SupportRequestAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4075,7 +4821,7 @@ export type RelateSupportRequestToAttachmentAsyncResponses = {
 export type RelateSupportRequestToAttachmentAsyncResponse = RelateSupportRequestToAttachmentAsyncResponses[keyof RelateSupportRequestToAttachmentAsyncResponses];
 
 export type GetSupportRequestAttachmentsCountByRequestData = {
-    body?: never;
+    body?: SupportRequestAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4150,7 +4896,7 @@ export type GetSupportRequestAttachmentByRequestResponses = {
 export type GetSupportRequestAttachmentByRequestResponse = GetSupportRequestAttachmentByRequestResponses[keyof GetSupportRequestAttachmentByRequestResponses];
 
 export type GetSupportTicketPrioritiesAsyncData = {
-    body?: never;
+    body?: SupportTicketPriorityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4220,7 +4966,7 @@ export type CreateSupportTicketPriorityAsyncResponses = {
 export type CreateSupportTicketPriorityAsyncResponse = CreateSupportTicketPriorityAsyncResponses[keyof CreateSupportTicketPriorityAsyncResponses];
 
 export type GetSupportTicketPrioritiesCountAsyncData = {
-    body?: never;
+    body?: SupportTicketPriorityDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4329,7 +5075,7 @@ export type GetSupportTicketPriorityAsyncResponses = {
 export type GetSupportTicketPriorityAsyncResponse = GetSupportTicketPriorityAsyncResponses[keyof GetSupportTicketPriorityAsyncResponses];
 
 export type PatchSupportTicketPriorityAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4403,7 +5149,7 @@ export type UpdateSupportTicketPriorityAsyncResponses = {
 export type UpdateSupportTicketPriorityAsyncResponse = UpdateSupportTicketPriorityAsyncResponses[keyof UpdateSupportTicketPriorityAsyncResponses];
 
 export type GetSupportTicketsAsyncData = {
-    body?: never;
+    body?: SupportTicketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4473,7 +5219,7 @@ export type CreateSupportTicketAsyncResponses = {
 export type CreateSupportTicketAsyncResponse = CreateSupportTicketAsyncResponses[keyof CreateSupportTicketAsyncResponses];
 
 export type GetSupportTicketsCountAsyncData = {
-    body?: never;
+    body?: SupportTicketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4582,7 +5328,7 @@ export type GetSupportTicketAsyncResponses = {
 export type GetSupportTicketAsyncResponse = GetSupportTicketAsyncResponses[keyof GetSupportTicketAsyncResponses];
 
 export type PatchSupportTicketAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4656,7 +5402,7 @@ export type UpdateSupportTicketAsyncResponses = {
 export type UpdateSupportTicketAsyncResponse = UpdateSupportTicketAsyncResponses[keyof UpdateSupportTicketAsyncResponses];
 
 export type GetSupportTicketConversationsAsyncData = {
-    body?: never;
+    body?: SupportTicketConversationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4846,7 +5592,7 @@ export type GetSupportTicketConversationMessagesAsyncResponses = {
 export type GetSupportTicketConversationMessagesAsyncResponse = GetSupportTicketConversationMessagesAsyncResponses[keyof GetSupportTicketConversationMessagesAsyncResponses];
 
 export type GetSupportTicketTypesAsyncData = {
-    body?: never;
+    body?: SupportTicketTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4916,7 +5662,7 @@ export type CreateSupportTicketTypeAsyncResponses = {
 export type CreateSupportTicketTypeAsyncResponse = CreateSupportTicketTypeAsyncResponses[keyof CreateSupportTicketTypeAsyncResponses];
 
 export type GetSupportTicketTypesCountAsyncData = {
-    body?: never;
+    body?: SupportTicketTypeDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5025,7 +5771,7 @@ export type GetSupportTicketTypeAsyncResponses = {
 export type GetSupportTicketTypeAsyncResponse = GetSupportTicketTypeAsyncResponses[keyof GetSupportTicketTypeAsyncResponses];
 
 export type PatchSupportTicketTypeAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5099,7 +5845,7 @@ export type UpdateSupportTicketTypeAsyncResponses = {
 export type UpdateSupportTicketTypeAsyncResponse = UpdateSupportTicketTypeAsyncResponses[keyof UpdateSupportTicketTypeAsyncResponses];
 
 export type GetWarrantyPoliciesAsyncData = {
-    body?: never;
+    body?: ItemWarrantyPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5169,7 +5915,7 @@ export type CreateWarrantyPolicyAsyncResponses = {
 export type CreateWarrantyPolicyAsyncResponse = CreateWarrantyPolicyAsyncResponses[keyof CreateWarrantyPolicyAsyncResponses];
 
 export type GetWarrantyPoliciesCountAsyncData = {
-    body?: never;
+    body?: ItemWarrantyPolicyDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5278,7 +6024,7 @@ export type GetWarrantyPolicyAsyncResponses = {
 export type GetWarrantyPolicyAsyncResponse = GetWarrantyPolicyAsyncResponses[keyof GetWarrantyPolicyAsyncResponses];
 
 export type PatchWarrantyPolicyAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5352,7 +6098,7 @@ export type UpdateWarrantyPolicyAsyncResponses = {
 export type UpdateWarrantyPolicyAsyncResponse = UpdateWarrantyPolicyAsyncResponses[keyof UpdateWarrantyPolicyAsyncResponses];
 
 export type GetWarrantyRequestsAsyncData = {
-    body?: never;
+    body?: WarrantyRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5396,7 +6142,7 @@ export type CreateWarrantyRequestAsyncResponses = {
 export type CreateWarrantyRequestAsyncResponse = CreateWarrantyRequestAsyncResponses[keyof CreateWarrantyRequestAsyncResponses];
 
 export type GetWarrantyRequestsCountAsyncData = {
-    body?: never;
+    body?: WarrantyRequestDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -5466,7 +6212,7 @@ export type GetWarrantyRequestAsyncResponses = {
 export type GetWarrantyRequestAsyncResponse = GetWarrantyRequestAsyncResponses[keyof GetWarrantyRequestAsyncResponses];
 
 export type PatchWarrantyRequestAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

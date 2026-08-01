@@ -31,11 +31,39 @@ export type EmailGroupDto = {
     enabled?: boolean;
 };
 
+export type EmailGroupDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type EmailGroupDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type EmailGroupDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: EmailGroupDto;
 };
@@ -43,6 +71,11 @@ export type EmailGroupDtoEnvelopeReadable = {
 export type EmailGroupDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: EmailGroupDto;
 };
 
@@ -51,6 +84,11 @@ export type EmailGroupDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<EmailGroupDto> | null;
 };
@@ -58,6 +96,11 @@ export type EmailGroupDtoListEnvelopeReadable = {
 export type EmailGroupDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<EmailGroupDto> | null;
 };
 
@@ -141,11 +184,39 @@ export type EmailSignatureDto = {
     parentWebContentVersionId?: string | null;
 };
 
+export type EmailSignatureDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type EmailSignatureDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type EmailSignatureDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: EmailSignatureDto;
 };
@@ -153,6 +224,11 @@ export type EmailSignatureDtoEnvelopeReadable = {
 export type EmailSignatureDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: EmailSignatureDto;
 };
 
@@ -161,6 +237,11 @@ export type EmailSignatureDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<EmailSignatureDto> | null;
 };
@@ -168,6 +249,11 @@ export type EmailSignatureDtoListEnvelopeReadable = {
 export type EmailSignatureDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<EmailSignatureDto> | null;
 };
 
@@ -305,11 +391,39 @@ export type EmailTemplateDto = {
     marketingCampaignName?: string | null;
 };
 
+export type EmailTemplateDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type EmailTemplateDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type EmailTemplateDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: EmailTemplateDto;
 };
@@ -317,6 +431,11 @@ export type EmailTemplateDtoEnvelopeReadable = {
 export type EmailTemplateDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: EmailTemplateDto;
 };
 
@@ -325,6 +444,11 @@ export type EmailTemplateDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<EmailTemplateDto> | null;
 };
@@ -332,6 +456,11 @@ export type EmailTemplateDtoListEnvelopeReadable = {
 export type EmailTemplateDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<EmailTemplateDto> | null;
 };
 
@@ -398,12 +527,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -411,12 +550,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ForgotPasswordRequest = {
@@ -453,6 +602,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -460,6 +614,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -486,11 +645,39 @@ export type MarketingAreaDto = {
     description?: string | null;
 };
 
+export type MarketingAreaDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type MarketingAreaDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type MarketingAreaDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: MarketingAreaDto;
 };
@@ -498,6 +685,11 @@ export type MarketingAreaDtoEnvelopeReadable = {
 export type MarketingAreaDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: MarketingAreaDto;
 };
 
@@ -506,6 +698,11 @@ export type MarketingAreaDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<MarketingAreaDto> | null;
 };
@@ -513,6 +710,11 @@ export type MarketingAreaDtoListEnvelopeReadable = {
 export type MarketingAreaDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<MarketingAreaDto> | null;
 };
 
@@ -561,11 +763,39 @@ export type MarketingCampaignDto = {
     enrollmentId?: string | null;
 };
 
+export type MarketingCampaignDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type MarketingCampaignDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type MarketingCampaignDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: MarketingCampaignDto;
 };
@@ -573,6 +803,11 @@ export type MarketingCampaignDtoEnvelopeReadable = {
 export type MarketingCampaignDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: MarketingCampaignDto;
 };
 
@@ -624,11 +859,39 @@ export type MarketingLeadDto = {
     enrollmentId?: string | null;
 };
 
+export type MarketingLeadDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type MarketingLeadDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type MarketingLeadDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: MarketingLeadDto;
 };
@@ -636,6 +899,11 @@ export type MarketingLeadDtoEnvelopeReadable = {
 export type MarketingLeadDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: MarketingLeadDto;
 };
 
@@ -644,6 +912,11 @@ export type MarketingLeadDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<MarketingLeadDto> | null;
 };
@@ -651,6 +924,11 @@ export type MarketingLeadDtoListEnvelopeReadable = {
 export type MarketingLeadDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<MarketingLeadDto> | null;
 };
 
@@ -701,11 +979,39 @@ export type MarketingListDto = {
     marketingListTarget?: 'Individual' | 'Organization' | 'Lead';
 };
 
+export type MarketingListDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type MarketingListDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type MarketingListDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: MarketingListDto;
 };
@@ -713,6 +1019,11 @@ export type MarketingListDtoEnvelopeReadable = {
 export type MarketingListDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: MarketingListDto;
 };
 
@@ -721,6 +1032,11 @@ export type MarketingListDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<MarketingListDto> | null;
 };
@@ -728,6 +1044,11 @@ export type MarketingListDtoListEnvelopeReadable = {
 export type MarketingListDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<MarketingListDto> | null;
 };
 
@@ -763,11 +1084,39 @@ export type NewsletterDto = {
     enrollmentId?: string | null;
 };
 
+export type NewsletterDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type NewsletterDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type NewsletterDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: NewsletterDto;
 };
@@ -775,21 +1124,119 @@ export type NewsletterDtoEnvelopeReadable = {
 export type NewsletterDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: NewsletterDto;
+};
+
+export type NewsletterSubscriptionCreateDto = {
+    id?: string;
+    timestamp?: string;
+    email?: string | null;
+    verified?: boolean;
+    newsletterId?: string | null;
+    contactId?: string | null;
+};
+
+export type NewsletterSubscriptionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    email?: string | null;
+    verified?: boolean;
+    contactId?: string | null;
+    userId?: string | null;
+    newsletterId?: string | null;
+    tenantId?: string | null;
+    enrollmentId?: string | null;
+};
+
+export type NewsletterSubscriptionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type NewsletterSubscriptionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type NewsletterSubscriptionDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: NewsletterSubscriptionDto;
+};
+
+export type NewsletterSubscriptionDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: NewsletterSubscriptionDto;
+};
+
+export type NewsletterSubscriptionDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<NewsletterSubscriptionDto> | null;
+};
+
+export type NewsletterSubscriptionDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<NewsletterSubscriptionDto> | null;
+};
+
+export type NewsletterSubscriptionUpdateDto = {
+    email?: string | null;
+    verified?: boolean;
+    newsletterId?: string | null;
+    contactId?: string | null;
 };
 
 export type NewsletterUpdateDto = {
     code?: string | null;
     title?: string | null;
     name?: string | null;
-};
-
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
-    op?: string | null;
-    from?: string | null;
-    value?: unknown;
 };
 
 export type OrderDto = {
@@ -818,6 +1265,7 @@ export type OrderDto = {
     cityId?: string | null;
     customerNotes?: string | null;
     taxCalculationMethod?: 'Included' | 'Excluded';
+    costCalculationMethod?: 'Automatic' | 'Custom';
     forexRate?: number;
     forexRatesSnapshot?: string | null;
     currencyId?: string | null;
@@ -868,7 +1316,6 @@ export type OrderDto = {
     qualifiedIdentifier?: string | null;
     sellerBillingProfileId?: string | null;
     buyerBillingProfileId?: string | null;
-    costCalculationMethod?: 'Automatic' | 'Custom';
     freightTerms?: 'FOB' | 'NoCharge';
     orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
     requestedDeliveryDate?: string;
@@ -888,6 +1335,11 @@ export type OrderDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: OrderDto;
 };
@@ -895,7 +1347,19 @@ export type OrderDtoEnvelopeReadable = {
 export type OrderDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: OrderDto;
+};
+
+export type PatchOperation = {
+    op?: string | null;
+    path?: string | null;
+    from?: string | null;
+    value?: unknown;
 };
 
 export type RefreshRequest = {
@@ -937,11 +1401,39 @@ export type SocialMediaPostDto = {
     enrollmentId?: string | null;
 };
 
+export type SocialMediaPostDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialMediaPostDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SocialMediaPostDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialMediaPostDto;
 };
@@ -949,6 +1441,11 @@ export type SocialMediaPostDtoEnvelopeReadable = {
 export type SocialMediaPostDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialMediaPostDto;
 };
 
@@ -957,6 +1454,11 @@ export type SocialMediaPostDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialMediaPostDto> | null;
 };
@@ -964,6 +1466,11 @@ export type SocialMediaPostDtoListEnvelopeReadable = {
 export type SocialMediaPostDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialMediaPostDto> | null;
 };
 
@@ -988,11 +1495,39 @@ export type SocialPostBucketDto = {
     enrollmentId?: string | null;
 };
 
+export type SocialPostBucketDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialPostBucketDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SocialPostBucketDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialPostBucketDto;
 };
@@ -1000,6 +1535,11 @@ export type SocialPostBucketDtoEnvelopeReadable = {
 export type SocialPostBucketDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialPostBucketDto;
 };
 
@@ -1008,6 +1548,11 @@ export type SocialPostBucketDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialPostBucketDto> | null;
 };
@@ -1015,6 +1560,11 @@ export type SocialPostBucketDtoListEnvelopeReadable = {
 export type SocialPostBucketDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialPostBucketDto> | null;
 };
 
@@ -1039,7 +1589,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetEmailGroupsODataAsyncData = {
-    body?: never;
+    body?: EmailGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1113,7 +1663,7 @@ export type CreateEmailGroupAsyncResponses = {
 export type CreateEmailGroupAsyncResponse = CreateEmailGroupAsyncResponses[keyof CreateEmailGroupAsyncResponses];
 
 export type GetEmailGroupsCountAsyncData = {
-    body?: never;
+    body?: EmailGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1234,7 +1784,7 @@ export type GetEmailGroupDetailsAsyncResponses = {
 export type GetEmailGroupDetailsAsyncResponse = GetEmailGroupDetailsAsyncResponses[keyof GetEmailGroupDetailsAsyncResponses];
 
 export type PatchEmailGroupAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1312,7 +1862,7 @@ export type UpdateEmailGroupAsyncResponses = {
 export type UpdateEmailGroupAsyncResponse = UpdateEmailGroupAsyncResponses[keyof UpdateEmailGroupAsyncResponses];
 
 export type GetEmailSignaturesODataAsyncData = {
-    body?: never;
+    body?: EmailSignatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1386,7 +1936,7 @@ export type CreateEmailSignatureAsyncResponses = {
 export type CreateEmailSignatureAsyncResponse = CreateEmailSignatureAsyncResponses[keyof CreateEmailSignatureAsyncResponses];
 
 export type GetEmailSignaturesCountAsyncData = {
-    body?: never;
+    body?: EmailSignatureDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1507,7 +2057,7 @@ export type GetEmailSignatureDetailsAsyncResponses = {
 export type GetEmailSignatureDetailsAsyncResponse = GetEmailSignatureDetailsAsyncResponses[keyof GetEmailSignatureDetailsAsyncResponses];
 
 export type PatchEmailSignatureAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1585,7 +2135,7 @@ export type UpdateEmailSignatureAsyncResponses = {
 export type UpdateEmailSignatureAsyncResponse = UpdateEmailSignatureAsyncResponses[keyof UpdateEmailSignatureAsyncResponses];
 
 export type GetEmailTemplatesODataAsyncData = {
-    body?: never;
+    body?: EmailTemplateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1659,7 +2209,7 @@ export type CreateEmailTemplateAsyncResponses = {
 export type CreateEmailTemplateAsyncResponse = CreateEmailTemplateAsyncResponses[keyof CreateEmailTemplateAsyncResponses];
 
 export type GetEmailTemplatesCountAsyncData = {
-    body?: never;
+    body?: EmailTemplateDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1780,7 +2330,7 @@ export type GetEmailTemplateDetailsAsyncResponses = {
 export type GetEmailTemplateDetailsAsyncResponse = GetEmailTemplateDetailsAsyncResponses[keyof GetEmailTemplateDetailsAsyncResponses];
 
 export type PatchEmailTemplateAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1879,6 +2429,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
@@ -2186,7 +2752,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetMarketingAreasAsyncData = {
-    body?: never;
+    body?: MarketingAreaDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2260,7 +2826,7 @@ export type CreateMarketingAreaAsyncResponses = {
 export type CreateMarketingAreaAsyncResponse = CreateMarketingAreaAsyncResponses[keyof CreateMarketingAreaAsyncResponses];
 
 export type GetMarketingAreasCountAsyncData = {
-    body?: never;
+    body?: MarketingAreaDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2373,7 +2939,7 @@ export type GetMarketingAreaByIdAsyncResponses = {
 export type GetMarketingAreaByIdAsyncResponse = GetMarketingAreaByIdAsyncResponses[keyof GetMarketingAreaByIdAsyncResponses];
 
 export type PatchMarketingAreaAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2451,7 +3017,7 @@ export type UpdateMarketingAreaAsyncResponses = {
 export type UpdateMarketingAreaAsyncResponse = UpdateMarketingAreaAsyncResponses[keyof UpdateMarketingAreaAsyncResponses];
 
 export type GetMarketingCampaignODataAsyncData = {
-    body?: never;
+    body?: MarketingCampaignDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2520,7 +3086,7 @@ export type CreateMarketingCampaignAsyncResponses = {
 export type CreateMarketingCampaignAsyncResponse = CreateMarketingCampaignAsyncResponses[keyof CreateMarketingCampaignAsyncResponses];
 
 export type GetMarketingCampaignsCountAsyncData = {
-    body?: never;
+    body?: MarketingCampaignDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2641,7 +3207,7 @@ export type GetMarketingCampaignDetailsAsyncResponses = {
 export type GetMarketingCampaignDetailsAsyncResponse = GetMarketingCampaignDetailsAsyncResponses[keyof GetMarketingCampaignDetailsAsyncResponses];
 
 export type PatchMarketingCampaignAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2719,7 +3285,7 @@ export type UpdateMarketingCampaignAsyncResponses = {
 export type UpdateMarketingCampaignAsyncResponse = UpdateMarketingCampaignAsyncResponses[keyof UpdateMarketingCampaignAsyncResponses];
 
 export type GetMarketingLeadsODataAsyncData = {
-    body?: never;
+    body?: MarketingLeadDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2763,7 +3329,7 @@ export type CreateMarketingLeadAsyncResponses = {
 export type CreateMarketingLeadAsyncResponse = CreateMarketingLeadAsyncResponses[keyof CreateMarketingLeadAsyncResponses];
 
 export type GetMarketingLeadsCountAsyncData = {
-    body?: never;
+    body?: MarketingLeadDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2833,7 +3399,7 @@ export type GetMarketingLeadDetailsAsyncResponses = {
 export type GetMarketingLeadDetailsAsyncResponse = GetMarketingLeadDetailsAsyncResponses[keyof GetMarketingLeadDetailsAsyncResponses];
 
 export type PatchMarketingLeadAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2894,7 +3460,7 @@ export type UpdateMarketingLeadAsyncResponses = {
 export type UpdateMarketingLeadAsyncResponse = UpdateMarketingLeadAsyncResponses[keyof UpdateMarketingLeadAsyncResponses];
 
 export type GetMarketingListODataAsyncData = {
-    body?: never;
+    body?: MarketingListDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2968,7 +3534,7 @@ export type CreateMarketingListAsyncResponses = {
 export type CreateMarketingListAsyncResponse = CreateMarketingListAsyncResponses[keyof CreateMarketingListAsyncResponses];
 
 export type GetMarketingListsCountAsyncData = {
-    body?: never;
+    body?: MarketingListDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3089,7 +3655,7 @@ export type GetMarketingListDetailsAsyncResponses = {
 export type GetMarketingListDetailsAsyncResponse = GetMarketingListDetailsAsyncResponses[keyof GetMarketingListDetailsAsyncResponses];
 
 export type PatchMarketingListAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3167,7 +3733,7 @@ export type UpdateMarketingListAsyncResponses = {
 export type UpdateMarketingListAsyncResponse = UpdateMarketingListAsyncResponses[keyof UpdateMarketingListAsyncResponses];
 
 export type GetNewsletterODataAsyncData = {
-    body?: never;
+    body?: NewsletterDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3236,7 +3802,7 @@ export type CreateNewsletterAsyncResponses = {
 export type CreateNewsletterAsyncResponse = CreateNewsletterAsyncResponses[keyof CreateNewsletterAsyncResponses];
 
 export type GetNewslettersCountAsyncData = {
-    body?: never;
+    body?: NewsletterDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3357,7 +3923,7 @@ export type GetNewsletterDetailsAsyncResponses = {
 export type GetNewsletterDetailsAsyncResponse = GetNewsletterDetailsAsyncResponses[keyof GetNewsletterDetailsAsyncResponses];
 
 export type PatchNewsletterAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3434,8 +4000,86 @@ export type UpdateNewsletterAsyncResponses = {
 
 export type UpdateNewsletterAsyncResponse = UpdateNewsletterAsyncResponses[keyof UpdateNewsletterAsyncResponses];
 
+export type GetNewsletterSubscriptionsAsyncData = {
+    body?: NewsletterSubscriptionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/NewsletterSubscriptions';
+};
+
+export type GetNewsletterSubscriptionsAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetNewsletterSubscriptionsAsyncError = GetNewsletterSubscriptionsAsyncErrors[keyof GetNewsletterSubscriptionsAsyncErrors];
+
+export type GetNewsletterSubscriptionsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: NewsletterSubscriptionDtoListEnvelopeReadable;
+};
+
+export type GetNewsletterSubscriptionsAsyncResponse = GetNewsletterSubscriptionsAsyncResponses[keyof GetNewsletterSubscriptionsAsyncResponses];
+
+export type CreateNewsletterSubscriptionAsyncData = {
+    body: NewsletterSubscriptionCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/NewsletterSubscriptions';
+};
+
+export type CreateNewsletterSubscriptionAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateNewsletterSubscriptionAsyncError = CreateNewsletterSubscriptionAsyncErrors[keyof CreateNewsletterSubscriptionAsyncErrors];
+
+export type CreateNewsletterSubscriptionAsyncResponses = {
+    /**
+     * Created
+     */
+    201: EmptyEnvelopeReadable;
+};
+
+export type CreateNewsletterSubscriptionAsyncResponse = CreateNewsletterSubscriptionAsyncResponses[keyof CreateNewsletterSubscriptionAsyncResponses];
+
 export type GetNewsletterSubscriptionsCountAsyncData = {
-    body?: never;
+    body?: NewsletterSubscriptionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3473,8 +4117,131 @@ export type GetNewsletterSubscriptionsCountAsyncResponses = {
 
 export type GetNewsletterSubscriptionsCountAsyncResponse = GetNewsletterSubscriptionsCountAsyncResponses[keyof GetNewsletterSubscriptionsCountAsyncResponses];
 
-export type GetSocialMediaPostsODataAsyncData = {
+export type DeleteNewsletterSubscriptionAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        newsletterSubscriptionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/NewsletterSubscriptions/{newsletterSubscriptionId}';
+};
+
+export type DeleteNewsletterSubscriptionAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteNewsletterSubscriptionAsyncError = DeleteNewsletterSubscriptionAsyncErrors[keyof DeleteNewsletterSubscriptionAsyncErrors];
+
+export type DeleteNewsletterSubscriptionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteNewsletterSubscriptionAsyncResponse = DeleteNewsletterSubscriptionAsyncResponses[keyof DeleteNewsletterSubscriptionAsyncResponses];
+
+export type GetNewsletterSubscriptionByIdAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        newsletterSubscriptionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/NewsletterSubscriptions/{newsletterSubscriptionId}';
+};
+
+export type GetNewsletterSubscriptionByIdAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetNewsletterSubscriptionByIdAsyncError = GetNewsletterSubscriptionByIdAsyncErrors[keyof GetNewsletterSubscriptionByIdAsyncErrors];
+
+export type GetNewsletterSubscriptionByIdAsyncResponses = {
+    /**
+     * OK
+     */
+    200: NewsletterSubscriptionDtoEnvelopeReadable;
+};
+
+export type GetNewsletterSubscriptionByIdAsyncResponse = GetNewsletterSubscriptionByIdAsyncResponses[keyof GetNewsletterSubscriptionByIdAsyncResponses];
+
+export type UpdateNewsletterSubscriptionAsyncData = {
+    body: NewsletterSubscriptionUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        newsletterSubscriptionId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/MarketingService/NewsletterSubscriptions/{newsletterSubscriptionId}';
+};
+
+export type UpdateNewsletterSubscriptionAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateNewsletterSubscriptionAsyncError = UpdateNewsletterSubscriptionAsyncErrors[keyof UpdateNewsletterSubscriptionAsyncErrors];
+
+export type UpdateNewsletterSubscriptionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateNewsletterSubscriptionAsyncResponse = UpdateNewsletterSubscriptionAsyncResponses[keyof UpdateNewsletterSubscriptionAsyncResponses];
+
+export type GetSocialMediaPostsODataAsyncData = {
+    body?: SocialMediaPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3548,7 +4315,7 @@ export type CreateSocialMediaPostAsyncResponses = {
 export type CreateSocialMediaPostAsyncResponse = CreateSocialMediaPostAsyncResponses[keyof CreateSocialMediaPostAsyncResponses];
 
 export type GetSocialMediaPostsCountAsyncData = {
-    body?: never;
+    body?: SocialMediaPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3669,7 +4436,7 @@ export type GetSocialMediaPostDetailsAsyncResponses = {
 export type GetSocialMediaPostDetailsAsyncResponse = GetSocialMediaPostDetailsAsyncResponses[keyof GetSocialMediaPostDetailsAsyncResponses];
 
 export type PatchSocialMediaPostAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3747,7 +4514,7 @@ export type UpdateSocialMediaPostAsyncResponses = {
 export type UpdateSocialMediaPostAsyncResponse = UpdateSocialMediaPostAsyncResponses[keyof UpdateSocialMediaPostAsyncResponses];
 
 export type GetSocialPostBucketsODataAsyncData = {
-    body?: never;
+    body?: SocialPostBucketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3821,7 +4588,7 @@ export type CreateSocialPostBucketAsyncResponses = {
 export type CreateSocialPostBucketAsyncResponse = CreateSocialPostBucketAsyncResponses[keyof CreateSocialPostBucketAsyncResponses];
 
 export type GetSocialPostBucketsCountAsyncData = {
-    body?: never;
+    body?: SocialPostBucketDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3942,7 +4709,7 @@ export type GetSocialPostBucketDetailsAsyncResponses = {
 export type GetSocialPostBucketDetailsAsyncResponse = GetSocialPostBucketDetailsAsyncResponses[keyof GetSocialPostBucketDetailsAsyncResponses];
 
 export type PatchSocialPostBucketAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };

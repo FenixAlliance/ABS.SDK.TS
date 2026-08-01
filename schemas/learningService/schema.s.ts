@@ -1275,6 +1275,21 @@ export interface paths {
       };
     };
   };
+  "/api/v2/AIService/Agents/{agentId}/agui": {
+    post: {
+      parameters: {
+        path: {
+          agentId: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: never;
+        };
+      };
+    };
+  };
   "/hello": {
     get: {
       responses: {
@@ -1746,8 +1761,8 @@ export interface paths {
       };
       requestBody?: {
         content: {
-          "application/json": components["schemas"]["Operation"][];
-          "application/xml": components["schemas"]["Operation"][];
+          "application/json": components["schemas"]["PatchOperation"][];
+          "application/xml": components["schemas"]["PatchOperation"][];
         };
       };
       responses: {
@@ -2022,8 +2037,8 @@ export interface paths {
       };
       requestBody?: {
         content: {
-          "application/json": components["schemas"]["Operation"][];
-          "application/xml": components["schemas"]["Operation"][];
+          "application/json": components["schemas"]["PatchOperation"][];
+          "application/xml": components["schemas"]["PatchOperation"][];
         };
       };
       responses: {
@@ -2134,6 +2149,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AverageDto"];
     };
@@ -2278,6 +2299,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CountDto"];
     };
@@ -2303,6 +2330,19 @@ export interface components {
       courseId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CourseArticleDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseArticleUpdateDto: {
       title?: string | null;
@@ -2335,6 +2375,19 @@ export interface components {
       courseId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CourseAssignmentComponentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseAssignmentComponentUpdateDto: {
       title?: string | null;
@@ -2384,6 +2437,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseAssignmentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseAssignmentTypeCreateDto: {
       /** Format: uuid */
       id?: string;
@@ -2414,6 +2480,19 @@ export interface components {
       courseId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CourseAssignmentTypeDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseAssignmentTypeUpdateDto: {
       name?: string | null;
@@ -2459,6 +2538,19 @@ export interface components {
       isFeatured?: boolean;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CourseCategoryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseCategoryUpdateDto: {
       title?: string | null;
@@ -2531,6 +2623,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseCohortDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseCohortUpdateDto: {
       name?: string | null;
       /** Format: date-time */
@@ -2570,12 +2675,31 @@ export interface components {
       instructorName?: string | null;
       instructorLastName?: string | null;
     };
+    CourseCompletionCertificateDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseCompletionCertificateDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CourseCompletionCertificateDto"][] | null;
     };
@@ -2601,6 +2725,19 @@ export interface components {
       courseId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CourseContentGroupDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseContentGroupUpdateDto: {
       name?: string | null;
@@ -2866,12 +3003,31 @@ export interface components {
       /** Format: date-time */
       inscriptionsEndDateTime?: string | null;
     };
+    CourseDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CourseDto"][] | null;
     };
@@ -2896,12 +3052,31 @@ export interface components {
       enrollmentId?: string | null;
       courseCompletionCertificateId?: string | null;
     };
+    CourseEnrollmentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseEnrollmentDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CourseEnrollmentDto"][] | null;
     };
@@ -2936,6 +3111,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseFileDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseFileUpdateDto: {
       title?: string | null;
       fileName?: string | null;
@@ -2963,6 +3151,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseForumDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseForumUpdateDto: {
       title?: string | null;
       description?: string | null;
@@ -2987,6 +3188,19 @@ export interface components {
       courseId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CourseGradingRubricDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseGradingRubricUpdateDto: {
       title?: string | null;
@@ -3022,6 +3236,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseHandoutDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseHandoutUpdateDto: {
       name?: string | null;
       description?: string | null;
@@ -3056,6 +3283,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseLibraryDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseLibraryUpdateDto: {
       title?: string | null;
       description?: string | null;
@@ -3084,6 +3324,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseNewsDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseNewsUpdateDto: {
       title?: string | null;
       description?: string | null;
@@ -3111,6 +3364,19 @@ export interface components {
       courseId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CoursePageDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CoursePageUpdateDto: {
       title?: string | null;
@@ -3149,6 +3415,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseProblemSetDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseProblemSetUpdateDto: {
       title?: string | null;
       description?: string | null;
@@ -3186,6 +3465,19 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    CourseSectionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseSectionUpdateDto: {
       name?: string | null;
       icon?: string | null;
@@ -3214,6 +3506,19 @@ export interface components {
       courseTeamMembershipType?: "Admin" | "Staff";
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CourseTeamMembershipDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseTeamMembershipUpdateDto: {
       instructorProfileId?: string | null;
@@ -3246,6 +3551,19 @@ export interface components {
       courseUnitId?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
+    };
+    CourseUnitComponentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseUnitComponentUpdateDto: {
       title?: string | null;
@@ -3286,6 +3604,19 @@ export interface components {
       courseHandouts?: components["schemas"]["CourseHandoutDto"][] | null;
       courseAssignments?: components["schemas"]["CourseAssignmentDto"][] | null;
       courseComponents?: components["schemas"]["CourseUnitComponentDto"][] | null;
+    };
+    CourseUnitDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     CourseUnitUpdateDto: {
       title?: string | null;
@@ -3350,6 +3681,19 @@ export interface components {
       courseId?: string | null;
       courseUnitId?: string | null;
     };
+    CourseWikiDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CourseWikiUpdateDto: {
       title?: string | null;
       description?: string | null;
@@ -3363,6 +3707,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -3371,6 +3721,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ForgotPasswordRequest: {
@@ -3467,12 +3823,31 @@ export interface components {
       data9Label?: string | null;
       authorized?: boolean;
     };
+    InstructorProfileDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     InstructorProfileDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["InstructorProfileDto"][] | null;
     };
@@ -3509,11 +3884,9 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -3600,12 +3973,31 @@ export interface components {
       data9?: string | null;
       data9Label?: string | null;
     };
+    StudentProfileDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     StudentProfileDtoIReadOnlyListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["StudentProfileDto"][] | null;
     };
@@ -3678,6 +4070,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseArticleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseArticleDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -3741,6 +4139,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseArticleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseArticleDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3880,8 +4284,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3913,6 +4317,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentComponentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseAssignmentComponentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3978,6 +4388,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentComponentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseAssignmentComponentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4117,8 +4533,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4150,6 +4566,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseAssignmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4215,6 +4637,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseAssignmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4354,8 +4782,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4387,6 +4815,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseAssignmentTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4452,6 +4886,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentTypeDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseAssignmentTypeDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4591,8 +5031,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -4624,6 +5064,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4689,6 +5135,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4828,8 +5280,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5066,8 +5518,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5273,8 +5725,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5337,6 +5789,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCohortDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCohortDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5402,6 +5860,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCohortDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCohortDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5541,8 +6005,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5574,6 +6038,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseContentGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseContentGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5639,6 +6109,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseContentGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseContentGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5778,8 +6254,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -5815,6 +6291,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseContentGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseContentGroupDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5848,6 +6330,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseContentGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseContentGroupDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5877,6 +6365,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5942,6 +6436,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6082,8 +6582,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6117,6 +6617,12 @@ export interface operations {
         studentProfileId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -6146,6 +6652,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseFileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseFileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6211,6 +6723,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseFileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseFileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6350,8 +6868,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6380,6 +6898,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseForumDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseForumDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6448,6 +6972,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseForumDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseForumDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6590,8 +7120,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6620,6 +7150,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseGradingRubricDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseGradingRubricDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6685,6 +7221,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseGradingRubricDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseGradingRubricDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6824,8 +7366,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -6854,6 +7396,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseHandoutDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseHandoutDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -6922,6 +7470,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseHandoutDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseHandoutDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7064,8 +7618,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7094,6 +7648,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseLibraryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseLibraryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7162,6 +7722,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseLibraryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseLibraryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7304,8 +7870,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7334,6 +7900,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CoursePageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CoursePageDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7399,6 +7971,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CoursePageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CoursePageDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7538,8 +8116,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7568,6 +8146,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseProblemSetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseProblemSetDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7633,6 +8217,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseProblemSetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseProblemSetDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7772,8 +8362,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -7805,6 +8395,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -7870,6 +8466,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8010,8 +8612,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -8047,6 +8649,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseWikiDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseWikiDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8078,6 +8686,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseWikiDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseWikiDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8114,6 +8728,12 @@ export interface operations {
         wikiId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseArticleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseArticleDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8146,6 +8766,12 @@ export interface operations {
       path: {
         courseId: string;
         wikiId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseArticleDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseArticleDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8181,6 +8807,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseNewsDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseNewsDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8212,6 +8844,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseNewsDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseNewsDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8247,6 +8885,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseSectionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseSectionDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8278,6 +8922,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseSectionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseSectionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8314,6 +8964,12 @@ export interface operations {
         sectionId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseUnitDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseUnitDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8346,6 +9002,12 @@ export interface operations {
       path: {
         courseId: string;
         sectionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseUnitDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseUnitDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8381,6 +9043,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseAssignmentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8412,6 +9080,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseAssignmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseAssignmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8447,6 +9121,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCategoryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8478,6 +9158,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCategoryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCategoryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8513,6 +9199,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCohortDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCohortDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8544,6 +9236,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCohortDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCohortDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8579,6 +9277,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseFileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseFileDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8610,6 +9314,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseFileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseFileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8645,6 +9355,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseForumDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseForumDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8676,6 +9392,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseForumDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseForumDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8711,6 +9433,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseLibraryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseLibraryDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8742,6 +9470,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseLibraryDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseLibraryDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8777,6 +9511,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CoursePageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CoursePageDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8808,6 +9548,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CoursePageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CoursePageDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8843,6 +9589,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseProblemSetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseProblemSetDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8874,6 +9626,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseProblemSetDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseProblemSetDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8909,6 +9667,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseHandoutDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseHandoutDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -8940,6 +9704,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseHandoutDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseHandoutDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -8975,6 +9745,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseUnitComponentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseUnitComponentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -9006,6 +9782,12 @@ export interface operations {
       };
       path: {
         courseId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseUnitComponentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseUnitComponentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9174,6 +9956,12 @@ export interface operations {
         courseId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -9203,6 +9991,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseSectionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseSectionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9268,6 +10062,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseSectionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseSectionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9407,8 +10207,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -9440,6 +10240,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseTeamMembershipDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseTeamMembershipDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9505,6 +10311,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseTeamMembershipDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseTeamMembershipDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9644,8 +10456,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -9677,6 +10489,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseUnitComponentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseUnitComponentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9742,6 +10560,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseUnitComponentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseUnitComponentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9881,8 +10705,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -9914,6 +10738,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseUnitDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseUnitDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -9979,6 +10809,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseUnitDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseUnitDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10118,8 +10954,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -10151,6 +10987,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseNewsDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseNewsDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10216,6 +11058,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseNewsDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseNewsDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10355,8 +11203,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -10388,6 +11236,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseWikiDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseWikiDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10453,6 +11307,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseWikiDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseWikiDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10592,8 +11452,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -10638,6 +11498,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StudentProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["StudentProfileDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10663,6 +11529,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["StudentProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["StudentProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10692,6 +11564,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InstructorProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InstructorProfileDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10717,6 +11595,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["InstructorProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["InstructorProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10746,6 +11630,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10771,6 +11661,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseEnrollmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10800,6 +11696,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10825,6 +11727,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10854,6 +11762,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10879,6 +11793,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -10908,6 +11828,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCompletionCertificateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCompletionCertificateDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -10933,6 +11859,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CourseCompletionCertificateDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CourseCompletionCertificateDtoCollectionQueryParameters"];
       };
     };
     responses: {

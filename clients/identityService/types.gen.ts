@@ -24,6 +24,9 @@ export type AuthResult = {
     correlationId?: string | null;
     scopes?: Array<string> | null;
     error?: string | null;
+    runAs?: 'Invoker' | 'Application' | 'System' | 'Service';
+    principalKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    provenance?: ExecutionProvenance;
 };
 
 export type AuthResultEnvelopeReadable = {
@@ -31,6 +34,11 @@ export type AuthResultEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: AuthResult;
 };
@@ -38,6 +46,11 @@ export type AuthResultEnvelopeReadable = {
 export type AuthResultEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: AuthResult;
 };
 
@@ -48,12 +61,28 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+};
+
+export type ExecutionProvenance = {
+    initiation?: 'Unknown' | 'Http' | 'Workflow' | 'ScheduledJob' | 'Event' | 'AiTool' | 'Mcp' | 'Integration' | 'System';
+    onBehalfOfActorId?: UserId;
+    onBehalfOfActorKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
 };
 
 export type ForgotPasswordRequest = {
@@ -103,6 +132,11 @@ export type JsonWebKeySetEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JsonWebKeySet;
 };
@@ -110,6 +144,11 @@ export type JsonWebKeySetEnvelopeReadable = {
 export type JsonWebKeySetEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JsonWebKeySet;
 };
 
@@ -127,6 +166,11 @@ export type JsonWebTokenEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: JsonWebToken;
 };
@@ -134,6 +178,11 @@ export type JsonWebTokenEnvelopeReadable = {
 export type JsonWebTokenEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: JsonWebToken;
 };
 
@@ -192,6 +241,11 @@ export type OpenIdConfigurationEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: OpenIdConfiguration;
 };
@@ -199,6 +253,11 @@ export type OpenIdConfigurationEnvelopeReadable = {
 export type OpenIdConfigurationEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: OpenIdConfiguration;
 };
 
@@ -233,6 +292,11 @@ export type StringListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<string> | null;
 };
@@ -240,6 +304,11 @@ export type StringListEnvelopeReadable = {
 export type StringListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<string> | null;
 };
 
@@ -296,6 +365,11 @@ export type UserCreateDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: UserCreateDto;
 };
@@ -303,6 +377,11 @@ export type UserCreateDtoEnvelopeReadable = {
 export type UserCreateDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: UserCreateDto;
 };
 
@@ -460,6 +539,22 @@ export type GetHealthData = {
 };
 
 export type GetHealthResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiData = {
+    body?: never;
+    path: {
+        agentId: string;
+    };
+    query?: never;
+    url: '/api/v2/AIService/Agents/{agentId}/agui';
+};
+
+export type PostApiV2AiServiceAgentsByAgentIdAguiResponses = {
     /**
      * OK
      */
