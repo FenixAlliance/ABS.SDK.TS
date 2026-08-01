@@ -1825,18 +1825,6 @@ export interface components {
     BusinessDomainUpdateDto: {
       domain?: string | null;
     };
-    Calendar: {
-      /** Format: date-time */
-      minSupportedDateTime?: string;
-      /** Format: date-time */
-      maxSupportedDateTime?: string;
-      /** @enum {string} */
-      algorithmType?: "Unknown" | "SolarCalendar" | "LunarCalendar" | "LunisolarCalendar";
-      isReadOnly?: boolean;
-      eras?: (readonly number[]) | null;
-      /** Format: int32 */
-      twoDigitYearMax?: number;
-    };
     CartDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1863,33 +1851,6 @@ export interface components {
       productPlaceholderImage?: string | null;
       redirectToCartPageAfterAddingProducts?: boolean;
     };
-    Claim: {
-      issuer?: string | null;
-      originalIssuer?: string | null;
-      properties?: {
-        [key: string]: string;
-      } | null;
-      subject?: components["schemas"]["ClaimsIdentity"];
-      type?: string | null;
-      value?: string | null;
-      valueType?: string | null;
-    };
-    ClaimsIdentity: {
-      authenticationType?: string | null;
-      isAuthenticated?: boolean;
-      actor?: components["schemas"]["ClaimsIdentity"];
-      bootstrapContext?: unknown;
-      claims?: (readonly components["schemas"]["Claim"][]) | null;
-      label?: string | null;
-      name?: string | null;
-      nameClaimType?: string | null;
-      roleClaimType?: string | null;
-    };
-    ClaimsPrincipal: {
-      claims?: (readonly components["schemas"]["Claim"][]) | null;
-      identities?: (readonly components["schemas"]["ClaimsIdentity"][]) | null;
-      identity?: components["schemas"]["IIdentity"];
-    };
     CodeFieldsOptions: Record<string, never>;
     ColorOptions: {
       /** @enum {string} */
@@ -1909,12 +1870,6 @@ export interface components {
       color7?: string | null;
       color8?: string | null;
       color9?: string | null;
-    };
-    CompareInfo: {
-      name?: string | null;
-      version?: components["schemas"]["SortVersion"];
-      /** Format: int32 */
-      lcid?: number;
     };
     ContactDto: {
       id?: string | null;
@@ -2044,32 +1999,6 @@ export interface components {
       userContact?: components["schemas"]["ContactDto"];
       tenantContact?: components["schemas"]["ContactDto"];
     };
-    CultureInfo: {
-      parent?: components["schemas"]["CultureInfo"];
-      /** Format: int32 */
-      lcid?: number;
-      /** Format: int32 */
-      keyboardLayoutId?: number;
-      name?: string | null;
-      ietfLanguageTag?: string | null;
-      displayName?: string | null;
-      nativeName?: string | null;
-      englishName?: string | null;
-      twoLetterISOLanguageName?: string | null;
-      threeLetterISOLanguageName?: string | null;
-      threeLetterWindowsLanguageName?: string | null;
-      compareInfo?: components["schemas"]["CompareInfo"];
-      textInfo?: components["schemas"]["TextInfo"];
-      isNeutralCulture?: boolean;
-      /** @enum {string} */
-      cultureTypes?: "NeutralCultures" | "SpecificCultures" | "InstalledWin32Cultures" | "AllCultures" | "UserCustomCulture" | "ReplacementCultures" | "WindowsOnlyCultures" | "FrameworkCultures";
-      numberFormat?: components["schemas"]["NumberFormatInfo"];
-      dateTimeFormat?: components["schemas"]["DateTimeFormatInfo"];
-      calendar?: components["schemas"]["Calendar"];
-      optionalCalendars?: (readonly components["schemas"]["Calendar"][]) | null;
-      useUserOverride?: boolean;
-      isReadOnly?: boolean;
-    };
     CurrencyDto: {
       id?: string | null;
       /** Format: date-time */
@@ -2098,36 +2027,6 @@ export interface components {
       icon?: string | null;
       iconColor?: string | null;
       favicon?: string | null;
-    };
-    DateTimeFormatInfo: {
-      amDesignator?: string | null;
-      calendar?: components["schemas"]["Calendar"];
-      dateSeparator?: string | null;
-      /** @enum {string} */
-      firstDayOfWeek?: "Sunday" | "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
-      /** @enum {string} */
-      calendarWeekRule?: "FirstDay" | "FirstFullWeek" | "FirstFourDayWeek";
-      fullDateTimePattern?: string | null;
-      longDatePattern?: string | null;
-      longTimePattern?: string | null;
-      monthDayPattern?: string | null;
-      pmDesignator?: string | null;
-      rfC1123Pattern?: string | null;
-      shortDatePattern?: string | null;
-      shortTimePattern?: string | null;
-      sortableDateTimePattern?: string | null;
-      timeSeparator?: string | null;
-      universalSortableDateTimePattern?: string | null;
-      yearMonthPattern?: string | null;
-      abbreviatedDayNames?: string[] | null;
-      shortestDayNames?: string[] | null;
-      dayNames?: string[] | null;
-      abbreviatedMonthNames?: string[] | null;
-      monthNames?: string[] | null;
-      isReadOnly?: boolean;
-      nativeCalendarName?: string | null;
-      abbreviatedMonthGenitiveNames?: string[] | null;
-      monthGenitiveNames?: string[] | null;
     };
     DownloadablesOptions: {
       maskFileNames?: boolean;
@@ -2223,8 +2122,6 @@ export interface components {
       toDateDataSummaries?: string;
       /** Format: date-time */
       fromDateDataSummaries?: string;
-      authToken?: components["schemas"]["JsonWebToken"];
-      principal?: components["schemas"]["ClaimsPrincipal"];
       authorization?: components["schemas"]["AuthResult"];
       user?: components["schemas"]["ExtendedUserDto"];
       currentTenant?: components["schemas"]["ExtendedTenantDto"];
@@ -2245,7 +2142,7 @@ export interface components {
       invitations?: components["schemas"]["ExtendedInviteDto"][] | null;
       grantedPermissions?: string[] | null;
       accessibleFeatures?: components["schemas"]["SuiteLicenseFeatureDto"][] | null;
-      culture?: components["schemas"]["CultureInfo"];
+      cultureName?: string | null;
       timezoneId?: string | null;
     };
     ExecutionContextEnvelope: {
@@ -2555,11 +2452,6 @@ export interface components {
       } | null;
       [key: string]: unknown;
     };
-    IIdentity: {
-      name?: string | null;
-      authenticationType?: string | null;
-      isAuthenticated?: boolean;
-    };
     IdentityAndPrivacyOptions: {
       allowGuestOrders?: boolean;
       allowGuestCartRecognition?: boolean;
@@ -2637,36 +2529,6 @@ export interface components {
       outOfStockThreshold?: number;
       /** @enum {string} */
       stockDisplayFormat?: "AlwaysDisplayRemainingQuantity" | "OnlyDisplayRemainingQuantityWhenStockIsLow" | "NeverDisplayRemainingQuantity";
-    };
-    JsonWebToken: {
-      header?: components["schemas"]["JsonWebTokenHeader"];
-      payload?: components["schemas"]["JsonWebTokenPayload"];
-      signature?: string | null;
-      tokenType?: string | null;
-      /** Format: int64 */
-      expiresIn?: number;
-      accessToken?: string | null;
-    };
-    JsonWebTokenHeader: {
-      alg?: string | null;
-      jku?: string | null;
-      kid?: string | null;
-      typ?: string | null;
-    };
-    JsonWebTokenPayload: {
-      aud?: string | null;
-      cid?: string | null;
-      iss?: string | null;
-      aid?: string | null;
-      sub?: string | null;
-      act?: string | null;
-      /** Format: int64 */
-      iat?: number;
-      /** Format: int64 */
-      nbf?: number;
-      /** Format: int64 */
-      exp?: number;
-      scopes?: string[] | null;
     };
     LayoutOptions: {
       singleSidebarWidth?: string | null;
@@ -2962,45 +2824,6 @@ export interface components {
       /** Format: double */
       amount?: number;
       currency?: components["schemas"]["CurrencyId"];
-    };
-    NumberFormatInfo: {
-      /** Format: int32 */
-      currencyDecimalDigits?: number;
-      currencyDecimalSeparator?: string | null;
-      isReadOnly?: boolean;
-      currencyGroupSizes?: number[] | null;
-      numberGroupSizes?: number[] | null;
-      percentGroupSizes?: number[] | null;
-      currencyGroupSeparator?: string | null;
-      currencySymbol?: string | null;
-      naNSymbol?: string | null;
-      /** Format: int32 */
-      currencyNegativePattern?: number;
-      /** Format: int32 */
-      numberNegativePattern?: number;
-      /** Format: int32 */
-      percentPositivePattern?: number;
-      /** Format: int32 */
-      percentNegativePattern?: number;
-      negativeInfinitySymbol?: string | null;
-      negativeSign?: string | null;
-      /** Format: int32 */
-      numberDecimalDigits?: number;
-      numberDecimalSeparator?: string | null;
-      numberGroupSeparator?: string | null;
-      /** Format: int32 */
-      currencyPositivePattern?: number;
-      positiveInfinitySymbol?: string | null;
-      positiveSign?: string | null;
-      /** Format: int32 */
-      percentDecimalDigits?: number;
-      percentDecimalSeparator?: string | null;
-      percentGroupSeparator?: string | null;
-      percentSymbol?: string | null;
-      perMilleSymbol?: string | null;
-      nativeDigits?: string[] | null;
-      /** @enum {string} */
-      digitSubstitution?: "Context" | "None" | "NativeNational";
     };
     OpenExchangeRatesIntegrationsOptions: {
       enable?: boolean;
@@ -3316,12 +3139,6 @@ export interface components {
       domain?: string | null;
       notes?: string | null;
     };
-    SortVersion: {
-      /** Format: int32 */
-      fullVersion?: number;
-      /** Format: uuid */
-      sortId?: string;
-    };
     StoreDataRetentionPolicy: {
       /** Format: int32 */
       dataRetentionTimeSpanAmmount?: number;
@@ -3478,22 +3295,6 @@ export interface components {
     };
     /** Format: uuid */
     TenantId: string;
-    TextInfo: {
-      /** Format: int32 */
-      ansiCodePage?: number;
-      /** Format: int32 */
-      oemCodePage?: number;
-      /** Format: int32 */
-      macCodePage?: number;
-      /** Format: int32 */
-      ebcdicCodePage?: number;
-      /** Format: int32 */
-      lcid?: number;
-      cultureName?: string | null;
-      isReadOnly?: boolean;
-      listSeparator?: string | null;
-      isRightToLeft?: boolean;
-    };
     ThemingOptions: {
       darkStyling?: boolean;
       themeName?: string | null;
