@@ -25,9 +25,9 @@ The Alliance Business Suite provides customers with a Full-Stack, Low-Code, Modu
 
 The Alliance Business Suite relies on [five major components](/Components.md) designed to separate different functionalities into layers; these components are:
 
-- ## [Alliance Core Libraries](/Components/Alliance-Core-Libraries.md)
+- ## [Alliance Core Libraries](/Components/Alliance-Core-Libraries.md) (retired)
 
-The Alliance Core Libraries contain the core abstractions and default implementations required by the Alliance Business Model and dependent components. It is also the external dependency source for the entire Alliance Business Suite, which means that external dependencies, which are dependencies outside the `FenixAlliance.*` namespace, are referenced by the `FenixAlliance.ACL.Deps` Package, which is the base ACL Package and, therefore, it could be referred to as the Core Package.
+**The Alliance Core Libraries are retired.** They were the shared kernel and the single external dependency source for the suite, surfaced through a `FenixAlliance.ACL.Deps` base package. That package no longer exists, and `FenixAlliance.ACL.i18n` is the only ACL project left (nothing references it). The shared kernel is now `FenixAlliance.ABS.Sernel` plus the `FenixAlliance.ABS.*.SDK` projects, and third-party dependency versions are managed centrally in `Directory.Packages.props`.
 
 For more information on the dependency tree, design overview, and external dependencies, please refer to [Advanced Topics](/Advanced.md).
 

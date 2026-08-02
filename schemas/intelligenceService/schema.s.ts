@@ -12,6 +12,27 @@ export interface paths {
      */
     get: operations["GetAiProvidersAsync"];
   };
+  "/api/v2/IntelligenceService/Capabilities": {
+    /**
+     * Get entitled capabilities
+     * @description Retrieves every governed capability the calling actor is entitled to run for the specified tenant, optionally narrowed to a single execution surface. Capabilities the actor cannot run are never disclosed.
+     */
+    get: operations["GetCapabilitiesAsync"];
+  };
+  "/api/v2/IntelligenceService/Capabilities/Count": {
+    /**
+     * Get entitled capabilities count
+     * @description Returns the number of governed capabilities the calling actor is entitled to run for the specified tenant, honouring the same entitlement filter and optional surface narrowing as the list route.
+     */
+    get: operations["GetCapabilitiesCountAsync"];
+  };
+  "/api/v2/IntelligenceService/Capabilities/{key}": {
+    /**
+     * Get entitled capability by key
+     * @description Retrieves a single governed capability by its stable, dotted key. Returns 404 when the capability does not exist OR the actor is not entitled to run it — existence is never leaked to an unentitled actor.
+     */
+    get: operations["GetCapabilityByKeyAsync"];
+  };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations": {
     /**
      * Get all conversations for a cognitive agent
@@ -547,6 +568,56 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["AiProviderDto"][] | null;
+    };
+    CapabilityDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      key?: string | null;
+      name?: string | null;
+      description?: string | null;
+      category?: string | null;
+      effect?: string | null;
+      risks?: string[] | null;
+      surfaces?: string[] | null;
+      requiredPermission?: string | null;
+      version?: string | null;
+      inputSchema?: ({
+        [key: string]: string | null;
+      }) | null;
+      outputSchema?: ({
+        [key: string]: string | null;
+      }) | null;
+    };
+    CapabilityDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CapabilityDto"];
+    };
+    CapabilityDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["CapabilityDto"][] | null;
     };
     CognitiveAgentConversationCreateDto: {
       /** Format: uuid */
@@ -1105,6 +1176,111 @@ export interface operations {
       };
       /** @description Unauthorized */
       401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get entitled capabilities
+   * @description Retrieves every governed capability the calling actor is entitled to run for the specified tenant, optionally narrowed to a single execution surface. Capabilities the actor cannot run are never disclosed.
+   */
+  GetCapabilitiesAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        surface?: "None" | "Workflow" | "AI" | "Mcp" | "Job" | "Integration" | "Webhook" | "Admin";
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CapabilityDtoListEnvelope"];
+          "application/xml": components["schemas"]["CapabilityDtoListEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get entitled capabilities count
+   * @description Returns the number of governed capabilities the calling actor is entitled to run for the specified tenant, honouring the same entitlement filter and optional surface narrowing as the list route.
+   */
+  GetCapabilitiesCountAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        surface?: "None" | "Workflow" | "AI" | "Mcp" | "Job" | "Integration" | "Webhook" | "Admin";
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get entitled capability by key
+   * @description Retrieves a single governed capability by its stable, dotted key. Returns 404 when the capability does not exist OR the actor is not entitled to run it — existence is never leaked to an unentitled actor.
+   */
+  GetCapabilityByKeyAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        key: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CapabilityDtoEnvelope"];
+          "application/xml": components["schemas"]["CapabilityDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
         content: {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];

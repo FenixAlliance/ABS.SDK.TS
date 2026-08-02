@@ -42,6 +42,76 @@ export type AiProviderDtoListEnvelopeWritable = {
     result?: Array<AiProviderDto> | null;
 };
 
+export type CapabilityDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    key?: string | null;
+    name?: string | null;
+    description?: string | null;
+    category?: string | null;
+    effect?: string | null;
+    risks?: Array<string> | null;
+    surfaces?: Array<string> | null;
+    requiredPermission?: string | null;
+    version?: string | null;
+    inputSchema?: {
+        [key: string]: string | null;
+    } | null;
+    outputSchema?: {
+        [key: string]: string | null;
+    } | null;
+};
+
+export type CapabilityDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: CapabilityDto;
+};
+
+export type CapabilityDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: CapabilityDto;
+};
+
+export type CapabilityDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<CapabilityDto> | null;
+};
+
+export type CapabilityDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<CapabilityDto> | null;
+};
+
 export type CognitiveAgentConversationCreateDto = {
     id?: string;
     timestamp?: string;
@@ -797,6 +867,107 @@ export type GetAiProvidersAsyncResponses = {
 };
 
 export type GetAiProvidersAsyncResponse = GetAiProvidersAsyncResponses[keyof GetAiProvidersAsyncResponses];
+
+export type GetCapabilitiesAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        surface?: 'None' | 'Workflow' | 'AI' | 'Mcp' | 'Job' | 'Integration' | 'Webhook' | 'Admin';
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/Capabilities';
+};
+
+export type GetCapabilitiesAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCapabilitiesAsyncError = GetCapabilitiesAsyncErrors[keyof GetCapabilitiesAsyncErrors];
+
+export type GetCapabilitiesAsyncResponses = {
+    /**
+     * OK
+     */
+    200: CapabilityDtoListEnvelopeReadable;
+};
+
+export type GetCapabilitiesAsyncResponse = GetCapabilitiesAsyncResponses[keyof GetCapabilitiesAsyncResponses];
+
+export type GetCapabilitiesCountAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query: {
+        tenantId: string;
+        surface?: 'None' | 'Workflow' | 'AI' | 'Mcp' | 'Job' | 'Integration' | 'Webhook' | 'Admin';
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/Capabilities/Count';
+};
+
+export type GetCapabilitiesCountAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetCapabilitiesCountAsyncError = GetCapabilitiesCountAsyncErrors[keyof GetCapabilitiesCountAsyncErrors];
+
+export type GetCapabilitiesCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetCapabilitiesCountAsyncResponse = GetCapabilitiesCountAsyncResponses[keyof GetCapabilitiesCountAsyncResponses];
+
+export type GetCapabilityByKeyAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        key: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/Capabilities/{key}';
+};
+
+export type GetCapabilityByKeyAsyncErrors = {
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type GetCapabilityByKeyAsyncError = GetCapabilityByKeyAsyncErrors[keyof GetCapabilityByKeyAsyncErrors];
+
+export type GetCapabilityByKeyAsyncResponses = {
+    /**
+     * OK
+     */
+    200: CapabilityDtoEnvelopeReadable;
+};
+
+export type GetCapabilityByKeyAsyncResponse = GetCapabilityByKeyAsyncResponses[keyof GetCapabilityByKeyAsyncResponses];
 
 export type GetCognitiveAgentConversationsAsyncData = {
     body?: CognitiveAgentConversationDtoCollectionQueryParametersWritable;
