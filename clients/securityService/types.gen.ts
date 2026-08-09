@@ -867,6 +867,7 @@ export type SecurityPermissionDto = {
     timestamp?: string | null;
     name?: string | null;
     tenantId?: string | null;
+    category?: string | null;
     description?: string | null;
     isSystemPermission?: boolean;
 };
@@ -2173,22 +2174,6 @@ export type PostAccountManageDownloadPersonalDataData = {
 };
 
 export type PostAccountManageDownloadPersonalDataResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
-export type InvokeAgentSurfaceAsyncData = {
-    body?: never;
-    path: {
-        agentId: string;
-    };
-    query?: never;
-    url: '/api/v2/AIService/Agents/{agentId}/agui';
-};
-
-export type InvokeAgentSurfaceAsyncResponses = {
     /**
      * OK
      */

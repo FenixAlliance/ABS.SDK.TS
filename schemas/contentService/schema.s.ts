@@ -577,13 +577,6 @@ export interface paths {
       };
     };
   };
-  "/api/v2/AIService/Agents/{agentId}/agui": {
-    /**
-     * Run a governed agent over the AG-UI protocol
-     * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
-     */
-    post: operations["InvokeAgentSurfaceAsync"];
-  };
   "/api/v2/ContentService/LocalizationStrings": {
     /**
      * Get localization strings
@@ -2154,10 +2147,15 @@ export interface components {
     };
     ExecutionProvenance: {
       /** @enum {string} */
-      initiation?: "Unknown" | "Http" | "Workflow" | "ScheduledJob" | "Event" | "AiTool" | "Mcp" | "Integration" | "System";
+      initiation?: "Unknown" | "Http" | "Workflow" | "ScheduledJob" | "Event" | "AiTool" | "Mcp" | "Integration" | "System" | "Manual";
       onBehalfOfActorId?: components["schemas"]["UserId"];
       /** @enum {string|null} */
       onBehalfOfActorKind?: "Human" | "Agent" | "Application" | "Service" | "System" | null;
+      /** Format: uuid */
+      causationId?: string | null;
+      originatingWorkflowInstanceId?: string | null;
+      /** Format: int32 */
+      eventDepth?: number;
     };
     ExtendedInviteDto: {
       id?: string | null;
@@ -2406,6 +2404,10 @@ export interface components {
       siteKey?: string | null;
       secretKey?: string | null;
       version?: string | null;
+      projectId?: string | null;
+      apiKey?: string | null;
+      /** Format: double */
+      scoreThreshold?: number | null;
     };
     GoogleTagManagerIntegrationOptions: {
       enable?: boolean;
@@ -6260,23 +6262,6 @@ export interface operations {
         userId: string;
         code: string;
         changedEmail?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
-      };
-    };
-  };
-  /**
-   * Run a governed agent over the AG-UI protocol
-   * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
-   */
-  InvokeAgentSurfaceAsync: {
-    parameters: {
-      path: {
-        agentId: string;
       };
     };
     responses: {

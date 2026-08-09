@@ -80,9 +80,12 @@ export type ErrorEnvelopeWritable = {
 };
 
 export type ExecutionProvenance = {
-    initiation?: 'Unknown' | 'Http' | 'Workflow' | 'ScheduledJob' | 'Event' | 'AiTool' | 'Mcp' | 'Integration' | 'System';
+    initiation?: 'Unknown' | 'Http' | 'Workflow' | 'ScheduledJob' | 'Event' | 'AiTool' | 'Mcp' | 'Integration' | 'System' | 'Manual';
     onBehalfOfActorId?: UserId;
     onBehalfOfActorKind?: 'Human' | 'Agent' | 'Application' | 'Service' | 'System';
+    causationId?: string | null;
+    originatingWorkflowInstanceId?: string | null;
+    eventDepth?: number;
 };
 
 export type ForgotPasswordRequest = {
@@ -839,22 +842,6 @@ export type PostAccountManageDownloadPersonalDataData = {
 };
 
 export type PostAccountManageDownloadPersonalDataResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
-export type InvokeAgentSurfaceAsyncData = {
-    body?: never;
-    path: {
-        agentId: string;
-    };
-    query?: never;
-    url: '/api/v2/AIService/Agents/{agentId}/agui';
-};
-
-export type InvokeAgentSurfaceAsyncResponses = {
     /**
      * OK
      */

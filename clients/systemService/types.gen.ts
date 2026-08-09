@@ -761,6 +761,37 @@ export type ForgotPasswordRequest = {
     email: string | null;
 };
 
+export type GuestCartPurgeResultDto = {
+    guestCartsDeleted?: number;
+    itemCartRecordsDeleted?: number;
+    wishListsDeleted?: number;
+};
+
+export type GuestCartPurgeResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: GuestCartPurgeResultDto;
+};
+
+export type GuestCartPurgeResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: GuestCartPurgeResultDto;
+};
+
 export type HttpValidationProblemDetails = {
     type?: string | null;
     title?: string | null;
@@ -1149,6 +1180,39 @@ export type LoginRequest = {
     twoFactorRecoveryCode?: string | null;
 };
 
+export type ModuleGrantDto = {
+    module?: string | null;
+    expiresAt?: string | null;
+    grantedAtUtc?: string;
+    grantedBy?: string | null;
+    note?: string | null;
+};
+
+export type ModuleGrantDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<ModuleGrantDto> | null;
+};
+
+export type ModuleGrantDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<ModuleGrantDto> | null;
+};
+
 export type ObjectEmailDispatchRequest = {
     title: string;
     message: string;
@@ -1433,6 +1497,29 @@ export type ResetPasswordRequest = {
     email: string | null;
     resetCode: string | null;
     newPassword: string | null;
+};
+
+export type SecurityPermissionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    tenantId?: string | null;
+    category?: string | null;
+    description?: string | null;
+    isSystemPermission?: boolean;
+};
+
+export type SecurityRoleDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    name?: string | null;
+    tenantId?: string | null;
+    description?: string | null;
+    isSystemRole?: boolean;
+};
+
+export type SetUserPasswordDto = {
+    newPassword: string;
 };
 
 export type SocialProfileDto = {
@@ -1932,6 +2019,17 @@ export type TenantDtoListEnvelopeWritable = {
     result?: Array<TenantDtoWritable> | null;
 };
 
+export type TenantEnrollmentDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    tenantId?: string | null;
+    userId?: string | null;
+    isRoot?: boolean;
+    isOwner?: boolean;
+    isAdmin?: boolean;
+    isDisabled?: boolean;
+};
+
 export type TenantUpdateDto = {
     kind?: 'Organization' | 'Individual';
     name: string;
@@ -1976,6 +2074,54 @@ export type TwoFactorResponse = {
     recoveryCodes?: Array<string> | null;
     isTwoFactorEnabled: boolean;
     isMachineRemembered: boolean;
+};
+
+export type UserAdminDetailDto = {
+    orders?: Array<UserOrderSummaryDto> | null;
+    logins?: Array<UserExternalLoginDto> | null;
+    enrollment?: TenantEnrollmentDto;
+    grantedRoles?: Array<SecurityRoleDto> | null;
+    grantedPermissions?: Array<SecurityPermissionDto> | null;
+    roleCatalog?: Array<SecurityRoleDto> | null;
+    permissionCatalog?: Array<SecurityPermissionDto> | null;
+};
+
+export type UserAdminDetailDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: UserAdminDetailDto;
+};
+
+export type UserAdminDetailDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: UserAdminDetailDto;
+};
+
+export type UserAdminUpdateDto = {
+    email?: string | null;
+    userName?: string | null;
+    handler?: string | null;
+    name?: string | null;
+    lastName?: string | null;
+    publicName?: string | null;
+    about?: string | null;
+    twoFactorEnabled?: boolean;
+    lockoutEnabled?: boolean;
+    lockoutEnd?: string | null;
 };
 
 export type UserCreateDto = {
@@ -2178,6 +2324,18 @@ export type UserDtoListEnvelopeWritable = {
         [key: string]: Array<string> | null;
     } | null;
     result?: Array<UserDtoWritable> | null;
+};
+
+export type UserExternalLoginDto = {
+    loginProvider?: string | null;
+    providerKey?: string | null;
+    providerDisplayName?: string | null;
+};
+
+export type UserOrderSummaryDto = {
+    id?: string | null;
+    orderType?: 'SalesOrder' | 'PurchaseOrder';
+    orderStatus?: 'New' | 'Processing' | 'Accepted' | 'Declined' | 'Shipped' | 'Delivered' | 'OnHold' | 'Failed' | 'Fulfilled' | 'Cancelled';
 };
 
 export type UserSettingsDto = {
@@ -3107,6 +3265,40 @@ export type GetSystemCartByIdResponses = {
 };
 
 export type GetSystemCartByIdResponse = GetSystemCartByIdResponses[keyof GetSystemCartByIdResponses];
+
+export type PurgeSystemGuestCartsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path?: never;
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Carts/Guests';
+};
+
+export type PurgeSystemGuestCartsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type PurgeSystemGuestCartsError = PurgeSystemGuestCartsErrors[keyof PurgeSystemGuestCartsErrors];
+
+export type PurgeSystemGuestCartsResponses = {
+    /**
+     * OK
+     */
+    200: GuestCartPurgeResultDtoEnvelopeReadable;
+};
+
+export type PurgeSystemGuestCartsResponse = PurgeSystemGuestCartsResponses[keyof PurgeSystemGuestCartsResponses];
 
 export type GetSystemContactOptionsData = {
     body?: OptionDtoCollectionQueryParametersWritable;
@@ -4262,22 +4454,6 @@ export type ReplayInboxMessageResponses = {
 };
 
 export type ReplayInboxMessageResponse = ReplayInboxMessageResponses[keyof ReplayInboxMessageResponses];
-
-export type InvokeAgentSurfaceAsyncData = {
-    body?: never;
-    path: {
-        agentId: string;
-    };
-    query?: never;
-    url: '/api/v2/AIService/Agents/{agentId}/agui';
-};
-
-export type InvokeAgentSurfaceAsyncResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
 
 export type GetSystemIpLookupsData = {
     body?: IpLookupDtoCollectionQueryParametersWritable;
@@ -6395,6 +6571,78 @@ export type UpdateTenantResponses = {
 
 export type UpdateTenantResponse = UpdateTenantResponses[keyof UpdateTenantResponses];
 
+export type GetTenantModuleGrantsData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/ModuleGrants';
+};
+
+export type GetTenantModuleGrantsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetTenantModuleGrantsError = GetTenantModuleGrantsErrors[keyof GetTenantModuleGrantsErrors];
+
+export type GetTenantModuleGrantsResponses = {
+    /**
+     * OK
+     */
+    200: ModuleGrantDtoListEnvelopeReadable;
+};
+
+export type GetTenantModuleGrantsResponse = GetTenantModuleGrantsResponses[keyof GetTenantModuleGrantsResponses];
+
+export type SetTenantModuleGrantsData = {
+    body?: Array<ModuleGrantDto>;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        tenantId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Tenants/{tenantId}/ModuleGrants';
+};
+
+export type SetTenantModuleGrantsErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type SetTenantModuleGrantsError = SetTenantModuleGrantsErrors[keyof SetTenantModuleGrantsErrors];
+
+export type SetTenantModuleGrantsResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type SetTenantModuleGrantsResponse = SetTenantModuleGrantsResponses[keyof SetTenantModuleGrantsResponses];
+
 export type AdminPreviewTenantEmailData = {
     body?: EmailDispatchRequest;
     headers?: {
@@ -7046,6 +7294,119 @@ export type GetExtendedAccountHolderAsyncResponses = {
 };
 
 export type GetExtendedAccountHolderAsyncResponse = GetExtendedAccountHolderAsyncResponses[keyof GetExtendedAccountHolderAsyncResponses];
+
+export type GetUserAdminDetailAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/AdminDetail';
+};
+
+export type GetUserAdminDetailAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetUserAdminDetailAsyncError = GetUserAdminDetailAsyncErrors[keyof GetUserAdminDetailAsyncErrors];
+
+export type GetUserAdminDetailAsyncResponses = {
+    /**
+     * OK
+     */
+    200: UserAdminDetailDtoEnvelopeReadable;
+};
+
+export type GetUserAdminDetailAsyncResponse = GetUserAdminDetailAsyncResponses[keyof GetUserAdminDetailAsyncResponses];
+
+export type SetUserPasswordAsyncData = {
+    body?: SetUserPasswordDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/Password';
+};
+
+export type SetUserPasswordAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type SetUserPasswordAsyncError = SetUserPasswordAsyncErrors[keyof SetUserPasswordAsyncErrors];
+
+export type SetUserPasswordAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type SetUserPasswordAsyncResponse = SetUserPasswordAsyncResponses[keyof SetUserPasswordAsyncResponses];
+
+export type UpdateAccountHolderAdminProfileAsyncData = {
+    body?: UserAdminUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        userId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SystemService/Users/{userId}/AdminProfile';
+};
+
+export type UpdateAccountHolderAdminProfileAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateAccountHolderAdminProfileAsyncError = UpdateAccountHolderAdminProfileAsyncErrors[keyof UpdateAccountHolderAdminProfileAsyncErrors];
+
+export type UpdateAccountHolderAdminProfileAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type UpdateAccountHolderAdminProfileAsyncResponse = UpdateAccountHolderAdminProfileAsyncResponses[keyof UpdateAccountHolderAdminProfileAsyncResponses];
 
 export type AdminPreviewUserEmailTemplateData = {
     body?: EmailDispatchRequest;

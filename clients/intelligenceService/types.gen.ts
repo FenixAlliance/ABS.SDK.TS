@@ -53,6 +53,8 @@ export type CapabilityDto = {
     risks?: Array<string> | null;
     surfaces?: Array<string> | null;
     requiredPermission?: string | null;
+    available?: boolean;
+    deniedReason?: string | null;
     version?: string | null;
     inputSchema?: {
         [key: string]: string | null;
@@ -60,6 +62,8 @@ export type CapabilityDto = {
     outputSchema?: {
         [key: string]: string | null;
     } | null;
+    isOutputCollection?: boolean;
+    requiredInputs?: Array<string> | null;
 };
 
 export type CapabilityDtoEnvelopeReadable = {
@@ -240,6 +244,7 @@ export type CognitiveAgentCreateDto = {
     soul?: string | null;
     providerKey?: string | null;
     modelId?: string | null;
+    engineKey?: string | null;
 };
 
 export type CognitiveAgentDto = {
@@ -251,6 +256,7 @@ export type CognitiveAgentDto = {
     soul?: string | null;
     providerKey?: string | null;
     modelId?: string | null;
+    engineKey?: string | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
 };
@@ -520,6 +526,7 @@ export type CognitiveAgentUpdateDto = {
     soul?: string | null;
     providerKey?: string | null;
     modelId?: string | null;
+    engineKey?: string | null;
 };
 
 export type CognitiveAgentVariableCreateDto = {
@@ -621,9 +628,10 @@ export type CognitiveSkillCreateDto = {
     timestamp?: string;
     name: string;
     description?: string | null;
-    toolKey: string;
+    toolKey?: string | null;
     configJson?: string | null;
     enabled?: boolean;
+    tools?: Array<CognitiveSkillToolDto> | null;
 };
 
 export type CognitiveSkillDto = {
@@ -634,6 +642,7 @@ export type CognitiveSkillDto = {
     toolKey?: string | null;
     configJson?: string | null;
     enabled?: boolean;
+    tools?: Array<CognitiveSkillToolDto> | null;
     tenantId?: string | null;
     enrollmentId?: string | null;
 };
@@ -711,12 +720,51 @@ export type CognitiveSkillDtoListEnvelopeWritable = {
     result?: Array<CognitiveSkillDto> | null;
 };
 
+export type CognitiveSkillToolDto = {
+    toolKey: string;
+    configJson?: string | null;
+    enabled?: boolean;
+};
+
 export type CognitiveSkillUpdateDto = {
     name?: string | null;
     description?: string | null;
     toolKey?: string | null;
     configJson?: string | null;
     enabled?: boolean;
+    tools?: Array<CognitiveSkillToolDto> | null;
+};
+
+export type ConversationAttachmentUploadResultDto = {
+    fileId?: string | null;
+    name?: string | null;
+    contentType?: string | null;
+    length?: number;
+};
+
+export type ConversationAttachmentUploadResultDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ConversationAttachmentUploadResultDto;
+};
+
+export type ConversationAttachmentUploadResultDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ConversationAttachmentUploadResultDto;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -968,6 +1016,50 @@ export type GetCapabilityByKeyAsyncResponses = {
 };
 
 export type GetCapabilityByKeyAsyncResponse = GetCapabilityByKeyAsyncResponses[keyof GetCapabilityByKeyAsyncResponses];
+
+export type UploadCognitiveAgentConversationAttachmentAsyncData = {
+    body?: {
+        file?: Blob | File;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        agentId: string;
+        conversationId: string;
+    };
+    query: {
+        tenantId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Attachments';
+};
+
+export type UploadCognitiveAgentConversationAttachmentAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+    /**
+     * Not Found
+     */
+    404: ErrorEnvelopeReadable;
+};
+
+export type UploadCognitiveAgentConversationAttachmentAsyncError = UploadCognitiveAgentConversationAttachmentAsyncErrors[keyof UploadCognitiveAgentConversationAttachmentAsyncErrors];
+
+export type UploadCognitiveAgentConversationAttachmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ConversationAttachmentUploadResultDtoEnvelopeReadable;
+};
+
+export type UploadCognitiveAgentConversationAttachmentAsyncResponse = UploadCognitiveAgentConversationAttachmentAsyncResponses[keyof UploadCognitiveAgentConversationAttachmentAsyncResponses];
 
 export type GetCognitiveAgentConversationsAsyncData = {
     body?: CognitiveAgentConversationDtoCollectionQueryParametersWritable;
@@ -2447,7 +2539,7 @@ export type InvokeAgentSurfaceAsyncData = {
         agentId: string;
     };
     query?: never;
-    url: '/api/v2/AIService/Agents/{agentId}/agui';
+    url: '/api/v2/IntelligenceService/Agents/{agentId}/agui';
 };
 
 export type InvokeAgentSurfaceAsyncResponses = {

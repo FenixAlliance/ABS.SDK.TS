@@ -605,6 +605,13 @@ export interface paths {
      */
     delete: operations["DeleteSocialPostAttachmentAsync"];
   };
+  "/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/Image": {
+    /**
+     * Upload a social post image attachment
+     * @description Uploads an image and attaches it to a social post, storing the bytes through the storage spine.
+     */
+    post: operations["UploadSocialPostImageAttachmentAsync"];
+  };
   "/api/v2/SocialService/SocialPosts/{socialPostId}/Reactions": {
     /**
      * Get social post reactions
@@ -676,6 +683,42 @@ export interface paths {
      * @description Deletes a comment from a specific social post.
      */
     delete: operations["DeleteSocialPostCommentAsync"];
+  };
+  "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions": {
+    /**
+     * Get social comment reactions
+     * @description Retrieves a list of reactions for a specific social comment.
+     */
+    get: operations["GetSocialCommentReactionsAsync"];
+    /**
+     * Create a social comment reaction
+     * @description Creates a new reaction on a specific social comment.
+     */
+    post: operations["CreateSocialCommentReactionAsync"];
+  };
+  "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/Count": {
+    /**
+     * Count social comment reactions
+     * @description Returns the count of reactions for a specific social comment.
+     */
+    get: operations["GetSocialCommentReactionsCountAsync"];
+  };
+  "/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}": {
+    /**
+     * Get social comment reaction by ID
+     * @description Retrieves a specific reaction from a social comment by its ID.
+     */
+    get: operations["GetSocialCommentReactionAsync"];
+    /**
+     * Update a social comment reaction
+     * @description Updates an existing reaction on a specific social comment.
+     */
+    put: operations["UpdateSocialCommentReactionAsync"];
+    /**
+     * Delete a social comment reaction
+     * @description Deletes a reaction from a specific social comment.
+     */
+    delete: operations["DeleteSocialCommentReactionAsync"];
   };
   "/api/v2/SocialService/SocialProfiles": {
     /**
@@ -811,6 +854,13 @@ export interface paths {
      */
     get: operations["CountConversationsAsync"];
   };
+  "/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations/Direct": {
+    /**
+     * Get or Create Direct Conversation
+     * @description Get or create the direct two-party conversation between the acting profile and a counterparty.
+     */
+    post: operations["GetOrCreateDirectConversationAsync"];
+  };
   "/api/v2/SocialService/SocialProfiles/{conversationId}/Messages": {
     /**
      * Get Messages
@@ -861,6 +911,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: boolean;
     };
@@ -886,12 +942,46 @@ export interface components {
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
     };
+    ConversationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    ConversationDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ConversationDto"];
+    };
     ConversationDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["ConversationDto"][] | null;
     };
@@ -956,12 +1046,31 @@ export interface components {
       startupSuccessRepresentative?: boolean;
       customerSuccessRepresentative?: boolean;
     };
+    CurriculumDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CurriculumDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CurriculumDto"];
     };
@@ -971,6 +1080,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CurriculumDto"][] | null;
     };
@@ -1029,12 +1144,31 @@ export interface components {
       responsibilities?: string | null;
       employerProfileId?: string | null;
     };
+    CurriculumExperienceDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     CurriculumExperienceDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CurriculumExperienceDto"];
     };
@@ -1044,6 +1178,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["CurriculumExperienceDto"][] | null;
     };
@@ -1102,6 +1242,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     ErrorEnvelope: {
@@ -1110,6 +1256,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
     };
     FollowRecordDto: {
@@ -1121,12 +1273,31 @@ export interface components {
       followedId?: string | null;
       alerts?: boolean;
     };
+    FollowRecordDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     FollowRecordDtoListEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["FollowRecordDto"][] | null;
     };
@@ -1160,6 +1331,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       /** Format: int32 */
       result?: number;
@@ -1187,12 +1364,31 @@ export interface components {
       /** Format: date-time */
       issuedTimestamp?: string;
     };
+    NotificationDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     NotificationDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["NotificationDto"];
     };
@@ -1202,14 +1398,18 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["NotificationDto"][] | null;
     };
-    Operation: {
-      /** @enum {string} */
-      operationType?: "Add" | "Remove" | "Replace" | "Move" | "Copy" | "Test" | "Invalid";
-      path?: string | null;
+    PatchOperation: {
       op?: string | null;
+      path?: string | null;
       from?: string | null;
       value?: unknown;
     };
@@ -1240,6 +1440,23 @@ export interface components {
       readTimestamp?: string;
       /** Format: date-time */
       receivedTimestamp?: string;
+      socialProfileName?: string | null;
+      socialProfileAvatarUrl?: string | null;
+      /** @enum {string|null} */
+      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+    };
+    PrivateMessageDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     PrivateMessageDtoListEnvelope: {
       isSuccess?: boolean;
@@ -1247,6 +1464,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["PrivateMessageDto"][] | null;
     };
@@ -1285,7 +1508,7 @@ export interface components {
     SkillDto: {
       id?: string | null;
       /** Format: date-time */
-      timestamp?: string;
+      timestamp?: string | null;
       name?: string | null;
       url?: string | null;
       type?: string | null;
@@ -1296,12 +1519,31 @@ export interface components {
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
+    SkillDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SkillDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SkillDto"];
     };
@@ -1311,6 +1553,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SkillDto"][] | null;
     };
@@ -1323,6 +1571,63 @@ export interface components {
       /** @enum {string} */
       skillType?: "Skill" | "Certification";
     };
+    SocialCommentReactionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** @enum {string} */
+      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
+      reactionValue?: string | null;
+      socialProfileId?: string | null;
+      socialProfileName?: string | null;
+      socialProfileAvatarUrl?: string | null;
+      /** @enum {string|null} */
+      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialCommentId?: string | null;
+    };
+    SocialCommentReactionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    SocialCommentReactionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["SocialCommentReactionDto"];
+    };
+    SocialCommentReactionDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["SocialCommentReactionDto"][] | null;
+    };
     SocialFeedDto: {
       id?: string | null;
       /** Format: date-time */
@@ -1331,12 +1636,31 @@ export interface components {
       socialPostsCount?: number;
       socialProfileId?: string | null;
     };
+    SocialFeedDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SocialFeedDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialFeedDto"];
     };
@@ -1346,6 +1670,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialFeedDto"][] | null;
     };
@@ -1358,6 +1688,10 @@ export interface components {
       message?: string | null;
       socialFeedId?: string | null;
       socialProfileId?: string | null;
+      bodyHtml?: string | null;
+      /** @enum {string|null} */
+      bodyFormat?: "PlainText" | "Html" | null;
+      backgroundStyle?: string | null;
     };
     SocialFeedPostDto: {
       id?: string | null;
@@ -1372,7 +1706,31 @@ export interface components {
       commentsCount?: number;
       /** Format: int32 */
       reactionsCount?: number;
+      /** @enum {string|null} */
+      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      bodyHtml?: string | null;
+      /** @enum {string|null} */
+      bodyFormat?: "PlainText" | "Html" | null;
+      backgroundStyle?: string | null;
       socialFeedId?: string | null;
+      facepile?: components["schemas"]["SocialPostReactionFacepileDto"][] | null;
+      attachments?: components["schemas"]["SocialPostAttachmentRefDto"][] | null;
+      /** @enum {string|null} */
+      myReaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid" | null;
+      myReactionId?: string | null;
+    };
+    SocialFeedPostDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     SocialFeedPostDtoEnvelope: {
       isSuccess?: boolean;
@@ -1380,6 +1738,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialFeedPostDto"];
     };
@@ -1389,12 +1753,22 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialFeedPostDto"][] | null;
     };
     SocialFeedPostUpdateDto: {
       title?: string | null;
       message?: string | null;
+      bodyHtml?: string | null;
+      /** @enum {string|null} */
+      bodyFormat?: "PlainText" | "Html" | null;
+      backgroundStyle?: string | null;
     };
     SocialGroupCreateDto: {
       /** Format: uuid */
@@ -1417,12 +1791,31 @@ export interface components {
       enrollmentId?: string | null;
       socialProfileId?: string | null;
     };
+    SocialGroupDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SocialGroupDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialGroupDto"];
     };
@@ -1432,6 +1825,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialGroupDto"][] | null;
     };
@@ -1501,12 +1900,31 @@ export interface components {
       publicAccessType?: "Off" | "Container" | "Blob" | "Unknown";
       socialPostId?: string | null;
     };
+    SocialPostAttachmentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SocialPostAttachmentDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialPostAttachmentDto"];
     };
@@ -1516,8 +1934,20 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialPostAttachmentDto"][] | null;
+    };
+    SocialPostAttachmentRefDto: {
+      id?: string | null;
+      fileUrl?: string | null;
+      title?: string | null;
+      contentType?: string | null;
     };
     SocialPostAttachmentUpdateDto: {
       notes?: string | null;
@@ -1537,7 +1967,7 @@ export interface components {
       id?: string;
       /** Format: date-time */
       timestamp?: string;
-      message: string;
+      message?: string | null;
       bodyHtml?: string | null;
       /** @enum {string|null} */
       bodyFormat?: "PlainText" | "Html" | null;
@@ -1556,10 +1986,33 @@ export interface components {
       socialFeedPostId?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
+      /** @enum {string|null} */
+      socialProfileType?: "User" | "Tenant" | "Contact" | null;
       bodyHtml?: string | null;
       /** @enum {string|null} */
       bodyFormat?: "PlainText" | "Html" | null;
+      /** Format: int32 */
+      replyCount?: number;
+      /** Format: int32 */
+      reactionsCount?: number;
       socialPostId?: string | null;
+      facepile?: components["schemas"]["SocialPostReactionFacepileDto"][] | null;
+      /** @enum {string|null} */
+      myReaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid" | null;
+      myReactionId?: string | null;
+    };
+    SocialPostCommentDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     SocialPostCommentDtoEnvelope: {
       isSuccess?: boolean;
@@ -1567,6 +2020,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialPostCommentDto"];
     };
@@ -1576,6 +2035,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialPostCommentDto"][] | null;
     };
@@ -1606,6 +2071,25 @@ export interface components {
       commentsCount?: number;
       /** Format: int32 */
       reactionsCount?: number;
+      /** @enum {string|null} */
+      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      bodyHtml?: string | null;
+      /** @enum {string|null} */
+      bodyFormat?: "PlainText" | "Html" | null;
+      backgroundStyle?: string | null;
+    };
+    SocialPostDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
     };
     SocialPostDtoEnvelope: {
       isSuccess?: boolean;
@@ -1613,6 +2097,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialPostDto"];
     };
@@ -1622,8 +2112,65 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialPostDto"][] | null;
+    };
+    SocialPostReactionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      /** @enum {string} */
+      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
+      reactionValue?: string | null;
+      socialProfileId?: string | null;
+      socialProfileName?: string | null;
+      socialProfileAvatarUrl?: string | null;
+      /** @enum {string|null} */
+      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      socialPostId?: string | null;
+    };
+    SocialPostReactionDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
+    SocialPostReactionDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["SocialPostReactionDto"];
+    };
+    SocialPostReactionFacepileDto: {
+      socialProfileId?: string | null;
+      socialProfileName?: string | null;
+      socialProfileAvatarUrl?: string | null;
+      /** @enum {string|null} */
+      socialProfileType?: "User" | "Tenant" | "Contact" | null;
+      /** @enum {string} */
+      reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
     };
     SocialPostUpdateDto: {
       title?: string | null;
@@ -1665,12 +2212,31 @@ export interface components {
       domain?: string | null;
       notes?: string | null;
     };
+    SocialProfileDtoCollectionQueryParameters: {
+      /** Format: int32 */
+      top?: number | null;
+      /** Format: int32 */
+      skip?: number | null;
+      count?: boolean;
+      filter?: string | null;
+      orderBy?: string | null;
+      search?: string | null;
+      select?: string | null;
+      expand?: string | null;
+      isEmpty?: boolean;
+    };
     SocialProfileDtoEnvelope: {
       isSuccess?: boolean;
       errorMessage?: string | null;
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"];
     };
@@ -1680,6 +2246,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialProfileDto"][] | null;
     };
@@ -1703,6 +2275,8 @@ export interface components {
       socialProfileId?: string | null;
       socialProfileName?: string | null;
       socialProfileAvatarUrl?: string | null;
+      /** @enum {string|null} */
+      socialProfileType?: "User" | "Tenant" | "Contact" | null;
     };
     SocialReactionDtoEnvelope: {
       isSuccess?: boolean;
@@ -1710,6 +2284,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialReactionDto"];
     };
@@ -1719,6 +2299,12 @@ export interface components {
       correlationId?: string | null;
       /** Format: date-time */
       timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
       activityId?: string | null;
       result?: components["schemas"]["SocialReactionDto"][] | null;
     };
@@ -1729,6 +2315,21 @@ export interface components {
       /** @enum {string} */
       reaction?: "Like" | "Happy" | "HaHa" | "Love" | "Sad" | "Angry" | "Wow" | "Afraid";
       reactionValue?: string | null;
+    };
+    StringEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: string | null;
     };
     TwoFactorRequest: {
       enable?: boolean | null;
@@ -1775,6 +2376,12 @@ export interface operations {
       };
       path: {
         curriculumId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurriculumExperienceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CurriculumExperienceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -1872,6 +2479,12 @@ export interface operations {
       };
       path: {
         curriculumId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurriculumExperienceDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CurriculumExperienceDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2068,8 +2681,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2116,6 +2729,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurriculumDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CurriculumDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2207,6 +2826,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["CurriculumDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["CurriculumDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2399,8 +3024,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2461,6 +3086,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SkillDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SkillDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2550,6 +3181,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SkillDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SkillDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2738,8 +3375,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -2787,6 +3424,12 @@ export interface operations {
         "x-api-version"?: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialFeedDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialFeedDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2823,6 +3466,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialFeedDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialFeedDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -2907,6 +3556,12 @@ export interface operations {
         socialFeedId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialFeedPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialFeedPostDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -2955,11 +3610,11 @@ export interface operations {
       };
     };
     responses: {
-      /** @description Created */
-      201: {
+      /** @description OK */
+      200: {
         content: {
-          "application/json": components["schemas"]["SocialFeedPostDtoEnvelope"];
-          "application/xml": components["schemas"]["SocialFeedPostDtoEnvelope"];
+          "application/json": components["schemas"]["StringEnvelope"];
+          "application/xml": components["schemas"]["StringEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -2993,6 +3648,12 @@ export interface operations {
       };
       path: {
         socialFeedId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialFeedPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialFeedPostDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3171,8 +3832,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3211,6 +3872,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3294,6 +3961,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialGroupDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialGroupDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3471,8 +4144,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3511,6 +4184,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3593,6 +4272,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3767,8 +4452,8 @@ export interface operations {
     };
     requestBody?: {
       content: {
-        "application/json": components["schemas"]["Operation"][];
-        "application/xml": components["schemas"]["Operation"][];
+        "application/json": components["schemas"]["PatchOperation"][];
+        "application/xml": components["schemas"]["PatchOperation"][];
       };
     };
     responses: {
@@ -3809,6 +4494,12 @@ export interface operations {
       };
       path: {
         socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostAttachmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostAttachmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -3896,6 +4587,12 @@ export interface operations {
       };
       path: {
         socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostAttachmentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostAttachmentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4054,6 +4751,70 @@ export interface operations {
     };
   };
   /**
+   * Upload a social post image attachment
+   * @description Uploads an image and attaches it to a social post, storing the bytes through the storage spine.
+   */
+  UploadSocialPostImageAttachmentAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: binary */
+          file?: string;
+        };
+        "application/json": {
+          /** Format: binary */
+          file?: string;
+        };
+        "application/xml": {
+          /** Format: binary */
+          file?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialPostAttachmentDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialPostAttachmentDtoEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get social post reactions
    * @description Retrieves a list of reactions for a specific social post.
    */
@@ -4068,6 +4829,12 @@ export interface operations {
       };
       path: {
         socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostReactionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostReactionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4118,11 +4885,11 @@ export interface operations {
       };
     };
     responses: {
-      /** @description Created */
-      201: {
+      /** @description OK */
+      200: {
         content: {
-          "application/json": components["schemas"]["SocialReactionDtoEnvelope"];
-          "application/xml": components["schemas"]["SocialReactionDtoEnvelope"];
+          "application/json": components["schemas"]["SocialPostReactionDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialPostReactionDtoEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -4156,6 +4923,12 @@ export interface operations {
       };
       path: {
         socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostReactionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostReactionDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4251,8 +5024,8 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["EmptyEnvelope"];
-          "application/xml": components["schemas"]["EmptyEnvelope"];
+          "application/json": components["schemas"]["SocialPostReactionDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialPostReactionDtoEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -4321,6 +5094,7 @@ export interface operations {
     parameters: {
       query: {
         socialProfileId: string;
+        parentCommentId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4328,6 +5102,12 @@ export interface operations {
       };
       path: {
         socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostCommentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostCommentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4409,6 +5189,7 @@ export interface operations {
     parameters: {
       query: {
         socialProfileId: string;
+        parentCommentId?: string;
         "api-version"?: string;
       };
       header?: {
@@ -4416,6 +5197,12 @@ export interface operations {
       };
       path: {
         socialPostId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialPostCommentDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialPostCommentDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4575,6 +5362,284 @@ export interface operations {
     };
   };
   /**
+   * Get social comment reactions
+   * @description Retrieves a list of reactions for a specific social comment.
+   */
+  GetSocialCommentReactionsAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        commentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialCommentReactionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialCommentReactionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialCommentReactionDtoListEnvelope"];
+          "application/xml": components["schemas"]["SocialCommentReactionDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Create a social comment reaction
+   * @description Creates a new reaction on a specific social comment.
+   */
+  CreateSocialCommentReactionAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        commentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialReactionCreateDto"];
+        "application/xml": components["schemas"]["SocialReactionCreateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialCommentReactionDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialCommentReactionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Count social comment reactions
+   * @description Returns the count of reactions for a specific social comment.
+   */
+  GetSocialCommentReactionsCountAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        commentId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialCommentReactionDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialCommentReactionDtoCollectionQueryParameters"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["Int32Envelope"];
+          "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get social comment reaction by ID
+   * @description Retrieves a specific reaction from a social comment by its ID.
+   */
+  GetSocialCommentReactionAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        commentId: string;
+        reactionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialCommentReactionDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialCommentReactionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a social comment reaction
+   * @description Updates an existing reaction on a specific social comment.
+   */
+  UpdateSocialCommentReactionAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        commentId: string;
+        reactionId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialReactionUpdateDto"];
+        "application/xml": components["schemas"]["SocialReactionUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["SocialCommentReactionDtoEnvelope"];
+          "application/xml": components["schemas"]["SocialCommentReactionDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Delete a social comment reaction
+   * @description Deletes a reaction from a specific social comment.
+   */
+  DeleteSocialCommentReactionAsync: {
+    parameters: {
+      query: {
+        socialProfileId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialPostId: string;
+        commentId: string;
+        reactionId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Get Social Profiles
    * @description Get a list of social profiles.
    */
@@ -4585,6 +5650,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4622,6 +5693,12 @@ export interface operations {
       };
       header?: {
         "x-api-version"?: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4704,6 +5781,12 @@ export interface operations {
         socialProfileId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FollowRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FollowRecordDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4742,6 +5825,12 @@ export interface operations {
       };
       path: {
         socialProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FollowRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FollowRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4784,6 +5873,12 @@ export interface operations {
         socialProfileId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4822,6 +5917,12 @@ export interface operations {
       };
       path: {
         socialProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4864,6 +5965,12 @@ export interface operations {
         socialProfileId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FollowRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FollowRecordDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4902,6 +6009,12 @@ export interface operations {
       };
       path: {
         socialProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["FollowRecordDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["FollowRecordDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -4944,6 +6057,12 @@ export interface operations {
         socialProfileId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -4982,6 +6101,12 @@ export interface operations {
       };
       path: {
         socialProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["SocialProfileDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5147,6 +6272,12 @@ export interface operations {
         socialProfileId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NotificationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["NotificationDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
@@ -5185,6 +6316,12 @@ export interface operations {
       };
       path: {
         socialProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["NotificationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["NotificationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5266,6 +6403,12 @@ export interface operations {
       };
       path: {
         socialProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ConversationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ConversationDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5354,12 +6497,64 @@ export interface operations {
         socialProfileId: string;
       };
     };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ConversationDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["ConversationDtoCollectionQueryParameters"];
+      };
+    };
     responses: {
       /** @description OK */
       200: {
         content: {
           "application/json": components["schemas"]["Int32Envelope"];
           "application/xml": components["schemas"]["Int32Envelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Get or Create Direct Conversation
+   * @description Get or create the direct two-party conversation between the acting profile and a counterparty.
+   */
+  GetOrCreateDirectConversationAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        socialProfileId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": string;
+        "application/xml": string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ConversationDtoEnvelope"];
+          "application/xml": components["schemas"]["ConversationDtoEnvelope"];
         };
       };
       /** @description Unauthorized */
@@ -5393,6 +6588,12 @@ export interface operations {
       };
       path: {
         conversationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PrivateMessageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PrivateMessageDtoCollectionQueryParameters"];
       };
     };
     responses: {
@@ -5481,6 +6682,12 @@ export interface operations {
       };
       path: {
         conversationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["PrivateMessageDtoCollectionQueryParameters"];
+        "application/xml": components["schemas"]["PrivateMessageDtoCollectionQueryParameters"];
       };
     };
     responses: {

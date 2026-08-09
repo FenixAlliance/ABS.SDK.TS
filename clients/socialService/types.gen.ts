@@ -18,6 +18,11 @@ export type BooleanEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: boolean;
 };
@@ -25,6 +30,11 @@ export type BooleanEnvelopeReadable = {
 export type BooleanEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: boolean;
 };
 
@@ -47,11 +57,64 @@ export type ConversationDto = {
     socialProfileAvatarUrl?: string | null;
 };
 
+export type ConversationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type ConversationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type ConversationDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: ConversationDto;
+};
+
+export type ConversationDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: ConversationDto;
+};
+
 export type ConversationDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<ConversationDto> | null;
 };
@@ -59,6 +122,11 @@ export type ConversationDtoListEnvelopeReadable = {
 export type ConversationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<ConversationDto> | null;
 };
 
@@ -122,11 +190,39 @@ export type CurriculumDto = {
     customerSuccessRepresentative?: boolean;
 };
 
+export type CurriculumDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CurriculumDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CurriculumDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CurriculumDto;
 };
@@ -134,6 +230,11 @@ export type CurriculumDtoEnvelopeReadable = {
 export type CurriculumDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CurriculumDto;
 };
 
@@ -142,6 +243,11 @@ export type CurriculumDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CurriculumDto> | null;
 };
@@ -149,6 +255,11 @@ export type CurriculumDtoListEnvelopeReadable = {
 export type CurriculumDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CurriculumDto> | null;
 };
 
@@ -198,11 +309,39 @@ export type CurriculumExperienceDto = {
     employerProfileId?: string | null;
 };
 
+export type CurriculumExperienceDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type CurriculumExperienceDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type CurriculumExperienceDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: CurriculumExperienceDto;
 };
@@ -210,6 +349,11 @@ export type CurriculumExperienceDtoEnvelopeReadable = {
 export type CurriculumExperienceDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: CurriculumExperienceDto;
 };
 
@@ -218,6 +362,11 @@ export type CurriculumExperienceDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<CurriculumExperienceDto> | null;
 };
@@ -225,6 +374,11 @@ export type CurriculumExperienceDtoListEnvelopeReadable = {
 export type CurriculumExperienceDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<CurriculumExperienceDto> | null;
 };
 
@@ -280,12 +434,22 @@ export type EmptyEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type EmptyEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type ErrorEnvelopeReadable = {
@@ -293,12 +457,22 @@ export type ErrorEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
 };
 
 export type ErrorEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
 };
 
 export type FollowRecordDto = {
@@ -310,11 +484,39 @@ export type FollowRecordDto = {
     alerts?: boolean;
 };
 
+export type FollowRecordDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type FollowRecordDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type FollowRecordDtoListEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<FollowRecordDto> | null;
 };
@@ -322,6 +524,11 @@ export type FollowRecordDtoListEnvelopeReadable = {
 export type FollowRecordDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<FollowRecordDto> | null;
 };
 
@@ -359,6 +566,11 @@ export type Int32EnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: number;
 };
@@ -366,6 +578,11 @@ export type Int32EnvelopeReadable = {
 export type Int32EnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: number;
 };
 
@@ -390,11 +607,39 @@ export type NotificationDto = {
     issuedTimestamp?: string;
 };
 
+export type NotificationDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type NotificationDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type NotificationDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: NotificationDto;
 };
@@ -402,6 +647,11 @@ export type NotificationDtoEnvelopeReadable = {
 export type NotificationDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: NotificationDto;
 };
 
@@ -410,6 +660,11 @@ export type NotificationDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<NotificationDto> | null;
 };
@@ -417,13 +672,17 @@ export type NotificationDtoListEnvelopeReadable = {
 export type NotificationDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<NotificationDto> | null;
 };
 
-export type Operation = {
-    operationType?: 'Add' | 'Remove' | 'Replace' | 'Move' | 'Copy' | 'Test' | 'Invalid';
-    path?: string | null;
+export type PatchOperation = {
     op?: string | null;
+    path?: string | null;
     from?: string | null;
     value?: unknown;
 };
@@ -450,6 +709,32 @@ export type PrivateMessageDto = {
     sentTimestamp?: string;
     readTimestamp?: string;
     receivedTimestamp?: string;
+    socialProfileName?: string | null;
+    socialProfileAvatarUrl?: string | null;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+};
+
+export type PrivateMessageDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type PrivateMessageDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type PrivateMessageDtoListEnvelopeReadable = {
@@ -457,6 +742,11 @@ export type PrivateMessageDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<PrivateMessageDto> | null;
 };
@@ -464,6 +754,11 @@ export type PrivateMessageDtoListEnvelopeReadable = {
 export type PrivateMessageDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<PrivateMessageDto> | null;
 };
 
@@ -504,7 +799,7 @@ export type SkillCreateDto = {
 
 export type SkillDto = {
     id?: string | null;
-    timestamp?: string;
+    timestamp?: string | null;
     name?: string | null;
     url?: string | null;
     type?: string | null;
@@ -515,11 +810,39 @@ export type SkillDto = {
     enrollmentId?: string | null;
 };
 
+export type SkillDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SkillDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SkillDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SkillDto;
 };
@@ -527,6 +850,11 @@ export type SkillDtoEnvelopeReadable = {
 export type SkillDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SkillDto;
 };
 
@@ -535,6 +863,11 @@ export type SkillDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SkillDto> | null;
 };
@@ -542,6 +875,11 @@ export type SkillDtoListEnvelopeReadable = {
 export type SkillDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SkillDto> | null;
 };
 
@@ -554,6 +892,91 @@ export type SkillUpdateDto = {
     skillType?: 'Skill' | 'Certification';
 };
 
+export type SocialCommentReactionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    reactionValue?: string | null;
+    socialProfileId?: string | null;
+    socialProfileName?: string | null;
+    socialProfileAvatarUrl?: string | null;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialCommentId?: string | null;
+};
+
+export type SocialCommentReactionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialCommentReactionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type SocialCommentReactionDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: SocialCommentReactionDto;
+};
+
+export type SocialCommentReactionDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: SocialCommentReactionDto;
+};
+
+export type SocialCommentReactionDtoListEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: Array<SocialCommentReactionDto> | null;
+};
+
+export type SocialCommentReactionDtoListEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: Array<SocialCommentReactionDto> | null;
+};
+
 export type SocialFeedDto = {
     id?: string | null;
     timestamp?: string | null;
@@ -561,11 +984,39 @@ export type SocialFeedDto = {
     socialProfileId?: string | null;
 };
 
+export type SocialFeedDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialFeedDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SocialFeedDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialFeedDto;
 };
@@ -573,6 +1024,11 @@ export type SocialFeedDtoEnvelopeReadable = {
 export type SocialFeedDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialFeedDto;
 };
 
@@ -581,6 +1037,11 @@ export type SocialFeedDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialFeedDto> | null;
 };
@@ -588,6 +1049,11 @@ export type SocialFeedDtoListEnvelopeReadable = {
 export type SocialFeedDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialFeedDto> | null;
 };
 
@@ -598,6 +1064,9 @@ export type SocialFeedPostCreateDto = {
     message?: string | null;
     socialFeedId?: string | null;
     socialProfileId?: string | null;
+    bodyHtml?: string | null;
+    bodyFormat?: 'PlainText' | 'Html';
+    backgroundStyle?: string | null;
 };
 
 export type SocialFeedPostDto = {
@@ -610,7 +1079,38 @@ export type SocialFeedPostDto = {
     socialProfileAvatarUrl?: string | null;
     commentsCount?: number;
     reactionsCount?: number;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    bodyHtml?: string | null;
+    bodyFormat?: 'PlainText' | 'Html';
+    backgroundStyle?: string | null;
     socialFeedId?: string | null;
+    facepile?: Array<SocialPostReactionFacepileDto> | null;
+    attachments?: Array<SocialPostAttachmentRefDto> | null;
+    myReaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    myReactionId?: string | null;
+};
+
+export type SocialFeedPostDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialFeedPostDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type SocialFeedPostDtoEnvelopeReadable = {
@@ -618,6 +1118,11 @@ export type SocialFeedPostDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialFeedPostDto;
 };
@@ -625,6 +1130,11 @@ export type SocialFeedPostDtoEnvelopeReadable = {
 export type SocialFeedPostDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialFeedPostDto;
 };
 
@@ -633,6 +1143,11 @@ export type SocialFeedPostDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialFeedPostDto> | null;
 };
@@ -640,12 +1155,20 @@ export type SocialFeedPostDtoListEnvelopeReadable = {
 export type SocialFeedPostDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialFeedPostDto> | null;
 };
 
 export type SocialFeedPostUpdateDto = {
     title?: string | null;
     message?: string | null;
+    bodyHtml?: string | null;
+    bodyFormat?: 'PlainText' | 'Html';
+    backgroundStyle?: string | null;
 };
 
 export type SocialGroupCreateDto = {
@@ -668,11 +1191,39 @@ export type SocialGroupDto = {
     socialProfileId?: string | null;
 };
 
+export type SocialGroupDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialGroupDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SocialGroupDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialGroupDto;
 };
@@ -680,6 +1231,11 @@ export type SocialGroupDtoEnvelopeReadable = {
 export type SocialGroupDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialGroupDto;
 };
 
@@ -688,6 +1244,11 @@ export type SocialGroupDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialGroupDto> | null;
 };
@@ -695,6 +1256,11 @@ export type SocialGroupDtoListEnvelopeReadable = {
 export type SocialGroupDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialGroupDto> | null;
 };
 
@@ -792,11 +1358,39 @@ export type SocialPostAttachmentDtoWritable = {
     socialPostId?: string | null;
 };
 
+export type SocialPostAttachmentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialPostAttachmentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SocialPostAttachmentDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialPostAttachmentDtoReadable;
 };
@@ -804,6 +1398,11 @@ export type SocialPostAttachmentDtoEnvelopeReadable = {
 export type SocialPostAttachmentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialPostAttachmentDtoWritable;
 };
 
@@ -812,6 +1411,11 @@ export type SocialPostAttachmentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialPostAttachmentDtoReadable> | null;
 };
@@ -819,7 +1423,19 @@ export type SocialPostAttachmentDtoListEnvelopeReadable = {
 export type SocialPostAttachmentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialPostAttachmentDtoWritable> | null;
+};
+
+export type SocialPostAttachmentRefDto = {
+    id?: string | null;
+    fileUrl?: string | null;
+    title?: string | null;
+    contentType?: string | null;
 };
 
 export type SocialPostAttachmentUpdateDto = {
@@ -839,7 +1455,7 @@ export type SocialPostAttachmentUpdateDto = {
 export type SocialPostCommentCreateDto = {
     id?: string;
     timestamp?: string;
-    message: string;
+    message?: string | null;
     bodyHtml?: string | null;
     bodyFormat?: 'PlainText' | 'Html';
     parentCommentId?: string | null;
@@ -857,9 +1473,38 @@ export type SocialPostCommentDto = {
     socialFeedPostId?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
     bodyHtml?: string | null;
     bodyFormat?: 'PlainText' | 'Html';
+    replyCount?: number;
+    reactionsCount?: number;
     socialPostId?: string | null;
+    facepile?: Array<SocialPostReactionFacepileDto> | null;
+    myReaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    myReactionId?: string | null;
+};
+
+export type SocialPostCommentDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialPostCommentDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type SocialPostCommentDtoEnvelopeReadable = {
@@ -867,6 +1512,11 @@ export type SocialPostCommentDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialPostCommentDto;
 };
@@ -874,6 +1524,11 @@ export type SocialPostCommentDtoEnvelopeReadable = {
 export type SocialPostCommentDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialPostCommentDto;
 };
 
@@ -882,6 +1537,11 @@ export type SocialPostCommentDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialPostCommentDto> | null;
 };
@@ -889,6 +1549,11 @@ export type SocialPostCommentDtoListEnvelopeReadable = {
 export type SocialPostCommentDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialPostCommentDto> | null;
 };
 
@@ -916,6 +1581,33 @@ export type SocialPostDto = {
     socialProfileAvatarUrl?: string | null;
     commentsCount?: number;
     reactionsCount?: number;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    bodyHtml?: string | null;
+    bodyFormat?: 'PlainText' | 'Html';
+    backgroundStyle?: string | null;
+};
+
+export type SocialPostDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialPostDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
 };
 
 export type SocialPostDtoEnvelopeReadable = {
@@ -923,6 +1615,11 @@ export type SocialPostDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialPostDto;
 };
@@ -930,6 +1627,11 @@ export type SocialPostDtoEnvelopeReadable = {
 export type SocialPostDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialPostDto;
 };
 
@@ -938,6 +1640,11 @@ export type SocialPostDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialPostDto> | null;
 };
@@ -945,7 +1652,80 @@ export type SocialPostDtoListEnvelopeReadable = {
 export type SocialPostDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialPostDto> | null;
+};
+
+export type SocialPostReactionDto = {
+    id?: string | null;
+    timestamp?: string | null;
+    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
+    reactionValue?: string | null;
+    socialProfileId?: string | null;
+    socialProfileName?: string | null;
+    socialProfileAvatarUrl?: string | null;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    socialPostId?: string | null;
+};
+
+export type SocialPostReactionDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialPostReactionDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
+export type SocialPostReactionDtoEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: SocialPostReactionDto;
+};
+
+export type SocialPostReactionDtoEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: SocialPostReactionDto;
+};
+
+export type SocialPostReactionFacepileDto = {
+    socialProfileId?: string | null;
+    socialProfileName?: string | null;
+    socialProfileAvatarUrl?: string | null;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
+    reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
 };
 
 export type SocialPostUpdateDto = {
@@ -982,11 +1762,39 @@ export type SocialProfileDto = {
     notes?: string | null;
 };
 
+export type SocialProfileDtoCollectionQueryParametersReadable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+    readonly isEmpty?: boolean;
+};
+
+export type SocialProfileDtoCollectionQueryParametersWritable = {
+    top?: number | null;
+    skip?: number | null;
+    count?: boolean;
+    filter?: string | null;
+    orderBy?: string | null;
+    search?: string | null;
+    select?: string | null;
+    expand?: string | null;
+};
+
 export type SocialProfileDtoEnvelopeReadable = {
     readonly isSuccess?: boolean;
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialProfileDto;
 };
@@ -994,6 +1802,11 @@ export type SocialProfileDtoEnvelopeReadable = {
 export type SocialProfileDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialProfileDto;
 };
 
@@ -1002,6 +1815,11 @@ export type SocialProfileDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialProfileDto> | null;
 };
@@ -1009,6 +1827,11 @@ export type SocialProfileDtoListEnvelopeReadable = {
 export type SocialProfileDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialProfileDto> | null;
 };
 
@@ -1028,6 +1851,7 @@ export type SocialReactionDto = {
     socialProfileId?: string | null;
     socialProfileName?: string | null;
     socialProfileAvatarUrl?: string | null;
+    socialProfileType?: 'User' | 'Tenant' | 'Contact';
 };
 
 export type SocialReactionDtoEnvelopeReadable = {
@@ -1035,6 +1859,11 @@ export type SocialReactionDtoEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: SocialReactionDto;
 };
@@ -1042,6 +1871,11 @@ export type SocialReactionDtoEnvelopeReadable = {
 export type SocialReactionDtoEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: SocialReactionDto;
 };
 
@@ -1050,6 +1884,11 @@ export type SocialReactionDtoListEnvelopeReadable = {
     errorMessage?: string | null;
     correlationId?: string | null;
     readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     readonly activityId?: string | null;
     result?: Array<SocialReactionDto> | null;
 };
@@ -1057,6 +1896,11 @@ export type SocialReactionDtoListEnvelopeReadable = {
 export type SocialReactionDtoListEnvelopeWritable = {
     errorMessage?: string | null;
     correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
     result?: Array<SocialReactionDto> | null;
 };
 
@@ -1065,6 +1909,31 @@ export type SocialReactionUpdateDto = {
     timestamp?: string | null;
     reaction?: 'Like' | 'Happy' | 'HaHa' | 'Love' | 'Sad' | 'Angry' | 'Wow' | 'Afraid';
     reactionValue?: string | null;
+};
+
+export type StringEnvelopeReadable = {
+    readonly isSuccess?: boolean;
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    readonly timestamp?: string;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    readonly activityId?: string | null;
+    result?: string | null;
+};
+
+export type StringEnvelopeWritable = {
+    errorMessage?: string | null;
+    correlationId?: string | null;
+    httpStatus?: number | null;
+    errorCode?: string | null;
+    validationDetails?: {
+        [key: string]: Array<string> | null;
+    } | null;
+    result?: string | null;
 };
 
 export type TwoFactorRequest = {
@@ -1084,7 +1953,7 @@ export type TwoFactorResponse = {
 };
 
 export type GetCurriculumExperiencesAsyncData = {
-    body?: never;
+    body?: CurriculumExperienceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1164,7 +2033,7 @@ export type CreateCurriculumExperienceAsyncResponses = {
 export type CreateCurriculumExperienceAsyncResponse = CreateCurriculumExperienceAsyncResponses[keyof CreateCurriculumExperienceAsyncResponses];
 
 export type GetCurriculumExperiencesCountAsyncData = {
-    body?: never;
+    body?: CurriculumExperienceDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1284,7 +2153,7 @@ export type GetCurriculumExperienceAsyncResponses = {
 export type GetCurriculumExperienceAsyncResponse = GetCurriculumExperienceAsyncResponses[keyof GetCurriculumExperienceAsyncResponses];
 
 export type PatchCurriculumExperienceAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1370,7 +2239,7 @@ export type UpdateCurriculumExperienceAsyncResponses = {
 export type UpdateCurriculumExperienceAsyncResponse = UpdateCurriculumExperienceAsyncResponses[keyof UpdateCurriculumExperienceAsyncResponses];
 
 export type GetCurriculumsAsyncData = {
-    body?: never;
+    body?: CurriculumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1446,7 +2315,7 @@ export type CreateCurriculumAsyncResponses = {
 export type CreateCurriculumAsyncResponse = CreateCurriculumAsyncResponses[keyof CreateCurriculumAsyncResponses];
 
 export type GetCurriculumsCountAsyncData = {
-    body?: never;
+    body?: CurriculumDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1562,7 +2431,7 @@ export type GetCurriculumAsyncResponses = {
 export type GetCurriculumAsyncResponse = GetCurriculumAsyncResponses[keyof GetCurriculumAsyncResponses];
 
 export type PatchCurriculumAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -1974,7 +2843,7 @@ export type PostAccountManageDownloadPersonalDataResponses = {
 };
 
 export type GetSkillsAsyncData = {
-    body?: never;
+    body?: SkillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2048,7 +2917,7 @@ export type CreateSkillAsyncResponses = {
 export type CreateSkillAsyncResponse = CreateSkillAsyncResponses[keyof CreateSkillAsyncResponses];
 
 export type GetSkillsCountAsyncData = {
-    body?: never;
+    body?: SkillDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2161,7 +3030,7 @@ export type GetSkillByIdAsyncResponses = {
 export type GetSkillByIdAsyncResponse = GetSkillByIdAsyncResponses[keyof GetSkillByIdAsyncResponses];
 
 export type PatchSkillAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2243,7 +3112,7 @@ export type UpdateSkillAsyncResponses = {
 export type UpdateSkillAsyncResponse = UpdateSkillAsyncResponses[keyof UpdateSkillAsyncResponses];
 
 export type GetFeedNotificationsData = {
-    body?: never;
+    body?: SocialFeedDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2278,7 +3147,7 @@ export type GetFeedNotificationsResponses = {
 export type GetFeedNotificationsResponse = GetFeedNotificationsResponses[keyof GetFeedNotificationsResponses];
 
 export type GetNotificationsCountAsyncData = {
-    body?: never;
+    body?: SocialFeedDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2350,7 +3219,7 @@ export type GetNotificationAsyncResponses = {
 export type GetNotificationAsyncResponse = GetNotificationAsyncResponses[keyof GetNotificationAsyncResponses];
 
 export type GetFeedPostsAsyncData = {
-    body?: never;
+    body?: SocialFeedPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2416,15 +3285,15 @@ export type CreateFeedPostAsyncError = CreateFeedPostAsyncErrors[keyof CreateFee
 
 export type CreateFeedPostAsyncResponses = {
     /**
-     * Created
+     * OK
      */
-    201: SocialFeedPostDtoEnvelopeReadable;
+    200: StringEnvelopeReadable;
 };
 
 export type CreateFeedPostAsyncResponse = CreateFeedPostAsyncResponses[keyof CreateFeedPostAsyncResponses];
 
 export type GetFeedPostsCountAsyncData = {
-    body?: never;
+    body?: SocialFeedPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2537,7 +3406,7 @@ export type GetFeedPostAsyncResponses = {
 export type GetFeedPostAsyncResponse = GetFeedPostAsyncResponses[keyof GetFeedPostAsyncResponses];
 
 export type PatchFeedPostAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2613,7 +3482,7 @@ export type UpdateFeedPostAsyncResponses = {
 export type UpdateFeedPostAsyncResponse = UpdateFeedPostAsyncResponses[keyof UpdateFeedPostAsyncResponses];
 
 export type GetSocialGroupsAsyncData = {
-    body?: never;
+    body?: SocialGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2684,7 +3553,7 @@ export type CreateSocialGroupAsyncResponses = {
 export type CreateSocialGroupAsyncResponse = CreateSocialGroupAsyncResponses[keyof CreateSocialGroupAsyncResponses];
 
 export type CountSocialGroupsAsyncData = {
-    body?: never;
+    body?: SocialGroupDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2794,7 +3663,7 @@ export type GetSocialGroupByIdAsyncResponses = {
 export type GetSocialGroupByIdAsyncResponse = GetSocialGroupByIdAsyncResponses[keyof GetSocialGroupByIdAsyncResponses];
 
 export type PatchSocialGroupAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2870,7 +3739,7 @@ export type UpdateSocialGroupAsyncResponses = {
 export type UpdateSocialGroupAsyncResponse = UpdateSocialGroupAsyncResponses[keyof UpdateSocialGroupAsyncResponses];
 
 export type GetSocialPostsAsyncData = {
-    body?: never;
+    body?: SocialPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -2940,7 +3809,7 @@ export type CreateSocialPostAsyncResponses = {
 export type CreateSocialPostAsyncResponse = CreateSocialPostAsyncResponses[keyof CreateSocialPostAsyncResponses];
 
 export type GetSocialPostsCountAsyncData = {
-    body?: never;
+    body?: SocialPostDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3049,7 +3918,7 @@ export type GetSocialPostAsyncResponses = {
 export type GetSocialPostAsyncResponse = GetSocialPostAsyncResponses[keyof GetSocialPostAsyncResponses];
 
 export type PatchSocialPostAsyncData = {
-    body?: Array<Operation>;
+    body?: Array<PatchOperation>;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3123,7 +3992,7 @@ export type UpdateSocialPostAsyncResponses = {
 export type UpdateSocialPostAsyncResponse = UpdateSocialPostAsyncResponses[keyof UpdateSocialPostAsyncResponses];
 
 export type GetSocialPostAttachmentsAsyncData = {
-    body?: never;
+    body?: SocialPostAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3196,7 +4065,7 @@ export type CreateSocialPostAttachmentAsyncResponses = {
 export type CreateSocialPostAttachmentAsyncResponse = CreateSocialPostAttachmentAsyncResponses[keyof CreateSocialPostAttachmentAsyncResponses];
 
 export type GetSocialPostAttachmentsCountAsyncData = {
-    body?: never;
+    body?: SocialPostAttachmentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3344,8 +4213,51 @@ export type UpdateSocialPostAttachmentAsyncResponses = {
 
 export type UpdateSocialPostAttachmentAsyncResponse = UpdateSocialPostAttachmentAsyncResponses[keyof UpdateSocialPostAttachmentAsyncResponses];
 
+export type UploadSocialPostImageAttachmentAsyncData = {
+    body?: {
+        file?: Blob | File;
+    };
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialPostId: string;
+    };
+    query: {
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Attachments/Image';
+};
+
+export type UploadSocialPostImageAttachmentAsyncErrors = {
+    /**
+     * Bad Request
+     */
+    400: ErrorEnvelopeReadable;
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UploadSocialPostImageAttachmentAsyncError = UploadSocialPostImageAttachmentAsyncErrors[keyof UploadSocialPostImageAttachmentAsyncErrors];
+
+export type UploadSocialPostImageAttachmentAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SocialPostAttachmentDtoEnvelopeReadable;
+};
+
+export type UploadSocialPostImageAttachmentAsyncResponse = UploadSocialPostImageAttachmentAsyncResponses[keyof UploadSocialPostImageAttachmentAsyncResponses];
+
 export type GetSocialPostReactionsAsyncData = {
-    body?: never;
+    body?: SocialPostReactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3411,15 +4323,15 @@ export type CreateSocialPostReactionAsyncError = CreateSocialPostReactionAsyncEr
 
 export type CreateSocialPostReactionAsyncResponses = {
     /**
-     * Created
+     * OK
      */
-    201: SocialReactionDtoEnvelopeReadable;
+    200: SocialPostReactionDtoEnvelopeReadable;
 };
 
 export type CreateSocialPostReactionAsyncResponse = CreateSocialPostReactionAsyncResponses[keyof CreateSocialPostReactionAsyncResponses];
 
 export type GetSocialPostReactionsCountAsyncData = {
-    body?: never;
+    body?: SocialPostReactionDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3563,13 +4475,13 @@ export type UpdateSocialPostReactionAsyncResponses = {
     /**
      * OK
      */
-    200: EmptyEnvelopeReadable;
+    200: SocialPostReactionDtoEnvelopeReadable;
 };
 
 export type UpdateSocialPostReactionAsyncResponse = UpdateSocialPostReactionAsyncResponses[keyof UpdateSocialPostReactionAsyncResponses];
 
 export type GetSocialPostCommentsAsyncData = {
-    body?: never;
+    body?: SocialPostCommentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3578,6 +4490,7 @@ export type GetSocialPostCommentsAsyncData = {
     };
     query: {
         socialProfileId: string;
+        parentCommentId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments';
@@ -3643,7 +4556,7 @@ export type CreateSocialPostCommentAsyncResponses = {
 export type CreateSocialPostCommentAsyncResponse = CreateSocialPostCommentAsyncResponses[keyof CreateSocialPostCommentAsyncResponses];
 
 export type GetSocialPostCommentsCountAsyncData = {
-    body?: never;
+    body?: SocialPostCommentDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3652,6 +4565,7 @@ export type GetSocialPostCommentsCountAsyncData = {
     };
     query: {
         socialProfileId: string;
+        parentCommentId?: string;
         'api-version'?: string;
     };
     url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/Count';
@@ -3793,8 +4707,238 @@ export type UpdateSocialPostCommentAsyncResponses = {
 
 export type UpdateSocialPostCommentAsyncResponse = UpdateSocialPostCommentAsyncResponses[keyof UpdateSocialPostCommentAsyncResponses];
 
-export type GetSocialProfilesAsyncData = {
+export type GetSocialCommentReactionsAsyncData = {
+    body?: SocialCommentReactionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialPostId: string;
+        commentId: string;
+    };
+    query: {
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions';
+};
+
+export type GetSocialCommentReactionsAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSocialCommentReactionsAsyncError = GetSocialCommentReactionsAsyncErrors[keyof GetSocialCommentReactionsAsyncErrors];
+
+export type GetSocialCommentReactionsAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SocialCommentReactionDtoListEnvelopeReadable;
+};
+
+export type GetSocialCommentReactionsAsyncResponse = GetSocialCommentReactionsAsyncResponses[keyof GetSocialCommentReactionsAsyncResponses];
+
+export type CreateSocialCommentReactionAsyncData = {
+    body?: SocialReactionCreateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialPostId: string;
+        commentId: string;
+    };
+    query: {
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions';
+};
+
+export type CreateSocialCommentReactionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type CreateSocialCommentReactionAsyncError = CreateSocialCommentReactionAsyncErrors[keyof CreateSocialCommentReactionAsyncErrors];
+
+export type CreateSocialCommentReactionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SocialCommentReactionDtoEnvelopeReadable;
+};
+
+export type CreateSocialCommentReactionAsyncResponse = CreateSocialCommentReactionAsyncResponses[keyof CreateSocialCommentReactionAsyncResponses];
+
+export type GetSocialCommentReactionsCountAsyncData = {
+    body?: SocialCommentReactionDtoCollectionQueryParametersWritable;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialPostId: string;
+        commentId: string;
+    };
+    query: {
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/Count';
+};
+
+export type GetSocialCommentReactionsCountAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSocialCommentReactionsCountAsyncError = GetSocialCommentReactionsCountAsyncErrors[keyof GetSocialCommentReactionsCountAsyncErrors];
+
+export type GetSocialCommentReactionsCountAsyncResponses = {
+    /**
+     * OK
+     */
+    200: Int32EnvelopeReadable;
+};
+
+export type GetSocialCommentReactionsCountAsyncResponse = GetSocialCommentReactionsCountAsyncResponses[keyof GetSocialCommentReactionsCountAsyncResponses];
+
+export type DeleteSocialCommentReactionAsyncData = {
     body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialPostId: string;
+        commentId: string;
+        reactionId: string;
+    };
+    query: {
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}';
+};
+
+export type DeleteSocialCommentReactionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type DeleteSocialCommentReactionAsyncError = DeleteSocialCommentReactionAsyncErrors[keyof DeleteSocialCommentReactionAsyncErrors];
+
+export type DeleteSocialCommentReactionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: EmptyEnvelopeReadable;
+};
+
+export type DeleteSocialCommentReactionAsyncResponse = DeleteSocialCommentReactionAsyncResponses[keyof DeleteSocialCommentReactionAsyncResponses];
+
+export type GetSocialCommentReactionAsyncData = {
+    body?: never;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialPostId: string;
+        commentId: string;
+        reactionId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}';
+};
+
+export type GetSocialCommentReactionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetSocialCommentReactionAsyncError = GetSocialCommentReactionAsyncErrors[keyof GetSocialCommentReactionAsyncErrors];
+
+export type GetSocialCommentReactionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SocialCommentReactionDtoEnvelopeReadable;
+};
+
+export type GetSocialCommentReactionAsyncResponse = GetSocialCommentReactionAsyncResponses[keyof GetSocialCommentReactionAsyncResponses];
+
+export type UpdateSocialCommentReactionAsyncData = {
+    body?: SocialReactionUpdateDto;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialPostId: string;
+        commentId: string;
+        reactionId: string;
+    };
+    query: {
+        socialProfileId: string;
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialPosts/{socialPostId}/Comments/{commentId}/Reactions/{reactionId}';
+};
+
+export type UpdateSocialCommentReactionAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type UpdateSocialCommentReactionAsyncError = UpdateSocialCommentReactionAsyncErrors[keyof UpdateSocialCommentReactionAsyncErrors];
+
+export type UpdateSocialCommentReactionAsyncResponses = {
+    /**
+     * OK
+     */
+    200: SocialCommentReactionDtoEnvelopeReadable;
+};
+
+export type UpdateSocialCommentReactionAsyncResponse = UpdateSocialCommentReactionAsyncResponses[keyof UpdateSocialCommentReactionAsyncResponses];
+
+export type GetSocialProfilesAsyncData = {
+    body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3828,7 +4972,7 @@ export type GetSocialProfilesAsyncResponses = {
 export type GetSocialProfilesAsyncResponse = GetSocialProfilesAsyncResponses[keyof GetSocialProfilesAsyncResponses];
 
 export type CountSocialProfilesAsyncData = {
-    body?: never;
+    body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3898,7 +5042,7 @@ export type GetSocialProfileAsyncResponses = {
 export type GetSocialProfileAsyncResponse = GetSocialProfileAsyncResponses[keyof GetSocialProfileAsyncResponses];
 
 export type GetFollowersAsyncData = {
-    body?: never;
+    body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3934,7 +5078,7 @@ export type GetFollowersAsyncResponses = {
 export type GetFollowersAsyncResponse = GetFollowersAsyncResponses[keyof GetFollowersAsyncResponses];
 
 export type CountFollowersAsyncData = {
-    body?: never;
+    body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -3970,7 +5114,7 @@ export type CountFollowersAsyncResponses = {
 export type CountFollowersAsyncResponse = CountFollowersAsyncResponses[keyof CountFollowersAsyncResponses];
 
 export type GetFollowerProfilesAsyncData = {
-    body?: never;
+    body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4006,7 +5150,7 @@ export type GetFollowerProfilesAsyncResponses = {
 export type GetFollowerProfilesAsyncResponse = GetFollowerProfilesAsyncResponses[keyof GetFollowerProfilesAsyncResponses];
 
 export type CountFollowerProfilesAsyncData = {
-    body?: never;
+    body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4042,7 +5186,7 @@ export type CountFollowerProfilesAsyncResponses = {
 export type CountFollowerProfilesAsyncResponse = CountFollowerProfilesAsyncResponses[keyof CountFollowerProfilesAsyncResponses];
 
 export type GetFollowsAsyncData = {
-    body?: never;
+    body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4078,7 +5222,7 @@ export type GetFollowsAsyncResponses = {
 export type GetFollowsAsyncResponse = GetFollowsAsyncResponses[keyof GetFollowsAsyncResponses];
 
 export type CountFollowsAsyncData = {
-    body?: never;
+    body?: FollowRecordDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4114,7 +5258,7 @@ export type CountFollowsAsyncResponses = {
 export type CountFollowsAsyncResponse = CountFollowsAsyncResponses[keyof CountFollowsAsyncResponses];
 
 export type GetFollowedProfilesAsyncData = {
-    body?: never;
+    body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4150,7 +5294,7 @@ export type GetFollowedProfilesAsyncResponses = {
 export type GetFollowedProfilesAsyncResponse = GetFollowedProfilesAsyncResponses[keyof GetFollowedProfilesAsyncResponses];
 
 export type CountFollowedProfilesAsyncData = {
-    body?: never;
+    body?: SocialProfileDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4297,7 +5441,7 @@ export type FollowAsyncResponses = {
 export type FollowAsyncResponse = FollowAsyncResponses[keyof FollowAsyncResponses];
 
 export type GetNotificationsAsyncData = {
-    body?: never;
+    body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4333,7 +5477,7 @@ export type GetNotificationsAsyncResponses = {
 export type GetNotificationsAsyncResponse = GetNotificationsAsyncResponses[keyof GetNotificationsAsyncResponses];
 
 export type CountNotificationsAsyncData = {
-    body?: never;
+    body?: NotificationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4406,7 +5550,7 @@ export type GetNotificationByIdAsyncResponses = {
 export type GetNotificationByIdAsyncResponse = GetNotificationByIdAsyncResponses[keyof GetNotificationByIdAsyncResponses];
 
 export type GetConversationsAsyncData = {
-    body?: never;
+    body?: ConversationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4478,7 +5622,7 @@ export type CreateConversationAsyncResponses = {
 export type CreateConversationAsyncResponse = CreateConversationAsyncResponses[keyof CreateConversationAsyncResponses];
 
 export type CountConversationsAsyncData = {
-    body?: never;
+    body?: ConversationDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4513,8 +5657,44 @@ export type CountConversationsAsyncResponses = {
 
 export type CountConversationsAsyncResponse = CountConversationsAsyncResponses[keyof CountConversationsAsyncResponses];
 
+export type GetOrCreateDirectConversationAsyncData = {
+    body?: string;
+    headers?: {
+        'x-api-version'?: string;
+    };
+    path: {
+        socialProfileId: string;
+    };
+    query?: {
+        'api-version'?: string;
+    };
+    url: '/api/v2/SocialService/SocialProfiles/{socialProfileId}/Conversations/Direct';
+};
+
+export type GetOrCreateDirectConversationAsyncErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ErrorEnvelopeReadable;
+    /**
+     * Forbidden
+     */
+    403: ErrorEnvelopeReadable;
+};
+
+export type GetOrCreateDirectConversationAsyncError = GetOrCreateDirectConversationAsyncErrors[keyof GetOrCreateDirectConversationAsyncErrors];
+
+export type GetOrCreateDirectConversationAsyncResponses = {
+    /**
+     * OK
+     */
+    200: ConversationDtoEnvelopeReadable;
+};
+
+export type GetOrCreateDirectConversationAsyncResponse = GetOrCreateDirectConversationAsyncResponses[keyof GetOrCreateDirectConversationAsyncResponses];
+
 export type GetMessagesAsyncData = {
-    body?: never;
+    body?: PrivateMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };
@@ -4588,7 +5768,7 @@ export type CreateMessageAsyncResponses = {
 export type CreateMessageAsyncResponse = CreateMessageAsyncResponses[keyof CreateMessageAsyncResponses];
 
 export type CountMessagesAsyncData = {
-    body?: never;
+    body?: PrivateMessageDtoCollectionQueryParametersWritable;
     headers?: {
         'x-api-version'?: string;
     };

@@ -14,24 +14,31 @@ export interface paths {
   };
   "/api/v2/IntelligenceService/Capabilities": {
     /**
-     * Get entitled capabilities
-     * @description Retrieves every governed capability the calling actor is entitled to run for the specified tenant, optionally narrowed to a single execution surface. Capabilities the actor cannot run are never disclosed.
+     * Get the annotated capability catalog
+     * @description Retrieves the full governed-capability catalog for the specified tenant, optionally narrowed to a single execution surface. Every capability is returned with an Available flag (and a DeniedReason when not available) so callers render disabled-with-reason instead of hiding; entitlement is computed server-side.
      */
     get: operations["GetCapabilitiesAsync"];
   };
   "/api/v2/IntelligenceService/Capabilities/Count": {
     /**
-     * Get entitled capabilities count
-     * @description Returns the number of governed capabilities the calling actor is entitled to run for the specified tenant, honouring the same entitlement filter and optional surface narrowing as the list route.
+     * Get the capability catalog count
+     * @description Returns the number of governed capabilities in the catalog for the specified tenant — the surface-matching total that mirrors the list route's returned-set size (entitled or not), honouring the same optional surface narrowing.
      */
     get: operations["GetCapabilitiesCountAsync"];
   };
   "/api/v2/IntelligenceService/Capabilities/{key}": {
     /**
-     * Get entitled capability by key
-     * @description Retrieves a single governed capability by its stable, dotted key. Returns 404 when the capability does not exist OR the actor is not entitled to run it — existence is never leaked to an unentitled actor.
+     * Get a capability by key
+     * @description Retrieves a single governed capability by its stable, dotted key, stamped with the Available / DeniedReason entitlement flag. Returns 404 only when the capability does not exist; an existing capability the actor is not entitled to run is returned annotated as unavailable, not hidden.
      */
     get: operations["GetCapabilityByKeyAsync"];
+  };
+  "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations/{conversationId}/Attachments": {
+    /**
+     * Upload an attachment to a cognitive agent conversation
+     * @description Uploads a file into the acting user's OWN conversation attachment store, scanned and catalogued through the storage spine. A conversation the caller does not own returns 404. The response carries the new file's id, name, content type and length; the chat UI passes that id as an AttachmentFileIds entry when it sends the referencing user turn.
+     */
+    post: operations["UploadCognitiveAgentConversationAttachmentAsync"];
   };
   "/api/v2/IntelligenceService/CognitiveAgents/{agentId}/Conversations": {
     /**
@@ -531,10 +538,10 @@ export interface paths {
       };
     };
   };
-  "/api/v2/AIService/Agents/{agentId}/agui": {
+  "/api/v2/IntelligenceService/Agents/{agentId}/agui": {
     /**
      * Run a governed agent over the AG-UI protocol
-     * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
+     * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved. An optional ?projectId= binds the run to a project (resolved tenant-scoped): the project id + name are surfaced to the model as context so it can call the governed project-storage tools; it is never auto-filled into a tool's arguments.
      */
     post: operations["InvokeAgentSurfaceAsync"];
   };
@@ -581,6 +588,8 @@ export interface components {
       risks?: string[] | null;
       surfaces?: string[] | null;
       requiredPermission?: string | null;
+      available?: boolean;
+      deniedReason?: string | null;
       version?: string | null;
       inputSchema?: ({
         [key: string]: string | null;
@@ -588,6 +597,8 @@ export interface components {
       outputSchema?: ({
         [key: string]: string | null;
       }) | null;
+      isOutputCollection?: boolean;
+      requiredInputs?: string[] | null;
     };
     CapabilityDtoEnvelope: {
       isSuccess?: boolean;
@@ -720,6 +731,7 @@ export interface components {
       soul?: string | null;
       providerKey?: string | null;
       modelId?: string | null;
+      engineKey?: string | null;
     };
     CognitiveAgentDto: {
       id?: string | null;
@@ -731,6 +743,7 @@ export interface components {
       soul?: string | null;
       providerKey?: string | null;
       modelId?: string | null;
+      engineKey?: string | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
@@ -911,6 +924,7 @@ export interface components {
       soul?: string | null;
       providerKey?: string | null;
       modelId?: string | null;
+      engineKey?: string | null;
     };
     CognitiveAgentVariableCreateDto: {
       /** Format: uuid */
@@ -983,9 +997,10 @@ export interface components {
       timestamp?: string;
       name: string;
       description?: string | null;
-      toolKey: string;
+      toolKey?: string | null;
       configJson?: string | null;
       enabled?: boolean;
+      tools?: components["schemas"]["CognitiveSkillToolDto"][] | null;
     };
     CognitiveSkillDto: {
       id?: string | null;
@@ -996,6 +1011,7 @@ export interface components {
       toolKey?: string | null;
       configJson?: string | null;
       enabled?: boolean;
+      tools?: components["schemas"]["CognitiveSkillToolDto"][] | null;
       tenantId?: string | null;
       enrollmentId?: string | null;
     };
@@ -1042,12 +1058,40 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["CognitiveSkillDto"][] | null;
     };
+    CognitiveSkillToolDto: {
+      toolKey: string;
+      configJson?: string | null;
+      enabled?: boolean;
+    };
     CognitiveSkillUpdateDto: {
       name?: string | null;
       description?: string | null;
       toolKey?: string | null;
       configJson?: string | null;
       enabled?: boolean;
+      tools?: components["schemas"]["CognitiveSkillToolDto"][] | null;
+    };
+    ConversationAttachmentUploadResultDto: {
+      fileId?: string | null;
+      name?: string | null;
+      contentType?: string | null;
+      /** Format: int64 */
+      length?: number;
+    };
+    ConversationAttachmentUploadResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ConversationAttachmentUploadResultDto"];
     };
     ErrorEnvelope: {
       isSuccess?: boolean;
@@ -1184,8 +1228,8 @@ export interface operations {
     };
   };
   /**
-   * Get entitled capabilities
-   * @description Retrieves every governed capability the calling actor is entitled to run for the specified tenant, optionally narrowed to a single execution surface. Capabilities the actor cannot run are never disclosed.
+   * Get the annotated capability catalog
+   * @description Retrieves the full governed-capability catalog for the specified tenant, optionally narrowed to a single execution surface. Every capability is returned with an Available flag (and a DeniedReason when not available) so callers render disabled-with-reason instead of hiding; entitlement is computed server-side.
    */
   GetCapabilitiesAsync: {
     parameters: {
@@ -1216,8 +1260,8 @@ export interface operations {
     };
   };
   /**
-   * Get entitled capabilities count
-   * @description Returns the number of governed capabilities the calling actor is entitled to run for the specified tenant, honouring the same entitlement filter and optional surface narrowing as the list route.
+   * Get the capability catalog count
+   * @description Returns the number of governed capabilities in the catalog for the specified tenant — the surface-matching total that mirrors the list route's returned-set size (entitled or not), honouring the same optional surface narrowing.
    */
   GetCapabilitiesCountAsync: {
     parameters: {
@@ -1248,8 +1292,8 @@ export interface operations {
     };
   };
   /**
-   * Get entitled capability by key
-   * @description Retrieves a single governed capability by its stable, dotted key. Returns 404 when the capability does not exist OR the actor is not entitled to run it — existence is never leaked to an unentitled actor.
+   * Get a capability by key
+   * @description Retrieves a single governed capability by its stable, dotted key, stamped with the Available / DeniedReason entitlement flag. Returns 404 only when the capability does not exist; an existing capability the actor is not entitled to run is returned annotated as unavailable, not hidden.
    */
   GetCapabilityByKeyAsync: {
     parameters: {
@@ -1270,6 +1314,63 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["CapabilityDtoEnvelope"];
           "application/xml": components["schemas"]["CapabilityDtoEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Upload an attachment to a cognitive agent conversation
+   * @description Uploads a file into the acting user's OWN conversation attachment store, scanned and catalogued through the storage spine. A conversation the caller does not own returns 404. The response carries the new file's id, name, content type and length; the chat UI passes that id as an AttachmentFileIds entry when it sends the referencing user turn.
+   */
+  UploadCognitiveAgentConversationAttachmentAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        agentId: string;
+        conversationId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "multipart/form-data": {
+          /** Format: binary */
+          file?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ConversationAttachmentUploadResultDtoEnvelope"];
+          "application/xml": components["schemas"]["ConversationAttachmentUploadResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
         };
       };
       /** @description Forbidden */
@@ -2656,7 +2757,7 @@ export interface operations {
   };
   /**
    * Run a governed agent over the AG-UI protocol
-   * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
+   * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved. An optional ?projectId= binds the run to a project (resolved tenant-scoped): the project id + name are surfaced to the model as context so it can call the governed project-storage tools; it is never auto-filled into a tool's arguments.
    */
   InvokeAgentSurfaceAsync: {
     parameters: {

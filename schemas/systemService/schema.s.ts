@@ -148,6 +148,13 @@ export interface paths {
      */
     delete: operations["DeleteSystemCart"];
   };
+  "/api/v2/SystemService/Carts/Guests": {
+    /**
+     * Purge all guest carts
+     * @description Deletes every guest cart, cascading its item cart records, compare records and wish lists, and returns the removed-row counts. Idempotent.
+     */
+    delete: operations["PurgeSystemGuestCarts"];
+  };
   "/api/v2/SystemService/Contacts/{contactId}/Options": {
     /**
      * Retrieve a list of contact options (admin)
@@ -591,13 +598,6 @@ export interface paths {
      */
     post: operations["ReplayInboxMessage"];
   };
-  "/api/v2/AIService/Agents/{agentId}/agui": {
-    /**
-     * Run a governed agent over the AG-UI protocol
-     * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
-     */
-    post: operations["InvokeAgentSurfaceAsync"];
-  };
   "/api/v2/SystemService/IPLookups": {
     /**
      * Retrieve a list of system IP lookups
@@ -971,6 +971,18 @@ export interface paths {
      */
     patch: operations["PatchTenant"];
   };
+  "/api/v2/SystemService/Tenants/{tenantId}/ModuleGrants": {
+    /**
+     * Get the per-tenant admin module grants for a specific tenant.
+     * @description This action is only available for global administrators.
+     */
+    get: operations["GetTenantModuleGrants"];
+    /**
+     * Replace the per-tenant admin module grants for a specific tenant.
+     * @description This action is only available for global administrators. Grants supplement licensing.
+     */
+    put: operations["SetTenantModuleGrants"];
+  };
   "/api/v2/SystemService/Tenants/{tenantId}/Emails/Preview": {
     /**
      * Preview the rendered email for a tenant.
@@ -1087,6 +1099,27 @@ export interface paths {
      * @description This action is only available for global administrators.
      */
     get: operations["GetExtendedAccountHolderAsync"];
+  };
+  "/api/v2/SystemService/Users/{userId}/AdminDetail": {
+    /**
+     * Retrieve the admin detail aggregate for a user
+     * @description Returns the user's orders, external logins, and — for the supplied tenant — the enrollment with its granted roles/permissions and the tenant role/permission catalogs. Global administrators only.
+     */
+    get: operations["GetUserAdminDetailAsync"];
+  };
+  "/api/v2/SystemService/Users/{userId}/Password": {
+    /**
+     * Set a user's password
+     * @description Replaces the user's password with the supplied value. Global administrators only.
+     */
+    post: operations["SetUserPasswordAsync"];
+  };
+  "/api/v2/SystemService/Users/{userId}/AdminProfile": {
+    /**
+     * Update a user's admin-managed profile
+     * @description Updates the identity fields (email/username, re-normalized by Identity) and display fields a global administrator may change on a user, and toggles two-factor and lockout. Normalized email/username and the access-failed count are never accepted. This action is only available for global administrators.
+     */
+    put: operations["UpdateAccountHolderAdminProfileAsync"];
   };
   "/api/v2/SystemService/Users/{userId}/Emails/Preview": {
     /**
@@ -1596,6 +1629,29 @@ export interface components {
     ForgotPasswordRequest: {
       email: string | null;
     };
+    GuestCartPurgeResultDto: {
+      /** Format: int32 */
+      guestCartsDeleted?: number;
+      /** Format: int32 */
+      itemCartRecordsDeleted?: number;
+      /** Format: int32 */
+      wishListsDeleted?: number;
+    };
+    GuestCartPurgeResultDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["GuestCartPurgeResultDto"];
+    };
     HttpValidationProblemDetails: {
       type?: string | null;
       title?: string | null;
@@ -1898,6 +1954,30 @@ export interface components {
       twoFactorCode?: string | null;
       twoFactorRecoveryCode?: string | null;
     };
+    ModuleGrantDto: {
+      module?: string | null;
+      /** Format: date-time */
+      expiresAt?: string | null;
+      /** Format: date-time */
+      grantedAtUtc?: string;
+      grantedBy?: string | null;
+      note?: string | null;
+    };
+    ModuleGrantDtoListEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["ModuleGrantDto"][] | null;
+    };
     ObjectEmailDispatchRequest: {
       title: string;
       message: string;
@@ -2127,6 +2207,28 @@ export interface components {
       email: string | null;
       resetCode: string | null;
       newPassword: string | null;
+    };
+    SecurityPermissionDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      tenantId?: string | null;
+      category?: string | null;
+      description?: string | null;
+      isSystemPermission?: boolean;
+    };
+    SecurityRoleDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      name?: string | null;
+      tenantId?: string | null;
+      description?: string | null;
+      isSystemRole?: boolean;
+    };
+    SetUserPasswordDto: {
+      newPassword: string;
     };
     SocialProfileDto: {
       id?: string | null;
@@ -2483,6 +2585,17 @@ export interface components {
       activityId?: string | null;
       result?: components["schemas"]["TenantDto"][] | null;
     };
+    TenantEnrollmentDto: {
+      id?: string | null;
+      /** Format: date-time */
+      timestamp?: string | null;
+      tenantId?: string | null;
+      userId?: string | null;
+      isRoot?: boolean;
+      isOwner?: boolean;
+      isAdmin?: boolean;
+      isDisabled?: boolean;
+    };
     TenantUpdateDto: {
       /** @enum {string|null} */
       kind?: "Organization" | "Individual" | null;
@@ -2531,6 +2644,43 @@ export interface components {
       recoveryCodes?: string[] | null;
       isTwoFactorEnabled: boolean;
       isMachineRemembered: boolean;
+    };
+    UserAdminDetailDto: {
+      orders?: components["schemas"]["UserOrderSummaryDto"][] | null;
+      logins?: components["schemas"]["UserExternalLoginDto"][] | null;
+      enrollment?: components["schemas"]["TenantEnrollmentDto"];
+      grantedRoles?: components["schemas"]["SecurityRoleDto"][] | null;
+      grantedPermissions?: components["schemas"]["SecurityPermissionDto"][] | null;
+      roleCatalog?: components["schemas"]["SecurityRoleDto"][] | null;
+      permissionCatalog?: components["schemas"]["SecurityPermissionDto"][] | null;
+    };
+    UserAdminDetailDtoEnvelope: {
+      isSuccess?: boolean;
+      errorMessage?: string | null;
+      correlationId?: string | null;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: int32 */
+      httpStatus?: number | null;
+      errorCode?: string | null;
+      validationDetails?: ({
+        [key: string]: string[] | null;
+      }) | null;
+      activityId?: string | null;
+      result?: components["schemas"]["UserAdminDetailDto"];
+    };
+    UserAdminUpdateDto: {
+      email?: string | null;
+      userName?: string | null;
+      handler?: string | null;
+      name?: string | null;
+      lastName?: string | null;
+      publicName?: string | null;
+      about?: string | null;
+      twoFactorEnabled?: boolean;
+      lockoutEnabled?: boolean;
+      /** Format: date-time */
+      lockoutEnd?: string | null;
     };
     UserCreateDto: {
       /** Format: uuid */
@@ -2663,6 +2813,18 @@ export interface components {
       }) | null;
       activityId?: string | null;
       result?: components["schemas"]["UserDto"][] | null;
+    };
+    UserExternalLoginDto: {
+      loginProvider?: string | null;
+      providerKey?: string | null;
+      providerDisplayName?: string | null;
+    };
+    UserOrderSummaryDto: {
+      id?: string | null;
+      /** @enum {string} */
+      orderType?: "SalesOrder" | "PurchaseOrder";
+      /** @enum {string} */
+      orderStatus?: "New" | "Processing" | "Accepted" | "Declined" | "Shipped" | "Delivered" | "OnHold" | "Failed" | "Fulfilled" | "Cancelled";
     };
     UserSettingsDto: {
       id?: string | null;
@@ -3738,6 +3900,43 @@ export interface operations {
     };
   };
   /**
+   * Purge all guest carts
+   * @description Deletes every guest cart, cascading its item cart records, compare records and wish lists, and returns the removed-row counts. Idempotent.
+   */
+  PurgeSystemGuestCarts: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["GuestCartPurgeResultDtoEnvelope"];
+          "application/xml": components["schemas"]["GuestCartPurgeResultDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Retrieve a list of contact options (admin)
    * @description Admin endpoint to retrieve options for any contact
    */
@@ -4787,23 +4986,6 @@ export interface operations {
           "application/json": components["schemas"]["ErrorEnvelope"];
           "application/xml": components["schemas"]["ErrorEnvelope"];
         };
-      };
-    };
-  };
-  /**
-   * Run a governed agent over the AG-UI protocol
-   * @description Streams a governed agent run as AG-UI server-sent events. Feature-flagged on ABP.Cognitive.AgentSurface.Enable; returns 503 when disabled, 401 when unauthorized and 404 when the agent cannot be resolved.
-   */
-  InvokeAgentSurfaceAsync: {
-    parameters: {
-      path: {
-        agentId: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: never;
       };
     };
   };
@@ -8033,6 +8215,92 @@ export interface operations {
     };
   };
   /**
+   * Get the per-tenant admin module grants for a specific tenant.
+   * @description This action is only available for global administrators.
+   */
+  GetTenantModuleGrants: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ModuleGrantDtoListEnvelope"];
+          "application/xml": components["schemas"]["ModuleGrantDtoListEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Replace the per-tenant admin module grants for a specific tenant.
+   * @description This action is only available for global administrators. Grants supplement licensing.
+   */
+  SetTenantModuleGrants: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        tenantId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["ModuleGrantDto"][];
+        "application/xml": components["schemas"]["ModuleGrantDto"][];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
    * Preview the rendered email for a tenant.
    * @description This action is only available for global administrators.
    */
@@ -8817,6 +9085,146 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ExtendedUserDtoEnvelope"];
           "application/xml": components["schemas"]["ExtendedUserDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Retrieve the admin detail aggregate for a user
+   * @description Returns the user's orders, external logins, and — for the supplied tenant — the enrollment with its granted roles/permissions and the tenant role/permission catalogs. Global administrators only.
+   */
+  GetUserAdminDetailAsync: {
+    parameters: {
+      query: {
+        tenantId: string;
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UserAdminDetailDtoEnvelope"];
+          "application/xml": components["schemas"]["UserAdminDetailDtoEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Set a user's password
+   * @description Replaces the user's password with the supplied value. Global administrators only.
+   */
+  SetUserPasswordAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["SetUserPasswordDto"];
+        "application/xml": components["schemas"]["SetUserPasswordDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+      /** @description Forbidden */
+      403: {
+        content: {
+          "application/json": components["schemas"]["ErrorEnvelope"];
+          "application/xml": components["schemas"]["ErrorEnvelope"];
+        };
+      };
+    };
+  };
+  /**
+   * Update a user's admin-managed profile
+   * @description Updates the identity fields (email/username, re-normalized by Identity) and display fields a global administrator may change on a user, and toggles two-factor and lockout. Normalized email/username and the access-failed count are never accepted. This action is only available for global administrators.
+   */
+  UpdateAccountHolderAdminProfileAsync: {
+    parameters: {
+      query?: {
+        "api-version"?: string;
+      };
+      header?: {
+        "x-api-version"?: string;
+      };
+      path: {
+        userId: string;
+      };
+    };
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["UserAdminUpdateDto"];
+        "application/xml": components["schemas"]["UserAdminUpdateDto"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["EmptyEnvelope"];
+          "application/xml": components["schemas"]["EmptyEnvelope"];
         };
       };
       /** @description Unauthorized */

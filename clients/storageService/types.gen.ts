@@ -1351,22 +1351,6 @@ export type GetFileThumbnailAsyncResponses = {
 
 export type GetFileThumbnailAsyncResponse = GetFileThumbnailAsyncResponses[keyof GetFileThumbnailAsyncResponses];
 
-export type InvokeAgentSurfaceAsyncData = {
-    body?: never;
-    path: {
-        agentId: string;
-    };
-    query?: never;
-    url: '/api/v2/AIService/Agents/{agentId}/agui';
-};
-
-export type InvokeAgentSurfaceAsyncResponses = {
-    /**
-     * OK
-     */
-    200: unknown;
-};
-
 export type RadzenUploadSingleData = {
     body?: {
         file?: Blob | File;
